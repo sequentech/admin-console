@@ -16,7 +16,6 @@ angular.module(
   'avRegistration',
   'avTest',
   'avAdmin',
-  'avElection',
   'angularFileUpload',
   'dndLists',
   'angularLoad',
@@ -166,45 +165,8 @@ angular.module('agora-core-view').config(
         url: '/election',
         template: '<div ui-view></div>'
       })
-      .state('election.public', {
-        url: '/:id/public',
-        templateUrl: 'avElection/public-controller/public-controller.html',
-        controller: "PublicController"
-      })
-      .state('election.public.loading', {
-        templateUrl: 'avElection/public-controller/loading.html'
-      })
-      .state('election.public.error', {
-        templateUrl: 'avElection/public-controller/error.html'
-      })
-      .state('election.public.show', {
-        templateUrl: 'avElection/public-controller/show.html'
-      })
-      .state('election.public.show.home', {
-        url: '/home',
-        templateUrl: 'avElection/public-controller/home.html'
-      })
-      .state('election.public.show.view', {
-        url: '/view/:name',
-        templateUrl: 'avElection/public-controller/view_page.html'
-      })
-      .state('election.public.show.auths', {
-        url: '/authorities',
-        templateUrl: 'avElection/public-controller/authorities.html'
-      })
-      .state('election.public.show.verify-results', {
-        url: '/verify-results',
-        templateUrl: 'avElection/public-controller/verify_results.html'
-      })
-      .state('election.public.show.ballot-locator', {
-        url: '/ballot-locator',
-        templateUrl: 'avElection/public-controller/ballot_locator.html'
-      })
       .state('election.public.show.home.simple', {
         template: '<div ave-simple-question></div>'
-      })
-      .state('election.public.show.home.unknown', {
-        templateUrl: 'avElection/question-results-directive/unknown.html'
       })
       .state('election.public.show.home.plurality-at-large', {
         template: '<div av-plurality-at-large-results></div>',
@@ -235,30 +197,6 @@ angular.module('agora-core-view').config(
       .state('election.public.show.logout', {
         url: '/logout',
         controller: "LogoutController"
-      })
-
-      .state('election.results', {
-        url: '/:id/results',
-        templateUrl: 'avElection/results-controller/results-controller.html',
-        controller: "ResultsController"
-      })
-      .state('election.results.loading', {
-        templateUrl: 'avElection/results-controller/loading.html'
-      })
-      .state('election.results.error', {
-        templateUrl: 'avElection/results-controller/error.html'
-      })
-      .state('election.results.show', {
-        templateUrl: 'avElection/results-controller/show.html'
-      })
-      .state('election.results.show.unknown', {
-        templateUrl: 'avElection/question-results-directive/unknown.html'
-      })
-      .state('election.results.show.home.borda', {
-        template: '<div av-borda-results></div>',
-      })
-      .state('election.results.show.plurality-at-large', {
-        template: '<div av-plurality-at-large-results></div>',
       });
     $stateProvider
       .state('unit-test-e2e', {
