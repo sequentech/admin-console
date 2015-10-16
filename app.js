@@ -13,10 +13,8 @@ angular.module(
   'avConfig',
   'jm.i18next',
   'avUi',
-  'avBooth',
   'avRegistration',
   'avTest',
-  'avCrypto',
   'avAdmin',
   'avElection',
   'angularFileUpload',
@@ -167,16 +165,6 @@ angular.module('agora-core-view').config(
         abstract: true,
         url: '/election',
         template: '<div ui-view></div>'
-      })
-      .state('election.booth', {
-        url: '/:id/vote/:hmac/:message',
-        templateUrl: 'avBooth/booth.html',
-        controller: "BoothController"
-      })
-      .state('election.booth-nohmac', {
-        url: '/:id/vote',
-        templateUrl: 'avBooth/booth.html',
-        controller: "BoothController"
       })
       .state('election.public', {
         url: '/:id/public',
