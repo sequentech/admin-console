@@ -17,6 +17,13 @@
   "app": {
     "name": "Agora Voting"
   },
+  "avCommon": {
+    "cancel": "Cancel",
+    "poweredBy": "Funciona amb <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>",
+    "shareLink": "¡Twittea aquesta votació!",
+    "votingSystem": "Voting System",
+    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
+  },
   "avRegistration": {
     "loginHeader": "Entrar na túa conta de Agora Voting",
     "helpRegisterForm": "Para poder votar, tes que rexistrarte primeiro mediante este formulario. Algúns dos campos son obrigatorios: le ben a información de axuda",
