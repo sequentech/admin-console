@@ -197,8 +197,7 @@
           "sendAuthCodesHeader": "Send authentication codes",
           "sendAuthCodesBody": "This action will send a message to all the registered electors in the census. Note that sending many messages can be considered as SPAM, so proceed with caution. Also, please review first the message that will be sent.",
           "confirmSendAuthCodesButton": "SEND authentication codes to ALL census",
-          "confirmSendAuthCodesIdsButton": "SEND authentication codes to SELECTED users",
-          "cancel": "Cancel"
+          "confirmSendAuthCodesIdsButton": "SEND authentication codes to SELECTED users"
         }
     },
     "basic": {
@@ -216,8 +215,6 @@
     },
     "questions": {
         "new": "Nueva pregunta",
-        "votingSystem": "Sistema de votació",
-        "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Borda Dowdall o de Nauru (1/n)", "borda": "Borda tradicional"},
         "winners": {"label": "Número de ganadores", "placeholder": "¿Cuántos ganadores debe haber? El mínimo es 1 y el máximo es el número de candidatures"},
         "min": {"label": "Mínimo de candidatures seleccionadas", "placeholder": "¿Cuántas candidatures debe seleccionar un votante? El mínimo es cero lo que premite el voto en blanco"},
         "max": {"label": "Máximo de candidatures seleccionadas", "placeholder": "¿Cuántas candidatures puede un votante seleccionar?"},

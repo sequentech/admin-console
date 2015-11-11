@@ -208,8 +208,7 @@
           "sendAuthCodesHeader": "Enviar códigos de autenticación",
           "sendAuthCodesBody": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
           "confirmSendAuthCodesButton": "ENVIAR códigos de autenticación a TODO el censo",
-          "confirmSendAuthCodesIdsButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS",
-          "cancel": "Cancelar"
+          "confirmSendAuthCodesIdsButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
         }
     },
     "basic": {
@@ -227,8 +226,6 @@
     },
     "questions": {
         "new": "Nueva pregunta",
-        "votingSystem": "Sistema de votación",
-        "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Borda Dowdall o de Nauru (1/n)", "borda": "Borda tradicional"},
         "winners": {
           "label": "Número de ganadores",
           "placeholder": "¿Cuántos ganadores debe haber? El mínimo es 1 y el máximo es el número de candidaturas",

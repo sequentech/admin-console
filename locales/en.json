@@ -208,8 +208,7 @@
           "sendAuthCodesHeader": "Send authentication codes",
           "sendAuthCodesBody": "This action will send a message to all the registered electors in the census. Note that sending many messages can be considered as SPAM, so proceed with caution. Also, please review first the message that will be sent.",
           "confirmSendAuthCodesButton": "SEND authentication codes to ALL census",
-          "confirmSendAuthCodesIdsButton": "SEND authentication codes to SELECTED users",
-          "cancel": "Cancel"
+          "confirmSendAuthCodesIdsButton": "SEND authentication codes to SELECTED users"
         }
     },
     "basic": {
@@ -227,8 +226,6 @@
     },
     "questions": {
         "new": "New question",
-        "votingSystem": "Voting System",
-        "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"},
         "winners": {
           "label": "Number of winners",
           "placeholder": "How many winners should be? Minimum is 1 and maximum is the number of options",
