@@ -162,7 +162,7 @@ module.exports = function (grunt) {
             {selector:'body',html:'<script src="/admin/avThemes-v3.0.1.js"></script>'},
             {selector:'body',html:'<script src="/admin/app-v3.0.1.min.js"></script>'},
             {selector:'body',html:'<script src="/admin/avPlugins-v3.0.1.js"></script>'},
-            {selector:'head',html:'<link rel="stylesheet" id="theme" href="/admin/themes/default/app.min.css">'}
+            {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/admin/" href="/admin/themes/default/app.min.css">'}
           ]
         },
         src:'index.html',
