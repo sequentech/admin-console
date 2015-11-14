@@ -1,1 +1,1 @@
-/home/danigm/Projects/work/agora/agora-gui/agora-gui-common/avConfig.js
+/home/agoracore/agora-gui-common/avConfig.js

@@ -24,60 +24,6 @@
     "votingSystem": "Voting System",
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
   },
-  "avRegistration": {
-    "loginHeader": "Entrar en tu cuenta de Agora Voting",
-    "helpRegisterForm": "Per poder votar, has de registrar-te abans mitjançant aquest formulari. Alguns dels camps són obligatoris: llegeix bé la informació d'ajuda",
-    "helpAdminRegisterForm": "Para poder crear votaciones tienes que registrarte primero mediante este formulario. Lee bien la información de ayuda",
-    "registerFormHelpTitle": "Registrándote para votar",
-    "registerAdminFormHelpTitle": "Registrándote para crear votaciones",
-    "fillValidFormText": "Per poder enviar el formulari, emplena correctament tots els camps.",
-    "invalidRegisterData": "No ha sido posible registrarte con los datos aportados. Por favor, revísalos, o ponte en contacto con los administradores de la votació,",
-    "logout": "Salir",
-    "codeLabel": "Código de Autenticación",
-    "emailLabel": "Correo electrónico",
-    "telLabel": "Telèfon",
-    "emailPlaceholder": "fulanito@ejemplo.com",
-    "passwordLabel": "Contraseña",
-    "passwordPlaceholder": "contraseña",
-    "notRegisteredYet": "Ya estás registrado/a?",
-    "registerHere": "Regístrate aquí",
-    "fewMinutes": "Sólo te llevará unos minutos",
-    "createElection": "¿Buscas crear una votació?",
-    "takeLook": "Echa un vistazo a la",
-    "step": "guia paso a paso",
-    "forgotPassword": "¿Olvidaste tu contraseña?",
-    "loginButton": "Entrar",
-
-    "registerHeader": "Regístrate para votar",
-    "registerAdminHeader": "Regístrate",
-    "registerButton": "Registrarse",
-    "namePlaceholder": "nombre",
-    "surnamePlaceholder": "apellido",
-    "tlfPlaceholder": "teléfono",
-    "dniPlaceholder": "DNI",
-    "alreadyRegistered": "Ja estàs registrat/da?",
-    "helpAlreadyRegisteredForm": "Pot ser que ja estiguis registrat/da i el que necessites en realitat és autenticar-te.",
-    "loginHere": "Accedir usant les meves credencials, Ja m'he registrat amb anterioritat.",
-
-    "tlfError": "Teléfono incorrecto",
-    "dniError": "DNI ejemplo 12345678H",
-    "emailError": "Email incorrecto",
-    "telError": "Teléfono incorrecto",
-
-    "validateHeader": "Código de validación",
-    "validateButton": "Validar",
-    "codePlaceholder": "código",
-
-    "loadingRegistration": "Cargando",
-    "successRegistration": "Exitoso",
-    "errorRegistration": "Error",
-
-    "invalidCredentials": "Credenciales no válidas",
-    "invalidDataRegEx": "dades no vàlids",
-    "invalidDni": "DNI/NIE no vàlids",
-    "dniHelp": "Especifica un DNI/NIE vàlid. Exemples: 1234567R o X0123456R"
-  },
-
   "avAdmin": {
     "topbar": {
         "home": "Inicio",

@@ -157,47 +157,8 @@ angular.module('agora-core-view').config(
         templateUrl: 'avAdmin/admin-controller/admin-controller.html',
         controller: 'AdminController'
       });
-
     // END of Admin interface
-    $stateProvider
-      .state('election', {
-        abstract: true,
-        url: '/election',
-        template: '<div ui-view></div>'
-      })
-      .state('election.public.show.home.simple', {
-        template: '<div ave-simple-question></div>'
-      })
-      .state('election.public.show.home.plurality-at-large', {
-        template: '<div av-plurality-at-large-results></div>',
-      })
-      .state('election.public.show.home.borda', {
-        template: '<div av-borda-results></div>',
-      })
-      .state('election.public.show.register', {
-        url: '/register',
-        templateUrl: 'avRegistration/register-controller/register-controller.html',
-        controller: "RegisterController"
-      })
-      .state('election.public.show.login', {
-        url: '/login',
-        templateUrl: 'avRegistration/login-controller/login-controller.html',
-        controller: "LoginController"
-      })
-      .state('election.public.show.login_email', {
-        url: '/login/:email',
-        templateUrl: 'avRegistration/login-controller/login-controller.html',
-        controller: "LoginController"
-      })
-      .state('election.public.show.login_email_code', {
-        url: '/login/:email/:code',
-        templateUrl: 'avRegistration/login-controller/login-controller.html',
-        controller: "LoginController"
-      })
-      .state('election.public.show.logout', {
-        url: '/logout',
-        controller: "LogoutController"
-      });
+
     $stateProvider
       .state('unit-test-e2e', {
         url: '/unit-test-e2e',

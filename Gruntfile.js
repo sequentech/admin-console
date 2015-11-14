@@ -99,6 +99,15 @@ module.exports = function (grunt) {
         },
         src: [createFolderGlobs('*.html'),'!index.html','!_SpecRunner.html'],
         dest: 'temp/templates.js'
+      },
+      common: {
+        options: {
+            module: pkg.name,
+            htmlmin:'<%= htmlmin.main.options %>'
+        },
+        cwd: 'bower_components/avCommon',
+        src: ["avRegistration/**/*.html", "avUi/**/*.html" ],
+        dest: 'temp/templates-common.js'
       }
     },
     copy: {
@@ -191,7 +200,7 @@ module.exports = function (grunt) {
           ],
           'temp/libnocompat.js': ['<%= dom_munger.data.libnocompatjs %>'],
           'temp/lib.js': ['<%= dom_munger.data.libjs %>'],
-          'temp/app.js': ['<%= dom_munger.data.appjs %>','<%= ngtemplates.main.dest %>'],
+          'temp/app.js': ['<%= dom_munger.data.appjs %>','<%= ngtemplates.main.dest %>','<%= ngtemplates.common.dest %>'],
           'dist/avConfig-v3.0.1.js': ['avConfig.js'],
           'dist/avThemes-v3.0.1.js': ['bower_components/avCommon/dist/avThemes-v3.0.1.js'],
           'dist/avPlugins-v3.0.1.js': ['plugins/**/*.js']
@@ -201,10 +210,10 @@ module.exports = function (grunt) {
     "merge-json": {
       main: {
         files: {
-            "dist/locales/en.json": ["locales/en.json", "plugins/**/locales/en.json"],
-            "dist/locales/es.json": ["locales/es.json", "plugins/**/locales/es.json"],
-            "dist/locales/gl.json": ["locales/gl.json", "plugins/**/locales/gl.json"],
-            "dist/locales/ca.json": ["locales/ca.json", "plugins/**/locales/ca.json"]
+            "dist/locales/en.json": ["locales/en.json", "plugins/**/locales/en.json", "bower_components/avCommon/locales/en.json"],
+            "dist/locales/es.json": ["locales/es.json", "plugins/**/locales/es.json", "bower_components/avCommon/locales/es.json"],
+            "dist/locales/gl.json": ["locales/gl.json", "plugins/**/locales/gl.json", "bower_components/avCommon/locales/gl.json"],
+            "dist/locales/ca.json": ["locales/ca.json", "plugins/**/locales/ca.json", "bower_components/avCommon/locales/ca.json"]
         }
       }
     },
@@ -274,6 +283,7 @@ module.exports = function (grunt) {
           'avWidgets.js',
           '<%= dom_munger.data.appjs %>',
           '<%= ngtemplates.main.dest %>',
+          '<%= ngtemplates.common.dest %>',
           'bower_components/angular-mocks/angular-mocks.js',
           createFolderGlobs('*-spec.js')
         ],
