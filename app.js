@@ -167,6 +167,37 @@ angular.module('agora-core-view').config(
       });
 });
 
+/**
+ * Caching http response error to deauthenticate
+ */
+angular.module('agora-core-view').config(
+  function($httpProvider) {
+    $httpProvider.interceptors.push(function($q, $injector) {
+      return {
+        'responseError': function(rejection) {
+            if (rejection.data && rejection.data.error_codename &&
+              _.contains(
+                ['expired_hmac_key', 'empty_hmac', 'invalid_hmac_userid'],
+                rejection.data.error_codename))
+            {
+              $httpProvider.defaults.headers.common.Authorization = '';
+              $injector.get('$state').go("admin.logout");
+            }
+            return $q.reject(rejection);
+        }
+      };
+    });
+});
+
+/**
+ * IF the cookie is there we make the autologin
+ */
+angular.module('agora-core-view').run(function($cookies, $http, Authmethod) {
+    if ($cookies.auth) {
+        Authmethod.setAuth($cookies.auth, $cookies.isAdmin);
+    }
+});
+
 angular.module('agora-core-view').run(function($http, $rootScope) {
 
   $rootScope.safeApply = function(fn) {
