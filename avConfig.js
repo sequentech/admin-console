@@ -1,1 +1,0 @@
-/home/agoracore/agora-gui-common/avConfig.js
