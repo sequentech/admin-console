@@ -84,6 +84,8 @@
     },
     "elections": {
         "filter": "Filter...",
+        "test": "test",
+        "real": "real",
         "status": "Status",
         "participation": "Participation"
     },
