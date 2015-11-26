@@ -237,6 +237,7 @@ angular.module('avAdmin')
         _.extend(el, angular.copy(scope.election));
         scope.current = el;
         el.id = null;
+        //el.real = true; // Test for create real election
         ElectionsApi.setCurrent(el);
         ElectionsApi.newElection = true;
         $state.go("admin.basic");

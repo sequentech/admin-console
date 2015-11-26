@@ -36,6 +36,11 @@ angular.module('avAdmin').controller('AdminController',
             .then(function(el) {
                 $scope.current = el;
                 ElectionsApi.setCurrent(el);
+                if ('real' in el) {
+                    $scope.isTest = !el.real;
+                } else {
+                    $scope.isTest = true;
+                }
             });
     }
 
@@ -43,6 +48,7 @@ angular.module('avAdmin').controller('AdminController',
         // New election
         newElection();
         $state.go("admin.basic");
+        $scope.isTest = !$scope.current['real'];
     }
 
     var states =[ 'admin.dashboard', 'admin.basic', 'admin.questions', 'admin.censusConfig', 'admin.census', 'admin.auth', 'admin.tally', 'admin.successAction', 'admin.create'];
@@ -64,6 +70,7 @@ angular.module('avAdmin').controller('AdminController',
                 current = newElection();
             }
             $scope.current = current;
+            $scope.isTest = !$scope.current['real'];
         }
     } else {
         $scope.sidebarlinks = [];
