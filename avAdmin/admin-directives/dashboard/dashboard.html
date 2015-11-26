@@ -105,6 +105,12 @@
 
             <button ng-click="doActionConfirm(index)" class="btn btn-block btn-lg btn-success" ng-if="nextaction" ng-i18next="{{ nextaction }}"></button>
 
+            <button ng-if="election.results.questions"
+              ng-click="createRealElection()"
+              class="btn btn-block btn-lg btn-success"
+              ng-i18next>
+              avAdmin.dashboard.createRealElection
+            </button>
             <button
               ng-click="duplicateElection()"
               class="btn btn-block btn-lg btn-success"

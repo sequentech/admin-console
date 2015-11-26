@@ -98,6 +98,7 @@
         "dropFilesHere": "Drop CSV file here"
     },
     "dashboard": {
+        "createRealElection": "Create REAL election",
         "sendAuthCodes": "Enviar autenticación",
         "donow": "pulsa para hacer ahora",
         "votes": "Votos",

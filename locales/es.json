@@ -100,6 +100,7 @@
         "dropFilesHere": "Drop CSV file here"
     },
     "dashboard": {
+        "createRealElection": "Crear votación REAL",
         "duplicateElection": "Duplicar votación",
         "sendAuthCodes": "Enviar autenticación",
         "donow": "pulsa para hacer ahora",

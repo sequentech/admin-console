@@ -237,17 +237,29 @@ angular.module('avAdmin')
         _.extend(el, angular.copy(scope.election));
         scope.current = el;
         el.id = null;
-        //el.real = true; // Test for create real election
         ElectionsApi.setCurrent(el);
         ElectionsApi.newElection = true;
         $state.go("admin.basic");
+      }
+
+      function createRealElection() {
+        var el = ElectionsApi.templateEl();
+        _.extend(el, angular.copy(scope.election));
+        scope.current = el;
+        el.id = null;
+        el.real = true;
+        ElectionsApi.setCurrent(el);
+        ElectionsApi.newElection = true;
+        $state.go("admin.create");
+        // TODO: autoclick in create election
       }
 
       angular.extend(scope, {
         doAction: doAction,
         doActionConfirm: doActionConfirm,
         sendAuthCodesModal: sendAuthCodesModal,
-        duplicateElection: duplicateElection
+        duplicateElection: duplicateElection,
+        createRealElection: createRealElection
       });
     }
 
