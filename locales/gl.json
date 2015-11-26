@@ -26,7 +26,7 @@
   },
 
   "avAdmin": {
-    "thisisATest": "This is a TEST votation",
+    "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> This is a TEST votation",
     "topbar": {
         "home": "Inicio",
         "features": "Funcionalidade",
