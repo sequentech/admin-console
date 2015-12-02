@@ -157,7 +157,7 @@ angular.module('agora-core-view').config(
         controller: 'AdminController'
       })
       .state('admin.create', {
-        url: '/create',
+          url: '/create/:autocreate',
         templateUrl: 'avAdmin/admin-controller/admin-controller.html',
         controller: 'AdminController'
       });

@@ -250,8 +250,7 @@ angular.module('avAdmin')
         el.real = true;
         ElectionsApi.setCurrent(el);
         ElectionsApi.newElection = true;
-        $state.go("admin.create");
-        // TODO: autoclick in create election
+        $state.go("admin.create", {"autocreate": true});
       }
 
       angular.extend(scope, {

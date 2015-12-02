@@ -1,5 +1,5 @@
 angular.module('avAdmin')
-  .directive('avAdminCreate', function($q, Authmethod, ElectionsApi, $state, $i18next, $filter, ConfigService, CheckerService) {
+  .directive('avAdminCreate', function($q, Authmethod, ElectionsApi, $state, $stateParams, $i18next, $filter, ConfigService, CheckerService) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
         var adminId = ConfigService.freeAuthId;
@@ -278,6 +278,10 @@ angular.module('avAdmin')
             var promise = deferred.promise;
 
             scope.creating = true;
+        }
+
+        if ($stateParams.autocreate === "true") {
+            createElections();
         }
 
         function waitForCreated(id, f) {
