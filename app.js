@@ -1,3 +1,5 @@
+window.avConfigData.base = '/admin';
+
 angular.module(
   'agora-gui-admin',
   ['ui.bootstrap',
