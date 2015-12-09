@@ -247,6 +247,7 @@ angular.module('avAdmin')
                     theme_css: ''
                 },
                 layout: 'simple',
+                real: false,
                 census: {
                     voters: [],
                     auth_method: 'email',

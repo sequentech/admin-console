@@ -26,6 +26,7 @@
   },
 
   "avAdmin": {
+    "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> This is a TEST votation",
     "topbar": {
         "home": "Inicio",
         "features": "Funcionalidade",
@@ -82,6 +83,8 @@
     },
     "elections": {
         "filter": "Filtrar...",
+        "test": "test",
+        "real": "real",
         "status": "Estado",
         "participation": "Participación"
     },
@@ -98,6 +101,7 @@
         "dropFilesHere": "Drop CSV file here"
     },
     "dashboard": {
+        "createRealElection": "Create REAL election",
         "duplicateElection": "Duplicar votación",
         "sendAuthCodes": "Enviar autenticación",
         "donow": "pulsa para facer agora",

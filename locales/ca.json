@@ -25,6 +25,7 @@
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
   },
   "avAdmin": {
+    "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> This is a TEST votation",
     "topbar": {
         "home": "Inicio",
         "features": "Funcionalidad",
@@ -81,6 +82,8 @@
     },
     "elections": {
         "filter": "Filtrar...",
+        "test": "test",
+        "real": "real",
         "status": "Estado",
         "participation": "Participación"
     },
@@ -97,6 +100,7 @@
         "dropFilesHere": "Drop CSV file here"
     },
     "dashboard": {
+        "createRealElection": "Create REAL election",
         "sendAuthCodes": "Enviar autenticación",
         "donow": "pulsa para hacer ahora",
         "votes": "Votos",
