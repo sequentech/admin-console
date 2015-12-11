@@ -2,6 +2,8 @@ angular.module('avAdmin')
     .factory('AdminPlugins', function() {
         var plugins = {};
         plugins.plugins = {list: []};
+        plugins.signals = $.Callbacks("unique");
+        plugins.hooks = [];
 
         plugins.add = function(p) {
             // plugin format
@@ -40,6 +42,32 @@ angular.module('avAdmin')
                 }
             });
         };
+
+        plugins.emit = function(signame, data) {
+            plugins.signals.fire(signame, data);
+        };
+
+        plugins.hook = function(hookname, data) {
+            for (var i=0; i<plugins.hooks.length; i++) {
+                var h = plugins.hooks[i];
+                var ret = h(hookname, data);
+                if (!ret) {
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        $(document).ready(function() {
+            plugins.emit('plugins-loaded', {msg: 'ok'});
+            if (!plugins.hook('plugins-loaded', {msg: 'ok'})) {
+                console.log("hook-loaded false");
+            } else {
+                console.log("hook-loaded true");
+            }
+        });
+
+        window.plugins = plugins;
 
         return plugins;
     });
