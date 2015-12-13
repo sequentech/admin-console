@@ -33,8 +33,8 @@ angular.module('avAdmin')
 
             $rootScope.currentElection = el;
             if (!$rootScope.watchingElection) {
-                $rootScope.$watch('currentElection', function() {
-                  AdminPlugins.hook('election-modified', $rootScope.currentElection);
+                $rootScope.$watch('currentElection', function(newv, oldv) {
+                  AdminPlugins.hook('election-modified', {'old': oldv, 'el': newv});
                   if (!$rootScope.currentElection.id) {
                     $cookies.currentElection = JSON.stringify($rootScope.currentElection);
                   }
