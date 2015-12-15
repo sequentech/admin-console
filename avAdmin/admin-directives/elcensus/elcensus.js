@@ -281,12 +281,19 @@ angular.module('avAdmin')
 
       function sendAuthCodes(user_ids) {
         scope.loading = true;
-        Authmethod.sendAuthCodes(scope.election.id, scope.election, user_ids)
-          .success(function(r) {
-            scope.loading = false;
-            scope.msg = "avAdmin.census.sentCodesSuccessfully";
-          })
-          .error(function(error) { scope.loading = false; scope.error = error.error; });
+        if (AdminPlugins.hook('send-auth-codes-pre', {el: scope.election, ids: user_ids})) {
+            Authmethod.sendAuthCodes(scope.election.id, scope.election, user_ids)
+              .success(function(r) {
+                scope.loading = false;
+                scope.msg = "avAdmin.census.sentCodesSuccessfully";
+                AdminPlugins.hook('send-auth-codes-ok', {el: scope.election, ids: user_ids, response: r});
+              })
+              .error(function(error) {
+                scope.loading = false;
+                scope.error = error.error;
+                AdminPlugins.hook('send-auth-codes-ko', {el: scope.election, ids: user_ids, response: error});
+              });
+        }
       }
 
       function sendAuthCodesSelected() {
