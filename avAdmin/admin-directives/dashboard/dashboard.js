@@ -1,5 +1,5 @@
 angular.module('avAdmin')
-  .directive('avAdminDashboard', function($state, Authmethod, ElectionsApi, $stateParams, $modal, PercentVotesService) {
+  .directive('avAdminDashboard', function($state, Authmethod, AdminPlugins, ElectionsApi, $stateParams, $modal, PercentVotesService) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
       var id = $stateParams.id;
@@ -224,12 +224,19 @@ angular.module('avAdmin')
 
       function sendAuthCodes() {
         scope.loading = true;
-        Authmethod.sendAuthCodes(scope.election.id, scope.election)
-          .success(function(r) {
-            scope.loading = false;
-            scope.msg = "avAdmin.dashboard.censussend";
-          })
-          .error(function(error) { scope.loading = false; scope.error = error.error; });
+        if (AdminPlugins.hook('send-auth-codes-pre', {el: scope.election, ids: []})) {
+            Authmethod.sendAuthCodes(scope.election.id, scope.election)
+              .success(function(r) {
+                scope.loading = false;
+                scope.msg = "avAdmin.dashboard.censussend";
+                AdminPlugins.hook('send-auth-codes-ok', {el: scope.election, ids: [], response: r});
+              })
+              .error(function(error) {
+                scope.loading = false;
+                scope.error = error.error;
+                AdminPlugins.hook('send-auth-codes-ko', {el: scope.election, ids: [], response: error});
+              });
+        }
       }
 
       function duplicateElection() {
