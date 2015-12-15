@@ -6,6 +6,7 @@ angular.module('avAdmin')
       $state,
       ElectionsApi,
       Authmethod,
+      AdminPlugins,
       $modal,
       MustExtraFieldsService,
       $filter,
@@ -138,6 +139,24 @@ angular.module('avAdmin')
         }
       ];
 
+      function censusCall(id, csExport, opt) {
+          // this hook can avoid the addCensus call
+          if (AdminPlugins.hook('add-to-census-pre', csExport)) {
+              Authmethod.addCensus(id, csExport, opt)
+                .success(function(r) {
+                  scope.loading = false;
+                  scope.msg = "avAdmin.census.censusadd";
+                  scope.reloadCensus();
+                  AdminPlugins.hook('add-to-census-ok', {data: csExport, response: r});
+                })
+                .error(function(error) {
+                  scope.loading = false;
+                  scope.error = error.error;
+                  AdminPlugins.hook('add-to-census-ko', {data: csExport, response: error});
+                });
+          }
+      }
+
       function addToCensus(textarea) {
           var el = scope.election;
           var cs = [];
@@ -149,16 +168,7 @@ angular.module('avAdmin')
 
             var csExport = _.map(cs, function (i) { return i.metadata; });
             scope.loading = true;
-            Authmethod.addCensus(el.id, csExport, 'disabled')
-              .success(function(r) {
-                scope.loading = false;
-                scope.msg = "avAdmin.census.censusadd";
-                scope.reloadCensus();
-              })
-              .error(function(error) {
-                scope.loading = false;
-                scope.error = error.error;
-              });
+            censusCall(el.id, csExport, 'disabled');
           }
           scope.newcensus = {};
       }
@@ -194,16 +204,7 @@ angular.module('avAdmin')
           if (!!el.id) {
             var csExport = _.map(cs, function (i) { return i.metadata; });
             scope.loading = true;
-            Authmethod.addCensus(el.id, csExport, 'disabled')
-              .success(function(r) {
-                scope.loading = false;
-                scope.msg = "avAdmin.census.censusadd";
-                scope.reloadCensus();
-              })
-              .error(function(error) {
-                scope.loading = false;
-                scope.error = error.error;
-              });
+            censusCall(el.id, csExport, 'disabled');
           }
       }
 
