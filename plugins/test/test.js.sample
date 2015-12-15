@@ -1,11 +1,8 @@
 angular.module('avAdmin').run(function(AdminPlugins) {
     // Adding to the sidebar params:
-    // name, icon-name (fa), head or sub, text to show
-    AdminPlugins.add("test", "check", true, "testplugin.text");
-
     var p = {
              name: 'test',
-             head: true,
+             head: false,
              link: 'admin.test',
              directive: 'test',
              menu: {
@@ -42,3 +39,25 @@ angular.module('avAdmin')
       template: '<h1 ng-i18next>testplugin.header</h1>'
     };
   });
+
+// Registering signals and hooks
+angular.module('avAdmin').run(function(AdminPlugins) {
+    function signalHandler(sig, data) {
+        if (sig === 'plugins-loaded') {
+            console.log("LOADED signal received in test plugin", data);
+        }
+    }
+
+    // if we return false here, the ejecution will be affected
+    function hookHandler(hook, data) {
+        if (hook === 'plugins-loaded') {
+            console.log("LOADED signal received in test plugin", data);
+            return false;
+        }
+        return true;
+    }
+
+    // subscribe to a signal and hook
+    AdminPlugins.signals.add(signalHandler);
+    AdminPlugins.hooks.push(hookHandler);
+});

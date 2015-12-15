@@ -3,6 +3,7 @@ angular.module('avAdmin')
       'ElectionsApi',
       function(
         $q,
+        AdminPlugins,
         Authmethod,
         ConfigService,
         $i18next,
@@ -31,11 +32,15 @@ angular.module('avAdmin')
             electionsapi.newElection = !el.id;
 
             $rootScope.currentElection = el;
-            $rootScope.$watch('currentElection', function() {
-              if (!$rootScope.currentElection.id) {
-                $cookies.currentElection = JSON.stringify($rootScope.currentElection);
-              }
-            }, true);
+            if (!$rootScope.watchingElection) {
+                $rootScope.$watch('currentElection', function(newv, oldv) {
+                  AdminPlugins.hook('election-modified', {'old': oldv, 'el': newv});
+                  if (!$rootScope.currentElection.id) {
+                    $cookies.currentElection = JSON.stringify($rootScope.currentElection);
+                  }
+                }, true);
+                $rootScope.watchingElection = true;
+            }
 
             electionsapi.waitingCurrent.forEach(function(f) {
                 f();
@@ -251,7 +256,7 @@ angular.module('avAdmin')
                 census: {
                     voters: [],
                     auth_method: 'email',
-                    census:'open',
+                    census:'close',
                     extra_fields: [ ],
                     config: {
                         "msg": $i18next('avAdmin.auth.emaildef'),
