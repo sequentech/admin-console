@@ -163,7 +163,8 @@ angular.module('avAdmin')
                 auth_method: el.census.auth_method,
                 census: el.census.census,
                 auth_method_config: el.census.config,
-                extra_fields: []
+                extra_fields: [],
+                real: el.real
             };
 
             d.extra_fields = _.filter(el.census.extra_fields, function(ef) {
