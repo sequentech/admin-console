@@ -104,7 +104,7 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          src: ['bower_components/avCommon/themes/**/app.less'],
+          src: ['bower_components/avCommon/themes/**/app.less', 'plugins/**/*.less'],
           dest: 'temp/',
           ext: '.css',
         }]
@@ -198,7 +198,8 @@ module.exports = function (grunt) {
             {selector:'body',html:'<script src="/admin/avThemes-v3.0.1.js"></script>'},
             {selector:'body',html:'<script src="/admin/app-v3.0.1.min.js"></script>'},
             {selector:'body',html:'<script src="/admin/avPlugins-v3.0.1.js"></script>'},
-            {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/admin/" href="/admin/themes/default/app.min.css">'}
+            {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/admin/" href="/admin/themes/default/app.min.css">'},
+            {selector:'head',html:'<link rel="stylesheet" id="plugins" data-base="/admin/" href="/admin/plugins.css">'}
           ]
         },
         src:'index.html',
@@ -220,6 +221,7 @@ module.exports = function (grunt) {
     concat: {
       main: {
         files: {
+          'dist/plugins.css': ['temp/plugins/**/*.css'],
           'temp/libcompat.js': [
             'vendor/jquery.compat/jquery-1.11.1.js',
             'vendor/json3/json-v3.3.2.js',
