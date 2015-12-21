@@ -26,7 +26,7 @@
   },
 
   "avAdmin": {
-    "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> This is a TEST votation",
+    "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> This is a TEST election. To create a real election you should complete the election cycle with a test election, and then you can create the REAL election from the TEST election dashboard in one click.",
     "topbar": {
         "home": "Inicio",
         "features": "Funcionalidade",

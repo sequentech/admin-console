@@ -27,7 +27,7 @@
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
   },
   "avAdmin": {
-    "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Esto es una votación de PRUEBA",
+    "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>¡Atención!</strong> Esto es una votación de PRUEBA. Para crear una real debes completar el ciclo completo de una votación con la votación de prueba y después podrás crear la votación REAL desde el panel de control de la votación de PRUEBA con un simple click.",
     "topbar": {
         "home": "Inicio",
         "features": "Funcionalidad",
