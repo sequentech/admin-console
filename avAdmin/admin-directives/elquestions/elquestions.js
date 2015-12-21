@@ -62,6 +62,12 @@ angular.module('avAdmin')
         function addOption(index) {
             var el = ElectionsApi.currentElection;
             var qs = el.questions;
+            var text = document.querySelector("#newopt").value;
+
+            if (!text.trim()) {
+                return;
+            }
+
             if (!qs[index].answers) {
                 qs[index].answers = [];
             }
@@ -72,7 +78,7 @@ angular.module('avAdmin')
                 details: "",
                 id: 0,
                 sort_order: 0,
-                text: document.querySelector("#newopt").value,
+                text: text,
                 urls: []
             };
             qs[index].answers.push(a);
