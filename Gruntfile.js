@@ -290,15 +290,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    imagemin: {
-      main:{
-        files: [{
-          expand: true, cwd:'dist/',
-          src:['**/{*.png,*.jpg}'],
-          dest: 'dist/'
-        }]
-      }
-    },
     karma: {
       options: {
         frameworks: ['jasmine'],
