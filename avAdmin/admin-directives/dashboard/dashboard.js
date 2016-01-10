@@ -218,6 +218,20 @@ angular.module('avAdmin')
             user_ids: function() { return null; }
           }
         }).result.then(function () {
+            confirmAuthCodesModal();
+        });
+      }
+
+      function confirmAuthCodesModal() {
+        $modal.open({
+          templateUrl: "avAdmin/admin-directives/dashboard/send-auth-codes-modal-confirm.html",
+          controller: "SendAuthCodesModalConfirm",
+          size: 'lg',
+          resolve: {
+            election: function () { return scope.election; },
+            user_ids: function() { return null; }
+          }
+        }).result.then(function () {
           sendAuthCodes();
         });
       }
@@ -264,6 +278,7 @@ angular.module('avAdmin')
         doAction: doAction,
         doActionConfirm: doActionConfirm,
         sendAuthCodesModal: sendAuthCodesModal,
+        confirmAuthCodesModal: confirmAuthCodesModal,
         duplicateElection: duplicateElection,
         createRealElection: createRealElection
       });
