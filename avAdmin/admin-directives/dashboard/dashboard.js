@@ -208,7 +208,19 @@ angular.module('avAdmin')
             .catch(function(error) { scope.loading = false; scope.error = error; });
       }
 
+      var showEditAuthCode = true;
+
+      function editAuthCodes() {
+        showEditAuthCode = true;
+        sendAuthCodesModal();
+      }
+
       function sendAuthCodesModal() {
+        if (!showEditAuthCode) {
+            confirmAuthCodesModal();
+            return;
+        }
+
         $modal.open({
           templateUrl: "avAdmin/admin-directives/dashboard/send-auth-codes-modal.html",
           controller: "SendAuthCodesModal",
@@ -218,6 +230,7 @@ angular.module('avAdmin')
             user_ids: function() { return null; }
           }
         }).result.then(function () {
+            showEditAuthCode = false;
             confirmAuthCodesModal();
         });
       }
@@ -231,8 +244,12 @@ angular.module('avAdmin')
             election: function () { return scope.election; },
             user_ids: function() { return null; }
           }
-        }).result.then(function () {
-          sendAuthCodes();
+        }).result.then(function (data) {
+          if (data === 'editAuthCodes') {
+            editAuthCodes();
+          } else {
+            sendAuthCodes();
+          }
         });
       }
 

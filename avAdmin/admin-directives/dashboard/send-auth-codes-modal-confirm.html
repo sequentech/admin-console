@@ -20,31 +20,39 @@
   <!-- to write from plugins -->
   <div> </div>
 
-  <h3><u><span ng-i18next>Messages TRX</span> <a href="" class="text-small text-muted">edit TRX</a></u></h3>
+  <h3><u><span ng-i18next>avAdmin.dashboard.modals.sendAuthCodesConfMsg</span>
+         <small>
+            <a ng-click="editAuthCodes()" ng-href="" class="text-small text-muted" ng-i18next>avAdmin.dashboard.modals.sendAuthCodesConfEdit</a>
+         </small>
+      </u>
+  </h3>
 
   <!-- SMS conf -->
   <div ng-if="election.census.auth_method == 'sms'">
       <h4 ng-i18next="avAdmin.auth.sms"></h4>
-      <div class="well" ng-bind="election.census.config.msg"></div>
+      <div ng-click="editAuthCodes()" class="well" ng-bind="election.census.config.msg"></div>
   </div>
 
   <!-- Email conf -->
   <div ng-if="election.census.auth_method == 'email'">
       <h4 ng-i18next="avAdmin.auth.emailsub"></h4>
-      <div class="well" ng-bind="election.census.config.subject"></div>
+      <div ng-click="editAuthCodes()" class="well" ng-bind="election.census.config.subject"></div>
 
       <h4 ng-i18next="avAdmin.auth.email"></h4>
-      <div class="well" ng-bind="election.census.config.msg"></div>
+      <div ng-click="editAuthCodes()" class="well" ng-bind="election.census.config.msg"></div>
+  </div>
+
+  <!-- checkbox to confirm no url -->
+  <div class="checkbox" ng-if="showCheckBox()">
+    <label>
+      <input id="imsure" type="checkbox" value="" ng-model="imsure">
+      <span ng-i18next>avAdmin.dashboard.modals.invalidMsgConfirm</span>
+    </label>
   </div>
 </div>
 
 <div class="modal-footer">
-  <button class="btn btn-success" ng-click="ok()">
-    <span ng-if="!user_ids || user_ids.length === 0" ng-i18next>
-      avAdmin.dashboard.modals.confirmSendAuthCodesButton
-    </span>
-    <span ng-if="!!user_ids && user_ids.length > 0" ng-i18next>
-      avAdmin.dashboard.modals.confirmSendAuthCodesIdsButton
-    </span>
+  <button id="sendbutton" class="btn btn-success" ng-click="ok()" ng-disabled="!imsure">
+    <span ng-i18next> avAdmin.dashboard.modals.sendAuthCodesConfButton </span>
   </button>
 </div>

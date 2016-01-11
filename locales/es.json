@@ -149,6 +149,11 @@
           "confirmPublishResultsButton": "Confirmar y PUBLICAR resultados",
           "sendAuthCodesHeader": "Enviar códigos de autenticación",
           "sendAuthCodesBody": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
+          "sendAuthCodesConfMsg": "Mensajes",
+          "sendAuthCodesConfEdit": "Editar",
+          "sendAuthCodesConfBody": "Vas a enviar el mensaje de autenticación a __voters__ personas. Por favor, comprueba que todo es correcto.",
+          "sendAuthCodesConfButton": "Confirmar y enviar mensajes",
+          "invalidMsgConfirm": "Quiero mandar estos mensajes sin código / URL",
           "confirmSendAuthCodesButton": "ENVIAR códigos de autenticación a TODO el censo",
           "confirmSendAuthCodesIdsButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
         }

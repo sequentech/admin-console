@@ -149,7 +149,11 @@
           "confirmPublishResultsButton": "Confirm and PUBLISH election results",
           "sendAuthCodesHeader": "Send authentication codes",
           "sendAuthCodesBody": "This action will send a message to all the registered electors in the census. Note that sending many messages can be considered as SPAM, so proceed with caution. Also, please review first the message that will be sent.",
+          "sendAuthCodesConfMsg": "Messages",
+          "sendAuthCodesConfEdit": "Edit",
           "sendAuthCodesConfBody": "You're going to send the auth msg to __voters__ voters. Please, check that all is correct.",
+          "sendAuthCodesConfButton": "Confirm and send messages",
+          "invalidMsgConfirm": "I want to send this messages without code / URL",
           "confirmSendAuthCodesButton": "SEND authentication codes to ALL census",
           "confirmSendAuthCodesIdsButton": "SEND authentication codes to SELECTED users"
         }
