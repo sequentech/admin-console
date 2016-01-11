@@ -27,7 +27,7 @@
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
   },
   "avAdmin": {
-    "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> This is a TEST election. To create a real election you should complete the election cycle with a test election, and then you can create the REAL election from the TEST election dashboard in one click.",
+    "thisisATest": "<i class=\"fa-fw fa fa-info\"></i> <strong>Note</strong> This is a test election. For security reasons, real elections can only be created out of successful test elections. <a href=\"\" target=\"_blank\">Learn more..</a>",
     "topbar": {
         "home": "Home",
         "features": "Features",

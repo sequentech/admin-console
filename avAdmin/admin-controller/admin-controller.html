@@ -1,5 +1,5 @@
 <div class="admin-controller">
-    <div av-admin-head test='{{isTest}}' loginrequired>
+    <div av-admin-head loginrequired>
   </div>
 
   <div class="container-fluid admin-unfixed-top">
@@ -11,6 +11,11 @@
         ng-switch="state"
         id="content"
         class="col-sm-9 admin-controller-content">
+
+        <div ng-if="isTest" class="head-notification warn-notification">
+          <p ng-i18next="[html]avAdmin.thisisATest"></p>
+        </div>
+
         <div av-admin-elections ng-switch-when="admin.elections"></div>
         <div av-admin-import ng-switch-when="admin.import"></div>
         <div av-admin-elbasic ng-switch-when="admin.basic"></div>
