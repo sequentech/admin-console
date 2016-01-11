@@ -26,7 +26,10 @@
   },
 
   "avAdmin": {
-    "thisisATest": "<i class=\"fa-fw fa fa-info\"></i> <strong>Note</strong> This is a test election. For security reasons, real elections can only be created out of successful test elections. <a href=\"\" target=\"_blank\">Learn more..</a>",
+    "notes": {
+      "noteTag": "Nota",
+      "thisisATestElection": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas."
+    },
     "topbar": {
         "home": "Inicio",
         "features": "Funcionalidade",

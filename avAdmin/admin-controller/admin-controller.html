@@ -13,7 +13,12 @@
         class="col-sm-9 admin-controller-content">
 
         <div ng-if="isTest" class="head-notification warn-notification">
-          <p ng-i18next="[html]avAdmin.thisisATest"></p>
+          <p>
+            <i class="fa-fw fa fa-info"></i>
+            <strong ng-i18next="avAdmin.notes.noteTag"></strong>
+            <span ng-i18next="avAdmin.notes.thisisATestElection"></span>
+            <a href="" target="_blank" ng-i18next="avAdmin.learnMore"></a>
+          </p>
         </div>
 
         <div av-admin-elections ng-switch-when="admin.elections"></div>
