@@ -26,7 +26,10 @@
   },
 
   "avAdmin": {
-    "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> This is a TEST votation",
+    "notes": {
+      "noteTag": "Nota",
+      "thisisATestElection": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas."
+    },
     "topbar": {
         "home": "Inicio",
         "features": "Funcionalidade",

@@ -10,9 +10,6 @@ angular.module('avAdmin')
         if (scope.loginrequired && !scope.admin) {
             $state.go("admin.logout");
         }
-        if ('test' in attrs) {
-            scope.isTest = attrs['test'];
-        }
     }
 
     return {
