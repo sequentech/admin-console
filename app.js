@@ -23,6 +23,7 @@ angular.module(
   'angularLoad',
   'angular-date-picker-polyfill',
   'ng-autofocus',
+  'LocalStorageModule',
   'agora-gui-common'
 ]);
 
@@ -194,7 +195,19 @@ angular.module('agora-gui-admin').config(
         }
       };
     });
-});
+  }
+);
+
+/**
+ * Configure the prefix for
+ */
+angular.module('agora-gui-admin').config(
+  function(localStorageServiceProvider)
+  {
+    localStorageServiceProvider.setPrefix('agora-gui-admin');
+  }
+);
+
 
 /**
  * IF the cookie is there we make the autologin

@@ -9,8 +9,52 @@ angular.module('avAdmin')
         $i18next,
         $http,
         $cookies,
+        localStorageService,
         $rootScope)
       {
+
+        /**
+         * Generates a saved election key for the local storage key value store
+         * in a secure way: the key is a cryptographically secure id, stored
+         * as a cookie.
+         */
+        function getSavedElectionKey() {
+          if (!$cookies.savedElectionKey) {
+            /* jshint ignore:start */
+            $cookies.savedElectionKey = "savedElectionKey_" + sjcl.codec.base64.fromBits(sjcl.random.randomWords(8, 0));
+            /* jshint ignore:end */
+          }
+
+          return $cookies.savedElectionKey;
+        }
+
+        /**
+         * Return the saved election in local storage if it exists or null.
+         */
+        function getSavedElection() {
+          return JSON.parse(
+            localStorageService.get(
+              getSavedElectionKey()));
+        }
+
+        /**
+         * Saves locally the election into local storage.
+         */
+        function localSaveElection(election) {
+          localStorageService.set(
+            getSavedElectionKey(),
+            JSON.stringify(election));
+        }
+
+        /**
+         * Return boolean that specifies if there's any saved election in local
+         * storage.
+         */
+        function hasSavedElection() {
+          return !!localStorageService.get(
+              getSavedElectionKey());
+        }
+
         var backendUrl = ConfigService.electionsAPI;
         var electionsapi = {cache: {}, permcache: {}};
         electionsapi.waitingCurrent = [];
@@ -36,7 +80,7 @@ angular.module('avAdmin')
                 $rootScope.$watch('currentElection', function(newv, oldv) {
                   AdminPlugins.hook('election-modified', {'old': oldv, 'el': newv});
                   if (!$rootScope.currentElection.id) {
-                    $cookies.currentElection = JSON.stringify($rootScope.currentElection);
+                    localSaveElection($rootScope.currentElection);
                   }
                 }, true);
                 $rootScope.watchingElection = true;
@@ -48,15 +92,16 @@ angular.module('avAdmin')
             electionsapi.waitingCurrent = [];
         };
 
-        if ($cookies.currentElection) {
-            console.log($cookies.currentElection);
+        if (hasSavedElection()) {
             try {
-                var el = JSON.parse($cookies.currentElection);
+                var el = getSavedElection();
+                console.log(getSavedElection());
                 electionsapi.setCurrent(el);
             } catch (e) {
-                $cookies.currentElection = electionsapi.currentElection;
+                localSaveElection(electionsapi.currentElection);
             }
         }
+
 
         function asyncElection(id) {
             var deferred = $q.defer();
