@@ -7,6 +7,7 @@ angular.module('avAdmin')
       ElectionsApi,
       Authmethod,
       AdminPlugins,
+      SendMsg,
       $modal,
       MustExtraFieldsService,
       $filter,
@@ -279,35 +280,15 @@ angular.module('avAdmin')
         return false;
       }
 
-      function sendAuthCodes(user_ids) {
-        scope.loading = true;
-        if (AdminPlugins.hook('send-auth-codes-pre', {el: scope.election, ids: user_ids})) {
-            Authmethod.sendAuthCodes(scope.election.id, scope.election, user_ids)
-              .success(function(r) {
-                scope.loading = false;
-                scope.msg = "avAdmin.census.sentCodesSuccessfully";
-                AdminPlugins.hook('send-auth-codes-ok', {el: scope.election, ids: user_ids, response: r});
-              })
-              .error(function(error) {
-                scope.loading = false;
-                scope.error = error.error;
-                AdminPlugins.hook('send-auth-codes-ko', {el: scope.election, ids: user_ids, response: error});
-              });
-        }
-      }
-
       function sendAuthCodesSelected() {
         var selectedList = scope.selected(scope.shown());
         var user_ids = _.pluck(selectedList, "id");
-        $modal.open({
-          templateUrl: "avAdmin/admin-directives/dashboard/send-auth-codes-modal.html",
-          controller: "SendAuthCodesModal",
-          size: 'lg',
-          resolve: {
-            election: function () { return scope.election; },
-            user_ids: function() { return user_ids; }
-          }
-        }).result.then(sendAuthCodes);
+
+        SendMsg.setElection(scope.election);
+        SendMsg.scope = scope;
+        SendMsg.user_ids = user_ids;
+        SendMsg.sendAuthCodesModal();
+
         return false;
       }
 
