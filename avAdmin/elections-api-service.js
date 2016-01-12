@@ -9,9 +9,52 @@ angular.module('avAdmin')
         $i18next,
         $http,
         $cookies,
-        localStorageServiceProvider,
+        localStorageService,
         $rootScope)
       {
+
+        /**
+         * Generates a saved election key for the local storage key value store
+         * in a secure way: the key is a cryptographically secure id, stored
+         * as a cookie.
+         */
+        function getSavedElectionKey() {
+          if (!$cookies.savedElectionKey) {
+            /* jshint ignore:start */
+            $cookies.savedElectionKey = "savedElectionKey_" + sjcl.codec.base64.fromBits(sjcl.random.randomWords(8, 0));
+            /* jshint ignore:end */
+          }
+
+          return $cookies.savedElectionKey;
+        }
+
+        /**
+         * Return the saved election in local storage if it exists or null.
+         */
+        function getSavedElection() {
+          return JSON.parse(
+            localStorageService.get(
+              getSavedElectionKey()));
+        }
+
+        /**
+         * Saves locally the election into local storage.
+         */
+        function localSaveElection(election) {
+          localStorageService.set(
+            getSavedElectionKey(),
+            JSON.stringify(election));
+        }
+
+        /**
+         * Return boolean that specifies if there's any saved election in local
+         * storage.
+         */
+        function hasSavedElection() {
+          return !!localStorageService.get(
+              getSavedElectionKey());
+        }
+
         var backendUrl = ConfigService.electionsAPI;
         var electionsapi = {cache: {}, permcache: {}};
         electionsapi.waitingCurrent = [];
@@ -59,45 +102,6 @@ angular.module('avAdmin')
             }
         }
 
-        /**
-         * Generates a saved election key for the local storage key value store
-         * in a secure way: the key is a cryptographically secure id, stored
-         * as a cookie.
-         */
-        function getSavedElectionKey() {
-          if (!$cookies.savedElectionKey) {
-            $cookies.savedElectionKey = "savedElectionKey_" + Random.getRandomInteger(1000000000000);
-          }
-
-          return $cookies.savedElectionKey;
-        }
-
-        /**
-         * Return the saved election in local storage if it exists or null.
-         */
-        function getSavedElection() {
-          return JSON.parse(
-            localStorageServiceProvider.get(
-              getSavedElectionKey()));
-        }
-
-        /**
-         * Saves locally the election into local storage.
-         */
-        function localSaveElection(election) {
-          localStorageServiceProvider.set(
-            getSavedElectionKey(),
-            JSON.stringify(election));
-        }
-
-        /**
-         * Return boolean that specifies if there's any saved election in local
-         * storage.
-         */
-        function hasSavedElection() {
-          return !!localStorageServiceProvider.get(
-              getSavedElectionKey());
-        }
 
         function asyncElection(id) {
             var deferred = $q.defer();

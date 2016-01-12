@@ -193,16 +193,18 @@ angular.module('agora-gui-admin').config(
         }
       };
     });
-});
+  }
+);
 
 /**
  * Configure the prefix for
  */
-angular.module('agora-gui-admin').config(['localStorageServiceProvider',
+angular.module('agora-gui-admin').config(
   function(localStorageServiceProvider)
   {
     localStorageServiceProvider.setPrefix('agora-gui-admin');
-  }]);
+  }
+);
 
 
 /**
