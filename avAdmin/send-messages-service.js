@@ -38,6 +38,10 @@ angular.module('avAdmin')
     };
 
     service.confirmAuthCodesModal = function() {
+      if (!AdminPlugins.hook('send-auth-codes-confirm', {el: service.election, ids: service.user_ids})) {
+        return;
+      }
+
       $modal.open({
         templateUrl: "avAdmin/admin-directives/dashboard/send-auth-codes-modal-confirm.html",
         controller: "SendAuthCodesModalConfirm",
@@ -50,7 +54,9 @@ angular.module('avAdmin')
         if (data === 'editAuthCodes') {
           service.editAuthCodes();
         } else {
-          service.sendAuthCodes();
+          if (AdminPlugins.hook('send-auth-codes-confirm-close', {data: data})) {
+            service.sendAuthCodes();
+          }
         }
       });
     };
@@ -62,7 +68,6 @@ angular.module('avAdmin')
           Authmethod.sendAuthCodes(service.election.id, service.election, service.user_ids)
             .success(function(r) {
               scope.loading = false;
-              //scope.msg = "avAdmin.dashboard.censussend";
               scope.msg = "avAdmin.census.sentCodesSuccessfully";
               AdminPlugins.hook('send-auth-codes-ok', {el: service.election, ids: service.user_ids, response: r});
             })
