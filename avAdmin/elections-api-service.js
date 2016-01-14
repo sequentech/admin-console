@@ -78,6 +78,7 @@ angular.module('avAdmin')
                     el.auth = {};
                     el.auth.authentication = data.events.auth_method;
                     el.auth.census = data.events.users;
+                    el.raw = data.events;
                     if (el.auth.census) {
                         el.votes = el.stats.votes;
                         el.votes_percentage = ( el.stats.votes * 100 )/ el.auth.census;
