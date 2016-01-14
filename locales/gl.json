@@ -150,14 +150,22 @@
           "publishResultsHeader": "Publicar resultados",
           "publishResultsBody": "Até o momento só os administradores da votación tiveron acceso directo aos resultados calculados da votación. Cando se publican os resultados, ponse a disposición pública para que calquera poida velos.",
           "confirmPublishResultsButton": "Confirmar e PUBLICAR resultados",
-          "sendAuthCodesHeader": "Enviar códigos de autenticación",
-          "sendAuthCodesBody": "Esta votación enviará unha mensaxe a todos os electores rexistrados no censo. Nótese que enviar moitas mensaxes pode considerarse SPAM, así que procede con precaución. Ademais, por favor comproba primeiro o texto da mensaxe que vas enviar.",
-          "sendAuthCodesConfMsg": "Messages",
-          "sendAuthCodesConfEdit": "Edit",
-          "sendAuthCodesConfBody": "You're going to send the auth msg to __voters__ voters. Please, check that all is correct.",
-          "sendAuthCodesConfButton": "Confirm and send messages",
-          "confirmSendAuthCodesButton": "ENVIAR códigos de autenticación a TODO o censo",
-          "confirmSendAuthCodesIdsButton": "ENVIAR códigos de autenticación aos usuarios SELECCIONADOS"
+          "sendAuthCodes": {
+            "editMessageStep": {
+              "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
+              "helpInfo": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
+              "sendButton": "ENVIAR códigos de autenticación a TODO el censo",
+              "sendSelectedButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
+            },
+            "confirmStep": {
+              "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
+              "helpInfo": "Vas a enviar el mensaje de autenticación a __voters__ personas. Por favor, comprueba que todo es correcto.",
+              "sendButton": "Confirmar y enviar mensajes",
+              "invalidMsg": "Sí, Quiero mandar estos mensajes sin código / URL",
+              "messageHeader": "Preview",
+              "editMessageAction": "Edit"
+            }
+          }
         }
     },
     "basic": {

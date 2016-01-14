@@ -149,15 +149,22 @@
           "publishResultsHeader": "Publicar resultados",
           "publishResultsBody": "Hasta el momento solo los administradores de la votación han tenido acceso directo a los resultados calculados de la votación. Cuando se publican los resultados, se ponen a disposición pública para que cualquiera pueda verlos.",
           "confirmPublishResultsButton": "Confirmar y PUBLICAR resultados",
-          "sendAuthCodesHeader": "Enviar códigos de autenticación",
-          "sendAuthCodesBody": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
-          "sendAuthCodesConfMsg": "Mensajes",
-          "sendAuthCodesConfEdit": "Editar",
-          "sendAuthCodesConfBody": "Vas a enviar el mensaje de autenticación a __voters__ personas. Por favor, comprueba que todo es correcto.",
-          "sendAuthCodesConfButton": "Confirmar y enviar mensajes",
-          "invalidMsgConfirm": "Quiero mandar estos mensajes sin código / URL",
-          "confirmSendAuthCodesButton": "ENVIAR códigos de autenticación a TODO el censo",
-          "confirmSendAuthCodesIdsButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
+          "sendAuthCodes": {
+            "editMessageStep": {
+              "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
+              "helpInfo": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
+              "sendButton": "ENVIAR códigos de autenticación a TODO el censo",
+              "sendSelectedButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
+            },
+            "confirmStep": {
+              "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
+              "helpInfo": "Vas a enviar el mensaje de autenticación a __voters__ personas. Por favor, comprueba que todo es correcto.",
+              "sendButton": "Confirmar y enviar mensajes",
+              "invalidMsg": "Sí, Quiero mandar estos mensajes sin código / URL",
+              "messageHeader": "Preview",
+              "editMessageAction": "Edit"
+            }
+          }
         }
     },
     "basic": {

@@ -67,3 +67,35 @@
       white-space: normal;
   }
 }
+
+/* send auth-codes-confirm-modal */
+.send-auth-codes-modal {
+  h3.confirm-message {
+    border-bottom: 1px solid;
+    margin-bottom: 20px;
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
+
+  .form-group {
+    margin-top: 10px;
+  }
+
+  textarea {
+    min-height: 150px;
+  }
+
+  div.preview {
+
+    .preview-data {
+      color: lighten(@gray, 10%);
+      padding: 10px;
+
+      &:hover {
+        background-color: @gray-lighter;
+      }
+    }
+  }
+}
