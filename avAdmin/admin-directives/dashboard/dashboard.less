@@ -81,6 +81,33 @@
 
   .form-group {
     margin-top: 10px;
+
+    label.padding-top-input {
+      margin-top: 8px;
+    }
+
+    label.control-label.checkbox {
+      margin: 0;
+    }
+  }
+
+  &.modal-footer {
+    .checkbox.text-right {
+      margin-top: -10px;
+      margin-bottom: 20px;
+
+      label {
+        span, input {
+          float: right;
+          margin: 0;
+          padding: 5px;
+        }
+
+        input {
+          margin-top: 5px;
+        }
+      }
+    }
   }
 
   textarea {
@@ -97,5 +124,9 @@
         background-color: @gray-lighter;
       }
     }
+  }
+
+  &.modal-body.confirm {
+    padding-bottom: 20px;
   }
 }

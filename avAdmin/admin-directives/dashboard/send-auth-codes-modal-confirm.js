@@ -1,6 +1,6 @@
 angular.module('avAdmin')
   .controller('SendAuthCodesModalConfirm',
-    function($scope, $modalInstance, election, user_ids) {
+    function(ConfigService, $location, $scope, $modalInstance, election, user_ids) {
       $scope.election = election;
       $scope.user_ids = user_ids;
       $scope.imsure = false;
@@ -15,6 +15,14 @@ angular.module('avAdmin')
 
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
+      };
+
+      $scope.exampleMsg = function() {
+        var msg = election.census.config.msg;
+        var url = "https://" + $location.host() + "/election/" + election.id + "/public/login";
+        msg = msg.replace(/%\(url\)s/g, url);
+        msg = msg.replace(/%\(code\)s/g, "AABB1234");
+        return msg;
       };
 
       function isMsgComplete() {

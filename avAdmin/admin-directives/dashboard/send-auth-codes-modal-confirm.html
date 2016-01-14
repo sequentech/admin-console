@@ -14,7 +14,7 @@
   </h4>
 </div>
 
-<div class="modal-body send-auth-codes-modal">
+<div class="modal-body send-auth-codes-modal confirm">
   <!-- information -->
   <p>
     <span ng-i18next>
@@ -60,14 +60,14 @@
         <div
           ng-click="editAuthCodes()"
           class="preview-data"
-          ng-bind="election.census.config.msg">
+          ng-bind="exampleMsg()">
         </div>
       </div>
     </div>
   </div>
 
   <!-- Email conf -->
-  <div ng-if="election.census.auth_method == 'email'" class="preview padding-bottom-sm">
+  <div ng-if="election.census.auth_method == 'email'" class="preview">
     <div class="form-group">
       <label
         class="col-xs-3 control-label text-right padding-top-sm"
@@ -81,8 +81,9 @@
         </div>
       </div>
     </div>
+
     <div class="clearfix"></div>
-    <div class="form-group padding-bottom-sm">
+    <div class="form-group">
       <label
         class="col-xs-3 control-label text-right padding-top-sm"
         ng-i18next="avAdmin.auth.email">
@@ -91,14 +92,18 @@
         <div
           ng-click="editAuthCodes()"
           class="preview-data"
-          ng-bind="election.census.config.msg">
+          ng-bind="exampleMsg()">
         </div>
       </div>
     </div>
   </div>
+  <div class="clearfix"></div>
+</div>
+
+<div class="modal-footer send-auth-codes-modal">
 
   <!-- checkbox to confirm no url -->
-  <div class="checkbox" ng-if="showCheckBox()">
+  <div class="checkbox text-right" ng-if="showCheckBox()">
     <label>
       <input id="imsure" type="checkbox" value="" ng-model="imsure">
       <span ng-i18next>
@@ -106,9 +111,9 @@
       </span>
     </label>
   </div>
-</div>
+  <div class="clearfix"></div>
 
-<div class="modal-footer">
+  <!-- Send button -->
   <button
     id="sendbutton"
     class="btn btn-success"
