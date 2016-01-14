@@ -48,7 +48,12 @@ angular.module('avAdmin')
         size: 'lg',
         resolve: {
           election: function () { return service.election; },
-          user_ids: function() { return service.user_ids; }
+          user_ids: function() { return service.user_ids; },
+          exhtml: function () {
+            var html = {html: []};
+            AdminPlugins.hook('send-auth-codes-confirm-extra', html);
+            return html.html;
+          }
         }
       }).result.then(function (data) {
         if (data === 'editAuthCodes') {
