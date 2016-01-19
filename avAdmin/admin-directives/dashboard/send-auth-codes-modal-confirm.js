@@ -1,10 +1,11 @@
 angular.module('avAdmin')
   .controller('SendAuthCodesModalConfirm',
-    function(ConfigService, $location, $timeout, $scope, $modalInstance, election, user_ids, exhtml) {
+    function(ConfigService, $location, $timeout, $scope, $modalInstance, SendMsg, election, user_ids, exhtml) {
       $scope.election = election;
       $scope.user_ids = user_ids;
       $scope.imsure = false;
       $scope.exhtml = exhtml;
+      $scope.steps = SendMsg.steps;
 
       $scope.ok = function () {
         $modalInstance.close($scope.user_ids);

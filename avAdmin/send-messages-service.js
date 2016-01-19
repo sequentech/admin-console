@@ -3,9 +3,21 @@ angular.module('avAdmin')
     var service = {
         showEditAuthCode: false,
         scope: {},
+        steps: {
+            current: 1,
+            base: 2,
+            extra: 0,
+            total: 2
+        },
         user_ids: null,
         election: null
     };
+
+    function getSteps() {
+      service.steps.extra = 0;
+      AdminPlugins.hook('send-auth-codes-steps', {el: service.election, ids: service.user_ids});
+      service.steps.total = service.steps.base + service.steps.extra;
+    }
 
     service.setElection = function(el) {
         service.showEditAuthCode = true;
@@ -22,6 +34,9 @@ angular.module('avAdmin')
           service.confirmAuthCodesModal();
           return;
       }
+
+      getSteps();
+      service.steps.current = 1;
 
       $modal.open({
         templateUrl: "avAdmin/admin-directives/dashboard/send-auth-codes-modal.html",
@@ -41,6 +56,7 @@ angular.module('avAdmin')
       if (!AdminPlugins.hook('send-auth-codes-confirm', {el: service.election, ids: service.user_ids})) {
         return;
       }
+      service.steps.current = service.steps.total;
 
       $modal.open({
         templateUrl: "avAdmin/admin-directives/dashboard/send-auth-codes-modal-confirm.html",
