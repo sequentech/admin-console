@@ -1,6 +1,6 @@
 angular.module('avAdmin')
   .controller('SendAuthCodesModalConfirm',
-    function(ConfigService, $location, $scope, $modalInstance, election, user_ids, exhtml) {
+    function(ConfigService, $location, $timeout, $scope, $modalInstance, election, user_ids, exhtml) {
       $scope.election = election;
       $scope.user_ids = user_ids;
       $scope.imsure = false;
@@ -51,4 +51,12 @@ angular.module('avAdmin')
       $scope.showCheckBox = function() {
         return !isMsgComplete();
       };
+
+      $timeout(function() {
+        $(".av-plugin-modal-close").click(function() {
+            var data = $(this).data("response");
+            $modalInstance.close(data);
+        });
+      }, 0);
+
     });
