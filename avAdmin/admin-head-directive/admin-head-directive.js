@@ -5,6 +5,7 @@ angular.module('avAdmin')
         var admin = $cookies.user;
         scope.admin = admin;
         scope.nologin = ('nologin' in attrs) || scope.admin;
+        scope.helpurl = ConfigService.helpUrl;
 
         scope.loginrequired = ('loginrequired' in attrs);
         if (scope.loginrequired && !scope.admin) {
