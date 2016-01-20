@@ -29,7 +29,8 @@
   "avAdmin": {
     "notes": {
       "noteTag": "Note",
-      "thisisATestElection": "This is a test election. For security reasons, real elections can only be created out of successful test elections."
+      "thisisATestElection": "This is a test election. For security reasons, real elections can only be created out of successful test elections.",
+      "thisisATestElectionPopover": "This is a test election. For security reasons, real elections can only be created out of successful test elections. You should complete the election proccess to result publish step."
     },
     "topbar": {
         "home": "Home",
