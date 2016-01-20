@@ -20,11 +20,11 @@
     "name": "Agora Voting"
   },
   "avCommon": {
-    "cancel": "Cancel",
-    "poweredBy": "Funciona amb <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>",
-    "shareLink": "¡Twittea aquesta votació!",
-    "votingSystem": "Voting System",
-    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
+    "cancel": "Cancelar",
+    "poweredBy": "Funciona con <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>",
+    "shareLink": "¡Twittea esta votación!",
+    "votingSystem": "Sistema de Voto",
+    "votings": {"plurality-at-large": "Voto en bloque o Escrutinio Mayoritario Plurinominal", "borda-nauru": "Borda de Nauru o Borda Dowdall (1/n)", "borda": "Borda Count (tradicional)", "pairwise-beta": "Comparación de pares (distribución beta)"}
   },
   "avAdmin": {
     "notes": {
@@ -150,10 +150,22 @@
           "publishResultsHeader": "Publicar resultados",
           "publishResultsBody": "Hasta el momento solo los administradores de la votación han tenido acceso directo a los resultados calculados de la votación. Cuando se publican los resultados, se ponen a disposición pública para que cualquiera pueda verlos.",
           "confirmPublishResultsButton": "Confirmar y PUBLICAR resultados",
-          "sendAuthCodesHeader": "Enviar códigos de autenticación",
-          "sendAuthCodesBody": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
-          "confirmSendAuthCodesButton": "ENVIAR códigos de autenticación a TODO el censo",
-          "confirmSendAuthCodesIdsButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
+          "sendAuthCodes": {
+            "editMessageStep": {
+              "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
+              "helpInfo": "Esta acción enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
+              "sendButton": "ENVIAR códigos de autenticación a TODO el censo",
+              "sendSelectedButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
+            },
+            "confirmStep": {
+              "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
+              "helpInfo": "Vas a enviar el mensaje de autenticación a __voters__ personas. Por favor, comprueba que todo es correcto.",
+              "sendButton": "Confirmar y enviar mensajes",
+              "invalidMsg": "Sí, Quiero mandar estos mensajes sin código / URL",
+              "messageHeader": "Vista previa",
+              "editMessageAction": "Editar"
+            }
+          }
         }
     },
     "basic": {
@@ -393,15 +405,15 @@
     },
 
     "successAction": {
-      "modeIntro": "Once an user registers or authenticates, an action should be executed. Usually, it's redirected to the corresponding election voting booth, but it can also be configured to load an external url. This is useful if you are using this  just to register census and not for any active election.",
+      "modeIntro": "Una vez un usuario se registra o autentica, se ejecuta una acción. Normalmente, la acción consiste en redirigir al usuario a la cabina de votación de la votación correspondiente, pero también puede configurarse para cargar una URL externa. Esto es útil si estás usando este sistema sólo para registrar el censo y no para una votación activa.",
 
-      "voteModeTitle": "Load the election's voting booth",
-      "voteModeDescription": "Load the corresponding the corresponding election voting booth so that the person can vote.",
+      "voteModeTitle": "Cargar la cabina de votación",
+      "voteModeDescription": "Cargar la cabina de votación correspondiente para que el elector pueda votar.",
 
-      "urlModeTitle": "Redirect to URL",
-      "urlModeDescription": "Load an URL that you can specify. Only https urls allowed.",
+      "urlModeTitle": "Redirigir a una URL",
+      "urlModeDescription": "Cargar una URL que puedes especificar. Sólo se permiten URLS de tipo https.",
       "urlModePlaceholder": "https://example.com/foo/bar",
-      "invalidUrl": "Invalid url. Example of a valid URL: https://example.com/foo/bar"
+      "invalidUrl": "URL inválida. Ejemplo de URL válida: https://example.com/foo/bar"
     }
   }
 }

@@ -21,8 +21,8 @@
   },
   "avCommon": {
     "cancel": "Cancel",
-    "poweredBy": "Funciona amb <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>",
-    "shareLink": "¡Twittea aquesta votació!",
+    "poweredBy": "Powered by <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>",
+    "shareLink": "¡Tweet this election!",
     "votingSystem": "Voting System",
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
   },
@@ -150,14 +150,27 @@
           "publishResultsHeader": "Publish election results",
           "publishResultsBody": "Currently only the election administrators have access to the calculated election results. When you publish the results, these will be made public for everyone to see.",
           "confirmPublishResultsButton": "Confirm and PUBLISH election results",
-          "sendAuthCodesHeader": "Send authentication codes",
-          "sendAuthCodesBody": "This action will send a message to all the registered electors in the census. Note that sending many messages can be considered as SPAM, so proceed with caution. Also, please review first the message that will be sent.",
-          "confirmSendAuthCodesButton": "SEND authentication codes to ALL census",
-          "confirmSendAuthCodesIdsButton": "SEND authentication codes to SELECTED users"
+
+          "sendAuthCodes": {
+            "editMessageStep": {
+              "header": "Send authentication codes (Step __step__ of __total__)",
+              "helpInfo": "This action will send a message to all the registered electors in the census. Note that sending many messages can be considered as SPAM, so proceed with caution. Also, please review first the message that will be sent.",
+              "sendButton": "SEND authentication codes to ALL census",
+              "sendSelectedButton": "SEND authentication codes to SELECTED users"
+            },
+            "confirmStep": {
+              "header": "Send authentication codes (Step __step__ of __total__)",
+              "helpInfo": "You will send the authentication to __voters__ electors. Please, verify that everything is correct.",
+              "sendButton": "Confirm and send the messages",
+              "invalidMsg": "Yes, I want to send  these messages without authentication code / URL",
+              "messageHeader": "Preview",
+              "editMessageAction": "Edit"
+            }
+          }
         }
     },
     "basic": {
-        "intro": "Crear una votación conlleva varios pasos, pero no es difícil. Sólo te llevará 5 minutos, por favor lee el Manual de Administrador, enlazado en el icono de ayuda de la barra superior.",
+        "intro": "Creating an election entails multiple steps, but it is not difficult. It will only take 5 minutes. Please read the Administrator Manual, linked in the help icon in the top navegation bar.",
         "title": { "label": "Title", "placeholder": "eg.New Board of Directors", "labelH3": "__index__. Election titled: __title__" },
         "description": { "label": "Description", "placeholder": "Description will be shown" },
         "share": { "label": "Share text", "placeholder": "Text to use for social sharing" },
@@ -390,15 +403,15 @@
     },
 
     "successAction": {
-      "modeIntro": "Once an user registers or authenticates, an action should be executed. Usually, it's redirected to the corresponding election voting booth, but it can also be configured to load an external url. This is useful if you are using this  just to register census and not for any active election.",
+      "modeIntro": "Once an user registers or authenticates, an action should be executed. Usually, it's redirected to the corresponding election voting booth, but it can also be configured to load an external URL. This is useful if you are using this  just to register census and not for any active election.",
 
       "voteModeTitle": "Load the election's voting booth",
-      "voteModeDescription": "Load the corresponding the corresponding election voting booth so that the person can vote.",
+      "voteModeDescription": "Load the corresponding election voting booth so that the person can vote.",
 
       "urlModeTitle": "Redirect to URL",
       "urlModeDescription": "Load an URL that you can specify. Only https urls allowed.",
       "urlModePlaceholder": "https://example.com/foo/bar",
-      "invalidUrl": "Invalid url. Example of a valid URL: https://example.com/foo/bar"
+      "invalidUrl": "Invalid URL. Example of a valid URL: https://example.com/foo/bar"
     }
   }
 }
