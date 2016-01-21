@@ -2,7 +2,7 @@
 'use strict';
 
 var pkg = require('./package.json');
-var AV_CONFIG_VERSION = '3.1.2';
+var AV_CONFIG_VERSION = '3.1.3';
 
 //Using exclusion patterns slows down Grunt significantly
 //instead of creating a set of patterns like '**/*.js' and '!**/node_modules/**'
@@ -104,7 +104,7 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          src: ['bower_components/avCommon/themes/**/app.less'],
+          src: ['bower_components/avCommon/themes/**/app.less', 'plugins/**/*.less'],
           dest: 'temp/',
           ext: '.css',
         }]
@@ -198,7 +198,8 @@ module.exports = function (grunt) {
             {selector:'body',html:'<script src="/admin/avThemes-v3.0.1.js"></script>'},
             {selector:'body',html:'<script src="/admin/app-v3.0.1.min.js"></script>'},
             {selector:'body',html:'<script src="/admin/avPlugins-v3.0.1.js"></script>'},
-            {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/admin/" href="/admin/themes/default/app.min.css">'}
+            {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/admin/" href="/admin/themes/default/app.min.css">'},
+            {selector:'head',html:'<link rel="stylesheet" id="plugins" data-base="/admin/" href="/admin/plugins.css">'}
           ]
         },
         src:'index.html',
@@ -220,6 +221,7 @@ module.exports = function (grunt) {
     concat: {
       main: {
         files: {
+          'dist/plugins.css': ['temp/plugins/**/*.css'],
           'temp/libcompat.js': [
             'vendor/jquery.compat/jquery-1.11.1.js',
             'vendor/json3/json-v3.3.2.js',
@@ -268,6 +270,7 @@ module.exports = function (grunt) {
           'dist/libcompat-v3.0.1.min.js': 'temp/libcompat.js',
           'dist/avWidgets.min.js': 'avWidgets.js',
 
+          "dist/locales/moment/en.js": "bower_components/moment/lang/en-gb.js",
           "dist/locales/moment/es.js": "bower_components/moment/lang/es.js",
           "dist/locales/moment/gl.js": "bower_components/moment/lang/gl.js",
           "dist/locales/moment/ca.js": "bower_components/moment/lang/ca.js"

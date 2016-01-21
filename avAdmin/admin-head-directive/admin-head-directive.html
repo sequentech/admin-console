@@ -24,7 +24,7 @@
 
             <li>
               <a
-                href="https://bit.ly/avguiadeuso"
+                href="{{ helpurl }}"
                 target="_blank">
                 <i class="fa fa-question-circle"></i>
               </a>
@@ -33,7 +33,7 @@
             <li class="signup" ng-if="!admin"><a ui-sref="admin.signup()" ng-i18next="avAdmin.topbar.freesignup"></a></li>
             <li ng-if="!nologin"><a ui-sref="admin.login()" ng-i18next="avAdmin.topbar.login"></a></li>
 
-            <li ng-if="admin"><a ui-sref="admin.logout()"><i class="fa fa-user"></i> {{ admin }}</a></li>
+            <li ng-if="admin"><a ui-sref="admin.elections()"><i class="fa fa-user"></i> {{ admin }}</a></li>
             <li ng-if="admin"><a ui-sref="admin.logout()"><i class="fa fa-power-off"></i></a></li>
 
             <li class="dropdown" av-change-lang></li>
@@ -41,12 +41,4 @@
         </div><!-- /.navbar-collapse -->
     </div>
 </nav>
-<div ng-if="isTest" class="container-fluid warning-demo">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <p ng-i18next="[html]avAdmin.thisisATest"></p>
-      </div>
-    </div>
-  </div>
 </div>

@@ -1,6 +1,6 @@
 angular.module('avAdmin')
   .controller('ExportAllCensusModal',
-    function($scope, $modalInstance, ElectionsApi, election) {
+    function($scope, $modalInstance, ElectionsApi, election, ConfigService) {
       $scope.election = angular.copy(election);
       $scope.totalCensusCount = $scope.election.data.total_count;
       $scope.election.census.voters = [];
@@ -9,6 +9,7 @@ angular.module('avAdmin')
       $scope.page = 1;
       $scope.downloading = false;
       $scope.error = false;
+      $scope.helpurl = ConfigService.helpUrl;
 
       $scope.loadMoreCensus = function () {
         if ($scope.nomore) {

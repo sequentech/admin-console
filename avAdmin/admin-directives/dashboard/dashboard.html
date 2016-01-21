@@ -66,6 +66,7 @@
     <!-- general info -->
     <div class="row general">
         <div class="col-md-6">
+
             <div class="well">
                 <dl class="dl-horizontal">
                   <dt ng-i18next>avAdmin.dashboard.status</dt>
@@ -77,33 +78,39 @@
                 </dl>
             </div>
 
-            <div class="well text-right">
-                <a
-                  href="election/{{ election.id }}/public/home"
-                  target="_blank"
-                  ng-i18next>
-                  avAdmin.dashboard.electionPublic
-                </a>
-                <br/>
-                <a
-                  href="booth/{{ election.id }}/vote"
-                  target="_blank"
-                  ng-i18next>
-                    avAdmin.dashboard.preview
-                </a>
-                <!--
-                <a href="">Embed election</a>
-                -->
-            </div>
+            <div class="btn-group btn-block">
+              <button
+                ng-if="!election.results.questions"
+                type="button"
+                class="btn btn-lg btn-block btn-warning dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <span ng-i18next>
+                  avAdmin.dashboard.createRealElection
+                </span>
+                <span class="caret"></span>
+              </button>
 
-            <button ng-click="doActionConfirm(index)" class="btn btn-block btn-lg btn-success" ng-if="nextaction" ng-i18next="{{ nextaction }}"></button>
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <a href="" ng-click="$event.preventDefault(); $event.stopPropagation()" class="wrap">
+                    <span ng-i18next>
+                      avAdmin.notes.thisisATestElectionPopover
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
 
             <button ng-if="election.results.questions"
               ng-click="createRealElection()"
               class="btn btn-block btn-lg btn-success"
               ng-i18next>
-              avAdmin.dashboard.createRealElection
-            </button>
+              avAdmin.das
+
+            <button ng-click="doActionConfirm(index)" class="btn btn-block btn-lg btn-success" ng-if="nextaction" ng-i18next="{{ nextaction }}"></button>
+
             <button
               ng-click="duplicateElection()"
               class="btn btn-block btn-lg btn-success"
@@ -130,6 +137,25 @@
                         {{ auth }}
                     </li>
                 </ul>
+            </div>
+
+            <div class="well text-right">
+                <a
+                  href="election/{{ election.id }}/public/home"
+                  target="_blank"
+                  ng-i18next>
+                  avAdmin.dashboard.electionPublic
+                </a>
+                <br/>
+                <a
+                  href="booth/{{ election.id }}/vote"
+                  target="_blank"
+                  ng-i18next>
+                    avAdmin.dashboard.preview
+                </a>
+                <!--
+                <a href="">Embed election</a>
+                -->
             </div>
         </div>
     </div>

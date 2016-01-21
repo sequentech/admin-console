@@ -30,7 +30,11 @@
   },
 
   "avAdmin": {
-    "thisisATest": "<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> <strong>Warning!</strong> This is a TEST votation",
+    "notes": {
+      "noteTag": "Nota",
+      "thisisATestElection": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas.",
+      "thisisATestElectionPopover": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas. Para ello, debes completar el proceso de la votación hasta el paso de publicar resultados"
+    },
     "topbar": {
         "home": "Inicio",
         "features": "Funcionalidade",
@@ -162,8 +166,8 @@
               "helpInfo": "Vas a enviar el mensaje de autenticación a __voters__ personas. Por favor, comprueba que todo es correcto.",
               "sendButton": "Confirmar y enviar mensajes",
               "invalidMsg": "Sí, Quiero mandar estos mensajes sin código / URL",
-              "messageHeader": "Preview",
-              "editMessageAction": "Edit"
+              "messageHeader": "Vista previa",
+              "editMessageAction": "Editar"
             }
           }
         }
