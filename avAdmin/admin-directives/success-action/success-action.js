@@ -13,10 +13,12 @@ angular.module('avAdmin')
       $window,
       $state,
       ElectionsApi,
-      MustExtraFieldsService)
+      MustExtraFieldsService,
+      ConfigService)
     {
       function link(scope, element, attrs)
       {
+        scope.helpurl = ConfigService.helpUrl;
         // set election config from ElectionsApi
         function setScopeElection() {
           scope.election = ElectionsApi.currentElection;

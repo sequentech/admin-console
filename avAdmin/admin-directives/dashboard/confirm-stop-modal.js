@@ -1,6 +1,7 @@
 angular.module('avAdmin')
   .controller('ConfirmStopModal',
-    function($scope, $modalInstance) {
+    function($scope, $modalInstance, ConfigService) {
+      $scope.helpurl = ConfigService.helpUrl;
       $scope.ok = function () {
         $modalInstance.close();
       };

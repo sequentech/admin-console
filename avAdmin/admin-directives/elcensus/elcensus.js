@@ -11,7 +11,8 @@ angular.module('avAdmin')
       MustExtraFieldsService,
       $filter,
       $stateParams,
-      $timeout)
+      $timeout,
+      ConfigService)
     {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
@@ -30,6 +31,7 @@ angular.module('avAdmin')
       scope.filterTimeout = null;
       scope.filterOptions = {};
       scope.resizeSensor = null;
+      scope.helpurl = ConfigService.helpUrl;
 
       function newElection() {
         return !$stateParams.id;
