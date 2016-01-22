@@ -57,6 +57,7 @@ angular.module('avAdmin')
         $(".av-plugin-modal-close").click(function() {
             var data = $(this).data("response");
             $modalInstance.close(data);
+            return false;
         });
       }, 0);
 
