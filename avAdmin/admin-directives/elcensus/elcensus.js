@@ -150,12 +150,12 @@ angular.module('avAdmin')
                   scope.loading = false;
                   scope.msg = "avAdmin.census.censusadd";
                   scope.reloadCensus();
-                  AdminPlugins.hook('add-to-census-ok', {data: csExport, response: r});
+                  AdminPlugins.hook('add-to-census-success', {data: csExport, response: r});
                 })
                 .error(function(error) {
                   scope.loading = false;
                   scope.error = error.error;
-                  AdminPlugins.hook('add-to-census-ko', {data: csExport, response: error});
+                  AdminPlugins.hook('add-to-census-error', {data: csExport, response: error});
                 });
           }
       }

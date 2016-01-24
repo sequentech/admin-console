@@ -90,12 +90,12 @@ angular.module('avAdmin')
             .success(function(r) {
               scope.loading = false;
               scope.msg = "avAdmin.census.sentCodesSuccessfully";
-              AdminPlugins.hook('send-auth-codes-ok', {el: service.election, ids: service.user_ids, response: r});
+              AdminPlugins.hook('send-auth-codes-success', {el: service.election, ids: service.user_ids, response: r});
             })
             .error(function(error) {
               scope.loading = false;
               scope.error = error.error;
-              AdminPlugins.hook('send-auth-codes-ko', {el: service.election, ids: service.user_ids, response: error});
+              AdminPlugins.hook('send-auth-codes-error', {el: service.election, ids: service.user_ids, response: error});
             });
       }
     };
