@@ -195,6 +195,9 @@ angular.module('avAdmin')
                 conf.results = angular.fromJson(election.results);
             }
 
+            // extra_data
+            conf.extra_data = JSON.parse(election.extra_data);
+
             // caching election
             electionsapi.cache[conf.id] = conf;
             return conf;
@@ -318,7 +321,8 @@ angular.module('avAdmin')
                         }
                     }
                 },
-                questions: []
+                questions: [],
+                extra_data: {}
             };
             return el;
         };
