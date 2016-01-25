@@ -216,6 +216,9 @@ angular.module('avAdmin')
         function registerElection(el) {
             console.log("registering election " + el.title);
 
+              if (typeof el.extra_data === 'object') {
+                  el.extra_data = JSON.stringify(el.extra_data);
+              }
             _.each(el.questions, function (q) {
               _.each(q.answers, function (answer) {
                 answer.urls = _.filter(answer.urls, function(url) { return $.trim(url.url).length > 0;});
