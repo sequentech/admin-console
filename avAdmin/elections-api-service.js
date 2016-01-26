@@ -196,7 +196,11 @@ angular.module('avAdmin')
             }
 
             // extra_data
-            conf.extra_data = JSON.parse(election.extra_data);
+            if (!conf.extra_data) {
+                conf.extra_data = {};
+            } else if (typeof conf.extra_data === 'string') {
+                conf.extra_data = JSON.parse(conf.extra_data);
+            }
 
             // caching election
             electionsapi.cache[conf.id] = conf;
