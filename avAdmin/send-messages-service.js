@@ -1,5 +1,5 @@
 angular.module('avAdmin')
-  .factory('SendMsg', function($modal, Authmethod, AdminPlugins) {
+  .factory('SendMsg', function($q, $modal, Authmethod, AdminPlugins) {
     var service = {
         showEditAuthCode: false,
         scope: {},
@@ -74,15 +74,13 @@ angular.module('avAdmin')
       }).result.then(function (data) {
         if (data === 'editAuthCodes') {
           service.editAuthCodes();
-        } else {
-          if (AdminPlugins.hook('send-auth-codes-confirm-close', {data: data})) {
-            service.sendAuthCodes();
-          }
         }
+        AdminPlugins.hook('send-auth-codes-confirm-close', {data: data});
       });
     };
 
     service.sendAuthCodes = function() {
+      var deferred = $q.defer();
       var scope = service.scope;
       scope.loading = true;
       if (AdminPlugins.hook('send-auth-codes-pre', {el: service.election, ids: service.user_ids})) {
@@ -91,13 +89,16 @@ angular.module('avAdmin')
               scope.loading = false;
               scope.msg = "avAdmin.census.sentCodesSuccessfully";
               AdminPlugins.hook('send-auth-codes-success', {el: service.election, ids: service.user_ids, response: r});
+              deferred.resolve(r);
             })
             .error(function(error) {
               scope.loading = false;
-              scope.error = error.error;
+              scope.error = error.error || "ERROR";
               AdminPlugins.hook('send-auth-codes-error', {el: service.election, ids: service.user_ids, response: error});
+              deferred.reject(error);
             });
       }
+      return deferred.promise;
     };
 
     return service;

@@ -48,11 +48,9 @@
  *
  * - Name: send-auth-codes-confirm-close
  *
- *   Description: Called by @a SendMsg.confirmAuthCodesModal service after
+ *   Description: Called by @a .confirmAuthCodesModal service after
  *   closing the @a SendAuthCodesModalConfirm window to process the result of
  *   the modal (this result is the input of the hook) and decide what to do.
- *   If any of the handlers of this hook returns something interpretable as
- *   false, @a SendMsg.sendAuthCodes will not be called.
  *
  *   Input data: string
  *

@@ -1,14 +1,19 @@
 angular.module('avAdmin')
   .controller('SendAuthCodesModalConfirm',
-    function(ConfigService, $location, $timeout, $scope, $modalInstance, SendMsg, election, user_ids, exhtml) {
+    function(ConfigService, $location, $timeout, $scope, $modalInstance, SendMsg, AdminPlugins, election, user_ids, exhtml) {
       $scope.election = election;
       $scope.user_ids = user_ids;
       $scope.imsure = false;
       $scope.exhtml = exhtml;
       $scope.steps = SendMsg.steps;
+      $scope.loading = false;
 
       $scope.ok = function () {
-        $modalInstance.close($scope.user_ids);
+        $scope.loading = true;
+        SendMsg.sendAuthCodes()
+          .finally(function() {
+            $modalInstance.close($scope.user_ids);
+          });
       };
 
       $scope.editAuthCodes = function () {
@@ -42,7 +47,7 @@ angular.module('avAdmin')
       $scope.$watch(function () {
         // workarround because the ng-disabled doesn't work for me, I don't
         // know why
-        if (isMsgComplete() || $("#imsure:checked").length) {
+        if (!$scope.loading && (isMsgComplete() || $("#imsure:checked").length)) {
             $("#sendbutton").removeAttr("disabled");
         } else {
             $("#sendbutton").attr("disabled", "disabled");
