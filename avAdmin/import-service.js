@@ -1,33 +1,28 @@
 angular.module('avAdmin')
   .factory('ImportService', function(moment, ElectionsApi) {
       var headers = {
-        timestamp: "Timestamp",
-        org: "Organización",
-        admin: "Nombre del administrador",
-        email: "E-mail del administrador",
-        phone: "Teléfono del administrador",
-        title: "Título",
-        desc: "Descripción",
-        start: "Comienzo",
-        end: "Final",
-        auth: "Método de autenticación",
-        census: "Censo cerrado o abierto",
-        voters: "Censo",
-        winners: "Número de ganadores",
-        min: "Número mínimo de opciones",
-        tally_type: "Sistema de votación",
-        max: "Número máximo de opciones",
-        opts: "Opciones",
-        random: "Orden aleatorio",
-        results: "Resultados",
-        moreq: "¿Más preguntas?",
-        subject: "Asunto email",
-        msg: "Cuerpo email"
-      };
-
-      var trans = {
-        "abierto": "open",
-        "cerrado": "close"
+        timestamp: "timestamp",
+        org: "organization",
+        admin: "admin_name",
+        email: "admin_email",
+        phone: "admin_phone_number",
+        title: "title",
+        desc: "description",
+        start: "start",
+        end: "end",
+        auth: "authentication_method",
+        census: "type_census",
+        voters: "census",
+        winners: "number_of_winner",
+        min: "min_number_of_options",
+        tally_type: "voting_system",
+        max: "max_number_of_options",
+        opts: "options",
+        random: "random_order",
+        results: "results",
+        moreq: "more_questions",
+        subject: "subject_email",
+        msg: "body_email"
       };
 
       var headers1 = {};
@@ -54,12 +49,13 @@ angular.module('avAdmin')
         }
 
         var el = ElectionsApi.templateEl();
+        console.log("0", rawel);
 
         el.title = rawel['title'];
         el.description = rawel['desc'];
         el.start_date = parsedDate(rawel['start']);
         el.end_date = parsedDate(rawel['end']);
-        el.census.census = trans[rawel['census'].toLowerCase()];
+        el.census.census = rawel['census'].toLowerCase();
         if (!!rawel['subject']) {
           el.census.config.subject = rawel['subject'];
         }
