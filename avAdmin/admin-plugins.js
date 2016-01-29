@@ -18,9 +18,9 @@
  *
  * - Name: send-auth-codes-steps
  *
- *   Description: called by @a SendMsg.getSteps service before calculating the
- *   number of steps of the send authentication codes dialog. It's a good way
- *   of modifying @a SendMsg.steps.extra.
+ *   Description: called by @a SendMsg.calculateSteps service before calculating
+ *   the number of steps of the send authentication codes dialog. It's a good
+ *   way of modifying @a SendMsg.steps.extra.
  *
  *   Input data: {
  *      // current election object
