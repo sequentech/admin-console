@@ -145,7 +145,6 @@ angular.module('avAdmin')
 
         function createAuthEvent(el) {
             console.log("creating auth event for election " + el.title);
-            console.log("CREATE", el);
             var deferred = $q.defer();
             // Creating the authentication
             logInfo($i18next('avAdmin.create.creating', {title: el.title}));

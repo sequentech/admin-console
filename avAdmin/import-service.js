@@ -49,7 +49,6 @@ angular.module('avAdmin')
         }
 
         var el = ElectionsApi.templateEl();
-        console.log("0", rawel);
 
         el.title = rawel['title'];
         el.description = rawel['desc'];
