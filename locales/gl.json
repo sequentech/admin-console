@@ -339,13 +339,13 @@
         "auth": "Método de autenticación",
         "auths": {"email": "Correo electrónico", "sms": "SMS", "dnie": "DNI electrónico"},
         "sms": "Mensaxe SMS",
-        "smstemp": "Persoal usado no SMS a enviar ao usuario. Usa %(code)s para inserir o código SMS e %(url)s para inserir a ligazón de votación",
-        "smsdef": "Este é o teu código de votación %(code)s",
+        "smstemp": "Persoal usado no SMS a enviar ao usuario. Usa __CODE__ para inserir o código SMS e __URL__ para inserir a ligazón de votación",
+        "smsdef": "Este é o teu código de votación __CODE__",
         "email": "Corpo da mensaxe",
         "emailsub": "Asunto do email",
-        "emailtemp": "Persoal usado no correo para enviar aos usuarios. Usa %(code)s para engadir o código de acceso e %(url)s para inserir a ligazón de votación",
+        "emailtemp": "Persoal usado no correo para enviar aos usuarios. Usa __CODE__ para engadir o código de acceso e __URL__ para inserir a ligazón de votación",
         "emailsubdef": "Xa podes votar con Agora Voting",
-        "emaildef": "Vota en %(url)s co codigo %(code)s"
+        "emaildef": "Vota en __URL__ co codigo __CODE__"
     },
     "columnFilter": {
       "sort": "Orden:",
