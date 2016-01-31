@@ -200,6 +200,9 @@ angular.module('avAdmin')
               if (nv.tlf) {
                 nv.tlf.replace(" ", "");
               }
+              if (nv.email) {
+                nv.email.replace(" ", "");
+              }
               cs.push({selected: false, vote: false, username: "", metadata: nv});
           });
 
