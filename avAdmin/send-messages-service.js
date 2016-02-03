@@ -2,7 +2,7 @@
  * Service to manage the send authentication codes modal steps.
  */
 angular.module('avAdmin')
-  .factory('SendMsg', function($q, $modal, Authmethod, AdminPlugins)
+  .factory('SendMsg', function($q, $modal, Authmethod, AdminPlugins, Account)
   {
     // These is the base data of this service
     var service = {
@@ -24,7 +24,10 @@ angular.module('avAdmin')
 
         // reference to the election in which authentication messages are going
         // to be sent
-        election: null
+        election: null,
+
+        // Extra data: this can be used by some plugins for send other datas
+        extra: null
     };
 
     /**
@@ -87,7 +90,8 @@ angular.module('avAdmin')
         size: 'lg',
         resolve: {
           election: function () { return service.election; },
-          user_ids: function() { return service.user_ids; }
+          user_ids: function() { return service.user_ids; },
+          extra: function() { return service.extra; }
         }
 
       // when the edit dialog has been shown, then we default to not showing it
@@ -178,7 +182,8 @@ angular.module('avAdmin')
           Authmethod.sendAuthCodes(
             service.election.id,
             service.election,
-            service.user_ids
+            service.user_ids,
+            service.extra
           ).success(function(r)
           {
             // if the sending is successful, show it
