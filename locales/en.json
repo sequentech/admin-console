@@ -341,13 +341,13 @@
         "auth": "Auth method",
         "auths": {"email": "Email links", "sms": "SMS", "dnie": "spanish eDNI"},
         "sms": "SMS message",
-        "smstemp": "Template used in the SMS to send to the user. Use %(code)s to insert the SMS code and %(url)s for the authentication url",
-        "smsdef": "This is your vote code: %(code)",
+        "smstemp": "Template used in the SMS to send to the user. Use __CODE__ to insert the SMS code and __URL__ for the authentication url",
+        "smsdef": "This is your vote code: __CODE__",
         "email": "Email message",
         "emailsub": "Email subject",
-        "emailtemp": "Template used in the Email link to send to the user. Use %(code)s to insert the login code and %(url)s to insert the election link",
+        "emailtemp": "Template used in the Email link to send to the user. Use __CODE__ to insert the login code and __URL__ to insert the election link",
         "emailsubdef": "Vote now with Agora Voting",
-        "emaildef": "Vote in %(url)s with code %(code)s"
+        "emaildef": "Vote in __URL__ with code __CODE__"
     },
     "columnFilter": {
       "sort": "Sort:",

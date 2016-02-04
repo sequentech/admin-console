@@ -27,14 +27,14 @@ angular.module('avAdmin')
       $scope.exampleMsg = function() {
         var msg = election.census.config.msg;
         var url = "https://" + $location.host() + "/election/" + election.id + "/public/login";
-        msg = msg.replace(/%\(url\)s/g, url);
-        msg = msg.replace(/%\(code\)s/g, "AABB1234");
+        msg = msg.replace("__URL__", url);
+        msg = msg.replace("__CODE__", "AABB1234");
         return msg;
       };
 
       function isMsgComplete() {
-        var re1 = /%\(url\)s/;
-        var re2 = /%\(code\)s/;
+        var re1 = /__URL__/;
+        var re2 = /__CODE__/;
         var msg = election.census.config.msg;
 
         return (msg.match(re1) && msg.match(re2));
