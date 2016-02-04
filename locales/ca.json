@@ -103,7 +103,7 @@
         "publish": "publicar"
     },
     "import": {
-        "desc": "Importar una votació desde csv te permite administrar y automatizar la creación de votaciones de forma externa. <a href=\"#\">Lee más acerca de el formato de votació CSV aquí</a>. Si quieres crear varias votaciones a la vez, puedes user la API o contactar con nosotros.",
+        "desc": "Importar una votació desde csv te permite administrar y automatizar la creación de votaciones de forma externa. <a href=\"https://docs.google.com/spreadsheets/d/1WTzswqiuRllZIm90A-SBQ0kbVYDQI1jZvKcvL8ruMIY/edit?usp=sharing\" target=\"_blank\">Lee más acerca de el formato de votació CSV aquí</a>. Si quieres crear varias votaciones a la vez, puedes user la API o contactar con nosotros.",
         "file": "Selecciona un fichero",
         "dropFilesHere": "Drop CSV file here"
     },
