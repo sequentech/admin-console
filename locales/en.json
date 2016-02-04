@@ -101,7 +101,7 @@
         "publish": "publish"
     },
     "import": {
-        "desc": "Importing an election from csv allows you to manage and automatize the creation of elections details externally. <a href=\"#\">Read more about the CSV election format here</a>. If you want to create many elections at once, you can use the API or contact us.",
+        "desc": "Importing an election from csv allows you to manage and automatize the creation of elections details externally. <a href=\"https://docs.google.com/spreadsheets/d/1WTzswqiuRllZIm90A-SBQ0kbVYDQI1jZvKcvL8ruMIY/edit?usp=sharing\">Read more about the CSV election format here</a>. If you want to create many elections at once, you can use the API or contact us.",
         "file": "Select file",
         "dropFilesHere": "Drop CSV file here"
     },
