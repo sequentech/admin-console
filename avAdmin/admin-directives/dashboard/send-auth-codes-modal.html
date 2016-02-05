@@ -1,17 +1,17 @@
-<div class="modal-header dialog-header-warning">
+<div class="modal-header dialog-header-warning send-auth-codes-modal">
   <h4 class="modal-title">
     <span class="glyphicon glyphicon-warning-sign">
     </span>
     <span class="title" ng-i18next>
-      avAdmin.dashboard.modals.sendAuthCodesHeader
+      [i18next]({step:steps.current, total:steps.total})avAdmin.dashboard.modals.sendAuthCodes.editMessageStep.header
     </span>
     <button type="button" class="close pull-right" ng-click="cancel()">×</button>
   </h4>
 </div>
-<div class="modal-body">
+<div class="modal-body send-auth-codes-modal">
   <p>
     <span ng-i18next>
-      avAdmin.dashboard.modals.sendAuthCodesBody
+      avAdmin.dashboard.modals.sendAuthCodes.editMessageStep.helpInfo
     </span>
     <a href="{{helpurl}}" class="learn-more" target="_blank" ng-i18next>
       avAdmin.learnMore
@@ -22,8 +22,11 @@
     <div class="row">
       <div ng-if="election.census.auth_method == 'sms'">
           <div class="form-group">
-              <label class="col-xs-2 control-label" ng-i18next="avAdmin.auth.sms"></label>
-              <div class="col-xs-10">
+              <label
+                class="col-xs-3 control-label text-right"
+                ng-i18next="avAdmin.auth.sms">
+              </label>
+              <div class="col-xs-9">
                   <p class="text-muted" ng-i18next> avAdmin.auth.smstemp </p>
                   <textarea class="form-control" ng-model="election.census.config.msg"></textarea>
               </div>
@@ -32,15 +35,21 @@
       <!-- Email conf -->
       <div ng-if="election.census.auth_method == 'email'">
           <div class="form-group">
-              <label class="col-xs-2 control-label" ng-i18next="avAdmin.auth.emailsub"></label>
-              <div class="col-xs-10">
+              <label
+                class="col-xs-3 control-label text-right padding-top-input"
+                ng-i18next="avAdmin.auth.emailsub">
+              </label>
+              <div class="col-xs-9">
                   <input type="text" class="form-control" ng-model="election.census.config.subject"/>
               </div>
           </div>
           <div class="clearfix"></div>
           <div class="form-group">
-              <label class="col-xs-2 control-label" ng-i18next="avAdmin.auth.email"></label>
-              <div class="col-xs-10">
+              <label
+                class="col-xs-3 control-label text-right padding-top-input"
+                ng-i18next="avAdmin.auth.email">
+              </label>
+              <div class="col-xs-9">
                   <p class="text-muted" ng-i18next> avAdmin.auth.emailtemp </p>
                   <textarea class="form-control" ng-model="election.census.config.msg"></textarea>
               </div>
@@ -52,13 +61,10 @@
 <div class="modal-footer">
   <button class="btn btn-success" ng-click="ok()">
     <span ng-if="!user_ids || user_ids.length === 0" ng-i18next>
-      avAdmin.dashboard.modals.confirmSendAuthCodesButton
+      avAdmin.dashboard.modals.sendAuthCodes.editMessageStep.sendButton
     </span>
     <span ng-if="!!user_ids && user_ids.length > 0" ng-i18next>
-      avAdmin.dashboard.modals.confirmSendAuthCodesIdsButton
+      avAdmin.dashboard.modals.sendAuthCodes.editMessageStep.sendSelectedButton
     </span>
-  </button>
-  <button class="btn" ng-click="cancel()" ng-i18next>
-    avCommon.cancel
   </button>
 </div>

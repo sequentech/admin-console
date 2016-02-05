@@ -27,14 +27,7 @@
     </div>
     <!-- endof dashboard status bar -->
 
-    <div ng-if="error" class="bg-danger">
-        <span ng-if="error.payload">{{ error.payload }}</span>
-        <span ng-if="!error.payload">{{ error }}</span>
-    </div>
-
-    <div ng-if="msg" class="bg-success">
-        <span ng-i18next="{{ msg }}"></span>
-    </div>
+    <div av-admin-alerts></div>
 
     <!-- election info -->
     <div class="row info">
@@ -48,7 +41,7 @@
             <div class="block">
                 <strong>{{ election.auth.census|number }}</strong><br/>
                 <button
-                  ng-click="sendAuthCodesModal(election)"
+                  ng-click="sendAuthCodes()"
                   ng-if="election.status == 'started'"
                   class="btn btn-success send-auth pull-left">
                     <i class="fa fa-sw fa-send"></i>

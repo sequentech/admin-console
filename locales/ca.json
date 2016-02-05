@@ -1,4 +1,8 @@
 {
+  "continue": "Continar",
+  "ok": "Vale",
+  "yes": "sí",
+  "no": "no",
   "eg": "ej.",
   "next": "Següent",
   "done": "Fet",
@@ -148,19 +152,18 @@
           "publishResultsHeader": "Publish election results",
           "publishResultsBody": "Currently only the election administrators have access to the calculated election results. When you publish the results, these will be made public for everyone to see.",
           "confirmPublishResultsButton": "Confirm and PUBLISH election results",
-
           "sendAuthCodes": {
             "editMessageStep": {
-              "header": "Send authentication codes (Step __step__ of __total__)",
-              "helpInfo": "This action will send a message to all the registered electors in the census. Note that sending many messages can be considered as SPAM, so proceed with caution. Also, please review first the message that will be sent.",
-              "sendButton": "SEND authentication codes to ALL census",
-              "sendSelectedButton": "SEND authentication codes to SELECTED users"
+              "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
+              "helpInfo": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
+              "sendButton": "ENVIAR códigos de autenticación a TODO el censo",
+              "sendSelectedButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
             },
             "confirmStep": {
-              "header": "Send authentication codes (Step __step__ of __total__)",
-              "helpInfo": "You will send the authentication to __voters__ electors. Please, verify that everything is correct.",
-              "sendButton": "Confirm and send the messages",
-              "invalidMsg": "Yes, I want to send  these messages without authentication code / URL",
+              "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
+              "helpInfo": "Vas a enviar el mensaje de autenticación a __voters__ personas. Por favor, comprueba que todo es correcto.",
+              "sendButton": "Confirmar y enviar mensajes",
+              "invalidMsg": "Sí, Quiero mandar estos mensajes sin código / URL",
               "messageHeader": "Preview",
               "editMessageAction": "Edit"
             }

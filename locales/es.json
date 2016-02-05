@@ -1,4 +1,6 @@
 {
+  "continue": "Continar",
+  "ok": "Vale",
   "yes": "sí",
   "no": "no",
   "eg": "ej.",
@@ -154,7 +156,7 @@
           "sendAuthCodes": {
             "editMessageStep": {
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
-              "helpInfo": "Esta acción enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
+              "helpInfo": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
               "sendButton": "ENVIAR códigos de autenticación a TODO el censo",
               "sendSelectedButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
             },
