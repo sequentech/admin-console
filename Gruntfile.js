@@ -232,7 +232,10 @@ module.exports = function (grunt) {
           'temp/app.js': ['<%= dom_munger.data.appjs %>','<%= ngtemplates.main.dest %>','<%= ngtemplates.common.dest %>'],
           'dist/avConfig-v3.0.1.js': ['avConfig.js'],
           'dist/avThemes-v3.0.1.js': ['bower_components/avCommon/dist/avThemes-v3.0.1.js'],
-          'dist/avPlugins-v3.0.1.js': ['plugins/**/*.js']
+          'dist/avPlugins-v3.0.1.js': [
+            'plugins/**/*.js',
+            '!plugins/**/*-spec.js'
+          ]
         }
       }
     },
