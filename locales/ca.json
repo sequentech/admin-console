@@ -165,7 +165,9 @@
               "sendButton": "Confirmar y enviar mensajes",
               "invalidMsg": "Sí, Quiero mandar estos mensajes sin código / URL",
               "messageHeader": "Preview",
-              "editMessageAction": "Edit"
+              "editMessageAction": "Edit",
+
+              "unknownError": "Los mensajes no fueron enviados ni cobrados. Un error no catalogado ocurrió mientras se enviaban los mensajes. Si el problema persiste, por favor contacta con nosotros enviando un email __email__ o llamándonos al __tlf__."
             }
           }
         }

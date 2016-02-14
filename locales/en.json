@@ -163,11 +163,13 @@
             },
             "confirmStep": {
               "header": "Send authentication codes (Step __step__ of __total__)",
-              "helpInfo": "You will send the authentication to __voters__ electors. Please, verify that everything is correct.",
+              "helpInfo": "You will send the authentication to __voters__ electors. Please, verify that everything is correct. If you have any trouble please contact us sending an email to __email__ or calling us at __tlf__.",
               "sendButton": "Confirm and send the messages",
               "invalidMsg": "Yes, I want to send  these messages without authentication code / URL",
               "messageHeader": "Preview",
-              "editMessageAction": "Edit"
+              "editMessageAction": "Edit",
+
+              "unknownError": "The messages were not sent nor charged. An unknown error happened during the sending the messages. If this problem persists, please contact us to resolve this issue sending an email to __email__ or calling us at __tlf__."
             }
           }
         }

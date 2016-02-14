@@ -18,7 +18,7 @@
   <!-- information -->
   <p class="padding-top-sm padding-bottom-sm">
     <span ng-i18next>
-      [i18next]({'voters': election.auth.census })avAdmin.dashboard.modals.sendAuthCodes.confirmStep.helpInfo
+      [i18next]({'voters': election.auth.census, tlf: contact.tlf, email: contact.email })avAdmin.dashboard.modals.sendAuthCodes.confirmStep.helpInfo
     </span>
     <a href="" class="learn-more" target="_blank" ng-i18next>
       avAdmin.learnMore
@@ -113,6 +113,11 @@
     </label>
   </div>
   <div class="clearfix"></div>
+
+  <!-- Show errors if any -->
+  <div class="text-danger padding-bottom-sm" ng-if="error()">
+    {{i18nSendError(error())}}
+  </div>
 
   <!-- Send button -->
   <button
