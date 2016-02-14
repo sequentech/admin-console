@@ -40,14 +40,19 @@ angular.module('avAdmin')
        */
       $scope.i18nSendError = function(error)
       {
-        var fromHook = AdminPlugins.hook(
+        var hookData = {
+          error: error,
+          // return value from the hook:
+          i18n: ''
+        };
+        AdminPlugins.hook(
           'send-auth-codes-i18n-send-error',
-          {error: error}
+          hookData
         );
 
-        if (angular.isString(fromHook) && fromHook.length > 0)
+        if (angular.isString(hookData.i18n) && hookData.i18n.length > 0)
         {
-          return fromHook;
+          return hookData.i18n;
         }
 
         var data = {

@@ -169,7 +169,7 @@
               "messageHeader": "Preview",
               "editMessageAction": "Edit",
 
-              "unknownError": "The messages were not sent nor charged. An unknown error happened during the sending the messages. If this problem persists, please contact us to resolve this issue sending an email to __email__ or calling us at __tlf__."
+              "unknownError": "The messages were not sent nor charged. An unknown error happened when sending the messages. If this problem persists, please contact us to resolve this issue sending an email to __email__ or calling us at __tlf__."
             }
           }
         }

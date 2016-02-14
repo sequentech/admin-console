@@ -201,7 +201,7 @@ angular.module('avAdmin')
           {
             // if there was an error, show it in the gui
             scope.loading = false;
-            scope.error = error.error || "ERROR";
+            scope.error = error.error_codename || error.error || error;
 
             // and let plugins know
             AdminPlugins.hook(
