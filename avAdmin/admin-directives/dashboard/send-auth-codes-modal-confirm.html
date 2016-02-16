@@ -1,0 +1,133 @@
+<div class="modal-header dialog-header-warning send-auth-codes-modal">
+  <h4 class="modal-title">
+    <span class="glyphicon glyphicon-warning-sign">
+    </span>
+    <span class="title" ng-i18next>
+      [i18next]({step:steps.current, total:steps.total})avAdmin.dashboard.modals.sendAuthCodes.confirmStep.header
+    </span>
+    <button
+      type="button"
+      class="close pull-right"
+      ng-click="cancel()">
+      ×
+    </button>
+  </h4>
+</div>
+
+<div class="modal-body send-auth-codes-modal confirm">
+  <!-- information -->
+  <p class="padding-top-sm padding-bottom-sm">
+    <span ng-i18next>
+      [i18next]({'voters': election.auth.census, tlf: contact.tlf, email: contact.email })avAdmin.dashboard.modals.sendAuthCodes.confirmStep.helpInfo
+    </span>
+    <a href="" class="learn-more" target="_blank" ng-i18next>
+      avAdmin.learnMore
+    </a>
+  </p>
+
+  <div class="extra-info extension-point">
+    <div ng-repeat="html in exhtml">
+        <div av-plugin-html html="html"></div>
+    </div>
+  </div>
+
+  <!-- title -->
+  <h3 class="confirm-message">
+    <span ng-i18next>
+      avAdmin.dashboard.modals.sendAuthCodes.confirmStep.messageHeader
+    </span>
+
+    <small class="pull-right">
+      <a
+        ng-click="editAuthCodes()"
+        ng-href=""
+        class="text-small text-muted">
+        <i class="fa fa-pencil"></i>
+        <span ng-i18next>
+          avAdmin.dashboard.modals.sendAuthCodes.confirmStep.editMessageAction
+        </span>
+      </a>
+    </small>
+  </h3>
+
+  <!-- SMS conf -->
+  <div ng-if="election.census.auth_method == 'sms'" class="preview">
+    <div class="form-group">
+      <label
+        class="col-xs-3 control-label text-right padding-top-sm"
+        ng-i18next="avAdmin.auth.sms">
+      </label>
+      <div class="col-xs-9">
+        <div
+          ng-click="editAuthCodes()"
+          class="preview-data"
+          ng-bind="exampleMsg()">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email conf -->
+  <div ng-if="election.census.auth_method == 'email'" class="preview">
+    <div class="form-group">
+      <label
+        class="col-xs-3 control-label text-right padding-top-sm"
+        ng-i18next="avAdmin.auth.emailsub">
+      </label>
+      <div class="col-xs-9">
+        <div
+          ng-click="editAuthCodes()"
+          class="preview-data"
+          ng-bind="election.census.config.subject">
+        </div>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="form-group">
+      <label
+        class="col-xs-3 control-label text-right padding-top-sm"
+        ng-i18next="avAdmin.auth.email">
+      </label>
+      <div class="col-xs-9">
+        <div
+          ng-click="editAuthCodes()"
+          class="preview-data"
+          ng-bind="exampleMsg()">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+
+<div class="modal-footer send-auth-codes-modal">
+
+  <!-- checkbox to confirm no url -->
+  <div class="checkbox text-right" ng-if="showCheckBox()">
+    <label>
+      <input id="imsure" type="checkbox" value="" ng-model="imsure">
+      <span ng-i18next>
+        avAdmin.dashboard.modals.sendAuthCodes.confirmStep.invalidMsg
+      </span>
+    </label>
+  </div>
+  <div class="clearfix"></div>
+
+  <!-- Show errors if any -->
+  <div class="text-danger padding-bottom-sm" ng-if="error()">
+    {{i18nSendError(error())}}
+  </div>
+
+  <!-- Send button -->
+  <button
+    id="sendbutton"
+    class="btn btn-success"
+    ng-click="ok()"
+    ng-disabled="!imsure">
+    <span ng-i18next>
+      avAdmin.dashboard.modals.sendAuthCodes.confirmStep.sendButton
+    </span>
+    <span ng-if="loading"><i class="fa fa-cog fa-spin"></i></span>
+  </button>
+</div>

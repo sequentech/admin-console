@@ -1,4 +1,8 @@
 {
+  "continue": "Continar",
+  "ok": "Vale",
+  "yes": "sí",
+  "no": "no",
   "eg": "ex.",
   "next": "Seguinte",
   "done": "Feito",
@@ -150,21 +154,22 @@
           "publishResultsHeader": "Publicar resultados",
           "publishResultsBody": "Até o momento só os administradores da votación tiveron acceso directo aos resultados calculados da votación. Cando se publican os resultados, ponse a disposición pública para que calquera poida velos.",
           "confirmPublishResultsButton": "Confirmar e PUBLICAR resultados",
-
           "sendAuthCodes": {
             "editMessageStep": {
-              "header": "Send authentication codes (Step __step__ of __total__)",
-              "helpInfo": "This action will send a message to all the registered electors in the census. Note that sending many messages can be considered as SPAM, so proceed with caution. Also, please review first the message that will be sent.",
-              "sendButton": "SEND authentication codes to ALL census",
-              "sendSelectedButton": "SEND authentication codes to SELECTED users"
+              "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
+              "helpInfo": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
+              "sendButton": "ENVIAR códigos de autenticación a TODO el censo",
+              "sendSelectedButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
             },
             "confirmStep": {
-              "header": "Send authentication codes (Step __step__ of __total__)",
-              "helpInfo": "You will send the authentication to __voters__ electors. Please, verify that everything is correct.",
-              "sendButton": "Confirm and send the messages",
-              "invalidMsg": "Yes, I want to send  these messages without authentication code / URL",
-              "messageHeader": "Preview",
-              "editMessageAction": "Edit"
+              "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
+              "helpInfo": "Vas a enviar el mensaje de autenticación a __voters__ personas. Por favor, comprueba que todo es correcto.",
+              "sendButton": "Confirmar y enviar mensajes",
+              "invalidMsg": "Sí, Quiero mandar estos mensajes sin código / URL",
+              "messageHeader": "Vista previa",
+              "editMessageAction": "Editar",
+
+              "unknownError": "Los mensajes no fueron enviados ni cobrados. Un error no catalogado ocurrió mientras se enviaban los mensajes. Si el problema persiste, por favor contacta con nosotros enviando un email __email__ o llamándonos al __tlf__."
             }
           }
         }
@@ -336,13 +341,13 @@
         "auth": "Método de autenticación",
         "auths": {"email": "Correo electrónico", "sms": "SMS", "dnie": "DNI electrónico"},
         "sms": "Mensaxe SMS",
-        "smstemp": "Persoal usado no SMS a enviar ao usuario. Usa %(code)s para inserir o código SMS e %(url)s para inserir a ligazón de votación",
-        "smsdef": "Este é o teu código de votación %(code)s",
+        "smstemp": "Persoal usado no SMS a enviar ao usuario. Usa __CODE__ para inserir o código SMS e __URL__ para inserir a ligazón de votación",
+        "smsdef": "Este é o teu código de votación __CODE__",
         "email": "Corpo da mensaxe",
         "emailsub": "Asunto do email",
-        "emailtemp": "Persoal usado no correo para enviar aos usuarios. Usa %(code)s para engadir o código de acceso e %(url)s para inserir a ligazón de votación",
+        "emailtemp": "Persoal usado no correo para enviar aos usuarios. Usa __CODE__ para engadir o código de acceso e __URL__ para inserir a ligazón de votación",
         "emailsubdef": "Xa podes votar con Agora Voting",
-        "emaildef": "Vota en %(url)s co codigo %(code)s"
+        "emaildef": "Vota en __URL__ co codigo __CODE__"
     },
     "columnFilter": {
       "sort": "Orden:",

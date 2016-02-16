@@ -80,3 +80,66 @@
     white-space: normal;
   }
 }
+
+/* send auth-codes-confirm-modal */
+.send-auth-codes-modal {
+  h3.confirm-message {
+    border-bottom: 1px solid;
+    margin-bottom: 20px;
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
+
+  .form-group {
+    margin-top: 10px;
+
+    label.padding-top-input {
+      margin-top: 8px;
+    }
+
+    label.control-label.checkbox {
+      margin: 0;
+    }
+  }
+
+  &.modal-footer {
+    .checkbox.text-right {
+      margin-top: -10px;
+      margin-bottom: 20px;
+
+      label {
+        span, input {
+          float: right;
+          margin: 0;
+          padding: 5px;
+        }
+
+        input {
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+
+  textarea {
+    min-height: 150px;
+  }
+
+  div.preview {
+
+    .preview-data {
+      color: lighten(@gray, 10%);
+      padding: 10px;
+
+      &:hover {
+        background-color: @gray-lighter;
+      }
+    }
+  }
+
+  &.modal-body.confirm {
+    padding-bottom: 20px;
+  }
+}

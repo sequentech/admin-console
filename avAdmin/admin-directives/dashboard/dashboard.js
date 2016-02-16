@@ -1,5 +1,5 @@
 angular.module('avAdmin')
-  .directive('avAdminDashboard', function($state, Authmethod, AdminPlugins, ElectionsApi, $stateParams, $modal, PercentVotesService) {
+  .directive('avAdminDashboard', function($state, Authmethod, AdminPlugins, ElectionsApi, $stateParams, $modal, PercentVotesService, SendMsg) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
       var id = $stateParams.id;
@@ -208,35 +208,12 @@ angular.module('avAdmin')
             .catch(function(error) { scope.loading = false; scope.error = error; });
       }
 
-      function sendAuthCodesModal() {
-        $modal.open({
-          templateUrl: "avAdmin/admin-directives/dashboard/send-auth-codes-modal.html",
-          controller: "SendAuthCodesModal",
-          size: 'lg',
-          resolve: {
-            election: function () { return scope.election; },
-            user_ids: function() { return null; }
-          }
-        }).result.then(function () {
-          sendAuthCodes();
-        });
-      }
-
       function sendAuthCodes() {
-        scope.loading = true;
-        if (AdminPlugins.hook('send-auth-codes-pre', {el: scope.election, ids: []})) {
-            Authmethod.sendAuthCodes(scope.election.id, scope.election)
-              .success(function(r) {
-                scope.loading = false;
-                scope.msg = "avAdmin.dashboard.censussend";
-                AdminPlugins.hook('send-auth-codes-ok', {el: scope.election, ids: [], response: r});
-              })
-              .error(function(error) {
-                scope.loading = false;
-                scope.error = error.error;
-                AdminPlugins.hook('send-auth-codes-ko', {el: scope.election, ids: [], response: error});
-              });
-        }
+        SendMsg.setElection(scope.election);
+        SendMsg.scope = scope;
+        SendMsg.sendAuthCodesModal();
+
+        return false;
       }
 
       function duplicateElection() {
@@ -263,7 +240,7 @@ angular.module('avAdmin')
       angular.extend(scope, {
         doAction: doAction,
         doActionConfirm: doActionConfirm,
-        sendAuthCodesModal: sendAuthCodesModal,
+        sendAuthCodes: sendAuthCodes,
         duplicateElection: duplicateElection,
         createRealElection: createRealElection
       });

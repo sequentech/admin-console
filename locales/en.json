@@ -1,4 +1,6 @@
 {
+  "continue": "Continue",
+  "ok": "Ok",
   "yes": "yes",
   "no": "no",
   "eg": "eg.",
@@ -161,11 +163,13 @@
             },
             "confirmStep": {
               "header": "Send authentication codes (Step __step__ of __total__)",
-              "helpInfo": "You will send the authentication to __voters__ electors. Please, verify that everything is correct.",
+              "helpInfo": "You will send the authentication to __voters__ electors. Please, verify that everything is correct. If you have any trouble please contact us sending an email to __email__ or calling us at __tlf__.",
               "sendButton": "Confirm and send the messages",
               "invalidMsg": "Yes, I want to send  these messages without authentication code / URL",
               "messageHeader": "Preview",
-              "editMessageAction": "Edit"
+              "editMessageAction": "Edit",
+
+              "unknownError": "The messages were not sent nor charged. An unknown error happened when sending the messages. If this problem persists, please contact us to resolve this issue sending an email to __email__ or calling us at __tlf__."
             }
           }
         }
@@ -339,13 +343,13 @@
         "auth": "Auth method",
         "auths": {"email": "Email links", "sms": "SMS", "dnie": "spanish eDNI"},
         "sms": "SMS message",
-        "smstemp": "Template used in the SMS to send to the user. Use %(code)s to insert the SMS code and %(url)s for the authentication url",
-        "smsdef": "This is your vote code: %(code)",
+        "smstemp": "Template used in the SMS to send to the user. Use __CODE__ to insert the SMS code and __URL__ for the authentication url",
+        "smsdef": "This is your vote code: __CODE__",
         "email": "Email message",
         "emailsub": "Email subject",
-        "emailtemp": "Template used in the Email link to send to the user. Use %(code)s to insert the login code and %(url)s to insert the election link",
+        "emailtemp": "Template used in the Email link to send to the user. Use __CODE__ to insert the login code and __URL__ to insert the election link",
         "emailsubdef": "Vote now with Agora Voting",
-        "emaildef": "Vote in %(url)s with code %(code)s"
+        "emaildef": "Vote in __URL__ with code __CODE__"
     },
     "columnFilter": {
       "sort": "Sort:",

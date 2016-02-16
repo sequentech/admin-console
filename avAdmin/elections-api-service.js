@@ -123,6 +123,7 @@ angular.module('avAdmin')
                     el.auth = {};
                     el.auth.authentication = data.events.auth_method;
                     el.auth.census = data.events.users;
+                    el.raw = data.events;
                     if (el.auth.census) {
                         el.votes = el.stats.votes;
                         el.votes_percentage = ( el.stats.votes * 100 )/ el.auth.census;
@@ -133,9 +134,16 @@ angular.module('avAdmin')
 
                     // updating census
                     el.census.auth_method = data.events.auth_method;
-                    el.census.config = data.events.auth_method_config.config;
                     el.census.extra_fields = data.events.extra_fields;
                     el.census.census = data.events.census;
+
+                    var newConf = data.events.auth_method_config.config;
+                    // not updating msgs if are modified
+                    if (el.census.config && el.census.config.msg) {
+                        newConf.msg = el.census.config.msg;
+                        newConf.subject = el.census.config.subject;
+                    }
+                    el.census.config = newConf;
 
                     deferred.resolve(el);
                 })
