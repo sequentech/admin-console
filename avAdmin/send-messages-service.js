@@ -136,9 +136,9 @@ angular.module('avAdmin')
           election: function () { return service.election; },
           user_ids: function() { return service.user_ids; },
           exhtml: function () {
-            var html = {html: []};
+            var html = {html: [], scope: {}};
             AdminPlugins.hook('send-auth-codes-confirm-extra', html);
-            return html.html;
+            return html;
           }
         }
 

@@ -19,9 +19,11 @@ angular.module('avAdmin')
       $scope.election = election;
       $scope.user_ids = user_ids;
       $scope.imsure = false;
-      $scope.exhtml = exhtml;
       $scope.steps = SendMsg.steps;
       $scope.loading = false;
+
+      $scope = _.extend($scope, exhtml.scope);
+      $scope.exhtml = exhtml.html;
 
       // contact information
       $scope.contact = ConfigService.contact;
