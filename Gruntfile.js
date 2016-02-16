@@ -85,7 +85,8 @@ module.exports = function (grunt) {
     jshint: {
       main: {
         options: {
-            jshintrc: '.jshintrc'
+            jshintrc: '.jshintrc',
+            reporter: require('jshint-stylish')
         },
         src: createFolderGlobs('*.js')
       }
@@ -232,7 +233,10 @@ module.exports = function (grunt) {
           'temp/app.js': ['<%= dom_munger.data.appjs %>','<%= ngtemplates.main.dest %>','<%= ngtemplates.common.dest %>'],
           'dist/avConfig-v3.0.1.js': ['avConfig.js'],
           'dist/avThemes-v3.0.1.js': ['bower_components/avCommon/dist/avThemes-v3.0.1.js'],
-          'dist/avPlugins-v3.0.1.js': ['plugins/**/*.js']
+          'dist/avPlugins-v3.0.1.js': [
+            'plugins/**/*.js',
+            '!plugins/**/*-spec.js'
+          ]
         }
       }
     },
@@ -306,6 +310,7 @@ module.exports = function (grunt) {
           '<%= ngtemplates.main.dest %>',
           '<%= ngtemplates.common.dest %>',
           'bower_components/angular-mocks/angular-mocks.js',
+          'plugins/**/*.js',
           createFolderGlobs('*-spec.js')
         ],
         logLevel:'ERROR',
@@ -315,6 +320,10 @@ module.exports = function (grunt) {
       },
       all_tests: {
         browsers: ['PhantomJS','Chrome','Firefox']
+      },
+      // If server is headless, Chrome and Firefox cannot be used
+      headless: {
+        browsers: ['PhantomJS']
       },
       during_watch: {
         browsers: ['PhantomJS']
@@ -340,9 +349,33 @@ module.exports = function (grunt) {
 
   });
 
-  grunt.registerTask('build',['check_config', 'jshint','clean:before','less','autoprefixer','dom_munger','ngtemplates','cssmin','concat','merge-json','ngAnnotate','uglify','copy','htmlmin','clean:after']);
+  /*
+   * Register the tasks
+   */
+  grunt.registerTask(
+    'build',
+    [
+      'check_config',
+      'jshint',
+      'clean:before',
+      'less',
+      'autoprefixer',
+      'dom_munger',
+      'ngtemplates',
+      'cssmin',
+      'concat',
+      'merge-json',
+      'ngAnnotate',
+      'uglify',
+      'copy',
+      'htmlmin',
+      'clean:after'
+    ]
+  );
   grunt.registerTask('serve', ['dom_munger:read','jshint','connect', 'watch']);
-  grunt.registerTask('test',['dom_munger:read','karma:all_tests']);
+  grunt.registerTask('test',['dom_munger:read','karma:headless']);
+  grunt.registerTask('test-all',['dom_munger:read','karma:all_tests']);
+
 
   grunt.event.on('watch', function(action, filepath) {
     //https://github.com/gruntjs/grunt-contrib-watch/issues/156
@@ -356,7 +389,7 @@ module.exports = function (grunt) {
       grunt.config('jshint.main.src', filepath);
       tasksToRun.push('jshint');
 
-      //find the appropriate unit t est for the changed file
+      //find the appropriate unit test for the changed file
       var spec = filepath;
       if (filepath.lastIndexOf('-spec.js') === -1 || filepath.lastIndexOf('-spec.js') !== filepath.length - 8) {
         spec = filepath.substring(0,filepath.length - 3) + '-spec.js';
