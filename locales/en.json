@@ -24,7 +24,7 @@
   "avCommon": {
     "cancel": "Cancel",
     "poweredBy": "Powered by <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>",
-    "shareLink": "¡Tweet this election!",
+    "shareLink": "Tweet this election!",
     "votingSystem": "Voting System",
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
   },
@@ -32,7 +32,7 @@
     "notes": {
       "noteTag": "Note",
       "thisisATestElection": "This is a test election. For security reasons, real elections can only be created out of successful test elections.",
-      "thisisATestElectionPopover": "This is a test election. For security reasons, real elections can only be created out of successful test elections. You should complete the election proccess to result publish step."
+      "thisisATestElectionPopover": "This is a test election. For security reasons, real elections can only be created out of successful test elections. You must complete the election process up to the results publish step."
     },
     "topbar": {
         "home": "Home",
@@ -58,7 +58,7 @@
         "electionTypes": "Election types",
         "primaries": "Primaries and candidate elections",
         "participatoryBudgeting": "Participatory budgeting",
-        "referendums": "referendums and consultations",
+        "referendums": "Referendums and consultations",
         "professional": "Professionals and Labor Unions",
         "universities": "Universities",
 
@@ -103,7 +103,7 @@
         "publish": "publish"
     },
     "import": {
-        "desc": "Importing an election from csv allows you to manage and automatize the creation of elections details externally. <a href=\"https://docs.google.com/spreadsheets/d/1WTzswqiuRllZIm90A-SBQ0kbVYDQI1jZvKcvL8ruMIY/edit?usp=sharing\" target=\"_blank\">Read more about the CSV election format here</a>. If you want to create many elections at once, you can use the API or contact us.",
+        "desc": "Importing an election from csv allows you to manage and automate the creation of elections details from an external source. <a href=\"https://docs.google.com/spreadsheets/d/1WTzswqiuRllZIm90A-SBQ0kbVYDQI1jZvKcvL8ruMIY/edit?usp=sharing\" target=\"_blank\">Read more about the CSV election format here</a>. If you want to create many elections at once, you can use the API or contact us.",
         "file": "Select file",
         "dropFilesHere": "Drop CSV file here"
     },
@@ -139,16 +139,16 @@
         "preview": "Demo voting booth",
         "modals": {
           "createHeader": "Create election",
-          "createBody": "To create the election, its configuration is sent to the election authorities and they create election public encryption keys. After that, the election is no longer editable. Before doing this, please check that the configuration is correct (for example taking a look at the demo voting booth). If you need to change the election after this, you will have to create a new one.",
+          "createBody": "To create the election, its configuration is sent to the election authorities and they create election encryption public keys. After that, the election is no longer editable. Before doing this, please check that the configuration is correct (for example taking a look at the demo voting booth). If you need to change the election after this, you will have to create a new one.",
           "confirmCreateButton": "Confirm and CREATE election",
           "startHeader": "Start election",
           "startBody": "Please be aware that once you start the elections, voters will be able to vote until the election is stopped",
           "confirmStartButton": "Confirm and START the election",
           "stopHeader": "Stop election",
-          "stopBody": "Once you stop the election, people will not be able to vote anymore.  Please be aware and exercise caution",
+          "stopBody": "Once you stop the election, people will not be able to vote anymore.  Please be aware of this and exercise caution",
           "confirmStopButton": "Confirm and STOP the election",
           "tallyHeader": "Tally election",
-          "tallyBody": "The tally process is run by the election authorities and it might take a while, depending on the number of votes. It involves a mathematically verifiable cryptographic process that anonymizes and obtains the content of each vote.",
+          "tallyBody": "The tally process is run by the election authorities and may take a while, depending on the number of votes. It involves a mathematically verifiable cryptographic process that anonymizes and obtains the content of each vote.",
           "confirmTallyButton": "Confirm and TALLY the election",
           "publishResultsHeader": "Publish election results",
           "publishResultsBody": "Currently only the election administrators have access to the calculated election results. When you publish the results, these will be made public for everyone to see.",
@@ -157,41 +157,41 @@
           "sendAuthCodes": {
             "editMessageStep": {
               "header": "Send authentication codes (Step __step__ of __total__)",
-              "helpInfo": "This action will send a message to all the registered electors in the census. Note that sending many messages can be considered as SPAM, so proceed with caution. Also, please review first the message that will be sent.",
+              "helpInfo": "This action will send a message to all the registered electors in the census. Note that sending many messages can be considered as SPAM, so proceed with caution. Also, please review the message that will be sent before proceeding.",
               "sendButton": "SEND authentication codes to ALL census",
               "sendSelectedButton": "SEND authentication codes to SELECTED users"
             },
             "confirmStep": {
               "header": "Send authentication codes (Step __step__ of __total__)",
-              "helpInfo": "You will send the authentication to __voters__ electors. Please, verify that everything is correct. If you have any trouble please contact us sending an email to __email__ or calling us at __tlf__.",
+              "helpInfo": "You will send the authentication to __voters__ electors. Please, verify that everything is correct. If you have any trouble please contact us at __email__ or calling us at __tlf__.",
               "sendButton": "Confirm and send the messages",
-              "invalidMsg": "Yes, I want to send  these messages without authentication code / URL",
+              "invalidMsg": "Yes, I want to send these messages without authentication code / URL",
               "messageHeader": "Preview",
               "editMessageAction": "Edit",
 
-              "unknownError": "The messages were not sent nor charged. An unknown error happened when sending the messages. If this problem persists, please contact us to resolve this issue sending an email to __email__ or calling us at __tlf__."
+              "unknownError": "The messages were not sent nor charged. An unknown error occurred when sending the messages. If this problem persists, please contact us to resolve this issue at __email__ or calling us at __tlf__."
             }
           }
         }
     },
     "basic": {
-        "intro": "Creating an election entails multiple steps, but it is not difficult. It will only take 5 minutes. Please read the Administrator Manual, linked in the help icon in the top navegation bar.",
+        "intro": "Creating an election requires multiple steps, but it is not difficult. It will only take 5 minutes. Please read the Administrator Manual, linked in the help icon at the top navegation bar.",
         "title": { "label": "Title", "placeholder": "eg.New Board of Directors", "labelH3": "__index__. Election titled: __title__" },
         "description": { "label": "Description", "placeholder": "Description will be shown" },
         "share": { "label": "Share text", "placeholder": "Text to use for social sharing" },
         "layout": { "label": "Layout", "placeholder": "Specifies how the whole election will be displayed" },
-        "layouts": { "simple": "Simple", "2questions-conditional": "Sí/No", "pcandidates-election": "Table Candidates" },
+        "layouts": { "simple": "Simple", "2questions-conditional": "Yes/No", "pcandidates-election": "Table Candidates" },
         "theme": { "label": "Theme", "placeholder": "How will the election look like?" },
         "themes": { "default": "Default", "podemos": "Purple" },
         "questionOptionsSummary": "<strong>__num_answers__</strong> candidates. Voters select between <strong>__min__</strong> and <strong>__max__</strong> options (randomize: <strong>__random__</strong>) and there are <strong>__num_winners__</strong> winners. The tally method is <strong>__tally_method__</strong>.",
         "censusSize": "__num__ people",
-        "registerAndCreateElection": "Not only register the election, but also create it on the election authorities. This means you won't be able to modify the election."
+        "registerAndCreateElection": "Not only register the election, but also create it at the election authorities. This means you won't be able to modify the election."
     },
     "questions": {
         "new": "New question",
         "winners": {
           "label": "Number of winners",
-          "placeholder": "How many winners should be? Minimum is 1 and maximum is the number of options",
+          "placeholder": "How many winners should there be? Minimum is 1 and maximum is the number of options",
           "numOptionsError": "There are __winners__ winners but only __cands__ candidates",
           "minError": "There must be at least 1 winner"
           },
@@ -216,10 +216,10 @@
         "newopt": "New option name",
         "layout": {
           "label": "Layout",
-          "placeholder": "Especify how the question will be shown",
+          "placeholder": "Specify how the question will be shown",
           "accordion": "Normal",
           "circles": "Images with details",
-          "conditional-accordion": "Conditional Accordion",
+          "conditional-accordion": "Conditional accordion",
           "ahoram-primaries": "ahoram-primaries"
         },
         "option": {
@@ -236,16 +236,16 @@
         }
     },
     "censusConfig": {
-        "intro": "The census specifies who can vote and the details we need from each elector. Here you can configure it"
+        "intro": "The census specifies who can vote and the details we need from each elector. You can configure it here"
     },
     "census": {
-        "intro": "The census specifies who can vote and the details we need from each elector. Here you can manage it",
+        "intro": "The census specifies who can vote and the details we need from each elector. You can manage it here",
         "reg": { "label": "Registration", "placeholder": "How the census is generated?" },
         "census": {
           "open": "Open registration",
           "openDescription": "Census can not only be generated by election administrators, but also individuals can register following the authentication process.",
           "close": "Closed registration",
-          "closeDescription": "The census is generated by administrators. Third parties cannot register into the census. "
+          "closeDescription": "The census is generated by administrators. Third parties cannot register into the census."
         },
 
         "modals": {
@@ -259,19 +259,19 @@
           "confirmAddPersonButton": "Confirm and ADD person to census",
 
           "removePeopleHeader": "Remove selected people from census",
-          "removePeopleBody": "Removing the selected __num__ people from the census is definitive. Note that this will not remove their votes if they have voted.",
+          "removePeopleBody": "Removing the selected __num__ people from the census is irreversible. Note that this will not remove their votes if they have voted.",
           "confirmRemovePeopleButton": "Confirm and REMOVE selected __num__ people from census",
 
           "activatePeopleHeader": "Activate selected people from census",
-          "activatePeopleBody": "Activating the selected __num__ people. This will allow this people to vote",
+          "activatePeopleBody": "Activating the selected __num__ people. This will allow these people to vote",
           "confirmActivatePeopleButton": "Confirm and activate selected __num__ people in census",
 
           "deactivatePeopleHeader": "Deactivate selected people from census",
-          "deactivatePeopleBody": "Deactivating the selected __num__ people. This will NOT allow this people to vote",
+          "deactivatePeopleBody": "Deactivating the selected __num__ people. This will NOT allow these people to vote",
           "confirmDeactivatePeopleButton": "Confirm and deactivate selected __num__ people in census",
 
           "exportAllCensusHeader": "Export all census in CSV",
-          "exportAllCensusBody": "Here you can download the whole census in a CSV (Comma Separated Values) spreadsheet format, so that you can process it elsewhere. There are __total__ people in your census. Depending on the size of the census, the process of downloading the whole census can take a while. Once it finishes, you will be prompted to download the census. If you have any filter active, this filter will also be applied to the downloaded CSV file.",
+          "exportAllCensusBody": "Here you can download the whole census in a CSV (Comma Separated Values) spreadsheet format, so you can process it elsewhere. There are __total__ people in your census. Depending on the size of the census, the process of downloading the whole census may take a while. Once it finishes, you will be prompted to download the census. If you have any filter active, this filter will also be applied to the downloaded CSV file.",
           "confirmexportAllCensusButton": "Confirm and download the census, with __total__ people"
         },
         "addPersonAction": "Add person...",
@@ -304,7 +304,7 @@
         "passwordOption": "password",
         "codeOption": "code",
         "textOption": "text",
-        "tlfOption": "tlf",
+        "tlfOption": "tel",
         "intOption": "int",
         "boolOption": "bool",
         "captchaOption": "captcha",
@@ -324,7 +324,7 @@
         "fieldRequiredAuthLabel": "Checked against census in authentication",
         "fieldPrivateLabel": "Private (only administrators can see and use this field)",
         "extraFieldsHeader": "Extra fields",
-        "extraFieldsInfo": "Here you can define extra fields in the census in a versatile way. This allows you to do a range of things: adding extra checks against census in closed registration, registering new fields in open registration, etc.",
+        "extraFieldsInfo": "Here you can define extra fields in the census in a versatile way. This allows you to do a range of things: adding extra checks against the census in closed registration, registering new fields in open registration, etc.",
         "fields": {"label": "Extra fields", "placeholder": "Voter extra fields"},
         "configurationHeader": "Configuration",
         "manage": "Manage census",
@@ -339,7 +339,7 @@
         "imageModalClose": "Close"
     },
     "auth": {
-        "intro": "Authentication is the means used to ensure that an elector is who he sais he is. Here you need to find a balance between security, usability an cost",
+        "intro": "Authentication is the means used to ensure that an elector is who he sais he is. Here you need to find a balance between security, usability and cost",
         "auth": "Auth method",
         "auths": {"email": "Email links", "sms": "SMS", "dnie": "spanish eDNI"},
         "sms": "SMS message",
@@ -403,12 +403,12 @@
           "election-question-int-size-min-max": "Election '__eltitle__', question '__qtitle__': the maximum number of candidates that a voter can choose is __value__, but must be bigger or equal than the minimum which is __min__",
           "election-question-int-size-max-max": "Election '__eltitle__', question '__qtitle__': the maximum number of candidates that a voter can choose is __value__, but cannot be larger than the number of candidates which is __max__",
           "election-question-int-size-min-num-winners": "Election '__eltitle__', question '__qtitle__': there must be at least one winner, but it is __value__ instead",
-          "election-question-int-size-max-num-winners": "Election '__eltitle__', question '__qtitle__': the number of winners is __value__, but cannot be bigger than the number of answers that is __max__"
+          "election-question-int-size-max-num-winners": "Election '__eltitle__', question '__qtitle__': the number of winners is __value__, but cannot be bigger than the number of answers which is __max__"
         }
     },
 
     "successAction": {
-      "modeIntro": "Once an user registers or authenticates, an action should be executed. Usually, it's redirected to the corresponding election voting booth, but it can also be configured to load an external URL. This is useful if you are using this  just to register census and not for any active election.",
+      "modeIntro": "Once a user registers or authenticates, an action should be executed. Usually, it's redirected to the corresponding election voting booth, but it can also be configured to load an external URL. This is useful if you are using this just to register census and not for any active election.",
 
       "voteModeTitle": "Load the election's voting booth",
       "voteModeDescription": "Load the corresponding election voting booth so that the person can vote.",
