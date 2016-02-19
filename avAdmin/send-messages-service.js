@@ -2,7 +2,7 @@
  * Service to manage the send authentication codes modal steps.
  */
 angular.module('avAdmin')
-  .factory('SendMsg', function($q, $modal, Authmethod, AdminPlugins, Account)
+  .factory('SendMsg', function($q, $modal, Authmethod, AdminPlugins)
   {
     // These is the base data of this service
     var service = {

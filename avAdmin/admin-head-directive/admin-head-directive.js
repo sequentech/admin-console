@@ -4,6 +4,8 @@ angular.module('avAdmin')
     function link(scope, element, attrs) {
         var admin = $cookies.user;
         scope.admin = admin;
+        scope.organization = ConfigService.organization;
+        scope.technology = ConfigService.technology;
         scope.nologin = ('nologin' in attrs) || scope.admin;
         scope.helpurl = ConfigService.helpUrl;
 

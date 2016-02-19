@@ -23,7 +23,7 @@
   },
   "avCommon": {
     "cancel": "Cancel",
-    "poweredBy": "Funciona amb <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>",
+    "poweredBy": "Funciona amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
     "shareLink": "¡Twittea aquesta votació!",
     "votingSystem": "Voting System",
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
@@ -346,7 +346,7 @@
         "email": "Corpo da mensaxe",
         "emailsub": "Asunto do email",
         "emailtemp": "Persoal usado no correo para enviar aos usuarios. Usa __CODE__ para engadir o código de acceso e __URL__ para inserir a ligazón de votación",
-        "emailsubdef": "Xa podes votar con Agora Voting",
+        "emailsubdef": "Xa podes votar con __name__",
         "emaildef": "Vota en __URL__ co codigo __CODE__"
     },
     "columnFilter": {
