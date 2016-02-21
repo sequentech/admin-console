@@ -384,6 +384,7 @@
           "election-is-string-description": "Votación '__eltitle__': la descripción no es una cadena de texto",
           "election-array-length-max-title": "Votación '__eltitle__': el título tiene una longitud de __num__ caracteres, sobrepasando el máximo de __max__ caracteres",
           "election-is-string-title": "Votación '__eltitle__': el título no es una cadena de texto",
+          "election-question-lambda-duplicated-answers": "Votación '__eltitle__', pregunta '__qtitle__': contiene opciones/candidaturas repetidas",
           "election-question-array-length-max-description": "Votación '__eltitle__', pregunta '__qtitle__': la descripción tiene una longitud de __num__ caracteres, sobrepasando el máximo de __max__ caracteres",
           "election-question-is-string-description": "Votación '__eltitle__', pregunta '__qtitle__': la descripción no es una cadena de texto",
           "election-question-array-length-max-title": "Votación '__eltitle__', pregunta '__qtitle__': el título tiene una longitud de __num__ caracteres, sobrepasando el máximo de __max__ caracteres",

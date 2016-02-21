@@ -278,6 +278,7 @@
           "election-question-is-string-description": "Votación '__eltitle__', pregunta '__qtitle__': a descrición non é unha cadea de texto",
           "election-question-array-length-max-title": "Votación '__eltitle__', pregunta '__qtitle__': o título ten unha lonxitude de __num__ caracteres, excedendo o máximo de __max__ caracteres",
           "election-question-is-string-title": "Votación '__eltitle__', pregunta '__qtitle__': o título non é unha cadea de texto",
+          "election-question-lambda-duplicated-answers": "Votación '__eltitle__', pregunta '__qtitle__': contiene opciones/candidaturas repetidas",
           "election-question-answer-array-length-max-text": "Votación '__eltitle__', pregunta '__qtitle__', candidatura '__atext__': o texto ten unha lonxitude de __num__ caracteres, excedendo o máximo de __max__ caracteres",
           "election-question-answer-is-string-description": "Votación '__eltitle__', pregunta '__qtitle__', candidatura '__atext__': a descrición non é unha cadea de texto",
           "election-question-answer-array-length-min-text": "Votación '__eltitle__', pregunta '__qtitle__', candidatura '__atext__': o texto ten unha lonxitude de __num__ caracteres, pero debe ter polo menos __min__ caracteres",

@@ -66,6 +66,16 @@ angular.module('avAdmin')
                   {check: "is-string", key: "description", postfix: "-description"},
                   {check: "array-length", key: "description", min: 0, max: 3000, postfix: "-description"},
                   {check: "is-string", key: "title", postfix: "-title"},
+                  {
+                    check: "lambda",
+                    key: "answers",
+                    validator: function (answers)
+                    {
+                      var uniqAnswers = _.uniq(_.pluck(answers, 'text'));
+                      return (answers.length === uniqAnswers.length);
+                    },
+                    postfix: "-duplicated-answers"
+                  },
                   {check: "array-length", key: "title", min: 0, max: 3000, postfix: "-title"},
                   {
                     check: "int-size",
