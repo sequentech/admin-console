@@ -264,16 +264,27 @@ angular.module('avAdmin')
  * http://stackoverflow.com/questions/17417607/angular-ng-bind-html-unsafe-and-directive-within-it
  **/
 angular.module('avAdmin')
-.directive('avPluginHtml', function ($compile) {
-    return function(scope, element, attrs) {
-        scope.$watch(
-            function(scope) {
-                return scope.$eval(attrs.html);
-            },
-            function(value) {
-                element.html(value);
-                $compile(element.contents())(scope);
-            }
-        );
+.directive(
+  'avPluginHtml',
+  function ($compile, $sce, $parse)
+  {
+    return function(scope, element, attrs)
+    {
+      var parsedHtml = $parse(attrs.ngBindHtml);
+
+      // compile again on template modification
+      scope.$watch(
+        function()
+        {
+          return (parsedHtml(scope) || "").toString();
+        },
+        function()
+        {
+          // -9999 skips directives in order to prevent recompiling
+          // recursively
+          $compile(element, null, -9999)(scope);
+        }
+      );
     };
-});
+  }
+);
