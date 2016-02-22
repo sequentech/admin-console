@@ -211,6 +211,7 @@ angular.module('avAdmin')
       function sendAuthCodes() {
         SendMsg.setElection(scope.election);
         SendMsg.scope = scope;
+        SendMsg.user_ids = null;
         SendMsg.sendAuthCodesModal();
 
         return false;
