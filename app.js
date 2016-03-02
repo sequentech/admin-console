@@ -218,16 +218,9 @@ angular.module('agora-gui-admin').run(function($cookies, $http, Authmethod) {
     }
 });
 
-angular.module('agora-gui-admin').config(
-  function($provide, ConfigServiceProvider)
-  {
-    $provide.value('webTitle', ConfigServiceProvider.webTitle);
-  }
-);
+angular.module('agora-gui-admin').run(function($http, $rootScope, ConfigService) {
 
-angular.module('agora-gui-admin').run(function($http, $rootScope, webTitle) {
-
-  $rootScope.adminTitle = webTitle;
+  $rootScope.adminTitle = ConfigService.webTitle;
   $rootScope.safeApply = function(fn) {
     var phase = $rootScope.$$phase;
     if (phase === '$apply' || phase === '$digest') {
