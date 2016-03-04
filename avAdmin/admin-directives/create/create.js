@@ -54,11 +54,11 @@ angular.module('avAdmin')
                 check: "lambda",
                 key: "census",
                 validator: function (census) {
-                  if (census.config.auth_method !== 'email') {
+                  if (census.auth_method !== 'email') {
                     return true;
                   }
                   
-                  return census.config.msg.lenth > 0;
+                  return census.config.msg.length > 0;
                 },
                 appendOnErrorLambda: function (census) {
                  return {
@@ -72,11 +72,11 @@ angular.module('avAdmin')
                 check: "lambda",
                 key: "census",
                 validator: function (census) {
-                  if (census.config.auth_method !== 'email') {
+                  if (census.auth_method !== 'email') {
                     return true;
                   }
                   
-                  return census.config.msg.lenth <= 5000;
+                  return census.config.msg.length <= 5000;
                 },
                 appendOnErrorLambda: function (census) {
                  return {
@@ -90,11 +90,11 @@ angular.module('avAdmin')
                 check: "lambda",
                 key: "census",
                 validator: function (census) {
-                  if (census.config.auth_method !== 'email') {
+                  if (census.auth_method !== 'email') {
                     return true;
                   }
                   
-                  return census.config.subject.lenth > 0;
+                  return census.config.subject.length > 0;
                 },
                 appendOnErrorLambda: function (census) {
                  return {
@@ -108,11 +108,11 @@ angular.module('avAdmin')
                 check: "lambda",
                 key: "census",
                 validator: function (census) {
-                  if (census.config.auth_method !== 'email') {
+                  if (census.auth_method !== 'email') {
                     return true;
                   }
                   
-                  return census.config.subject.lenth <= 1024;
+                  return census.config.subject.length <= 1024;
                 },
                 appendOnErrorLambda: function (census) {
                  return {
@@ -126,11 +126,11 @@ angular.module('avAdmin')
                 check: "lambda",
                 key: "census",
                 validator: function (census) {
-                  if (census.config.auth_method !== 'sms') {
+                  if (census.auth_method !== 'sms') {
                     return true;
                   }
                   
-                  return census.config.msg.lenth > 0;
+                  return census.config.msg.length > 0;
                 },
                 appendOnErrorLambda: function (census) {
                  return {
@@ -144,11 +144,11 @@ angular.module('avAdmin')
                 check: "lambda",
                 key: "census",
                 validator: function (census) {
-                  if (census.config.auth_method !== 'sms') {
+                  if (census.auth_method !== 'sms') {
                     return true;
                   }
                   
-                  return census.config.msg.lenth <= 200;
+                  return census.config.msg.length <= 200;
                 },
                 appendOnErrorLambda: function (census) {
                  return {
