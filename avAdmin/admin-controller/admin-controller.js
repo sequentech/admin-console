@@ -5,6 +5,7 @@ angular.module('avAdmin').controller('AdminController',
     $scope.current = null;
     $scope.noplugin = true;
     $scope.helpurl = ConfigService.helpUrl;
+    $scope.showSuccessAction = ConfigService.showSuccessAction;
 
     // state = admin.XXX
     $scope.shortst = $state.current.name.split(".")[1];
