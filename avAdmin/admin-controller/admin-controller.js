@@ -61,9 +61,15 @@ angular.module('avAdmin').controller('AdminController',
             {name: 'auth', icon: 'unlock'},
             {name: 'censusConfig', icon: 'newspaper-o'},
             {name: 'census', icon: 'users'},
-            {name: 'successAction', icon: 'star-o'},
+            //{name: 'successAction', icon: 'star-o'},
             //{name: 'tally', icon: 'pie-chart'},
         ];
+        // if showSuccessAction is true, 
+        // show the SuccessAction tab in the admin gui
+        if (true === ConfigService.showSuccessAction) {
+           angular.extend($scope.sidebarlinks, 
+                          {name: 'successAction', icon: 'star-o'});
+        }
 
         if (!id) {
             $scope.sidebarlinks.push({name: 'create', icon: 'rocket'});
