@@ -67,8 +67,7 @@ angular.module('avAdmin').controller('AdminController',
         // if showSuccessAction is true, 
         // show the SuccessAction tab in the admin gui
         if (true === ConfigService.showSuccessAction) {
-           angular.extend($scope.sidebarlinks, 
-                          {name: 'successAction', icon: 'star-o'});
+           $scope.sidebarlinks = $scope.sidebarlinks.concat([{name: 'successAction', icon: 'star-o'}]);
         }
 
         if (!id) {
