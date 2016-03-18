@@ -1,8 +1,12 @@
 angular.module('avAdmin')
-  .directive('avAdminElquestions', ['$i18next', '$state', 'ElectionsApi', function($i18next, $state, ElectionsApi) {
-    // we use it as something similar to a controller here
-    function link(scope, element, attrs) {
+  .directive(
+    'avAdminElquestions',
+    function($i18next, $state, ElectionsApi, ElectionLimits)
+    {
+      // we use it as something similar to a controller here
+      function link(scope, element, attrs) {
         scope.election = ElectionsApi.currentElection;
+        scope.electionLimits = ElectionLimits;
         scope.vsystems = ['plurality-at-large', 'borda-nauru', 'borda', 'pairwise-beta'];
 
         scope.electionEditable = function() {
@@ -139,4 +143,4 @@ angular.module('avAdmin')
       link: link,
       templateUrl: 'avAdmin/admin-directives/elquestions/elquestions.html'
     };
-  }]);
+  });
