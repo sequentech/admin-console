@@ -1,5 +1,5 @@
 angular.module('avAdmin')
-  .directive('avAdminDashboard', function($state, Authmethod, AdminPlugins, ElectionsApi, $stateParams, $modal, PercentVotesService, SendMsg) {
+  .directive('avAdminDashboard', function($state, Authmethod, Plugins, ElectionsApi, $stateParams, $modal, PercentVotesService, SendMsg) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
       var id = $stateParams.id;

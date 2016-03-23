@@ -11,7 +11,7 @@ angular.module('avAdmin')
       $modalInstance,
       $i18next,
       SendMsg,
-      AdminPlugins,
+      Plugins,
       election,
       user_ids,
       exhtml)
@@ -48,7 +48,7 @@ angular.module('avAdmin')
           // return value from the hook:
           i18n: ''
         };
-        AdminPlugins.hook(
+        Plugins.hook(
           'send-auth-codes-i18n-send-error',
           hookData
         );

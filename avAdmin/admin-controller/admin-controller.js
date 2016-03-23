@@ -1,5 +1,5 @@
 angular.module('avAdmin').controller('AdminController',
-  function(AdminPlugins, ConfigService, $scope, $i18next, $state, $stateParams, ElectionsApi, $compile) {
+  function(Plugins, ConfigService, $scope, $i18next, $state, $stateParams, ElectionsApi, $compile) {
     var id = $stateParams.id;
     $scope.state = $state.current.name;
     $scope.current = null;
@@ -10,8 +10,8 @@ angular.module('avAdmin').controller('AdminController',
     $scope.shortst = $state.current.name.split(".")[1];
 
     // plugin stuff
-    $scope.plugins = AdminPlugins.plugins;
-    AdminPlugins.plugins.list.forEach(function(p) {
+    $scope.plugins = Plugins.plugins;
+    Plugins.plugins.list.forEach(function(p) {
         if (p.directive) {
             var tpl = $compile( '<script type="text/ng-template" id="'+p.directive+'"><div class="av-plugin-'+p.directive+'"></div></script>' )($scope);
             if ($scope.shortst === p.name) {
