@@ -125,7 +125,7 @@ angular.module('avAdmin')
         var re2 = /__CODE__/;
         var msg = election.census.config.msg;
 
-        return ((msg.match(re1) && msg.match(re3)) || msg.match(re2));
+        return ((msg.match(re1) && msg.match(re2)) || msg.match(re3));
       }
 
       // set the default value of the flag that specifies that the user is sure
