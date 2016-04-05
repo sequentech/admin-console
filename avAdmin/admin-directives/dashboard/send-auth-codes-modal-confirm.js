@@ -110,7 +110,7 @@ angular.module('avAdmin')
         var url = "https://" + $location.host() + "/election/" + election.id + "/public/login" + identity;
         var url2 = url + "/AABB1234";
         msg = msg.replace("__URL__", url);
-        msg = msg.replace("__URL2__", url);
+        msg = msg.replace("__URL2__", url2);
         msg = msg.replace("__CODE__", "AABB1234");
         return msg;
       };
