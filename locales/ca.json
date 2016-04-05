@@ -246,11 +246,11 @@
         "auth": "Método de autenticación",
         "auths": {"email": "Correo electrónico", "sms": "SMS"},
         "sms": "Mensaje SMS",
-        "smstemp": "Plantilla usada en el SMS a enviar al usuario. Usa __CODE__ para insertar el código SMS",
+        "smstemp": "Plantilla usada en el SMS a enviar al usuario. Usa __CODE__ para insertar el código SMS, o __URL2__ para insertar un enlace que incluya el código",
         "smsdef": "Este es tu código de votació __CODE__",
         "email": "Mensaje por correo elelectrónico",
         "emailsub": "Asúnto del correo",
-        "emailtemp": "Plantilla usada en el correo para enviar a los usuarios. Usa __CODE__ para añadir el código de acceso y __URL__ para insertar el enlace de votació",
+        "emailtemp": "Plantilla usada en el correo para enviar a los usuarios. Usa __CODE__ para añadir el código de acceso y __URL__ para insertar el enlace de votació, o __URL2__ para insertar un enlace que incluya el código",
         "emaildef": "Vota siguiendo este enlace __URL__\nEste es tu código de autenticación: __CODE__"
     },
     "create": {

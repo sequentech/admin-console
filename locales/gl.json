@@ -341,7 +341,7 @@
         "auth": "Método de autenticación",
         "auths": {"email": "Correo electrónico", "sms": "SMS", "dnie": "DNI electrónico"},
         "sms": "Mensaxe SMS",
-        "smstemp": "Persoal usado no SMS a enviar ao usuario. Usa __CODE__ para inserir o código SMS e __URL__ para inserir a ligazón de votación",
+        "smstemp": "Persoal usado no SMS a enviar ao usuario. Usa __CODE__ para inserir o código SMS e __URL__ para inserir a ligazón de votación, , o __URL2__ para inserir a ligazón que incluya o código",
         "smsdef": "Este é o teu código de votación __CODE__",
         "email": "Corpo da mensaxe",
         "emailsub": "Asunto do email",
