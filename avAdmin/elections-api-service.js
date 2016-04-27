@@ -3,7 +3,7 @@ angular.module('avAdmin')
       'ElectionsApi',
       function(
         $q,
-        AdminPlugins,
+        Plugins,
         Authmethod,
         ConfigService,
         $i18next,
@@ -78,7 +78,7 @@ angular.module('avAdmin')
             $rootScope.currentElection = el;
             if (!$rootScope.watchingElection) {
                 $rootScope.$watch('currentElection', function(newv, oldv) {
-                  AdminPlugins.hook('election-modified', {'old': oldv, 'el': newv});
+                  Plugins.hook('election-modified', {'old': oldv, 'el': newv});
                   if (!$rootScope.currentElection.id) {
                     localSaveElection($rootScope.currentElection);
                   }

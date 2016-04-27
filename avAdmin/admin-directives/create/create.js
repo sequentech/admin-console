@@ -3,7 +3,7 @@ angular.module('avAdmin')
     'avAdminCreate',
     function(
       $q,
-      AdminPlugins,
+      Plugins,
       Authmethod,
       ElectionsApi,
       $state,
@@ -86,6 +86,114 @@ angular.module('avAdmin')
                   return urlRe.test(authAction['mode-config'].url);
                 },
                 postfix: "-success-action-url-mode"
+              },
+              {
+                check: "lambda",
+                key: "census",
+                validator: function (census) {
+                  if (census.auth_method !== 'email') {
+                    return true;
+                  }
+                  
+                  return census.config.msg.length > 0;
+                },
+                appendOnErrorLambda: function (census) {
+                 return {
+                  min: 1,
+                  len: census.config.msg.length
+                 };
+                },
+                postfix: "-min-email-msg"
+              },
+              {
+                check: "lambda",
+                key: "census",
+                validator: function (census) {
+                  if (census.auth_method !== 'email') {
+                    return true;
+                  }
+                  
+                  return census.config.msg.length <= 5000;
+                },
+                appendOnErrorLambda: function (census) {
+                 return {
+                  max: 5000,
+                  len: census.config.msg.length
+                 };
+                },
+                postfix: "-max-email-msg"
+              },
+              {
+                check: "lambda",
+                key: "census",
+                validator: function (census) {
+                  if (census.auth_method !== 'email') {
+                    return true;
+                  }
+                  
+                  return census.config.subject.length > 0;
+                },
+                appendOnErrorLambda: function (census) {
+                 return {
+                  min: 1,
+                  len: census.config.subject.length
+                 };
+                },
+                postfix: "-min-email-title"
+              },
+              {
+                check: "lambda",
+                key: "census",
+                validator: function (census) {
+                  if (census.auth_method !== 'email') {
+                    return true;
+                  }
+                  
+                  return census.config.subject.length <= 1024;
+                },
+                appendOnErrorLambda: function (census) {
+                 return {
+                  max: 1024,
+                  len: census.config.subject.length
+                 };
+                },
+                postfix: "-max-email-title"
+              },
+              {
+                check: "lambda",
+                key: "census",
+                validator: function (census) {
+                  if (census.auth_method !== 'sms') {
+                    return true;
+                  }
+                  
+                  return census.config.msg.length > 0;
+                },
+                appendOnErrorLambda: function (census) {
+                 return {
+                  min: 1,
+                  len: census.config.msg.length
+                 };
+                },
+                postfix: "-min-sms-msg"
+              },
+              {
+                check: "lambda",
+                key: "census",
+                validator: function (census) {
+                  if (census.auth_method !== 'sms') {
+                    return true;
+                  }
+                  
+                  return census.config.msg.length <= 200;
+                },
+                appendOnErrorLambda: function (census) {
+                 return {
+                  max: 200,
+                  len: census.config.msg.length
+                 };
+                },
+                postfix: "-max-sms-msg"
               },
               {check: "is-string", key: "title", postfix: "-title"},
               {
@@ -310,7 +418,7 @@ angular.module('avAdmin')
             var deferred = $q.defer();
             if (scope.createElectionBool) {
               console.log("creating election " + el.title);
-              AdminPlugins.hook('election-create', {'el': el});
+              Plugins.hook('election-create', {'el': el});
               if (typeof el.extra_data === 'object') {
                   el.extra_data = JSON.stringify(el.extra_data);
               }

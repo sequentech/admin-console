@@ -11,7 +11,7 @@ angular.module('avAdmin')
       $modalInstance,
       $i18next,
       SendMsg,
-      AdminPlugins,
+      Plugins,
       election,
       user_ids,
       exhtml)
@@ -48,7 +48,7 @@ angular.module('avAdmin')
           // return value from the hook:
           i18n: ''
         };
-        AdminPlugins.hook(
+        Plugins.hook(
           'send-auth-codes-i18n-send-error',
           hookData
         );
@@ -102,9 +102,15 @@ angular.module('avAdmin')
        */
       $scope.exampleMsg = function()
       {
+        var identity = "/aabb@gmail.com";
+        if("sms" === election.census.auth_method) {
+          identity = "/+34666666666";
+        }
         var msg = election.census.config.msg;
-        var url = "https://" + $location.host() + "/election/" + election.id + "/public/login";
+        var url = "https://" + $location.host() + "/election/" + election.id + "/public/login" + identity;
+        var url2 = url + "/AABB1234";
         msg = msg.replace("__URL__", url);
+        msg = msg.replace("__URL2__", url2);
         msg = msg.replace("__CODE__", "AABB1234");
         return msg;
       };
@@ -115,10 +121,11 @@ angular.module('avAdmin')
       function isMsgComplete()
       {
         var re1 = /__URL__/;
+        var re3 = /__URL2__/;
         var re2 = /__CODE__/;
         var msg = election.census.config.msg;
 
-        return (msg.match(re1) && msg.match(re2));
+        return ((msg.match(re1) && msg.match(re2)) || msg.match(re3));
       }
 
       // set the default value of the flag that specifies that the user is sure

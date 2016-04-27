@@ -246,11 +246,11 @@
         "auth": "Método de autenticación",
         "auths": {"email": "Correo electrónico", "sms": "SMS"},
         "sms": "Mensaje SMS",
-        "smstemp": "Plantilla usada en el SMS a enviar al usuario. Usa __CODE__ para insertar el código SMS",
+        "smstemp": "Plantilla usada en el SMS a enviar al usuario. Usa __CODE__ para insertar el código SMS, o __URL2__ para insertar un enlace que incluya el código",
         "smsdef": "Este es tu código de votació __CODE__",
         "email": "Mensaje por correo elelectrónico",
         "emailsub": "Asúnto del correo",
-        "emailtemp": "Plantilla usada en el correo para enviar a los usuarios. Usa __CODE__ para añadir el código de acceso y __URL__ para insertar el enlace de votació",
+        "emailtemp": "Plantilla usada en el correo para enviar a los usuarios. Usa __CODE__ para añadir el código de acceso y __URL__ para insertar el enlace de votació, o __URL2__ para insertar un enlace que incluya el código",
         "emaildef": "Vota siguiendo este enlace __URL__\nEste es tu código de autenticación: __CODE__"
     },
     "create": {
@@ -266,6 +266,12 @@
         "errors": {
           "election-is-array-questions": "Votación '__eltitle__': a lista de pregunta non é un array",
           "election-lambda-success-action-url-mode": "Votación '__eltitle__': url de redirección en 'Acción de éxito' inválida",
+          "election-lambda-min-email-msg": "Votación '__eltitle__': el missatge de email ten unha lonxitude de __len__ caracteres, però ha de tenir almenys __min__",
+          "election-lambda-max-email-msg": "Votación '__eltitle__': el missatge de email ten unha lonxitude de __len__ caracteres, excedendo o máximo de __max__",
+          "election-lambda-min-email-title": "Votación '__eltitle__': el títol de email ten unha lonxitude de__len__ caracteres, però ha de tenir almenys __min__",
+          "election-lambda-max-email-title": "Votación '__eltitle__': el títol de email ten unha lonxitude de __len__ caracteres, excedendo o máximo de __max__",
+          "election-lambda-min-sms-msg": "Votación '__eltitle__': el missatge de sms ten unha lonxitude de __len__ caracteres, però ha de tenir almenys __min__",
+          "election-lambda-max-sms-msg": "Votación '__eltitle__': el missatge de sms ten unha lonxitude de __len__ caracteres, excedendo o máximo de __max__",
           "election-array-length-min-questions": "Votación '__eltitle__': debe haber polo menos __min__ preguntas, pero só hai  __num__",
           "election-array-length-max-questions": "Votación '__eltitle__': debe haber como moito __max__ preguntas, pero hai __num__",
           "election-question-is-array-answers": "Votación '__eltitle__': a lista de candidaturas non é un array",
