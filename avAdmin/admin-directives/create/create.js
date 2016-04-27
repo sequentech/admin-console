@@ -1,7 +1,22 @@
 angular.module('avAdmin')
-  .directive('avAdminCreate', function($q, Plugins, Authmethod, ElectionsApi, $state, $stateParams, $i18next, $filter, ConfigService, CheckerService) {
-    // we use it as something similar to a controller here
-    function link(scope, element, attrs) {
+  .directive(
+    'avAdminCreate',
+    function(
+      $q,
+      Plugins,
+      Authmethod,
+      ElectionsApi,
+      $state,
+      $stateParams,
+      $i18next,
+      $filter,
+      ConfigService,
+      ElectionLimits,
+      CheckerService)
+    {
+      // we use it as something similar to a controller here
+      function link(scope, element, attrs)
+      {
         var adminId = ConfigService.freeAuthId;
         scope.creating = false;
         scope.log = '';
@@ -32,10 +47,32 @@ angular.module('avAdmin')
             append: {key: "eltitle", value: "$value.title"},
             checks: [
               {check: "is-array", key: "questions", postfix: "-questions"},
-              {check: "array-length", key: "questions", min: 1, max: 40, postfix: "-questions"},
-              {check: "array-length", key: "description", min: 0, max: 3000, postfix: "-description"},
-              {check: "array-length", key: "title", min: 0, max: 3000, postfix: "-title"},
-              {check: "is-string", key: "description", postfix: "-description"},
+              {
+                check: "array-length",
+                key: "questions",
+                min: 1,
+                max: ElectionLimits.maxNumQuestions,
+                postfix: "-questions"
+              },
+              {
+                check: "array-length",
+                key: "description",
+                min: 0,
+                max: ElectionLimits.maxLongStringLength,
+                postfix: "-description"
+              },
+              {
+                check: "array-length",
+                key: "title",
+                min: 0,
+                max: ElectionLimits.maxLongStringLength,
+                postfix: "-title"
+              },
+              {
+                check: "is-string",
+                key: "description",
+                postfix: "-description"
+              },
               {
                 check: "lambda",
                 key: "census",
@@ -167,14 +204,50 @@ angular.module('avAdmin')
                 checks: [
                   {check: "is-int", key: "min", postfix: "-min"},
                   {check: "is-int", key: "max", postfix: "-max"},
-                  {check: "is-int", key: "num_winners", postfix: "-num-winners"},
-                  {check: "is-array", key: "answers", postfix: "-answers"},
-                  {check: "array-length", key: "answers", min: 1, max: 10000, postfix: "-answers"},
-                  {check: "int-size", key: "min", min: 0, max: "$value.max", postfix: "-min"},
-                  {check: "is-string", key: "description", postfix: "-description"},
-                  {check: "array-length", key: "description", min: 0, max: 3000, postfix: "-description"},
+                  {
+                    check: "is-int",
+                    key: "num_winners",
+                    postfix: "-num-winners"
+                  },
+                  {
+                    check: "is-array",
+                    key: "answers",
+                    postfix: "-answers"
+                  },
+                  {
+                    check: "array-length",
+                    key: "answers",
+                    min: 1,
+                    max: ElectionLimits.maxNumAnswers,
+                    postfix: "-answers"
+                  },
+                  {
+                    check: "int-size",
+                    key: "min",
+                    min: 0,
+                    max: "$value.max",
+                    postfix: "-min"
+                  },
+                  {
+                    check: "is-string",
+                    key: "description",
+                    postfix: "-description"
+                  },
+                  {
+                    check: "array-length",
+                    key: "description",
+                    min: 0,
+                    max: ElectionLimits.maxLongStringLength,
+                    postfix: "-description"
+                  },
                   {check: "is-string", key: "title", postfix: "-title"},
-                  {check: "array-length", key: "title", min: 0, max: 3000, postfix: "-title"},
+                  {
+                    check: "array-length",
+                    key: "title",
+                    min: 0,
+                    max: ElectionLimits.maxLongStringLength,
+                    postfix: "-title"
+                  },
                   {
                     check: "int-size",
                     key: "max",
@@ -214,21 +287,21 @@ angular.module('avAdmin')
                           check: "array-length",
                           key: "details",
                           min: 0,
-                          max: 3000,
+                          max: ElectionLimits.maxLongStringLength,
                           postfix: "-details"
                         },
                         {
                           check: "array-length",
                           key: "text",
                           min: 1,
-                          max: 3000,
+                          max: ElectionLimits.maxLongStringLength,
                           postfix: "-text"
                         },
                         {
                           check: "array-length",
                           key: "category",
                           min: 0,
-                          max: 300,
+                          max: ElectionLimits.maxShortStringLength,
                           postfix: "-category"
                         },
                       ]
@@ -418,13 +491,13 @@ angular.module('avAdmin')
         angular.extend(scope, {
           createElections: createElections,
         });
-    }
+      }
 
-    return {
-      restrict: 'AE',
-      scope: {
-      },
-      link: link,
-      templateUrl: 'avAdmin/admin-directives/create/create.html'
-    };
-  });
+      return {
+        restrict: 'AE',
+        scope: {
+        },
+        link: link,
+        templateUrl: 'avAdmin/admin-directives/create/create.html'
+      };
+    });

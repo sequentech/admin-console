@@ -9,7 +9,7 @@
         ng-click="newQuestion()"
         aria-expanded="false"
         class="btn btn-success pull-right"
-        ng-if="electionEditable()">
+        ng-if="electionEditable() && election.questions.length < electionLimits.maxNumQuestions">
         <i class="fa fa-plus"></i>
         <span ng-i18next>avAdmin.questions.new</span>
       </button>
