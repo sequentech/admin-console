@@ -64,6 +64,9 @@ module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    variables: {
+      admin_html_body_include: ''
+    },
     connect: {
       main: {
         options: {
@@ -192,6 +195,7 @@ module.exports = function (grunt) {
         options: {
           remove: ['script[data-remove!="false"]','link[data-remove!="false"]'],
           append: [
+            {selector:'body',html:'<%= variables.admin_html_body_include %>'},
             {selector:'body',html:'<!--[if lte IE 8]><script src="/admin/libcompat-v3.0.1.min.js"></script><![endif]--><!--[if gte IE 9]><script src="/admin/libnocompat-v3.0.1.min.js"></script><![endif]--><!--[if !IE]><!--><script src="/admin/libnocompat-v3.0.1.min.js"></script><!--<![endif]-->'},
             {selector:'body',html:'<!--All the source code of this program under copyright. Take a look at the license details at https://github.com/agoravoting/agora-core-view/blob/master/README.md -->'},
             {selector:'body',html:'<script src="/admin/lib-v3.0.1.min.js"></script>'},
