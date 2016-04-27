@@ -2,7 +2,7 @@
  * Service to manage the send authentication codes modal steps.
  */
 angular.module('avAdmin')
-  .factory('SendMsg', function($q, $modal, Authmethod, AdminPlugins)
+  .factory('SendMsg', function($q, $modal, Authmethod, Plugins)
   {
     // These is the base data of this service
     var service = {
@@ -39,7 +39,7 @@ angular.module('avAdmin')
 
       // This hooks gives plugins the opportuninty to do whatever they want
       // when the number of steps in this dialog is being calculated
-      AdminPlugins.hook(
+      Plugins.hook(
         'send-auth-codes-steps',
         {el: service.election, ids: service.user_ids});
 
@@ -116,7 +116,7 @@ angular.module('avAdmin')
       // This hook allows plugins to interrupt this function. This interruption
       // usually happens because the plugin does some processing and decides to
       // show another previous dialog at this step, for example.
-      if (!AdminPlugins.hook(
+      if (!Plugins.hook(
         'send-auth-codes-confirm',
         {el: service.election, ids: service.user_ids}))
       {
@@ -137,7 +137,7 @@ angular.module('avAdmin')
           user_ids: function() { return service.user_ids; },
           exhtml: function () {
             var html = {html: [], scope: {}};
-            AdminPlugins.hook('send-auth-codes-confirm-extra', html);
+            Plugins.hook('send-auth-codes-confirm-extra', html);
             return html;
           }
         }
@@ -153,7 +153,7 @@ angular.module('avAdmin')
         }
 
         // hook to allow plugins process the closing of the modal dialog
-        AdminPlugins.hook('send-auth-codes-confirm-close', {data: data});
+        Plugins.hook('send-auth-codes-confirm-close', {data: data});
       });
     };
 
@@ -174,7 +174,7 @@ angular.module('avAdmin')
       // This hook lets plugins decide if the function should really send auth
       // codes or not. A good reason not to would be that the plugin will do it
       // itself for example.
-      if (AdminPlugins.hook(
+      if (Plugins.hook(
         'send-auth-codes-pre',
         {el: service.election, ids: service.user_ids}))
       {
@@ -191,7 +191,7 @@ angular.module('avAdmin')
             scope.msg = "avAdmin.census.sentCodesSuccessfully";
 
             // Let plugins know about the success
-            AdminPlugins.hook(
+            Plugins.hook(
               'send-auth-codes-success',
               {el: service.election, ids: service.user_ids, response: r});
 
@@ -204,7 +204,7 @@ angular.module('avAdmin')
             scope.error = error.error_codename || error.error || error;
 
             // and let plugins know
-            AdminPlugins.hook(
+            Plugins.hook(
                 'send-auth-codes-error',
                 {
                   el: service.election,

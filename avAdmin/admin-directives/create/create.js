@@ -1,5 +1,5 @@
 angular.module('avAdmin')
-  .directive('avAdminCreate', function($q, AdminPlugins, Authmethod, ElectionsApi, $state, $stateParams, $i18next, $filter, ConfigService, CheckerService) {
+  .directive('avAdminCreate', function($q, Plugins, Authmethod, ElectionsApi, $state, $stateParams, $i18next, $filter, ConfigService, CheckerService) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
         var adminId = ConfigService.freeAuthId;
@@ -237,7 +237,7 @@ angular.module('avAdmin')
             var deferred = $q.defer();
             if (scope.createElectionBool) {
               console.log("creating election " + el.title);
-              AdminPlugins.hook('election-create', {'el': el});
+              Plugins.hook('election-create', {'el': el});
               if (typeof el.extra_data === 'object') {
                   el.extra_data = JSON.stringify(el.extra_data);
               }

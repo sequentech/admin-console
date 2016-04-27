@@ -6,7 +6,7 @@ angular.module('avAdmin')
       $state,
       ElectionsApi,
       Authmethod,
-      AdminPlugins,
+      Plugins,
       SendMsg,
       $modal,
       MustExtraFieldsService,
@@ -144,18 +144,18 @@ angular.module('avAdmin')
 
       function censusCall(id, csExport, opt) {
           // this hook can avoid the addCensus call
-          if (AdminPlugins.hook('add-to-census-pre', csExport)) {
+          if (Plugins.hook('add-to-census-pre', csExport)) {
               Authmethod.addCensus(id, csExport, opt)
                 .success(function(r) {
                   scope.loading = false;
                   scope.msg = "avAdmin.census.censusadd";
                   scope.reloadCensus();
-                  AdminPlugins.hook('add-to-census-success', {data: csExport, response: r});
+                  Plugins.hook('add-to-census-success', {data: csExport, response: r});
                 })
                 .error(function(error) {
                   scope.loading = false;
                   scope.error = error.error;
-                  AdminPlugins.hook('add-to-census-error', {data: csExport, response: error});
+                  Plugins.hook('add-to-census-error', {data: csExport, response: error});
                 });
           }
       }

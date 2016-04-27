@@ -1,4 +1,4 @@
-angular.module('avAdmin').run(function(AdminPlugins) {
+angular.module('avAdmin').run(function(Plugins) {
     // Adding to the sidebar params:
     var p = {
              name: 'test',
@@ -10,7 +10,7 @@ angular.module('avAdmin').run(function(AdminPlugins) {
              }
             };
 
-    AdminPlugins.add(p);
+    Plugins.add(p);
 });
 
 // Using the admin controller to get the topbar and the sidebar
@@ -41,7 +41,7 @@ angular.module('avAdmin')
   });
 
 // Registering signals and hooks
-angular.module('avAdmin').run(function(AdminPlugins) {
+angular.module('avAdmin').run(function(Plugins) {
     function signalHandler(sig, data) {
         if (sig === 'plugins-loaded') {
             console.log("LOADED signal received in test plugin", data);
@@ -58,6 +58,6 @@ angular.module('avAdmin').run(function(AdminPlugins) {
     }
 
     // subscribe to a signal and hook
-    AdminPlugins.signals.add(signalHandler);
-    AdminPlugins.hooks.push(hookHandler);
+    Plugins.signals.add(signalHandler);
+    Plugins.hooks.push(hookHandler);
 });
