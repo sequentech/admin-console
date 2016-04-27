@@ -374,6 +374,12 @@
         "errors": {
           "election-is-array-questions": "Votación '__eltitle__': la lista de pregunta no es un array",
           "election-lambda-success-action-url-mode": "Votación '__eltitle__': url de redirección en 'Acción de éxito' inválida",
+          "election-lambda-min-email-msg": "Votación '__eltitle__': el mensaje de email tiene una longitud de __len__ caracteres, pero debe tener al menos __min__",
+          "election-lambda-max-email-msg": "Votación '__eltitle__': el mensaje de email tiene una longitud de __len__ caracteres, sobrepasando el máximo de __max__",
+          "election-lambda-min-email-title": "Votación '__eltitle__': el título de email tiene una longitud de __len__ caracteres, pero debe tener al menos __min__",
+          "election-lambda-max-email-title": "Votación '__eltitle__': el título de email tiene una longitud de __len__ caracteres, sobrepasando el máximo de __max__",
+          "election-lambda-min-sms-msg": "Votación '__eltitle__': el mensaje de sms tiene una longitud de __len__ caracteres, pero debe tener al menos __min__",
+          "election-lambda-max-sms-msg": "Votación '__eltitle__': el mensaje de sms tiene una longitud de __len__ caracteres, sobrepasando el máximo de __max__",
           "election-array-length-min-questions": "Votación '__eltitle__': debe haber al menos __min__ preguntas, pero solo hay  __num__",
           "election-array-length-max-questions": "Votación '__eltitle__': debe haber como mucho __max__ preguntas, pero hay __num__",
           "election-question-is-array-answers": "Votación '__eltitle__': la lista de candidaturas no es un array",
