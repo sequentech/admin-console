@@ -220,7 +220,7 @@
           "accordion": "Normal",
           "circles": "Imaxes con detalles",
           "conditional-accordion": "Conditional Accordion",
-          "ahoram-primaries": "Primarias AhoraM"
+          "simultaneous-questions": "Preguntas simultáneas"
         },
         "option": {
           "textFieldLabel": "Texto",

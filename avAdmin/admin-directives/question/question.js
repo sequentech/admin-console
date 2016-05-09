@@ -5,8 +5,9 @@ angular.module('avAdmin')
       scope.layouts = [
         "circles",
         "accordion",
+        "simultaneous-questions"
         /*"conditional-accordion",
-        "ahoram-primaries"*/
+        "pcandidates-election"*/
       ];
       scope.edittingIndex = -1;
       scope.internal = {};
