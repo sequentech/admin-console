@@ -206,8 +206,8 @@
                 <td>{{ an.text }}</td>
                 <td>{{ an.total_count|number }}</td>
                 <td>{{ percentVotes(an.total_count, q, "over-valid-votes") }}</td>
-                <td ng-if="an.winner_position === 0 || an.winner_positon">{{ an.winner_positon + 1}}</td>
-                <td ng-if="!(an.winner_position === 0 || an.winner_positon)">--</td>
+                <td ng-if="an.winner_position === 0 || an.winner_position">{{ an.winner_position + 1}}</td>
+                <td ng-if="!(an.winner_position === 0 || an.winner_position)">--</td>
             </tr>
         </table>
     </div>
