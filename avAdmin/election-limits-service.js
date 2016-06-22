@@ -15,19 +15,28 @@
  * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-/* jshint ignore:start */
-describe("dynamic-directive tests", function () {
+/**
+ * Generic election related constraints that apply to multiple parts of
+ * the deployment, for example the same limit might apply to authapi,
+ * agora-gui and agora-elections
+ */
+angular.module('avAdmin')
+  .factory(
+    'ElectionLimits',
+    function()
+    {
+      return {
+        // maximum number of questions allowed in an election
+        maxNumQuestions: 20,
 
-  beforeEach(function () {
-    var html = '<textarea id="testTextArea" ng-model="testModel" ng-init="testModel = \'whatever\'"></textarea>';
-    browser.get('/#/unit-test-e2e?html=' + encodeURIComponent(html));
-  });
+        // maximum number of allowed possible answers in a question
+        maxNumAnswers: 10000,
 
-  it("dynamic directive should work with content with angular directives", function () {
-    expect($('#testTextArea').isPresent()).toBe(true);
-    expect($('#testTextArea').getAttribute("ng-model")).toBe("testModel");
-    expect($('#testTextArea').getAttribute("value")).toBe("whatever");
-  });
+        // maximum size in characters of long strings like url titles
+        maxShortStringLength: 300,
 
-});
-/* jshint ignore:end */
+        // maximum size in characters of long strings like question description
+        maxLongStringLength: 3000
+      };
+    }
+  );

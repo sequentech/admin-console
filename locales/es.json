@@ -1,4 +1,6 @@
 {
+  "continue": "Continar",
+  "ok": "Vale",
   "yes": "sí",
   "no": "no",
   "eg": "ej.",
@@ -20,13 +22,18 @@
     "name": "Agora Voting"
   },
   "avCommon": {
-    "cancel": "Cancel",
-    "poweredBy": "Funciona amb <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>",
-    "shareLink": "¡Twittea aquesta votació!",
-    "votingSystem": "Voting System",
-    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
+    "cancel": "Cancelar",
+    "poweredBy": "Funciona con <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "shareLink": "¡Twittea esta votación!",
+    "votingSystem": "Sistema de Voto",
+    "votings": {"plurality-at-large": "Voto en bloque o Escrutinio Mayoritario Plurinominal", "borda-nauru": "Borda de Nauru o Borda Dowdall (1/n)", "borda": "Borda Count (tradicional)", "pairwise-beta": "Comparación de pares (distribución beta)"}
   },
   "avAdmin": {
+    "notes": {
+      "noteTag": "Nota",
+      "thisisATestElection": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas.",
+      "thisisATestElectionPopover": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas. Para ello, debes completar el proceso de la votación hasta el paso de publicar resultados"
+    },
     "topbar": {
         "home": "Inicio",
         "features": "Funcionalidad",
@@ -35,7 +42,7 @@
         "login": "Entrar",
         "logout": "salir"
     },
-    "learnMore": "Learn more..",
+    "learnMore": "Más información..",
     "foot": {
         "contact": "Contacto",
         "contactsupport": "Contacto de soporte",
@@ -83,6 +90,8 @@
     },
     "elections": {
         "filter": "Filtrar...",
+        "test": "prueba",
+        "real": "real",
         "status": "Estado",
         "participation": "Participación"
     },
@@ -94,11 +103,12 @@
         "publish": "publicar"
     },
     "import": {
-        "desc": "Importar una votación desde csv te permite administrar y automatizar la creación de votaciones de forma externa. <a href=\"#\">Lee más acerca de el formato de votación CSV aquí</a>. Si quieres crear varias votaciones a la vez, puedes user la API o contactar con nosotros.",
+        "desc": "Importar una votación desde csv te permite administrar y automatizar la creación de votaciones de forma externa. <a href=\"https://docs.google.com/spreadsheets/d/1WTzswqiuRllZIm90A-SBQ0kbVYDQI1jZvKcvL8ruMIY/edit?usp=sharing\" target=\"_blank\">Lee más acerca de el formato de votación CSV aquí</a>. Si quieres crear varias votaciones a la vez, puedes user la API o contactar con nosotros.",
         "file": "Selecciona un fichero",
         "dropFilesHere": "Drop CSV file here"
     },
     "dashboard": {
+        "createRealElection": "Crear votación REAL",
         "duplicateElection": "Duplicar votación",
         "sendAuthCodes": "Enviar autenticación",
         "donow": "pulsa para hacer ahora",
@@ -143,10 +153,24 @@
           "publishResultsHeader": "Publicar resultados",
           "publishResultsBody": "Hasta el momento solo los administradores de la votación han tenido acceso directo a los resultados calculados de la votación. Cuando se publican los resultados, se ponen a disposición pública para que cualquiera pueda verlos.",
           "confirmPublishResultsButton": "Confirmar y PUBLICAR resultados",
-          "sendAuthCodesHeader": "Enviar códigos de autenticación",
-          "sendAuthCodesBody": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
-          "confirmSendAuthCodesButton": "ENVIAR códigos de autenticación a TODO el censo",
-          "confirmSendAuthCodesIdsButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
+          "sendAuthCodes": {
+            "editMessageStep": {
+              "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
+              "helpInfo": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
+              "sendButton": "ENVIAR códigos de autenticación a TODO el censo",
+              "sendSelectedButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
+            },
+            "confirmStep": {
+              "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
+              "helpInfo": "Vas a enviar el mensaje de autenticación a __voters__ personas. Por favor, comprueba que todo es correcto.",
+              "sendButton": "Confirmar y enviar mensajes",
+              "invalidMsg": "Sí, Quiero mandar estos mensajes sin código / URL",
+              "messageHeader": "Vista previa",
+              "editMessageAction": "Editar",
+
+              "unknownError": "Los mensajes no fueron enviados ni cobrados. Un error no catalogado ocurrió mientras se enviaban los mensajes. Si el problema persiste, por favor contacta con nosotros enviando un email __email__ o llamándonos al __tlf__."
+            }
+          }
         }
     },
     "basic": {
@@ -195,7 +219,7 @@
           "accordion": "Normal",
           "circles": "Imágenes con detalles",
           "conditional-accordion": "Conditional Accordion",
-          "ahoram-primaries": "Primarias AhoraM"
+          "simultaneous-questions": "Preguntas simultáneas"
         },
         "option": {
           "textFieldLabel": "Texto",
@@ -296,7 +320,8 @@
         "fieldHelpLabel": "Texto de ayuda",
         "fieldHelpPlaceholder": "Ejemplo: Inserta tanto tu nombre como apellidos",
         "fieldRequiredAuthLabel": "Contrastar con el censo durante la autenticación",
-        "fieldUniqueLabel": "Privado (solo los administradores pueden ver y usar este campo)",
+        "fieldUniqueLabel": "Único (cada votante debe aportar un valor diferente a este campo)",
+        "fieldPrivateLabel": "Privado (solo los administradores pueden ver y usar este campo)",
         "extraFieldsHeader": "Campos extra",
         "extraFieldsInfo": "Aqui puedes definir los campos extra del censo de una forma versátil. Esto te permite hacer un buen abanico de cosas: añadir comprobaciones extra al censo cuando el censo es cerrado, solicitar más campos de registro cuando el censo es abierto, etc.",
         "manage": "Administrar censo",
@@ -309,20 +334,23 @@
         "nonEditableField": "(Requerido por método de autenticación)",
         "massive1": "Fichero CSV, usa punto y coma para separar lo campos",
         "massive2": "un votante por línea, mantén el orden de los campos",
-        "export": "Exportar"
+        "export": "Exportar",
+        "image": "Ver imagen",
+        "imageModalTitle": "Imagen",
+        "imageModalClose": "Cerrar"
     },
     "auth": {
         "intro": "La autenticación se usa para asegurar que un elector es quien dice ser. Aquí tienes que llegar a un compromiso entre seguridad, usabilidad y coste",
         "auth": "Método de autenticación",
         "auths": {"email": "Correo electrónico", "sms": "SMS", "dnie": "DNI electrónico"},
         "sms": "Mensaje SMS",
-        "smstemp": "Plantilla usada en el SMS a enviar al usuario. Usa %(code)s para insertar el código SMS y %(url)s para insertar el enlace de votación",
-        "smsdef": "Este es tu código de votación %(code)s",
+        "smstemp": "Plantilla usada en el SMS a enviar al usuario. Usa __CODE__ para insertar el código SMS y __URL__ para insertar el enlace de votación, o __URL2__ para insertar un enlace que incluya el código",
+        "smsdef": "Este es tu código de votación __CODE__",
         "email": "Cuerpo del mensaje",
         "emailsub": "Asunto del email",
-        "emailtemp": "Plantilla usada en el correo para enviar a los usuarios. Usa %(code)s para añadir el código de acceso y %(url)s para insertar el enlace de votación",
-        "emailsubdef": "Ya puedes votar con Agora Voting",
-        "emaildef": "Vota en %(url)s con el codigo %(code)s"
+        "emailtemp": "Plantilla usada en el correo para enviar a los usuarios. Usa __CODE__ para añadir el código de acceso y __URL__ para insertar el enlace de votación, o __URL2__ para insertar un enlace que incluya el código",
+        "emailsubdef": "Ya puedes votar con __name__",
+        "emaildef": "Vota en __URL__ con el codigo __CODE__"
     },
     "columnFilter": {
       "sort": "Orden:",
@@ -349,6 +377,12 @@
         "errors": {
           "election-is-array-questions": "Votación '__eltitle__': la lista de pregunta no es un array",
           "election-lambda-success-action-url-mode": "Votación '__eltitle__': url de redirección en 'Acción de éxito' inválida",
+          "election-lambda-min-email-msg": "Votación '__eltitle__': el mensaje de email tiene una longitud de __len__ caracteres, pero debe tener al menos __min__",
+          "election-lambda-max-email-msg": "Votación '__eltitle__': el mensaje de email tiene una longitud de __len__ caracteres, sobrepasando el máximo de __max__",
+          "election-lambda-min-email-title": "Votación '__eltitle__': el título de email tiene una longitud de __len__ caracteres, pero debe tener al menos __min__",
+          "election-lambda-max-email-title": "Votación '__eltitle__': el título de email tiene una longitud de __len__ caracteres, sobrepasando el máximo de __max__",
+          "election-lambda-min-sms-msg": "Votación '__eltitle__': el mensaje de sms tiene una longitud de __len__ caracteres, pero debe tener al menos __min__",
+          "election-lambda-max-sms-msg": "Votación '__eltitle__': el mensaje de sms tiene una longitud de __len__ caracteres, sobrepasando el máximo de __max__",
           "election-array-length-min-questions": "Votación '__eltitle__': debe haber al menos __min__ preguntas, pero solo hay  __num__",
           "election-array-length-max-questions": "Votación '__eltitle__': debe haber como mucho __max__ preguntas, pero hay __num__",
           "election-question-is-array-answers": "Votación '__eltitle__': la lista de candidaturas no es un array",
@@ -383,15 +417,15 @@
     },
 
     "successAction": {
-      "modeIntro": "Once an user registers or authenticates, an action should be executed. Usually, it's redirected to the corresponding election voting booth, but it can also be configured to load an external url. This is useful if you are using this  just to register census and not for any active election.",
+      "modeIntro": "Una vez un usuario se registra o autentica, se ejecuta una acción. Normalmente, la acción consiste en redirigir al usuario a la cabina de votación de la votación correspondiente, pero también puede configurarse para cargar una URL externa. Esto es útil si estás usando este sistema sólo para registrar el censo y no para una votación activa.",
 
-      "voteModeTitle": "Load the election's voting booth",
-      "voteModeDescription": "Load the corresponding the corresponding election voting booth so that the person can vote.",
+      "voteModeTitle": "Cargar la cabina de votación",
+      "voteModeDescription": "Cargar la cabina de votación correspondiente para que el elector pueda votar.",
 
-      "urlModeTitle": "Redirect to URL",
-      "urlModeDescription": "Load an URL that you can specify. Only https urls allowed.",
+      "urlModeTitle": "Redirigir a una URL",
+      "urlModeDescription": "Cargar una URL que puedes especificar. Sólo se permiten URLS de tipo https.",
       "urlModePlaceholder": "https://example.com/foo/bar",
-      "invalidUrl": "Invalid url. Example of a valid URL: https://example.com/foo/bar"
+      "invalidUrl": "URL inválida. Ejemplo de URL válida: https://example.com/foo/bar"
     }
   }
 }

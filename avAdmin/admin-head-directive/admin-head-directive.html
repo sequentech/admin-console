@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="https://agoravoting.com"></a>
+          <a class="navbar-brand" href="{{ organization.orgUrl }}"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -16,7 +16,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li ng-if="!admin">
               <a
-                href="https://agoravoting.com/overview/"
+                href="{{ technology.overview }}"
                 target="_blank"
                 ng-i18next="avAdmin.topbar.features">
               </a>
@@ -24,7 +24,7 @@
 
             <li>
               <a
-                href="https://bit.ly/avguiadeuso"
+                href="{{ helpurl }}"
                 target="_blank">
                 <i class="fa fa-question-circle"></i>
               </a>
@@ -33,7 +33,7 @@
             <li class="signup" ng-if="!admin"><a ui-sref="admin.signup()" ng-i18next="avAdmin.topbar.freesignup"></a></li>
             <li ng-if="!nologin"><a ui-sref="admin.login()" ng-i18next="avAdmin.topbar.login"></a></li>
 
-            <li ng-if="admin"><a ui-sref="admin.logout()"><i class="fa fa-user"></i> {{ admin }}</a></li>
+            <li ng-if="admin"><a ui-sref="admin.elections()"><i class="fa fa-user"></i> {{ (admin && admin !== 'undefined') ? admin  : '' }}</a></li>
             <li ng-if="admin"><a ui-sref="admin.logout()"><i class="fa fa-power-off"></i></a></li>
 
             <li class="dropdown" av-change-lang></li>
@@ -41,3 +41,4 @@
         </div><!-- /.navbar-collapse -->
     </div>
 </nav>
+</div>

@@ -3,19 +3,12 @@
 
     <p class="text-muted">
       <span ng-i18next>avAdmin.census.intro</span>
-      <a href="" class="learn-more" target="_blank" ng-i18next>
+      <a href="{{helpurl}}" class="learn-more" target="_blank" ng-i18next>
         avAdmin.learnMore
       </a>
     </p>
 
-    <div ng-if="error" class="bg-danger">
-        <span ng-if="error.payload">{{ error.payload }}</span>
-        <span ng-if="!error.payload">{{ error }}</span>
-    </div>
-
-    <div ng-if="msg" class="bg-success">
-        <span ng-i18next="{{ msg }}"></span>
-    </div>
+    <div av-admin-alerts></div>
 
     <div class="affix-placeholder"></div>
     <h4
@@ -176,3 +169,22 @@
     </button>
 
 </div>
+
+<!-- image field modal -->
+<div class="modal fade" id="imageModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" ng-i18next>avAdmin.census.imageModalTitle</h4>
+      </div>
+      <div class="modal-body">
+        <div id="imageModalFields"></div>
+        <img ng-src="{{ imageVal }}" width="100%" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-i18next>avAdmin.census.imageModalClose</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

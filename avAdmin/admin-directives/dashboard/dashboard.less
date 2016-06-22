@@ -1,3 +1,20 @@
+/**
+ * This file is part of agora-gui-admin.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-admin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-admin  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
 [av-admin-dashboard] {
   /** statusbar **/
   .stick {
@@ -65,5 +82,81 @@
   .dashboard .actionbtn {
       max-width: 100%;
       white-space: normal;
+  }
+
+  .popover {
+      position: initial;
+      max-width: 100%;
+  }
+
+  .arrow {
+      position: relative;
+  }
+
+  .wrap {
+    white-space: normal;
+  }
+}
+
+/* send auth-codes-confirm-modal */
+.send-auth-codes-modal {
+  h3.confirm-message {
+    border-bottom: 1px solid;
+    margin-bottom: 20px;
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
+
+  .form-group {
+    margin-top: 10px;
+
+    label.padding-top-input {
+      margin-top: 8px;
+    }
+
+    label.control-label.checkbox {
+      margin: 0;
+    }
+  }
+
+  &.modal-footer {
+    .checkbox.text-right {
+      margin-top: -10px;
+      margin-bottom: 20px;
+
+      label {
+        span, input {
+          float: right;
+          margin: 0;
+          padding: 5px;
+        }
+
+        input {
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+
+  textarea {
+    min-height: 150px;
+  }
+
+  div.preview {
+
+    .preview-data {
+      color: lighten(@gray, 10%);
+      padding: 10px;
+
+      &:hover {
+        background-color: @gray-lighter;
+      }
+    }
+  }
+
+  &.modal-body.confirm {
+    padding-bottom: 20px;
   }
 }

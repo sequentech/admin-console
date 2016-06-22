@@ -1,10 +1,25 @@
 /**
+ * This file is part of agora-gui-admin.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-admin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-admin  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
+/**
  * Module used to configure what action will be executed when the user
  * successfully logins/registers into the auth event. By default, the action
  * will be to enter the voting booth, but it can be reconfigured to load a
  * specific URL.
- *
- * @author Eduardo Robles Elvira <edulix AT agoravoting DOT com>
  */
 angular.module('avAdmin')
   .directive(
@@ -13,10 +28,12 @@ angular.module('avAdmin')
       $window,
       $state,
       ElectionsApi,
-      MustExtraFieldsService)
+      MustExtraFieldsService,
+      ConfigService)
     {
       function link(scope, element, attrs)
       {
+        scope.helpurl = ConfigService.helpUrl;
         // set election config from ElectionsApi
         function setScopeElection() {
           scope.election = ElectionsApi.currentElection;

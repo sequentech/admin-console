@@ -1,4 +1,8 @@
 {
+  "continue": "Continar",
+  "ok": "Vale",
+  "yes": "sí",
+  "no": "no",
   "eg": "ex.",
   "next": "Seguinte",
   "done": "Feito",
@@ -19,13 +23,18 @@
   },
   "avCommon": {
     "cancel": "Cancel",
-    "poweredBy": "Funciona amb <strong><a href=\"https://agoravoting.com\" target=\"_blank\">Agora Voting</a></strong>",
+    "poweredBy": "Funciona amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
     "shareLink": "¡Twittea aquesta votació!",
     "votingSystem": "Voting System",
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
   },
 
   "avAdmin": {
+    "notes": {
+      "noteTag": "Nota",
+      "thisisATestElection": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas.",
+      "thisisATestElectionPopover": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas. Para ello, debes completar el proceso de la votación hasta el paso de publicar resultados"
+    },
     "topbar": {
         "home": "Inicio",
         "features": "Funcionalidade",
@@ -82,6 +91,8 @@
     },
     "elections": {
         "filter": "Filtrar...",
+        "test": "test",
+        "real": "real",
         "status": "Estado",
         "participation": "Participación"
     },
@@ -93,11 +104,12 @@
         "publish": "publicar"
     },
     "import": {
-        "desc": "Importar unha votación desde csv permíteche administrar e automatizar a creación de votacións de forma externa. <a href=\"#\">Le máis acerca do formato de votación CSV aquí</a>. Se queres crear varias votacións á vez, podes user a API ou contactar connosco.",
+        "desc": "Importar unha votación desde csv permíteche administrar e automatizar a creación de votacións de forma externa. <a href=\"https://docs.google.com/spreadsheets/d/1WTzswqiuRllZIm90A-SBQ0kbVYDQI1jZvKcvL8ruMIY/edit?usp=sharing\" target=\"_blank\">Le máis acerca do formato de votación CSV aquí</a>. Se queres crear varias votacións á vez, podes user a API ou contactar connosco.",
         "file": "Selecciona un ficheiro",
         "dropFilesHere": "Drop CSV file here"
     },
     "dashboard": {
+        "createRealElection": "Create REAL election",
         "duplicateElection": "Duplicar votación",
         "sendAuthCodes": "Enviar autenticación",
         "donow": "pulsa para facer agora",
@@ -142,10 +154,24 @@
           "publishResultsHeader": "Publicar resultados",
           "publishResultsBody": "Até o momento só os administradores da votación tiveron acceso directo aos resultados calculados da votación. Cando se publican os resultados, ponse a disposición pública para que calquera poida velos.",
           "confirmPublishResultsButton": "Confirmar e PUBLICAR resultados",
-          "sendAuthCodesHeader": "Enviar códigos de autenticación",
-          "sendAuthCodesBody": "Esta votación enviará unha mensaxe a todos os electores rexistrados no censo. Nótese que enviar moitas mensaxes pode considerarse SPAM, así que procede con precaución. Ademais, por favor comproba primeiro o texto da mensaxe que vas enviar.",
-          "confirmSendAuthCodesButton": "ENVIAR códigos de autenticación a TODO o censo",
-          "confirmSendAuthCodesIdsButton": "ENVIAR códigos de autenticación aos usuarios SELECCIONADOS"
+          "sendAuthCodes": {
+            "editMessageStep": {
+              "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
+              "helpInfo": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
+              "sendButton": "ENVIAR códigos de autenticación a TODO el censo",
+              "sendSelectedButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
+            },
+            "confirmStep": {
+              "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
+              "helpInfo": "Vas a enviar el mensaje de autenticación a __voters__ personas. Por favor, comprueba que todo es correcto.",
+              "sendButton": "Confirmar y enviar mensajes",
+              "invalidMsg": "Sí, Quiero mandar estos mensajes sin código / URL",
+              "messageHeader": "Vista previa",
+              "editMessageAction": "Editar",
+
+              "unknownError": "Los mensajes no fueron enviados ni cobrados. Un error no catalogado ocurrió mientras se enviaban los mensajes. Si el problema persiste, por favor contacta con nosotros enviando un email __email__ o llamándonos al __tlf__."
+            }
+          }
         }
     },
     "basic": {
@@ -194,7 +220,7 @@
           "accordion": "Normal",
           "circles": "Imaxes con detalles",
           "conditional-accordion": "Conditional Accordion",
-          "ahoram-primaries": "Primarias AhoraM"
+          "simultaneous-questions": "Preguntas simultáneas"
         },
         "option": {
           "textFieldLabel": "Texto",
@@ -294,7 +320,8 @@
         "fieldHelpLabel": "Texto de axuda",
         "fieldHelpPlaceholder": "Exemplo: Insere tanto o teu nome como apelidos",
         "fieldRequiredAuthLabel": "Contrastar co censo durante a autenticación",
-        "fieldUniqueLabel": "Privado (só os administradores poden ver e usar este campo)",
+        "fieldUniqueLabel": "Único (cada votante debe aportar un valor diferente a este campo)",
+        "fieldPrivateLabel": "Privado (só os administradores poden ver e usar este campo)",
         "extraFieldsHeader": "Campos extra",
         "extraFieldsInfo": "Aqui podes definir os campos extra do censo dunha forma versátil. Isto permíteche facer un bo abanico de cousas: engadir comprobacións extra ao censo cando o censo é pechado, solicitar máis campos de rexistro cando o censo é aberto, etc.",
         "manage": "Administrar censo",
@@ -315,13 +342,13 @@
         "auth": "Método de autenticación",
         "auths": {"email": "Correo electrónico", "sms": "SMS", "dnie": "DNI electrónico"},
         "sms": "Mensaxe SMS",
-        "smstemp": "Persoal usado no SMS a enviar ao usuario. Usa %(code)s para inserir o código SMS e %(url)s para inserir a ligazón de votación",
-        "smsdef": "Este é o teu código de votación %(code)s",
+        "smstemp": "Persoal usado no SMS a enviar ao usuario. Usa __CODE__ para inserir o código SMS e __URL__ para inserir a ligazón de votación, , o __URL2__ para inserir a ligazón que incluya o código",
+        "smsdef": "Este é o teu código de votación __CODE__",
         "email": "Corpo da mensaxe",
         "emailsub": "Asunto do email",
-        "emailtemp": "Persoal usado no correo para enviar aos usuarios. Usa %(code)s para engadir o código de acceso e %(url)s para inserir a ligazón de votación",
-        "emailsubdef": "Xa podes votar con Agora Voting",
-        "emaildef": "Vota en %(url)s co codigo %(code)s"
+        "emailtemp": "Persoal usado no correo para enviar aos usuarios. Usa __CODE__ para engadir o código de acceso e __URL__ para inserir a ligazón de votación",
+        "emailsubdef": "Xa podes votar con __name__",
+        "emaildef": "Vota en __URL__ co codigo __CODE__"
     },
     "columnFilter": {
       "sort": "Orden:",
@@ -348,6 +375,12 @@
         "errors": {
           "election-is-array-questions": "Votación '__eltitle__': la lista de pregunta no es un array",
           "election-lambda-success-action-url-mode": "Votación '__eltitle__': url de redirección en 'Acción de éxito' inválida",
+          "election-lambda-min-email-msg": "Votación '__eltitle__': el mensaje de email tiene una longitud de __len__ caracteres, pero debe tener al menos __min__",
+          "election-lambda-max-email-msg": "Votación '__eltitle__': el mensaje de email tiene una longitud de __len__ caracteres, sobrepasando el máximo de __max__",
+          "election-lambda-min-email-title": "Votación '__eltitle__': el título de email tiene una longitud de __len__ caracteres, pero debe tener al menos __min__",
+          "election-lambda-max-email-title": "Votación '__eltitle__': el título de email tiene una longitud de __len__ caracteres, sobrepasando el máximo de __max__",
+          "election-lambda-min-sms-msg": "Votación '__eltitle__': el mensaje de sms tiene una longitud de __len__ caracteres, pero debe tener al menos __min__",
+          "election-lambda-max-sms-msg": "Votación '__eltitle__': el mensaje de sms tiene una longitud de __len__ caracteres, sobrepasando el máximo de __max__",
           "election-array-length-min-questions": "Votación '__eltitle__': debe haber al menos __min__ preguntas, pero solo hay  __num__",
           "election-array-length-max-questions": "Votación '__eltitle__': debe haber como mucho __max__ preguntas, pero hay __num__",
           "election-question-is-array-answers": "Votación '__eltitle__': la lista de candidaturas no es un array",

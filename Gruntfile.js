@@ -1,8 +1,25 @@
+/**
+ * This file is part of agora-gui-admin.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-admin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-admin  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
 /*jslint node: true */
 'use strict';
 
 var pkg = require('./package.json');
-var AV_CONFIG_VERSION = '3.1.0';
+var AV_CONFIG_VERSION = '3.2.0';
 
 //Using exclusion patterns slows down Grunt significantly
 //instead of creating a set of patterns like '**/*.js' and '!**/node_modules/**'
@@ -64,6 +81,9 @@ module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    variables: {
+      admin_html_body_include: ''
+    },
     connect: {
       main: {
         options: {
@@ -85,7 +105,8 @@ module.exports = function (grunt) {
     jshint: {
       main: {
         options: {
-            jshintrc: '.jshintrc'
+            jshintrc: '.jshintrc',
+            reporter: require('jshint-stylish')
         },
         src: createFolderGlobs('*.js')
       }
@@ -104,7 +125,7 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          src: ['bower_components/avCommon/themes/**/app.less'],
+          src: ['bower_components/avCommon/themes/**/app.less', 'plugins/**/*.less'],
           dest: 'temp/',
           ext: '.css',
         }]
@@ -191,6 +212,7 @@ module.exports = function (grunt) {
         options: {
           remove: ['script[data-remove!="false"]','link[data-remove!="false"]'],
           append: [
+            {selector:'body',html:'<%= variables.admin_html_body_include %>'},
             {selector:'body',html:'<!--[if lte IE 8]><script src="/admin/libcompat-v3.0.1.min.js"></script><![endif]--><!--[if gte IE 9]><script src="/admin/libnocompat-v3.0.1.min.js"></script><![endif]--><!--[if !IE]><!--><script src="/admin/libnocompat-v3.0.1.min.js"></script><!--<![endif]-->'},
             {selector:'body',html:'<!--All the source code of this program under copyright. Take a look at the license details at https://github.com/agoravoting/agora-core-view/blob/master/README.md -->'},
             {selector:'body',html:'<script src="/admin/lib-v3.0.1.min.js"></script>'},
@@ -198,7 +220,8 @@ module.exports = function (grunt) {
             {selector:'body',html:'<script src="/admin/avThemes-v3.0.1.js"></script>'},
             {selector:'body',html:'<script src="/admin/app-v3.0.1.min.js"></script>'},
             {selector:'body',html:'<script src="/admin/avPlugins-v3.0.1.js"></script>'},
-            {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/admin/" href="/admin/themes/default/app.min.css">'}
+            {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/admin/" href="/admin/themes/default/app.min.css">'},
+            {selector:'head',html:'<link rel="stylesheet" id="plugins" data-base="/admin/" href="/admin/plugins.css">'}
           ]
         },
         src:'index.html',
@@ -220,6 +243,7 @@ module.exports = function (grunt) {
     concat: {
       main: {
         files: {
+          'dist/plugins.css': ['temp/plugins/**/*.css'],
           'temp/libcompat.js': [
             'vendor/jquery.compat/jquery-1.11.1.js',
             'vendor/json3/json-v3.3.2.js',
@@ -230,7 +254,10 @@ module.exports = function (grunt) {
           'temp/app.js': ['<%= dom_munger.data.appjs %>','<%= ngtemplates.main.dest %>','<%= ngtemplates.common.dest %>'],
           'dist/avConfig-v3.0.1.js': ['avConfig.js'],
           'dist/avThemes-v3.0.1.js': ['bower_components/avCommon/dist/avThemes-v3.0.1.js'],
-          'dist/avPlugins-v3.0.1.js': ['plugins/**/*.js']
+          'dist/avPlugins-v3.0.1.js': [
+            'plugins/**/*.js',
+            '!plugins/**/*-spec.js'
+          ]
         }
       }
     },
@@ -268,6 +295,7 @@ module.exports = function (grunt) {
           'dist/libcompat-v3.0.1.min.js': 'temp/libcompat.js',
           'dist/avWidgets.min.js': 'avWidgets.js',
 
+          "dist/locales/moment/en.js": "bower_components/moment/lang/en-gb.js",
           "dist/locales/moment/es.js": "bower_components/moment/lang/es.js",
           "dist/locales/moment/gl.js": "bower_components/moment/lang/gl.js",
           "dist/locales/moment/ca.js": "bower_components/moment/lang/ca.js"
@@ -290,15 +318,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    imagemin: {
-      main:{
-        files: [{
-          expand: true, cwd:'dist/',
-          src:['**/{*.png,*.jpg}'],
-          dest: 'dist/'
-        }]
-      }
-    },
     karma: {
       options: {
         frameworks: ['jasmine'],
@@ -312,6 +331,7 @@ module.exports = function (grunt) {
           '<%= ngtemplates.main.dest %>',
           '<%= ngtemplates.common.dest %>',
           'bower_components/angular-mocks/angular-mocks.js',
+          'plugins/**/*.js',
           createFolderGlobs('*-spec.js')
         ],
         logLevel:'ERROR',
@@ -321,6 +341,10 @@ module.exports = function (grunt) {
       },
       all_tests: {
         browsers: ['PhantomJS','Chrome','Firefox']
+      },
+      // If server is headless, Chrome and Firefox cannot be used
+      headless: {
+        browsers: ['PhantomJS']
       },
       during_watch: {
         browsers: ['PhantomJS']
@@ -346,9 +370,33 @@ module.exports = function (grunt) {
 
   });
 
-  grunt.registerTask('build',['check_config', 'jshint','clean:before','less','autoprefixer','dom_munger','ngtemplates','cssmin','concat','merge-json','ngAnnotate','uglify','copy','htmlmin','imagemin','clean:after']);
+  /*
+   * Register the tasks
+   */
+  grunt.registerTask(
+    'build',
+    [
+      'check_config',
+      'jshint',
+      'clean:before',
+      'less',
+      'autoprefixer',
+      'dom_munger',
+      'ngtemplates',
+      'cssmin',
+      'concat',
+      'merge-json',
+      'ngAnnotate',
+      'uglify',
+      'copy',
+      'htmlmin',
+      'clean:after'
+    ]
+  );
   grunt.registerTask('serve', ['dom_munger:read','jshint','connect', 'watch']);
-  grunt.registerTask('test',['dom_munger:read','karma:all_tests']);
+  grunt.registerTask('test',['dom_munger:read','karma:headless']);
+  grunt.registerTask('test-all',['dom_munger:read','karma:all_tests']);
+
 
   grunt.event.on('watch', function(action, filepath) {
     //https://github.com/gruntjs/grunt-contrib-watch/issues/156
@@ -362,7 +410,7 @@ module.exports = function (grunt) {
       grunt.config('jshint.main.src', filepath);
       tasksToRun.push('jshint');
 
-      //find the appropriate unit t est for the changed file
+      //find the appropriate unit test for the changed file
       var spec = filepath;
       if (filepath.lastIndexOf('-spec.js') === -1 || filepath.lastIndexOf('-spec.js') !== filepath.length - 8) {
         spec = filepath.substring(0,filepath.length - 3) + '-spec.js';

@@ -27,14 +27,7 @@
     </div>
     <!-- endof dashboard status bar -->
 
-    <div ng-if="error" class="bg-danger">
-        <span ng-if="error.payload">{{ error.payload }}</span>
-        <span ng-if="!error.payload">{{ error }}</span>
-    </div>
-
-    <div ng-if="msg" class="bg-success">
-        <span ng-i18next="{{ msg }}"></span>
-    </div>
+    <div av-admin-alerts></div>
 
     <!-- election info -->
     <div class="row info">
@@ -48,7 +41,7 @@
             <div class="block">
                 <strong>{{ election.auth.census|number }}</strong><br/>
                 <button
-                  ng-click="sendAuthCodesModal(election)"
+                  ng-click="sendAuthCodes()"
                   ng-if="election.status == 'started'"
                   class="btn btn-success send-auth pull-left">
                     <i class="fa fa-sw fa-send"></i>
@@ -73,6 +66,7 @@
     <!-- general info -->
     <div class="row general">
         <div class="col-md-6">
+
             <div class="well">
                 <dl class="dl-horizontal">
                   <dt ng-i18next>avAdmin.dashboard.status</dt>
@@ -84,25 +78,37 @@
                 </dl>
             </div>
 
-            <div class="well text-right">
-                <a
-                  href="election/{{ election.id }}/public/home"
-                  target="_blank"
-                  ng-i18next>
-                  avAdmin.dashboard.electionPublic
-                </a>
-                <br/>
-                <a
-                  href="booth/{{ election.id }}/vote"
-                  target="_blank"
-                  ng-i18next>
-                    avAdmin.dashboard.preview
-                </a>
-                <!--
-                <a href="">Embed election</a>
-                -->
+            <div class="btn-group btn-block">
+              <button
+                ng-if="!election.results.questions"
+                type="button"
+                class="btn btn-lg btn-block btn-warning dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <span ng-i18next>
+                  avAdmin.dashboard.createRealElection
+                </span>
+                <span class="caret"></span>
+              </button>
+
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <a href="" ng-click="$event.preventDefault(); $event.stopPropagation()" class="wrap">
+                    <span ng-i18next>
+                      avAdmin.notes.thisisATestElectionPopover
+                    </span>
+                  </a>
+                </li>
+              </ul>
             </div>
 
+            <button ng-if="election.results.questions"
+              ng-click="createRealElection()"
+              class="btn btn-block btn-lg btn-success"
+              ng-i18next>
+                  avAdmin.dashboard.createRealElection
+            </button>
             <button ng-click="doActionConfirm(index)" class="btn btn-block btn-lg btn-success" ng-if="nextaction" ng-i18next="{{ nextaction }}"></button>
 
             <button
@@ -131,6 +137,25 @@
                         {{ auth }}
                     </li>
                 </ul>
+            </div>
+
+            <div class="well text-right">
+                <a
+                  href="election/{{ election.id }}/public/home"
+                  target="_blank"
+                  ng-i18next>
+                  avAdmin.dashboard.electionPublic
+                </a>
+                <br/>
+                <a
+                  href="booth/{{ election.id }}/vote"
+                  target="_blank"
+                  ng-i18next>
+                    avAdmin.dashboard.preview
+                </a>
+                <!--
+                <a href="">Embed election</a>
+                -->
             </div>
         </div>
     </div>
@@ -181,8 +206,8 @@
                 <td>{{ an.text }}</td>
                 <td>{{ an.total_count|number }}</td>
                 <td>{{ percentVotes(an.total_count, q, "over-valid-votes") }}</td>
-                <td ng-if="an.winner_position === 0 || an.winner_positon">{{ an.winner_positon + 1}}</td>
-                <td ng-if="!(an.winner_position === 0 || an.winner_positon)">--</td>
+                <td ng-if="an.winner_position === 0 || an.winner_position">{{ an.winner_position + 1}}</td>
+                <td ng-if="!(an.winner_position === 0 || an.winner_position)">--</td>
             </tr>
         </table>
     </div>

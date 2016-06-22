@@ -1,33 +1,45 @@
+/**
+ * This file is part of agora-gui-admin.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-admin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-admin  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
 angular.module('avAdmin')
   .factory('ImportService', function(moment, ElectionsApi) {
       var headers = {
-        timestamp: "Timestamp",
-        org: "Organización",
-        admin: "Nombre del administrador",
-        email: "E-mail del administrador",
-        phone: "Teléfono del administrador",
-        title: "Título",
-        desc: "Descripción",
-        start: "Comienzo",
-        end: "Final",
-        auth: "Método de autenticación",
-        census: "Censo cerrado o abierto",
-        voters: "Censo",
-        winners: "Número de ganadores",
-        min: "Número mínimo de opciones",
-        tally_type: "Sistema de votación",
-        max: "Número máximo de opciones",
-        opts: "Opciones",
-        random: "Orden aleatorio",
-        results: "Resultados",
-        moreq: "¿Más preguntas?",
-        subject: "Asunto email",
-        msg: "Cuerpo email"
-      };
-
-      var trans = {
-        "abierto": "open",
-        "cerrado": "close"
+        timestamp: "timestamp",
+        org: "organization",
+        admin: "admin_name",
+        email: "admin_email",
+        phone: "admin_phone_number",
+        title: "title",
+        desc: "description",
+        start: "start",
+        end: "end",
+        auth: "authentication_method",
+        census: "type_census",
+        voters: "census",
+        winners: "number_of_winner",
+        min: "min_number_of_options",
+        tally_type: "voting_system",
+        max: "max_number_of_options",
+        opts: "options",
+        random: "random_order",
+        results: "results",
+        moreq: "more_questions",
+        subject: "subject_email",
+        msg: "body_email"
       };
 
       var headers1 = {};
@@ -59,7 +71,7 @@ angular.module('avAdmin')
         el.description = rawel['desc'];
         el.start_date = parsedDate(rawel['start']);
         el.end_date = parsedDate(rawel['end']);
-        el.census.census = trans[rawel['census'].toLowerCase()];
+        el.census.census = rawel['census'].toLowerCase();
         if (!!rawel['subject']) {
           el.census.config.subject = rawel['subject'];
         }

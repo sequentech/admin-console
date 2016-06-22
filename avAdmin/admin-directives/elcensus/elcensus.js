@@ -1,3 +1,20 @@
+/**
+ * This file is part of agora-gui-admin.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-admin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-admin  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
 angular.module('avAdmin')
   .directive(
     'avAdminElcensus',
@@ -6,11 +23,14 @@ angular.module('avAdmin')
       $state,
       ElectionsApi,
       Authmethod,
+      Plugins,
+      SendMsg,
       $modal,
       MustExtraFieldsService,
       $filter,
       $stateParams,
-      $timeout)
+      $timeout,
+      ConfigService)
     {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
@@ -29,6 +49,7 @@ angular.module('avAdmin')
       scope.filterTimeout = null;
       scope.filterOptions = {};
       scope.resizeSensor = null;
+      scope.helpurl = ConfigService.helpUrl;
 
       function newElection() {
         return !$stateParams.id;
@@ -138,6 +159,24 @@ angular.module('avAdmin')
         }
       ];
 
+      function censusCall(id, csExport, opt) {
+          // this hook can avoid the addCensus call
+          if (Plugins.hook('add-to-census-pre', csExport)) {
+              Authmethod.addCensus(id, csExport, opt)
+                .success(function(r) {
+                  scope.loading = false;
+                  scope.msg = "avAdmin.census.censusadd";
+                  scope.reloadCensus();
+                  Plugins.hook('add-to-census-success', {data: csExport, response: r});
+                })
+                .error(function(error) {
+                  scope.loading = false;
+                  scope.error = error.error;
+                  Plugins.hook('add-to-census-error', {data: csExport, response: error});
+                });
+          }
+      }
+
       function addToCensus(textarea) {
           var el = scope.election;
           var cs = [];
@@ -149,16 +188,7 @@ angular.module('avAdmin')
 
             var csExport = _.map(cs, function (i) { return i.metadata; });
             scope.loading = true;
-            Authmethod.addCensus(el.id, csExport, 'disabled')
-              .success(function(r) {
-                scope.loading = false;
-                scope.msg = "avAdmin.census.censusadd";
-                scope.reloadCensus();
-              })
-              .error(function(error) {
-                scope.loading = false;
-                scope.error = error.error;
-              });
+            censusCall(el.id, csExport, 'disabled');
           }
           scope.newcensus = {};
       }
@@ -188,22 +218,16 @@ angular.module('avAdmin')
               if (nv.tlf) {
                 nv.tlf.replace(" ", "");
               }
+              if (nv.email) {
+                nv.email.replace(" ", "");
+              }
               cs.push({selected: false, vote: false, username: "", metadata: nv});
           });
 
           if (!!el.id) {
             var csExport = _.map(cs, function (i) { return i.metadata; });
             scope.loading = true;
-            Authmethod.addCensus(el.id, csExport, 'disabled')
-              .success(function(r) {
-                scope.loading = false;
-                scope.msg = "avAdmin.census.censusadd";
-                scope.reloadCensus();
-              })
-              .error(function(error) {
-                scope.loading = false;
-                scope.error = error.error;
-              });
+            censusCall(el.id, csExport, 'disabled');
           }
       }
 
@@ -278,28 +302,15 @@ angular.module('avAdmin')
         return false;
       }
 
-      function sendAuthCodes(user_ids) {
-        scope.loading = true;
-        Authmethod.sendAuthCodes(scope.election.id, scope.election, user_ids)
-          .success(function(r) {
-            scope.loading = false;
-            scope.msg = "avAdmin.census.sentCodesSuccessfully";
-          })
-          .error(function(error) { scope.loading = false; scope.error = error.error; });
-      }
-
       function sendAuthCodesSelected() {
         var selectedList = scope.selected(scope.shown());
         var user_ids = _.pluck(selectedList, "id");
-        $modal.open({
-          templateUrl: "avAdmin/admin-directives/dashboard/send-auth-codes-modal.html",
-          controller: "SendAuthCodesModal",
-          size: 'lg',
-          resolve: {
-            election: function () { return scope.election; },
-            user_ids: function() { return user_ids; }
-          }
-        }).result.then(sendAuthCodes);
+
+        SendMsg.setElection(scope.election);
+        SendMsg.scope = scope;
+        SendMsg.user_ids = user_ids;
+        SendMsg.sendAuthCodesModal();
+
         return false;
       }
 

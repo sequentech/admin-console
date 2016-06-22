@@ -1,11 +1,25 @@
-angular.module('avAdmin').run(function(AdminPlugins) {
-    // Adding to the sidebar params:
-    // name, icon-name (fa), head or sub, text to show
-    AdminPlugins.add("test", "check", true, "testplugin.text");
+/**
+ * This file is part of agora-gui-admin.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
 
+ * agora-gui-admin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-admin  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
+angular.module('avAdmin').run(function(Plugins) {
+    // Adding to the sidebar params:
     var p = {
              name: 'test',
-             head: true,
+             head: false,
              link: 'admin.test',
              directive: 'test',
              menu: {
@@ -13,12 +27,12 @@ angular.module('avAdmin').run(function(AdminPlugins) {
              }
             };
 
-    AdminPlugins.add(p);
+    Plugins.add(p);
 });
 
 // Using the admin controller to get the topbar and the sidebar
 // The state name should be admin.NAME
-angular.module('agora-core-view').config(
+angular.module('agora-gui-admin').config(
   function($stateProvider) {
     $stateProvider
       .state('admin.test',
@@ -42,3 +56,25 @@ angular.module('avAdmin')
       template: '<h1 ng-i18next>testplugin.header</h1>'
     };
   });
+
+// Registering signals and hooks
+angular.module('avAdmin').run(function(Plugins) {
+    function signalHandler(sig, data) {
+        if (sig === 'plugins-loaded') {
+            console.log("LOADED signal received in test plugin", data);
+        }
+    }
+
+    // if we return false here, the ejecution will be affected
+    function hookHandler(hook, data) {
+        if (hook === 'plugins-loaded') {
+            console.log("LOADED signal received in test plugin", data);
+            return false;
+        }
+        return true;
+    }
+
+    // subscribe to a signal and hook
+    Plugins.signals.add(signalHandler);
+    Plugins.hooks.push(hookHandler);
+});

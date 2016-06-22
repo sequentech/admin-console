@@ -1,7 +1,39 @@
+/**
+ * This file is part of agora-gui-admin.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-admin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-admin  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
 angular.module('avAdmin')
-  .directive('avAdminCreate', function($q, Authmethod, ElectionsApi, $state, $i18next, $filter, ConfigService, CheckerService) {
-    // we use it as something similar to a controller here
-    function link(scope, element, attrs) {
+  .directive(
+    'avAdminCreate',
+    function(
+      $q,
+      Plugins,
+      Authmethod,
+      ElectionsApi,
+      $state,
+      $stateParams,
+      $i18next,
+      $filter,
+      ConfigService,
+      ElectionLimits,
+      CheckerService)
+    {
+      // we use it as something similar to a controller here
+      function link(scope, element, attrs)
+      {
         var adminId = ConfigService.freeAuthId;
         scope.creating = false;
         scope.log = '';
@@ -32,10 +64,32 @@ angular.module('avAdmin')
             append: {key: "eltitle", value: "$value.title"},
             checks: [
               {check: "is-array", key: "questions", postfix: "-questions"},
-              {check: "array-length", key: "questions", min: 1, max: 40, postfix: "-questions"},
-              {check: "array-length", key: "description", min: 0, max: 3000, postfix: "-description"},
-              {check: "array-length", key: "title", min: 0, max: 3000, postfix: "-title"},
-              {check: "is-string", key: "description", postfix: "-description"},
+              {
+                check: "array-length",
+                key: "questions",
+                min: 1,
+                max: ElectionLimits.maxNumQuestions,
+                postfix: "-questions"
+              },
+              {
+                check: "array-length",
+                key: "description",
+                min: 0,
+                max: ElectionLimits.maxLongStringLength,
+                postfix: "-description"
+              },
+              {
+                check: "array-length",
+                key: "title",
+                min: 0,
+                max: ElectionLimits.maxLongStringLength,
+                postfix: "-title"
+              },
+              {
+                check: "is-string",
+                key: "description",
+                postfix: "-description"
+              },
               {
                 check: "lambda",
                 key: "census",
@@ -50,6 +104,114 @@ angular.module('avAdmin')
                 },
                 postfix: "-success-action-url-mode"
               },
+              {
+                check: "lambda",
+                key: "census",
+                validator: function (census) {
+                  if (census.auth_method !== 'email') {
+                    return true;
+                  }
+                  
+                  return census.config.msg.length > 0;
+                },
+                appendOnErrorLambda: function (census) {
+                 return {
+                  min: 1,
+                  len: census.config.msg.length
+                 };
+                },
+                postfix: "-min-email-msg"
+              },
+              {
+                check: "lambda",
+                key: "census",
+                validator: function (census) {
+                  if (census.auth_method !== 'email') {
+                    return true;
+                  }
+                  
+                  return census.config.msg.length <= 5000;
+                },
+                appendOnErrorLambda: function (census) {
+                 return {
+                  max: 5000,
+                  len: census.config.msg.length
+                 };
+                },
+                postfix: "-max-email-msg"
+              },
+              {
+                check: "lambda",
+                key: "census",
+                validator: function (census) {
+                  if (census.auth_method !== 'email') {
+                    return true;
+                  }
+                  
+                  return census.config.subject.length > 0;
+                },
+                appendOnErrorLambda: function (census) {
+                 return {
+                  min: 1,
+                  len: census.config.subject.length
+                 };
+                },
+                postfix: "-min-email-title"
+              },
+              {
+                check: "lambda",
+                key: "census",
+                validator: function (census) {
+                  if (census.auth_method !== 'email') {
+                    return true;
+                  }
+                  
+                  return census.config.subject.length <= 1024;
+                },
+                appendOnErrorLambda: function (census) {
+                 return {
+                  max: 1024,
+                  len: census.config.subject.length
+                 };
+                },
+                postfix: "-max-email-title"
+              },
+              {
+                check: "lambda",
+                key: "census",
+                validator: function (census) {
+                  if (census.auth_method !== 'sms') {
+                    return true;
+                  }
+                  
+                  return census.config.msg.length > 0;
+                },
+                appendOnErrorLambda: function (census) {
+                 return {
+                  min: 1,
+                  len: census.config.msg.length
+                 };
+                },
+                postfix: "-min-sms-msg"
+              },
+              {
+                check: "lambda",
+                key: "census",
+                validator: function (census) {
+                  if (census.auth_method !== 'sms') {
+                    return true;
+                  }
+                  
+                  return census.config.msg.length <= 200;
+                },
+                appendOnErrorLambda: function (census) {
+                 return {
+                  max: 200,
+                  len: census.config.msg.length
+                 };
+                },
+                postfix: "-max-sms-msg"
+              },
               {check: "is-string", key: "title", postfix: "-title"},
               {
                 check: "array-key-group-chain",
@@ -59,14 +221,50 @@ angular.module('avAdmin')
                 checks: [
                   {check: "is-int", key: "min", postfix: "-min"},
                   {check: "is-int", key: "max", postfix: "-max"},
-                  {check: "is-int", key: "num_winners", postfix: "-num-winners"},
-                  {check: "is-array", key: "answers", postfix: "-answers"},
-                  {check: "array-length", key: "answers", min: 1, max: 10000, postfix: "-answers"},
-                  {check: "int-size", key: "min", min: 0, max: "$value.max", postfix: "-min"},
-                  {check: "is-string", key: "description", postfix: "-description"},
-                  {check: "array-length", key: "description", min: 0, max: 3000, postfix: "-description"},
+                  {
+                    check: "is-int",
+                    key: "num_winners",
+                    postfix: "-num-winners"
+                  },
+                  {
+                    check: "is-array",
+                    key: "answers",
+                    postfix: "-answers"
+                  },
+                  {
+                    check: "array-length",
+                    key: "answers",
+                    min: 1,
+                    max: ElectionLimits.maxNumAnswers,
+                    postfix: "-answers"
+                  },
+                  {
+                    check: "int-size",
+                    key: "min",
+                    min: 0,
+                    max: "$value.max",
+                    postfix: "-min"
+                  },
+                  {
+                    check: "is-string",
+                    key: "description",
+                    postfix: "-description"
+                  },
+                  {
+                    check: "array-length",
+                    key: "description",
+                    min: 0,
+                    max: ElectionLimits.maxLongStringLength,
+                    postfix: "-description"
+                  },
                   {check: "is-string", key: "title", postfix: "-title"},
-                  {check: "array-length", key: "title", min: 0, max: 3000, postfix: "-title"},
+                  {
+                    check: "array-length",
+                    key: "title",
+                    min: 0,
+                    max: ElectionLimits.maxLongStringLength,
+                    postfix: "-title"
+                  },
                   {
                     check: "int-size",
                     key: "max",
@@ -106,21 +304,21 @@ angular.module('avAdmin')
                           check: "array-length",
                           key: "details",
                           min: 0,
-                          max: 3000,
+                          max: ElectionLimits.maxLongStringLength,
                           postfix: "-details"
                         },
                         {
                           check: "array-length",
                           key: "text",
                           min: 1,
-                          max: 3000,
+                          max: ElectionLimits.maxLongStringLength,
                           postfix: "-text"
                         },
                         {
                           check: "array-length",
                           key: "category",
                           min: 0,
-                          max: 300,
+                          max: ElectionLimits.maxShortStringLength,
                           postfix: "-category"
                         },
                       ]
@@ -163,7 +361,8 @@ angular.module('avAdmin')
                 auth_method: el.census.auth_method,
                 census: el.census.census,
                 auth_method_config: el.census.config,
-                extra_fields: []
+                extra_fields: [],
+                real: el.real
             };
 
             d.extra_fields = _.filter(el.census.extra_fields, function(ef) {
@@ -215,6 +414,9 @@ angular.module('avAdmin')
         function registerElection(el) {
             console.log("registering election " + el.title);
 
+              if (typeof el.extra_data === 'object') {
+                  el.extra_data = JSON.stringify(el.extra_data);
+              }
             _.each(el.questions, function (q) {
               _.each(q.answers, function (answer) {
                 answer.urls = _.filter(answer.urls, function(url) { return $.trim(url.url).length > 0;});
@@ -233,6 +435,10 @@ angular.module('avAdmin')
             var deferred = $q.defer();
             if (scope.createElectionBool) {
               console.log("creating election " + el.title);
+              Plugins.hook('election-create', {'el': el});
+              if (typeof el.extra_data === 'object') {
+                  el.extra_data = JSON.stringify(el.extra_data);
+              }
               // Creating the election
               logInfo($i18next('avAdmin.create.creatingEl', {title: el.title, id: el.id}));
               ElectionsApi.command(el, 'create', 'POST', {})
@@ -280,6 +486,10 @@ angular.module('avAdmin')
             scope.creating = true;
         }
 
+        if ($stateParams.autocreate === "true") {
+            createElections();
+        }
+
         function waitForCreated(id, f) {
           console.log("waiting for election id = " + id);
           ElectionsApi.getElection(id, true)
@@ -298,13 +508,13 @@ angular.module('avAdmin')
         angular.extend(scope, {
           createElections: createElections,
         });
-    }
+      }
 
-    return {
-      restrict: 'AE',
-      scope: {
-      },
-      link: link,
-      templateUrl: 'avAdmin/admin-directives/create/create.html'
-    };
-  });
+      return {
+        restrict: 'AE',
+        scope: {
+        },
+        link: link,
+        templateUrl: 'avAdmin/admin-directives/create/create.html'
+      };
+    });

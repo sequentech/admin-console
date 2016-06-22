@@ -1,5 +1,22 @@
+/**
+ * This file is part of agora-gui-admin.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-admin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-admin  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
 angular.module('avAdmin')
-  .directive('avAdminDashboard', function($state, Authmethod, ElectionsApi, $stateParams, $modal, PercentVotesService) {
+  .directive('avAdminDashboard', function($state, Authmethod, Plugins, ElectionsApi, $stateParams, $modal, PercentVotesService, SendMsg) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
       var id = $stateParams.id;
@@ -208,28 +225,13 @@ angular.module('avAdmin')
             .catch(function(error) { scope.loading = false; scope.error = error; });
       }
 
-      function sendAuthCodesModal() {
-        $modal.open({
-          templateUrl: "avAdmin/admin-directives/dashboard/send-auth-codes-modal.html",
-          controller: "SendAuthCodesModal",
-          size: 'lg',
-          resolve: {
-            election: function () { return scope.election; },
-            user_ids: function() { return null; }
-          }
-        }).result.then(function () {
-          sendAuthCodes();
-        });
-      }
-
       function sendAuthCodes() {
-        scope.loading = true;
-        Authmethod.sendAuthCodes(scope.election.id, scope.election)
-          .success(function(r) {
-            scope.loading = false;
-            scope.msg = "avAdmin.dashboard.censussend";
-          })
-          .error(function(error) { scope.loading = false; scope.error = error.error; });
+        SendMsg.setElection(scope.election);
+        SendMsg.scope = scope;
+        SendMsg.user_ids = null;
+        SendMsg.sendAuthCodesModal();
+
+        return false;
       }
 
       function duplicateElection() {
@@ -242,11 +244,23 @@ angular.module('avAdmin')
         $state.go("admin.basic");
       }
 
+      function createRealElection() {
+        var el = ElectionsApi.templateEl();
+        _.extend(el, angular.copy(scope.election));
+        scope.current = el;
+        el.id = null;
+        el.real = true;
+        ElectionsApi.setCurrent(el);
+        ElectionsApi.newElection = true;
+        $state.go("admin.create", {"autocreate": true});
+      }
+
       angular.extend(scope, {
         doAction: doAction,
         doActionConfirm: doActionConfirm,
-        sendAuthCodesModal: sendAuthCodesModal,
-        duplicateElection: duplicateElection
+        sendAuthCodes: sendAuthCodes,
+        duplicateElection: duplicateElection,
+        createRealElection: createRealElection
       });
     }
 

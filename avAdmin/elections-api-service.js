@@ -1,15 +1,77 @@
+/**
+ * This file is part of agora-gui-admin.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-admin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-admin  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
 angular.module('avAdmin')
     .factory(
       'ElectionsApi',
       function(
         $q,
+        Plugins,
         Authmethod,
         ConfigService,
         $i18next,
         $http,
         $cookies,
+        localStorageService,
         $rootScope)
       {
+
+        /**
+         * Generates a saved election key for the local storage key value store
+         * in a secure way: the key is a cryptographically secure id, stored
+         * as a cookie.
+         */
+        function getSavedElectionKey() {
+          if (!$cookies.savedElectionKey) {
+            /* jshint ignore:start */
+            $cookies.savedElectionKey = "savedElectionKey_" + sjcl.codec.base64.fromBits(sjcl.random.randomWords(8, 0));
+            /* jshint ignore:end */
+          }
+
+          return $cookies.savedElectionKey;
+        }
+
+        /**
+         * Return the saved election in local storage if it exists or null.
+         */
+        function getSavedElection() {
+          return JSON.parse(
+            localStorageService.get(
+              getSavedElectionKey()));
+        }
+
+        /**
+         * Saves locally the election into local storage.
+         */
+        function localSaveElection(election) {
+          localStorageService.set(
+            getSavedElectionKey(),
+            JSON.stringify(election));
+        }
+
+        /**
+         * Return boolean that specifies if there's any saved election in local
+         * storage.
+         */
+        function hasSavedElection() {
+          return !!localStorageService.get(
+              getSavedElectionKey());
+        }
+
         var backendUrl = ConfigService.electionsAPI;
         var electionsapi = {cache: {}, permcache: {}};
         electionsapi.waitingCurrent = [];
@@ -31,11 +93,15 @@ angular.module('avAdmin')
             electionsapi.newElection = !el.id;
 
             $rootScope.currentElection = el;
-            $rootScope.$watch('currentElection', function() {
-              if (!$rootScope.currentElection.id) {
-                $cookies.currentElection = JSON.stringify($rootScope.currentElection);
-              }
-            }, true);
+            if (!$rootScope.watchingElection) {
+                $rootScope.$watch('currentElection', function(newv, oldv) {
+                  Plugins.hook('election-modified', {'old': oldv, 'el': newv});
+                  if (!$rootScope.currentElection.id) {
+                    localSaveElection($rootScope.currentElection);
+                  }
+                }, true);
+                $rootScope.watchingElection = true;
+            }
 
             electionsapi.waitingCurrent.forEach(function(f) {
                 f();
@@ -43,15 +109,16 @@ angular.module('avAdmin')
             electionsapi.waitingCurrent = [];
         };
 
-        if ($cookies.currentElection) {
-            console.log($cookies.currentElection);
+        if (hasSavedElection()) {
             try {
-                var el = JSON.parse($cookies.currentElection);
+                var el = getSavedElection();
+                console.log(getSavedElection());
                 electionsapi.setCurrent(el);
             } catch (e) {
-                $cookies.currentElection = electionsapi.currentElection;
+                localSaveElection(electionsapi.currentElection);
             }
         }
+
 
         function asyncElection(id) {
             var deferred = $q.defer();
@@ -73,6 +140,7 @@ angular.module('avAdmin')
                     el.auth = {};
                     el.auth.authentication = data.events.auth_method;
                     el.auth.census = data.events.users;
+                    el.raw = data.events;
                     if (el.auth.census) {
                         el.votes = el.stats.votes;
                         el.votes_percentage = ( el.stats.votes * 100 )/ el.auth.census;
@@ -83,9 +151,16 @@ angular.module('avAdmin')
 
                     // updating census
                     el.census.auth_method = data.events.auth_method;
-                    el.census.config = data.events.auth_method_config.config;
                     el.census.extra_fields = data.events.extra_fields;
                     el.census.census = data.events.census;
+
+                    var newConf = data.events.auth_method_config.config;
+                    // not updating msgs if are modified
+                    if (el.census.config && el.census.config.msg) {
+                        newConf.msg = el.census.config.msg;
+                        newConf.subject = el.census.config.subject;
+                    }
+                    el.census.config = newConf;
 
                     deferred.resolve(el);
                 })
@@ -143,6 +218,13 @@ angular.module('avAdmin')
             // results
             if (election.results) {
                 conf.results = angular.fromJson(election.results);
+            }
+
+            // extra_data
+            if (!conf.extra_data) {
+                conf.extra_data = {};
+            } else if (typeof conf.extra_data === 'string') {
+                conf.extra_data = JSON.parse(conf.extra_data);
             }
 
             // caching election
@@ -247,14 +329,16 @@ angular.module('avAdmin')
                     theme_css: ''
                 },
                 layout: 'simple',
+                real: false,
                 census: {
                     voters: [],
                     auth_method: 'email',
-                    census:'open',
+                    census:'close',
                     extra_fields: [ ],
                     config: {
                         "msg": $i18next('avAdmin.auth.emaildef'),
-                        "subject": $i18next('avAdmin.auth.emailsubdef'),
+                        "subject": $i18next('avAdmin.auth.emailsubdef',
+                          {name: ConfigService.organization.orgName}),
                         "authentication-action": {
                           "mode": "vote",
                           "mode-config": {
@@ -267,7 +351,8 @@ angular.module('avAdmin')
                         }
                     }
                 },
-                questions: []
+                questions: [],
+                extra_data: {}
             };
             return el;
         };

@@ -25,6 +25,8 @@
             <td>
               <a ui-sref="admin.dashboard({id: election.id})" class="padded">
                 {{ election.id }}
+                  <span ng-if="!election.real" class="label label-warning" ng-i18next>avAdmin.elections.test</span>
+                  <span ng-if="election.real" class="label label-primary" ng-i18next>avAdmin.elections.real</span>
               </a>
             </td>
             <td>

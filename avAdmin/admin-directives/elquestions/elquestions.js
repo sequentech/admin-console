@@ -1,8 +1,29 @@
+/**
+ * This file is part of agora-gui-admin.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-admin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-admin  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
 angular.module('avAdmin')
-  .directive('avAdminElquestions', ['$i18next', '$state', 'ElectionsApi', function($i18next, $state, ElectionsApi) {
-    // we use it as something similar to a controller here
-    function link(scope, element, attrs) {
+  .directive(
+    'avAdminElquestions',
+    function($i18next, $state, ElectionsApi, ElectionLimits)
+    {
+      // we use it as something similar to a controller here
+      function link(scope, element, attrs) {
         scope.election = ElectionsApi.currentElection;
+        scope.electionLimits = ElectionLimits;
         scope.vsystems = ['plurality-at-large', 'borda-nauru', 'borda', 'pairwise-beta'];
 
         scope.electionEditable = function() {
@@ -62,6 +83,12 @@ angular.module('avAdmin')
         function addOption(index) {
             var el = ElectionsApi.currentElection;
             var qs = el.questions;
+            var text = document.querySelector("#newopt").value;
+
+            if (!text.trim()) {
+                return;
+            }
+
             if (!qs[index].answers) {
                 qs[index].answers = [];
             }
@@ -72,7 +99,7 @@ angular.module('avAdmin')
                 details: "",
                 id: 0,
                 sort_order: 0,
-                text: document.querySelector("#newopt").value,
+                text: text,
                 urls: []
             };
             qs[index].answers.push(a);
@@ -133,4 +160,4 @@ angular.module('avAdmin')
       link: link,
       templateUrl: 'avAdmin/admin-directives/elquestions/elquestions.html'
     };
-  }]);
+  });
