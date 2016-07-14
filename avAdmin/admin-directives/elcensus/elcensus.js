@@ -50,6 +50,7 @@ angular.module('avAdmin')
       scope.filterOptions = {};
       scope.resizeSensor = null;
       scope.helpurl = ConfigService.helpUrl;
+      $scope.showSuccessAction = ConfigService.showSuccessAction;
 
       function newElection() {
         return !$stateParams.id;

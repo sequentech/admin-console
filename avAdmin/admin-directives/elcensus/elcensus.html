@@ -160,13 +160,25 @@
       </tbody>
     </table>
 
-    <button
-      ui-sref="admin.successAction()"
-      ng-if="!election.id"
-      class="btn btn-block btn-success"
-      ng-i18next>
-      next
-    </button>
+    <div ng-if="showSuccessAction">
+      <button
+        ui-sref="admin.successAction()"
+        ng-if="!election.id"
+        class="btn btn-block btn-success"
+        ng-i18next>
+        next
+      </button>
+    </div>
+
+    <div ng-if="!showSuccessAction">
+      <button
+        ui-sref="admin.create()"
+        ng-if="!election.id"
+        class="btn btn-block btn-success"
+        ng-i18next>
+        next
+      </button>
+    </div>
 
 </div>
 
