@@ -43,32 +43,6 @@
         "logout": "logout"
     },
     "learnMore": "Learn more..",
-    "foot": {
-        "contact": "Contact",
-        "contactsupport": "Contact support",
-        "contactsales": "Contact sales",
-        "callsales": "Sales: ",
-
-        "aboutus": "About us",
-        "pricing": "Pricing",
-        "technology": "Technology",
-        "solutions": "Solutions",
-        "adminManual": "Admin Manual",
-
-        "electionTypes": "Election types",
-        "primaries": "Primaries and candidate elections",
-        "participatoryBudgeting": "Participatory budgeting",
-        "referendums": "Referendums and consultations",
-        "professional": "Professionals and Labor Unions",
-        "universities": "Universities",
-
-        "legal": "Legal",
-        "tos": "Term of service",
-        "cookies": "Cookies policy",
-        "privacy": "Privacy policy",
-        "securitycontact": "Security Contact",
-        "communitywebsite": "Community Website"
-    },
     "sidebar": {
         "elections": "Elections",
         "newel": "New election",

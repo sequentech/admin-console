@@ -43,32 +43,6 @@
         "logout": "salir"
     },
     "learnMore": "Más información..",
-    "foot": {
-        "contact": "Contacto",
-        "contactsupport": "Contacto de soporte",
-        "contactsales": "Contacto de ventas",
-        "callsales": "Ventas: ",
-
-        "aboutus": "Acerca de",
-        "pricing": "Precios",
-        "technology": "Tecnología",
-        "solutions": "Soluciones",
-        "adminManual": "Manual de admin",
-
-        "electionTypes": "Tipos de votación",
-        "primaries": "Primarias y elecciones de candidatos",
-        "participatoryBudgeting": "Presupuestos participativos",
-        "referendums": "Referéndums y consultas",
-        "professional": "Elecciones profesionales y sindicales",
-        "universities": "Universidades",
-
-        "legal": "Legal",
-        "tos": "Condiciones de uso",
-        "cookies": "Política de Cookies",
-        "privacy": "Política de Privacidad",
-        "securitycontact": "Contacto de seguridad",
-        "communitywebsite": "Sitio web del proyecto"
-    },
     "sidebar": {
         "elections": "Votaciones",
         "newel": "Nueva votación",
