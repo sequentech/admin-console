@@ -21,6 +21,19 @@ angular.module('avAdmin')
         scope.creating = false;
         scope.log = '';
         scope.createElectionBool = true;
+        scope.electionsText = "";
+
+        scope.updateReview = function()
+        {
+          console.log("updating elections");
+          scope.elections = angular.fromJson(scope.electionsText);
+        };
+
+        scope.updateJson = function()
+        {
+          console.log("updating json");
+          scope.electionsText = angular.toJson(scope.elections, true);
+        };
 
         if (ElectionsApi.currentElections.length === 0 && !!ElectionsApi.currentElection) {
           scope.elections = [ElectionsApi.currentElection];
