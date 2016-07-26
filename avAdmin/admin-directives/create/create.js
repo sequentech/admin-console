@@ -10,6 +10,7 @@ angular.module('avAdmin')
       $stateParams,
       $i18next,
       $filter,
+      $modal,
       ConfigService,
       ElectionLimits,
       CheckerService)
