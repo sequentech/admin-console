@@ -21,19 +21,6 @@ angular.module('avAdmin')
         scope.creating = false;
         scope.log = '';
         scope.createElectionBool = true;
-        scope.electionsText = "";
-
-        scope.updateReview = function()
-        {
-          console.log("updating elections");
-          scope.elections = angular.fromJson(scope.electionsText);
-        };
-
-        scope.updateJson = function()
-        {
-          console.log("updating json");
-          scope.electionsText = angular.toJson(scope.elections, true);
-        };
 
         if (ElectionsApi.currentElections.length === 0 && !!ElectionsApi.currentElection) {
           scope.elections = [ElectionsApi.currentElection];
@@ -473,6 +460,26 @@ angular.module('avAdmin')
               });
           deferred.resolve(scope.elections[i]);
         }
+
+        scope.editJson = function()
+        {
+          // show the initial edit dialog
+          $modal
+            .open({
+              templateUrl: "avAdmin/admin-directives/create/edit-election-json-modal.html",
+              controller: "EditElectionJsonModal",
+              size: 'lg',
+              resolve: {
+                electionJson: function () { return angular.toJson(scope.elections, true); }
+              }
+            })
+            .result.then(
+              function (data)
+              {
+                scope.elections = angular.fromJson(data.electionJson);
+              }
+            );
+        };
 
         function createElections() {
             var deferred = $q.defer();
