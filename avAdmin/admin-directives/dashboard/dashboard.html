@@ -181,7 +181,7 @@
         <ul class="dropdown-menu" role="menu">
           <li>
             <a
-              ng-href="{{publicURL}}/{{election.id}}/{{election.results_dirname}}/ballots.csv"
+              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/ballots.csv"
               target="_blank"
               class="wrap">
               <span ng-i18next>
@@ -192,7 +192,7 @@
 
           <li>
             <a
-              ng-href="{{publicURL}}/{{election.id}}/{{election.results_dirname}}/{{election.id}}.results.csv"
+              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.csv"
               target="_blank"
               class="wrap">
               <span ng-i18next>
@@ -203,7 +203,7 @@
 
           <li>
             <a
-              ng-href="{{publicURL}}/{{election.id}}/{{election.results_dirname}}/{{election.id}}.results.json"
+              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.json"
               target="_blank"
               class="wrap">
               <span ng-i18next>
@@ -214,7 +214,7 @@
 
           <li>
             <a
-              ng-href="{{publicURL}}/{{election.id}}/{{election.results_dirname}}/{{election.id}}.results.pretty"
+              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.pretty"
               target="_blank"
               class="wrap">
               <span ng-i18next>
