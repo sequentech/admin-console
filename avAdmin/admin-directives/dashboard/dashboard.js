@@ -1,5 +1,16 @@
 angular.module('avAdmin')
-  .directive('avAdminDashboard', function($state, Authmethod, Plugins, ElectionsApi, $stateParams, $modal, PercentVotesService, SendMsg) {
+  .directive('avAdminDashboard', function(
+    $state,
+    Authmethod,
+    Plugins,
+    ElectionsApi,
+    $stateParams,
+    $modal,
+    PercentVotesService,
+    SendMsg,
+    ConfigService)
+
+  {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
       var id = $stateParams.id;
@@ -7,6 +18,7 @@ angular.module('avAdmin')
       if (!id) {
         $state.go("admin.basic");
       }
+      scope.publicURL = ConfigService.publicURL;
 
       var statuses = [
         'registered',
