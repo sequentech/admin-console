@@ -34,6 +34,13 @@
       "thisisATestElection": "This is a test election. For security reasons, real elections can only be created out of successful test elections.",
       "thisisATestElectionPopover": "This is a test election. For security reasons, real elections can only be created out of successful test elections. You must complete the election process up to the results publish step."
     },
+    "results": {
+      "downloadData": "Download data",
+      "downloadBallotsCsv": "Download Ballots Spreadsheet (CSV format)",
+      "downloadResultsCsv": "Download Election Results (CSV format)",
+      "downloadResultsJson": "Download Election Results (JSON format)",
+      "downloadResultsPretty": "Download Election Results (Text format)"
+    },
     "topbar": {
         "home": "Home",
         "features": "Features",
