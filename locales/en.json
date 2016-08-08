@@ -34,6 +34,13 @@
       "thisisATestElection": "This is a test election. For security reasons, real elections can only be created out of successful test elections.",
       "thisisATestElectionPopover": "This is a test election. For security reasons, real elections can only be created out of successful test elections. You must complete the election process up to the results publish step."
     },
+    "results": {
+      "downloadData": "Download data",
+      "downloadBallotsCsv": "Download Ballots Spreadsheet (CSV format)",
+      "downloadResultsCsv": "Download Election Results (CSV format)",
+      "downloadResultsJson": "Download Election Results (JSON format)",
+      "downloadResultsPretty": "Download Election Results (Text format)"
+    },
     "topbar": {
         "home": "Home",
         "features": "Features",
@@ -372,6 +379,11 @@
         "reg": "Registering the election (id: __id__) __title__",
         "creatingEl": "Creating election (id: __id__) __title__",
         "logHeader": "Log",
+        "editElectionJsonModal": {
+          "title": "Edit Election Json",
+          "body": "This dialog allows you to edit the election json. Use this only if you know what you are doing.",
+          "confirmEdit": "Finish edit"
+        },
         "errors": {
           "election-is-array-questions": "Election '__eltitle__': list of questions is not an array",
           "election-lambda-success-action-url-mode": "Election '__eltitle__': invalid success action url",

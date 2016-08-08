@@ -10,6 +10,7 @@ angular.module('avAdmin')
       $stateParams,
       $i18next,
       $filter,
+      $modal,
       ConfigService,
       ElectionLimits,
       CheckerService)
@@ -460,6 +461,26 @@ angular.module('avAdmin')
               });
           deferred.resolve(scope.elections[i]);
         }
+
+        scope.editJson = function()
+        {
+          // show the initial edit dialog
+          $modal
+            .open({
+              templateUrl: "avAdmin/admin-directives/create/edit-election-json-modal.html",
+              controller: "EditElectionJsonModal",
+              size: 'lg',
+              resolve: {
+                electionJson: function () { return angular.toJson(scope.elections, true); }
+              }
+            })
+            .result.then(
+              function (data)
+              {
+                scope.elections = angular.fromJson(data.electionJson);
+              }
+            );
+        };
 
         function createElections() {
             var deferred = $q.defer();

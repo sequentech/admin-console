@@ -1,5 +1,8 @@
 <div>
-    <h2 ng-i18next>[i18next]({'num': elections.length})avAdmin.create.summary</h2>
+    <h2>
+      <span ng-i18next>[i18next]({'num': elections.length})avAdmin.create.summary</span>
+      <i class="fa fa-pencil" ng-click="editJson()"></i>
+    </h2>
 
     <div ng-repeat="election in elections">
       <h3 ng-i18next>[i18next]({'title': election.title, 'index': $index+1})avAdmin.basic.title.labelH3</h3>
