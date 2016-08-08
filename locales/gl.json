@@ -375,9 +375,9 @@
         "create": "Crear as votacións",
         "create__plural": "Crear as votacións",
         "creating": "Creando a autenticación da votación __title__",
-        "census": "Engadindo o censo (ide: __ide__) __title__",
-        "reg": "Rexistrando a votación (ide: __ide__) __title__",
-        "creatingEl": "Creando a votación (ide: __ide__) __title__",
+        "census": "Engadindo o censo (ide: __id__) __title__",
+        "reg": "Rexistrando a votación (ide: __id__) __title__",
+        "creatingEl": "Creando a votación (ide: __id__) __title__",
         "logHeader": "Log",
         "errors": {
           "election-is-array-questions": "Votación '__eltitle__': la lista de pregunta no es un array",
