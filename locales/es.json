@@ -152,6 +152,7 @@
         "title": { "label": "Título", "placeholder": "ej.Nueva junta de dirección", "labelH3": "__index__. Votación titulada: __title__" },
         "description": { "label": "Descripción", "placeholder": "Descripción que se mostrará. Aquí debe de identificarse la organización que va a llevar el proceso electoral, así como los métodos de contacto con los electores." },
         "share": { "label": "Texto para compartir", "placeholder": "Texto para usar en los enlaces a redes sociales" },
+        "logo_url": { "label": "Logo personalizado", "placeholder": "URL para logo personalizado para esta votación. El tamaño máximo recomendado es 150x150 px." },
         "layout": { "label": "Disposición", "placeholder": "Especifica cómo se va a mostrar toda la votación" },
         "layouts": { "simple": "Simple", "2questions-conditional": "Sí/No", "pcandidates-election": "Tabla de candidatos" },
         "theme": { "label": "Tema", "placeholder": "¿Cómo se verá la votación?" },

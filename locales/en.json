@@ -153,6 +153,7 @@
         "title": { "label": "Title", "placeholder": "eg.New Board of Directors", "labelH3": "__index__. Election titled: __title__" },
         "description": { "label": "Description", "placeholder": "Description will be shown" },
         "share": { "label": "Share text", "placeholder": "Text to use for social sharing" },
+        "logo_url": { "label": "Custom logo", "placeholder": "URL for a custom logo for this election. Maximum recommended size is 150x150 px." },
         "layout": { "label": "Layout", "placeholder": "Specifies how the whole election will be displayed" },
         "layouts": { "simple": "Simple", "2questions-conditional": "Yes/No", "pcandidates-election": "Table Candidates" },
         "theme": { "label": "Theme", "placeholder": "How will the election look like?" },
