@@ -425,6 +425,7 @@ angular.module('avAdmin')
             var deferred = $q.defer();
             // Registering the election
             logInfo($i18next('avAdmin.create.reg', {title: el.title, id: el.id}));
+            el.logo_url="http://static2.eldiario.es/static/EDIDiario/images/logo-contrib.jpg";
             ElectionsApi.command(el, '', 'POST', el)
                 .then(function(data) { deferred.resolve(el); })
                 .catch(deferred.reject);
