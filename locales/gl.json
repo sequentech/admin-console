@@ -153,6 +153,7 @@
         "title": { "label": "Título", "placeholder": "ej.Nova xunta de dirección", "labelH3": "__index__. Votación titulada: __title__" },
         "description": { "label": "Descripción", "placeholder": "Descrición que se mostrará. Aquí debe de identificarse a organización que vai levar o proceso electoral, así como os métodos de contacto cos electores." },
         "share": { "label": "Texto para compartir", "placeholder": "Texto para usar nas ligazóns a redes sociais" },
+        "logo_url": { "label": "Logotipo personalizado", "placeholder": "URL logotipo personalizado para esta votación. O tamaño máximo recomendado é 150x150 px." },
         "layout": { "label": "Disposición", "placeholder": "Especifica cómo se vai mostrar toda a votación" },
         "layouts": { "simple": "Simple", "2questions-conditional": "Sí/No", "pcandidates-election": "Táboa de candidatos" },
         "theme": { "label": "Tema", "placeholder": "¿Cómo se verá a votación?" },

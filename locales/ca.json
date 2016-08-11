@@ -151,6 +151,7 @@
         "title": { "label": "Título", "placeholder": "ej.Nueva junta de dirección", "labelH3": "__index__. Votación titulada: __title__" },
         "description": { "label": "Descripción", "placeholder": "Descripción que se mostrará" },
         "share": { "label": "Texto para compartir", "placeholder": "Texto para usar en los enlaces a redes sociales" },
+        "logo_url": { "label": "Logo personalitzat", "placeholder": "URL per logo personalitzat per a aquesta votació. La mida màxim recomanat és 150x150 px." },
         "layout": { "label": "Disposición", "placeholder": "Especifica cómo se va a mostrar toda la votació" },
         "layouts": { "simple": "Simple", "2questions-conditional": "Sí/No", "pcandidates-election": "Table Candidates" },
         "theme": { "label": "Tema", "placeholder": "¿Cómo se verá la votació?" },
