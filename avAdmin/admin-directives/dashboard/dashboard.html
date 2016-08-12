@@ -1,10 +1,23 @@
 <div avb-busy overlay ng-if="loading && !intally"></div>
 
 <div class="dashboard">
-    <h2>
-      <span ng-i18next>avAdmin.sidebar.dashboard</span>
-      <span class="text-gray-light" ng-if="election.title">{{election.title | truncate:45}}</span>
-    </h2>
+  <div class="container-fluid">
+    <div class="dropdown pull-left">
+       <span>
+         <h2>
+          <span ng-i18next>avAdmin.sidebar.dashboard</span>
+          <span class="text-gray-light" ng-if="election.title">{{election.title | truncate:45}}</span>
+         </h2>
+       </span>
+    </div>
+    <div class="dropdown pull-right actions-div">
+      <button class="btn btn-success actionbtn ng-scope btn-primary dropdown-toggle" type="button" data-toggle="dropdown">actions
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="#">change social...</a></li>
+      </ul>
+    </div>
+  </div>
 
     <!-- dashboard status bar -->
     <div class="statusbar row text-center">
