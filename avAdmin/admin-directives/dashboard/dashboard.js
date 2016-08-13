@@ -232,8 +232,9 @@ angular.module('avAdmin')
       function duplicateElection() {
         var el = ElectionsApi.templateEl();
         _.extend(el, angular.copy(scope.election));
-        scope.current = el;
         el.id = null;
+        el.raw = null;
+        scope.current = el;
         ElectionsApi.setCurrent(el);
         ElectionsApi.newElection = true;
         $state.go("admin.basic");
