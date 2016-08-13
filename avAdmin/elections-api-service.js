@@ -220,19 +220,15 @@ angular.module('avAdmin')
 
             var cached = electionsapi.permcache[id];
             if (!cached) {
-                Authmethod.getPerm("edit", "AuthEvent", id)
+                Authmethod.getPerm(
+                    "edit|view|delete|send-auth|view-census",
+                    "AuthEvent",
+                    id
+                )
                     .success(function(data) {
                         var perm = data['permission-token'];
                         electionsapi.permcache[id] = perm;
                         deferred.resolve(perm);
-                    }).error(function (data) {
-                      // try with view permission
-                      Authmethod.getPerm("view", "AuthEvent", id)
-                          .success(function(data) {
-                              var perm = data['permission-token'];
-                              electionsapi.permcache[id] = perm;
-                              deferred.resolve(perm);
-                          });
                     });
             } else {
                 deferred.resolve(cached);
