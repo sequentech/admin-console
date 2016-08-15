@@ -94,6 +94,7 @@ angular.module('avAdmin')
           actionFunc: function() { return scope.changeSocial(); },
           enableFunc: function() { return true; }
         }
+      ];
 
       scope.statuses = statuses;
       scope.election = {};
