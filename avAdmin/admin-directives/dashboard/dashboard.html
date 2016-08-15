@@ -14,7 +14,15 @@
       <button class="btn btn-success actionbtn ng-scope btn-primary dropdown-toggle" type="button" data-toggle="dropdown">actions
       <span class="caret"></span></button>
       <ul class="dropdown-menu">
-        <li><a href="#">change social...</a></li>
+        <li
+          ng-repeat="action in actions"
+          ng-class="{'disabled': !action.enableFunc()}">
+          <a ng-click="action.actionFunc()">
+            <span ng-i18next>
+              [i18next]avAdmin.dashboard.dropdown.{{action.i18nString}}
+            </span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>

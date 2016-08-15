@@ -16,7 +16,18 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminDashboard', function($state, Authmethod, Plugins, ElectionsApi, $stateParams, $modal, PercentVotesService, SendMsg) {
+  .directive(
+    'avAdminDashboard', 
+    function(
+       $state, 
+       Authmethod, 
+       Plugins, 
+       ElectionsApi, 
+       $stateParams, 
+       $modal, 
+       PercentVotesService, 
+       SendMsg)
+    {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
       var id = $stateParams.id;
@@ -76,6 +87,13 @@ angular.module('avAdmin')
           confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-publish-results-modal.html"
         }
       ];
+
+      scope.actions = [
+        {
+          i18nString: 'changeSocial',
+          actionFunc: function() { return scope.changeSocial(); },
+          enableFunc: function() { return true; }
+        }
 
       scope.statuses = statuses;
       scope.election = {};
@@ -255,12 +273,26 @@ angular.module('avAdmin')
         $state.go("admin.create", {"autocreate": true});
       }
 
+      function changeSocial() {
+        $modal.open({
+          templateUrl: "avAdmin/admin-directives/dashboard/change-social-modal.html",
+          controller: "ChangeSocialModal",
+          size: 'lg',
+          resolve: {
+            election: function () { return scope.election; },
+          }
+        }).result.then(function(textarea) {
+          scope.addToCensus(textarea);
+        });
+      }
+
       angular.extend(scope, {
         doAction: doAction,
         doActionConfirm: doActionConfirm,
         sendAuthCodes: sendAuthCodes,
         duplicateElection: duplicateElection,
-        createRealElection: createRealElection
+        createRealElection: createRealElection,
+        changeSocial: changeSocial
       });
     }
 

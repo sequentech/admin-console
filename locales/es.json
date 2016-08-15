@@ -111,6 +111,9 @@
         "electionPublic": "Url pública de la votación",
         "censussend": "Se ha enviado el censo correctamente",
         "preview": "Demo de cabina de votación",
+        "actions": {
+          "changeSocial": "Cambiar social..."
+        },
         "modals": {
           "createHeader": "Crear votación",
           "createBody": "Para crear la votación, su configuración es enviada a las autoridades y estas crean las claves públicas de la votación. Tras esto, la votación ya no es editable. Antes de proceder a realizar este paso, por favor comprueba que la configuración es correcta (por ejemplo comprobándolo en la cabina de votación de prueba). Si necesitas cambiar la votación pasado este paso, deberás crear una nueva.",
