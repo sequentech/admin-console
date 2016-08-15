@@ -282,8 +282,7 @@ angular.module('avAdmin')
           resolve: {
             election: function () { return scope.election; },
           }
-        }).result.then(function(textarea) {
-          scope.addToCensus(textarea);
+        }).result.then(function(whateverReturned) {
         });
       }
 
