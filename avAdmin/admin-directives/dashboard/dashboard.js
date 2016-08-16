@@ -278,6 +278,7 @@ angular.module('avAdmin')
         $modal.open({
           templateUrl: "avAdmin/admin-directives/dashboard/change-social-modal.html",
           controller: "ChangeSocialModal",
+          windowClass: "change-social-window",
           size: 'lg',
           resolve: {
             election: function () { return scope.election; },
