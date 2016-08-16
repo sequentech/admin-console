@@ -1,0 +1,22 @@
+<div class="social-item">
+  <!-- social item form -->
+  <form class="row form form-horizontal qform" role="form" name="qform{{$index}}">
+    <div class="col-xs-12">
+        <!-- list of social networks -->
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="socialRadio">Social Network</label>
+            <div class="col-sm-10">
+                <div class="radio" ng-repeat="o in socialNetList">
+                    <label>
+                        <input
+                          type="radio"
+                          name="socialRadio"
+                          value="{{ o }}"/>
+                        <span>{{ o }}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+  </form>
+</div>

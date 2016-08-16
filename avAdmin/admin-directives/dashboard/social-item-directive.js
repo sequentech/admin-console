@@ -16,18 +16,13 @@
 **/
 
 angular.module('avAdmin')
-  .controller('ChangeSocialModal',
-    function($scope, $modalInstance, ConfigService) {
-     $scope.socialNetList = [
-       'Facebook',
-       'Twitter'
-     ];
+  .directive('avSocialItem', function() {
 
-      $scope.ok = function () {
-        $modalInstance.close();
-      };
+  }
 
-      $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-      };
-    });
+    return {
+      restrict: 'AE',
+      link: link,
+      templateUrl: 'avAdmin/admin-directives/dashboard/social-item-directive.html'
+    };
+  });
