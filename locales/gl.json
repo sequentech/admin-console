@@ -113,7 +113,7 @@
         "censussend": "Enviouse o censo correctamente",
         "preview": "Demo de cabina de votación",
         "actions": {
-          "changeSocial": "Cambiar social..."
+          "changeSocial": "Editar social..."
         },
         "modals": {
           "createHeader": "Crear votación",
@@ -131,6 +131,13 @@
           "publishResultsHeader": "Publicar resultados",
           "publishResultsBody": "Até o momento só os administradores da votación tiveron acceso directo aos resultados calculados da votación. Cando se publican os resultados, ponse a disposición pública para que calquera poida velos.",
           "confirmPublishResultsButton": "Confirmar e PUBLICAR resultados",
+          "changeSocial": {
+            "header": "Editar botóns de compartir de redes sociais",
+            "confirmButton": "Confirm e EDIT configuración de redes sociais",
+            "socialNetworkLabel": "Rede Social",
+            "urlTextLabel": "Texto a incluir en la URL",
+            "mainTextLabel": "Texto principal"
+          },
           "sendAuthCodes": {
             "editMessageStep": {
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",

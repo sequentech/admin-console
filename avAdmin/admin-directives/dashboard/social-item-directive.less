@@ -14,34 +14,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
 **/
-
-angular.module('avAdmin')
-  .controller('ChangeSocialModal',
-    function($scope, $modalInstance, ConfigService) {
-      $scope.socialNetList = [
-        {
-          name: 'Facebook',
-          logo_url: '/admin/img/facebook_logo_50.png'
-        },
-        {
-          name: 'Twitter',
-          logo_url: '/admin/img/twitter_logo_48.png'
-        }
-      ];
-
-      $scope.socialConfig = [
-        {
-          type: 'Facebook',
-          url_text: '',
-          main_text: ''
-        }
-      ];
-
-      $scope.ok = function () {
-        $modalInstance.close();
-      };
-
-      $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-      };
-    });
+ 
+[av-social-item] {
+  .social-radio-img {
+    max-height: 24px;
+    max-width: 30px;
+    width: auto;
+  }
+}

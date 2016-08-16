@@ -112,7 +112,7 @@
         "censussend": "Census send correctly",
         "preview": "Demo voting booth",
         "actions": {
-          "changeSocial": "Change social..."
+          "changeSocial": "Edit social..."
         },
         "modals": {
           "createHeader": "Create election",
@@ -130,6 +130,13 @@
           "publishResultsHeader": "Publish election results",
           "publishResultsBody": "Currently only the election administrators have access to the calculated election results. When you publish the results, these will be made public for everyone to see.",
           "confirmPublishResultsButton": "Confirm and PUBLISH election results",
+          "changeSocial": {
+            "header": "Edit social networks share buttons",
+            "confirmButton": "Confirm and EDIT social networks configuration",
+            "socialNetworkLabel": "Social Network",
+            "urlTextLabel": "Text to include on the URL",
+            "mainTextLabel": "Main text"
+          },
 
           "sendAuthCodes": {
             "editMessageStep": {
