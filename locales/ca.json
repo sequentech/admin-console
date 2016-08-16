@@ -132,9 +132,12 @@
           "changeSocial": {
             "header": "Edita botons de compartir xarxes socials",
             "confirmButton": "Confirmar i EDITAR configuració de xarxes socials",
+            "title": "Botons de Xarxes Socials",
+            "new": "Nou botó de xarxes socials",
             "socialNetworkLabel": "Xarxa Social",
             "urlTextLabel": "Texto a incluir en la URL",
-            "mainTextLabel": "Texto principal"
+            "mainTextLabel": "Texto principal",
+            "nameLabel": "Nom"
           },
           "sendAuthCodes": {
             "editMessageStep": {

@@ -9,6 +9,19 @@
   </h4>
 </div>
 <div class="modal-body">
+  <div class="affix-placeholder"></div>
+  <h1
+    av-affix-top-offset="31"
+    affix-placeholder=".affix-placeholder">
+    <span ng-i18next>avAdmin.dashboard.modals.changeSocial.title</span>
+    <button
+      type="button"
+      aria-expanded="false"
+      class="btn btn-success pull-right">
+      <i class="fa fa-plus"></i>
+      <span ng-i18next>avAdmin.dashboard.modals.changeSocial.new</span>
+    </button>
+  </h1>
   <div av-social-item social-item="q" ng-repeat="q in socialConfig"/>
 </div>
 <div class="modal-footer">

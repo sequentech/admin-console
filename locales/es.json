@@ -132,10 +132,13 @@
           "confirmPublishResultsButton": "Confirmar y PUBLICAR resultados",
           "changeSocial": {
             "header": "Editar botones de compartir redes sociales",
-            "confirmButton": "Confirmar y EDITAR configuración de redes sociales",
+            "confirmButton": "Confirmar y GUARDAR configuración de redes sociales",
+            "title": "Botones de Redes Sociales",
+            "new": "Nuevo botón de redes sociales",
             "socialNetworkLabel": "Red Social",
             "urlTextLabel": "Texto a incluir en la URL",
-            "mainTextLabel": "Texto principal"
+            "mainTextLabel": "Texto principal",
+            "nameLabel": "Nombre"
           },
           "sendAuthCodes": {
             "editMessageStep": {

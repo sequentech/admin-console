@@ -1,4 +1,23 @@
 <div class="social-item">
+  <!-- title, delete button, and stuff -->
+  <div class="row short q-name">
+      <div class="col-sm-10">
+          <span
+            class="glyphicon glyphicon-chevron-down"
+            ng-if="!q.active"
+            aria-hidden="true">
+          </span>
+          <span
+            class="glyphicon glyphicon-chevron-up"
+            ng-if="q.active"
+            aria-hidden="true">
+          </span>
+          {{ q.name|truncate:200 }}
+      </div>
+      <div class="col-sm-2 text-right buttons">
+          <i class="fa fa-times fa-sw"></i>
+      </div>
+  </div>
   <!-- social item form -->
   <form 
     class="row form form-horizontal sform"
@@ -6,6 +25,25 @@
     name="sform{{$index}}"
   >
     <div class="col-xs-12">
+
+        <!-- text that identifies the button for the admin -->
+        <div class="form-group">
+            <label 
+              class="col-sm-2 control-label"
+              for="nameText"
+              ng-i18next="avAdmin.dashboard.modals.changeSocial.nameLabel"
+            >
+            </label>
+            <div class="col-sm-10">
+                <textarea
+                  id="nameText"
+                  class="form-control"
+                  ng-model="q.name"
+                >
+                </textarea>
+            </div>
+        </div>
+
         <!-- list of social networks -->
         <div class="form-group">
             <label 

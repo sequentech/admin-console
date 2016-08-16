@@ -132,10 +132,13 @@
           "confirmPublishResultsButton": "Confirm and PUBLISH election results",
           "changeSocial": {
             "header": "Edit social networks share buttons",
-            "confirmButton": "Confirm and EDIT social networks configuration",
+            "title": "Social Network Buttons",
+            "new": "New social network button",
+            "confirmButton": "Confirm and SAVE social networks configuration",
             "socialNetworkLabel": "Social Network",
             "urlTextLabel": "Text to include on the URL",
-            "mainTextLabel": "Main text"
+            "mainTextLabel": "Main text",
+            "nameLabel": "Name"
           },
 
           "sendAuthCodes": {
