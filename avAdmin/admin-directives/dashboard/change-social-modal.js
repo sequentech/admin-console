@@ -31,7 +31,7 @@ angular.module('avAdmin')
 
       $scope.socialConfig = [
         {
-          name: 'my button name'
+          name: 'my button name',
           type: 'Facebook',
           url_text: '',
           main_text: '',
