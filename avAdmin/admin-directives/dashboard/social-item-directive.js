@@ -17,9 +17,6 @@
 
 angular.module('avAdmin')
   .directive('avSocialItem', function() {
-
-  }
-
     return {
       restrict: 'AE',
       link: link,
