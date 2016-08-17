@@ -53,7 +53,7 @@ angular.module('avAdmin')
           //ElectionsApi.templateQ($i18next("avAdmin.questions.new") + " " + el.questions.length);
           $scope.socialConfig.push(q);
           expandItem($scope.socialConfig.length - 1);
-      }
+      };
 
       $scope.toggleItem = function(index) {
         var qs = $scope.socialConfig;
