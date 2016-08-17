@@ -135,8 +135,8 @@
             "title": "Botons de Xarxes Socials",
             "new": "Nou botó de xarxes socials",
             "socialNetworkLabel": "Xarxa Social",
-            "urlTextLabel": "Texto a incluir en la URL",
-            "mainTextLabel": "Texto principal",
+            "buttonTextLabel": "Texto a incluir en la URL",
+            "socialMessageLabel": "Texto principal",
             "nameLabel": "Nom"
           },
           "sendAuthCodes": {

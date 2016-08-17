@@ -33,8 +33,15 @@ angular.module('avAdmin')
         {
           name: 'my button name',
           type: 'Facebook',
-          url_text: '',
-          main_text: '',
+          button_text: '',
+          social_message: '',
+          active: true
+        },
+        {
+          name: 'www2',
+          type: 'Facebook',
+          button_text: '',
+          social_message: '',
           active: true
         }
       ];
@@ -45,5 +52,20 @@ angular.module('avAdmin')
 
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
+      };
+
+      $scope.toggleQuestion = function(index) {
+        var qs = $scope.socialConfig;
+        var q = qs[index];
+        var active = q.active;
+        _.map(qs, function(q) { q.active = false; });
+        if (!active) {
+          q.active = true;
+        }
+      };
+
+      $scope.delQuestion = function(index) {
+        var qs = $scope.socialConfig;
+        $scope.socialConfig = qs.slice(0, index).concat(qs.slice(index+1,qs.length));
       };
     });
