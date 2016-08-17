@@ -79,5 +79,5 @@ angular.module('avAdmin')
       $scope.saveItems = function() {
         ElectionsApi.currentElection.socialConfig = $scope.socialConfig;
         $modalInstance.close();
-      }
+      };
     });
