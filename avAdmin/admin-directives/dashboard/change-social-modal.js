@@ -17,7 +17,7 @@
 
 angular.module('avAdmin')
   .controller('ChangeSocialModal',
-    function($scope, $modalInstance, ConfigService) {
+    function($scope, $modalInstance, ConfigService, ElectionsApi) {
       $scope.socialNetList = [
         {
           name: 'Facebook',
@@ -29,32 +29,33 @@ angular.module('avAdmin')
         }
       ];
 
-      $scope.socialConfig = [
-        {
-          name: 'my button name',
-          type: 'Facebook',
-          button_text: '',
-          social_message: '',
-          active: true
-        },
-        {
-          name: 'www2',
-          type: 'Facebook',
-          button_text: '',
-          social_message: '',
-          active: true
-        }
-      ];
-
-      $scope.ok = function () {
-        $modalInstance.close();
-      };
+      $scope.election = ElectionsApi.currentElection;
+      
+      if(!ElectionsApi.currentElection.socialConfig) {
+        $scope.socialConfig = [];
+      } else {
+        $scope.socialConfig = ElectionsApi.currentElection.socialConfig;
+      }
 
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
       };
 
-      $scope.toggleQuestion = function(index) {
+      $scope.newItem = function () {
+          // New item
+          var q = {
+            name: 'my button name',
+            type: 'Facebook',
+            button_text: '',
+            social_message: '',
+            active: false
+          };
+          //ElectionsApi.templateQ($i18next("avAdmin.questions.new") + " " + el.questions.length);
+          $scope.socialConfig.push(q);
+          expandItem($scope.socialConfig.length - 1);
+      }
+
+      $scope.toggleItem = function(index) {
         var qs = $scope.socialConfig;
         var q = qs[index];
         var active = q.active;
@@ -64,8 +65,19 @@ angular.module('avAdmin')
         }
       };
 
-      $scope.delQuestion = function(index) {
+      function expandItem(index) {
+        var qs = $scope.socialConfig;
+        _.map(qs, function(q) { q.active = false; });
+        qs[index].active = true;
+      }
+
+      $scope.delItem = function(index) {
         var qs = $scope.socialConfig;
         $scope.socialConfig = qs.slice(0, index).concat(qs.slice(index+1,qs.length));
       };
+
+      $scope.saveItems = function() {
+        ElectionsApi.currentElection.socialConfig = $scope.socialConfig;
+        $modalInstance.close();
+      }
     });
