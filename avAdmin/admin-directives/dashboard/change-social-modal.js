@@ -30,7 +30,7 @@ angular.module('avAdmin')
       ];
 
       $scope.election = ElectionsApi.currentElection;
-      
+
       if(!ElectionsApi.currentElection.presentation.share_text) {
         $scope.socialConfig = [];
       } else {
@@ -77,6 +77,7 @@ angular.module('avAdmin')
       };
 
       $scope.saveItems = function() {
+        ElectionsApi.currentElection.presentation.share_text = angular.copy($scope.socialConfig);
         ElectionsApi.updateShare(ElectionsApi.currentElection, angular.copy($scope.socialConfig))
           .then(function() {
              $modalInstance.close();
