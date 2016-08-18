@@ -136,8 +136,8 @@
             "title": "Botones de Redes Sociales",
             "new": "Nuevo botón de redes sociales",
             "socialNetworkLabel": "Red Social",
-            "buttonTextLabel": "Texto a incluir en la URL",
-            "socialMessageLabel": "Texto principal",
+            "buttonTextLabel": "Texto del botón",
+            "socialMessageLabel": "Mensaje a compartir",
             "nameLabel": "Nombre"
           },
           "sendAuthCodes": {

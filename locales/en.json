@@ -136,8 +136,8 @@
             "new": "New button",
             "confirmButton": "Confirm and SAVE social networks configuration",
             "socialNetworkLabel": "Social Network",
-            "buttonTextLabel": "Text to include on the URL",
-            "socialMessageLabel": "Main text",
+            "buttonTextLabel": "Button text",
+            "socialMessageLabel": "Share text",
             "nameLabel": "Name"
           },
 

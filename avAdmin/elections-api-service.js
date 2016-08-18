@@ -429,5 +429,21 @@ angular.module('avAdmin')
             return deferred.promise;
         };
 
+        electionsapi.updateShare = function(election, share_text) {
+          var deferred = $q.defer();
+
+          electionsapi.command(election, 'update-share', 'POST', share_text)
+            .then(electionsapi.getElection(election.id, true))
+            .then(function (el) {
+               if(share_text !== el.presentation.share_text) {
+                throw "Error: share_text not correctly updated";
+               }
+            })
+            .then(deferred.resolve)
+            .catch(deferred.reject)
+
+          return deferred.promise;
+        };
+
         return electionsapi;
     });

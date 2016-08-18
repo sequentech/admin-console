@@ -45,7 +45,7 @@ angular.module('avAdmin')
           // New item
           var q = {
             name: 'my button name',
-            type: 'Facebook',
+            network: 'Facebook',
             button_text: '',
             social_message: '',
             active: false
@@ -77,7 +77,9 @@ angular.module('avAdmin')
       };
 
       $scope.saveItems = function() {
-        ElectionsApi.currentElection.socialConfig = $scope.socialConfig;
-        $modalInstance.close();
+        ElectionsApi.updateShare(ElectionsApi.currentElection, $scope.socialConfig)
+          .then(function() {
+             $modalInstance.close();
+          });
       };
     });
