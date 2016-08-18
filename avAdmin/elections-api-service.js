@@ -429,8 +429,11 @@ angular.module('avAdmin')
             return deferred.promise;
         };
 
-        electionsapi.updateShare = function(election, share_text) {
+        electionsapi.updateShare = function(election, share) {
           var deferred = $q.defer();
+
+          var share_text = angular.copy(share);
+          share_text.forEach( function(v) { delete v.active; });
 
           electionsapi.command(election, 'update-share', 'POST', share_text)
             .then(function() {
