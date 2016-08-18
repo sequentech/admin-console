@@ -31,10 +31,10 @@ angular.module('avAdmin')
 
       $scope.election = ElectionsApi.currentElection;
       
-      if(!ElectionsApi.currentElection.socialConfig) {
+      if(!ElectionsApi.currentElection.presentation.share_text) {
         $scope.socialConfig = [];
       } else {
-        $scope.socialConfig = ElectionsApi.currentElection.socialConfig;
+        $scope.socialConfig = ElectionsApi.currentElection.presentation.share_text;
       }
 
       $scope.cancel = function () {
@@ -77,7 +77,7 @@ angular.module('avAdmin')
       };
 
       $scope.saveItems = function() {
-        ElectionsApi.updateShare(ElectionsApi.currentElection, $scope.socialConfig)
+        ElectionsApi.updateShare(ElectionsApi.currentElection, angular.copy($scope.socialConfig))
           .then(function() {
              $modalInstance.close();
           });
