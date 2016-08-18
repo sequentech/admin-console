@@ -440,7 +440,7 @@ angular.module('avAdmin')
                }
             })
             .then(deferred.resolve)
-            .catch(deferred.reject)
+            .catch(deferred.reject);
 
           return deferred.promise;
         };
