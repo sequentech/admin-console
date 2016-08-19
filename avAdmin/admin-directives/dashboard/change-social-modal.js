@@ -44,7 +44,6 @@ angular.module('avAdmin')
       $scope.newItem = function () {
           // New item
           var q = {
-            name: 'my button name',
             network: 'Facebook',
             button_text: '',
             social_message: '',
