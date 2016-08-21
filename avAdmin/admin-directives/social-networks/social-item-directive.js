@@ -23,6 +23,6 @@ angular.module('avAdmin')
     return {
       restrict: 'AE',
       link: link,
-      templateUrl: 'avAdmin/admin-directives/dashboard/social-item-directive.html'
+      templateUrl: 'avAdmin/admin-directives/social-networks/social-item-directive.html'
     };
   });
