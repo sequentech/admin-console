@@ -16,8 +16,8 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avSocialNetworks', function() {
-    function link(scope, element, attrs, $modalInstance, ConfigService, ElectionsApi) {
+  .directive('avSocialNetworks', function(ConfigService, ElectionsApi) {
+    function link(scope, element, attrs) {
       scope.socialNetList = [
         {
           name: 'Facebook',
@@ -75,7 +75,7 @@ angular.module('avAdmin')
         ElectionsApi.currentElection.presentation.share_text = angular.copy(scope.socialConfig);
         ElectionsApi.updateShare(ElectionsApi.currentElection, angular.copy(scope.socialConfig))
           .then(function() {
-             $modalInstance.close();
+             scope.nextOrClose();
           });
       };
     }

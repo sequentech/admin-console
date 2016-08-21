@@ -22,4 +22,8 @@ angular.module('avAdmin')
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
       };
+
+      $scope.nextOrClose = function () {
+        $modalInstance.close();
+      };
     });
