@@ -33,6 +33,7 @@ angular.module('avAdmin')
 
         angular.extend(scope, {
           saveBasic: save,
+          nextOrClose: save
         });
     }
 
