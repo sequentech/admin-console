@@ -17,5 +17,10 @@
 
 angular.module('avAdmin')
   .controller('InfoChangedSocialOk',
-    function($scope, $modalInstance, $modal) {
+    function($scope, $modalInstance) {
+
+       $scope.infoClose = function() {
+         $modalInstance.close();
+       };
+
     });

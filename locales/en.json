@@ -138,7 +138,9 @@
             "socialNetworkLabel": "Social Network",
             "buttonTextLabel": "Button text",
             "socialMessageLabel": "Share text",
-            "nameLabel": "Name"
+            "nameLabel": "Name",
+            "infoHeader": "Configuration saved",
+            "infoBody": "The social networks buttons configuration has been successfully saved."
           },
 
           "sendAuthCodes": {

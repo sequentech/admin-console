@@ -1,16 +1,15 @@
-<div class="modal-header">
+<div class="modal-header dialog-header-warning">
   <h4 class="modal-title">
-    <span class="title">
-      Successfully changed social!
+    <span class="title" ng-i18next>
+      avAdmin.dashboard.modals.changeSocial.infoHeader
     </span>
-    <button type="button" class="close pull-right" data-dismiss="modal">×</button>
+    <button type="button" class="close pull-right" ng-click="infoClose()">×</button>
   </h4>
 </div>
-<div class="modal-body">
-  ...
+<div class="modal-body" ng-i18next>
+  avAdmin.dashboard.modals.changeSocial.infoBody
 </div>
 <div class="modal-footer">
-  <button class="btn btn-success" data-dismiss="modal">
-    ok
+  <button class="btn btn-success" ng-click="infoClose()" ng-i18next="ok">
   </button>
 </div>

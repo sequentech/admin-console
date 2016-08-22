@@ -137,7 +137,9 @@
             "socialNetworkLabel": "Xarxa Social",
             "buttonTextLabel": "Text del botó",
             "socialMessageLabel": "Missatge a compartir",
-            "nameLabel": "Nom"
+            "nameLabel": "Nom",
+            "infoHeader": "Configuració desada",
+            "infoBody": "La configuració dels botons de xarxes socials ha estat guardada correctament."
           },
           "sendAuthCodes": {
             "editMessageStep": {

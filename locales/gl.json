@@ -139,7 +139,9 @@
             "socialNetworkLabel": "Rede Social",
             "buttonTextLabel": "Texto do botón",
             "socialMessageLabel": "Mensaxe para compartir",
-            "nameLabel": "Nome"
+            "nameLabel": "Nome",
+            "infoHeader": "Configuración gardada",
+            "infoBody": "A configuración dos botóns de redes sociais foi gardado correctamente."
           },
           "sendAuthCodes": {
             "editMessageStep": {
