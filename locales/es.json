@@ -142,7 +142,9 @@
             "buttonTextPlaceholder":  "Texto para el botón de compartir (puede no contener texto)",
             "nameLabel": "Nombre",
             "infoHeader": "Configuración guardada",
-            "infoBody": "La configuración de los botones de redes sociales ha sido guardada correctamente."
+            "infoBody": "La configuración de los botones de redes sociales ha sido guardada correctamente.",
+            "socialUrlLabel": "Enlace",
+            "socialUrlPlaceholder": "Enlace a la votación para compartir en redes sociales"
           },
           "sendAuthCodes": {
             "editMessageStep": {

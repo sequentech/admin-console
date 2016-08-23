@@ -141,7 +141,9 @@
             "socialMessagePlaceholder": "Text per compartir a les xarxes socials (no oblidis la URL de la votació)",
             "buttonTextPlaceholder":  "Text per al botó de compartir (pot no contenir text)",
             "infoHeader": "Configuració desada",
-            "infoBody": "La configuració dels botons de xarxes socials ha estat guardada correctament."
+            "infoBody": "La configuració dels botons de xarxes socials ha estat guardada correctament.",
+            "socialUrlLabel": "Enllaç",
+            "socialUrlPlaceholder": "Enllaç a la votació per compartir en xarxes socials"
           },
           "sendAuthCodes": {
             "editMessageStep": {

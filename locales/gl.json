@@ -143,7 +143,9 @@
             "socialMessageLabel": "Mensaxe para compartir",
             "nameLabel": "Nome",
             "infoHeader": "Configuración gardada",
-            "infoBody": "A configuración dos botóns de redes sociais foi gardado correctamente."
+            "infoBody": "A configuración dos botóns de redes sociais foi gardado correctamente.",
+            "socialUrlLabel": "Enlace",
+            "socialUrlPlaceholder": "Enlace á votación, para compartir en redes sociais"
           },
           "sendAuthCodes": {
             "editMessageStep": {
