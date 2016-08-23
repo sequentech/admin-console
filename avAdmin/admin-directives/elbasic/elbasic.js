@@ -27,13 +27,12 @@ angular.module('avAdmin')
           return !scope.election.id || scope.election.status === "registered";
         };
 
-        function save() {
+        function nextOrClose() {
             $state.go("admin.questions");
         }
 
         angular.extend(scope, {
-          saveBasic: save,
-          nextOrClose: save
+          nextOrClose: nextOrClose
         });
     }
 

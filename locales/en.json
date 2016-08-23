@@ -138,7 +138,7 @@
             "socialNetworkLabel": "Social Network",
             "buttonTextLabel": "Button text",
             "socialMessageLabel": "Share text",
-            "socialMessagePlaceholder": "Text to use for social sharing (don't forget the election)",
+            "socialMessagePlaceholder": "Text to use for social sharing (don't forget the election URL)",
             "buttonTextPlaceholder":  "Text for the share button (it can be empty)",
             "nameLabel": "Name",
             "infoHeader": "Configuration saved",
