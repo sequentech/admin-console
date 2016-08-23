@@ -138,6 +138,8 @@
             "socialNetworkLabel": "Social Network",
             "buttonTextLabel": "Button text",
             "socialMessageLabel": "Share text",
+            "socialMessagePlaceholder": "Text to use for social sharing (don't forget the election)",
+            "buttonTextPlaceholder":  "Text for the share button (it can be empty)",
             "nameLabel": "Name",
             "infoHeader": "Configuration saved",
             "infoBody": "The social networks buttons configuration has been successfully saved."
@@ -167,7 +169,6 @@
         "intro": "Creating an election requires multiple steps, but it is not difficult. It will only take 5 minutes. Please read the Administrator Manual, linked in the help icon at the top navegation bar.",
         "title": { "label": "Title", "placeholder": "eg.New Board of Directors", "labelH3": "__index__. Election titled: __title__" },
         "description": { "label": "Description", "placeholder": "Description will be shown" },
-        "share": { "label": "Share text", "placeholder": "Text to use for social sharing" },
         "logo_url": { "label": "Custom logo", "placeholder": "URL for a custom logo for this election. Maximum recommended size is 150x150 px." },
         "layout": { "label": "Layout", "placeholder": "Specifies how the whole election will be displayed" },
         "layouts": { "simple": "Simple", "2questions-conditional": "Yes/No", "pcandidates-election": "Table Candidates" },
