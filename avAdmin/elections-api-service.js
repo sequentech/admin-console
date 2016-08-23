@@ -315,6 +315,18 @@ angular.module('avAdmin')
         };
 
         electionsapi.templateEl = function() {
+
+            function getShareTextDefault() {
+              var ret = angular.copy(ConfigService.share_social.default);
+              if(!!ret) {
+                _.map(ret, function(q) { q.active = false; });
+                if (ret.length > 0) {
+                  ret[0].active = true;
+                }
+              }
+              return ret;
+            }
+
             var el = {
                 title: $i18next('avAdmin.sidebar.newel'),
                 description: "",
@@ -324,7 +336,7 @@ angular.module('avAdmin')
                 director: ConfigService.director,
                 presentation: {
                     theme: 'default',
-                    share_text: null,
+                    share_text: getShareTextDefault(),
                     urls: [],
                     theme_css: ''
                 },

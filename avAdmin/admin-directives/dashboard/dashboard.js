@@ -26,6 +26,7 @@ angular.module('avAdmin')
        $stateParams, 
        $modal, 
        PercentVotesService, 
+       ConfigService,
        SendMsg)
     {
     // we use it as something similar to a controller here
@@ -92,7 +93,7 @@ angular.module('avAdmin')
         {
           i18nString: 'changeSocial',
           actionFunc: function() { return scope.changeSocial(); },
-          enableFunc: function() { return true; }
+          enableFunc: function() { return ConfigService.share_social.allow_edit; }
         }
       ];
 
@@ -275,16 +276,18 @@ angular.module('avAdmin')
       }
 
       function changeSocial() {
-        $modal.open({
-          templateUrl: "avAdmin/admin-directives/dashboard/change-social-modal.html",
-          controller: "ChangeSocialModal",
-          windowClass: "change-social-window",
-          size: 'lg',
-          resolve: {
-            election: function () { return scope.election; },
-          }
-        }).result.then(function(whateverReturned) {
-        });
+        if(ConfigService.share_social.allow_edit) {
+          $modal.open({
+            templateUrl: "avAdmin/admin-directives/dashboard/change-social-modal.html",
+            controller: "ChangeSocialModal",
+            windowClass: "change-social-window",
+            size: 'lg',
+            resolve: {
+              election: function () { return scope.election; },
+            }
+          }).result.then(function(whateverReturned) {
+          });
+        }
       }
 
       angular.extend(scope, {

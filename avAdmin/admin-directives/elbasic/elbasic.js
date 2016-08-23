@@ -16,12 +16,14 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminElbasic', ['$state', 'ElectionsApi', function($state, ElectionsApi) {
+  .directive('avAdminElbasic', ['$state', 'ElectionsApi', 'ConfigService', function($state, ElectionsApi, ConfigService) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
         scope.election = ElectionsApi.currentElection;
         scope.layouts = ['simple', /*'2questions-conditional', 'pcandidates-election'*/];
         scope.themes = ['default'/*, 'podemos'*/];
+
+        scope.allow_social_edit = ConfigService.share_social.allow_edit;
 
         scope.electionEditable = function() {
           return !scope.election.id || scope.election.status === "registered";

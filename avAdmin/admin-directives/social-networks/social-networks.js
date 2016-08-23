@@ -16,73 +16,77 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avSocialNetworks', function(ConfigService, ElectionsApi) {
-    function link(scope, element, attrs) {
-      scope.socialNetList = [
-        {
-          name: 'Facebook',
-          logo_url: '/admin/img/facebook_logo_50.png'
-        },
-        {
-          name: 'Twitter',
-          logo_url: '/admin/img/twitter_logo_48.png'
+  .directive(
+    'avSocialNetworks', 
+    ['ConfigService', 
+    'ElectionsApi', 
+    function(ConfigService, ElectionsApi) {
+      function link(scope, element, attrs) {
+        scope.socialNetList = [
+          {
+            name: 'Facebook',
+            logo_url: '/admin/img/facebook_logo_50.png'
+          },
+          {
+            name: 'Twitter',
+            logo_url: '/admin/img/twitter_logo_48.png'
+          }
+        ];
+
+        scope.election = ElectionsApi.currentElection;
+
+        if(!ElectionsApi.currentElection.presentation.share_text) {
+          scope.socialConfig = [];
+        } else {
+          scope.socialConfig = ElectionsApi.currentElection.presentation.share_text;
         }
-      ];
 
-      scope.election = ElectionsApi.currentElection;
+        scope.newItem = function () {
+            // New item
+            var q = {
+              network: 'Facebook',
+              button_text: '',
+              social_message: '',
+              active: false
+            };
+            //ElectionsApi.templateQ($i18next("avAdmin.questions.new") + " " + el.questions.length);
+            scope.socialConfig.push(q);
+            expandItem(scope.socialConfig.length - 1);
+        };
 
-      if(!ElectionsApi.currentElection.presentation.share_text) {
-        scope.socialConfig = [];
-      } else {
-        scope.socialConfig = ElectionsApi.currentElection.presentation.share_text;
+        scope.toggleItem = function(index) {
+          var qs = scope.socialConfig;
+          var q = qs[index];
+          var active = q.active;
+          _.map(qs, function(q) { q.active = false; });
+          if (!active) {
+            q.active = true;
+          }
+        };
+
+        function expandItem(index) {
+          var qs = scope.socialConfig;
+          _.map(qs, function(q) { q.active = false; });
+          qs[index].active = true;
+        }
+
+        scope.delItem = function(index) {
+          var qs = scope.socialConfig;
+          scope.socialConfig = qs.slice(0, index).concat(qs.slice(index+1,qs.length));
+        };
+
+        scope.saveItems = function() {
+          ElectionsApi.currentElection.presentation.share_text = angular.copy(scope.socialConfig);
+          ElectionsApi.updateShare(ElectionsApi.currentElection, angular.copy(scope.socialConfig))
+            .then(function() {
+               scope.nextOrClose();
+            });
+        };
       }
 
-      scope.newItem = function () {
-          // New item
-          var q = {
-            network: 'Facebook',
-            button_text: '',
-            social_message: '',
-            active: false
-          };
-          //ElectionsApi.templateQ($i18next("avAdmin.questions.new") + " " + el.questions.length);
-          scope.socialConfig.push(q);
-          expandItem(scope.socialConfig.length - 1);
+      return {
+        restrict: 'AE',
+        link: link,
+        templateUrl: 'avAdmin/admin-directives/social-networks/social-networks.html'
       };
-
-      scope.toggleItem = function(index) {
-        var qs = scope.socialConfig;
-        var q = qs[index];
-        var active = q.active;
-        _.map(qs, function(q) { q.active = false; });
-        if (!active) {
-          q.active = true;
-        }
-      };
-
-      function expandItem(index) {
-        var qs = scope.socialConfig;
-        _.map(qs, function(q) { q.active = false; });
-        qs[index].active = true;
-      }
-
-      scope.delItem = function(index) {
-        var qs = scope.socialConfig;
-        scope.socialConfig = qs.slice(0, index).concat(qs.slice(index+1,qs.length));
-      };
-
-      scope.saveItems = function() {
-        ElectionsApi.currentElection.presentation.share_text = angular.copy(scope.socialConfig);
-        ElectionsApi.updateShare(ElectionsApi.currentElection, angular.copy(scope.socialConfig))
-          .then(function() {
-             scope.nextOrClose();
-          });
-      };
-    }
-
-    return {
-      restrict: 'AE',
-      link: link,
-      templateUrl: 'avAdmin/admin-directives/social-networks/social-networks.html'
-    };
-  });
+  }]);
