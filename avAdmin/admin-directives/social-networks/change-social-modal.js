@@ -21,7 +21,7 @@ angular.module('avAdmin')
 
       function showOkModal() {
         $modal.open({
-          templateUrl: "avAdmin/admin-directives/dashboard/info-changed-social-ok.html",
+          templateUrl: "avAdmin/admin-directives/social-networks/info-changed-social-ok.html",
           controller: "InfoChangedSocialOk",
           windowClass: "info-changed-social-window",
           size: 'sm'

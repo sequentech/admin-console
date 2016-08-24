@@ -42,7 +42,7 @@ angular.module('avAdmin')
           function openSocialModal() {
             if(ConfigService.share_social.allow_edit) {
               $modal.open({
-                templateUrl: "avAdmin/admin-directives/dashboard/change-social-modal.html",
+                templateUrl: "avAdmin/admin-directives/social-networks/change-social-modal.html",
                 controller: "ChangeSocialModal",
                 windowClass: "change-social-window",
                 size: 'lg'
