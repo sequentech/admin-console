@@ -11,8 +11,14 @@
        </span>
     </div>
     <div class="dropdown pull-right actions-div">
-      <button class="btn btn-success actionbtn ng-scope btn-primary dropdown-toggle" type="button" data-toggle="dropdown">actions
-      <span class="caret"></span></button>
+      <button 
+        class="btn btn-success actionbtn ng-scope btn-primary dropdown-toggle"
+        type="button"
+        data-toggle="dropdown"
+        ng-i18next="avAdmin.dashboard.actions.actionsLabel"
+      >
+        <span class="caret"></span>
+      </button>
       <ul class="dropdown-menu">
         <li
           ng-repeat="action in actions"

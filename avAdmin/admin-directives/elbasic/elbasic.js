@@ -29,12 +29,24 @@ angular.module('avAdmin')
           return !scope.election.id || scope.election.status === "registered";
         };
 
-        function nextOrClose() {
+        function save() {
             $state.go("admin.questions");
         }
 
+        function openSocialModal() {
+          if(ConfigService.share_social.allow_edit) {
+            $modal.open({
+              templateUrl: "avAdmin/admin-directives/dashboard/change-social-modal.html",
+              controller: "ChangeSocialModal",
+              windowClass: "change-social-window",
+              size: 'lg'
+            });
+          }
+        }
+
         angular.extend(scope, {
-          nextOrClose: nextOrClose
+          saveBasice: save
+          openSocialModal: openSocialModal
         });
     }
 

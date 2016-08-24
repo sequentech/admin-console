@@ -111,6 +111,7 @@
         "censussend": "Se ha enviado el censo correctamente",
         "preview": "Demo cabina de votació",
         "actions": {
+          "actionsLabel": "Accions",
           "changeSocial": "Editar social..."
         },
         "modals": {

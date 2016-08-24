@@ -32,7 +32,7 @@ angular.module('avAdmin')
         $modalInstance.dismiss('cancel');
       };
 
-      $scope.nextOrClose = function () {
+      $scope.successClose = function () {
         $modalInstance.close();
         showOkModal();
       };

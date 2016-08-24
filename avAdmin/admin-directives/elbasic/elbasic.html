@@ -1,5 +1,19 @@
 <div>
-    <h2 ng-i18next>avAdmin.sidebar.basic</h2>
+    <div class="container-fluid">
+      <div class="pull-left">
+        <h2 ng-i18next>avAdmin.sidebar.basic</h2>
+      </div>
+      <div class="pull-right">
+        <button
+          class="btn btn-success btn-social ng-scope btn-primary"
+          type="button"
+          ng-i18next="avAdmin.dashboard.actions.changeSocial"
+          ng-disabled="!allow_social_edit"
+          ng-click="openSocialModal()"
+        >
+        </button>
+      </div>
+    </div>
 
     <p class="text-muted" ng-i18next>avAdmin.basic.intro</p>
 
@@ -87,9 +101,6 @@
                   ng-i18next="[placeholder]avAdmin.basic.logo_url.placeholder"
                   ng-model="election.logo_url"></textarea>
             </div>
-        </div>
-
-        <div av-social-networks ng-if="allow_social_edit">
         </div>
 
         <button ng-click="saveItems()" class="btn btn-block btn-success" ng-i18next>next</button>

@@ -35,10 +35,10 @@ angular.module('avAdmin')
 
         scope.election = ElectionsApi.currentElection;
 
-        if(!ElectionsApi.currentElection.presentation.share_text) {
+        if(!scope.election.presentation.share_text) {
           scope.socialConfig = [];
         } else {
-          scope.socialConfig = ElectionsApi.currentElection.presentation.share_text;
+          scope.socialConfig = scope.election.presentation.share_text;
         }
 
         scope.newItem = function () {
@@ -75,12 +75,20 @@ angular.module('avAdmin')
           scope.socialConfig = qs.slice(0, index).concat(qs.slice(index+1,qs.length));
         };
 
+        function electionEditable() {
+          return !scope.election.id || scope.election.status === "registered";
+        };
+
         scope.saveItems = function() {
-          ElectionsApi.currentElection.presentation.share_text = angular.copy(scope.socialConfig);
-          ElectionsApi.updateShare(ElectionsApi.currentElection, angular.copy(scope.socialConfig))
+          scope.election.presentation.share_text = angular.copy(scope.socialConfig);
+          if(electionEditable()) {
+            scope.successClose();
+          } else {
+            ElectionsApi.updateShare(scope.election, angular.copy(scope.socialConfig))
             .then(function() {
-               scope.nextOrClose();
+              scope.successClose();
             });
+          }
         };
       }
 

@@ -112,6 +112,7 @@
         "censussend": "Census send correctly",
         "preview": "Demo voting booth",
         "actions": {
+          "actionsLabel": "Actions",
           "changeSocial": "Edit social..."
         },
         "modals": {
