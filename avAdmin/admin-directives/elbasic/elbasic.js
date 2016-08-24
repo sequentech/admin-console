@@ -16,45 +16,51 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminElbasic', ['$state', 'ElectionsApi', 'ConfigService', function($state, ElectionsApi, ConfigService) {
-    // we use it as something similar to a controller here
-    function link(scope, element, attrs) {
-        scope.election = ElectionsApi.currentElection;
-        scope.layouts = ['simple', /*'2questions-conditional', 'pcandidates-election'*/];
-        scope.themes = ['default'/*, 'podemos'*/];
+  .directive(
+    'avAdminElbasic', 
+    ['$state', 
+    'ElectionsApi', 
+    'ConfigService', 
+    '$modal', 
+    function($state, ElectionsApi, ConfigService, $modal) {
+      // we use it as something similar to a controller here
+      function link(scope, element, attrs) {
+          scope.election = ElectionsApi.currentElection;
+          scope.layouts = ['simple', /*'2questions-conditional', 'pcandidates-election'*/];
+          scope.themes = ['default'/*, 'podemos'*/];
 
-        scope.allow_social_edit = ConfigService.share_social.allow_edit;
+          scope.allow_social_edit = ConfigService.share_social.allow_edit;
 
-        scope.electionEditable = function() {
-          return !scope.election.id || scope.election.status === "registered";
-        };
+          scope.electionEditable = function() {
+            return !scope.election.id || scope.election.status === "registered";
+          };
 
-        function save() {
-            $state.go("admin.questions");
-        }
-
-        function openSocialModal() {
-          if(ConfigService.share_social.allow_edit) {
-            $modal.open({
-              templateUrl: "avAdmin/admin-directives/dashboard/change-social-modal.html",
-              controller: "ChangeSocialModal",
-              windowClass: "change-social-window",
-              size: 'lg'
-            });
+          function save() {
+              $state.go("admin.questions");
           }
-        }
 
-        angular.extend(scope, {
-          saveBasice: save
-          openSocialModal: openSocialModal
-        });
-    }
+          function openSocialModal() {
+            if(ConfigService.share_social.allow_edit) {
+              $modal.open({
+                templateUrl: "avAdmin/admin-directives/dashboard/change-social-modal.html",
+                controller: "ChangeSocialModal",
+                windowClass: "change-social-window",
+                size: 'lg'
+              });
+            }
+          }
 
-    return {
-      restrict: 'AE',
-      scope: {
-      },
-      link: link,
-      templateUrl: 'avAdmin/admin-directives/elbasic/elbasic.html'
-    };
+          angular.extend(scope, {
+            saveBasic: save,
+            openSocialModal: openSocialModal
+          });
+      }
+
+      return {
+        restrict: 'AE',
+        scope: {
+        },
+        link: link,
+        templateUrl: 'avAdmin/admin-directives/elbasic/elbasic.html'
+      };
   }]);

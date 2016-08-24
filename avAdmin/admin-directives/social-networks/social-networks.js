@@ -77,7 +77,7 @@ angular.module('avAdmin')
 
         function electionEditable() {
           return !scope.election.id || scope.election.status === "registered";
-        };
+        }
 
         scope.saveItems = function() {
           scope.election.presentation.share_text = angular.copy(scope.socialConfig);
