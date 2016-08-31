@@ -139,13 +139,13 @@
             "socialNetworkLabel": "Red Social",
             "buttonTextLabel": "Texto del botón",
             "socialMessageLabel": "Mensaje a compartir",
-            "socialMessagePlaceholder": "Texto para compartir en las redes sociales (no olvides la URL de la votación)",
+            "socialMessagePlaceholder": "Texto para compartir en las redes sociales (usa __URL__ para la url de la votación por defecto)",
             "buttonTextPlaceholder":  "Texto para el botón de compartir (puede no contener texto)",
             "nameLabel": "Nombre",
             "infoHeader": "Configuración guardada",
             "infoBody": "La configuración de los botones de redes sociales ha sido guardada correctamente.",
             "socialUrlLabel": "Enlace",
-            "socialUrlPlaceholder": "Enlace a la votación para compartir en redes sociales"
+            "socialUrlPlaceholder": "Enlace a la votación para compartir en redes sociales (usa __URL__ para la url de la votación por defecto)"
           },
           "sendAuthCodes": {
             "editMessageStep": {

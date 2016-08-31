@@ -139,13 +139,13 @@
             "socialNetworkLabel": "Social Network",
             "buttonTextLabel": "Button text",
             "socialMessageLabel": "Share text",
-            "socialMessagePlaceholder": "Text to use for social sharing (don't forget the election URL)",
+            "socialMessagePlaceholder": "Text to be shared on social networks (use __URL__ for the default election url)",
             "buttonTextPlaceholder":  "Text for the share button (it can be empty)",
             "nameLabel": "Name",
             "infoHeader": "Configuration saved",
             "infoBody": "The social networks buttons configuration has been successfully saved.",
             "socialUrlLabel": "Link",
-            "socialUrlPlaceholder": "Election link to be shared on social networks"
+            "socialUrlPlaceholder": "Election link to be shared on social networks (use __URL__ for the default election url)"
           },
 
           "sendAuthCodes": {

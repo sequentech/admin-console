@@ -38,7 +38,7 @@ angular.module('avAdmin')
         if(!scope.election.presentation.share_text) {
           scope.socialConfig = [];
         } else {
-          scope.socialConfig = scope.election.presentation.share_text;
+          scope.socialConfig = angular.copy(scope.election.presentation.share_text);
         }
 
         scope.newItem = function () {

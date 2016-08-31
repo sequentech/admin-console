@@ -139,14 +139,14 @@
             "new": "Novo botón de redes sociais",
             "socialNetworkLabel": "Rede Social",
             "buttonTextLabel": "Texto do botón",
-            "socialMessagePlaceholder": "Texto para compartir en redes sociais (non se esqueza da URL do voto)",
+            "socialMessagePlaceholder": "Texto para compartir en redes sociais (use __URL__ á url de la votación por defecto)",
             "buttonTextPlaceholder":  "Texto para o botón de compartir (pode non conter texto)",
             "socialMessageLabel": "Mensaxe para compartir",
             "nameLabel": "Nome",
             "infoHeader": "Configuración gardada",
             "infoBody": "A configuración dos botóns de redes sociais foi gardado correctamente.",
             "socialUrlLabel": "Enlace",
-            "socialUrlPlaceholder": "Enlace á votación, para compartir en redes sociais"
+            "socialUrlPlaceholder": "Enlace á votación, para compartir en redes sociais (use __URL__ á url de la votación por defecto)"
           },
           "sendAuthCodes": {
             "editMessageStep": {

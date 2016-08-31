@@ -139,12 +139,12 @@
             "buttonTextLabel": "Text del botó",
             "socialMessageLabel": "Missatge a compartir",
             "nameLabel": "Nom",
-            "socialMessagePlaceholder": "Text per compartir a les xarxes socials (no oblidis la URL de la votació)",
+            "socialMessagePlaceholder": "Text per compartir a les xarxes socials (usa __URL__ per a la url de la votació per defecte)",
             "buttonTextPlaceholder":  "Text per al botó de compartir (pot no contenir text)",
             "infoHeader": "Configuració desada",
             "infoBody": "La configuració dels botons de xarxes socials ha estat guardada correctament.",
             "socialUrlLabel": "Enllaç",
-            "socialUrlPlaceholder": "Enllaç a la votació per compartir en xarxes socials"
+            "socialUrlPlaceholder": "Enllaç a la votació per compartir en xarxes socials (usa __URL__ per a la url de la votació per defecte)"
           },
           "sendAuthCodes": {
             "editMessageStep": {
