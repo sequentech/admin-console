@@ -19,7 +19,7 @@
  * Service to manage the send authentication codes modal steps.
  */
 angular.module('avAdmin')
-  .factory('SendMsg', function($q, $modal, Authmethod, Plugins)
+  .factory('SendMsg', function($q, $modal, Authmethod, Plugins, ElectionsApi)
   {
     // These is the base data of this service
     var service = {
@@ -83,11 +83,82 @@ angular.module('avAdmin')
     };
 
     /**
+     * Checks whether the extra_field of an election allows other auth methods.
+     */
+    service.authMethodIsSelectable = function () {
+
+      function getExtraField(name) {
+        for (var i = 0; i < service.election.census.extra_fields.length; i++) {
+           if(service.election.census.extra_fields[i].name === name) {
+            return service.election.census.extra_fields[i];
+           }
+        }
+        return false;
+      }
+
+      if('sms' === service.election.census.auth_method) {
+        var email_field = getExtraField('email');
+        if(email_field && 'text' === email_field.type) {
+          return true;
+        }
+      } else if('email' === service.election.census.auth_method) {
+        var tlf_field = getExtraField('tlf');
+        if(email_field && 'text' === tlf_field.type) {
+          return true;
+        }
+      }
+      return false;
+    };
+
+    function getAllCensus(election_ref) {
+      var deferred = $q.defer();
+      var election = angular.copy(election_ref);
+      var totalCensusCount = election.data.total_count;
+      election.census.voters = [];
+      var currentCount = 0; 
+      var nomore = false;
+      var downloading = false;
+      var page = 1;
+      var loadMoreCensus = function () {
+        if (nomore) {
+          return;
+        }
+
+        if (downloading) {
+          return;
+        }
+        downloading = true;
+
+        ElectionsApi.getCensus(election, page, "max")
+        .then(function(el) {
+          page += 1;
+
+          totalCensusCount = el.data.total_count;
+          currentCount = el.data.end_index;
+          if (el.data.end_index === el.data.total_count) {
+            downloading = false;
+            nomore = true;
+            deferred.resolve(election.census.voters);
+          }
+
+          downloading = false;
+          loadMoreCensus();
+        })
+        .catch(function(data) {
+          deferred.reject(data);
+        });
+      };
+      return deferred.promise;
+    }
+
+    /**
      * Triggers from the start the send messages dialog. The first dialog shown
      * is
      */
     service.sendAuthCodesModal = function()
     {
+      service.selectable_auth_method = service.authMethodIsSelectable();
+      service.selected_auth_method = angular.copy(election.census.auth_method);
       // If skip dialog flag is activated, then we jump directly to the
       // confirmation step
       if (service.skipEditDialogFlag)
@@ -114,10 +185,61 @@ angular.module('avAdmin')
       // when the edit dialog has been shown, then we default to not showing it
       // again unless necessary (setting the skip edit dialog to true) and
       // continue to the confirmation dialog
-      }).result.then(function ()
-      {
-        service.skipEditDialogFlag = true;
-        service.confirmAuthCodesModal();
+      }).result.then(function () {
+        // Select only user ids compatible with the selected auth method
+        if(service.selected_auth_method !== election.census.auth_method) {
+          function filterUsersByAltAuth() {
+            if('sms' === service.selected_auth_method) {
+              var smsFilter = function (v) {
+                return v.metadata &&
+                       v.metadata.tlf &&
+                       _.isString(v.metadata.tlf) &&
+                       v.metadata.tlf.length;
+              };
+              service.user_ids =
+                _.pluck(
+                  _.filter(service.raw_user_list, smsFilter, "id");
+            } else if('email' === service.selected_auth_method) {
+              var emailFilter = function(v) {
+                return v.metadata &&
+                       v.metadata.email &&
+                       _.isString(v.metadata.email) &&
+                       v.metadata.email.length;
+              };
+              service.user_ids =
+                _.pluck(
+                  _.filter(service.raw_user_list, emailFilter,"id");
+            }
+          }
+
+          function maybeGetAllCensus() {
+            var deferred = $q.defer();
+
+            // In this case we want to select 'all' user ids but we only should 
+            // select the ones compatible with the selected auth method.
+            if(!service.user_ids) {
+              getAllCensus(service.election)
+              .then( function(data) {
+                service.raw_user_list = data;
+                service.user_ids = _.pluck( data, 'id');
+                deferred.resolve({});
+              })
+              .catch(function(data) {
+                deferred.reject(data);
+              });
+            } else {
+             deferred.resolve({});
+            }
+            return deferred.promise;
+          }
+
+          maybeGetAllCensus()()
+          .then(function() {
+            filterUsersByAltAuth();
+            service.skipEditDialogFlag = true;
+            service.confirmAuthCodesModal();
+          });
+        }
       });
     };
 
@@ -150,6 +272,9 @@ angular.module('avAdmin')
         controller: "SendAuthCodesModalConfirm",
         size: 'lg',
         resolve: {
+          selected_auth_method: function() {
+            return service.selected_auth_method;
+          },
           election: function () { return service.election; },
           user_ids: function() { return service.user_ids; },
           exhtml: function () {
@@ -200,6 +325,7 @@ angular.module('avAdmin')
             service.election.id,
             service.election,
             service.user_ids,
+            service.selected_auth_method,
             service.extra
           ).success(function(r)
           {

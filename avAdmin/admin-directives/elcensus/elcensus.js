@@ -310,6 +310,7 @@ angular.module('avAdmin')
         SendMsg.setElection(scope.election);
         SendMsg.scope = scope;
         SendMsg.user_ids = user_ids;
+        SendMsg.raw_user_list = angular.copy(selectedList);
         SendMsg.sendAuthCodesModal();
 
         return false;

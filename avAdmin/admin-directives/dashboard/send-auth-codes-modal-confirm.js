@@ -31,9 +31,11 @@ angular.module('avAdmin')
       Plugins,
       election,
       user_ids,
+      selected_auth_method,
       exhtml)
     {
       $scope.election = election;
+      $scope.selected_auth_method = selected_auth_method;
       $scope.user_ids = user_ids;
       $scope.imsure = false;
       $scope.steps = SendMsg.steps;
@@ -120,7 +122,7 @@ angular.module('avAdmin')
       $scope.exampleMsg = function()
       {
         var identity = "/aabb@gmail.com";
-        if("sms" === election.census.auth_method) {
+        if("sms" === selected_auth_method) {
           identity = "/+34666666666";
         }
         var msg = election.census.config.msg;
