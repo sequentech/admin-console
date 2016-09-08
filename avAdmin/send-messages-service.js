@@ -155,8 +155,7 @@ angular.module('avAdmin')
      * Triggers from the start the send messages dialog. The first dialog shown
      * is
      */
-    service.sendAuthCodesModal = function()
-    {
+    service.sendAuthCodesModal = function() {
       service.selectable_auth_method = service.authMethodIsSelectable();
       service.selected_auth_method = angular.copy(service.election.census.auth_method);
       // If skip dialog flag is activated, then we jump directly to the
@@ -239,6 +238,9 @@ angular.module('avAdmin')
             service.skipEditDialogFlag = true;
             service.confirmAuthCodesModal();
           });
+        } else {
+          service.skipEditDialogFlag = true;
+          service.confirmAuthCodesModal();
         }
       });
     };
