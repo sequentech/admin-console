@@ -103,7 +103,7 @@ angular.module('avAdmin')
         }
       } else if('email' === service.election.census.auth_method) {
         var tlf_field = getExtraField('tlf');
-        if(email_field && 'text' === tlf_field.type) {
+        if(tlf_field && 'text' === tlf_field.type) {
           return true;
         }
       }
@@ -158,7 +158,7 @@ angular.module('avAdmin')
     service.sendAuthCodesModal = function()
     {
       service.selectable_auth_method = service.authMethodIsSelectable();
-      service.selected_auth_method = angular.copy(election.census.auth_method);
+      service.selected_auth_method = angular.copy(service.election.census.auth_method);
       // If skip dialog flag is activated, then we jump directly to the
       // confirmation step
       if (service.skipEditDialogFlag)
@@ -187,8 +187,8 @@ angular.module('avAdmin')
       // continue to the confirmation dialog
       }).result.then(function () {
         // Select only user ids compatible with the selected auth method
-        if(service.selected_auth_method !== election.census.auth_method) {
-          function filterUsersByAltAuth() {
+        if(service.selected_auth_method !== service.election.census.auth_method) {
+          var filterUsersByAltAuth = function () {
             if('sms' === service.selected_auth_method) {
               var smsFilter = function (v) {
                 return v.metadata &&
@@ -198,7 +198,7 @@ angular.module('avAdmin')
               };
               service.user_ids =
                 _.pluck(
-                  _.filter(service.raw_user_list, smsFilter, "id");
+                  _.filter(service.raw_user_list, smsFilter), "id");
             } else if('email' === service.selected_auth_method) {
               var emailFilter = function(v) {
                 return v.metadata &&
@@ -208,11 +208,11 @@ angular.module('avAdmin')
               };
               service.user_ids =
                 _.pluck(
-                  _.filter(service.raw_user_list, emailFilter,"id");
+                  _.filter(service.raw_user_list, emailFilter),"id");
             }
-          }
+          };
 
-          function maybeGetAllCensus() {
+          var maybeGetAllCensus = function () {
             var deferred = $q.defer();
 
             // In this case we want to select 'all' user ids but we only should 
@@ -231,9 +231,9 @@ angular.module('avAdmin')
              deferred.resolve({});
             }
             return deferred.promise;
-          }
+          };
 
-          maybeGetAllCensus()()
+          maybeGetAllCensus()
           .then(function() {
             filterUsersByAltAuth();
             service.skipEditDialogFlag = true;
