@@ -39,7 +39,7 @@
                 name="auth"
                 ng-value="a"
                 id="{{a}}"
-                ng-model="selected_auth_method"
+                ng-model="selected_auth_method.ref"
               />
               <span ng-i18next="avAdmin.auth.auths.{{ a }}">
               </span>
@@ -49,7 +49,7 @@
        </div>
     </div>
     <div class="row">
-      <div ng-if="'sms' === selected_auth_method">
+      <div ng-if="'sms' === selected_auth_method.ref">
           <div class="form-group">
               <label
                 class="col-xs-3 control-label text-right"
@@ -62,7 +62,7 @@
           </div>
       </div>
       <!-- Email conf -->
-      <div ng-if="'email' === selected_auth_method">
+      <div ng-if="'email' === selected_auth_method.ref">
           <div class="form-group">
               <label
                 class="col-xs-3 control-label text-right padding-top-input"

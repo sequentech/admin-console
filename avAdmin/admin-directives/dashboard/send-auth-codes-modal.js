@@ -21,7 +21,7 @@ angular.module('avAdmin')
       $scope.election = election;
       $scope.auth = ['email', 'sms'];
       $scope.selectable_auth_method = SendMsg.selectable_auth_method;
-      $scope.selected_auth_method = SendMsg.selected_auth_method;
+      $scope.selected_auth_method = { ref: SendMsg.selected_auth_method };
       $scope.user_ids = user_ids;
       $scope.steps = SendMsg.steps;
       $scope.helpurl = ConfigService.helpUrl;
