@@ -26,6 +26,7 @@ angular.module('avAdmin')
       $scope.steps = SendMsg.steps;
       $scope.helpurl = ConfigService.helpUrl;
       $scope.ok = function () {
+        SendMsg.selected_auth_method = $scope.selected_auth_method.ref;
         $modalInstance.close($scope.user_ids);
       };
 

@@ -144,11 +144,8 @@ angular.module('avAdmin')
       // again unless necessary (setting the skip edit dialog to true) and
       // continue to the confirmation dialog
       }).result.then(function () {
-        // Select only user ids compatible with the selected auth method
-        if(service.selected_auth_method !== service.election.census.auth_method) {
-          service.skipEditDialogFlag = true;
-          service.confirmAuthCodesModal();
-        }
+        service.skipEditDialogFlag = true;
+        service.confirmAuthCodesModal();
       });
     };
 
