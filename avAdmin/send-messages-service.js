@@ -98,12 +98,12 @@ angular.module('avAdmin')
 
       if('sms' === service.election.census.auth_method) {
         var email_field = getExtraField('email');
-        if(email_field && 'text' === email_field.type) {
+        if(email_field && 'email' === email_field.type) {
           return true;
         }
       } else if('email' === service.election.census.auth_method) {
         var tlf_field = getExtraField('tlf');
-        if(tlf_field && 'text' === tlf_field.type) {
+        if(tlf_field && 'tlf' === tlf_field.type) {
           return true;
         }
       }
