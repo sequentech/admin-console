@@ -110,47 +110,6 @@ angular.module('avAdmin')
       return false;
     };
 
-    function getAllCensus(election_ref) {
-      var deferred = $q.defer();
-      var election = angular.copy(election_ref);
-      var totalCensusCount = election.data.total_count;
-      election.census.voters = [];
-      var currentCount = 0; 
-      var nomore = false;
-      var downloading = false;
-      var page = 1;
-      var loadMoreCensus = function () {
-        if (nomore) {
-          return;
-        }
-
-        if (downloading) {
-          return;
-        }
-        downloading = true;
-
-        ElectionsApi.getCensus(election, page, "max")
-        .then(function(el) {
-          page += 1;
-
-          totalCensusCount = el.data.total_count;
-          currentCount = el.data.end_index;
-          if (el.data.end_index === el.data.total_count) {
-            downloading = false;
-            nomore = true;
-            deferred.resolve(election.census.voters);
-          }
-
-          downloading = false;
-          loadMoreCensus();
-        })
-        .catch(function(data) {
-          deferred.reject(data);
-        });
-      };
-      return deferred.promise;
-    }
-
     /**
      * Triggers from the start the send messages dialog. The first dialog shown
      * is
@@ -187,58 +146,6 @@ angular.module('avAdmin')
       }).result.then(function () {
         // Select only user ids compatible with the selected auth method
         if(service.selected_auth_method !== service.election.census.auth_method) {
-          var filterUsersByAltAuth = function () {
-            if('sms' === service.selected_auth_method) {
-              var smsFilter = function (v) {
-                return v.metadata &&
-                       v.metadata.tlf &&
-                       _.isString(v.metadata.tlf) &&
-                       v.metadata.tlf.length;
-              };
-              service.user_ids =
-                _.pluck(
-                  _.filter(service.raw_user_list, smsFilter), "id");
-            } else if('email' === service.selected_auth_method) {
-              var emailFilter = function(v) {
-                return v.metadata &&
-                       v.metadata.email &&
-                       _.isString(v.metadata.email) &&
-                       v.metadata.email.length;
-              };
-              service.user_ids =
-                _.pluck(
-                  _.filter(service.raw_user_list, emailFilter),"id");
-            }
-          };
-
-          var maybeGetAllCensus = function () {
-            var deferred = $q.defer();
-
-            // In this case we want to select 'all' user ids but we only should 
-            // select the ones compatible with the selected auth method.
-            if(!service.user_ids) {
-              getAllCensus(service.election)
-              .then( function(data) {
-                service.raw_user_list = data;
-                service.user_ids = _.pluck( data, 'id');
-                deferred.resolve({});
-              })
-              .catch(function(data) {
-                deferred.reject(data);
-              });
-            } else {
-             deferred.resolve({});
-            }
-            return deferred.promise;
-          };
-
-          maybeGetAllCensus()
-          .then(function() {
-            filterUsersByAltAuth();
-            service.skipEditDialogFlag = true;
-            service.confirmAuthCodesModal();
-          });
-        } else {
           service.skipEditDialogFlag = true;
           service.confirmAuthCodesModal();
         }
