@@ -35,6 +35,13 @@
       "thisisATestElection": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas.",
       "thisisATestElectionPopover": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas. Para ello, debes completar el proceso de la votación hasta el paso de publicar resultados"
     },
+    "results": {
+      "downloadData": "Descargar datos",
+      "downloadBallotsCsv": "Descargar votos como hoja de cálculo (formato CSV)",
+      "downloadResultsCsv": "Descargar Resultados del Escrutinio (formato CSV)",
+      "downloadResultsJson": "Descargar Resultados del Escrutinio (formato JSON)",
+      "downloadResultsPretty": "Descargar Resultados del Escrutinio (formato de texto)"
+    },
     "topbar": {
         "home": "Inicio",
         "features": "Funcionalidade",
@@ -362,9 +369,9 @@
         "create": "Crear as votacións",
         "create__plural": "Crear as votacións",
         "creating": "Creando a autenticación da votación __title__",
-        "census": "Engadindo o censo (ide: __ide__) __title__",
-        "reg": "Rexistrando a votación (ide: __ide__) __title__",
-        "creatingEl": "Creando a votación (ide: __ide__) __title__",
+        "census": "Engadindo o censo (ide: __id__) __title__",
+        "reg": "Rexistrando a votación (ide: __id__) __title__",
+        "creatingEl": "Creando a votación (ide: __id__) __title__",
         "logHeader": "Log",
         "errors": {
           "election-is-array-questions": "Votación '__eltitle__': la lista de pregunta no es un array",

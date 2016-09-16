@@ -189,7 +189,69 @@
     <!-- endof general -->
 
     <!-- results -->
-    <h2 ng-if="election.results.questions" ng-i18next>avAdmin.dashboard.results</h2>
+    <h2 ng-if="election.results.questions">
+      <span ng-i18next>avAdmin.dashboard.results</span>
+
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn btn-xs btn-primary dropdown-toggle"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">
+          <span ng-i18next>
+            avAdmin.results.downloadData
+          </span>
+          <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu download-data-dropdown" role="menu">
+          <li>
+            <a
+              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/ballots.csv"
+              target="_blank"
+              class="wrap">
+              <span ng-i18next>
+                avAdmin.results.downloadBallotsCsv
+              </span>
+            </a>
+          </li>
+
+          <li>
+            <a
+              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.csv"
+              target="_blank"
+              class="wrap">
+              <span ng-i18next>
+                avAdmin.results.downloadResultsCsv
+              </span>
+            </a>
+          </li>
+
+          <li>
+            <a
+              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.json"
+              target="_blank"
+              class="wrap">
+              <span ng-i18next>
+                avAdmin.results.downloadResultsJson
+              </span>
+            </a>
+          </li>
+
+          <li>
+            <a
+              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.pretty"
+              target="_blank"
+              class="wrap">
+              <span ng-i18next>
+                avAdmin.results.downloadResultsPretty
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </h2>
     <div class="well question-result" ng-repeat="q in election.results.questions">
         <div class="row">
             <div class="col-md-7">

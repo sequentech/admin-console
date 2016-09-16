@@ -34,6 +34,13 @@
       "thisisATestElection": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas.",
       "thisisATestElectionPopover": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas. Para ello, debes completar el proceso de la votación hasta el paso de publicar resultados"
     },
+    "results": {
+      "downloadData": "Descargar datos",
+      "downloadBallotsCsv": "Descargar votos como hoja de cálculo (formato CSV)",
+      "downloadResultsCsv": "Descargar Resultados del Escrutinio (formato CSV)",
+      "downloadResultsJson": "Descargar Resultados del Escrutinio (formato JSON)",
+      "downloadResultsPretty": "Descargar Resultados del Escrutinio (formato de texto)"
+    },
     "topbar": {
         "home": "Inicio",
         "features": "Funcionalidad",
