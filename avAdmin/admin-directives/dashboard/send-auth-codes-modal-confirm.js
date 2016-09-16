@@ -122,7 +122,7 @@ angular.module('avAdmin')
       $scope.exampleMsg = function()
       {
         var identity = "/aabb@gmail.com";
-        if("sms" === selected_auth_method) {
+        if("sms" === election.census.auth_method) {
           identity = "/+34666666666";
         }
         var msg = election.census.config.msg;
