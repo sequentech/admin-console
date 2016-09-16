@@ -25,6 +25,7 @@
           ng-repeat="action in actions"
           ng-class="{'disabled': !action.enableFunc()}">
           <a ng-click="action.actionFunc()">
+            <i class="{{action.iconClass}}"></i>
             <span ng-i18next>
               [i18next]avAdmin.dashboard.actions.{{action.i18nString}}
             </span>
@@ -70,7 +71,7 @@
                 <strong>{{ election.auth.census|number }}</strong><br/>
                 <button
                   ng-click="sendAuthCodes()"
-                  ng-if="election.status == 'started'"
+                  ng-if="'started' === election.status"
                   class="btn btn-success send-auth pull-left">
                     <i class="fa fa-sw fa-send"></i>
                     <span ng-i18next>

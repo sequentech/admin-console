@@ -92,8 +92,15 @@ angular.module('avAdmin')
       scope.actions = [
         {
           i18nString: 'changeSocial',
+          iconClass: 'fa fa-comment-o',
           actionFunc: function() { return scope.changeSocial(); },
           enableFunc: function() { return ConfigService.share_social.allow_edit; }
+        },
+        {
+          i18nString: 'sendAuthCodes',
+          iconClass: 'fa fa-paper-plane-o',
+          actionFunc: function() { return scope.sendAuthCodes(); },
+          enableFunc: function() { return 'started' === scope.election.status; }
         }
       ];
 
