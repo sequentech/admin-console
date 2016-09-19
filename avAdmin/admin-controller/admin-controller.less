@@ -48,12 +48,19 @@
     margin-top: 10px;
 
     a {
-      color: @av-primary-contrast;
+      color: @av-primary;
       text-decoration: underline;
 
       &:hover {
         text-decoration: none;
       }
     }
+  }
+}
+
+.modal-footer {
+  .btn.btn-cancel:hover {
+    background-color: darken(@gray-lighter, 20%);
+    color: @av-primary;
   }
 }
