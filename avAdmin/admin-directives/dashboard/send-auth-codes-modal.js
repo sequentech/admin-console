@@ -19,10 +19,14 @@ angular.module('avAdmin')
   .controller('SendAuthCodesModal',
     function($scope, $modalInstance, SendMsg, ConfigService, election, user_ids) {
       $scope.election = election;
+      $scope.auth = ['email', 'sms'];
+      $scope.selectable_auth_method = SendMsg.selectable_auth_method;
+      $scope.selected_auth_method = { ref: SendMsg.selected_auth_method };
       $scope.user_ids = user_ids;
       $scope.steps = SendMsg.steps;
       $scope.helpurl = ConfigService.helpUrl;
       $scope.ok = function () {
+        SendMsg.selected_auth_method = $scope.selected_auth_method.ref;
         $modalInstance.close($scope.user_ids);
       };
 

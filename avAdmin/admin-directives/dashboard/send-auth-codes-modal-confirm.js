@@ -31,9 +31,11 @@ angular.module('avAdmin')
       Plugins,
       election,
       user_ids,
+      selected_auth_method,
       exhtml)
     {
       $scope.election = election;
+      $scope.selected_auth_method = selected_auth_method;
       $scope.user_ids = user_ids;
       $scope.imsure = false;
       $scope.steps = SendMsg.steps;
