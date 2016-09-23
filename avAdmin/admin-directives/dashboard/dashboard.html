@@ -61,13 +61,13 @@
     <!-- election info -->
     <div class="row info">
         <div class="col-sm-4 text-right">
-            <div class="block">
+            <div class="block well">
                 <strong>{{ election.votes|number }}</strong><br/>
                 <span ng-i18next>avAdmin.dashboard.votes</span>
             </div>
         </div>
         <div class="col-sm-4 text-right">
-            <div class="block">
+            <div class="block well">
                 <strong>{{ election.auth.census|number }}</strong><br/>
                 <button
                   ng-click="sendAuthCodes()"
@@ -82,7 +82,7 @@
             </div>
         </div>
         <div class="col-sm-4 text-right">
-            <div class="block">
+            <div class="block well">
                 <span ng-i18next>avAdmin.dashboard.questions</span>
                 <strong>{{ election.questions.length }}</strong><br/>
                 <span ng-i18next>avAdmin.dashboard.answers</span>
