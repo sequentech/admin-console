@@ -111,6 +111,10 @@
         "electionPublic": "Url pública de la votación",
         "censussend": "Se ha enviado el censo correctamente",
         "preview": "Demo de cabina de votación",
+        "actions": {
+          "actionsLabel": "Acciones",
+          "changeSocial": "Editar social..."
+        },
         "modals": {
           "createHeader": "Crear votación",
           "createBody": "Para crear la votación, su configuración es enviada a las autoridades y estas crean las claves públicas de la votación. Tras esto, la votación ya no es editable. Antes de proceder a realizar este paso, por favor comprueba que la configuración es correcta (por ejemplo comprobándolo en la cabina de votación de prueba). Si necesitas cambiar la votación pasado este paso, deberás crear una nueva.",
@@ -127,6 +131,22 @@
           "publishResultsHeader": "Publicar resultados",
           "publishResultsBody": "Hasta el momento solo los administradores de la votación han tenido acceso directo a los resultados calculados de la votación. Cuando se publican los resultados, se ponen a disposición pública para que cualquiera pueda verlos.",
           "confirmPublishResultsButton": "Confirmar y PUBLICAR resultados",
+          "changeSocial": {
+            "header": "Editar botones de compartir redes sociales",
+            "confirmButton": "Confirmar y GUARDAR configuración de redes sociales",
+            "title": "Botones de Redes Sociales",
+            "new": "Nuevo botón de redes sociales",
+            "socialNetworkLabel": "Red Social",
+            "buttonTextLabel": "Texto del botón",
+            "socialMessageLabel": "Mensaje a compartir",
+            "socialMessagePlaceholder": "Texto para compartir en las redes sociales (usa __URL__ para la url de la votación por defecto)",
+            "buttonTextPlaceholder":  "Texto para el botón de compartir (puede no contener texto)",
+            "nameLabel": "Nombre",
+            "infoHeader": "Configuración guardada",
+            "infoBody": "La configuración de los botones de redes sociales ha sido guardada correctamente.",
+            "socialUrlLabel": "Enlace",
+            "socialUrlPlaceholder": "Enlace a la votación para compartir en redes sociales (usa __URL__ para la url de la votación por defecto)"
+          },
           "sendAuthCodes": {
             "editMessageStep": {
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
@@ -151,7 +171,6 @@
         "intro": "Crear una votación conlleva varios pasos, pero no es difícil. Sólo te llevará 5 minutos, por favor lee el Manual de Administrador, enlazado en el icono de ayuda de la barra superior.",
         "title": { "label": "Título", "placeholder": "ej.Nueva junta de dirección", "labelH3": "__index__. Votación titulada: __title__" },
         "description": { "label": "Descripción", "placeholder": "Descripción que se mostrará. Aquí debe de identificarse la organización que va a llevar el proceso electoral, así como los métodos de contacto con los electores." },
-        "share": { "label": "Texto para compartir", "placeholder": "Texto para usar en los enlaces a redes sociales" },
         "logo_url": { "label": "Logo personalizado", "placeholder": "URL para logo personalizado para esta votación. El tamaño máximo recomendado es 150x150 px." },
         "layout": { "label": "Disposición", "placeholder": "Especifica cómo se va a mostrar toda la votación" },
         "layouts": { "simple": "Simple", "2questions-conditional": "Sí/No", "pcandidates-election": "Tabla de candidatos" },

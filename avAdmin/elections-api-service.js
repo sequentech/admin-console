@@ -170,7 +170,7 @@ angular.module('avAdmin')
         }
 
         electionsapi.cache_election = function(id, election) {
-            electionsapi.chache[id] = election;
+            electionsapi.cache[id] = election;
         };
 
         electionsapi.getElection = function(id, ignorecache) {
@@ -315,6 +315,18 @@ angular.module('avAdmin')
         };
 
         electionsapi.templateEl = function() {
+
+            function getShareTextDefault() {
+              var ret = angular.copy(ConfigService.share_social.default);
+              if(!!ret) {
+                _.map(ret, function(q) { q.active = false; });
+                if (ret.length > 0) {
+                  ret[0].active = true;
+                }
+              }
+              return ret;
+            }
+
             var el = {
                 title: $i18next('avAdmin.sidebar.newel'),
                 description: "",
@@ -324,7 +336,7 @@ angular.module('avAdmin')
                 director: ConfigService.director,
                 presentation: {
                     theme: 'default',
-                    share_text: '',
+                    share_text: getShareTextDefault(),
                     urls: [],
                     theme_css: ''
                 },
@@ -427,6 +439,27 @@ angular.module('avAdmin')
                 .catch(deferred.reject);
 
             return deferred.promise;
+        };
+
+        electionsapi.updateShare = function(election, share) {
+          var deferred = $q.defer();
+
+          var share_text = angular.copy(share);
+          share_text.forEach( function(v) { delete v.active; });
+
+          electionsapi.command(election, 'update-share', 'POST', share_text)
+            .then(function() {
+              return electionsapi.getElection(election.id, true);
+            })
+            .then(function (el) {
+               if(!angular.equals(share_text, el.presentation.share_text)) {
+                throw "Error: share_text not correctly updated";
+               }
+            })
+            .then(deferred.resolve)
+            .catch(deferred.reject);
+
+          return deferred.promise;
         };
 
         return electionsapi;

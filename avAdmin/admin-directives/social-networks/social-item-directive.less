@@ -1,0 +1,74 @@
+/**
+ * This file is part of agora-gui-admin.
+ * Copyright (C) 2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-admin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-admin  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
+[av-social-item] {
+  .social-item {
+    padding: 0;
+    background-color: @av-bg;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    transition: 0.3s linear all;
+
+    .q-name {
+      padding: 10px 15px;
+      margin: 0;
+      font-size: 18px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: darken(@av-bg, 6%);
+      }
+
+      .fa {
+        font-style: normal;
+        font-weight: bold;
+      }
+
+      > .col-sm-10, > .col-sm-2 {
+        padding: 0;
+      }
+    }
+
+    .input-group.col-xs-2 {
+      float: left;
+      min-width: 140px;
+    }
+
+    .buttons i {
+        cursor: pointer;
+    }
+
+    .sform {
+        margin-top: 10px;
+        padding: 0 8px;
+    }
+
+    label {
+        text-align: right;
+    }
+
+    .form-group {
+        margin-top: 10px;
+    }
+
+    .social-radio-img {
+      max-height: 24px;
+      max-width: 30px;
+      width: auto;
+    }
+  }
+}

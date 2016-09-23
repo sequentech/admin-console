@@ -16,7 +16,19 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminDashboard', function($state, Authmethod, Plugins, ElectionsApi, $stateParams, $modal, PercentVotesService, SendMsg) {
+  .directive(
+    'avAdminDashboard', 
+    function(
+       $state, 
+       Authmethod, 
+       Plugins, 
+       ElectionsApi, 
+       $stateParams, 
+       $modal, 
+       PercentVotesService, 
+       ConfigService,
+       SendMsg)
+    {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
       var id = $stateParams.id;
@@ -74,6 +86,14 @@ angular.module('avAdmin')
           method: 'POST',
           confirmController: "ConfirmPublishResultsModal",
           confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-publish-results-modal.html"
+        }
+      ];
+
+      scope.actions = [
+        {
+          i18nString: 'changeSocial',
+          actionFunc: function() { return scope.changeSocial(); },
+          enableFunc: function() { return ConfigService.share_social.allow_edit; }
         }
       ];
 
@@ -255,12 +275,28 @@ angular.module('avAdmin')
         $state.go("admin.create", {"autocreate": true});
       }
 
+      function changeSocial() {
+        if(ConfigService.share_social.allow_edit) {
+          $modal.open({
+            templateUrl: "avAdmin/admin-directives/social-networks/change-social-modal.html",
+            controller: "ChangeSocialModal",
+            windowClass: "change-social-window",
+            size: 'lg',
+            resolve: {
+              election: function () { return scope.election; },
+            }
+          }).result.then(function(whateverReturned) {
+          });
+        }
+      }
+
       angular.extend(scope, {
         doAction: doAction,
         doActionConfirm: doActionConfirm,
         sendAuthCodes: sendAuthCodes,
         duplicateElection: duplicateElection,
-        createRealElection: createRealElection
+        createRealElection: createRealElection,
+        changeSocial: changeSocial
       });
     }
 

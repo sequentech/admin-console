@@ -111,6 +111,10 @@
         "electionPublic": "Election public site",
         "censussend": "Census send correctly",
         "preview": "Demo voting booth",
+        "actions": {
+          "actionsLabel": "Actions",
+          "changeSocial": "Edit social..."
+        },
         "modals": {
           "createHeader": "Create election",
           "createBody": "To create the election, its configuration is sent to the election authorities and they create election encryption public keys. After that, the election is no longer editable. Before doing this, please check that the configuration is correct (for example taking a look at the demo voting booth). If you need to change the election after this, you will have to create a new one.",
@@ -127,6 +131,22 @@
           "publishResultsHeader": "Publish election results",
           "publishResultsBody": "Currently only the election administrators have access to the calculated election results. When you publish the results, these will be made public for everyone to see.",
           "confirmPublishResultsButton": "Confirm and PUBLISH election results",
+          "changeSocial": {
+            "header": "Edit social networks share buttons",
+            "title": "Social Network Buttons",
+            "new": "New button",
+            "confirmButton": "Confirm and SAVE social networks configuration",
+            "socialNetworkLabel": "Social Network",
+            "buttonTextLabel": "Button text",
+            "socialMessageLabel": "Share text",
+            "socialMessagePlaceholder": "Text to be shared on social networks (use __URL__ for the default election url)",
+            "buttonTextPlaceholder":  "Text for the share button (it can be empty)",
+            "nameLabel": "Name",
+            "infoHeader": "Configuration saved",
+            "infoBody": "The social networks buttons configuration has been successfully saved.",
+            "socialUrlLabel": "Link",
+            "socialUrlPlaceholder": "Election link to be shared on social networks (use __URL__ for the default election url)"
+          },
 
           "sendAuthCodes": {
             "editMessageStep": {
@@ -152,7 +172,6 @@
         "intro": "Creating an election requires multiple steps, but it is not difficult. It will only take 5 minutes. Please read the Administrator Manual, linked in the help icon at the top navegation bar.",
         "title": { "label": "Title", "placeholder": "eg.New Board of Directors", "labelH3": "__index__. Election titled: __title__" },
         "description": { "label": "Description", "placeholder": "Description will be shown" },
-        "share": { "label": "Share text", "placeholder": "Text to use for social sharing" },
         "logo_url": { "label": "Custom logo", "placeholder": "URL for a custom logo for this election. Maximum recommended size is 150x150 px." },
         "layout": { "label": "Layout", "placeholder": "Specifies how the whole election will be displayed" },
         "layouts": { "simple": "Simple", "2questions-conditional": "Yes/No", "pcandidates-election": "Table Candidates" },
