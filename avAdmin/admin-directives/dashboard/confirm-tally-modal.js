@@ -24,7 +24,7 @@ angular.module('avAdmin')
         census_dump_mode: 'all'
       };
       $scope.ok = function () {
-        $modalInstance.close();
+        $modalInstance.close($scope.binding.census_dump_mode);
       };
 
       $scope.cancel = function () {

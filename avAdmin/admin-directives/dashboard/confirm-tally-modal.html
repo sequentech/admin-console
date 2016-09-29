@@ -53,6 +53,18 @@
       </a>
     </label>
   </div>
+  <div class="row-fluid">
+    <div class="col-xs-12">
+      <progressbar
+        ng-if="downloading"
+        class="progress-striped active"
+        max="totalCensusCount"
+        value="currentCount"
+        type="success">
+        <strong>{{currentCount}} / {{totalCensusCount}}</strong>
+      </progressbar>
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
   <button class="btn btn-success" ng-click="ok()" ng-i18next>

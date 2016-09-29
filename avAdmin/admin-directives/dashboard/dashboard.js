@@ -80,7 +80,50 @@ angular.module('avAdmin')
           path: 'tally',
           method: 'POST',
           confirmController: "ConfirmTallyModal",
-          confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-tally-modal.html"
+          confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-tally-modal.html",
+          doAction: function (mode)
+          {
+            // tally command
+            var command = commands[3];
+
+            if (mode === 'all') {
+              ElectionsApi.command(
+                scope.election,
+                command.path,
+                command.method,
+                command.data
+              ).catch(
+                function(error)
+                {
+                  scope.loading = false;
+                  scope.error = error;
+                }
+              );
+            // tally only active users
+            } else {
+              $modal.open({
+                templateUrl: "avAdmin/admin-directives/dashboard/confirm-tally-active-modal.html",
+                controller: 'ConfirmTallyActiveModal',
+                size: 'lg',
+                resolve: {
+                  election: function () { return scope.election; },
+                }
+              }).result.then(function (voterids) {
+                 ElectionsApi.command(
+                  scope.election,
+                  'tally-voter-ids',
+                  'POST',
+                  voterids
+                ).catch(
+                  function(error)
+                  {
+                    scope.loading = false;
+                    scope.error = error;
+                  }
+                );
+              });
+            }
+          }
         },
         {
           path: 'publish-results',
@@ -188,12 +231,12 @@ angular.module('avAdmin')
           templateUrl: command.confirmTemplateUrl,
           controller: command.confirmController,
           size: 'lg'
-        }).result.then(function () {
-          doAction(index);
+        }).result.then(function (data) {
+          doAction(index, data);
         });
       }
 
-      function doAction(index) {
+      function doAction(index, data) {
         if (scope.intally) {
           return;
         }
@@ -203,6 +246,12 @@ angular.module('avAdmin')
         setTimeout(waitElectionChange, 1000);
 
         var c = commands[index];
+
+        if (angular.isDefined(c.doAction)) {
+          c.doAction(data);
+          return;
+        }
+
         ElectionsApi.command(scope.election, c.path, c.method, c.data)
           .catch(function(error) { scope.loading = false; scope.error = error; });
 
