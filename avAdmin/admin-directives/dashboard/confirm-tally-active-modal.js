@@ -112,4 +112,7 @@ angular.module('avAdmin')
       {
         $modalInstance.dismiss('cancel');
       };
+
+      // auto launch load more
+      $scope.loadMoreCensus();
     });
