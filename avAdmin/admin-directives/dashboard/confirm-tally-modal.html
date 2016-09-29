@@ -27,7 +27,7 @@
 
     <label
       for="census-dump-{{mode}}"
-      class="radio"
+      class="descriptive-radio"
       ng-repeat="mode in census_dump_modes"
       ng-class="{'selected': binding.census_dump_mode === o}">
 
@@ -45,7 +45,7 @@
 
       <span
         class="description"
-        ng-i18next="[html:i18next]avAdmin.dashboard.modals.censusDumpMode.{{ mode }}Description">
+        ng-i18next="[html]avAdmin.dashboard.modals.censusDumpMode.{{ mode }}Description">
       </span>
 
       <a href="{{helpurl}}" class="learn-more" target="_blank" ng-i18next>

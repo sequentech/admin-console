@@ -133,7 +133,7 @@
           "confirmStopButton": "Confirm and STOP the election",
           "tallyHeader": "Tally election",
           "tallyIntro": "The tally process is run by the election authorities and may take a while, depending on the number of votes. It involves a mathematically verifiable cryptographic process that anonymizes and obtains the content of each vote.",
-          "askFilterBallots": "Before launching the tally, you need to select what set of ballots to use in the tally. It's very important that you <strong>choose carefully, because once a tally has been done you cannot launch another tally</strong> with a second set of ballots. These are the options you have:",
+          "askFilterBallots": "Before launching the tally, you need to select what set of ballots to use in the tally. It's very important that you <strong>choose carefully, because once a tally has been done you cannot launch another tally</strong> with a second set of ballots. <br/><br/>These are the options you have:",
           "censusDumpMode": {
             "allHeader": "Tally all cast ballots",
             "allDescription": "Even if a voter has been removed from the census or is marked as not active, if this voter has cast a ballot it will be counted.",
