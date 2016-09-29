@@ -19,6 +19,10 @@ angular.module('avAdmin')
   .controller('ConfirmTallyModal',
     function($scope, $modalInstance, ConfigService) {
       $scope.helpurl = ConfigService.helpUrl;
+      $scope.census_dump_modes = ['all', 'active'];
+      $scope.binding = {
+        census_dump_mode: 'all'
+      };
       $scope.ok = function () {
         $modalInstance.close();
       };
