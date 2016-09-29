@@ -21,14 +21,15 @@
 
   <div class="row-fluid">
     <div class="col-xs-12">
-      <strong ng-i18next>
-      [i18next]({downloaded: currentCount, total: totalCensusCount})avAdmin.dashboard.modals.downloadingCensus
-      </strong>
       <progressbar
-        class="progress-striped active"
-        max="{{totalCensusCount}}"
-        value="{{currentCount}}"
+        class="progress-striped"
+        max="1"
+        value="1"
+        ng-class="{active: !finishedDownload}"
         type="success">
+        <strong ng-i18next>
+          [i18next]({downloaded: currentCount, total: totalCensusCount})avAdmin.dashboard.modals.downloadingCensus
+        </strong>
       </progressbar>
     </div>
     <div ng-if="error" class="bg-danger">{{error}}</div>
