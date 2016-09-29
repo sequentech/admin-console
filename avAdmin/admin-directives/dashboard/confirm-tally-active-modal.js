@@ -99,7 +99,7 @@ angular.module('avAdmin')
       {
         $modalInstance.close(
           _.map(
-            $scope.activeVoterIds,
+            $scope.activeVoters,
             function (voter)
             {
               return voter.username;
