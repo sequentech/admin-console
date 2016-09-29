@@ -25,7 +25,7 @@ angular.module('avAdmin')
       ElectionsApi
     ) {
       $scope.election = angular.copy(election);
-      $scope.totalCensusCount = $scope.election.data.total_count;
+      $scope.totalCensusCount = 0;
       $scope.totalCensusActiveCount = 0;
       $scope.election.census.voters = [];
       $scope.currentCount = 0; // start from zero as we use a different page size
