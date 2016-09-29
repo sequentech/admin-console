@@ -142,7 +142,7 @@
           },
           "confirmTallyButton": "Confirm and TALLY the election",
           "tallyActiveHeader": "Tally only active voters",
-          ".tallyActiveIntro": "We will start downloading all the voters to detect which are active and only tally those if you confirm you want to do so. <strong>This decision is final</strong>, the software does not allow to undo a tally or to do a second one with a different set of ballots. <br/><br/>To modify the list of active users, cancel this modal and edit the active status in the Census Data lateral menu. If you don't want to do the tally, just close this dialog.",
+          "tallyActiveIntro": "We will start downloading all the voters to detect which are active and only tally those if you confirm you want to do so. <strong>This decision is final</strong>, the software does not allow to undo a tally or to do a second one with a different set of ballots. <br/><br/>To modify the list of active users, cancel this modal and edit the active status in the Census Data lateral menu. If you don't want to do the tally, just close this dialog.",
           "downloadingCensus": "Downloaded __downloaded__ of __total__ people in census",
           "confirmTallyActiveButton": "Confirm and TALLY __totalActive__ out of __total__ elegible voters",
           "publishResultsHeader": "Publish election results",
