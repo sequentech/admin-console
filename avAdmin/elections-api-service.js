@@ -238,7 +238,7 @@ angular.module('avAdmin')
             var cached = electionsapi.permcache[id];
             if (!cached) {
                 Authmethod.getPerm(
-                    "edit|view|delete|send-auth|view-census|start|stop|tally|calculate-results|publish-results",
+                    "edit|view|delete|send-auth|send-auth-all|view-results|view-stats|view-voters|view-census|start|stop|tally|calculate-results|publish-results|census-add|census-delete|census-activation",
                     "AuthEvent",
                     id
                 )
