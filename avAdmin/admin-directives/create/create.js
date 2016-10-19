@@ -482,8 +482,9 @@ angular.module('avAdmin')
 
         scope.editJson = function()
         {
-          if(!ConfigService.allowEditElectionJson) 
+          if(!ConfigService.allowEditElectionJson) {
             return;
+          }
           // show the initial edit dialog
           $modal
             .open({
