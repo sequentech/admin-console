@@ -15,8 +15,9 @@
         class="btn btn-success actionbtn ng-scope btn-primary dropdown-toggle"
         type="button"
         data-toggle="dropdown"
-        ng-i18next="avAdmin.dashboard.actions.actionsLabel"
+        aria-expanded="false"
       >
+        <span ng-i18next>avAdmin.dashboard.actions.actionsLabel</span>
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
@@ -24,6 +25,7 @@
           ng-repeat="action in actions"
           ng-class="{'disabled': !action.enableFunc()}">
           <a ng-click="action.actionFunc()">
+            <i class="{{action.iconClass}}"></i>
             <span ng-i18next>
               [i18next]avAdmin.dashboard.actions.{{action.i18nString}}
             </span>
@@ -59,17 +61,17 @@
     <!-- election info -->
     <div class="row info">
         <div class="col-sm-4 text-right">
-            <div class="block">
+            <div class="block well">
                 <strong>{{ election.votes|number }}</strong><br/>
                 <span ng-i18next>avAdmin.dashboard.votes</span>
             </div>
         </div>
         <div class="col-sm-4 text-right">
-            <div class="block">
+            <div class="block well">
                 <strong>{{ election.auth.census|number }}</strong><br/>
                 <button
                   ng-click="sendAuthCodes()"
-                  ng-if="election.status == 'started'"
+                  ng-if="'started' === election.status"
                   class="btn btn-success send-auth pull-left">
                     <i class="fa fa-sw fa-send"></i>
                     <span ng-i18next>
@@ -80,7 +82,7 @@
             </div>
         </div>
         <div class="col-sm-4 text-right">
-            <div class="block">
+            <div class="block well">
                 <span ng-i18next>avAdmin.dashboard.questions</span>
                 <strong>{{ election.questions.length }}</strong><br/>
                 <span ng-i18next>avAdmin.dashboard.answers</span>

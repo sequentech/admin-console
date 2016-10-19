@@ -119,7 +119,8 @@
         "preview": "Demo cabina de votació",
         "actions": {
           "actionsLabel": "Accions",
-          "changeSocial": "Editar social..."
+          "changeSocial": "Editar social...",
+          "sendAuthCodes": "Enviar autenticación..."
         },
         "modals": {
           "createHeader": "Create election",

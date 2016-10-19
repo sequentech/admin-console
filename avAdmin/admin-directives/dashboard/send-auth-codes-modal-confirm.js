@@ -41,6 +41,7 @@ angular.module('avAdmin')
       $scope.steps = SendMsg.steps;
       $scope.loading = false;
       $scope.numVoters = (!!SendMsg.user_ids) ? SendMsg.user_ids.length : $scope.election.auth.census;
+      $scope.helpurl = ConfigService.helpUrl;
 
       $scope = _.extend($scope, exhtml.scope);
       $scope.exhtml = exhtml.html;
@@ -122,7 +123,7 @@ angular.module('avAdmin')
       $scope.exampleMsg = function()
       {
         var identity = "/aabb@gmail.com";
-        if("sms" === selected_auth_method) {
+        if("sms" === election.census.auth_method) {
           identity = "/+34666666666";
         }
         var msg = election.census.config.msg;

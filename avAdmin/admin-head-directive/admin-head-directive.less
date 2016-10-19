@@ -1,12 +1,16 @@
 .adminhead {
     background-color: @av-primary;
-    color: @av-primary-contrast;
+    color: @av-secondary;
     border-radius: 0px;
     margin-bottom: 0px;
 }
 
-.adminhead .signup {
-    background-color: @brand-success;
+.adminhead li.signup {
+    background-color: @av-primary-contrast;
+}
+
+.adminhead li.signup > a {
+    color: @av-primary !important;
 }
 
 .navbar-admin {
@@ -17,7 +21,7 @@
   margin-top: 15px;
   margin-right: 15px;
   margin-left: 8px;
-  background-image: url('@{imgdir}/agora_voting_logo_white_100.png');
+  background-image: url('@{imgdir}/agora_voting_logo_black.png');
   height: 18px;
   padding: 0;
   width: 100px;
@@ -28,21 +32,21 @@
   background-color: transparent;
 }
 .navbar-admin .navbar-text {
-  color: @av-primary-contrast;
+  color: @av-secondary;
 }
 .navbar-admin .navbar-nav > li > a {
-  color: @av-primary-contrast;
+  color: @av-secondary;
 }
 .navbar-admin .navbar-nav > li > a:hover,
 .navbar-admin .navbar-nav > li > a:focus {
-  color: @av-primary-contrast;
-  background-color: lighten(@av-primary, 10%);
+  color: @av-primary;
+  background-color: lighten(@av-secondary-contrast, 10%);
 }
 .navbar-admin .navbar-nav > .active > a,
 .navbar-admin .navbar-nav > .active > a:hover,
 .navbar-admin .navbar-nav > .active > a:focus {
-  color: @av-primary-contrast;
-  background-color: lighten(@av-primary, 10%);
+  color: @av-primary;
+  background-color: lighten(@av-secondary-contrast, 10%);
 }
 .navbar-admin .navbar-nav > .disabled > a,
 .navbar-admin .navbar-nav > .disabled > a:hover,
@@ -66,20 +70,20 @@
 }
 .navbar-admin .navbar-nav > .dropdown > a:hover .caret,
 .navbar-admin .navbar-nav > .dropdown > a:focus .caret {
-  border-top-color: @av-primary-contrast;
-  border-bottom-color: @av-primary-contrast;
+  border-top-color: @av-secondary-contrast;
+  border-bottom-color: @av-secondary-contrast;
 }
 .navbar-admin .navbar-nav > .open > a,
 .navbar-admin .navbar-nav > .open > a:hover,
 .navbar-admin .navbar-nav > .open > a:focus {
-  background-color: lighten(@av-primary, 10%);
-  color: @av-primary-contrast;
+  background-color: lighten(@av-secondary, 10%);
+  color: @av-secondary-contrast;
 }
 .navbar-admin .navbar-nav > .open > a .caret,
 .navbar-admin .navbar-nav > .open > a:hover .caret,
 .navbar-admin .navbar-nav > .open > a:focus .caret {
-  border-top-color: @av-primary-contrast;
-  border-bottom-color: @av-primary-contrast;
+  border-top-color: @av-secondary-contrast;
+  border-bottom-color: @av-secondary-contrast;
 }
 .navbar-admin .navbar-nav > .dropdown > a .caret {
   border-top-color: @av-primary-contrast;
@@ -87,7 +91,7 @@
 }
 @media (max-width: 767) {
   .navbar-admin .navbar-nav .open .dropdown-menu > li > a {
-    color: @av-primary-contrast;
+    color: @av-primary;
   }
   .navbar-admin .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-admin .navbar-nav .open .dropdown-menu > li > a:focus {
@@ -108,8 +112,8 @@
   }
 }
 .navbar-admin .navbar-link {
-  color: @av-primary-contrast;
+  color: @av-secondary-contrast;
 }
 .navbar-admin .navbar-link:hover {
-  color: @av-primary-contrast;
+  color: @av-secondary-contrast;
 }
