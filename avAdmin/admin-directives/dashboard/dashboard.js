@@ -84,7 +84,7 @@ angular.module('avAdmin')
           doAction: function (mode)
           {
             // tally command
-            var command = commands[3];
+            var command = commands[4];
 
             if (mode === 'all') {
               ElectionsApi.command(

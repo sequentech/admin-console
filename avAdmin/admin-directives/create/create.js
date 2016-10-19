@@ -39,6 +39,7 @@ angular.module('avAdmin')
         scope.creating = false;
         scope.log = '';
         scope.createElectionBool = true;
+        scope.allowEditElectionJson = ConfigService.allowEditElectionJson;
 
         if (ElectionsApi.currentElections.length === 0 && !!ElectionsApi.currentElection) {
           scope.elections = [ElectionsApi.currentElection];
@@ -481,6 +482,8 @@ angular.module('avAdmin')
 
         scope.editJson = function()
         {
+          if(!ConfigService.allowEditElectionJson) 
+            return;
           // show the initial edit dialog
           $modal
             .open({

@@ -1,7 +1,7 @@
 <div>
     <h2>
       <span ng-i18next>[i18next]({'num': elections.length})avAdmin.create.summary</span>
-      <i class="fa fa-pencil" ng-click="editJson()"></i>
+      <i class="fa fa-pencil" ng-click="editJson()" ng-if="allowEditElectionJson"></i>
     </h2>
 
     <div ng-repeat="election in elections">
