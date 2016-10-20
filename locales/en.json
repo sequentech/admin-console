@@ -335,6 +335,8 @@
         "fieldRequiredLabel": "Required",
         "fieldUniqueLabel": "Unique",
         "fieldRequiredAuthLabel": "Checked against census in authentication",
+        "fieldMatchCensusOnRegistrationLabel": "Checked against census in registration (only for pre-registration)",
+        "fieldFillIfEmptyOnRegistrationLabel": "Required on registration, but can be empty on pre-registration",
         "fieldPrivateLabel": "Private (only administrators can see and use this field)",
         "extraFieldsHeader": "Extra fields",
         "extraFieldsInfo": "Here you can define extra fields in the census in a versatile way. This allows you to do a range of things: adding extra checks against the census in closed registration, registering new fields in open registration, etc.",

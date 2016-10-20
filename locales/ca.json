@@ -240,6 +240,8 @@
         "fieldHelpLabel": "Help text",
         "fieldHelpPlaceholder": "Example: Insert both your name and surname",
         "fieldRequiredAuthLabel": "Checked against census in authentication",
+        "fieldMatchCensusOnRegistrationLabel": "Contrastar con el censo durante el registro (sólo para pre-registro)",
+        "fieldFillIfEmptyOnRegistrationLabel": "Requerido durante el registro, pero puede estar vacío en el pre-registro",
         "fieldUniqueLabel": "Único (cada votante debe aportar un valor diferente a este campo)",
         "fieldPrivateLabel": "Privado (solo los administradores pueden ver y usar este campo)",
         "extraFieldsHeader": "Extra fields",

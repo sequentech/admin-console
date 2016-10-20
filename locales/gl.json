@@ -332,6 +332,8 @@
         "fieldHelpLabel": "Texto de axuda",
         "fieldHelpPlaceholder": "Exemplo: Insere tanto o teu nome como apelidos",
         "fieldRequiredAuthLabel": "Contrastar co censo durante a autenticación",
+        "fieldMatchCensusOnRegistrationLabel": "Contrastar con el censo durante el registro (sólo para pre-registro)",
+        "fieldFillIfEmptyOnRegistrationLabel": "Requerido durante el registro, pero puede estar vacío en el pre-registro",
         "fieldUniqueLabel": "Único (cada votante debe aportar un valor diferente a este campo)",
         "fieldPrivateLabel": "Privado (só os administradores poden ver e usar este campo)",
         "extraFieldsHeader": "Campos extra",
