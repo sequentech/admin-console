@@ -27,6 +27,7 @@ angular.module('avAdmin')
       $stateParams,
       $i18next,
       $filter,
+      $modal,
       ConfigService,
       ElectionLimits,
       CheckerService)
@@ -38,6 +39,7 @@ angular.module('avAdmin')
         scope.creating = false;
         scope.log = '';
         scope.createElectionBool = true;
+        scope.allowEditElectionJson = ConfigService.allowEditElectionJson;
 
         if (ElectionsApi.currentElections.length === 0 && !!ElectionsApi.currentElection) {
           scope.elections = [ElectionsApi.currentElection];
@@ -477,6 +479,29 @@ angular.module('avAdmin')
               });
           deferred.resolve(scope.elections[i]);
         }
+
+        scope.editJson = function()
+        {
+          if(!ConfigService.allowEditElectionJson) {
+            return;
+          }
+          // show the initial edit dialog
+          $modal
+            .open({
+              templateUrl: "avAdmin/admin-directives/create/edit-election-json-modal.html",
+              controller: "EditElectionJsonModal",
+              size: 'lg',
+              resolve: {
+                electionJson: function () { return angular.toJson(scope.elections, true); }
+              }
+            })
+            .result.then(
+              function (data)
+              {
+                scope.elections = angular.fromJson(data.electionJson);
+              }
+            );
+        };
 
         function createElections() {
             var deferred = $q.defer();

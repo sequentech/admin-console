@@ -34,6 +34,13 @@
       "thisisATestElection": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas.",
       "thisisATestElectionPopover": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas. Para ello, debes completar el proceso de la votación hasta el paso de publicar resultados"
     },
+    "results": {
+      "downloadData": "Descargar datos",
+      "downloadBallotsCsv": "Descargar votos como hoja de cálculo (formato CSV)",
+      "downloadResultsCsv": "Descargar Resultados del Escrutinio (formato CSV)",
+      "downloadResultsJson": "Descargar Resultados del Escrutinio (formato JSON)",
+      "downloadResultsPretty": "Descargar Resultados del Escrutinio (formato de texto)"
+    },
     "topbar": {
         "home": "Inicio",
         "features": "Funcionalidad",
@@ -126,8 +133,19 @@
           "stopBody": "Once you stop the election, people will not be able to vote anymore.  Please be aware and exercise caution",
           "confirmStopButton": "Confirm and STOP the election",
           "tallyHeader": "Tally election",
-          "tallyBody": "The tally process is run by the election authorities and it might take a while, depending on the number of votes. It involves a mathematically verifiable cryptographic process that anonymizes and obtains the content of each vote.",
+          "tallyIntro": "The tally process is run by the election authorities and may take a while, depending on the number of votes. It involves a mathematically verifiable cryptographic process that anonymizes and obtains the content of each vote.",
+          "askFilterBallots": "Before launching the tally, you need to select what set of ballots to use in the tally. It's very important that you <strong>choose carefully, because once a tally has been done you cannot launch another tally</strong> with a second set of ballots. <br/><br/>These are the options you have:",
+          "censusDumpMode": {
+            "allHeader": "Tally all cast ballots",
+            "allDescription": "Even if a voter has been removed from the census or is marked as not active, if this voter has cast a ballot it will be counted.",
+            "activeHeader": "Tally only cast ballots active in the current census",
+            "activeDescription": "<strong>Only choose this option if you know what you are doing</strong>. The ballots corresponding to people that are not included in the census, or those corresponding to inactive people in the census <strong>will be discarded and not counted</strong>."
+          },
           "confirmTallyButton": "Confirm and TALLY the election",
+          "tallyActiveHeader": "Tally only active voters",
+          "tallyActiveIntro": "We will start downloading all the voters to detect which are active and only tally those if you confirm you want to do so. <strong>This decision is final</strong>, the software does not allow to undo a tally or to do a second one with a different set of ballots. <br/><br/>To modify the list of active users, cancel this modal and edit the active status in the Census Data lateral menu. If you don't want to do the tally, just close this dialog.",
+          "downloadingCensus": "Downloaded __downloaded__ of __total__ people in census",
+          "confirmTallyActiveButton": "Confirm and TALLY __totalActive__ out of __total__ elegible voters",
           "publishResultsHeader": "Publish election results",
           "publishResultsBody": "Currently only the election administrators have access to the calculated election results. When you publish the results, these will be made public for everyone to see.",
           "confirmPublishResultsButton": "Confirm and PUBLISH election results",
@@ -222,6 +240,8 @@
         "fieldHelpLabel": "Help text",
         "fieldHelpPlaceholder": "Example: Insert both your name and surname",
         "fieldRequiredAuthLabel": "Checked against census in authentication",
+        "fieldMatchCensusOnRegistrationLabel": "Contrastar con el censo durante el registro (sólo para pre-registro)",
+        "fieldFillIfEmptyOnRegistrationLabel": "Requerido durante el registro, pero puede estar vacío en el pre-registro",
         "fieldUniqueLabel": "Único (cada votante debe aportar un valor diferente a este campo)",
         "fieldPrivateLabel": "Privado (solo los administradores pueden ver y usar este campo)",
         "extraFieldsHeader": "Extra fields",

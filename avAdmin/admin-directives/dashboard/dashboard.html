@@ -191,7 +191,69 @@
     <!-- endof general -->
 
     <!-- results -->
-    <h2 ng-if="election.results.questions" ng-i18next>avAdmin.dashboard.results</h2>
+    <h2 ng-if="election.results.questions">
+      <span ng-i18next>avAdmin.dashboard.results</span>
+
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn btn-xs btn-primary dropdown-toggle"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">
+          <span ng-i18next>
+            avAdmin.results.downloadData
+          </span>
+          <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu download-data-dropdown" role="menu">
+          <li>
+            <a
+              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/ballots.csv"
+              target="_blank"
+              class="wrap">
+              <span ng-i18next>
+                avAdmin.results.downloadBallotsCsv
+              </span>
+            </a>
+          </li>
+
+          <li>
+            <a
+              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.csv"
+              target="_blank"
+              class="wrap">
+              <span ng-i18next>
+                avAdmin.results.downloadResultsCsv
+              </span>
+            </a>
+          </li>
+
+          <li>
+            <a
+              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.json"
+              target="_blank"
+              class="wrap">
+              <span ng-i18next>
+                avAdmin.results.downloadResultsJson
+              </span>
+            </a>
+          </li>
+
+          <li>
+            <a
+              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.pretty"
+              target="_blank"
+              class="wrap">
+              <span ng-i18next>
+                avAdmin.results.downloadResultsPretty
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </h2>
     <div class="well question-result" ng-repeat="q in election.results.questions">
         <div class="row">
             <div class="col-md-7">
@@ -232,7 +294,7 @@
             </tr>
             <tr ng-repeat="an in q.answers|orderBy:'-total_count'">
                 <td>{{ $index + 1 }}</td>
-                <td>{{ an.text }}</td>
+                <td ng-bind-html="an.text"></td>
                 <td>{{ an.total_count|number }}</td>
                 <td>{{ percentVotes(an.total_count, q, "over-valid-votes") }}</td>
                 <td ng-if="an.winner_position === 0 || an.winner_position">{{ an.winner_position + 1}}</td>

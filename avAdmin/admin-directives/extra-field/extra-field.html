@@ -278,6 +278,48 @@
       </div>
     </div>
   </div>
+
+  <!-- pre-register option: match census on registration -->
+  <div class="row"  ng-if="['email', 'text', 'int', 'bool', 'textarea', 'tel'].indexOf(field.type) !== -1">
+    <div class="form-group">
+      <label
+        class="control-label col-sm-4 text-right">
+        <input
+          type="checkbox"
+          class="form-control"
+          id="fieldMatchCensusOnRegistration{{$index}}"
+          ng-model="field.match_census_on_registration" />
+      </label>
+      <div class="col-sm-8">
+        <label
+          ng-i18next="avAdmin.census.fieldMatchCensusOnRegistrationLabel"
+          class="text-left"
+          for="fieldMatchCensusOnRegistration{{$index}}">
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- pre-register option: fill if empty on registration -->
+  <div class="row"  ng-if="['email', 'text', 'int', 'bool', 'textarea', 'tel'].indexOf(field.type) !== -1">
+    <div class="form-group">
+      <label
+        class="control-label col-sm-4 text-right">
+        <input
+          type="checkbox"
+          class="form-control"
+          id="fieldFillIfEmptyOnRegistration{{$index}}"
+          ng-model="field.fill_if_empty_on_registration" />
+      </label>
+      <div class="col-sm-8">
+        <label
+          ng-i18next="avAdmin.census.fieldFillIfEmptyOnRegistrationLabel"
+          class="text-left"
+          for="fieldFillIfEmptyOnRegistration{{$index}}">
+        </label>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- view field -->
