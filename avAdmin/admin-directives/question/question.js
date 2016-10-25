@@ -27,8 +27,9 @@ angular.module('avAdmin')
         "pcandidates-election"*/
       ];
       scope.edittingIndex = -1;
-      scope.internal = {};
-      scope.shuffle_opts_policy = 'shuffle-all';
+      scope.internal = {
+        shuffle_opts_policy: 'shuffle-all'
+      };
 
       scope.questionIndex = function() {
         return scope.$index;

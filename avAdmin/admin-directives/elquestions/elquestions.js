@@ -25,7 +25,7 @@ angular.module('avAdmin')
         scope.election = ElectionsApi.currentElection;
         scope.electionLimits = ElectionLimits;
         scope.vsystems = ['plurality-at-large', 'borda-nauru', 'borda', 'pairwise-beta'];
-        scope.shuffle_opts_policy = ['dont-shuffle','shuffle-all', 'shuffle-some'];
+        scope.lshuffleoptions = ['dont-shuffle','shuffle-all', 'shuffle-some'];
 
         scope.electionEditable = function() {
           return !scope.election.id || scope.election.status === "registered";
