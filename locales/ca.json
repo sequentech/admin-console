@@ -29,6 +29,17 @@
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
   },
   "avAdmin": {
+    "shuffling_policy": {
+      "categories_label": "Ramdomize categories",
+      "categories_label_text": "Check to randomize",
+      "options_label": "Randomize options",
+      "list_label": "List of categories to randomize",
+      "list_muted": "Add here the categories to shuffle their options",
+      "list_placeholder": "Add the name of the categories, separated by comma",
+      "dont-shuffle": "Don't shuffle the options. All voters will see the options in the same order in the voting booth",
+      "shuffle-all": "Shuffle all options. Each voter will see the options for this question in a different order in the voting booth. If there are different categories, they will also be randomized.",
+      "shuffle-some": "Shuffle the options of a selected list of categories."
+    },
     "notes": {
       "noteTag": "Nota",
       "thisisATestElection": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas.",
