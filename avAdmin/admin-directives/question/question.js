@@ -27,10 +27,33 @@ angular.module('avAdmin')
         "pcandidates-election"*/
       ];
       scope.edittingIndex = -1;
-      scope.internal = {
-        shuffle_opts_policy: 'shuffle-all',
-        shuffling_cat_list: ''
-      };
+
+      function fillCatList() {
+        return _.reduce(
+          scope.q.extra_options.shuffle_category_list.slice(1),
+          function (memo, item) {
+            return memo + ', ' + item;
+          },
+          scope.q.extra_options.shuffle_category_list[0]
+        );
+      }
+
+      if (true === scope.q.extra_options.shuffle_all_options) {
+        scope.internal = {
+          shuffle_opts_policy: 'shuffle-all',
+          shuffling_cat_list: fillCatList()
+        };
+      } else if (0 === scope.q.extra_options.shuffle_category_list.length) {
+        scope.internal = {
+          shuffle_opts_policy: 'dont-shuffle',
+          shuffling_cat_list: fillCatList()
+        };
+      } else if (0 < scope.q.extra_options.shuffle_category_list.length) {
+        scope.internal = {
+          shuffle_opts_policy: 'shuffle-some',
+          shuffling_cat_list: fillCatList()
+        };
+      }
 
       scope.questionIndex = function() {
         return scope.$index;
