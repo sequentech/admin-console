@@ -106,8 +106,12 @@ angular.module('avAdmin')
           q.max = parseInt(x.max, 10);
           q.min = parseInt(x.min, 10);
           q.num_winners = parseInt(x.winners, 10);
-          q.randomize_answer_order = x.random;
           q.tally_type = x.tally_type.toLowerCase();
+          q.extra_options = {
+            "shuffle_categories": x.random,
+            "shuffle_all_options": x.random,
+            "shuffle_category_list": []
+          };
           //q.answer_total_votes_percentage = x.results;
           x.opts.forEach(function(y, i) {
             var a = {

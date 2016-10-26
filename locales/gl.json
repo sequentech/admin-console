@@ -206,7 +206,7 @@
         "layouts": { "simple": "Simple", "2questions-conditional": "Sí/No", "pcandidates-election": "Táboa de candidatos" },
         "theme": { "label": "Tema", "placeholder": "¿Cómo se verá a votación?" },
         "themes": { "default": "Por defecto", "podemos": "Morado" },
-        "questionOptionsSummary": "<strong>__num_answers__</strong> candidatos. Os votantes seleccionan entre <strong>__min__</strong> e <strong>__max__</strong> opcións (orde aleatoria: <strong>__random__</strong>) e hai <strong>__num_winners__</strong> gañadores. O método de reconto é <strong>__tally_method__</strong>.",
+        "questionOptionsSummary": "<strong>__num_answers__</strong> candidatos. Os votantes seleccionan entre <strong>__min__</strong> e <strong>__max__</strong> opcións e hai <strong>__num_winners__</strong> gañadores. O método de reconto é <strong>__tally_method__</strong>. Orden aleatoria de categorías: <strong>shuffle_categories</strong>, orden aleatoria de todas as opcións: <strong>shuffle_all_options</strong>.",
         "censusSize": "__num__ persoas",
         "registerAndCreateElection": "Non só rexistrar a votación, senón creala nas autoridades de votación. Isto significa que xa non se poderá modificar a votación."
     },
