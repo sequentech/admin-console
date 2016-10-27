@@ -387,7 +387,8 @@ angular.module('avAdmin')
                 "extra_options": {
                   "shuffle_categories": true,
                   "shuffle_all_options": true,
-                  "shuffle_category_list": []
+                  "shuffle_category_list": [],
+                  "show_points": false
                 }
             };
             return q;

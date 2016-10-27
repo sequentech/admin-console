@@ -30,6 +30,10 @@
   },
 
   "avAdmin": {
+    "show_points_policy": {
+      "label": "Amosar puntos",
+      "text": "Amosar os puntos que o voto dá a cada opción seleccionada"
+    },
     "shuffling_policy": {
       "categories_label": "Ramdomize categories",
       "categories_label_text": "Check to randomize",
