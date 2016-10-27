@@ -110,7 +110,8 @@ angular.module('avAdmin')
           q.extra_options = {
             "shuffle_categories": x.random,
             "shuffle_all_options": x.random,
-            "shuffle_category_list": []
+            "shuffle_category_list": [],
+            "show_points": false
           };
           //q.answer_total_votes_percentage = x.results;
           x.opts.forEach(function(y, i) {
