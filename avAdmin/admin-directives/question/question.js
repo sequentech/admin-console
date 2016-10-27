@@ -84,7 +84,7 @@ angular.module('avAdmin')
           scrollToCurrent();
         }
       });
-      
+
       scope.$watch("internal.shuffle_opts_policy", function (newValue, oldValue) {
         if ('shuffle-all' === newValue) {
           scope.q.extra_options.shuffle_all_options = true;
@@ -97,10 +97,13 @@ angular.module('avAdmin')
           scope.q.extra_options.shuffle_category_list = [];
         }
       });
-      
+
       scope.$watch("internal.shuffling_cat_list", function (newValue, oldValue) {
           if ('shuffle-some' === scope.internal.shuffle_opts_policy) {
-            scope.q.extra_options.shuffle_category_list = newValue.trim().split(',');
+            scope.q.extra_options.shuffle_category_list = 
+              _.map (newValue.split(','), function (x) {
+                return x.trim();
+              });
           } else {
             scope.q.extra_options.shuffle_category_list = [];
           }
