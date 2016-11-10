@@ -382,9 +382,14 @@ angular.module('avAdmin')
                 "max": 1,
                 "min": 1,
                 "num_winners": 1,
-                "randomize_answer_order": true,
                 "tally_type": "plurality-at-large",
-                "title": title
+                "title": title,
+                "extra_options": {
+                  "shuffle_categories": true,
+                  "shuffle_all_options": true,
+                  "shuffle_category_list": [],
+                  "show_points": false
+                }
             };
             return q;
         };

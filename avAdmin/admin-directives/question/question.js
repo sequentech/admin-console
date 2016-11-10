@@ -27,7 +27,34 @@ angular.module('avAdmin')
         "pcandidates-election"*/
       ];
       scope.edittingIndex = -1;
-      scope.internal = {};
+
+      function fillCatList() {
+        return _.reduce(
+          scope.q.extra_options.shuffle_category_list.slice(1),
+          function (memo, item) {
+            return memo + ', ' + item;
+          },
+          scope.q.extra_options.shuffle_category_list[0]
+        );
+      }
+
+      if (true === scope.q.extra_options.shuffle_all_options) {
+        scope.internal = {
+          shuffle_opts_policy: 'shuffle-all',
+          shuffling_cat_list: fillCatList()
+        };
+      } else if (0 === scope.q.extra_options.shuffle_category_list.length) {
+        scope.internal = {
+          shuffle_opts_policy: 'dont-shuffle',
+          shuffling_cat_list: fillCatList()
+        };
+      } else if (0 < scope.q.extra_options.shuffle_category_list.length) {
+        scope.internal = {
+          shuffle_opts_policy: 'shuffle-some',
+          shuffling_cat_list: fillCatList()
+        };
+      }
+
       scope.questionIndex = function() {
         return scope.$index;
       };
@@ -56,6 +83,30 @@ angular.module('avAdmin')
         if (newValue === true) {
           scrollToCurrent();
         }
+      });
+
+      scope.$watch("internal.shuffle_opts_policy", function (newValue, oldValue) {
+        if ('shuffle-all' === newValue) {
+          scope.q.extra_options.shuffle_all_options = true;
+          scope.q.extra_options.shuffle_category_list = [];
+        } else if ('shuffle-some' === newValue) {
+          scope.q.extra_options.shuffle_all_options = false;
+          scope.q.extra_options.shuffle_category_list = newValue.trim().split(',');
+        } else { // don't shuffle
+          scope.q.extra_options.shuffle_all_options = false;
+          scope.q.extra_options.shuffle_category_list = [];
+        }
+      });
+
+      scope.$watch("internal.shuffling_cat_list", function (newValue, oldValue) {
+          if ('shuffle-some' === scope.internal.shuffle_opts_policy) {
+            scope.q.extra_options.shuffle_category_list = 
+              _.map (newValue.split(','), function (x) {
+                return x.trim();
+              });
+          } else {
+            scope.q.extra_options.shuffle_category_list = [];
+          }
       });
 
       // When an answer has been drag-and-drop, we have to update the indexes

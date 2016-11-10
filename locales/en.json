@@ -29,6 +29,21 @@
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
   },
   "avAdmin": {
+    "show_points_policy": {
+      "label": "Show points",
+      "text": "Show the points that the ballot is giving to each selected option"
+    },
+    "shuffling_policy": {
+      "categories_label": "Ramdomize categories",
+      "categories_label_text": "Check to randomize",
+      "options_label": "Randomize options",
+      "list_label": "List of categories to randomize",
+      "list_muted": "Add here the categories to shuffle their options",
+      "list_placeholder": "Add the name of the categories, separated by comma",
+      "dont-shuffle": "Don't shuffle the options. All voters will see the options in the same order in the voting booth",
+      "shuffle-all": "Shuffle all options. Each voter will see the options for this question in a different order in the voting booth. If there are different categories, they will also be randomized.",
+      "shuffle-some": "Shuffle the options of a selected list of categories."
+    },
     "notes": {
       "noteTag": "Note",
       "thisisATestElection": "This is a test election. For security reasons, real elections can only be created out of successful test elections.",
@@ -196,7 +211,7 @@
         "layouts": { "simple": "Simple", "2questions-conditional": "Yes/No", "pcandidates-election": "Table Candidates" },
         "theme": { "label": "Theme", "placeholder": "How will the election look like?" },
         "themes": { "default": "Default", "podemos": "Purple" },
-        "questionOptionsSummary": "<strong>__num_answers__</strong> candidates. Voters select between <strong>__min__</strong> and <strong>__max__</strong> options (randomize: <strong>__random__</strong>) and there are <strong>__num_winners__</strong> winners. The tally method is <strong>__tally_method__</strong>.",
+        "questionOptionsSummary": "<strong>__num_answers__</strong> candidates. Voters select between <strong>__min__</strong> and <strong>__max__</strong> options  and there are <strong>__num_winners__</strong> winners. The tally method is <strong>__tally_method__</strong>. Randomize categories: <strong>shuffle_categories</strong>, randomize all options: <strong>shuffle_all_options</strong>.",
         "censusSize": "__num__ people",
         "registerAndCreateElection": "Not only register the election, but also create it at the election authorities. This means you won't be able to modify the election."
     },

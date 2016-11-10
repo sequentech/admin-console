@@ -17,7 +17,7 @@
                   <ol>
                       <li ng-repeat="q in election.questions">
                           <p>{{q.title|truncate:'50'}}</p>
-                          <p ng-i18next>[html:i18next]({'num_answers': q.answers.length, 'min': q.min, 'max': q.max, 'num_winners': q.num_winners, tally_method: q.tally_type, random: q.randomize_answer_order})avAdmin.basic.questionOptionsSummary</p>
+                          <p ng-i18next>[html:i18next]({'num_answers': q.answers.length, 'min': q.min, 'max': q.max, 'num_winners': q.num_winners, tally_method: q.tally_type, shuffle_all_options: q.extra_options.shuffle_all_options, shuffle_categories: q.extra_options.shuffle_categories})avAdmin.basic.questionOptionsSummary</p>
                       </li>
                   </ol>
               </td>
