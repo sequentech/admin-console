@@ -215,12 +215,12 @@ angular.module('avAdmin')
           lines.forEach(function(l) {
               var lf = l.split(";");
               var nv = {};
-              fields.forEach(function(f, i) { nv[f.name] = lf[i]; });
+              fields.forEach(function(f, i) { nv[f.name] = lf[i].trim(); });
               if (nv.tlf) {
-                nv.tlf.replace(" ", "");
+                nv.tlf = nv.tlf.replace(" ", "");
               }
               if (nv.email) {
-                nv.email.replace(" ", "");
+                nv.email = nv.email.replace(" ", "");
               }
               cs.push({selected: false, vote: false, username: "", metadata: nv});
           });
