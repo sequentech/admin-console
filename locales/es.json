@@ -212,7 +212,11 @@
         "themes": { "default": "Por defecto", "podemos": "Morado" },
         "questionOptionsSummary": "<strong>__num_answers__</strong> candidatos. Los votantes seleccionan entre <strong>__min__</strong> y <strong>__max__</strong> opciones y hay <strong>__num_winners__</strong> ganadores. El método de recuento es <strong>__tally_method__</strong>. Orden aleatorio de categorías: <strong>shuffle_categories</strong>, orden aleatorio de todas las opciones: <strong>shuffle_all_options</strong>.",
         "censusSize": "__num__ personas",
-        "registerAndCreateElection": "No sólo registrar la votación, sino crearla en las autoridades de votación. Esto significa que ya no se podrá modificar la votación."
+        "registerAndCreateElection": "No sólo registrar la votación, sino crearla en las autoridades de votación. Esto significa que ya no se podrá modificar la votación.",
+        "num_successful_logins_allowed" : {
+          "label": "Número de votos por votante",
+          "placeholder": "Máximo número de veces que los votantes podrán emitir su voto. Sólo el último voto contará. Si este número es cero, los votantes podrán emitir su voto cuantas veces deseen"
+        }
     },
     "questions": {
         "new": "Nueva pregunta",

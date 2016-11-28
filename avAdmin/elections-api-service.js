@@ -346,6 +346,7 @@ angular.module('avAdmin')
                 },
                 layout: 'simple',
                 real: false,
+                num_successful_logins_allowed: 0,
                 census: {
                     voters: [],
                     auth_method: 'email',
