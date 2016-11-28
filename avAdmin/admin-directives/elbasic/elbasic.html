@@ -110,7 +110,11 @@
                 <p class="text-muted" ng-i18next>avAdmin.basic.num_successful_logins_allowed.placeholder</p>
                 <div class="input-group col-xs-2">
                   <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" ng-click="incLogins(-1)">
+                    <button
+                      class="btn btn-default"
+                      ng-disabled="!electionEditable()"
+                      type="button"
+                      ng-click="incLogins(-1)">
                         <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                     </button>
                   </span>
@@ -132,7 +136,11 @@
                     ui-validate-watch="'election.num_successful_logins_allowed'"
                     required/>
                   <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" ng-click="incLogins(1)">
+                    <button
+                      class="btn btn-default"
+                      ng-disabled="!electionEditable()"
+                      type="button"
+                      ng-click="incLogins(1)">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     </button>
                   </span>
