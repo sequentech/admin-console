@@ -213,7 +213,13 @@
         "themes": { "default": "Default", "podemos": "Purple" },
         "questionOptionsSummary": "<strong>__num_answers__</strong> candidates. Voters select between <strong>__min__</strong> and <strong>__max__</strong> options  and there are <strong>__num_winners__</strong> winners. The tally method is <strong>__tally_method__</strong>. Randomize categories: <strong>shuffle_categories</strong>, randomize all options: <strong>shuffle_all_options</strong>.",
         "censusSize": "__num__ people",
-        "registerAndCreateElection": "Not only register the election, but also create it at the election authorities. This means you won't be able to modify the election."
+        "registerAndCreateElection": "Not only register the election, but also create it at the election authorities. This means you won't be able to modify the election.",
+        "num_successful_logins_allowed" : {
+          "label": "Number of votes per voter",
+          "placeholder": "Maximum number of times voters are allowed to cast their vote. Only their last vote will count. If this number is zero, voters will be able to cast their vote as many times as they want",
+          "minError": "The number of possible revotes is __num_successful_logins_allowed__ but it should be 0 or higher",
+          "inputError": "__num_successful_logins_allowed__ is not a number"
+        }
     },
     "questions": {
         "new": "New question",

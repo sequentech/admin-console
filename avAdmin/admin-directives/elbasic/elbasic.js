@@ -50,9 +50,26 @@ angular.module('avAdmin')
             }
           }
 
+          function incLogins(inc, event) {
+            var el = ElectionsApi.currentElection;
+
+            if((!!el.num_successful_logins_allowed || 0 === el.num_successful_logins_allowed) && parseInt(el.num_successful_logins_allowed) + inc >= 0) {
+              el.num_successful_logins_allowed = parseInt(el.num_successful_logins_allowed) + inc;
+            }
+            if (!!event) {
+              event.preventDefault();
+            }
+          }
+
+          function validateNumLogins(value) {
+            return !isNaN(parseInt(value));
+          }
+
           angular.extend(scope, {
             saveBasic: save,
-            openSocialModal: openSocialModal
+            openSocialModal: openSocialModal,
+            incLogins: incLogins,
+            validateNumLogins: validateNumLogins
           });
       }
 

@@ -211,7 +211,13 @@
         "themes": { "default": "Por defecto", "podemos": "Purple" },
         "questionOptionsSummary": "<strong>__num_answers__</strong> candidates. Voters select between <strong>__min__</strong> and <strong>__max__</strong> options and there are <strong>__num_winners__</strong> winners. The tally method is <strong>__tally_method__</strong>. Randomize categories: <strong>shuffle_categories</strong>, randomize all options: <strong>shuffle_all_options</strong>.",
         "censusSize": "__num__ personas",
-        "registerAndCreateElection": "Not only register the election, but also create it on the election authorities. This means you won't be able to modify the election."
+        "registerAndCreateElection": "Not only register the election, but also create it on the election authorities. This means you won't be able to modify the election.",
+        "num_successful_logins_allowed" : {
+          "label": "Número de votos por votante",
+          "placeholder": "Máximo número de veces que los votantes podrán emitir su voto. Sólo el último voto contará. Si este número es cero, los votantes podrán emitir su voto cuantas veces deseen",
+          "minError": "El número de veces que se puede cambiar el voto es __num_successful_logins_allowed__ pero ha de ser mayor o igual a cero",
+          "inputError": "__num_successful_logins_allowed__ no es un número"
+        }
     },
     "questions": {
         "new": "Nueva pregunta",
