@@ -62,7 +62,7 @@ angular.module('avAdmin')
           }
 
           function validateNumLogins(value) {
-            return NaN !== parseInt(value);
+            return !isNaN(parseInt(value));
           }
 
           angular.extend(scope, {
