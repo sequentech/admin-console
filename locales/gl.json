@@ -215,7 +215,9 @@
         "registerAndCreateElection": "Non só rexistrar a votación, senón creala nas autoridades de votación. Isto significa que xa non se poderá modificar a votación.",
         "num_successful_logins_allowed" : {
           "label": "Número de votos por votante",
-          "placeholder": "Máximo número de veces que los votantes podrán emitir su voto. Sólo el último voto contará. Si este número es cero, los votantes podrán emitir su voto cuantas veces deseen"
+          "placeholder": "Máximo número de veces que los votantes podrán emitir su voto. Sólo el último voto contará. Si este número es cero, los votantes podrán emitir su voto cuantas veces deseen",
+          "minError": "El número de veces que se puede cambiar el voto es __num_successful_logins_allowed__ pero ha de ser mayor o igual a cero",
+          "inputError": "__num_successful_logins_allowed__ no es un número"
         }
     },
     "questions": {

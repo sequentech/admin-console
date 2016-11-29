@@ -61,10 +61,15 @@ angular.module('avAdmin')
             }
           }
 
+          function validateNumLogins(value) {
+            return NaN !== parseInt(value);
+          }
+
           angular.extend(scope, {
             saveBasic: save,
             openSocialModal: openSocialModal,
-            incLogins: incLogins
+            incLogins: incLogins,
+            validateNumLogins: validateNumLogins
           });
       }
 
