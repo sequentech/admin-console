@@ -383,7 +383,8 @@
         "emailsub": "Asunto do email",
         "emailtemp": "Persoal usado no correo para enviar aos usuarios. Usa __CODE__ para engadir o código de acceso e __URL__ para inserir a ligazón de votación",
         "emailsubdef": "Xa podes votar con __name__",
-        "emaildef": "Vota en __URL__ co codigo __CODE__"
+        "emaildef": "Vota en __URL__ co codigo __CODE__",
+        "slugKeys": "Usa las siguientes claves para insertar en el mensaje los campos extra de usuario: __slug_list__"
     },
     "columnFilter": {
       "sort": "Orden:",

@@ -132,6 +132,9 @@ angular.module('avAdmin')
         msg = msg.replace("__URL__", url);
         msg = msg.replace("__URL2__", url2);
         msg = msg.replace("__CODE__", "AABB1234");
+        for (var i = 0; i < SendMsg.slug_list.length; i++) {
+          msg = msg.replace("__" +  SendMsg.slug_list[i] + "__", "AABB1234");
+        }
         return msg;
       };
 

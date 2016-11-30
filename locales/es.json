@@ -386,7 +386,8 @@
         "emailsub": "Asunto del email",
         "emailtemp": "Plantilla usada en el correo para enviar a los usuarios. Usa __CODE__ para añadir el código de acceso y __URL__ para insertar el enlace de votación, o __URL2__ para insertar un enlace que incluya el código",
         "emailsubdef": "Ya puedes votar con __name__",
-        "emaildef": "Vota en __URL__ con el codigo __CODE__"
+        "emaildef": "Vota en __URL__ con el codigo __CODE__",
+        "slugKeys": "Usa las siguientes claves para insertar en el mensaje los campos extra de usuario: __slug_list__"
     },
     "columnFilter": {
       "sort": "Orden:",

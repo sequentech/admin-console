@@ -69,7 +69,8 @@ angular.module('avAdmin')
     function get_slugs(election) {
       var slug_list = [];
         if (election.census.extra_fields && election.census.extra_fields.length > 0) {
-           for (field in election.census.extra_fields) {
+           for (var i = 0; i < election.census.extra_fields.length; i++) {
+             var field = election.census.extra_fields[i];
              if(field.slug && field.name) {
                slug_list.push(field.slug);
              }

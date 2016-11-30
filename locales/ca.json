@@ -289,7 +289,8 @@
         "email": "Mensaje por correo elelectrónico",
         "emailsub": "Asúnto del correo",
         "emailtemp": "Plantilla usada en el correo para enviar a los usuarios. Usa __CODE__ para añadir el código de acceso y __URL__ para insertar el enlace de votació, o __URL2__ para insertar un enlace que incluya el código",
-        "emaildef": "Vota siguiendo este enlace __URL__\nEste es tu código de autenticación: __CODE__"
+        "emaildef": "Vota siguiendo este enlace __URL__\nEste es tu código de autenticación: __CODE__",
+        "slugKeys": "Usa las siguientes claves para insertar en el mensaje los campos extra de usuario: __slug_list__"
     },
     "create": {
         "summary": "Resumen: creando __num__ votaciones",
