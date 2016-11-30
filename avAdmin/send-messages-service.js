@@ -64,6 +64,21 @@ angular.module('avAdmin')
     }
 
     /**
+     * Get the list of slug names for the extra fields
+     */
+    function get_slugs(election) {
+      var slug_list = [];
+        if (election.census.extra_fields && election.census.extra_fields.length > 0) {
+           for (field in election.census.extra_fields) {
+             if(field.slug && field.name) {
+               slug_list.push(field.slug);
+             }
+           }
+        }
+      return slug_list;
+    }
+
+    /**
      * Sets the election related to this service, setting the edit dialog to be
      * shown.
      */
@@ -71,6 +86,7 @@ angular.module('avAdmin')
     {
         service.skipEditDialogFlag = false;
         service.election = el;
+        service.slug_list = get_slugs(el);
     };
 
     /**

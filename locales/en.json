@@ -379,7 +379,7 @@
         "auth": "Auth method",
         "auths": {"email": "Email links", "sms": "SMS", "dnie": "spanish eDNI"},
         "sms": "SMS message",
-        "smstemp": "Template used in the SMS to send to the user. Use __CODE__ to insert the SMS code and __URL__ for the authentication url, or _URL2__ to insert a link that includes the code",
+        "smstemp": "Template used in the SMS to send to the user. Use __CODE__ to insert the SMS code and __URL__ for the authentication url, or __URL2__ to insert a link that includes the code",
         "smsdef": "This is your vote code: __CODE__",
         "email": "Email message",
         "emailsub": "Email subject",
