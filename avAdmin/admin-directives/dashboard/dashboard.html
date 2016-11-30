@@ -71,7 +71,6 @@
                 <strong>{{ election.auth.census|number }}</strong><br/>
                 <button
                   ng-click="sendAuthCodes()"
-                  ng-if="'started' === election.status"
                   class="btn btn-success send-auth pull-left">
                     <i class="fa fa-sw fa-send"></i>
                     <span ng-i18next>

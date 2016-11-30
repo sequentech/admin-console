@@ -185,8 +185,8 @@
             "editMessageStep": {
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
               "helpInfo": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
-              "sendButton": "ENVIAR códigos de autenticación a TODO el censo",
-              "sendSelectedButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
+              "sendButton": "Revisar mensaje antes de enviar códigos de autenticación a TODO el censo",
+              "sendSelectedButton": "Revisar mensaje antes de enviar códigos de autenticación a los usuarios SELECCIONADOS"
             },
             "confirmStep": {
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
@@ -383,7 +383,8 @@
         "emailsub": "Asunto do email",
         "emailtemp": "Persoal usado no correo para enviar aos usuarios. Usa __CODE__ para engadir o código de acceso e __URL__ para inserir a ligazón de votación",
         "emailsubdef": "Xa podes votar con __name__",
-        "emaildef": "Vota en __URL__ co codigo __CODE__"
+        "emaildef": "Vota en __URL__ co codigo __CODE__",
+        "slugKeys": "Usa las siguientes claves para insertar en el mensaje los campos extra de usuario: __slug_list__"
     },
     "columnFilter": {
       "sort": "Orden:",

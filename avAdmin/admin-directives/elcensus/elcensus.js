@@ -155,7 +155,7 @@ angular.module('avAdmin')
           iconClass: 'fa fa-paper-plane-o',
           actionFunc: function() { return sendAuthCodesSelected(); },
           enableFunc: function() {
-            return scope.election.status === 'started' && scope.numSelected(scope.shown()) > 0;
+            return scope.numSelected(scope.shown()) > 0;
           }
         }
       ];
