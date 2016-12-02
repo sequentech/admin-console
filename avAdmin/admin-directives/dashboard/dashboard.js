@@ -314,6 +314,14 @@ angular.module('avAdmin')
       function duplicateElection() {
         var el = ElectionsApi.templateEl();
         _.extend(el, angular.copy(scope.election));
+        if (el.census.extra_fields && el.census.extra_fields.length > 0) {
+           for (var i = 0; i < el.census.extra_fields.length; i++) {
+             var field = el.census.extra_fields[i];
+             if(field.slug) {
+               delete field['slug'];
+             }
+           }
+        }
         el.id = null;
         el.raw = null;
         scope.current = el;
@@ -325,6 +333,14 @@ angular.module('avAdmin')
       function createRealElection() {
         var el = ElectionsApi.templateEl();
         _.extend(el, angular.copy(scope.election));
+        if (el.census.extra_fields && el.census.extra_fields.length > 0) {
+           for (var i = 0; i < el.census.extra_fields.length; i++) {
+             var field = el.census.extra_fields[i];
+             if(field.slug) {
+               delete field['slug'];
+             }
+           }
+        }
         scope.current = el;
         el.id = null;
         el.real = true;
