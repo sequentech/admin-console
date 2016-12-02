@@ -1,7 +1,7 @@
 <div>
     <h2>
       <span ng-i18next>[i18next]({'num': elections.length})avAdmin.create.summary</span>
-      <i class="fa fa-pencil" ng-click="editJson()"></i>
+      <i class="fa fa-pencil" ng-click="editJson()" ng-if="allowEditElectionJson"></i>
     </h2>
 
     <div ng-repeat="election in elections">
@@ -17,7 +17,7 @@
                   <ol>
                       <li ng-repeat="q in election.questions">
                           <p>{{q.title|truncate:'50'}}</p>
-                          <p ng-i18next>[html:i18next]({'num_answers': q.answers.length, 'min': q.min, 'max': q.max, 'num_winners': q.num_winners, tally_method: q.tally_type, random: q.randomize_answer_order})avAdmin.basic.questionOptionsSummary</p>
+                          <p ng-i18next>[html:i18next]({'num_answers': q.answers.length, 'min': q.min, 'max': q.max, 'num_winners': q.num_winners, tally_method: q.tally_type, shuffle_all_options: q.extra_options.shuffle_all_options, shuffle_categories: q.extra_options.shuffle_categories})avAdmin.basic.questionOptionsSummary</p>
                       </li>
                   </ol>
               </td>
@@ -32,7 +32,7 @@
       </table>
     </div>
 
-    <div class="panel panel-primary" ng-if="creating || log.length > 0" >
+    <div class="panel panel-primary well" ng-if="creating || log.length > 0" >
       <div class="panel-heading" ng-i18next>avAdmin.create.logHeader</div>
       <div class="panel-body" av-scroll-to-bottom ng-bind-html="log"></div>
     </div>

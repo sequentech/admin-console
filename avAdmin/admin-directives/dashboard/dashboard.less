@@ -15,13 +15,80 @@
  * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/** descriptive radio buttons */
+.descriptive-radio {
+  border: 2px solid transparent;
+  border-radius: 4px;
+  padding: 10px 15px 10px 45px;
+  text-align: left;
+  font-weight: normal;
+  cursor: pointer;
+
+  &.selected {
+    background-color: @av-primary-contrast;
+    border-color: @gray-lighter;
+
+    .header {
+      color: @av-secondary;
+    }
+  }
+
+  &:hover {
+    border-color: @gray-lighter;
+  }
+
+  &.disabled {
+    &.selected,  &.selected:hover {
+      border-color: @gray-lighter;
+    }
+
+    &:hover {
+      border-color: transparent;
+      cursor: default;
+    }
+  }
+
+  input[type="radio"] {
+    margin-left: -30px;
+    margin-right: 10px;
+  }
+
+  .header {
+    display: inline-block;
+    text-align: left;
+    font-size: 16px;
+    padding-bottom: 6px;
+  }
+
+  .description {
+    display: block;
+    color: @gray-light;
+  }
+}
+
 [av-admin-dashboard] {
+  .affix-top {
+    margin: 0;
+  }
+
   /** statusbar **/
   .stick {
       background-image: url("/admin/img/stick-green.png");
       background-repeat: no-repeat;
       background-position: center;
       background-size: 100% 8px;
+  }
+
+  .change-social-window > .modal-dialog {
+    width: 80%;
+  }
+
+  .btn.btn-xs.btn-primary.dropdown-toggle {
+    background-color: @av-primary-contrast;
+  }
+
+  .actions-div {
+    margin-top: 20px;
   }
 
   .text-gray-light {
@@ -34,6 +101,10 @@
 
   .download-data-dropdown {
     min-width: 400px;
+  }
+
+  .text-success {
+    color: @av-secondary-contrast;
   }
 
   .stickend,
@@ -68,8 +139,7 @@
 
   /** info **/
   .dashboard .info .block {
-      background-color: @av-secondary;
-      color: @av-secondary-contrast;
+      color: @av-secondary;
       padding: 20px;
       font-size: 1.4em;
   }
@@ -104,6 +174,10 @@
 
 /* send auth-codes-confirm-modal */
 .send-auth-codes-modal {
+  .preview-body {
+    white-space: pre-wrap;
+  }
+
   h3.confirm-message {
     border-bottom: 1px solid;
     margin-bottom: 20px;

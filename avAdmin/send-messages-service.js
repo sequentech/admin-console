@@ -19,7 +19,7 @@
  * Service to manage the send authentication codes modal steps.
  */
 angular.module('avAdmin')
-  .factory('SendMsg', function($q, $modal, Authmethod, Plugins)
+  .factory('SendMsg', function($q, $modal, Authmethod, Plugins, ElectionsApi)
   {
     // These is the base data of this service
     var service = {
@@ -64,6 +64,22 @@ angular.module('avAdmin')
     }
 
     /**
+     * Get the list of slug names for the extra fields
+     */
+    function get_slugs(election) {
+      var slug_list = [];
+        if (election.census.extra_fields && election.census.extra_fields.length > 0) {
+           for (var i = 0; i < election.census.extra_fields.length; i++) {
+             var field = election.census.extra_fields[i];
+             if(field.slug && field.name) {
+               slug_list.push(field.slug);
+             }
+           }
+        }
+      return slug_list;
+    }
+
+    /**
      * Sets the election related to this service, setting the edit dialog to be
      * shown.
      */
@@ -71,6 +87,7 @@ angular.module('avAdmin')
     {
         service.skipEditDialogFlag = false;
         service.election = el;
+        service.slug_list = get_slugs(el);
     };
 
     /**
@@ -83,11 +100,40 @@ angular.module('avAdmin')
     };
 
     /**
+     * Checks whether the extra_field of an election allows other auth methods.
+     */
+    service.authMethodIsSelectable = function () {
+
+      function getExtraField(name) {
+        for (var i = 0; i < service.election.census.extra_fields.length; i++) {
+           if(service.election.census.extra_fields[i].name === name) {
+            return service.election.census.extra_fields[i];
+           }
+        }
+        return false;
+      }
+
+      if('sms' === service.election.census.auth_method) {
+        var email_field = getExtraField('email');
+        if(email_field && 'email' === email_field.type) {
+          return true;
+        }
+      } else if('email' === service.election.census.auth_method) {
+        var tlf_field = getExtraField('tlf');
+        if(tlf_field && 'tlf' === tlf_field.type) {
+          return true;
+        }
+      }
+      return false;
+    };
+
+    /**
      * Triggers from the start the send messages dialog. The first dialog shown
      * is
      */
-    service.sendAuthCodesModal = function()
-    {
+    service.sendAuthCodesModal = function() {
+      service.selectable_auth_method = service.authMethodIsSelectable();
+      service.selected_auth_method = angular.copy(service.election.census.auth_method);
       // If skip dialog flag is activated, then we jump directly to the
       // confirmation step
       if (service.skipEditDialogFlag)
@@ -114,8 +160,7 @@ angular.module('avAdmin')
       // when the edit dialog has been shown, then we default to not showing it
       // again unless necessary (setting the skip edit dialog to true) and
       // continue to the confirmation dialog
-      }).result.then(function ()
-      {
+      }).result.then(function () {
         service.skipEditDialogFlag = true;
         service.confirmAuthCodesModal();
       });
@@ -150,6 +195,9 @@ angular.module('avAdmin')
         controller: "SendAuthCodesModalConfirm",
         size: 'lg',
         resolve: {
+          selected_auth_method: function() {
+            return service.selected_auth_method;
+          },
           election: function () { return service.election; },
           user_ids: function() { return service.user_ids; },
           exhtml: function () {
@@ -200,6 +248,7 @@ angular.module('avAdmin')
             service.election.id,
             service.election,
             service.user_ids,
+            service.selected_auth_method,
             service.extra
           ).success(function(r)
           {

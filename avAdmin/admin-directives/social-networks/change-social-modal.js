@@ -1,6 +1,6 @@
 /**
  * This file is part of agora-gui-admin.
- * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+ * Copyright (C) 2016  Agora Voting SL <agora@agoravoting.com>
 
  * agora-gui-admin is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -15,15 +15,25 @@
  * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-[av-admin-elquestions] {
-  .affixed.affix-placeholder {
-    display: block;
-    width: 100%;
-    height: 91px;
-  }
+angular.module('avAdmin')
+  .controller('ChangeSocialModal',
+    function($scope, $modalInstance, $modal) {
 
-  h1 {
-    display: block;
-    background-color: @av-primary;
-  }
-}
+      function showOkModal() {
+        $modal.open({
+          templateUrl: "avAdmin/admin-directives/social-networks/info-changed-social-ok.html",
+          controller: "InfoChangedSocialOk",
+          windowClass: "info-changed-social-window",
+          size: 'sm'
+        });
+      }
+
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+
+      $scope.successClose = function () {
+        $modalInstance.close();
+        showOkModal();
+      };
+    });

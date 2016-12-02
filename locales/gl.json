@@ -30,6 +30,21 @@
   },
 
   "avAdmin": {
+    "show_points_policy": {
+      "label": "Amosar puntos",
+      "text": "Amosar os puntos que o voto dá a cada opción seleccionada"
+    },
+    "shuffling_policy": {
+      "categories_label": "Ramdomize categories",
+      "categories_label_text": "Check to randomize",
+      "options_label": "Randomize options",
+      "list_label": "List of categories to randomize",
+      "list_muted": "Add here the categories to shuffle their options",
+      "list_placeholder": "Add the name of the categories, separated by comma",
+      "dont-shuffle": "Don't shuffle the options. All voters will see the options in the same order in the voting booth",
+      "shuffle-all": "Shuffle all options. Each voter will see the options for this question in a different order in the voting booth. If there are different categories, they will also be randomized.",
+      "shuffle-some": "Shuffle the options of a selected list of categories."
+    },
     "notes": {
       "noteTag": "Nota",
       "thisisATestElection": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas.",
@@ -119,6 +134,11 @@
         "electionPublic": "Url pública da votación",
         "censussend": "Enviouse o censo correctamente",
         "preview": "Demo de cabina de votación",
+        "actions": {
+          "actionsLabel": "Accións",
+          "changeSocial": "Editar social...",
+          "sendAuthCodes": "Enviar autenticación..."
+        },
         "modals": {
           "createHeader": "Crear votación",
           "createBody": "Para crear a votación, a súa configuración é enviada ás autoridades e estas crean as claves públicas da votación. Tras isto, a votación xa non é editable. Antes de proceder a realizar este paso, por favor comproba que a configuración é correcta (por exemplo comprobándoo na cabina de votación de proba). Se necesitas cambiar a votación pasado este paso, deberás crear unha nova.",
@@ -128,19 +148,45 @@
           "confirmStartButton": "Confirmar e COMEZAR a votación",
           "stopHeader": "Parar votación",
           "stopBody": "Unha vez se para a votación, os electores deixarán de poder votar. Por favor, teno en conta e procede con coidado.",
-          "confirmStopButton": "Confirmar e PARAR a votación",
-          "tallyHeader": "Reconto de votos",
-          "tallyBody": "O proceso de reconto é levado a cabo polas autoridades e podería tomar algún tempo, dependendo do número de votos. Inclúe un proceso matemático criptográfico e matematicamente verificable que anonimiza e obtén o contido de cada voto.",
-          "confirmTallyButton": "Confirmar e  comezar o RECONTO",
+          "tallyHeader": "Tally election",
+          "tallyIntro": "The tally process is run by the election authorities and may take a while, depending on the number of votes. It involves a mathematically verifiable cryptographic process that anonymizes and obtains the content of each vote.",
+          "askFilterBallots": "Before launching the tally, you need to select what set of ballots to use in the tally. It's very important that you <strong>choose carefully, because once a tally has been done you cannot launch another tally</strong> with a second set of ballots. <br/><br/>These are the options you have:",
+          "censusDumpMode": {
+            "allHeader": "Tally all cast ballots",
+            "allDescription": "Even if a voter has been removed from the census or is marked as not active, if this voter has cast a ballot it will be counted.",
+            "activeHeader": "Tally only cast ballots active in the current census",
+            "activeDescription": "<strong>Only choose this option if you know what you are doing</strong>. The ballots corresponding to people that are not included in the census, or those corresponding to inactive people in the census <strong>will be discarded and not counted</strong>."
+          },
+          "confirmTallyButton": "Confirm and TALLY the election",
+          "tallyActiveHeader": "Tally only active voters",
+          "tallyActiveIntro": "We will start downloading all the voters to detect which are active and only tally those if you confirm you want to do so. <strong>This decision is final</strong>, the software does not allow to undo a tally or to do a second one with a different set of ballots. <br/><br/>To modify the list of active users, cancel this modal and edit the active status in the Census Data lateral menu. If you don't want to do the tally, just close this dialog.",
+          "downloadingCensus": "Downloaded __downloaded__ of __total__ people in census",
+          "confirmTallyActiveButton": "Confirm and TALLY __totalActive__ out of __total__ elegible voters",
           "publishResultsHeader": "Publicar resultados",
           "publishResultsBody": "Até o momento só os administradores da votación tiveron acceso directo aos resultados calculados da votación. Cando se publican os resultados, ponse a disposición pública para que calquera poida velos.",
           "confirmPublishResultsButton": "Confirmar e PUBLICAR resultados",
+          "changeSocial": {
+            "header": "Editar botóns de compartir de redes sociais",
+            "confirmButton": "Confirm e GARDAR configuración de redes sociais",
+            "title": "Botones de Redes Sociais",
+            "new": "Novo botón de redes sociais",
+            "socialNetworkLabel": "Rede Social",
+            "buttonTextLabel": "Texto do botón",
+            "socialMessagePlaceholder": "Texto para compartir en redes sociais (use __URL__ á url de la votación por defecto)",
+            "buttonTextPlaceholder":  "Texto para o botón de compartir (pode non conter texto)",
+            "socialMessageLabel": "Mensaxe para compartir",
+            "nameLabel": "Nome",
+            "infoHeader": "Configuración gardada",
+            "infoBody": "A configuración dos botóns de redes sociais foi gardado correctamente.",
+            "socialUrlLabel": "Enlace",
+            "socialUrlPlaceholder": "Enlace á votación, para compartir en redes sociais (use __URL__ á url de la votación por defecto)"
+          },
           "sendAuthCodes": {
             "editMessageStep": {
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
               "helpInfo": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
-              "sendButton": "ENVIAR códigos de autenticación a TODO el censo",
-              "sendSelectedButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
+              "sendButton": "Revisar mensaje antes de enviar códigos de autenticación a TODO el censo",
+              "sendSelectedButton": "Revisar mensaje antes de enviar códigos de autenticación a los usuarios SELECCIONADOS"
             },
             "confirmStep": {
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
@@ -159,14 +205,20 @@
         "intro": "Crear unha votación leva varios pasos, pero non é difícil. Só levarache 5 minutos, por favor le o Manual de Administrador, enlazado na icona de axuda da barra superior.",
         "title": { "label": "Título", "placeholder": "ej.Nova xunta de dirección", "labelH3": "__index__. Votación titulada: __title__" },
         "description": { "label": "Descripción", "placeholder": "Descrición que se mostrará. Aquí debe de identificarse a organización que vai levar o proceso electoral, así como os métodos de contacto cos electores." },
-        "share": { "label": "Texto para compartir", "placeholder": "Texto para usar nas ligazóns a redes sociais" },
+        "logo_url": { "label": "Logotipo personalizado", "placeholder": "URL logotipo personalizado para esta votación. O tamaño máximo recomendado é 150x150 px." },
         "layout": { "label": "Disposición", "placeholder": "Especifica cómo se vai mostrar toda a votación" },
         "layouts": { "simple": "Simple", "2questions-conditional": "Sí/No", "pcandidates-election": "Táboa de candidatos" },
         "theme": { "label": "Tema", "placeholder": "¿Cómo se verá a votación?" },
         "themes": { "default": "Por defecto", "podemos": "Morado" },
-        "questionOptionsSummary": "<strong>__num_answers__</strong> candidatos. Os votantes seleccionan entre <strong>__min__</strong> e <strong>__max__</strong> opcións (orde aleatoria: <strong>__random__</strong>) e hai <strong>__num_winners__</strong> gañadores. O método de reconto é <strong>__tally_method__</strong>.",
+        "questionOptionsSummary": "<strong>__num_answers__</strong> candidatos. Os votantes seleccionan entre <strong>__min__</strong> e <strong>__max__</strong> opcións e hai <strong>__num_winners__</strong> gañadores. O método de reconto é <strong>__tally_method__</strong>. Orden aleatoria de categorías: <strong>shuffle_categories</strong>, orden aleatoria de todas as opcións: <strong>shuffle_all_options</strong>.",
         "censusSize": "__num__ persoas",
-        "registerAndCreateElection": "Non só rexistrar a votación, senón creala nas autoridades de votación. Isto significa que xa non se poderá modificar a votación."
+        "registerAndCreateElection": "Non só rexistrar a votación, senón creala nas autoridades de votación. Isto significa que xa non se poderá modificar a votación.",
+        "num_successful_logins_allowed" : {
+          "label": "Número de votos por votante",
+          "placeholder": "Máximo número de veces que los votantes podrán emitir su voto. Sólo el último voto contará. Si este número es cero, los votantes podrán emitir su voto cuantas veces deseen",
+          "minError": "El número de veces que se puede cambiar el voto es __num_successful_logins_allowed__ pero ha de ser mayor o igual a cero",
+          "inputError": "__num_successful_logins_allowed__ no es un número"
+        }
     },
     "questions": {
         "new": "Nova pregunta",
@@ -301,6 +353,8 @@
         "fieldHelpLabel": "Texto de axuda",
         "fieldHelpPlaceholder": "Exemplo: Insere tanto o teu nome como apelidos",
         "fieldRequiredAuthLabel": "Contrastar co censo durante a autenticación",
+        "fieldMatchCensusOnRegistrationLabel": "Contrastar con el censo durante el registro (sólo para pre-registro)",
+        "fieldFillIfEmptyOnRegistrationLabel": "Requerido durante el registro, pero puede estar vacío en el pre-registro",
         "fieldUniqueLabel": "Único (cada votante debe aportar un valor diferente a este campo)",
         "fieldPrivateLabel": "Privado (só os administradores poden ver e usar este campo)",
         "extraFieldsHeader": "Campos extra",
@@ -329,7 +383,8 @@
         "emailsub": "Asunto do email",
         "emailtemp": "Persoal usado no correo para enviar aos usuarios. Usa __CODE__ para engadir o código de acceso e __URL__ para inserir a ligazón de votación",
         "emailsubdef": "Xa podes votar con __name__",
-        "emaildef": "Vota en __URL__ co codigo __CODE__"
+        "emaildef": "Vota en __URL__ co codigo __CODE__",
+        "slugKeys": "Usa las siguientes claves para insertar en el mensaje los campos extra de usuario: __slug_list__"
     },
     "columnFilter": {
       "sort": "Orden:",
@@ -349,9 +404,9 @@
         "create": "Crear as votacións",
         "create__plural": "Crear as votacións",
         "creating": "Creando a autenticación da votación __title__",
-        "census": "Engadindo o censo (ide: __ide__) __title__",
-        "reg": "Rexistrando a votación (ide: __ide__) __title__",
-        "creatingEl": "Creando a votación (ide: __ide__) __title__",
+        "census": "Engadindo o censo (ide: __id__) __title__",
+        "reg": "Rexistrando a votación (ide: __id__) __title__",
+        "creatingEl": "Creando a votación (ide: __id__) __title__",
         "logHeader": "Log",
         "errors": {
           "election-is-array-questions": "Votación '__eltitle__': la lista de pregunta no es un array",

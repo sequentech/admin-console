@@ -39,6 +39,7 @@ angular.module('avAdmin')
         scope.creating = false;
         scope.log = '';
         scope.createElectionBool = true;
+        scope.allowEditElectionJson = ConfigService.allowEditElectionJson;
 
         if (ElectionsApi.currentElections.length === 0 && !!ElectionsApi.currentElection) {
           scope.elections = [ElectionsApi.currentElection];
@@ -363,7 +364,8 @@ angular.module('avAdmin')
                 census: el.census.census,
                 auth_method_config: el.census.config,
                 extra_fields: [],
-                real: el.real
+                real: el.real,
+                num_successful_logins_allowed: el.num_successful_logins_allowed
             };
 
             d.extra_fields = _.filter(el.census.extra_fields, function(ef) {
@@ -481,6 +483,9 @@ angular.module('avAdmin')
 
         scope.editJson = function()
         {
+          if(!ConfigService.allowEditElectionJson) {
+            return;
+          }
           // show the initial edit dialog
           $modal
             .open({

@@ -1,0 +1,16 @@
+<div class="social-networks">
+  <h2 class="h2-title">
+    <span ng-i18next>avAdmin.dashboard.modals.changeSocial.title</span>
+    <span>
+      <button
+        type="button"
+        ng-click="newItem()"
+        aria-expanded="false"
+        class="btn btn-success pull-right social-new-button">
+        <i class="fa fa-plus"></i>
+        <span ng-i18next>avAdmin.dashboard.modals.changeSocial.new</span>
+      </button>
+    </span>
+  </h2>
+  <div av-social-item social-item="q" ng-repeat="q in socialConfig"/>
+</div>

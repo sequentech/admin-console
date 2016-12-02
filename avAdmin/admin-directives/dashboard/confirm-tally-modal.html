@@ -11,18 +11,66 @@
 <div class="modal-body">
   <p>
     <span ng-i18next>
-      avAdmin.dashboard.modals.tallyBody
+      [html]avAdmin.dashboard.modals.tallyIntro
     </span>
+
     <a href="{{helpurl}}" class="learn-more" target="_blank" ng-i18next>
       avAdmin.learnMore
     </a>
   </p>
+
+  <!-- Show forms of census dump -->
+  <div class="form-group">
+    <p class="text-muted" ng-i18next>
+      [html:i18next]avAdmin.dashboard.modals.askFilterBallots
+    </p>
+
+    <label
+      for="census-dump-{{mode}}"
+      class="descriptive-radio"
+      ng-repeat="mode in census_dump_modes"
+      ng-class="{'selected': binding.census_dump_mode === o}">
+
+      <input
+        id="census-dump-{{mode}}"
+        type="radio"
+        name="census-dump"
+        value="{{ mode }}"
+        ng-model="binding.census_dump_mode" />
+
+      <span
+        class="header"
+        ng-i18next="avAdmin.dashboard.modals.censusDumpMode.{{ mode }}Header">
+      </span>
+
+      <span
+        class="description"
+        ng-i18next="[html]avAdmin.dashboard.modals.censusDumpMode.{{ mode }}Description">
+      </span>
+
+      <a href="{{helpurl}}" class="learn-more" target="_blank" ng-i18next>
+        avAdmin.learnMore
+      </a>
+    </label>
+  </div>
+  <div class="row-fluid">
+    <div class="col-xs-12">
+      <progressbar
+        ng-if="downloading"
+        class="progress-striped active"
+        max="totalCensusCount"
+        value="currentCount"
+        type="success">
+        <strong>{{currentCount}} / {{totalCensusCount}}</strong>
+      </progressbar>
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
   <button class="btn btn-success" ng-click="ok()" ng-i18next>
     avAdmin.dashboard.modals.confirmTallyButton
   </button>
-  <button class="btn" ng-click="cancel()" ng-i18next>
+  <button class="btn btn-cancel" ng-click="cancel()" ng-i18next>
     avCommon.cancel
   </button>
 </div>

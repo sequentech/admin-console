@@ -1,10 +1,39 @@
 <div avb-busy overlay ng-if="loading && !intally"></div>
 
 <div class="dashboard">
-    <h2>
-      <span ng-i18next>avAdmin.sidebar.dashboard</span>
-      <span class="text-gray-light" ng-if="election.title">{{election.title | truncate:45}}</span>
-    </h2>
+  <div class="container-fluid">
+    <div class="dropdown pull-left">
+       <span>
+         <h2>
+          <span ng-i18next>avAdmin.sidebar.dashboard</span>
+          <span class="text-gray-light" ng-if="election.title">{{election.title | truncate:45}}</span>
+         </h2>
+       </span>
+    </div>
+    <div class="dropdown pull-right actions-div">
+      <button 
+        class="btn btn-success actionbtn ng-scope btn-primary dropdown-toggle"
+        type="button"
+        data-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <span ng-i18next>avAdmin.dashboard.actions.actionsLabel</span>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li
+          ng-repeat="action in actions"
+          ng-class="{'disabled': !action.enableFunc()}">
+          <a ng-click="action.actionFunc()">
+            <i class="{{action.iconClass}}"></i>
+            <span ng-i18next>
+              [i18next]avAdmin.dashboard.actions.{{action.i18nString}}
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 
     <!-- dashboard status bar -->
     <div class="statusbar row text-center">
@@ -32,17 +61,16 @@
     <!-- election info -->
     <div class="row info">
         <div class="col-sm-4 text-right">
-            <div class="block">
+            <div class="block well">
                 <strong>{{ election.votes|number }}</strong><br/>
                 <span ng-i18next>avAdmin.dashboard.votes</span>
             </div>
         </div>
         <div class="col-sm-4 text-right">
-            <div class="block">
+            <div class="block well">
                 <strong>{{ election.auth.census|number }}</strong><br/>
                 <button
                   ng-click="sendAuthCodes()"
-                  ng-if="election.status == 'started'"
                   class="btn btn-success send-auth pull-left">
                     <i class="fa fa-sw fa-send"></i>
                     <span ng-i18next>
@@ -53,7 +81,7 @@
             </div>
         </div>
         <div class="col-sm-4 text-right">
-            <div class="block">
+            <div class="block well">
                 <span ng-i18next>avAdmin.dashboard.questions</span>
                 <strong>{{ election.questions.length }}</strong><br/>
                 <span ng-i18next>avAdmin.dashboard.answers</span>
@@ -265,7 +293,7 @@
             </tr>
             <tr ng-repeat="an in q.answers|orderBy:'-total_count'">
                 <td>{{ $index + 1 }}</td>
-                <td>{{ an.text }}</td>
+                <td ng-bind-html="an.text"></td>
                 <td>{{ an.total_count|number }}</td>
                 <td>{{ percentVotes(an.total_count, q, "over-valid-votes") }}</td>
                 <td ng-if="an.winner_position === 0 || an.winner_position">{{ an.winner_position + 1}}</td>

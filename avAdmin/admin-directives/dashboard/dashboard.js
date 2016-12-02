@@ -16,18 +16,19 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminDashboard', function(
-    $state,
-    Authmethod,
-    Plugins,
-    ElectionsApi,
-    $stateParams,
-    $modal,
-    PercentVotesService,
-    SendMsg,
-    ConfigService)
-
-  {
+  .directive(
+    'avAdminDashboard', 
+    function(
+       $state, 
+       Authmethod, 
+       Plugins, 
+       ElectionsApi, 
+       $stateParams, 
+       $modal, 
+       PercentVotesService, 
+       ConfigService,
+       SendMsg)
+    {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
       var id = $stateParams.id;
@@ -79,13 +80,71 @@ angular.module('avAdmin')
           path: 'tally',
           method: 'POST',
           confirmController: "ConfirmTallyModal",
-          confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-tally-modal.html"
+          confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-tally-modal.html",
+          doAction: function (mode)
+          {
+            // tally command
+            var command = commands[4];
+
+            if (mode === 'all') {
+              ElectionsApi.command(
+                scope.election,
+                command.path,
+                command.method,
+                command.data
+              ).catch(
+                function(error)
+                {
+                  scope.loading = false;
+                  scope.error = error;
+                }
+              );
+            // tally only active users
+            } else {
+              $modal.open({
+                templateUrl: "avAdmin/admin-directives/dashboard/confirm-tally-active-modal.html",
+                controller: 'ConfirmTallyActiveModal',
+                size: 'lg',
+                resolve: {
+                  election: function () { return scope.election; },
+                }
+              }).result.then(function (voterids) {
+                 ElectionsApi.command(
+                  scope.election,
+                  'tally-voter-ids',
+                  'POST',
+                  voterids
+                ).catch(
+                  function(error)
+                  {
+                    scope.loading = false;
+                    scope.error = error;
+                  }
+                );
+              });
+            }
+          }
         },
         {
           path: 'publish-results',
           method: 'POST',
           confirmController: "ConfirmPublishResultsModal",
           confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-publish-results-modal.html"
+        }
+      ];
+
+      scope.actions = [
+        {
+          i18nString: 'changeSocial',
+          iconClass: 'fa fa-comment-o',
+          actionFunc: function() { return scope.changeSocial(); },
+          enableFunc: function() { return ConfigService.share_social.allow_edit; }
+        },
+        {
+          i18nString: 'sendAuthCodes',
+          iconClass: 'fa fa-paper-plane-o',
+          actionFunc: function() { return scope.sendAuthCodes(); },
+          enableFunc: function() { return 'started' === scope.election.status; }
         }
       ];
 
@@ -179,12 +238,12 @@ angular.module('avAdmin')
           templateUrl: command.confirmTemplateUrl,
           controller: command.confirmController,
           size: 'lg'
-        }).result.then(function () {
-          doAction(index);
+        }).result.then(function (data) {
+          doAction(index, data);
         });
       }
 
-      function doAction(index) {
+      function doAction(index, data) {
         if (scope.intally) {
           return;
         }
@@ -194,6 +253,12 @@ angular.module('avAdmin')
         setTimeout(waitElectionChange, 1000);
 
         var c = commands[index];
+
+        if (angular.isDefined(c.doAction)) {
+          c.doAction(data);
+          return;
+        }
+
         ElectionsApi.command(scope.election, c.path, c.method, c.data)
           .catch(function(error) { scope.loading = false; scope.error = error; });
 
@@ -249,8 +314,17 @@ angular.module('avAdmin')
       function duplicateElection() {
         var el = ElectionsApi.templateEl();
         _.extend(el, angular.copy(scope.election));
-        scope.current = el;
+        if (el.census.extra_fields && el.census.extra_fields.length > 0) {
+           for (var i = 0; i < el.census.extra_fields.length; i++) {
+             var field = el.census.extra_fields[i];
+             if(field.slug) {
+               delete field['slug'];
+             }
+           }
+        }
         el.id = null;
+        el.raw = null;
+        scope.current = el;
         ElectionsApi.setCurrent(el);
         ElectionsApi.newElection = true;
         $state.go("admin.basic");
@@ -259,6 +333,14 @@ angular.module('avAdmin')
       function createRealElection() {
         var el = ElectionsApi.templateEl();
         _.extend(el, angular.copy(scope.election));
+        if (el.census.extra_fields && el.census.extra_fields.length > 0) {
+           for (var i = 0; i < el.census.extra_fields.length; i++) {
+             var field = el.census.extra_fields[i];
+             if(field.slug) {
+               delete field['slug'];
+             }
+           }
+        }
         scope.current = el;
         el.id = null;
         el.real = true;
@@ -267,12 +349,28 @@ angular.module('avAdmin')
         $state.go("admin.create", {"autocreate": true});
       }
 
+      function changeSocial() {
+        if(ConfigService.share_social.allow_edit) {
+          $modal.open({
+            templateUrl: "avAdmin/admin-directives/social-networks/change-social-modal.html",
+            controller: "ChangeSocialModal",
+            windowClass: "change-social-window",
+            size: 'lg',
+            resolve: {
+              election: function () { return scope.election; },
+            }
+          }).result.then(function(whateverReturned) {
+          });
+        }
+      }
+
       angular.extend(scope, {
         doAction: doAction,
         doActionConfirm: doActionConfirm,
         sendAuthCodes: sendAuthCodes,
         duplicateElection: duplicateElection,
-        createRealElection: createRealElection
+        createRealElection: createRealElection,
+        changeSocial: changeSocial
       });
     }
 

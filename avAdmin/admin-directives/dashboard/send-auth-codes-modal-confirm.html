@@ -20,7 +20,7 @@
     <span ng-i18next>
       [i18next]({'voters': numVoters, tlf: contact.tlf, email: contact.email })avAdmin.dashboard.modals.sendAuthCodes.confirmStep.helpInfo
     </span>
-    <a href="" class="learn-more" target="_blank" ng-i18next>
+    <a href="{{helpurl}}" class="learn-more" target="_blank" ng-i18next>
       avAdmin.learnMore
     </a>
   </p>
@@ -51,7 +51,7 @@
   </h3>
 
   <!-- SMS conf -->
-  <div ng-if="election.census.auth_method == 'sms'" class="preview">
+  <div ng-if="'sms' === selected_auth_method" class="preview">
     <div class="form-group">
       <label
         class="col-xs-3 control-label text-right padding-top-sm"
@@ -60,7 +60,7 @@
       <div class="col-xs-9">
         <div
           ng-click="editAuthCodes()"
-          class="preview-data"
+          class="preview-data preview-body"
           ng-bind="exampleMsg()">
         </div>
       </div>
@@ -68,7 +68,7 @@
   </div>
 
   <!-- Email conf -->
-  <div ng-if="election.census.auth_method == 'email'" class="preview">
+  <div ng-if="'email' === selected_auth_method" class="preview">
     <div class="form-group">
       <label
         class="col-xs-3 control-label text-right padding-top-sm"
@@ -92,7 +92,7 @@
       <div class="col-xs-9">
         <div
           ng-click="editAuthCodes()"
-          class="preview-data"
+          class="preview-data preview-body"
           ng-bind="exampleMsg()">
         </div>
       </div>

@@ -29,6 +29,21 @@
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
   },
   "avAdmin": {
+    "show_points_policy": {
+      "label": "Show points",
+      "text": "Show the points that the ballot is giving to each selected option"
+    },
+    "shuffling_policy": {
+      "categories_label": "Ramdomize categories",
+      "categories_label_text": "Check to randomize",
+      "options_label": "Randomize options",
+      "list_label": "List of categories to randomize",
+      "list_muted": "Add here the categories to shuffle their options",
+      "list_placeholder": "Add the name of the categories, separated by comma",
+      "dont-shuffle": "Don't shuffle the options. All voters will see the options in the same order in the voting booth",
+      "shuffle-all": "Shuffle all options. Each voter will see the options for this question in a different order in the voting booth. If there are different categories, they will also be randomized.",
+      "shuffle-some": "Shuffle the options of a selected list of categories."
+    },
     "notes": {
       "noteTag": "Note",
       "thisisATestElection": "This is a test election. For security reasons, real elections can only be created out of successful test elections.",
@@ -118,6 +133,11 @@
         "electionPublic": "Election public site",
         "censussend": "Census send correctly",
         "preview": "Demo voting booth",
+        "actions": {
+          "actionsLabel": "Actions",
+          "changeSocial": "Edit social...",
+          "sendAuthCodes": "Send auth codes..."
+        },
         "modals": {
           "createHeader": "Create election",
           "createBody": "To create the election, its configuration is sent to the election authorities and they create election encryption public keys. After that, the election is no longer editable. Before doing this, please check that the configuration is correct (for example taking a look at the demo voting booth). If you need to change the election after this, you will have to create a new one.",
@@ -129,18 +149,45 @@
           "stopBody": "Once you stop the election, people will not be able to vote anymore.  Please be aware of this and exercise caution",
           "confirmStopButton": "Confirm and STOP the election",
           "tallyHeader": "Tally election",
-          "tallyBody": "The tally process is run by the election authorities and may take a while, depending on the number of votes. It involves a mathematically verifiable cryptographic process that anonymizes and obtains the content of each vote.",
+          "tallyIntro": "The tally process is run by the election authorities and may take a while, depending on the number of votes. It involves a mathematically verifiable cryptographic process that anonymizes and obtains the content of each vote.",
+          "askFilterBallots": "Before launching the tally, you need to select what set of ballots to use in the tally. It's very important that you <strong>choose carefully, because once a tally has been done you cannot launch another tally</strong> with a second set of ballots. <br/><br/>These are the options you have:",
+          "censusDumpMode": {
+            "allHeader": "Tally all cast ballots",
+            "allDescription": "Even if a voter has been removed from the census or is marked as not active, if this voter has cast a ballot it will be counted.",
+            "activeHeader": "Tally only cast ballots active in the current census",
+            "activeDescription": "<strong>Only choose this option if you know what you are doing</strong>. The ballots corresponding to people that are not included in the census, or those corresponding to inactive people in the census <strong>will be discarded and not counted</strong>."
+          },
           "confirmTallyButton": "Confirm and TALLY the election",
+          "tallyActiveHeader": "Tally only active voters",
+          "tallyActiveIntro": "We will start downloading all the voters to detect which are active and only tally those if you confirm you want to do so. <strong>This decision is final</strong>, the software does not allow to undo a tally or to do a second one with a different set of ballots. <br/><br/>To modify the list of active users, cancel this modal and edit the active status in the Census Data lateral menu. If you don't want to do the tally, just close this dialog.",
+          "downloadingCensus": "Downloaded __downloaded__ of __total__ people in census",
+          "confirmTallyActiveButton": "Confirm and TALLY __totalActive__ out of __total__ elegible voters",
           "publishResultsHeader": "Publish election results",
           "publishResultsBody": "Currently only the election administrators have access to the calculated election results. When you publish the results, these will be made public for everyone to see.",
           "confirmPublishResultsButton": "Confirm and PUBLISH election results",
+          "changeSocial": {
+            "header": "Edit social networks share buttons",
+            "title": "Social Network Buttons",
+            "new": "New button",
+            "confirmButton": "Confirm and SAVE social networks configuration",
+            "socialNetworkLabel": "Social Network",
+            "buttonTextLabel": "Button text",
+            "socialMessageLabel": "Share text",
+            "socialMessagePlaceholder": "Text to be shared on social networks (use __URL__ for the default election url)",
+            "buttonTextPlaceholder":  "Text for the share button (it can be empty)",
+            "nameLabel": "Name",
+            "infoHeader": "Configuration saved",
+            "infoBody": "The social networks buttons configuration has been successfully saved.",
+            "socialUrlLabel": "Link",
+            "socialUrlPlaceholder": "Election link to be shared on social networks (use __URL__ for the default election url)"
+          },
 
           "sendAuthCodes": {
             "editMessageStep": {
               "header": "Send authentication codes (Step __step__ of __total__)",
               "helpInfo": "This action will send a message to all the registered electors in the census. Note that sending many messages can be considered as SPAM, so proceed with caution. Also, please review the message that will be sent before proceeding.",
-              "sendButton": "SEND authentication codes to ALL census",
-              "sendSelectedButton": "SEND authentication codes to SELECTED users"
+              "sendButton": "Review message before sending authentication codes to ALL census",
+              "sendSelectedButton": "Review message before sending authentication codes to SELECTED users"
             },
             "confirmStep": {
               "header": "Send authentication codes (Step __step__ of __total__)",
@@ -159,14 +206,20 @@
         "intro": "Creating an election requires multiple steps, but it is not difficult. It will only take 5 minutes. Please read the Administrator Manual, linked in the help icon at the top navegation bar.",
         "title": { "label": "Title", "placeholder": "eg.New Board of Directors", "labelH3": "__index__. Election titled: __title__" },
         "description": { "label": "Description", "placeholder": "Description will be shown" },
-        "share": { "label": "Share text", "placeholder": "Text to use for social sharing" },
+        "logo_url": { "label": "Custom logo", "placeholder": "URL for a custom logo for this election. Maximum recommended size is 150x150 px." },
         "layout": { "label": "Layout", "placeholder": "Specifies how the whole election will be displayed" },
         "layouts": { "simple": "Simple", "2questions-conditional": "Yes/No", "pcandidates-election": "Table Candidates" },
         "theme": { "label": "Theme", "placeholder": "How will the election look like?" },
         "themes": { "default": "Default", "podemos": "Purple" },
-        "questionOptionsSummary": "<strong>__num_answers__</strong> candidates. Voters select between <strong>__min__</strong> and <strong>__max__</strong> options (randomize: <strong>__random__</strong>) and there are <strong>__num_winners__</strong> winners. The tally method is <strong>__tally_method__</strong>.",
+        "questionOptionsSummary": "<strong>__num_answers__</strong> candidates. Voters select between <strong>__min__</strong> and <strong>__max__</strong> options  and there are <strong>__num_winners__</strong> winners. The tally method is <strong>__tally_method__</strong>. Randomize categories: <strong>shuffle_categories</strong>, randomize all options: <strong>shuffle_all_options</strong>.",
         "censusSize": "__num__ people",
-        "registerAndCreateElection": "Not only register the election, but also create it at the election authorities. This means you won't be able to modify the election."
+        "registerAndCreateElection": "Not only register the election, but also create it at the election authorities. This means you won't be able to modify the election.",
+        "num_successful_logins_allowed" : {
+          "label": "Number of votes per voter",
+          "placeholder": "Maximum number of times voters are allowed to cast their vote. Only their last vote will count. If this number is zero, voters will be able to cast their vote as many times as they want",
+          "minError": "The number of possible revotes is __num_successful_logins_allowed__ but it should be 0 or higher",
+          "inputError": "__num_successful_logins_allowed__ is not a number"
+        }
     },
     "questions": {
         "new": "New question",
@@ -303,6 +356,8 @@
         "fieldRequiredLabel": "Required",
         "fieldUniqueLabel": "Unique",
         "fieldRequiredAuthLabel": "Checked against census in authentication",
+        "fieldMatchCensusOnRegistrationLabel": "Checked against census in registration (only for pre-registration)",
+        "fieldFillIfEmptyOnRegistrationLabel": "Required on registration, but can be empty on pre-registration",
         "fieldPrivateLabel": "Private (only administrators can see and use this field)",
         "extraFieldsHeader": "Extra fields",
         "extraFieldsInfo": "Here you can define extra fields in the census in a versatile way. This allows you to do a range of things: adding extra checks against the census in closed registration, registering new fields in open registration, etc.",
@@ -324,13 +379,14 @@
         "auth": "Auth method",
         "auths": {"email": "Email links", "sms": "SMS", "dnie": "spanish eDNI"},
         "sms": "SMS message",
-        "smstemp": "Template used in the SMS to send to the user. Use __CODE__ to insert the SMS code and __URL__ for the authentication url, or _URL2__ to insert a link that includes the code",
+        "smstemp": "Template used in the SMS to send to the user. Use __CODE__ to insert the SMS code and __URL__ for the authentication url, or __URL2__ to insert a link that includes the code",
         "smsdef": "This is your vote code: __CODE__",
         "email": "Email message",
         "emailsub": "Email subject",
         "emailtemp": "Template used in the Email link to send to the user. Use __CODE__ to insert the login code and __URL__ to insert the election link, or _URL2__ to insert a link that includes the code",
         "emailsubdef": "Vote now with __name__",
-        "emaildef": "Vote in __URL__ with code __CODE__"
+        "emaildef": "Vote in __URL__ with code __CODE__",
+        "slugKeys": "Use the following keys to insert the users' extra fields into the message: __slug_list__"
     },
     "columnFilter": {
       "sort": "Sort:",

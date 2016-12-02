@@ -153,6 +153,9 @@ angular.module('avAdmin')
                     el.census.auth_method = data.events.auth_method;
                     el.census.extra_fields = data.events.extra_fields;
                     el.census.census = data.events.census;
+                    if(!!data.events.num_successful_logins_allowed || 0 === data.events.num_successful_logins_allowed) {
+                      el.num_successful_logins_allowed = data.events.num_successful_logins_allowed;
+                    }
 
                     var newConf = data.events.auth_method_config.config;
                     // not updating msgs if are modified
@@ -170,7 +173,7 @@ angular.module('avAdmin')
         }
 
         electionsapi.cache_election = function(id, election) {
-            electionsapi.chache[id] = election;
+            electionsapi.cache[id] = election;
         };
 
         electionsapi.getElection = function(id, ignorecache) {
@@ -237,7 +240,11 @@ angular.module('avAdmin')
 
             var cached = electionsapi.permcache[id];
             if (!cached) {
-                Authmethod.getPerm("edit", "AuthEvent", id)
+                Authmethod.getPerm(
+                    "edit|view|delete|send-auth|send-auth-all|view-results|view-stats|view-voters|view-census|start|stop|tally|calculate-results|publish-results|census-add|census-delete|census-activation",
+                    "AuthEvent",
+                    id
+                )
                     .success(function(data) {
                         var perm = data['permission-token'];
                         electionsapi.permcache[id] = perm;
@@ -315,6 +322,18 @@ angular.module('avAdmin')
         };
 
         electionsapi.templateEl = function() {
+
+            function getShareTextDefault() {
+              var ret = angular.copy(ConfigService.share_social.default);
+              if(!!ret) {
+                _.map(ret, function(q) { q.active = false; });
+                if (ret.length > 0) {
+                  ret[0].active = true;
+                }
+              }
+              return ret;
+            }
+
             var el = {
                 title: $i18next('avAdmin.sidebar.newel'),
                 description: "",
@@ -324,12 +343,13 @@ angular.module('avAdmin')
                 director: ConfigService.director,
                 presentation: {
                     theme: 'default',
-                    share_text: '',
+                    share_text: getShareTextDefault(),
                     urls: [],
                     theme_css: ''
                 },
                 layout: 'simple',
                 real: false,
+                num_successful_logins_allowed: 0,
                 census: {
                     voters: [],
                     auth_method: 'email',
@@ -366,9 +386,14 @@ angular.module('avAdmin')
                 "max": 1,
                 "min": 1,
                 "num_winners": 1,
-                "randomize_answer_order": true,
                 "tally_type": "plurality-at-large",
-                "title": title
+                "title": title,
+                "extra_options": {
+                  "shuffle_categories": true,
+                  "shuffle_all_options": true,
+                  "shuffle_category_list": [],
+                  "show_points": false
+                }
             };
             return q;
         };
@@ -427,6 +452,27 @@ angular.module('avAdmin')
                 .catch(deferred.reject);
 
             return deferred.promise;
+        };
+
+        electionsapi.updateShare = function(election, share) {
+          var deferred = $q.defer();
+
+          var share_text = angular.copy(share);
+          share_text.forEach( function(v) { delete v.active; });
+
+          electionsapi.command(election, 'update-share', 'POST', share_text)
+            .then(function() {
+              return electionsapi.getElection(election.id, true);
+            })
+            .then(function (el) {
+               if(!angular.equals(share_text, el.presentation.share_text)) {
+                throw "Error: share_text not correctly updated";
+               }
+            })
+            .then(deferred.resolve)
+            .catch(deferred.reject);
+
+          return deferred.promise;
         };
 
         return electionsapi;

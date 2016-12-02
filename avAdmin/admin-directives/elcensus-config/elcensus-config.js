@@ -43,6 +43,8 @@ angular.module('avAdmin')
                 max: 200,
                 private: false,
                 required_on_authentication: false,
+                match_census_on_registration: false,
+                fill_if_empty_on_registration: false,
                 must: false,
                 "register-pipeline": []
             };

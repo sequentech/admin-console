@@ -18,9 +18,38 @@
     </a>
   </p>
   <!-- SMS conf -->
-  <div class="container-fluid">
+  <div class="container-fluid form-group">
+    <div class="row" ng-if="selectable_auth_method">
+      <!-- Auth method -->
+      <div class="form-group">
+        <label 
+          class="col-xs-3 control-label text-right padding-top-input" 
+          for="auth" 
+          ng-i18next="avAdmin.auth.auth"
+        >
+        </label>
+        <div class="col-xs-9">
+          <div 
+            class="radio" 
+            ng-repeat="a in auth"
+          >
+            <label>
+              <input
+                type="radio"
+                name="auth"
+                ng-value="a"
+                id="{{a}}"
+                ng-model="selected_auth_method.ref"
+              />
+              <span ng-i18next="avAdmin.auth.auths.{{ a }}">
+              </span>
+            </label>
+          </div>
+        </div>
+       </div>
+    </div>
     <div class="row">
-      <div ng-if="election.census.auth_method == 'sms'">
+      <div ng-if="'sms' === selected_auth_method.ref">
           <div class="form-group">
               <label
                 class="col-xs-3 control-label text-right"
@@ -28,12 +57,15 @@
               </label>
               <div class="col-xs-9">
                   <p class="text-muted" ng-i18next> avAdmin.auth.smstemp </p>
+                  <p class="text-muted" ng-if="slug_text.length > 0" ng-i18next>
+                    [i18next]({slug_list:slug_text})avAdmin.auth.slugKeys
+                  </p>
                   <textarea class="form-control" ng-model="election.census.config.msg"></textarea>
               </div>
           </div>
       </div>
       <!-- Email conf -->
-      <div ng-if="election.census.auth_method == 'email'">
+      <div ng-if="'email' === selected_auth_method.ref">
           <div class="form-group">
               <label
                 class="col-xs-3 control-label text-right padding-top-input"
@@ -51,6 +83,9 @@
               </label>
               <div class="col-xs-9">
                   <p class="text-muted" ng-i18next> avAdmin.auth.emailtemp </p>
+                  <p class="text-muted" ng-if="slug_text.length > 0" ng-i18next>
+                    [i18next]({slug_list:slug_text})avAdmin.auth.slugKeys
+                  </p>
                   <textarea class="form-control" ng-model="election.census.config.msg"></textarea>
               </div>
           </div>

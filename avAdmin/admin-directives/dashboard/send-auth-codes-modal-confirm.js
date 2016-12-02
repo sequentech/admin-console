@@ -31,14 +31,17 @@ angular.module('avAdmin')
       Plugins,
       election,
       user_ids,
+      selected_auth_method,
       exhtml)
     {
       $scope.election = election;
+      $scope.selected_auth_method = selected_auth_method;
       $scope.user_ids = user_ids;
       $scope.imsure = false;
       $scope.steps = SendMsg.steps;
       $scope.loading = false;
       $scope.numVoters = (!!SendMsg.user_ids) ? SendMsg.user_ids.length : $scope.election.auth.census;
+      $scope.helpurl = ConfigService.helpUrl;
 
       $scope = _.extend($scope, exhtml.scope);
       $scope.exhtml = exhtml.html;
@@ -129,6 +132,9 @@ angular.module('avAdmin')
         msg = msg.replace("__URL__", url);
         msg = msg.replace("__URL2__", url2);
         msg = msg.replace("__CODE__", "AABB1234");
+        for (var i = 0; i < SendMsg.slug_list.length; i++) {
+          msg = msg.replace("__" +  SendMsg.slug_list[i] + "__", "AABB1234");
+        }
         return msg;
       };
 
