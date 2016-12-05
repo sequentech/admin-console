@@ -185,8 +185,8 @@
             "editMessageStep": {
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
               "helpInfo": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
-              "sendButton": "ENVIAR códigos de autenticación a TODO el censo",
-              "sendSelectedButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
+              "sendButton": "Revisar mensaje antes de enviar códigos de autenticación a TODO el censo",
+              "sendSelectedButton": "Revisar mensaje antes de enviar códigos de autenticación a los usuarios SELECCIONADOS"
             },
             "confirmStep": {
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
@@ -212,7 +212,13 @@
         "themes": { "default": "Por defecto", "podemos": "Morado" },
         "questionOptionsSummary": "<strong>__num_answers__</strong> candidatos. Os votantes seleccionan entre <strong>__min__</strong> e <strong>__max__</strong> opcións e hai <strong>__num_winners__</strong> gañadores. O método de reconto é <strong>__tally_method__</strong>. Orden aleatoria de categorías: <strong>shuffle_categories</strong>, orden aleatoria de todas as opcións: <strong>shuffle_all_options</strong>.",
         "censusSize": "__num__ persoas",
-        "registerAndCreateElection": "Non só rexistrar a votación, senón creala nas autoridades de votación. Isto significa que xa non se poderá modificar a votación."
+        "registerAndCreateElection": "Non só rexistrar a votación, senón creala nas autoridades de votación. Isto significa que xa non se poderá modificar a votación.",
+        "num_successful_logins_allowed" : {
+          "label": "Número de votos por votante",
+          "placeholder": "Máximo número de veces que los votantes podrán emitir su voto. Sólo el último voto contará. Si este número es cero, los votantes podrán emitir su voto cuantas veces deseen",
+          "minError": "El número de veces que se puede cambiar el voto es __num_successful_logins_allowed__ pero ha de ser mayor o igual a cero",
+          "inputError": "__num_successful_logins_allowed__ no es un número"
+        }
     },
     "questions": {
         "new": "Nova pregunta",
@@ -377,7 +383,8 @@
         "emailsub": "Asunto do email",
         "emailtemp": "Persoal usado no correo para enviar aos usuarios. Usa __CODE__ para engadir o código de acceso e __URL__ para inserir a ligazón de votación",
         "emailsubdef": "Xa podes votar con __name__",
-        "emaildef": "Vota en __URL__ co codigo __CODE__"
+        "emaildef": "Vota en __URL__ co codigo __CODE__",
+        "slugKeys": "Usa las siguientes claves para insertar en el mensaje los campos extra de usuario: __slug_list__"
     },
     "columnFilter": {
       "sort": "Orden:",

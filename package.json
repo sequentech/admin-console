@@ -1,6 +1,6 @@
 {
   "name": "agora-gui-admin",
-  "version": "3.3.0",
+  "version" : "3.4.0",
   "devDependencies": {
     "debug": "^2.2.0",
     "engine.io": "^1.6.8",

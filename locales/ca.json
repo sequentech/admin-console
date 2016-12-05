@@ -184,8 +184,8 @@
             "editMessageStep": {
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
               "helpInfo": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
-              "sendButton": "ENVIAR códigos de autenticación a TODO el censo",
-              "sendSelectedButton": "ENVIAR códigos de autenticación a los usuarios SELECCIONADOS"
+              "sendButton": "Revisar mensaje antes de enviar códigos de autenticación a TODO el censo",
+              "sendSelectedButton": "Revisar mensaje antes de enviar códigos de autenticación a los usuarios SELECCIONADOS"
             },
             "confirmStep": {
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
@@ -211,7 +211,13 @@
         "themes": { "default": "Por defecto", "podemos": "Purple" },
         "questionOptionsSummary": "<strong>__num_answers__</strong> candidates. Voters select between <strong>__min__</strong> and <strong>__max__</strong> options and there are <strong>__num_winners__</strong> winners. The tally method is <strong>__tally_method__</strong>. Randomize categories: <strong>shuffle_categories</strong>, randomize all options: <strong>shuffle_all_options</strong>.",
         "censusSize": "__num__ personas",
-        "registerAndCreateElection": "Not only register the election, but also create it on the election authorities. This means you won't be able to modify the election."
+        "registerAndCreateElection": "Not only register the election, but also create it on the election authorities. This means you won't be able to modify the election.",
+        "num_successful_logins_allowed" : {
+          "label": "Número de votos por votante",
+          "placeholder": "Máximo número de veces que los votantes podrán emitir su voto. Sólo el último voto contará. Si este número es cero, los votantes podrán emitir su voto cuantas veces deseen",
+          "minError": "El número de veces que se puede cambiar el voto es __num_successful_logins_allowed__ pero ha de ser mayor o igual a cero",
+          "inputError": "__num_successful_logins_allowed__ no es un número"
+        }
     },
     "questions": {
         "new": "Nueva pregunta",
@@ -283,7 +289,8 @@
         "email": "Mensaje por correo elelectrónico",
         "emailsub": "Asúnto del correo",
         "emailtemp": "Plantilla usada en el correo para enviar a los usuarios. Usa __CODE__ para añadir el código de acceso y __URL__ para insertar el enlace de votació, o __URL2__ para insertar un enlace que incluya el código",
-        "emaildef": "Vota siguiendo este enlace __URL__\nEste es tu código de autenticación: __CODE__"
+        "emaildef": "Vota siguiendo este enlace __URL__\nEste es tu código de autenticación: __CODE__",
+        "slugKeys": "Usa las siguientes claves para insertar en el mensaje los campos extra de usuario: __slug_list__"
     },
     "create": {
         "summary": "Resumen: creando __num__ votaciones",

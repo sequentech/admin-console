@@ -155,7 +155,7 @@ angular.module('avAdmin')
           iconClass: 'fa fa-paper-plane-o',
           actionFunc: function() { return sendAuthCodesSelected(); },
           enableFunc: function() {
-            return scope.election.status === 'started' && scope.numSelected(scope.shown()) > 0;
+            return scope.numSelected(scope.shown()) > 0;
           }
         }
       ];
@@ -215,12 +215,12 @@ angular.module('avAdmin')
           lines.forEach(function(l) {
               var lf = l.split(";");
               var nv = {};
-              fields.forEach(function(f, i) { nv[f.name] = lf[i]; });
+              fields.forEach(function(f, i) { nv[f.name] = lf[i].trim(); });
               if (nv.tlf) {
-                nv.tlf.replace(" ", "");
+                nv.tlf = nv.tlf.replace(" ", "");
               }
               if (nv.email) {
-                nv.email.replace(" ", "");
+                nv.email = nv.email.replace(" ", "");
               }
               cs.push({selected: false, vote: false, username: "", metadata: nv});
           });

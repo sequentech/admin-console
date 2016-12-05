@@ -39,7 +39,7 @@ angular.module('avAdmin')
         must = {
           "must": true,
           "name": "tlf",
-          "type": "text",
+          "type": "tlf",
           "required": true,
           "min": 2,
           "max": 200,

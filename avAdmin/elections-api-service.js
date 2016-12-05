@@ -153,6 +153,9 @@ angular.module('avAdmin')
                     el.census.auth_method = data.events.auth_method;
                     el.census.extra_fields = data.events.extra_fields;
                     el.census.census = data.events.census;
+                    if(!!data.events.num_successful_logins_allowed || 0 === data.events.num_successful_logins_allowed) {
+                      el.num_successful_logins_allowed = data.events.num_successful_logins_allowed;
+                    }
 
                     var newConf = data.events.auth_method_config.config;
                     // not updating msgs if are modified
@@ -346,6 +349,7 @@ angular.module('avAdmin')
                 },
                 layout: 'simple',
                 real: false,
+                num_successful_logins_allowed: 0,
                 census: {
                     voters: [],
                     auth_method: 'email',
