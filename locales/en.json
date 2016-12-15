@@ -54,7 +54,8 @@
       "downloadBallotsCsv": "Download Ballots Spreadsheet (CSV format)",
       "downloadResultsCsv": "Download Election Results (CSV format)",
       "downloadResultsJson": "Download Election Results (JSON format)",
-      "downloadResultsPretty": "Download Election Results (Text format)"
+      "downloadResultsPretty": "Download Election Results (Text format)",
+      "downloadResultsPDF": "Download Election Results (PDF format)"
     },
     "topbar": {
         "home": "Home",

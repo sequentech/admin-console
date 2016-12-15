@@ -55,7 +55,8 @@
       "downloadBallotsCsv": "Descargar votos como hoja de cálculo (formato CSV)",
       "downloadResultsCsv": "Descargar Resultados del Escrutinio (formato CSV)",
       "downloadResultsJson": "Descargar Resultados del Escrutinio (formato JSON)",
-      "downloadResultsPretty": "Descargar Resultados del Escrutinio (formato de texto)"
+      "downloadResultsPretty": "Descargar Resultados del Escrutinio (formato de texto)",
+      "downloadResultsPDF": "Descargar Resultados del Escrutinio (formato PDF)"
     },
     "topbar": {
         "home": "Inicio",
