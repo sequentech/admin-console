@@ -43,6 +43,7 @@ angular.module('avAdmin')
         'created',
         'started',
         'stopped',
+        'tally_ok',
         'results_ok',
         'results_pub'
       ];
@@ -52,6 +53,7 @@ angular.module('avAdmin')
         'avAdmin.dashboard.start',
         'avAdmin.dashboard.stop',
         'avAdmin.dashboard.tally',
+        'avAdmin.dashboard.calculate',
         'avAdmin.dashboard.publish'
       ];
 
@@ -126,6 +128,22 @@ angular.module('avAdmin')
           }
         },
         {
+          path: 'calculate-results',
+          method: 'POST',
+          confirmController: "ConfirmCalculateResultsModal",
+          confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-calculate-results-modal.html",
+          doAction: function ()
+          {
+            var ignorecache = true;
+            ElectionsApi.getElection(id, ignorecache)
+              .then(function(el) {
+                 if (el.status === 'tally_ok') {
+                   calculateResults(el);
+                 }
+              }
+          }
+        }
+        {
           path: 'publish-results',
           method: 'POST',
           confirmController: "ConfirmPublishResultsModal",
@@ -174,10 +192,10 @@ angular.module('avAdmin')
 
           if (el.status === 'results_ok') {
             ElectionsApi.results(el);
-          } else if (el.status === 'tally_ok') {
+          } /*else if (el.status === 'tally_ok') {
             // auto launch calculate
             calculateResults(el);
-          }
+          }*/
 
           ElectionsApi.autoreloadStats(el);
         });
@@ -211,10 +229,10 @@ angular.module('avAdmin')
               } else {
                 scope.index = statuses.indexOf(el.status) + 1;
                 scope.nextaction = nextactions[scope.index - 1];
-                // auto launch calculate
-                if (el.status === 'tally_ok') {
-                  calculateResults(el);
-                }
+//                 // auto launch calculate
+//                 if (el.status === 'tally_ok') {
+//                   calculateResults(el);
+//                 }
 
                 if (el.status === 'results_ok') {
                   ElectionsApi.results(el);
