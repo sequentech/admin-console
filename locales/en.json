@@ -123,6 +123,8 @@
         "tally": "Tally",
         "calculate": "Calculate results",
         "publish": "Publish results",
+        "calculateAgain": "Calculate results again",
+        "publishAgain": "Publish results again",
         "doingtally": "Doing the tally",
         "results": "Results",
         "blankvotes": "Blank votes",

@@ -123,6 +123,8 @@
         "tally": "Hacer recuento",
         "calculate": "Calcular resultados",
         "publish": "Publicar resultados",
+        "calculateAgain": "Calcular resultados de nuevo",
+        "publishAgain": "Publicar resultados de nuevo",
         "doingtally": "Haciendo el recuento",
         "results": "Resultados",
         "blankvotes": "Votos en blanco",
