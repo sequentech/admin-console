@@ -137,7 +137,7 @@ angular.module('avAdmin')
             var ignorecache = true;
             ElectionsApi.getElection(id, ignorecache)
               .then(function(el) {
-                 if (el.status === 'tally_ok') {
+                 if (statuses.indexOf(el.status) >= statuses.indexOf('tally_ok')) {
                    calculateResults(el);
                  }
               });
@@ -292,7 +292,7 @@ angular.module('avAdmin')
       }
 
       function calculateResults(el) {
-          if (el.status !== 'tally_ok') {
+          if (statuses.indexOf(el.status) < statuses.indexOf('tally_ok')) {
             return;
           }
 

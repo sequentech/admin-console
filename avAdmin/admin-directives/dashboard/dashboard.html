@@ -49,6 +49,20 @@
                 <div class="small" ng-i18next>{{ nextaction }}</div>
                 <strong ng-i18next>avAdmin.dashboard.donow</strong>
             </button>
+            <button
+              ng-click="doActionConfirm($index)"
+              class="actionbtn btn btn-success"
+              ng-if="statuses.indexOf('results_ok') === $index"
+            >
+                <div class="small" ng-i18next>avAdmin.dashboard.calculate</div>
+            </button>
+            <button
+              ng-click="doActionConfirm($index)"
+              class="actionbtn btn btn-success"
+              ng-if="statuses.indexOf('results_pub') === $index"
+            >
+                <div class="small" ng-i18next>avAdmin.dashboard.publish</div>
+            </button>
             <button class="btn btn-warning" ng-if="index == $index && intally">
                 <div class="small" ng-i18next="avAdmin.dashboard.doingtally"></div>
             </button>
