@@ -121,6 +121,7 @@
         "start": "Start voting",
         "stop": "Stop voting",
         "tally": "Tally",
+        "calculate": "Calculate results",
         "publish": "Publish results",
         "doingtally": "Doing the tally",
         "results": "Results",
