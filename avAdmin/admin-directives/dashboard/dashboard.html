@@ -52,14 +52,14 @@
             <button
               ng-click="doActionConfirm($index)"
               class="actionbtn btn btn-success"
-              ng-if="statuses.indexOf('results_ok') === $index"
+              ng-if="statuses.indexOf('results_ok') === $index && index > $index"
             >
                 <div class="small" ng-i18next>avAdmin.dashboard.calculateAgain</div>
             </button>
             <button
               ng-click="doActionConfirm($index)"
               class="actionbtn btn btn-success"
-              ng-if="statuses.indexOf('results_pub') === $index"
+              ng-if="statuses.indexOf('results_pub') === $index && index > $index"
             >
                 <div class="small" ng-i18next>avAdmin.dashboard.publishAgain</div>
             </button>
