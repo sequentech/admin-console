@@ -37,7 +37,7 @@
 
     <!-- dashboard status bar -->
     <div class="statusbar row text-center">
-        <div class="col-xs-2" ng-class="{true:'text-success', false:'text-muted'}[index > $index]" ng-repeat="status in statuses">
+        <div class="col-custom-14 col-xs-2" ng-class="{true:'text-success', false:'text-muted'}[index > $index]" ng-repeat="status in statuses">
             <div class="stick" ng-class="{'stickini': $first, 'stickend': $last}">
                 <i class="fa fa-cog fa-spin fa-sw fa-2x text-warning" ng-if="index == $index && intally"></i>
                 <i class="fa fa-sw fa-2x fa-check-circle" ng-if="index > $index"></i>

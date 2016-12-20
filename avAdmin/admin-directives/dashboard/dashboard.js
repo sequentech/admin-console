@@ -140,9 +140,9 @@ angular.module('avAdmin')
                  if (el.status === 'tally_ok') {
                    calculateResults(el);
                  }
-              }
+              });
           }
-        }
+        },
         {
           path: 'publish-results',
           method: 'POST',
