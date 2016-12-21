@@ -148,6 +148,9 @@ angular.module('avAdmin')
           confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-calculate-results-modal.html",
           doAction: function (data)
           {
+            // calculate results command
+            var command = commands[5];
+            command.payload = data;
             scope.calculateResultsJson = angular.fromJson(data);
             var ignorecache = true;
             ElectionsApi.getElection(id, ignorecache)
