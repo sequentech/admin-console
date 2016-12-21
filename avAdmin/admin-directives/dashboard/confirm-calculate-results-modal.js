@@ -17,13 +17,38 @@
 
 angular.module('avAdmin')
   .controller('ConfirmCalculateResultsModal',
-    function($scope, $modalInstance, ConfigService) {
+    function($scope, $modalInstance, ConfigService, payload) {
       $scope.helpurl = ConfigService.helpUrl;
       $scope.ok = function () {
-        $modalInstance.close();
+        $modalInstance.close($scope.payload);
       };
 
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
       };
-    }); 
+ 
+      $scope.payload = payload;
+
+      $scope.editJson = function()
+      {
+        if(!ConfigService.allowEditCalculateResultsJson) {
+          return;
+        }
+        // show the initial edit dialog
+        $modal
+          .open({
+            templateUrl: "avAdmin/admin-directives/dashboard/edit-calculate-results-json-modal.html",
+            controller: "EditCalculateResultsJsonModal",
+            size: 'lg',
+            resolve: {
+              payload: function () { return angular.toJson($scope.payload, true); }
+            }
+          })
+          .result.then(
+            function (data)
+            {
+              scope.payload = angular.fromJson(data.calculateResultsJson);
+            }
+          );
+      };
+    });
