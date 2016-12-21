@@ -187,6 +187,11 @@
             "socialUrlLabel": "Enlace",
             "socialUrlPlaceholder": "Enlace a la votación para compartir en redes sociales (usa __URL__ para la url de la votación por defecto)"
           },
+          "editCalculateResultsJsonModal": {
+            "title": "Editar Json de calcular resultados",
+            "body": "Este diálogo te permite editar el json de calcular resultados. Sólo use esto si sabe qué está haciendo.",
+            "confirmEdit": "Finalizar edición"
+          },
           "sendAuthCodes": {
             "editMessageStep": {
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",

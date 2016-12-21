@@ -17,7 +17,7 @@
 
 angular.module('avAdmin')
   .controller('ConfirmCalculateResultsModal',
-    function($scope, $modalInstance, ConfigService, payload) {
+    function($scope, $modalInstance, $modal, ConfigService, payload) {
       $scope.helpurl = ConfigService.helpUrl;
       $scope.ok = function () {
         $modalInstance.close($scope.payload);
@@ -47,7 +47,7 @@ angular.module('avAdmin')
           .result.then(
             function (data)
             {
-              scope.payload = angular.fromJson(data.calculateResultsJson);
+              $scope.payload = angular.fromJson(data.calculateResultsJson);
             }
           );
       };
