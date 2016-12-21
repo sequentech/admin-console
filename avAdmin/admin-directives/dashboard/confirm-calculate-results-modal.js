@@ -41,13 +41,13 @@ angular.module('avAdmin')
             controller: "EditCalculateResultsJsonModal",
             size: 'lg',
             resolve: {
-              payload: function () { return angular.toJson($scope.payload, true); }
+              payload: function () { return $scope.payload; }
             }
           })
           .result.then(
             function (data)
             {
-              $scope.payload = angular.fromJson(data.calculateResultsJson);
+              $scope.payload = data;
             }
           );
       };

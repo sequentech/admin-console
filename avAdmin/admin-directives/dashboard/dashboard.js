@@ -144,11 +144,11 @@ angular.module('avAdmin')
           path: 'calculate-results',
           method: 'POST',
           confirmController: "ConfirmCalculateResultsModal",
-          payload: scope.calculateResultsModel,
+          payload: angular.toJson(scope.calculateResultsJson, true),
           confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-calculate-results-modal.html",
-          doAction: function (calculateResultsJson)
+          doAction: function (data)
           {
-            scope.calculateResultsJson = calculateResultsJson;
+            scope.calculateResultsJson = angular.fromJson(data);
             var ignorecache = true;
             ElectionsApi.getElection(id, ignorecache)
               .then(function(el) {

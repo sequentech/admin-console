@@ -3,11 +3,11 @@ angular.module('avAdmin')
     function($scope, $modalInstance, payload)
     {
       $scope.calculateResultsJson = {
-        model: angular.fromJson(payload)
+        model: payload
       };
 
       $scope.ok = function () {
-        $modalInstance.close({electionJson: $scope.calculateResultsJson.model});
+        $modalInstance.close($scope.calculateResultsJson.model);
       };
 
       $scope.cancel = function () {
