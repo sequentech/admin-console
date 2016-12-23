@@ -187,6 +187,7 @@
             "socialUrlPlaceholder": "Enllaç a la votació per compartir en xarxes socials (usa __URL__ per a la url de la votació per defecte)"
           },
           "editCalculateResultsJsonModal": {
+            "editJson" : "Editar JSON",
             "title": "Editar Json de calcular resultados",
             "body": "Este diálogo te permite editar el json de calcular resultados. Sólo use esto si sabe qué está haciendo.",
             "confirmEdit": "Finalizar edición"

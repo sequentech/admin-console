@@ -188,6 +188,7 @@
             "socialUrlPlaceholder": "Election link to be shared on social networks (use __URL__ for the default election url)"
           },
           "editCalculateResultsJsonModal": {
+            "editJson" : "Edit JSON",
             "title": "Edit Calculate Results Json",
             "body": "This dialog allows you to edit the calculate results json. Use this only if you know what you are doing.",
             "confirmEdit": "Finish edit"
