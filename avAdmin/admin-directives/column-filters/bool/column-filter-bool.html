@@ -14,7 +14,7 @@
         <span ng-i18next class="spaced">
           avAdmin.columnFilter.sort
         </span>
-        <div class="btn-group">
+        <div class="btn-group" ng-if="!filterDisableSort">
           <label class="btn btn-default" ng-model="filter.sort" btn-radio="''">
             <span ng-i18next>
               avAdmin.columnFilter.noSort
