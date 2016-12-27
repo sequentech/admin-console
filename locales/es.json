@@ -54,7 +54,8 @@
       "downloadBallotsCsv": "Descargar votos como hoja de cálculo (formato CSV)",
       "downloadResultsCsv": "Descargar Resultados del Escrutinio (formato CSV)",
       "downloadResultsJson": "Descargar Resultados del Escrutinio (formato JSON)",
-      "downloadResultsPretty": "Descargar Resultados del Escrutinio (formato de texto)"
+      "downloadResultsPretty": "Descargar Resultados del Escrutinio (formato de texto)",
+      "downloadResultsPDF": "Descargar Resultados del Escrutinio (formato PDF)"
     },
     "topbar": {
         "home": "Inicio",
@@ -120,7 +121,9 @@
         "start": "Comenzar votación",
         "stop": "Terminar votación",
         "tally": "Hacer recuento",
+        "calculate": "Calcular resultados",
         "publish": "Publicar resultados",
+        "calculateAgain": "Calcular resultados de nuevo",
         "doingtally": "Haciendo el recuento",
         "results": "Resultados",
         "blankvotes": "Votos en blanco",
@@ -142,6 +145,9 @@
           "createHeader": "Crear votación",
           "createBody": "Para crear la votación, su configuración es enviada a las autoridades y estas crean las claves públicas de la votación. Tras esto, la votación ya no es editable. Antes de proceder a realizar este paso, por favor comprueba que la configuración es correcta (por ejemplo comprobándolo en la cabina de votación de prueba). Si necesitas cambiar la votación pasado este paso, deberás crear una nueva.",
           "confirmCreateButton": "Confirmar y CREAR la votación",
+          "calculateResultsHeader": "Calcular resultados",
+          "calculateResultsBody": "El recuento se ha realizado y el próximo paso es el cálculo de resultados. Aunque el recuento sólo se permite realizar una vez, el cálculo de resultados se puede realizar tantas veces como sea necesario antes de publicarlos.",
+          "calculateResultsButton": "Confirmar y CALCULAR resultados",
           "startHeader": "Comenzar votación",
           "startBody": "Por favor ten en cuenta que una vez que se comienza una votación, los votantes podrán votar hasta que no se para y así se termine el periodo de voto",
           "confirmStartButton": "Confirmar y COMENZAR la votación",
@@ -180,6 +186,12 @@
             "infoBody": "La configuración de los botones de redes sociales ha sido guardada correctamente.",
             "socialUrlLabel": "Enlace",
             "socialUrlPlaceholder": "Enlace a la votación para compartir en redes sociales (usa __URL__ para la url de la votación por defecto)"
+          },
+          "editCalculateResultsJsonModal": {
+            "editJson" : "Editar JSON",
+            "title": "Editar Json de calcular resultados",
+            "body": "Este diálogo te permite editar el json de calcular resultados. Sólo use esto si sabe qué está haciendo.",
+            "confirmEdit": "Finalizar edición"
           },
           "sendAuthCodes": {
             "editMessageStep": {

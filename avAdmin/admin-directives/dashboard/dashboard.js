@@ -43,6 +43,7 @@ angular.module('avAdmin')
         'created',
         'started',
         'stopped',
+        'tally_ok',
         'results_ok',
         'results_pub'
       ];
@@ -52,7 +53,21 @@ angular.module('avAdmin')
         'avAdmin.dashboard.start',
         'avAdmin.dashboard.stop',
         'avAdmin.dashboard.tally',
+        'avAdmin.dashboard.calculate',
         'avAdmin.dashboard.publish'
+      ];
+
+      scope.calculateResultsJson = [
+        [
+          "agora_results.pipes.results.do_tallies",
+          {"ignore_invalid_votes": true}
+        ],
+        [
+          "agora_results.pipes.sort.sort_non_iterative",
+          {
+            "question_indexes": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+          }
+        ]
       ];
 
 
@@ -126,6 +141,27 @@ angular.module('avAdmin')
           }
         },
         {
+          path: 'calculate-results',
+          method: 'POST',
+          confirmController: "ConfirmCalculateResultsModal",
+          payload: angular.toJson(scope.calculateResultsJson, true),
+          confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-calculate-results-modal.html",
+          doAction: function (data)
+          {
+            // calculate results command
+            var command = commands[5];
+            command.payload = data;
+            scope.calculateResultsJson = angular.fromJson(data);
+            var ignorecache = true;
+            ElectionsApi.getElection(id, ignorecache)
+              .then(function(el) {
+                 if ('tally_ok' === el.status || 'results_ok' === el.status) {
+                   calculateResults(el);
+                 }
+              });
+          }
+        },
+        {
           path: 'publish-results',
           method: 'POST',
           confirmController: "ConfirmPublishResultsModal",
@@ -174,9 +210,6 @@ angular.module('avAdmin')
 
           if (el.status === 'results_ok') {
             ElectionsApi.results(el);
-          } else if (el.status === 'tally_ok') {
-            // auto launch calculate
-            calculateResults(el);
           }
 
           ElectionsApi.autoreloadStats(el);
@@ -211,10 +244,6 @@ angular.module('avAdmin')
               } else {
                 scope.index = statuses.indexOf(el.status) + 1;
                 scope.nextaction = nextactions[scope.index - 1];
-                // auto launch calculate
-                if (el.status === 'tally_ok') {
-                  calculateResults(el);
-                }
 
                 if (el.status === 'results_ok') {
                   ElectionsApi.results(el);
@@ -233,11 +262,18 @@ angular.module('avAdmin')
           doAction(index);
           return;
         }
+        var payload = {};
+        if(angular.isDefined(command.payload)) {
+          payload = command.payload;
+        }
 
         $modal.open({
           templateUrl: command.confirmTemplateUrl,
           controller: command.confirmController,
-          size: 'lg'
+          size: 'lg',
+          resolve: {
+            payload: function () { return payload; }
+          }
         }).result.then(function (data) {
           doAction(index, data);
         });
@@ -274,7 +310,7 @@ angular.module('avAdmin')
       }
 
       function calculateResults(el) {
-          if (el.status !== 'tally_ok') {
+          if ('tally_ok' !== el.status && 'results_ok' !== el.status) {
             return;
           }
 
@@ -285,20 +321,7 @@ angular.module('avAdmin')
 
           var path = 'calculate-results';
           var method = 'POST';
-          // TODO add config to calculate results
-          var data = [
-            [
-              "agora_results.pipes.results.do_tallies",
-              {"ignore_invalid_votes": true}
-            ],
-            [
-              "agora_results.pipes.sort.sort_non_iterative",
-              {
-                "question_indexes": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-              }
-            ]
-          ];
-          ElectionsApi.command(el, path, method, data)
+          ElectionsApi.command(el, path, method, scope.calculateResultsJson)
             .catch(function(error) { scope.loading = false; scope.error = error; });
       }
 

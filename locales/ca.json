@@ -54,7 +54,8 @@
       "downloadBallotsCsv": "Descargar votos como hoja de cálculo (formato CSV)",
       "downloadResultsCsv": "Descargar Resultados del Escrutinio (formato CSV)",
       "downloadResultsJson": "Descargar Resultados del Escrutinio (formato JSON)",
-      "downloadResultsPretty": "Descargar Resultados del Escrutinio (formato de texto)"
+      "downloadResultsPretty": "Descargar Resultados del Escrutinio (formato de texto)",
+      "downloadResultsPDF": "Descargar Resultados del Escrutinio (formato PDF)"
     },
     "topbar": {
         "home": "Inicio",
@@ -119,7 +120,9 @@
         "start": "Comenzar votació",
         "stop": "Terminar votació",
         "tally": "Hacer recuento",
+        "calculate": "Calcular resultados",
         "publish": "Publicar resultados",
+        "calculateAgain": "Calcular resultados de nuevo",
         "doingtally": "Haciendo el recuento",
         "results": "Resultados",
         "blankvotes": "Votos en blanco",
@@ -141,6 +144,9 @@
           "createHeader": "Create election",
           "createBody": "To create the election, its configuration is sent to the election authorities and they create election public encryption keys. After that, the election is no longer editable. Before doing this, please check that the configuration is correct (for example taking a look at the demo voting booth). If you need to change the election after this, you will have to create a new one.",
           "confirmCreateButton": "Confirm and CREATE election",
+          "calculateResultsHeader": "Calcular resultados",
+          "calculateResultsBody": "El recuento se ha realizado y el próximo paso es el cálculo de resultados. Aunque el recuento sólo se permite realizar una vez, el cálculo de resultados se puede realizar tantas veces como sea necesario antes de publicarlos.",
+          "calculateResultsButton": "Confirmar y CALCULAR resultados",
           "startHeader": "Start election",
           "startBody": "Please be aware that once you start the elections, voters will be able to vote until the election is stopped",
           "confirmStartButton": "Confirm and START the election",
@@ -179,6 +185,12 @@
             "infoBody": "La configuració dels botons de xarxes socials ha estat guardada correctament.",
             "socialUrlLabel": "Enllaç",
             "socialUrlPlaceholder": "Enllaç a la votació per compartir en xarxes socials (usa __URL__ per a la url de la votació per defecte)"
+          },
+          "editCalculateResultsJsonModal": {
+            "editJson" : "Editar JSON",
+            "title": "Editar Json de calcular resultados",
+            "body": "Este diálogo te permite editar el json de calcular resultados. Sólo use esto si sabe qué está haciendo.",
+            "confirmEdit": "Finalizar edición"
           },
           "sendAuthCodes": {
             "editMessageStep": {
