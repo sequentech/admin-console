@@ -10,11 +10,11 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <div class="block" ng-click="$event.preventDefault(); $event.stopPropagation()">
+      <div class="block" ng-click="$event.preventDefault(); $event.stopPropagation()" ng-if="filterEnableSort">
         <span ng-i18next class="spaced">
           avAdmin.columnFilter.sort
         </span>
-        <div class="btn-group" ng-if="!filterDisableSort">
+        <div class="btn-group" >
           <label class="btn btn-default" ng-model="filter.sort" btn-radio="''">
             <span ng-i18next>
               avAdmin.columnFilter.noSort
