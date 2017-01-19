@@ -29,6 +29,7 @@ angular.module('avAdmin')
       scope.filterI18n = attrs.filterI18n;
       scope.filterI18nNo = attrs.filterI18nNo;
       scope.filterI18nYes = attrs.filterI18nYes;
+      scope.filterEnableSort = !(_.isObject(attrs) && !_.isUndefined(attrs.filterDisableSort) && ('yes' === attrs.filterDisableSort));
 
       function setkey(el, key, val) {
         if (val === '') {
