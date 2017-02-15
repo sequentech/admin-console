@@ -85,6 +85,14 @@ angular.module('avAdmin')
         }
       });
 
+      scope.$watch("q.tally_type", function (newValue, oldValue) {
+        if ("desborda" === newValue) {
+           scope.q.num_winners = 62;
+           scope.q.min = 0;
+           scope.q.max = 62;
+        }
+      });
+
       scope.$watch("internal.shuffle_opts_policy", function (newValue, oldValue) {
         if ('shuffle-all' === newValue) {
           scope.q.extra_options.shuffle_all_options = true;
