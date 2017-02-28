@@ -24,7 +24,7 @@ angular.module('avAdmin')
       function link(scope, element, attrs) {
         scope.election = ElectionsApi.currentElection;
         scope.electionLimits = ElectionLimits;
-        scope.vsystems = ['plurality-at-large', 'borda-nauru', 'borda', 'pairwise-beta', 'desborda'];
+        scope.vsystems = ['plurality-at-large', 'borda-nauru', 'borda', 'pairwise-beta'];
         scope.lshuffleoptions = ['dont-shuffle','shuffle-all', 'shuffle-some'];
 
         scope.electionEditable = function() {
