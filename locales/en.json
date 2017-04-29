@@ -26,7 +26,7 @@
     "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
     "shareLink": "Tweet this election!",
     "votingSystem": "Voting System",
-    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
+    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda": "DesBorda"}
   },
   "avAdmin": {
     "show_points_policy": {
@@ -54,7 +54,8 @@
       "downloadBallotsCsv": "Download Ballots Spreadsheet (CSV format)",
       "downloadResultsCsv": "Download Election Results (CSV format)",
       "downloadResultsJson": "Download Election Results (JSON format)",
-      "downloadResultsPretty": "Download Election Results (Text format)"
+      "downloadResultsPretty": "Download Election Results (Text format)",
+      "downloadResultsPDF": "Download Election Results (PDF format)"
     },
     "topbar": {
         "home": "Home",
@@ -120,7 +121,9 @@
         "start": "Start voting",
         "stop": "Stop voting",
         "tally": "Tally",
+        "calculate": "Calculate results",
         "publish": "Publish results",
+        "calculateAgain": "Calculate results again",
         "doingtally": "Doing the tally",
         "results": "Results",
         "blankvotes": "Blank votes",
@@ -142,6 +145,9 @@
           "createHeader": "Create election",
           "createBody": "To create the election, its configuration is sent to the election authorities and they create election encryption public keys. After that, the election is no longer editable. Before doing this, please check that the configuration is correct (for example taking a look at the demo voting booth). If you need to change the election after this, you will have to create a new one.",
           "confirmCreateButton": "Confirm and CREATE election",
+          "calculateResultsHeader": "Calculate results",
+          "calculateResultsBody": "The election has been tallied and the next step is to calculate the results. Although the election can only be tallied once, the election results can be calculated as many times as you need before publishing them.",
+          "calculateResultsButton": "Confirm and CALCULATE results",
           "startHeader": "Start election",
           "startBody": "Please be aware that once you start the elections, voters will be able to vote until the election is stopped",
           "confirmStartButton": "Confirm and START the election",
@@ -180,6 +186,12 @@
             "infoBody": "The social networks buttons configuration has been successfully saved.",
             "socialUrlLabel": "Link",
             "socialUrlPlaceholder": "Election link to be shared on social networks (use __URL__ for the default election url)"
+          },
+          "editCalculateResultsJsonModal": {
+            "editJson" : "Edit JSON",
+            "title": "Edit Calculate Results Json",
+            "body": "This dialog allows you to edit the calculate results json. Use this only if you know what you are doing.",
+            "confirmEdit": "Finish edit"
           },
 
           "sendAuthCodes": {

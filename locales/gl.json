@@ -26,7 +26,7 @@
     "poweredBy": "Funciona amb <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
     "shareLink": "¡Twittea aquesta votació!",
     "votingSystem": "Voting System",
-    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)"}
+    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda": "DesBorda"}
   },
 
   "avAdmin": {
@@ -55,7 +55,8 @@
       "downloadBallotsCsv": "Descargar votos como hoja de cálculo (formato CSV)",
       "downloadResultsCsv": "Descargar Resultados del Escrutinio (formato CSV)",
       "downloadResultsJson": "Descargar Resultados del Escrutinio (formato JSON)",
-      "downloadResultsPretty": "Descargar Resultados del Escrutinio (formato de texto)"
+      "downloadResultsPretty": "Descargar Resultados del Escrutinio (formato de texto)",
+      "downloadResultsPDF": "Descargar Resultados del Escrutinio (formato PDF)"
     },
     "topbar": {
         "home": "Inicio",
@@ -121,7 +122,9 @@
         "start": "Comenzar votación",
         "stop": "Terminar votación",
         "tally": "Facer reconto",
+        "calculate": "Calcular resultados",
         "publish": "Publicar resultados",
+        "calculateAgain": "Calcular resultados de nuevo",
         "doingtally": "Facendo o reconto",
         "results": "Resultados",
         "blankvotes": "Votos en branco",
@@ -143,6 +146,9 @@
           "createHeader": "Crear votación",
           "createBody": "Para crear a votación, a súa configuración é enviada ás autoridades e estas crean as claves públicas da votación. Tras isto, a votación xa non é editable. Antes de proceder a realizar este paso, por favor comproba que a configuración é correcta (por exemplo comprobándoo na cabina de votación de proba). Se necesitas cambiar a votación pasado este paso, deberás crear unha nova.",
           "confirmCreateButton": "Confirmar e CREAR a votación",
+          "calculateResultsHeader": "Calcular resultados",
+          "calculateResultsBody": "El recuento se ha realizado y el próximo paso es el cálculo de resultados. Aunque el recuento sólo se permite realizar una vez, el cálculo de resultados se puede realizar tantas veces como sea necesario antes de publicarlos.",
+          "calculateResultsButton": "Confirmar y CALCULAR resultados",
           "startHeader": "Comezar votación",
           "startBody": "Por favor ten en conta que unha vez que se comeza unha votación, os votantes poderán votar ata que non se para e así se termine o período de voto",
           "confirmStartButton": "Confirmar e COMEZAR a votación",
@@ -180,6 +186,12 @@
             "infoBody": "A configuración dos botóns de redes sociais foi gardado correctamente.",
             "socialUrlLabel": "Enlace",
             "socialUrlPlaceholder": "Enlace á votación, para compartir en redes sociais (use __URL__ á url de la votación por defecto)"
+          },
+          "editCalculateResultsJsonModal": {
+            "editJson" : "Editar JSON",
+            "title": "Editar Json de calcular resultados",
+            "body": "Este diálogo te permite editar el json de calcular resultados. Sólo use esto si sabe qué está haciendo.",
+            "confirmEdit": "Finalizar edición"
           },
           "sendAuthCodes": {
             "editMessageStep": {

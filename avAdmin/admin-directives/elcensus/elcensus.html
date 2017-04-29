@@ -88,8 +88,17 @@
               filter-i18n-no="no">
             </div>
           </th>
-          <th class="small-col text-right" ng-i18next>
-            avAdmin.census.votedColumnHeader
+          <th class="small-col text-right">
+            <div
+              av-column-filter-bool
+              filter-options-var="filterOptions"
+              filter-prefix="has_voted"
+              filter-i18n="avAdmin.census.votedColumnHeader"
+              filter-i18n-yes="yes"
+              filter-i18n-no="no"
+              filter-disable-sort="yes"
+            >
+            </div>
           </th>
           <th ng-repeat="field in election.census.extra_fields">
             {{ field.name| htmlToText }}
