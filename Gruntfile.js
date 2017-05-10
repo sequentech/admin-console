@@ -19,7 +19,7 @@
 'use strict';
 
 var pkg = require('./package.json');
-var AV_CONFIG_VERSION = '3.4.0';
+var AV_CONFIG_VERSION = '17.04';
 
 //Using exclusion patterns slows down Grunt significantly
 //instead of creating a set of patterns like '**/*.js' and '!**/node_modules/**'
@@ -213,13 +213,13 @@ module.exports = function (grunt) {
           remove: ['script[data-remove!="false"]','link[data-remove!="false"]'],
           append: [
             {selector:'body',html:'<%= variables.admin_html_body_include %>'},
-            {selector:'body',html:'<!--[if lte IE 8]><script src="/admin/libcompat-v3.4.0.min.js"></script><![endif]--><!--[if gte IE 9]><script src="/admin/libnocompat-v3.4.0.min.js"></script><![endif]--><!--[if !IE]><!--><script src="/admin/libnocompat-v3.4.0.min.js"></script><!--<![endif]-->'},
+            {selector:'body',html:'<!--[if lte IE 8]><script src="/admin/libcompat-v17.04.min.js"></script><![endif]--><!--[if gte IE 9]><script src="/admin/libnocompat-v17.04.min.js"></script><![endif]--><!--[if !IE]><!--><script src="/admin/libnocompat-v17.04.min.js"></script><!--<![endif]-->'},
             {selector:'body',html:'<!--All the source code of this program under copyright. Take a look at the license details at https://github.com/agoravoting/agora-core-view/blob/master/README.md -->'},
-            {selector:'body',html:'<script src="/admin/lib-v3.4.0.min.js"></script>'},
-            {selector:'body',html:'<script src="/admin/avConfig-v3.4.0.js"></script>'},
-            {selector:'body',html:'<script src="/admin/avThemes-v3.4.0.js"></script>'},
-            {selector:'body',html:'<script src="/admin/app-v3.4.0.min.js"></script>'},
-            {selector:'body',html:'<script src="/admin/avPlugins-v3.4.0.js"></script>'},
+            {selector:'body',html:'<script src="/admin/lib-v17.04.min.js"></script>'},
+            {selector:'body',html:'<script src="/admin/avConfig-v17.04.js"></script>'},
+            {selector:'body',html:'<script src="/admin/avThemes-v17.04.js"></script>'},
+            {selector:'body',html:'<script src="/admin/app-v17.04.min.js"></script>'},
+            {selector:'body',html:'<script src="/admin/avPlugins-v17.04.js"></script>'},
             {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/admin/" href="/admin/themes/default/app.min.css">'},
             {selector:'head',html:'<link rel="stylesheet" id="plugins" data-base="/admin/" href="/admin/plugins.css">'}
           ]
@@ -252,9 +252,9 @@ module.exports = function (grunt) {
           'temp/libnocompat.js': ['<%= dom_munger.data.libnocompatjs %>'],
           'temp/lib.js': ['<%= dom_munger.data.libjs %>'],
           'temp/app.js': ['<%= dom_munger.data.appjs %>','<%= ngtemplates.main.dest %>','<%= ngtemplates.common.dest %>'],
-          'dist/avConfig-v3.4.0.js': ['avConfig.js'],
-          'dist/avThemes-v3.4.0.js': ['bower_components/avCommon/dist/avThemes-v3.4.0.js'],
-          'dist/avPlugins-v3.4.0.js': [
+          'dist/avConfig-v17.04.js': ['avConfig.js'],
+          'dist/avThemes-v17.04.js': ['bower_components/avCommon/dist/avThemes-v17.04.js'],
+          'dist/avPlugins-v17.04.js': [
             'plugins/**/*.js',
             '!plugins/**/*-spec.js'
           ]
@@ -289,10 +289,10 @@ module.exports = function (grunt) {
           beautify: true
         },
         files: {
-          'dist/app-v3.4.0.min.js': 'temp/app.js',
-          'dist/lib-v3.4.0.min.js': 'temp/lib.js',
-          'dist/libnocompat-v3.4.0.min.js': 'temp/libnocompat.js',
-          'dist/libcompat-v3.4.0.min.js': 'temp/libcompat.js',
+          'dist/app-v17.04.min.js': 'temp/app.js',
+          'dist/lib-v17.04.min.js': 'temp/lib.js',
+          'dist/libnocompat-v17.04.min.js': 'temp/libnocompat.js',
+          'dist/libcompat-v17.04.min.js': 'temp/libcompat.js',
           'dist/avWidgets.min.js': 'avWidgets.js',
 
           "dist/locales/moment/en.js": "bower_components/moment/lang/en-gb.js",
