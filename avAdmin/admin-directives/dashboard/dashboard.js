@@ -19,6 +19,7 @@ angular.module('avAdmin')
   .directive(
     'avAdminDashboard', 
     function(
+       $q,
        $state, 
        Authmethod, 
        Plugins, 
@@ -262,32 +263,53 @@ angular.module('avAdmin')
         // This hook allows plugins to interrupt this function. This interruption
         // usually happens because the plugin does some processing and decides to
         // show another previous dialog at this step, for example.
+        var pluginData = {
+          election: scope.election,
+          command: command,
+          deferred: false
+        };
+
         if (!Plugins.hook(
           'dashboard-before-do-action',
-          {election: scope.election, command: command}))
+          pluginData))
         {
           return;
         }
-
-        if (!angular.isDefined(command.confirmController)) {
-          doAction(index);
-          return;
-        }
-        var payload = {};
-        if(angular.isDefined(command.payload)) {
-          payload = command.payload;
-        }
-
-        $modal.open({
-          templateUrl: command.confirmTemplateUrl,
-          controller: command.confirmController,
-          size: 'lg',
-          resolve: {
-            payload: function () { return payload; }
+        
+        function doActionConfirmBulk() {
+          if (!angular.isDefined(command.confirmController)) {
+            doAction(index);
+            return;
           }
-        }).result.then(function (data) {
-          doAction(index, data);
-        });
+          var payload = {};
+          if(angular.isDefined(command.payload)) {
+            payload = command.payload;
+          }
+
+          $modal.open({
+            templateUrl: command.confirmTemplateUrl,
+            controller: command.confirmController,
+            size: 'lg',
+            resolve: {
+              payload: function () { return payload; }
+            }
+          }).result.then(function (data) {
+            doAction(index, data);
+          });
+        }
+
+        if (!pluginData.deferred) {
+          doActionConfirmBulk();
+        } else {
+          pluginData.deferred.promise
+          .then(function (futureData) {
+            doActionConfirmBulk();
+          })
+          .catch(function (failureData) {
+          });
+        }
+        
+
       }
 
       function doAction(index, data) {
