@@ -120,7 +120,7 @@ module.exports = function (grunt) {
                 done(false);
             }
         });
-    };
+    }
     var conf = checkAvPluginsConfig();
   });
 
