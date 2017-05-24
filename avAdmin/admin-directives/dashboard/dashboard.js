@@ -258,6 +258,17 @@ angular.module('avAdmin')
           return;
         }
         var command = commands[index];
+
+        // This hook allows plugins to interrupt this function. This interruption
+        // usually happens because the plugin does some processing and decides to
+        // show another previous dialog at this step, for example.
+        if (!Plugins.hook(
+          'dashboard-before-do-action',
+          {election: scope.election, command: command}))
+        {
+          return;
+        }
+
         if (!angular.isDefined(command.confirmController)) {
           doAction(index);
           return;

@@ -79,6 +79,51 @@ module.exports = function (grunt) {
     });
   });
 
+  // custom grunt task to check avPluginsConfig.js
+  grunt.registerTask('check_plugins_config', function() {
+    var fs = require('fs');
+    var done = this.async();
+    grunt.log.ok('Checking avPluginsConfig.js...');
+    function checkAvPluginsConfig() {
+        fs.readFile('avPluginsConfig.js', function(err, data) {
+            if (err) {
+                grunt.log.ok('No avPluginsConfig.js file found, creating...');
+                var avPluginsConfigText = "var AV_PLUGINS_CONFIG_VERSION = '" +
+                    AV_CONFIG_VERSION +"';\n";
+                fs.writeFile("avPluginsConfig.js", 
+                    avPluginsConfigText, 
+                    function(err) {
+                        if(err) {
+                            grunt.log.error(
+                                'Error creating avPluginsConfig.js file');
+                            done(false);
+                        } else {
+                            grunt.log.ok('Created avPluginsConfig.js file, ' + 
+                                'trying to read it again...');
+                            checkAvPluginsConfig();
+                        }
+                }); 
+            } else {
+                var match = data.toString().match(
+                    /AV_PLUGINS_CONFIG_VERSION = [\'\"]([\w\.]*)[\'\"];/);
+                if (!match) {
+                    grunt.log.error('Invalid avPluginsConfig.js version');
+                } else {
+                    var v = match[1];
+                    if (v === AV_CONFIG_VERSION) {
+                        return done();
+                    } else {
+                        grunt.log.error('Invalid avPluginsConfig.js version: ' +
+                            v);
+                    }
+                }
+                done(false);
+            }
+        });
+    };
+    var conf = checkAvPluginsConfig();
+  });
+
   // Project configuration.
   grunt.initConfig({
     variables: {
@@ -255,6 +300,7 @@ module.exports = function (grunt) {
           'dist/avConfig-v17.04.js': ['avConfig.js'],
           'dist/avThemes-v17.04.js': ['bower_components/avCommon/dist/avThemes-v17.04.js'],
           'dist/avPlugins-v17.04.js': [
+            'avPluginsConfig.js',
             'plugins/**/*.js',
             '!plugins/**/*-spec.js'
           ]
@@ -325,6 +371,7 @@ module.exports = function (grunt) {
           '<%= dom_munger.data.libnocompatjs %>',
           '<%= dom_munger.data.libjs %>',
           'avConfig.js',
+          'avPluginsConfig.js',
           'avThemes.js',
           'avWidgets.js',
           '<%= dom_munger.data.appjs %>',
@@ -377,6 +424,7 @@ module.exports = function (grunt) {
     'build',
     [
       'check_config',
+      'check_plugins_config',
       'jshint',
       'clean:before',
       'less',
@@ -422,6 +470,7 @@ module.exports = function (grunt) {
         files.concat(grunt.config('dom_munger.data.libjs'));
         files.push('bower_components/angular-mocks/angular-mocks.js');
         files.push('avConfig.js');
+        files.push('avPluginsConfig.js');
         files.push('avThemes.js');
         files.push('avWidgets.js');
         files.concat(grunt.config('dom_munger.data.appjs'));
