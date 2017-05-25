@@ -13,6 +13,16 @@
     <li role="presentation" class="sub1" ng-class="{active:state=='admin.dashboard'}" ng-if="current.id">
       <a ui-sref="admin.dashboard({id:current.id})"> <i class="fa-fw fa fa-dashboard"></i> <span ng-i18next="avAdmin.sidebar.dashboard"></span></a> </li>
 
+    <li role="presentation" class="sub1" ng-class="{active:state == 'admin.'+p.name}" ng-repeat="p in plugins.list" ng-if="!!p.sidebarlink">
+      <a ui-sref="{{ p.link }}">
+        <span ng-if="p.menu.html" ng-bind-html="p.menu.html()"></span>
+        <span ng-if="!p.menu.html">
+            <i class="fa-fw fa fa-{{ p.menu.icon }}" ng-if="p.menu.icon"></i>
+            <span ng-i18next>{{ p.menu.text }}</span>
+        </span>
+      </a>
+    </li>
+
     <li role="presentation" class="sub1" ng-class="{active:state == 'admin.'+l.name}" ng-repeat="l in sidebarlinks">
       <a ui-sref="{{ 'admin.'+l.name+'({id:current.id})' }}">
         <i class="fa-fw fa fa-{{ l.icon }}"></i>
@@ -22,7 +32,7 @@
   </ul>
 
   <!-- plugins -->
-    <li role="presentation" ng-class="{active:state == 'admin.'+p.name, head:p.head, sub1:!p.head}" ng-repeat="p in plugins.list">
+    <li role="presentation" ng-class="{active:state == 'admin.'+p.name, head:p.head, sub1:p.sub1}" ng-repeat="p in plugins.list" ng-if="!p.sidebarlink">
       <a ui-sref="{{ p.link }}">
         <span ng-if="p.menu.html" ng-bind-html="p.menu.html()"></span>
         <span ng-if="!p.menu.html">
