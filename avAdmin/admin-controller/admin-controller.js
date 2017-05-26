@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin').controller('AdminController',
-  function(Plugins, ConfigService, $scope, $i18next, $state, $stateParams, ElectionsApi, $compile) {
+  function(Plugins, ConfigService, $scope, $i18next, $state, $stateParams, ElectionsApi, $compile, NextButtonService) {
     var id = $stateParams.id;
     $scope.state = $state.current.name;
     $scope.current = null;
@@ -116,17 +116,13 @@ angular.module('avAdmin').controller('AdminController',
     var next_states = ['admin.dashboard'];
     $scope.sidebarlinks.forEach(
       function (sidebarlink) {
-        next_states.concat(_.map(
+        next_states = next_states.concat(_.map(
           sidebarlink.plugins, 
           function (plug) {
             return plug.link;
         }));
         next_states.push('admin.' + sidebarlink.name);
     });
-    $scope.goNext = function (params) {
-      var present_index = next_states.indexOf($scope.state);
-      var next_state = next_states[(present_index + 1) % next_states.length];
-      $state.go(next_state, params);
-    };
+    NextButtonService.setStates(next_states);
   }
 );

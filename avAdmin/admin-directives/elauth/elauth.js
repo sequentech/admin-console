@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminElauth', ['ElectionsApi', function(ElectionsApi) {
+  .directive('avAdminElauth', ['ElectionsApi', 'NextButtonService', function(ElectionsApi, NextButtonService) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
         scope.election = ElectionsApi.currentElection;
@@ -25,6 +25,7 @@ angular.module('avAdmin')
         scope.electionEditable = function() {
           return !scope.election.id || scope.election.status === "registered";
         };
+        scope.goNext = NextButtonService.goNext;
     }
 
     return {

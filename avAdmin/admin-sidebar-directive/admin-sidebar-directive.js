@@ -31,7 +31,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
 **/
-
+  
 angular.module('avAdmin')
   .directive('avAdminSidebar', ['$cookies', function($cookies) {
     // we use it as something similar to a controller here

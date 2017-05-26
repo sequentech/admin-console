@@ -18,7 +18,7 @@
 angular.module('avAdmin')
   .directive(
     'avAdminElquestions',
-    function($i18next, $state, ElectionsApi, ElectionLimits)
+    function($i18next, $state, ElectionsApi, ElectionLimits,NextButtonService)
     {
       // we use it as something similar to a controller here
       function link(scope, element, attrs) {
@@ -30,6 +30,8 @@ angular.module('avAdmin')
         scope.electionEditable = function() {
           return !scope.election.id || scope.election.status === "registered";
         };
+
+        scope.goNext = NextButtonService.goNext;
 
         function newQuestion() {
             var el = ElectionsApi.currentElection;

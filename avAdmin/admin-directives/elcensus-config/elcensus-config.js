@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminElcensusConfig', function($window, $state, ElectionsApi, MustExtraFieldsService, ConfigService) {
+  .directive('avAdminElcensusConfig', function($window, $state, ElectionsApi, MustExtraFieldsService, ConfigService, NextButtonService) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
         scope.census = ['open', 'close'];
@@ -30,6 +30,7 @@ angular.module('avAdmin')
         scope.massiveef = "";
         scope.loadingcensus = !ElectionsApi.newElection;
         scope.helpurl = ConfigService.helpUrl;
+        scope.goNext = NextButtonService.goNext;
 
         function addEf() {
             var el = ElectionsApi.currentElection;

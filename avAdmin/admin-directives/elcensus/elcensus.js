@@ -30,7 +30,8 @@ angular.module('avAdmin')
       $filter,
       $stateParams,
       $timeout,
-      ConfigService)
+      ConfigService,
+      NextButtonService)
     {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
@@ -51,6 +52,8 @@ angular.module('avAdmin')
       scope.resizeSensor = null;
       scope.helpurl = ConfigService.helpUrl;
       scope.showSuccessAction = ConfigService.showSuccessAction;
+
+      scope.goNext = NextButtonService.goNext;
 
       function newElection() {
         return !$stateParams.id;

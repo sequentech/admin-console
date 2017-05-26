@@ -18,11 +18,12 @@
 angular.module('avAdmin')
   .directive(
     'avAdminElbasic', 
-    ['$state', 
-    'ElectionsApi', 
-    'ConfigService', 
+    ['$state',
+    'ElectionsApi',
+    'ConfigService',
     '$modal', 
-    function($state, ElectionsApi, ConfigService, $modal) {
+    'NextButtonService',
+    function($state, ElectionsApi, ConfigService, $modal, NextButtonService) {
       // we use it as something similar to a controller here
       function link(scope, element, attrs) {
           scope.election = ElectionsApi.currentElection;
@@ -34,6 +35,7 @@ angular.module('avAdmin')
           scope.electionEditable = function() {
             return !scope.election.id || scope.election.status === "registered";
           };
+          
 
           function openSocialModal() {
             if(ConfigService.share_social.allow_edit) {
@@ -60,6 +62,8 @@ angular.module('avAdmin')
           function validateNumLogins(value) {
             return !isNaN(parseInt(value));
           }
+
+          scope.goNext = NextButtonService.goNext;
 
           angular.extend(scope, {
             openSocialModal: openSocialModal,
