@@ -71,6 +71,11 @@ angular.module('avAdmin').controller('AdminController',
     }
 
     var states =[ 'admin.dashboard', 'admin.basic', 'admin.questions', 'admin.censusConfig', 'admin.census', 'admin.auth', 'admin.tally', 'admin.successAction', 'admin.create'];
+    
+    var plugins_data = {states: [] };
+    Plugins.hook('add-dashboard-election-states', plugins_data);
+    states = states.concat(plugins_data.states);
+    
     if (states.indexOf($scope.state) >= 0) {
         $scope.sidebarlinks = [
             {name: 'basic', icon: 'university'},
