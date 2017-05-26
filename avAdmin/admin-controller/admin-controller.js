@@ -114,7 +114,7 @@ angular.module('avAdmin').controller('AdminController',
       });
     });
     var next_states = ['admin.dashboard'];
-    sidebarlinks.forEach(
+    $scope.sidebarlinks.forEach(
       function (sidebarlink) {
         next_states.concat(_.map(
           sidebarlink.plugins, 
@@ -127,6 +127,6 @@ angular.module('avAdmin').controller('AdminController',
       var present_index = next_states.indexOf($scope.state);
       var next_state = next_states[(present_index + 1) % next_states.length];
       $state.go(next_state, params);
-    }
+    };
   }
 );
