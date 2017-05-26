@@ -106,7 +106,7 @@ angular.module('avAdmin').controller('AdminController',
     }
     var sidebar_plugins = $scope.plugins.list.filter(
       function (plug) {
-        return true == plug.sidebarlink && _.isString(plug.before);
+        return true === plug.sidebarlink && _.isString(plug.before);
     });
     $scope.sidebarlinks.forEach( function (sidebarlink) {
       sidebarlink.plugins = sidebar_plugins.filter(function (plug) {
