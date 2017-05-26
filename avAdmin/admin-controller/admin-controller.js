@@ -104,5 +104,14 @@ angular.module('avAdmin').controller('AdminController',
     } else {
         $scope.sidebarlinks = [];
     }
+    var sidebar_plugins = $scope.plugins.list.filter(
+      function (plug) {
+        return true == plug.sidebarlink && _.isString(plug.before);
+    });
+    $scope.sidebarlinks.forEach( function (sidebarlink) {
+      sidebarlink.plugins = sidebar_plugins.filter(function (plug) {
+        return 'admin.' + sidebarlink.name === plug;
+      });
+    });
   }
 );
