@@ -108,5 +108,6 @@
       </div>
   </form>
 
-    <button ui-sref="admin.census()" ng-if="!election.id" class="btn btn-block btn-success" ng-i18next>next</button>
+  <button ng-click="goNext(admin.census())" ng-if="!election.id" class="btn btn-block btn-success" ng-i18next>next</button>
+  <button ng-click="goNext()" ng-if="!!election.id" class="btn btn-block btn-success" ng-i18next>next</button>
 </div>

@@ -35,10 +35,6 @@ angular.module('avAdmin')
             return !scope.election.id || scope.election.status === "registered";
           };
 
-          function save() {
-              $state.go("admin.questions");
-          }
-
           function openSocialModal() {
             if(ConfigService.share_social.allow_edit) {
               $modal.open({
@@ -66,7 +62,6 @@ angular.module('avAdmin')
           }
 
           angular.extend(scope, {
-            saveBasic: save,
             openSocialModal: openSocialModal,
             incLogins: incLogins,
             validateNumLogins: validateNumLogins

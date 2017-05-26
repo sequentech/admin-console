@@ -171,7 +171,7 @@
 
     <div ng-if="showSuccessAction">
       <button
-        ui-sref="admin.successAction()"
+        ng-click="goNext(admin.successAction())"
         ng-if="!election.id"
         class="btn btn-block btn-success"
         ng-i18next>
@@ -181,7 +181,7 @@
 
     <div ng-if="!showSuccessAction">
       <button
-        ui-sref="admin.create()"
+        ng-click="goNext(admin.create())"
         ng-if="!election.id"
         class="btn btn-block btn-success"
         ng-i18next>

@@ -110,8 +110,23 @@ angular.module('avAdmin').controller('AdminController',
     });
     $scope.sidebarlinks.forEach( function (sidebarlink) {
       sidebarlink.plugins = sidebar_plugins.filter(function (plug) {
-        return 'admin.' + sidebarlink.name === plug;
+        return 'admin.' + sidebarlink.name === plug.before;
       });
     });
+    var next_states = ['admin.dashboard'];
+    sidebarlinks.forEach(
+      function (sidebarlink) {
+        next_states.concat(_.map(
+          sidebarlink.plugins, 
+          function (plug) {
+            return plug.link;
+        }));
+        next_states.push('admin.' + sidebarlink.name);
+    });
+    $scope.goNext = function (params) {
+      var present_index = next_states.indexOf($scope.state);
+      var next_state = next_states[(present_index + 1) % next_states.length];
+      $state.go(next_state, params);
+    }
   }
 );

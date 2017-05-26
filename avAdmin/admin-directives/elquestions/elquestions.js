@@ -31,10 +31,6 @@ angular.module('avAdmin')
           return !scope.election.id || scope.election.status === "registered";
         };
 
-        function save() {
-            $state.go("admin.auth");
-        }
-
         function newQuestion() {
             var el = ElectionsApi.currentElection;
             if (!el.questions) {
@@ -142,7 +138,6 @@ angular.module('avAdmin')
         }
 
         angular.extend(scope, {
-          saveQuestions: save,
           newQuestion: newQuestion,
           delQuestion: delQuestion,
           expandQuestion: expandQuestion,
