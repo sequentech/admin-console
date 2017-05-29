@@ -374,6 +374,7 @@ angular.module('avAdmin')
                 questions: [],
                 extra_data: {}
             };
+            Plugins.hook('elections-api-template-el', {'el': el});
             return el;
         };
 

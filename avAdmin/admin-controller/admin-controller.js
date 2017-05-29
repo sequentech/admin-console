@@ -46,7 +46,6 @@ angular.module('avAdmin').controller('AdminController',
         $scope.current = el;
         ElectionsApi.setCurrent(el);
         ElectionsApi.newElection = true;
-
         return el;
     }
 
