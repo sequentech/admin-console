@@ -331,7 +331,7 @@ angular.module('avAdmin')
           }
         ];
 
-        Plugins.hook('election-create-add-checks', {'checks': checks, 'elections', scope.elections});
+        Plugins.hook('election-create-add-checks', {'checks': checks, 'elections': scope.elections});
         scope.errors = [];
         CheckerService({
           checks: checks,
