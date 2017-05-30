@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminElections', ['Authmethod', 'ElectionsApi', '$state', function(Authmethod, ElectionsApi, $state) {
+  .directive('avAdminElections', ['Authmethod', 'ElectionsApi', '$state', 'Plugins', function(Authmethod, ElectionsApi, $state, Plugins) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
         scope.page = 1;
@@ -63,6 +63,15 @@ angular.module('avAdmin')
                     scope.error = data;
                 });
         }
+
+        scope.exhtml = [];
+        Plugins.hook(
+          'admin-elections-list-extra-html',
+          {
+            'exhtml': scope.exhtml,
+            'elections': scope.elections
+          }
+        );
 
         angular.extend(scope, {
           loadMoreElections: loadMoreElections,
