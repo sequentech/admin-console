@@ -113,7 +113,7 @@
                 </dl>
             </div>
 
-            <div class="btn-group btn-block">
+            <!--div class="btn-group btn-block">
               <button
                 ng-if="!election.results.questions"
                 type="button"
@@ -136,10 +136,10 @@
                   </a>
                 </li>
               </ul>
-            </div>
+            </div-->
 
-            <button ng-if="election.results.questions"
-              ng-click="createRealElection()"
+            <button
+              ng-click="clickOnCreateRealElection()"
               class="btn btn-block btn-lg btn-success"
               ng-i18next>
                   avAdmin.dashboard.createRealElection

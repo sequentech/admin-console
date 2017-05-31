@@ -404,6 +404,41 @@ angular.module('avAdmin')
         ElectionsApi.newElection = true;
         $state.go("admin.create", {"autocreate": true});
       }
+      
+      function clickOnCreateRealElection() {
+          var payload = {};
+          $modal.open({
+            templateUrl: "avAdmin/admin-directives/dashboard/confirm-create-real-modal.html",
+            controller: "ConfirmCreateRealModal",
+            size: 'lg',
+            resolve: {
+              payload: function () { return payload; },
+              election: function () { return scope.election; }
+            }
+          }).result.then(function (data) {
+            // This hook allows plugins to interrupt this function. This interruption
+            // usually happens because the plugin does some processing and decides to
+            // show another previous dialog at this step, for example.
+            var pluginData = {
+              election: scope.election,
+              deferred: false
+            };
+            
+            Plugins.hook(
+              'click-create-real-election',
+              pluginData);
+            if (!pluginData.deferred) {
+              createRealElection();
+            } else {
+              pluginData.deferred.promise
+              .then(function (futureData) {
+                createRealElection();
+              })
+              .catch(function (failureData) {
+              });
+            }
+          });
+      }
 
       function changeSocial() {
         if(ConfigService.share_social.allow_edit) {
@@ -425,7 +460,7 @@ angular.module('avAdmin')
         doActionConfirm: doActionConfirm,
         sendAuthCodes: sendAuthCodes,
         duplicateElection: duplicateElection,
-        createRealElection: createRealElection,
+        clickOnCreateRealElection: clickOnCreateRealElection,
         changeSocial: changeSocial
       });
     }
