@@ -1,12 +1,12 @@
 <div>
-    <h2 ng-i18next>
-        avAdmin.sidebar.elections
-    </h2>
     <div class="extra-info extension-point">
       <div ng-repeat="html in exhtml">
           <div av-plugin-html ng-bind-html="html"></div>
       </div>
     </div>
+    <h2 ng-i18next>
+        avAdmin.sidebar.elections
+    </h2>
 
     <table role="table" class="table electionlist" infinite-scroll="loadMoreElections()" infinite-scroll-distance="0">
         <!-- header row -->
