@@ -68,8 +68,7 @@ angular.module('avAdmin')
         Plugins.hook(
           'admin-elections-list-extra-html',
           {
-            'exhtml': scope.exhtml,
-            'elections': scope.elections
+            'exhtml': scope.exhtml
           }
         );
 
