@@ -17,7 +17,7 @@
 
 angular.module('avAdmin')
   .controller('ConfirmCreateRealModal',
-    function($scope, $modalInstance, $modal, ConfigService, payload, election) {
+    function($scope, $modalInstance, $modal, ConfigService, Plugins, payload, election) {
       $scope.helpurl = ConfigService.helpUrl;
       $scope.ok = function () {
         $modalInstance.close($scope.payload);
