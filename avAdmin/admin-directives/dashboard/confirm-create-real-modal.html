@@ -3,7 +3,7 @@
     <span class="glyphicon glyphicon-warning-sign">
     </span>
     <span class="title" ng-i18next>
-      avAdmin.dashboard.modals.createHeader
+      avAdmin.dashboard.modals.createRealHeader
     </span>
     <button
      type="button"
@@ -11,20 +11,34 @@
      ng-click="cancel()">×</button>
   </h4>
 </div>
+
 <div class="modal-body">
+  <div class="extra-info extension-point">
+    <div ng-repeat="html in exhtml">
+        <div av-plugin-html ng-bind-html="html"></div>
+    </div>
+  </div>
   <p>
     <span ng-i18next>
-      avAdmin.notes.thisisATestElectionPopover
+      avAdmin.dashboard.modals.createRealBody
     </span>
+    <a href="{{helpurl}}" class="learn-more" target="_blank" ng-i18next>
+      avAdmin.learnMore
+    </a>
   </p>
 </div>
+
 <div class="modal-footer">
   <button
     class="btn btn-success"
     ng-click="ok()"
-    ng-disabled="!election.results.questions"
-    ng-i18next>
-    avAdmin.dashboard.modals.confirmCreateButton
+    ng-disabled="!election.results.questions && !!okDisabled"
+    ng-i18next="avAdmin.dashboard.modals.confirmCreateRealButton">
+    <span class="extra-info extension-point">
+      <span ng-repeat="html in okhtml">
+          <span av-plugin-html ng-bind-html="html"></span>
+      </span>
+    </span>
   </button>
   <button
     class="btn btn-cancel"
