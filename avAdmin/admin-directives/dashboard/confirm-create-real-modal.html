@@ -29,16 +29,18 @@
 </div>
 
 <div class="modal-footer">
+  <span class="extra-info extension-point">
+    <span ng-repeat="html in okhtml">
+        <span av-plugin-html ng-bind-html="html"></span>
+    </span>
+  </span>
   <button
     class="btn btn-success"
     ng-click="ok()"
-    ng-disabled="!election.results.questions && !!okDisabled"
-    ng-i18next="avAdmin.dashboard.modals.confirmCreateRealButton">
-    <span class="extra-info extension-point">
-      <span ng-repeat="html in okhtml">
-          <span av-plugin-html ng-bind-html="html"></span>
-      </span>
-    </span>
+    ng-if="0 === okhtml.length"
+    ng-disabled="!election.results.questions"
+    ng-i18next>
+    avAdmin.dashboard.modals.confirmCreateRealButton
   </button>
   <button
     class="btn btn-cancel"

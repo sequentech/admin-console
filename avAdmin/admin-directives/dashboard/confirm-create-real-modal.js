@@ -26,8 +26,7 @@ angular.module('avAdmin')
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
       };
-      
-      $scope.okDisabled = false;
+
       var exhtml = {html: [], scope: {}, okhtml: []};
       Plugins.hook(
        'confirm-create-real-modal-extra-html',
