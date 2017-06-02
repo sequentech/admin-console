@@ -32,13 +32,13 @@
   <button
     class="btn btn-success"
     ng-click="ok()"
-    ng-disabled="!election.results.questions || !!okDisabled">
+    ng-disabled="!election.results.questions || !!ptr.okDisabled">
     <div class="extra-info extension-point">
       <div ng-repeat="html in okhtml">
           <div av-plugin-html ng-bind-html="html"></div>
       </div>
     </div>
-    <div ng-if="!!showStandardOkText" ng-i18next>
+    <div ng-if="!!ptr.showStandardOkText" ng-i18next>
       avAdmin.dashboard.modals.confirmCreateRealButton
     </div>
   </button>

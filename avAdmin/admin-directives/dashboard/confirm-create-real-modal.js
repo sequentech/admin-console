@@ -27,8 +27,7 @@ angular.module('avAdmin')
         $modalInstance.dismiss('cancel');
       };
 
-      $scope.okDisabled = false;
-      $scope.showStandardOkText = true;
+      $scope.ptr = { "okDisabled" : false, "showStandardOkText": false };
       var exhtml = {html: [], scope: {}, okhtml: []};
       Plugins.hook(
        'confirm-create-real-modal-extra-html',
