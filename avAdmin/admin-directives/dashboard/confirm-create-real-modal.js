@@ -28,6 +28,7 @@ angular.module('avAdmin')
       };
 
       $scope.okDisabled = false;
+      $scope.showStandardOkText = true;
       var exhtml = {html: [], scope: {}, okhtml: []};
       Plugins.hook(
        'confirm-create-real-modal-extra-html',
