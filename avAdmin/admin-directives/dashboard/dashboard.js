@@ -379,6 +379,7 @@ angular.module('avAdmin')
            }
         }
         el.id = null;
+        el.real = false;
         el.raw = null;
         scope.current = el;
         ElectionsApi.setCurrent(el);
