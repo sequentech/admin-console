@@ -88,8 +88,21 @@ module.exports = function (grunt) {
         fs.readFile('avPluginsConfig.js', function(err, data) {
             if (err) {
                 grunt.log.ok('No avPluginsConfig.js file found, creating...');
-                var avPluginsConfigText = "var AV_PLUGINS_CONFIG_VERSION = '" +
-                    AV_CONFIG_VERSION +"';\n";
+                var avPluginsConfigText = 
+                    "var AV_PLUGINS_CONFIG_VERSION = '" + AV_CONFIG_VERSION + "';\n" +
+                    "angular.module('avPluginsConfig', [])\n" +
+                    "  .factory('PluginsConfigService', function() {\n" +
+                    "    return {};\n" +
+                    "  });\n" +
+                    "\n" +
+                    "angular.module('avPluginsConfig')\n" +
+                    "  .provider('PluginsConfigService', function PluginsConfigServiceProvider() {\n" +
+                    "    _.extend(this, {});\n" +
+                    "\n" +
+                    "    this.$get = [function PluginsConfigServiceProviderFactory() {\n" +
+                    "    return new PluginsConfigServiceProvider();\n" +
+                    "    }];\n" +
+                    "   });";
                 fs.writeFile("avPluginsConfig.js", 
                     avPluginsConfigText, 
                     function(err) {
