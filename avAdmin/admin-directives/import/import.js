@@ -44,19 +44,11 @@ angular.module('avAdmin')
               console.log("retrieveFile complete");
               scope.loading = false;
               var els = ImportService(results.data);
-              if(!els.id) {
-                console.log("Error: id not found");
-              }
-              else if (scope.file.name !== els.id.toString() + ".csv") {
-                console.log("Error: file name doesn't match election id");
-              }
-              else {
-                // only works for one election, the first
-                ElectionsApi.currentElections = els;
-                ElectionsApi.setCurrent(els[0]);
-                ElectionsApi.newElection = true;
-                $state.go("admin.create");
-              }
+              // only works for one election, the first                                                                                                                    
+              ElectionsApi.currentElections = els;                                                                                                                         
+              ElectionsApi.setCurrent(els[0]);                                                                                                                             
+              ElectionsApi.newElection = true;                                                                                                                             
+              $state.go("admin.create"); 
             },
           });
         }
