@@ -233,6 +233,7 @@ angular.module('avAdmin')
               scope.waiting = false;
               scope.loading = false;
               scope.prevStatus = null;
+              Plugins.hook('election-modified', {'old': scope.election, 'el': el});
               scope.election = el;
 
               scope.intally = el.status === 'doing_tally';

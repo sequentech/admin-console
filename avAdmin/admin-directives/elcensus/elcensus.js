@@ -334,6 +334,15 @@ angular.module('avAdmin')
             election: function () { return scope.election; }
           }
         }).result.then(function(textarea) {
+         $modal.open({
+          templateUrl: "avAdmin/admin-directives/elcensus/csv-loading-modal.html",
+          controller: "CsvLoadingModal",
+          size: 'lg',
+          resolve: {
+            election: function () { return scope.election; }
+            textarea: function () { return textarea; }
+          }
+        }
           scope.massiveAdd(textarea);
         });
       }
