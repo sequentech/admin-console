@@ -298,6 +298,9 @@
         },
 
         "modals": {
+          "csvLoadingHeader": "Uploading CSV to census",
+          "csvLoadingBody": "Please click on the start upload button to add the users from the CSV to the census. Please wait until the process is finished and don't close this window.",
+          "csvLoadingStartButton": "Start upload NOW",
           "addCsvHeader": "Add CSV to census",
           "addCsvBody": "Here you can add many people at once. The format is CSV, one person per line. Use semicolon to split fields, in order. Note that no data validation is done, so it's up to you to insert valid data.",
           "addCsvTextareaPlaceholder": "one voter per line, keep the field order",

@@ -23,10 +23,6 @@ angular.module('avAdmin')
       $scope.helpurl = ConfigService.helpUrl;
       $scope.batchSize = ConfigService.censusImportBatch;
       $scope.error = errorFunc;
-
-      $scope.ok = function () {
-        $modalInstance.close('ok');
-      };
       // 0 to 100% (when finished)
       $scope.percent = 0;
 
@@ -142,11 +138,15 @@ angular.module('avAdmin')
             if ($scope.percent < 100) {
               setTimeout(processBatchCaller, 0);
             } else {
-              $scope.ok();
+              $modalInstance.close('ok');
             }
           })
           .catch(function (error) {
             $scope.cancel();
           });
       }
+
+      $scope.ok = function () {
+        processBatchCaller();
+      };
     });

@@ -298,6 +298,9 @@
         "fields": {"label": "Campos extra", "placeholder": "Campos extra do votante"},
 
         "modals": {
+          "csvLoadingHeader": "Uploading CSV to census",
+          "csvLoadingBody": "Please click on the start upload button to add the users from the CSV to the census. Please wait until the process is finished and don't close this window.",
+          "csvLoadingStartButton": "Start upload NOW",
           "addCsvHeader": "Engadir CSV ao censo",
           "addCsvBody": "Aqui podes engadir moitas persoas ao censo dunha tacada. O formato é CSV, cunha persoa por liña de texto. Utilízase o punto e coma como separador de campos, en orde. Nótese que non se realiza validación algunha dos datos, así que é a túa responsabilidade inserir datos correctos.",
           "addCsvTextareaPlaceholder": "Un elector por liña, seguindo a orde dos campos separando por punto e coma",
