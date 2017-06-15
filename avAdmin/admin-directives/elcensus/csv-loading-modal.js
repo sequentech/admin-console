@@ -17,7 +17,7 @@
 
 angular.module('avAdmin')
   .controller('CsvLoadingModal',
-    function($scope, $modalInstance, $q, election, textarea, error, ConfigService, Plugins) {
+    function($scope, $modalInstance, $q, election, textarea, error, ConfigService, Plugins, Authmethod) {
       $scope.election = election;
       $scope.textarea = textarea;
       $scope.helpurl = ConfigService.helpUrl;
@@ -44,7 +44,7 @@ angular.module('avAdmin')
       };
 
       function calculateExportList(textarea) {
-          var el = scope.election;
+          var el = $scope.election;
           var cs;
           if (!el.id) {
             cs = el.census.voters;
@@ -91,7 +91,7 @@ angular.module('avAdmin')
               deferred.resolve();
             })
             .error(function(error) {
-              scope.error(error.error);
+              $scope.error(error.error);
               Plugins.hook('add-to-census-error', {data: csExport, response: error});
               deferred.reject();
             });
@@ -102,7 +102,7 @@ angular.module('avAdmin')
       function processBatch() {
         var deferred = $q.defer();
         var ret = {
-          'percent': $scope.percent
+          'percent': $scope.percent,
           'exportListIndex': $scope.exportListIndex
         };
         if ($scope.exportList.length > $scope.exportListIndex) {
@@ -113,7 +113,7 @@ angular.module('avAdmin')
           } else {
              batch = $scope.exportList.slice($scope.exportListIndex, $scope.exportListIndex + $scope.batchSize);
           }
-          censusCall(el.id, batch, 'disabled')
+          censusCall($scope.election.id, batch, 'disabled')
             .then(function () {
               ret.exportListIndex = $scope.exportListIndex + batch.length;
               ret.percent = calcPercent(ret.exportListIndex);

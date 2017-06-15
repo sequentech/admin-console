@@ -307,7 +307,7 @@ angular.module('avAdmin')
            controller: "CsvLoadingModal",
            size: 'lg',
            resolve: {
-             election: function () { return scope.election; }
+             election: function () { return scope.election; },
              textarea: function () { return textarea; },
              error: function (data) {
                if (_.isBoolean(data)) {
@@ -316,7 +316,7 @@ angular.module('avAdmin')
                return scope.error;
              }
            }
-          }
+          });
         });
       }
 
