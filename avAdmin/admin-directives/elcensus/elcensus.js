@@ -203,38 +203,6 @@ angular.module('avAdmin')
           el.census.voters = cs.slice(0, index).concat(cs.slice(index+1,cs.length));
       }
 
-      function massiveAdd(textarea) {
-          var el = scope.election;
-          var cs;
-          if (!el.id) {
-            cs = el.census.voters;
-          } else {
-            cs = [];
-          }
-
-          var fields = el.census.extra_fields;
-
-          var lines = textarea.split("\n");
-          lines.forEach(function(l) {
-              var lf = l.split(";");
-              var nv = {};
-              fields.forEach(function(f, i) { nv[f.name] = lf[i].trim(); });
-              if (nv.tlf) {
-                nv.tlf = nv.tlf.replace(" ", "");
-              }
-              if (nv.email) {
-                nv.email = nv.email.replace(" ", "");
-              }
-              cs.push({selected: false, vote: false, username: "", metadata: nv});
-          });
-
-          if (!!el.id) {
-            var csExport = _.map(cs, function (i) { return i.metadata; });
-            scope.loading = true;
-            censusCall(el.id, csExport, 'disabled');
-          }
-      }
-
       function exportCensusModal() {
         $modal.open({
           templateUrl: "avAdmin/admin-directives/elcensus/export-all-census-modal.html",
@@ -334,16 +302,21 @@ angular.module('avAdmin')
             election: function () { return scope.election; }
           }
         }).result.then(function(textarea) {
-         $modal.open({
-          templateUrl: "avAdmin/admin-directives/elcensus/csv-loading-modal.html",
-          controller: "CsvLoadingModal",
-          size: 'lg',
-          resolve: {
-            election: function () { return scope.election; }
-            textarea: function () { return textarea; }
+          $modal.open({
+           templateUrl: "avAdmin/admin-directives/elcensus/csv-loading-modal.html",
+           controller: "CsvLoadingModal",
+           size: 'lg',
+           resolve: {
+             election: function () { return scope.election; }
+             textarea: function () { return textarea; },
+             error: function (data) {
+               if (_.isBoolean(data)) {
+                 scope.error = data;
+               }
+               return scope.error;
+             }
+           }
           }
-        }
-          scope.massiveAdd(textarea);
         });
       }
 
@@ -463,7 +436,6 @@ angular.module('avAdmin')
         addPersonModal: addPersonModal,
         addCsvModal: addCsvModal,
         delVoter: delVoter,
-        massiveAdd: massiveAdd,
         filteredVoters: filteredVoters,
         exportCensus: exportCensus,
         exportCensusModal: exportCensusModal,

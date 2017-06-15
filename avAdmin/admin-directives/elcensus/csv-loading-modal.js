@@ -17,10 +17,13 @@
 
 angular.module('avAdmin')
   .controller('CsvLoadingModal',
-    function($scope, $modalInstance, election, textarea, ConfigService, Plugins) {
+    function($scope, $modalInstance, $q, election, textarea, error, ConfigService, Plugins) {
       $scope.election = election;
       $scope.textarea = textarea;
       $scope.helpurl = ConfigService.helpUrl;
+      $scope.batchSize = ConfigService.censusImportBatch;
+      $scope.error = error;
+
       $scope.ok = function () {
         $modalInstance.close('ok');
       };
@@ -40,21 +43,109 @@ angular.module('avAdmin')
         $modalInstance.dismiss('cancel');
       };
 
+      function calculateExportList(textarea) {
+          var el = scope.election;
+          var cs;
+          if (!el.id) {
+            cs = el.census.voters;
+          } else {
+            cs = [];
+          }
+
+          var fields = el.census.extra_fields;
+
+          var lines = textarea.split("\n");
+          lines.forEach(function(l) {
+              var lf = l.split(";");
+              var nv = {};
+              fields.forEach(function(f, i) { nv[f.name] = lf[i].trim(); });
+              if (nv.tlf) {
+                nv.tlf = nv.tlf.replace(" ", "");
+              }
+              if (nv.email) {
+                nv.email = nv.email.replace(" ", "");
+              }
+              cs.push({selected: false, vote: false, username: "", metadata: nv});
+          });
+
+          if (!!el.id) {
+            var csExport = _.map(cs, function (i) { return i.metadata; });
+            return csExport;
+          }
+          return [];
+      }
+      $scope.exportList = calculateExportList(textarea);
+      $scope.exportListIndex = 0;
+
+      function calcPercent (index) {
+        return index*100.0/$scope.batchSize.length;
+      }
+
+      function censusCall(id, csExport, opt) {
+        var deferred = $q.defer();
+        // this hook can avoid the addCensus call
+        if (Plugins.hook('add-to-census-pre', csExport)) {
+          Authmethod.addCensus(id, csExport, opt)
+            .success(function(r) {
+              Plugins.hook('add-to-census-success', {data: csExport, response: r});
+              deferred.resolve();
+            })
+            .error(function(error) {
+              scope.error(error.error);
+              Plugins.hook('add-to-census-error', {data: csExport, response: error});
+              deferred.reject();
+            });
+        }
+        return deferred.promise;
+      }
+
       function processBatch() {
+        var deferred = $q.defer();
+        var ret = {
+          'percent': $scope.percent
+          'exportListIndex': $scope.exportListIndex
+        };
+        if ($scope.exportList.length > $scope.exportListIndex) {
+          var batch = [];
+          if (0 === $scope.batchSize ||
+              ($scope.exportList.length - $scope.exportListIndex) <= $scope.batchSize) {
+             batch = $scope.exportList.slice($scope.exportListIndex);
+          } else {
+             batch = $scope.exportList.slice($scope.exportListIndex, $scope.exportListIndex + $scope.batchSize);
+          }
+          censusCall(el.id, batch, 'disabled')
+            .then(function () {
+              ret.exportListIndex = $scope.exportListIndex + batch.length;
+              ret.percent = calcPercent(ret.exportListIndex);
+              deferred.resolve(ret);
+            })
+            .error(function () {
+              deferred.reject(ret);
+            });
+        } else {
+          deferred.reject(ret);
+        }
+        return deferred.promise;
       }
 
       function processBatchCaller() {
-        var processed = processBatch();
-        if (_.isFunction(pluginData.processBatchPlugin)) {
-          var ret = pluginData.processBatchPlugin(processed);
-          $scope.percent = ret.percent;
-          
-        } else if (_.isNumber(processed.percent)) {
-          $scope.percent = processed.percent;
-          if ($scope.percent < 100) {
-            setTimeout(processBatchCaller, 0);
-          }
-        }
+        processBatch()
+          .then(function (processed) {
+            if (_.isFunction(pluginData.processBatchPlugin)) {
+              var ret = pluginData.processBatchPlugin(processed);
+              $scope.percent = ret.percent;
+              $scope.exportListIndex = ret.exportListIndex;
+            } else {
+              $scope.percent = processed.percent;
+              $scope.exportListIndex = processed.exportListIndex;
+            }
+            if ($scope.percent < 100) {
+              setTimeout(processBatchCaller, 0);
+            }
+          })
+          .error(function (error) {
+            $scope.cancel();
+          });
       }
       setTimeout(processBatchCaller, 0);
     });
