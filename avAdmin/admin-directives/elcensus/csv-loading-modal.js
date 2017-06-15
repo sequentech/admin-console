@@ -17,12 +17,12 @@
 
 angular.module('avAdmin')
   .controller('CsvLoadingModal',
-    function($scope, $modalInstance, $q, election, textarea, error, ConfigService, Plugins, Authmethod) {
+    function($scope, $modalInstance, $q, ConfigService, Plugins, Authmethod, election, textarea, errorFunc) {
       $scope.election = election;
       $scope.textarea = textarea;
       $scope.helpurl = ConfigService.helpUrl;
       $scope.batchSize = ConfigService.censusImportBatch;
-      $scope.error = error;
+      $scope.error = errorFunc;
 
       $scope.ok = function () {
         $modalInstance.close('ok');
@@ -119,7 +119,7 @@ angular.module('avAdmin')
               ret.percent = calcPercent(ret.exportListIndex);
               deferred.resolve(ret);
             })
-            .error(function () {
+            .catch(function () {
               deferred.reject(ret);
             });
         } else {
@@ -143,7 +143,7 @@ angular.module('avAdmin')
               setTimeout(processBatchCaller, 0);
             }
           })
-          .error(function (error) {
+          .catch(function (error) {
             $scope.cancel();
           });
       }

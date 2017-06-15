@@ -309,14 +309,18 @@ angular.module('avAdmin')
            resolve: {
              election: function () { return scope.election; },
              textarea: function () { return textarea; },
-             error: function (data) {
-               if (_.isBoolean(data)) {
-                 scope.error = data;
+             error: function () {
+               function errorFunction(data) {
+                 if (_.isBoolean(data)) {
+                   scope.error = data;
+                 }
+                 return scope.error;
                }
-               return scope.error;
+               return errorFunction;
              }
            }
-          });
+          })
+          .result.then(scope.reloadCensus, scope.reloadCensus);
         });
       }
 
