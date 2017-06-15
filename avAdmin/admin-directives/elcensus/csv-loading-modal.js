@@ -78,7 +78,7 @@ angular.module('avAdmin')
       $scope.exportListIndex = 0;
 
       function calcPercent (index) {
-        return index*100.0/$scope.batchSize.length;
+        return index*100.0/$scope.exportList.length;
       }
 
       function censusCall(id, csExport, opt) {
@@ -141,11 +141,12 @@ angular.module('avAdmin')
             }
             if ($scope.percent < 100) {
               setTimeout(processBatchCaller, 0);
+            } else {
+              $scope.ok();
             }
           })
           .catch(function (error) {
             $scope.cancel();
           });
       }
-      setTimeout(processBatchCaller, 0);
     });
