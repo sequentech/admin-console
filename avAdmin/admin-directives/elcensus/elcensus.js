@@ -309,7 +309,7 @@ angular.module('avAdmin')
            resolve: {
              election: function () { return scope.election; },
              textarea: function () { return textarea; },
-             error: function () {
+             errorFunc: function () {
                function errorFunction(data) {
                  if (_.isBoolean(data)) {
                    scope.error = data;
