@@ -99,7 +99,8 @@ angular.module('avAdmin')
         var deferred = $q.defer();
         var ret = {
           'percent': $scope.percent,
-          'exportListIndex': $scope.exportListIndex
+          'exportListIndex': $scope.exportListIndex,
+          'calcPercent': calcPercent
         };
         if ($scope.exportList.length > $scope.exportListIndex) {
           var batch = [];
@@ -119,7 +120,7 @@ angular.module('avAdmin')
               deferred.reject(ret);
             });
         } else {
-          deferred.reject(ret);
+          deferred.resolve(ret);
         }
         return deferred.promise;
       }
