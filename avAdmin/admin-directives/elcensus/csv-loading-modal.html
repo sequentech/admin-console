@@ -37,10 +37,17 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-success" ng-click="ok()" ng-i18next>
+    <button
+     class="btn btn-success"
+     ng-click="ok()"
+     ng-disabled="disableOk"
+     ng-i18next>
       avAdmin.census.modals.csvLoadingStartButton
     </button>
-    <button class="btn btn-cancel" ng-click="cancel()" ng-i18next>
+    <button
+     class="btn btn-cancel"
+     ng-click="cancel()"
+     ng-i18next>
       avCommon.cancel
     </button>
   </div>

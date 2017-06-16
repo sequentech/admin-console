@@ -25,12 +25,14 @@ angular.module('avAdmin')
       $scope.error = errorFunc;
       // 0 to 100% (when finished)
       $scope.percent = 0;
+      $scope.disableOk = false;
 
       var pluginData = {
         html: [],
         scope: {},
         processBatchPlugin: false,
-        startClickedPlugin: false
+        startClickedPlugin: false,
+        election: $scope.election
       };
       Plugins.hook('census-csv-loading-modal', pluginData);
       $scope.exhtml = pluginData.html;
@@ -150,6 +152,7 @@ angular.module('avAdmin')
       }
 
       $scope.ok = function () {
+        $scope.disableOk = true;
         if (_.isFunction($scope.startClickedPlugin)) {
           $scope.startClickedPlugin();
         }
