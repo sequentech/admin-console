@@ -27,18 +27,6 @@ angular.module('avAdmin')
       $scope.percent = 0;
       $scope.disableOk = false;
 
-      var pluginData = {
-        html: [],
-        scope: {},
-        processBatchPlugin: false,
-        startClickedPlugin: false,
-        election: $scope.election
-      };
-      Plugins.hook('census-csv-loading-modal', pluginData);
-      $scope.exhtml = pluginData.html;
-      $scope = _.extend($scope, pluginData.scope);
-      $scope.startClickedPlugin = pluginData.startClickedPlugin;
-
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
       };
@@ -77,73 +65,101 @@ angular.module('avAdmin')
       $scope.exportList = calculateExportList(textarea);
       $scope.exportListIndex = 0;
 
+      var pluginData = {
+        html: [],
+        scope: {},
+        processBatchPlugin: false,
+        startClickedPlugin: false,
+        election: $scope.election,
+        exportList: $scope.exportList
+      };
+      Plugins.hook('census-csv-loading-modal', pluginData);
+      $scope.exhtml = pluginData.html;
+      $scope = _.extend($scope, pluginData.scope);
+      $scope.startClickedPlugin = pluginData.startClickedPlugin;
+
       function calcPercent (index) {
         return index*100.0/$scope.exportList.length;
       }
 
       function censusCall(id, csExport, opt) {
         var deferred = $q.defer();
-        // this hook can avoid the addCensus call
-        if (Plugins.hook('add-to-census-pre', csExport)) {
-          Authmethod.addCensus(id, csExport, opt)
-            .success(function(r) {
-              Plugins.hook('add-to-census-success', {data: csExport, response: r});
-              deferred.resolve();
-            })
-            .error(function(error) {
-              $scope.error(error.error);
-              Plugins.hook('add-to-census-error', {data: csExport, response: error});
-              deferred.reject();
-            });
+        try {
+          // this hook can avoid the addCensus call
+          if (Plugins.hook('add-to-census-pre', csExport)) {
+            Authmethod.addCensus(id, csExport, opt)
+              .success(function(r) {
+                Plugins.hook('add-to-census-success', {data: csExport, response: r});
+                deferred.resolve();
+              })
+              .error(function(error) {
+                $scope.error(error.error);
+                Plugins.hook('add-to-census-error', {data: csExport, response: error});
+                deferred.reject();
+              });
+          }
+        } catch (error) {
+          deferred.reject(error);
         }
         return deferred.promise;
       }
 
       function processBatch() {
         var deferred = $q.defer();
-        var ret = {
-          'percent': $scope.percent,
-          'exportListIndex': $scope.exportListIndex,
-          'calcPercent': calcPercent
-        };
-        if ($scope.exportList.length > $scope.exportListIndex) {
-          var batch = [];
-          if (0 === $scope.batchSize ||
-              ($scope.exportList.length - $scope.exportListIndex) <= $scope.batchSize) {
-             batch = $scope.exportList.slice($scope.exportListIndex);
+        try {
+          var ret = {
+            'percent': $scope.percent,
+            'exportListIndex': $scope.exportListIndex,
+            'calcPercent': calcPercent
+          };
+          if ($scope.exportList.length > $scope.exportListIndex) {
+            var batch = [];
+            if (0 === $scope.batchSize ||
+                ($scope.exportList.length - $scope.exportListIndex) <= $scope.batchSize) {
+               batch = $scope.exportList.slice($scope.exportListIndex);
+            } else {
+               batch = $scope.exportList.slice($scope.exportListIndex, $scope.exportListIndex + $scope.batchSize);
+            }
+            censusCall($scope.election.id, batch, 'disabled')
+              .then(function () {
+                ret.exportListIndex = $scope.exportListIndex + batch.length;
+                ret.percent = calcPercent(ret.exportListIndex);
+                deferred.resolve(ret);
+              })
+              .catch(function () {
+                deferred.reject(ret);
+              });
           } else {
-             batch = $scope.exportList.slice($scope.exportListIndex, $scope.exportListIndex + $scope.batchSize);
+            deferred.resolve(ret);
           }
-          censusCall($scope.election.id, batch, 'disabled')
-            .then(function () {
-              ret.exportListIndex = $scope.exportListIndex + batch.length;
-              ret.percent = calcPercent(ret.exportListIndex);
-              deferred.resolve(ret);
-            })
-            .catch(function () {
-              deferred.reject(ret);
-            });
-        } else {
-          deferred.resolve(ret);
+        } catch (error) {
+          deferred.reject(error);
         }
         return deferred.promise;
+      }
+      
+      function setTimeoutOrClose() {
+        if ($scope.percent < 100) {
+          setTimeout(processBatchCaller, 0);
+        } else {
+          $modalInstance.close('ok');
+        }
       }
 
       function processBatchCaller() {
         processBatch()
           .then(function (processed) {
             if (_.isFunction(pluginData.processBatchPlugin)) {
-              var ret = pluginData.processBatchPlugin(processed);
-              $scope.percent = ret.percent;
-              $scope.exportListIndex = ret.exportListIndex;
+              pluginData.processBatchPlugin(processed)
+                .then(function (ret) {
+                  $scope.percent = ret.percent;
+                  $scope.exportListIndex = ret.exportListIndex;
+                  setTimeoutOrClose();
+                });
             } else {
               $scope.percent = processed.percent;
               $scope.exportListIndex = processed.exportListIndex;
-            }
-            if ($scope.percent < 100) {
-              setTimeout(processBatchCaller, 0);
-            } else {
-              $modalInstance.close('ok');
+              setTimeoutOrClose();
             }
           })
           .catch(function (error) {
