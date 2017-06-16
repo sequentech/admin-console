@@ -29,11 +29,13 @@ angular.module('avAdmin')
       var pluginData = {
         html: [],
         scope: {},
-        processBatchPlugin: false
+        processBatchPlugin: false,
+        startClickedPlugin: false
       };
       Plugins.hook('census-csv-loading-modal', pluginData);
       $scope.exhtml = pluginData.html;
       $scope = _.extend($scope, pluginData.scope);
+      $scope.startClickedPlugin = pluginData.startClickedPlugin;
 
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
@@ -148,6 +150,9 @@ angular.module('avAdmin')
       }
 
       $scope.ok = function () {
+        if (_.isFunction($scope.startClickedPlugin)) {
+          $scope.startClickedPlugin();
+        }
         processBatchCaller();
       };
     });
