@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminElauth', ['ElectionsApi', 'NextButtonService', function(ElectionsApi, NextButtonService) {
+  .directive('avAdminElauth', ['ElectionsApi', 'NextButtonService', 'Plugins', function(ElectionsApi, NextButtonService, Plugins) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
         scope.election = ElectionsApi.currentElection;
