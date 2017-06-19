@@ -13,7 +13,8 @@
                           name="auth"
                           value="{{ a }}"
                           ng-disabled="!electionEditable()"
-                          ng-model="election.census.auth_method"/>
+                          ng-checked="a === election.census.auth_method"
+                          ng-click= "clickCheckbox(a)"/>
                         <span ng-i18next="avAdmin.auth.auths.{{ a }}"></span>
                     </label>
                 </div>

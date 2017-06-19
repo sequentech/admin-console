@@ -26,11 +26,17 @@ angular.module('avAdmin')
           return !scope.election.id || scope.election.status === "registered";
         };
         scope.goNext = NextButtonService.goNext;
-
-        var pluginData = {
-          'scope': scope
+        scope.clickCheckbox = function (method) {
+          var pluginData = {
+            'auth_method': method
+            'update_value': true
+          };
+          Plugins.hook('elauth-click-checkbox', pluginData);
+          if (!!pluginData.update_value) {
+            scope.election.census.auth_method = method;
+          }
         };
-        Plugins.hook('new-election-elauth', pluginData);
+
     }
 
     return {
