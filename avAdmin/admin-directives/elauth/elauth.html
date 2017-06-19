@@ -10,12 +10,12 @@
                     <label>
                         <input
                           type="radio"
-                          name="auth"
-                          value="{{ a }}"
-                          ng-disabled="!electionEditable()"
-                          ng-checked="a === election.census.auth_method"
-                          ng-click= "clickCheckbox(a)"/>
-                        <span ng-i18next="avAdmin.auth.auths.{{ a }}"></span>
+                          name="auth_{{a.name}}"
+                          ng-value="a.name"
+                          ng-disabled="!electionEditable() || !!a.disabled"
+                          ng-model="election.census.auth_method"
+                          ng-click="clickCheckbox('{{ a.name }}')"/>
+                        <span ng-i18next="avAdmin.auth.auths.{{ a.name }}" for="auth_{{a.name}}"></span>
                     </label>
                 </div>
             </div>

@@ -20,23 +20,27 @@ angular.module('avAdmin')
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
         scope.election = ElectionsApi.currentElection;
-        scope.auth = ['email', 'sms'];
+        scope.auth = [
+          {
+            'name': 'email',
+            'disabled': false
+          },
+          {
+            'name': 'sms',
+            'disabled': false
+          }
+        ];
         //scope.auth = ['email', 'sms', 'dnie'];
         scope.electionEditable = function() {
           return !scope.election.id || scope.election.status === "registered";
         };
         scope.goNext = NextButtonService.goNext;
-        scope.clickCheckbox = function (method) {
-          var pluginData = {
-            'auth_method': method
-            'update_value': true
-          };
-          Plugins.hook('elauth-click-checkbox', pluginData);
-          if (!!pluginData.update_value) {
-            scope.election.census.auth_method = method;
-          }
+        var pluginData = {
+          'auth': scope.auth,
+          'clickCheckbox': function (method) {}
         };
-
+        Plugins.hook('new-election-elauth', pluginData);
+        scope.clickCheckbox = pluginData.clickCheckbox;
     }
 
     return {
