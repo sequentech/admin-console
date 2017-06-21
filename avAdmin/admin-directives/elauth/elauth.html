@@ -6,19 +6,23 @@
         <div class="form-group">
             <label class="col-sm-2 control-label" for="auth" ng-i18next="avAdmin.auth.auth"></label>
             <div class="col-sm-10">
-                <div class="radio" ng-repeat="a in auth">
-                    <label ng-click="clickCheckbox(a)">
-                        <input
-                          type="radio"
-                          name="auth_{{a}}"
-                          id="auth_{{a}}"
-                          ng-value="a"
-                          ng-disabled="!electionEditable()"
-                          ng-model="election.census.auth_method"
-                          />
-                        <span ng-i18next="avAdmin.auth.auths.{{ a }}" for="auth_{{a}}"></span>
-                    </label>
-                </div>
+                <div
+                    class="radio"
+                    ng-repeat="a in auth"
+                    for="auth_{{a}}"
+                    ng-class="{'selected': election.census.auth_method === a, 'disabled': !electionEditable()}">
+                        <label>
+                            <input
+                               type="radio"
+                               id="auth_{{a}}"
+                               name="reg"
+                               ng-value="a"
+                               ng-disabled="!electionEditable()"
+                               ng-model="election.census.auth_method" />
+                            <span ng-i18next="avAdmin.auth.auths.{{ a }}" >
+                            </span>
+                        </label>
+                  </div>
             </div>
         </div>
 

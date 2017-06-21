@@ -26,12 +26,6 @@ angular.module('avAdmin')
           return !scope.election.id || scope.election.status === "registered";
         };
         scope.goNext = NextButtonService.goNext;
-        var pluginData = {
-          'auth': scope.auth,
-          'clickCheckbox': function (method) {}
-        };
-        Plugins.hook('new-election-elauth', pluginData);
-        scope.clickCheckbox = pluginData.clickCheckbox;
     }
 
     return {
