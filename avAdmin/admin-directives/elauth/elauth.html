@@ -7,15 +7,16 @@
             <label class="col-sm-2 control-label" for="auth" ng-i18next="avAdmin.auth.auth"></label>
             <div class="col-sm-10">
                 <div class="radio" ng-repeat="a in auth">
-                    <label ng-click="clickCheckbox(a.name)">
+                    <label ng-click="clickCheckbox(a)">
                         <input
                           type="radio"
-                          name="auth_{{a.name}}"
-                          ng-value="a.name"
-                          ng-disabled="!electionEditable() || !!a.disabled"
+                          name="auth_{{a}}"
+                          id="auth_{{a}}"
+                          ng-value="a"
+                          ng-disabled="!electionEditable()"
                           ng-model="election.census.auth_method"
                           />
-                        <span ng-i18next="avAdmin.auth.auths.{{ a.name }}" for="auth_{{a.name}}"></span>
+                        <span ng-i18next="avAdmin.auth.auths.{{ a }}" for="auth_{{a}}"></span>
                     </label>
                 </div>
             </div>

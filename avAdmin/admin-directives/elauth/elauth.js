@@ -20,16 +20,7 @@ angular.module('avAdmin')
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
         scope.election = ElectionsApi.currentElection;
-        scope.auth = [
-          {
-            'name': 'email',
-            'disabled': false
-          },
-          {
-            'name': 'sms',
-            'disabled': false
-          }
-        ];
+        scope.auth = ['email','sms'];
         //scope.auth = ['email', 'sms', 'dnie'];
         scope.electionEditable = function() {
           return !scope.election.id || scope.election.status === "registered";
