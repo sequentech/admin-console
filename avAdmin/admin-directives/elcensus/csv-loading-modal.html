@@ -41,8 +41,10 @@
      class="btn btn-success"
      ng-click="ok()"
      ng-disabled="disableOk">
-      <span ng-if="disableOk"><i class="fa fa-cog fa-spin fa-sw"></i></span>
-      <span ng-i18next>avAdmin.census.modals.csvLoadingStartButton</span>
+      <div ng-if="0 === okhtml.length">
+        <span ng-if="disableOk"><i class="fa fa-cog fa-spin fa-sw"></i></span>
+        <span ng-i18next>avAdmin.census.modals.csvLoadingStartButton</span>
+      </div>
       <div class="extra-info extension-point">
         <div ng-repeat="html in okhtml">
             <div av-plugin-html ng-bind-html="html"></div>
