@@ -68,6 +68,7 @@ angular.module('avAdmin')
       var pluginData = {
         html: [],
         scope: {},
+        okhtml: [],
         processBatchPlugin: false,
         startClickedPlugin: false,
         election: $scope.election,
@@ -75,6 +76,7 @@ angular.module('avAdmin')
       };
       Plugins.hook('census-csv-loading-modal', pluginData);
       $scope.exhtml = pluginData.html;
+      $scope.okhtml = pluginData.okhtml;
       $scope = _.extend($scope, pluginData.scope);
       $scope.startClickedPlugin = pluginData.startClickedPlugin;
 
