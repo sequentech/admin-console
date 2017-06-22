@@ -129,6 +129,7 @@ angular.module('avAdmin')
               var value = keys[key];
               out = out.replace(key, value);
             });
+          return out;
         }
 
         var identity = "/aabb@gmail.com";
