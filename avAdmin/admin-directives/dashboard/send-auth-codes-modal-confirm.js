@@ -120,22 +120,35 @@ angular.module('avAdmin')
       /**
        * Render the example message with template substitution
        */
-      $scope.exampleMsg = function()
+      $scope.parseMessage = function(msg)
       {
+        function replacer(str, keys) {
+          var out = str;
+          Object.keys(keys).map(
+            function (key) {
+              var value = keys[key];
+              out = out.replace(key, value);
+            });
+        }
+
         var identity = "/aabb@gmail.com";
         if("sms" === election.census.auth_method) {
           identity = "/+34666666666";
         }
-        var msg = election.census.config.msg;
         var url = "https://" + $location.host() + "/election/" + election.id + "/public/login" + identity;
         var url2 = url + "/AABB1234";
         msg = msg.replace("__URL__", url);
         msg = msg.replace("__URL2__", url2);
         msg = msg.replace("__CODE__", "AABB1234");
+        var keys = {
+          "__URL__": url,
+          "__URL2__": url2,
+          "__CODE__": "AABB1234"
+        };
         for (var i = 0; i < SendMsg.slug_list.length; i++) {
-          msg = msg.replace("__" +  SendMsg.slug_list[i] + "__", "AABB1234");
+          keys["__" +  SendMsg.slug_list[i] + "__"] = "AABB1234";
         }
-        return msg;
+        return replacer(msg, keys);
       };
 
       /**
