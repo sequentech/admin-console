@@ -63,6 +63,7 @@ angular.module('avAdmin').controller('AdminController',
     }
 
     function updateStates() {
+      updateHasAdminFields();
       if (!!$scope.hasAdminFields) {
         var index = next_states.indexOf('admin.basic') + 1;
         next_states.splice(index, 0, 'admin.adminFields');
@@ -74,7 +75,6 @@ angular.module('avAdmin').controller('AdminController',
             .then(function(el) {
                 $scope.current = el;
                 ElectionsApi.setCurrent(el);
-                updateHasAdminFields();
                 updateStates();
                 NextButtonService.setStates(next_states);
                 if ('real' in el) {
