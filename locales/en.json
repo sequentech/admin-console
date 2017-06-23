@@ -66,6 +66,16 @@
         "logout": "logout"
     },
     "learnMore": "Learn more..",
+    "adminFields": {
+      "title": "Admin fields",
+      "intro": "Admin fields",
+      "expected_censusLabel": "Expected census size",
+      "expected_censusPlaceholder": "Expected census size",
+      "maxError": "__value__ is greater than __max__",
+      "minError": "__value__ is lower than __min__",
+      "textError": "error on text __value__",
+      "numberError": "__value__ must be a number"
+    },
     "sidebar": {
         "elections": "Elections",
         "newel": "New election",
@@ -83,7 +93,8 @@
         "myAccount": "My account",
         "billinfo": "Billing information",
         "billhistory": "Billing history",
-        "buy": "Buy credits"
+        "buy": "Buy credits",
+        "adminFields": "Admin fields"
     },
     "elections": {
         "filter": "Filter...",

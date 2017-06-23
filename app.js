@@ -128,6 +128,11 @@ angular.module('agora-gui-admin').config(
         templateUrl: 'avAdmin/admin-controller/admin-controller.html',
         controller: 'AdminController'
       })
+      .state('admin.adminFields', {
+        url: '/admin-fields/:id',
+        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
+        controller: 'AdminController'
+      })
       .state('admin.questions', {
         url: '/questions/:id',
         templateUrl: 'avAdmin/admin-controller/admin-controller.html',
