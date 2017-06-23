@@ -98,7 +98,7 @@ angular.module('agora-gui-admin').config(
         templateUrl: 'avAdmin/admin-login-controller/admin-login-controller.html',
         controller: "AdminLoginController"
       })
-      .state('admin.login.email', {
+      .state('admin.login_email', {
         url: '/login/:email',
         templateUrl: 'avAdmin/admin-login-controller/admin-login-controller.html',
         controller: "AdminLoginController"
