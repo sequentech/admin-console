@@ -48,12 +48,29 @@ angular.module('avAdmin').controller('AdminController',
         ElectionsApi.newElection = true;
         return el;
     }
+    
+    $scope.hasAdminFields = false;
+    var next_states = ['admin.dashboard'];
+
+    function hasAdminFieldsUpdate() {
+      $scope.hasAdminFields = false;
+      if (_.isObject($scope.current) &&
+          _.isObject($scope.current.census) &&
+          _.isArray($scope.current.census.admin_fields) &&
+          0 < $scope.current.census.admin_fields.length) {
+        $scope.hasAdminFields = true;
+        var index = next_states.indexOf('admin.basic') + 1;
+        next_states.splice(index, 0, 'admin.adminFields');
+        NextButtonService.setStates(next_states);
+      }
+    }
 
     if (id) {
         ElectionsApi.getElection(id)
             .then(function(el) {
                 $scope.current = el;
                 ElectionsApi.setCurrent(el);
+                hasAdminFieldsUpdate();
                 if ('real' in el) {
                     $scope.isTest = !el.real;
                 } else {
@@ -68,12 +85,6 @@ angular.module('avAdmin').controller('AdminController',
         $state.go("admin.basic");
         $scope.isTest = !$scope.current['real'];
     }
-    $scope.hasAdminFields = false;
-    if (_.isObject($scope.current.census) &&
-        _.isArray($scope.current.census.admin_fields) &&
-        0 < $scope.current.census.admin_fields.length) {
-      $scope.hasAdminFields = true;
-    }
 
     var states =[ 'admin.dashboard', 'admin.basic', 'admin.adminFields', 'admin.questions', 'admin.censusConfig', 'admin.census', 'admin.auth', 'admin.tally', 'admin.successAction', 'admin.create'];
     
@@ -84,6 +95,7 @@ angular.module('avAdmin').controller('AdminController',
     if (states.indexOf($scope.state) >= 0) {
         $scope.sidebarlinks = [
             {name: 'basic', icon: 'university'},
+            {name: 'adminFields', icon: 'user'},
             {name: 'questions', icon: 'question-circle'},
             {name: 'auth', icon: 'unlock'},
             {name: 'censusConfig', icon: 'newspaper-o'},
@@ -91,12 +103,6 @@ angular.module('avAdmin').controller('AdminController',
             //{name: 'successAction', icon: 'star-o'},
             //{name: 'tally', icon: 'pie-chart'},
         ];
-        if (!!$scope.hasAdminFields) {
-          $scope.sidebarlinks = $scope.sidebarlinks.splice(
-            1,
-            0,
-            {name: 'adminFields', icon: 'user'});
-        }
         // if showSuccessAction is true, 
         // show the SuccessAction tab in the admin gui
         if (true === ConfigService.showSuccessAction) {
@@ -124,7 +130,6 @@ angular.module('avAdmin').controller('AdminController',
         return 'admin.' + sidebarlink.name === plug.before;
       });
     });
-    var next_states = ['admin.dashboard'];
     $scope.sidebarlinks.forEach(
       function (sidebarlink) {
         next_states = next_states.concat(_.map(
