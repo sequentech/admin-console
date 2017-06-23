@@ -52,16 +52,20 @@ angular.module('avAdmin').controller('AdminController',
     $scope.hasAdminFields = false;
     var next_states = ['admin.dashboard'];
 
-    function hasAdminFieldsUpdate() {
+    function updateHasAdminFields() {
       $scope.hasAdminFields = false;
       if (_.isObject($scope.current) &&
           _.isObject($scope.current.census) &&
           _.isArray($scope.current.census.admin_fields) &&
           0 < $scope.current.census.admin_fields.length) {
         $scope.hasAdminFields = true;
+      }
+    }
+
+    function updateStates() {
+      if (!!$scope.hasAdminFields) {
         var index = next_states.indexOf('admin.basic') + 1;
         next_states.splice(index, 0, 'admin.adminFields');
-        NextButtonService.setStates(next_states);
       }
     }
 
@@ -70,7 +74,9 @@ angular.module('avAdmin').controller('AdminController',
             .then(function(el) {
                 $scope.current = el;
                 ElectionsApi.setCurrent(el);
-                hasAdminFieldsUpdate();
+                updateHasAdminFields();
+                updateStates();
+                NextButtonService.setStates(next_states);
                 if ('real' in el) {
                     $scope.isTest = !el.real;
                 } else {
@@ -82,6 +88,7 @@ angular.module('avAdmin').controller('AdminController',
     if ($scope.state === 'admin.new') {
         // New election
         newElection();
+        updateHasAdminFields();
         $state.go("admin.basic");
         $scope.isTest = !$scope.current['real'];
     }
@@ -139,6 +146,7 @@ angular.module('avAdmin').controller('AdminController',
         }));
         next_states.push('admin.' + sidebarlink.name);
     });
+    updateStates();
     NextButtonService.setStates(next_states);
   }
 );
