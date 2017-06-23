@@ -67,12 +67,12 @@ angular.module('avAdmin').controller('AdminController',
         newElection();
         $state.go("admin.basic");
         $scope.isTest = !$scope.current['real'];
-        $scope.hasAdminFields = false;
-        if (_.isObject($scope.current.census) &&
-            _.isArray($scope.current.census.admin_fields) &&
-            0 < $scope.current.census.admin_fields.length) {
-          $scope.hasAdminFields = true;
-        }
+    }
+    $scope.hasAdminFields = false;
+    if (_.isObject($scope.current.census) &&
+        _.isArray($scope.current.census.admin_fields) &&
+        0 < $scope.current.census.admin_fields.length) {
+      $scope.hasAdminFields = true;
     }
 
     var states =[ 'admin.dashboard', 'admin.basic', 'admin.adminFields', 'admin.questions', 'admin.censusConfig', 'admin.census', 'admin.auth', 'admin.tally', 'admin.successAction', 'admin.create'];
