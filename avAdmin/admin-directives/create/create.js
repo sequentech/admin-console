@@ -374,6 +374,47 @@ angular.module('avAdmin')
                         return _.every(
                           admin_fields,
                           function (field) {
+                            if ('string' === field.type) {
+                              return (
+                                !_.isUndefined(field.value) &&
+                                _.isString(field.value)
+                              );
+                            }
+                            return true;
+                          });
+                      }
+                      return true;
+                    },
+                    postfix: "-admin-fields-string-type-value"
+                  },
+                  {
+                    check: "lambda",
+                    key: "admin_fields",
+                    append: {key: "max", value: ElectionLimits.maxLongStringLength},
+                    validator: function (admin_fields) {
+                      if (_.isArray(admin_fields)) {
+                        return _.every(
+                          admin_fields,
+                          function (field) {
+                            if ('string' === field.type && 
+                                _.isString(field.value)) {
+                              return (field.value.length <= ElectionLimits.maxLongStringLength);
+                            }
+                            return true;
+                          });
+                      }
+                      return true;
+                    },
+                    postfix: "-admin-fields-string-value-array-length"
+                  },
+                  {
+                    check: "lambda",
+                    key: "admin_fields",
+                    validator: function (admin_fields) {
+                      if (_.isArray(admin_fields)) {
+                        return _.every(
+                          admin_fields,
+                          function (field) {
                             if ('int' === field.type &&
                                 !_.isUndefined(field.value) &&
                                 _.isNumber(field.value) &&

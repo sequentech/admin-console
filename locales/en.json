@@ -486,12 +486,14 @@
           "election-census-lambda-admin-fields-int-type-value": "Election '__eltitle__': there is at least one field in admin fields with int type where the value is not an integer, but it must be an integer.",
           "election-census-lambda-admin-fields-int-min-value": "Election '__eltitle__': there is at least one field in admin fields with int type where the value is less than the minimum allowed  value",
           "election-census-lambda-admin-fields-int-max-value": "Election '__eltitle__': there is at least one field in admin fields with int type where the value is more than the maximum allowed value",
+          "election-census-lambda-admin-fields-string-type-value": "Election '__eltitle__': there is at least one field in admin fields with string type where the value is not a string, but it must be a string.",
+          "election-census-lambda-admin-fields-string-value-array-length": "Election '__eltitle__': there is at least one field in admin fields with string type where the value string character length has exceeded the allowed maximum of __max__ characters.",
           "election-census-admin-fields-is-string-name": "Election '__eltitle__': admin field __fname__ name must be a string",
           "election-census-admin-fields-array-length-max-name": "Election '__eltitle__': admin field __fname__ name length is __len__ characters, exceeding the maximum of __max__",
           "election-census-admin-fields-is-string-type": "Election '__eltitle__': admin field __fname__ type must be a string",
           "election-census-admin-fields-array-length-max-type": "Election '__eltitle__': admin field __fname__ type length is __len__ characters, exceeding the maximum of __max__",
-          "election-census-admin-fields-lambda-min-number": "Election '__eltitle__': admin field __fname__ min must be a string",
-          "election-census-admin-fields-lambda-max-number": "Election '__eltitle__': admin field __fname__ max must be a string",
+          "election-census-admin-fields-lambda-min-number": "Election '__eltitle__': admin field __fname__ min must be a number",
+          "election-census-admin-fields-lambda-max-number": "Election '__eltitle__': admin field __fname__ max must be a number",
           "election-census-admin-fields-lambda-required-boolean": "Election '__eltitle__': admin field __fname__ required must be a boolean",
           "election-census-admin-fields-lambda-private-boolean": "Election '__eltitle__': admin field __fname__ private must be a boolean"
         }
