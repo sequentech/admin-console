@@ -492,6 +492,7 @@
           "election-census-admin-fields-array-length-max-type": "Votación '__eltitle__': el campo de admin field __fname__ type tiene una longitud de __len__ caracteres, excediendo el máximo de __max__",
           "election-census-admin-fields-lambda-min-number": "Votación '__eltitle__': el campo admin field __fname__ min ha de ser un número",
           "election-census-admin-fields-lambda-max-number": "Votación '__eltitle__': el campo admin field __fname__ max ha de ser un número",
+          "election-census-admin-fields-lambda-step-number": "Votación '__eltitle__': el campo admin field __fname__ step ha de ser un número",
           "election-census-admin-fields-lambda-required-boolean": "Votación '__eltitle__': el campo admin field __fname__ required ha de ser un booleano",
           "election-census-admin-fields-lambda-private-boolean": "Votación '__eltitle__': el campo admin field __fname__ private ha de ser un booleano"
         }

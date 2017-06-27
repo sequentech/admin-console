@@ -494,6 +494,7 @@
           "election-census-admin-fields-array-length-max-type": "Election '__eltitle__': admin field __fname__ type length is __len__ characters, exceeding the maximum of __max__",
           "election-census-admin-fields-lambda-min-number": "Election '__eltitle__': admin field __fname__ min must be a number",
           "election-census-admin-fields-lambda-max-number": "Election '__eltitle__': admin field __fname__ max must be a number",
+          "election-census-admin-fields-lambda-step-number": "Election '__eltitle__': admin field __fname__ step must be a number",
           "election-census-admin-fields-lambda-required-boolean": "Election '__eltitle__': admin field __fname__ required must be a boolean",
           "election-census-admin-fields-lambda-private-boolean": "Election '__eltitle__': admin field __fname__ private must be a boolean"
         }
