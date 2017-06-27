@@ -328,7 +328,7 @@ angular.module('avAdmin')
                 ]
               },
               {
-                check: "array-key-group-chain",
+                check: "object-key-chain",
                 key: "census",
                 prefix: "census-",
                 append: {},
@@ -364,7 +364,7 @@ angular.module('avAdmin')
                       }
                       return true;
                     },
-                    postfix: "admin-fields-int-type-value"
+                    postfix: "-admin-fields-int-type-value"
                   },
                   {
                     check: "lambda",
@@ -386,7 +386,7 @@ angular.module('avAdmin')
                       }
                       return true;
                     },
-                    postfix: "admin-fields-int-min-value"
+                    postfix: "-admin-fields-int-min-value"
                   },
                   {
                     check: "lambda",
@@ -408,7 +408,7 @@ angular.module('avAdmin')
                       }
                       return true;
                     },
-                    postfix: "admin-fields-int-max-value"
+                    postfix: "-admin-fields-int-max-value"
                   },
                   {
                     check: "array-key-group-chain",
@@ -677,6 +677,18 @@ angular.module('avAdmin')
               function (data)
               {
                 scope.elections = angular.fromJson(data.electionJson);
+
+                scope.errors = [];
+                CheckerService({
+                  checks: checks,
+                  data: scope.elections,
+                  onError: function (errorKey, errorData) {
+                    scope.errors.push({
+                      data: errorData,
+                      key: errorKey
+                    });
+                  }
+                });
               }
             );
         };
