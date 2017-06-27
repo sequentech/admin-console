@@ -326,7 +326,182 @@ angular.module('avAdmin')
                       ]
                   }
                 ]
-              }
+              },
+              {
+                check: "array-key-group-chain",
+                key: "census"
+                prefix: "census-",
+                append: {},
+                checks: [
+                  {
+                    check: "is-array",
+                    key: "admin_fields",
+                    postfix: "-admin-fields"
+                  },
+                  {
+                    check: "array-length",
+                    key: "admin_fields",
+                    min: 1,
+                    max: ElectionLimits.maxNumQuestions,
+                    postfix: "-admin-fields"
+                  },
+                  {
+                    check: "lambda",
+                    key: "admin_fields",
+                    validator: function (admin_fields) {
+                      if (_.isArray(admin_fields)) {
+                        return _.every(
+                          admin_fields,
+                          function (field) {
+                            if ('int' === field.type) {
+                              return (
+                                !_.isUndefined(field.value) &&
+                                _.isNumber(field.value)
+                              );
+                            }
+                            return true;
+                          });
+                      }
+                      return true;
+                    },
+                    postfix: "admin-fields-int-type-value"
+                  },
+                  {
+                    check: "lambda",
+                    key: "admin_fields",
+                    validator: function (admin_fields) {
+                      if (_.isArray(admin_fields)) {
+                        return _.every(
+                          admin_fields,
+                          function (field) {
+                            if ('int' === field.type &&
+                                !_.isUndefined(field.value) &&
+                                _.isNumber(field.value) &&
+                                !_.isUndefined(field.min) &&
+                                _.isNumber(field.min)) {
+                              return (
+                                field.min <= field.value;
+                              );
+                            }
+                            return true;
+                          });
+                      }
+                      return true;
+                    },
+                    postfix: "admin-fields-int-min-value"
+                  },
+                  {
+                    check: "lambda",
+                    key: "admin_fields",
+                    validator: function (admin_fields) {
+                      if (_.isArray(admin_fields)) {
+                        return _.every(
+                          admin_fields,
+                          function (field) {
+                            if ('int' === field.type &&
+                                !_.isUndefined(field.value) &&
+                                _.isNumber(field.value) &&
+                                !_.isUndefined(field.max) &&
+                                _.isNumber(field.max)) {
+                              return (
+                                field.max >= field.value;
+                              );
+                            }
+                            return true;
+                          });
+                      }
+                      return true;
+                    },
+                    postfix: "admin-fields-int-max-value"
+                  },
+                  {
+                    check: "array-key-group-chain",
+                    key: "admin_fields"
+                    prefix: "admin-fields-",
+                    append: {key: "fname", value: "$value.name"},
+                    checks: [
+                      {
+                        check: "is-string",
+                        key: "name",
+                        postfix: "-name"
+                      },
+                      {
+                        check: "array-length",
+                        key: "name",
+                        min: 0,
+                        max: ElectionLimits.maxLongStringLength,
+                        postfix: "-name"
+                      },
+                      {
+                        check: "is-string",
+                        key: "type",
+                        postfix: "-type"
+                      },
+                      {
+                        check: "array-length",
+                        key: "type",
+                        min: 0,
+                        max: ElectionLimits.maxLongStringLength,
+                        postfix: "-type"
+                      },
+                      {
+                        check: "lambda",
+                        key: "min",
+                        validator: function (min) {
+                          if (!_.isUndefined(min) && !_.isNumber(min)) {
+                            return false;
+                          }
+                          return true;
+                        },
+                        postfix: "-min-number"
+                      },
+                      {
+                        check: "lambda",
+                        key: "max",
+                        validator: function (max) {
+                          if (!_.isUndefined(max) && !_.isNumber(max)) {
+                            return false;
+                          }
+                          return true;
+                        },
+                        postfix: "-max-number"
+                      },
+                      {
+                        check: "lambda",
+                        key: "step",
+                        validator: function (step) {
+                          if (!_.isUndefined(step) && !_.isNumber(step)) {
+                            return false;
+                          }
+                          return true;
+                        },
+                        postfix: "-step-number"
+                      },
+                      {
+                        check: "lambda",
+                        key: "required",
+                        validator: function (required) {
+                          if (!_.isUndefined(required) && !_.isBoolean(required)) {
+                            return false;
+                          }
+                          return true;
+                        },
+                        postfix: "-required-boolean"
+                      },
+                      {
+                        check: "lambda",
+                        key: "private",
+                        validator: function (_private) {
+                          if (!_.isUndefined(_private) && !_.isBoolean(_private)) {
+                            return false;
+                          }
+                          return true;
+                        },
+                        postfix: "-private-boolean"
+                      }
+                    ]
+                  },
+                ]},
             ]
           }
         ];
