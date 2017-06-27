@@ -341,7 +341,7 @@ angular.module('avAdmin')
                   {
                     check: "array-length",
                     key: "admin_fields",
-                    min: 1,
+                    min: 0,
                     max: ElectionLimits.maxNumQuestions,
                     postfix: "-admin-fields"
                   },
