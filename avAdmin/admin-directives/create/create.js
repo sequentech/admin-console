@@ -329,7 +329,7 @@ angular.module('avAdmin')
               },
               {
                 check: "array-key-group-chain",
-                key: "census"
+                key: "census",
                 prefix: "census-",
                 append: {},
                 checks: [
@@ -379,9 +379,7 @@ angular.module('avAdmin')
                                 _.isNumber(field.value) &&
                                 !_.isUndefined(field.min) &&
                                 _.isNumber(field.min)) {
-                              return (
-                                field.min <= field.value;
-                              );
+                              return (field.min <= field.value);
                             }
                             return true;
                           });
@@ -403,9 +401,7 @@ angular.module('avAdmin')
                                 _.isNumber(field.value) &&
                                 !_.isUndefined(field.max) &&
                                 _.isNumber(field.max)) {
-                              return (
-                                field.max >= field.value;
-                              );
+                              return (field.max >= field.value);
                             }
                             return true;
                           });
@@ -416,7 +412,7 @@ angular.module('avAdmin')
                   },
                   {
                     check: "array-key-group-chain",
-                    key: "admin_fields"
+                    key: "admin_fields",
                     prefix: "admin-fields-",
                     append: {key: "fname", value: "$value.name"},
                     checks: [
