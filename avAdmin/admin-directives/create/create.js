@@ -370,6 +370,31 @@ angular.module('avAdmin')
                     check: "lambda",
                     key: "admin_fields",
                     validator: function (admin_fields) {
+                      function validateEmail(email) {
+                        var re = /^[^\s@]+@[^\s@.]+\.[^\s@.]+$/;
+                        return re.test(email);
+                      }
+
+                      if (_.isArray(admin_fields)) {
+                        return _.every(
+                          admin_fields,
+                          function (field) {
+                            if ('email' === field.type &&
+                                !_.isUndefined(field.value) &&
+                                _.isString(field.value)) {
+                              return validateEmail(field.value);
+                            }
+                            return true;
+                          });
+                      }
+                      return true;
+                    },
+                    postfix: "-admin-fields-email-type-value"
+                  },
+                  {
+                    check: "lambda",
+                    key: "admin_fields",
+                    validator: function (admin_fields) {
                       if (_.isArray(admin_fields)) {
                         return _.every(
                           admin_fields,

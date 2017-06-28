@@ -481,6 +481,7 @@
           "election-census-is-array-admin-fields": "Votación '__eltitle__': admin_fields ha de ser un array",
           "election-census-array-length-max-admin-fields": "Votación '__eltitle__': el array admin_fields tiene una longitud de __len__ caracteres, excediendo el máximo de __max__",
           "election-census-lambda-admin-fields-int-type-value": "Votación '__eltitle__': hay al menos un campo en admin fields con tipo int donde el value no es un entero, pero ha de ser un entero.",
+          "election-census-lambda-admin-fields-email-type-value": "Votación '__eltitle__': hay al menos un campo en admin fields con tipo email donde el value no es un email, pero ha de ser un email.",
           "election-census-lambda-admin-fields-int-min-value": "Votación '__eltitle__': hay al menos un campo en admin fields con tipo int donde el value es menor que el mínimo valor permitido",
           "election-census-lambda-admin-fields-int-max-value": "Votación '__eltitle__': hay al menos un campo en admin fields con tipo int donde el value es mayor que el máximo valor permitido",
           "election-census-lambda-admin-fields-string-type-value": "Votación '__eltitle__': hay al menos un campo en admin fields con tipo string donde el value no es un string, pero ha de ser un string.",
