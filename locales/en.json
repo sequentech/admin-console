@@ -489,6 +489,7 @@
           "election-census-lambda-admin-fields-string-type-value": "Election '__eltitle__': there is at least one field in admin fields with string type where the value is not a string, but it must be a string.",
           "election-census-lambda-admin-fields-required-value": "Election '__eltitle__': there is at least one required field in admin fields with no value.",
           "election-census-lambda-admin-fields-string-value-array-length": "Election '__eltitle__': there is at least one field in admin fields with string type where the value string character length has exceeded the allowed maximum of __max__ characters.",
+          "election-census-lambda-admin-fields-email-value-array-length": "Election '__eltitle__': there is at least one field in admin fields with email type where the value email character length has exceeded the allowed maximum of __max__ characters.",
           "election-census-admin-fields-is-string-if-defined-placeholder": "Election '__eltitle__': admin field __fname__ placeholder must be a string",
           "election-census-admin-fields-array-length-if-defined-max-placeholder": "Election '__eltitle__': admin field __fname__ placeholder length is __len__ characters, exceeding the maximum of __max__",
           "election-census-admin-fields-is-string-label": "Election '__eltitle__': admin field __fname__ label must be a string",

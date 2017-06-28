@@ -421,7 +421,15 @@ angular.module('avAdmin')
                           admin_fields,
                           function (field) {
                             if (true === field.required) {
-                              return !_.isUndefined(field.value);
+                              if (_.isUndefined(field.value)) {
+                                return false;
+                              }
+                              else if (('text' === field.type ||
+                                        'email' === field.type) &&
+                                       _.isString(field.value) &&
+                                       0 === field.value.length) {
+                                return false;
+                              }
                             }
                             return true;
                           });
@@ -449,6 +457,26 @@ angular.module('avAdmin')
                       return true;
                     },
                     postfix: "-admin-fields-string-value-array-length"
+                  },
+                  {
+                    check: "lambda",
+                    key: "admin_fields",
+                    append: {key: "max", value: ElectionLimits.maxLongStringLength},
+                    validator: function (admin_fields) {
+                      if (_.isArray(admin_fields)) {
+                        return _.every(
+                          admin_fields,
+                          function (field) {
+                            if ('email' === field.type && 
+                                _.isString(field.value)) {
+                              return (field.value.length <= ElectionLimits.maxLongStringLength);
+                            }
+                            return true;
+                          });
+                      }
+                      return true;
+                    },
+                    postfix: "-admin-fields-email-value-array-length"
                   },
                   {
                     check: "lambda",
