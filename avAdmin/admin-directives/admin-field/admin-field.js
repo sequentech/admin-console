@@ -71,7 +71,7 @@ angular.module('avAdmin')
           return "[placeholder]" + scope.field.placeholder;
         }
         return "";
-      }
+      };
     }
 
     return {
