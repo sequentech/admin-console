@@ -61,6 +61,11 @@ angular.module('avAdmin')
         return true;
       };
 
+      scope.validateEmail = function (value) {
+        var re = /^[^\s@]+@[^\s@.]+\.[^\s@.]+$/;
+        return re.test(value);
+      };
+
       scope.has_description = !_.isUndefined(scope.field.description) &&
         _.isString(scope.field.description) &&
         0 < scope.field.description.length;

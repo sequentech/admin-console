@@ -72,6 +72,7 @@
       "maxError": "__value__ is greater than __max__",
       "minError": "__value__ is lower than __min__",
       "textError": "error on text __value__",
+      "emailError": "error on email __value__",
       "numberError": "__value__ must be a number"
     },
     "sidebar": {
