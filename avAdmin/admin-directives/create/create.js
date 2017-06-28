@@ -374,7 +374,7 @@ angular.module('avAdmin')
                         return _.every(
                           admin_fields,
                           function (field) {
-                            if ('string' === field.type) {
+                            if ('text' === field.type) {
                               return (
                                 _.isUndefined(field.value) ||
                                 _.isString(field.value)
@@ -414,7 +414,7 @@ angular.module('avAdmin')
                         return _.every(
                           admin_fields,
                           function (field) {
-                            if ('string' === field.type && 
+                            if ('text' === field.type && 
                                 _.isString(field.value)) {
                               return (field.value.length <= ElectionLimits.maxLongStringLength);
                             }
