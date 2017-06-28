@@ -70,8 +70,6 @@
     "adminFields": {
       "title": "Campos admin",
       "intro": "Campos admin",
-      "expected_censusLabel": "Tamaño de censo esperado",
-      "expected_censusPlaceholder": "Tamaño de censo esperado",
       "maxError": "__value__ es mayor de __max__",
       "minError": "__value__ es menor de __min__",
       "textError": "error en texto __value__",

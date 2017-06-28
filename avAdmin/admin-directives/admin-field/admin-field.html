@@ -7,17 +7,22 @@
     <label
       class="col-sm-2 control-label"
       for="adminFieldInput{{$index}}"
-      ng-i18next="avAdmin.adminFields.{{field.name}}Label">
+      ng-i18next="{{field.label}}">
     </label>
 
     <div
       class="col-sm-10"
       ng-if="'text' === field.type">
+      <p
+        class="text-muted"
+        ng-i18next="{{ field.description }}"
+        ng-if="has_description">
+      </p>
       <input
         class="form-control"
         type="text"
         ng-disabled="!editable()"
-        ng-i18next="[placeholder]avAdmin.adminFields.{{field.name}}Placeholder"
+        ng-i18next="{{ getPlaceholder() }}"
         ng-model="field.value"
         ng-required="field.required"
         name="adminFieldInput{{$index}}"
@@ -39,9 +44,8 @@
       ng-if="'int' === field.type">
         <p
           class="text-muted"
-          for="adminFieldInput{{$index}}"
-          ng-i18next>
-          avAdmin.adminFields.{{field.name}}Placeholder
+          ng-i18next="{{ field.description }}"
+          ng-if="has_description">
         </p>
         <div class="input-group col-xs-2">
           <span class="input-group-btn">

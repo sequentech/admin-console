@@ -355,7 +355,7 @@ angular.module('avAdmin')
                           function (field) {
                             if ('int' === field.type) {
                               return (
-                                !_.isUndefined(field.value) &&
+                                _.isUndefined(field.value) ||
                                 _.isNumber(field.value)
                               );
                             }
@@ -376,7 +376,7 @@ angular.module('avAdmin')
                           function (field) {
                             if ('string' === field.type) {
                               return (
-                                !_.isUndefined(field.value) &&
+                                _.isUndefined(field.value) ||
                                 _.isString(field.value)
                               );
                             }
@@ -386,6 +386,24 @@ angular.module('avAdmin')
                       return true;
                     },
                     postfix: "-admin-fields-string-type-value"
+                  },
+                  {
+                    check: "lambda",
+                    key: "admin_fields",
+                    validator: function (admin_fields) {
+                      if (_.isArray(admin_fields)) {
+                        return _.every(
+                          admin_fields,
+                          function (field) {
+                            if (true === field.required) {
+                              return !_.isUndefined(field.value);
+                            }
+                            return true;
+                          });
+                      }
+                      return true;
+                    },
+                    postfix: "-admin-fields-required-value"
                   },
                   {
                     check: "lambda",
@@ -457,6 +475,42 @@ angular.module('avAdmin')
                     prefix: "admin-fields-",
                     append: {key: "fname", value: "$value.name"},
                     checks: [
+                      {
+                        check: "is-string",
+                        key: "placeholder",
+                        postfix: "-placeholder"
+                      },
+                      {
+                        check: "array-length",
+                        key: "placeholder",
+                        min: 0,
+                        max: ElectionLimits.maxLongStringLength,
+                        postfix: "-placeholder"
+                      },
+                      {
+                        check: "is-string",
+                        key: "label",
+                        postfix: "-label"
+                      },
+                      {
+                        check: "array-length",
+                        key: "label",
+                        min: 0,
+                        max: ElectionLimits.maxLongStringLength,
+                        postfix: "-label"
+                      },
+                      {
+                        check: "is-string",
+                        key: "description",
+                        postfix: "-description"
+                      },
+                      {
+                        check: "array-length",
+                        key: "description",
+                        min: 0,
+                        max: ElectionLimits.maxLongStringLength,
+                        postfix: "-description"
+                      },
                       {
                         check: "is-string",
                         key: "name",

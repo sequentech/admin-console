@@ -56,14 +56,22 @@ angular.module('avAdmin')
       scope.validateNumber = function (value) {
         return !_.isNaN(parseInt(value));
       };
-      
+
       scope.validateText = function (value) {
-        if ("expected_census" === scope.field.name)
-        {
-          return true;
-        }
-        return false;
+        return true;
       };
+
+      scope.has_description = !_.isUndefined(scope.field.description) &&
+        _.isString(scope.field.description) &&
+        0 < scope.field.description.length;
+
+      scope.getPlaceholder = function () {
+        if (!_.isUndefined(scope.field.placeholder) &&
+            _.isString(scope.field.placeholder)) {
+          return "[placeholder]" + scope.field.placeholder;
+        }
+        return "";
+      }
     }
 
     return {
