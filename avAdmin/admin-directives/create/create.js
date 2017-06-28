@@ -476,12 +476,12 @@ angular.module('avAdmin')
                     append: {key: "fname", value: "$value.name"},
                     checks: [
                       {
-                        check: "is-string",
+                        check: "is-string-if-defined",
                         key: "placeholder",
                         postfix: "-placeholder"
                       },
                       {
-                        check: "array-length",
+                        check: "array-length-if-defined",
                         key: "placeholder",
                         min: 0,
                         max: ElectionLimits.maxLongStringLength,
@@ -500,12 +500,12 @@ angular.module('avAdmin')
                         postfix: "-label"
                       },
                       {
-                        check: "is-string",
+                        check: "is-string-if-defined",
                         key: "description",
                         postfix: "-description"
                       },
                       {
-                        check: "array-length",
+                        check: "array-length-if-defined",
                         key: "description",
                         min: 0,
                         max: ElectionLimits.maxLongStringLength,
