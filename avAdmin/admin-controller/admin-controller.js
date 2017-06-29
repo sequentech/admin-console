@@ -64,7 +64,7 @@ angular.module('avAdmin').controller('AdminController',
 
     function updateStates() {
       updateHasAdminFields();
-      if (!!$scope.hasAdminFields) {
+      if (!!$scope.hasAdminFields && -1 === next_states.indexOf('admin.adminFields')) {
         var index = next_states.indexOf('admin.basic') + 1;
         next_states.splice(index, 0, 'admin.adminFields');
       }
