@@ -152,6 +152,7 @@ angular.module('avAdmin')
                     // updating census
                     el.census.auth_method = data.events.auth_method;
                     el.census.extra_fields = data.events.extra_fields;
+                    el.census.admin_fields = data.events.admin_fields;
                     el.census.census = data.events.census;
                     if(!!data.events.num_successful_logins_allowed || 0 === data.events.num_successful_logins_allowed) {
                       el.num_successful_logins_allowed = data.events.num_successful_logins_allowed;
@@ -355,6 +356,7 @@ angular.module('avAdmin')
                     auth_method: 'email',
                     census:'close',
                     extra_fields: [ ],
+                    admin_fields: [ ],
                     config: {
                         "msg": $i18next('avAdmin.auth.emaildef'),
                         "subject": $i18next('avAdmin.auth.emailsubdef',

@@ -66,6 +66,15 @@
         "logout": "logout"
     },
     "learnMore": "Learn more..",
+    "adminFields": {
+      "title": "Admin fields",
+      "intro": "Admin fields",
+      "maxError": "__value__ is greater than __max__",
+      "minError": "__value__ is lower than __min__",
+      "textError": "error on text __value__",
+      "emailError": "error on email __value__",
+      "numberError": "__value__ must be a number"
+    },
     "sidebar": {
         "elections": "Elections",
         "newel": "New election",
@@ -83,7 +92,8 @@
         "myAccount": "My account",
         "billinfo": "Billing information",
         "billhistory": "Billing history",
-        "buy": "Buy credits"
+        "buy": "Buy credits",
+        "adminFields": "Admin fields"
     },
     "elections": {
         "filter": "Filter...",
@@ -469,7 +479,32 @@
           "election-question-int-size-min-max": "Election '__eltitle__', question '__qtitle__': the maximum number of candidates that a voter can choose is __value__, but must be bigger or equal than the minimum which is __min__",
           "election-question-int-size-max-max": "Election '__eltitle__', question '__qtitle__': the maximum number of candidates that a voter can choose is __value__, but cannot be larger than the number of candidates which is __max__",
           "election-question-int-size-min-num-winners": "Election '__eltitle__', question '__qtitle__': there must be at least one winner, but it is __value__ instead",
-          "election-question-int-size-max-num-winners": "Election '__eltitle__', question '__qtitle__': the number of winners is __value__, but cannot be bigger than the number of answers which is __max__"
+          "election-question-int-size-max-num-winners": "Election '__eltitle__', question '__qtitle__': the number of winners is __value__, but cannot be bigger than the number of answers which is __max__",
+          "election-census-is-array-admin-fields": "Election '__eltitle__': admin_fields must be an array",
+          "election-census-array-length-max-admin-fields": "Election '__eltitle__': admin_fields array length is __len__, exceeding the maximum of __max__",
+          "election-census-lambda-admin-fields-int-type-value": "Election '__eltitle__': there is at least one field in admin fields with int type where the value is not an integer, but it must be an integer.",
+          "election-census-lambda-admin-fields-email-type-value": "Election '__eltitle__': there is at least one field in admin fields with email type where the value is not an email, but it must be an email.",
+          "election-census-lambda-admin-fields-int-min-value": "Election '__eltitle__': there is at least one field in admin fields with int type where the value is less than the minimum allowed  value",
+          "election-census-lambda-admin-fields-int-max-value": "Election '__eltitle__': there is at least one field in admin fields with int type where the value is more than the maximum allowed value",
+          "election-census-lambda-admin-fields-string-type-value": "Election '__eltitle__': there is at least one field in admin fields with string type where the value is not a string, but it must be a string.",
+          "election-census-lambda-admin-fields-required-value": "Election '__eltitle__': there is at least one required field in admin fields with no value.",
+          "election-census-lambda-admin-fields-string-value-array-length": "Election '__eltitle__': there is at least one field in admin fields with string type where the value string character length has exceeded the allowed maximum of __max__ characters.",
+          "election-census-lambda-admin-fields-email-value-array-length": "Election '__eltitle__': there is at least one field in admin fields with email type where the value email character length has exceeded the allowed maximum of __max__ characters.",
+          "election-census-admin-fields-is-string-if-defined-placeholder": "Election '__eltitle__': admin field __fname__ placeholder must be a string",
+          "election-census-admin-fields-array-length-if-defined-max-placeholder": "Election '__eltitle__': admin field __fname__ placeholder length is __len__ characters, exceeding the maximum of __max__",
+          "election-census-admin-fields-is-string-label": "Election '__eltitle__': admin field __fname__ label must be a string",
+          "election-census-admin-fields-array-length-max-label": "Election '__eltitle__': admin field __fname__ label length is __len__ characters, exceeding the maximum of __max__",
+          "election-census-admin-fields-is-string-if-defined-description": "Election '__eltitle__': admin field __fname__ description must be a string",
+          "election-census-admin-fields-array-length-if-defined-max-description": "Election '__eltitle__': admin field __fname__ description length is __len__ characters, exceeding the maximum of __max__",
+          "election-census-admin-fields-is-string-name": "Election '__eltitle__': admin field __fname__ name must be a string",
+          "election-census-admin-fields-array-length-max-name": "Election '__eltitle__': admin field __fname__ name length is __len__ characters, exceeding the maximum of __max__",
+          "election-census-admin-fields-is-string-type": "Election '__eltitle__': admin field __fname__ type must be a string",
+          "election-census-admin-fields-array-length-max-type": "Election '__eltitle__': admin field __fname__ type length is __len__ characters, exceeding the maximum of __max__",
+          "election-census-admin-fields-lambda-min-number": "Election '__eltitle__': admin field __fname__ min must be a number",
+          "election-census-admin-fields-lambda-max-number": "Election '__eltitle__': admin field __fname__ max must be a number",
+          "election-census-admin-fields-lambda-step-number": "Election '__eltitle__': admin field __fname__ step must be a number",
+          "election-census-admin-fields-lambda-required-boolean": "Election '__eltitle__': admin field __fname__ required must be a boolean",
+          "election-census-admin-fields-lambda-private-boolean": "Election '__eltitle__': admin field __fname__ private must be a boolean"
         }
     },
 

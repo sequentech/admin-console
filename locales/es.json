@@ -66,6 +66,15 @@
         "logout": "salir"
     },
     "learnMore": "Más información..",
+    "adminFields": {
+      "title": "Campos admin",
+      "intro": "Campos admin",
+      "maxError": "__value__ es mayor de __max__",
+      "minError": "__value__ es menor de __min__",
+      "textError": "error en texto __value__",
+      "emailError": "error on email __value__",
+      "numberError": "__value__ ha de ser un número"
+    },
     "sidebar": {
         "elections": "Votaciones",
         "newel": "Nueva votación",
@@ -83,7 +92,8 @@
         "myAccount": "Mi cuenta",
         "billinfo": "Información de pago",
         "billhistory": "Historial de pagos",
-        "buy": "Comprar créditos"
+        "buy": "Comprar créditos",
+        "adminFields": "Admin fields"
     },
     "elections": {
         "filter": "Filtrar...",
@@ -467,7 +477,32 @@
           "election-question-int-size-min-max": "Votación '__eltitle__', pregunta '__qtitle__': el máximo número de candidaturas que puede seleccionar un votante es __value__, pero debe ser mayor o igual que el mínimo, que es __min__",
           "election-question-int-size-max-max": "Votación '__eltitle__', pregunta '__qtitle__': el máximo número de candidaturas que puede seleccionar un votante es __value__, pero no debe ser mayor que el número total de candidaturas, que es __max__",
           "election-question-int-size-min-num-winners": "Votación '__eltitle__', pregunta '__qtitle__': debe haber al menos un ganador, pero hay __value__",
-          "election-question-int-size-max-num-winners": "Votación '__eltitle__', pregunta '__qtitle__': el número de ganadores es __value__, pero no puede ser mayor que el número total de candidaturas, que es __max__"
+          "election-question-int-size-max-num-winners": "Votación '__eltitle__', pregunta '__qtitle__': el número de ganadores es __value__, pero no puede ser mayor que el número total de candidaturas, que es __max__",
+          "election-census-is-array-admin-fields": "Votación '__eltitle__': admin_fields ha de ser un array",
+          "election-census-array-length-max-admin-fields": "Votación '__eltitle__': el array admin_fields tiene una longitud de __len__ caracteres, excediendo el máximo de __max__",
+          "election-census-lambda-admin-fields-int-type-value": "Votación '__eltitle__': hay al menos un campo en admin fields con tipo int donde el value no es un entero, pero ha de ser un entero.",
+          "election-census-lambda-admin-fields-email-type-value": "Votación '__eltitle__': hay al menos un campo en admin fields con tipo email donde el value no es un email, pero ha de ser un email.",
+          "election-census-lambda-admin-fields-int-min-value": "Votación '__eltitle__': hay al menos un campo en admin fields con tipo int donde el value es menor que el mínimo valor permitido",
+          "election-census-lambda-admin-fields-int-max-value": "Votación '__eltitle__': hay al menos un campo en admin fields con tipo int donde el value es mayor que el máximo valor permitido",
+          "election-census-lambda-admin-fields-string-type-value": "Votación '__eltitle__': hay al menos un campo en admin fields con tipo string donde el value no es un string, pero ha de ser un string.",
+          "election-census-lambda-admin-fields-required-value": "Election '__eltitle__': hay al menos un campo obligatorio en admin fields sin valor.",
+          "election-census-lambda-admin-fields-string-value-array-length": "Votación '__eltitle__': hay al menos un campo en admin fields con tipo string donde el número de caracteres de la string value ha excedido el máximo número de caracteres permitidos __max__.",
+          "election-census-lambda-admin-fields-email-value-array-length": "Votación '__eltitle__': hay al menos un campo en admin fields con tipo email donde el número de caracteres de la email value ha excedido el máximo número de caracteres permitidos __max__.",
+          "election-census-admin-fields-is-string-if-defined-placeholder": "Votación '__eltitle__': el campo de admin field __fname__ placeholder ha de ser un string",
+          "election-census-admin-fields-array-length-if-defined-max-placeholder": "Votación '__eltitle__': el campo de admin field __fname__ placeholder tiene una longitud de __len__ caracteres, excediendo el máximo de __max__",
+          "election-census-admin-fields-is-string-label": "Votación '__eltitle__': el campo de admin field __fname__ label ha de ser un string",
+          "election-census-admin-fields-array-length-max-label": "Votación '__eltitle__': el campo de admin field __fname__ label tiene una longitud de __len__ caracteres, excediendo el máximo de __max__",
+          "election-census-admin-fields-is-string-if-defined-description": "Votación '__eltitle__': el campo de admin field __fname__ description ha de ser un string",
+          "election-census-admin-fields-array-length-if-defined-max-description": "Votación '__eltitle__': el campo de admin field __fname__ description tiene una longitud de __len__ caracteres, excediendo el máximo de __max__",
+          "election-census-admin-fields-is-string-name": "Votación '__eltitle__': el campo de admin field __fname__ name ha de ser un string",
+          "election-census-admin-fields-array-length-max-name": "Votación '__eltitle__': el campo de admin field __fname__ name tiene una longitud de __len__ caracteres, excediendo el máximo de __max__",
+          "election-census-admin-fields-is-string-type": "Votación '__eltitle__': el campo de admin field __fname__ type ha de ser un string",
+          "election-census-admin-fields-array-length-max-type": "Votación '__eltitle__': el campo de admin field __fname__ type tiene una longitud de __len__ caracteres, excediendo el máximo de __max__",
+          "election-census-admin-fields-lambda-min-number": "Votación '__eltitle__': el campo admin field __fname__ min ha de ser un número",
+          "election-census-admin-fields-lambda-max-number": "Votación '__eltitle__': el campo admin field __fname__ max ha de ser un número",
+          "election-census-admin-fields-lambda-step-number": "Votación '__eltitle__': el campo admin field __fname__ step ha de ser un número",
+          "election-census-admin-fields-lambda-required-boolean": "Votación '__eltitle__': el campo admin field __fname__ required ha de ser un booleano",
+          "election-census-admin-fields-lambda-private-boolean": "Votación '__eltitle__': el campo admin field __fname__ private ha de ser un booleano"
         }
     },
 

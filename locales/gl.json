@@ -67,6 +67,14 @@
         "logout": "sair"
     },
     "learnMore": "Learn more..",
+    "adminFields": {
+      "title": "Campos admin",
+      "intro": "Campos admin",
+      "maxError": "__value__ es mayor de __max__",
+      "minError": "__value__ es menor de __min__",
+      "textError": "error en texto __value__",
+      "numberError": "__value__ ha de ser un número"
+    },
     "sidebar": {
         "elections": "Votacións",
         "newel": "Nova votación",
@@ -84,7 +92,8 @@
         "myAccount": "A miña conta",
         "billinfo": "Información de pago",
         "billhistory": "Historial de pagos",
-        "buy": "Comprar créditos"
+        "buy": "Comprar créditos",
+        "adminFields": "Admin fields"
     },
     "elections": {
         "filter": "Filtrar...",
