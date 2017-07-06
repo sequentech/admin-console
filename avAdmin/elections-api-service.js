@@ -356,7 +356,7 @@ angular.module('avAdmin')
                     auth_method: 'email',
                     census:'close',
                     extra_fields: [ ],
-                    admin_fields: [ ],
+                    admin_fields: ConfigService.adminFields,
                     config: {
                         "msg": $i18next('avAdmin.auth.emaildef'),
                         "subject": $i18next('avAdmin.auth.emailsubdef',
