@@ -58,18 +58,7 @@ angular.module('avAdmin')
         'avAdmin.dashboard.publish'
       ];
 
-      scope.calculateResultsJson = [
-        [
-          "agora_results.pipes.results.do_tallies",
-          {"ignore_invalid_votes": true}
-        ],
-        [
-          "agora_results.pipes.sort.sort_non_iterative",
-          {
-            "question_indexes": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-          }
-        ]
-      ];
+      scope.calculateResultsJson = angular.copy(ConfigService.calculateResultsDefault);
 
 
       var commands = [
