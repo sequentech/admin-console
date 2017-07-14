@@ -222,7 +222,7 @@ angular.module('avAdmin')
               scope.waiting = false;
               scope.loading = false;
               scope.prevStatus = null;
-              Plugins.hook('election-modified', {'old': scope.election, 'el': el});
+              Plugins.hook('election-modified', {old: scope.election, el: el, calculateResults: calculateResults});
               scope.election = el;
 
               scope.intally = el.status === 'doing_tally';
@@ -238,6 +238,12 @@ angular.module('avAdmin')
 
                 if (el.status === 'results_ok') {
                   ElectionsApi.results(el);
+                  if (!!ConfigService.always_publish) {
+                    scope.loading = true;
+                    scope.prevStatus = scope.election.status;
+                    scope.waiting = true;
+                    setTimeout(waitElectionChange, 1000);
+                  }
                 }
               }
             }
