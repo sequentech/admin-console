@@ -58,18 +58,7 @@ angular.module('avAdmin')
         'avAdmin.dashboard.publish'
       ];
 
-      scope.calculateResultsJson = [
-        [
-          "agora_results.pipes.results.do_tallies",
-          {"ignore_invalid_votes": true}
-        ],
-        [
-          "agora_results.pipes.sort.sort_non_iterative",
-          {
-            "question_indexes": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-          }
-        ]
-      ];
+      scope.calculateResultsJson = angular.copy(ConfigService.calculateResultsDefault);
 
 
       var commands = [
@@ -233,7 +222,7 @@ angular.module('avAdmin')
               scope.waiting = false;
               scope.loading = false;
               scope.prevStatus = null;
-              Plugins.hook('election-modified', {'old': scope.election, 'el': el});
+              Plugins.hook('election-modified', {old: scope.election, el: el, calculateResults: calculateResults});
               scope.election = el;
 
               scope.intally = el.status === 'doing_tally';
@@ -249,6 +238,12 @@ angular.module('avAdmin')
 
                 if (el.status === 'results_ok') {
                   ElectionsApi.results(el);
+                  if (!!ConfigService.always_publish) {
+                    scope.loading = true;
+                    scope.prevStatus = scope.election.status;
+                    scope.waiting = true;
+                    setTimeout(waitElectionChange, 1000);
+                  }
                 }
               }
             }
