@@ -20,7 +20,7 @@ angular.module('avAdmin')
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
         var autheventid = Authmethod.getAuthevent();
-        var postfix = "_authevent_" + authevent;
+        var postfix = "_authevent_" + autheventid;
         var admin = $cookies["user" + postfix];
         scope.admin = admin;
         scope.organization = ConfigService.organization;
