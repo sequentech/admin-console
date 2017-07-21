@@ -19,7 +19,9 @@ angular.module('avAdmin')
   .directive('avAdminHead', function(Authmethod, $state, $cookies, $i18next, ConfigService) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
-        var admin = $cookies.user;
+        var autheventid = Authmethod.getAuthevent();
+        var postfix = "_authevent_" + authevent;
+        var admin = $cookies["user" + postfix];
         scope.admin = admin;
         scope.organization = ConfigService.organization;
         scope.technology = ConfigService.technology;
