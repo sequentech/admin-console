@@ -240,9 +240,11 @@ angular.module('agora-gui-admin').config(
 /**
  * IF the cookie is there we make the autologin
  */
-angular.module('agora-gui-admin').run(function($cookies, $http, Authmethod) {
-    if ($cookies.auth) {
-        Authmethod.setAuth($cookies.auth, $cookies.isAdmin);
+angular.module('agora-gui-admin').run(function($cookies, $http, Authmethod, ConfigService) {
+    var adminId = ConfigService.freeAuthId + '';
+    var postfix = "_authevent_" + adminId;
+    if ($cookies["auth" + postfix]) {
+        Authmethod.setAuth($cookies["auth" + postfix], $cookies["isAdmin" + postfix], adminId);
     }
 });
 
