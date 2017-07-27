@@ -16,48 +16,25 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avIntField', function(ElectionsApi) {
+  .directive('avIntField', function() {
+  'use strict';
     function link(scope, element, attrs) {
-      scope.election = ElectionsApi.currentElection;
-
-      function getVar(path, soFar) {
-        var ret; // = undefined
-        if (_.isString(path) && 0 < path.length) {
-          var pointIndex = path.indexOf(".");
-          if (-1 !== pointIndex && 0 < pointIndex) {
-            var var_name = path.substr(0, pointIndex);
-            var subPath = path.substr(pointIndex + 1);
-            var soFar2 = soFar[var_name];
-            if (subPath.length > 0 && !!soFar2) {
-              ret = getVar(subPath, soFar2);
-            }
-          }
-          else if (_.isObject(soFar)) {
-            ret = {
-              isDefined: !!(soFar[path]),
-              ref: soFar,
-              path: path
-            };
-          }
-        }
-        return ret;
-      } // getVar
 
       if (_.isString(attrs.ngModel)) {
-        var model = getVar(attrs.ngModel, scope);
+        var model = scope.$eval(attrs.ngModel);
 
-        if (_.isObject(model) && !!model.isDefined) {
-          console.log('felix test: ' + model.ref[model.path]);
+        if (_.isObject(model)) {
+          console.log('felix test: ' + model);
 
           scope.$watch(
-            attrs.ng_model,
+            attrs.ngModel,
             function (newVal, oldVal) {
               var parsed = parseInt(newVal);
               if (_.isNaN(parsed)) {
                 parsed = newVal;
               }
               if (parsed !== newVal) {
-                model.ref[model.path] = parsed;
+                newVal = parsed;
               }
            });
         }
@@ -66,9 +43,8 @@ angular.module('avAdmin')
     } // link
 
     return {
-      scope: false,
+      require: 'ngModel',
       restrict: 'AEC',
-      link: link,
-      template: ''
+      link: link
     };
   });
