@@ -66,7 +66,7 @@ angular.module('avAdmin')
     } // link
 
     return {
-      scope: true,
+      scope: false,
       restrict: 'AEC',
       link: link,
       template: ''
