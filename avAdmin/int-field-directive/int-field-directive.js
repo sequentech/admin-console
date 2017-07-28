@@ -17,33 +17,25 @@
 
 angular.module('avAdmin')
   .directive('avIntField', function() {
-  'use strict';
     function link(scope, element, attrs) {
-
-      if (_.isString(attrs.ngModel)) {
-        var model = scope.$eval(attrs.ngModel);
-
-        if (_.isObject(model)) {
-          console.log('felix test: ' + model);
-
-          scope.$watch(
-            attrs.ngModel,
-            function (newVal, oldVal) {
-              var parsed = parseInt(newVal);
-              if (_.isNaN(parsed)) {
-                parsed = newVal;
-              }
-              if (parsed !== newVal) {
-                newVal = parsed;
-              }
-           });
-        }
-      }
+      scope.$watch(
+        'intData',
+        function (newVal, oldVal) {
+          var parsed = parseInt(newVal);
+          if (_.isNaN(parsed)) {
+            parsed = newVal;
+          }
+          if (parsed !== newVal) {
+            scope.intData = parsed;
+          }
+       });
 
     } // link
 
     return {
-      require: 'ngModel',
+      scope: {
+        intData: '='
+      },
       restrict: 'AEC',
       link: link
     };

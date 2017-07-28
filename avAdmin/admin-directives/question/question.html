@@ -83,8 +83,11 @@
                             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                         </button>
                       </span>
+                     <div
+                       av-int-field
+                       int-data="q.num_winners">
+                     </div>
                       <input
-                        av-int-field
                         type="text"
                         name="num_winners"
                         min=1 step=1
@@ -144,8 +147,11 @@
                             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                         </button>
                       </span>
-                      <input
+                      <div
                         av-int-field
+                        int-data="q.min">
+                      </div>
+                      <input
                         type="text"
                         name="min"
                         min=0
@@ -206,8 +212,11 @@
                             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                         </button>
                       </span>
-                      <input
+                      <div
                         av-int-field
+                        int-data="q.min">
+                      </div>
+                      <input
                         type="text"
                         id="max"
                         name="max"

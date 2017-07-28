@@ -118,8 +118,11 @@
                         <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                     </button>
                   </span>
-                  <input
+                  <div
                     av-int-field
+                    int-data="election.num_successful_logins_allowed">
+                  </div>
+                  <input
                     type="text"
                     name="max_num_logins"
                     min=1 step=1
