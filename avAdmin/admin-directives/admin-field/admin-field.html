@@ -91,13 +91,13 @@
           </span>
           <div
             av-int-field
-            int-data="value.val">
+            int-data="field.value">
           </div>
           <input
             type="text"
             class="form-control"
             ng-disabled="!editable()"
-            ng-model="value.val"
+            ng-model="field.value"
             ui-keypress="{
               37: 'incInt(-field.step, $event)',
               38: 'incInt(field.step, $event)',
@@ -108,7 +108,7 @@
               'number': 'validateNumber($value)',
               'min': 'validateMin($value)',
               'max': 'validateMax($value)'}"
-            ui-validate-watch="'value.val'"
+            ui-validate-watch="'field.value'"
             ng-required="field.required"
             name="adminFieldInput{{$index}}"
             id="adminFieldInput{{$index}}"/>

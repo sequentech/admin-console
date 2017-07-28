@@ -13,20 +13,16 @@ angular.module('avAdmin')
         var editable = !election.id || election.status === "registered";
         return editable;
       };
-
-      if ("int" === scope.field.type) {
-        scope.value = { "val": scope.field.value };
-      }
       
       scope.incInt = function (inc, event) {
-        var val = parseInt(scope.value.val);
+        var val = parseInt(scope.field.value);
         var newValue = val + inc;
         if("int" === scope.field.type &&
            _.isNumber(val) &&
            (!scope.field.max || newValue <= scope.field.max) &&
            (!scope.field.min || newValue >= scope.field.min))
         {
-          scope.value.val = newValue.toString();
+          scope.field.value = newValue.toString();
         }
  
         if (!!event) {
