@@ -116,6 +116,11 @@
         ng-i18next="avAdmin.census.fieldRegExLabel">
       </label>
       <div class="col-sm-8">
+        <div
+          av-int-field
+          int-data="field.regex"
+          ng-if="'int' === field.type">
+        </div>
         <input
           type="text"
           class="form-control"
@@ -140,6 +145,10 @@
                     <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                 </button>
               </span>
+              <div
+                av-int-field
+                int-data="field.min">
+              </div>
               <input
                 type="text"
                 step="1"
@@ -174,6 +183,10 @@
                     <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                 </button>
               </span>
+              <div
+                av-int-field
+                int-data="field.max">
+              </div>
               <input
                 type="text"
                 min="{{field.min}}" step="1"
