@@ -16,15 +16,6 @@ angular.module('avAdmin')
 
       if ("int" === scope.field.type) {
         scope.value = { "val": scope.field.value };
-        scope.$watch(
-          'value.val',
-          function (newVal, oldVal) {
-            var parsed = parseInt(newVal);
-            if (_.isNaN(parsed)) {
-              parsed = newVal;
-            }
-            scope.field.value = parsed;
-          });
       }
       
       scope.incInt = function (inc, event) {
