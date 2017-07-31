@@ -362,8 +362,8 @@ angular.module('avAdmin')
                     extra_fields: [ ],
                     admin_fields: ConfigService.adminFields,
                     config: {
-                        "msg": $i18next('avAdmin.auth.emaildef'),
-                        "subject": $i18next('avAdmin.auth.emailsubdef',
+                        "msg": $i18next(ConfigService.auth_msg.msg),
+                        "subject": $i18next(ConfigService.auth_msg.subject,
                           {name: ConfigService.organization.orgName}),
                         "authentication-action": {
                           "mode": "vote",
