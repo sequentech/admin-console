@@ -1,2 +1,24 @@
 <div class="abstract-setting">
+  <div class="row form-group">
+    <div class="col-sm-2 abstract-borders">
+      <label class="control-label" ng-i18next for="title">
+      {{ title }}
+      </h2>
+      <p ng-i18next>
+      {{ description }}
+      </p>
+    </div>
+    <div class="col-sm-10 abstract-widget" id="widget1"></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 abstract-borders">
+      <span class="pull-right" ng-click="toggleHelp()">help</span>
+      <a class="pull-right" href="https://agora/">API</a>
+    </div>
+  </div>
+  <div class="row" ng-if="!!showHelp">
+    <div class="col-sm-12 abstract-borders">
+      <p> hola caracola </p>
+    </div>
+  </div>
 </div>

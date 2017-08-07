@@ -29,10 +29,28 @@ angular.module('avAdmin')
        ConfigService,
        SendMsg)
     {
-      function link(scope, element, attrs, transclude) {
-        transclude(scope.$new(), function(clone) {
-          console.log(clone);
-        });
+      function link(scope, element, attrs, nullController, transclude) {
+        scope.title = '';
+        scope.description = '';
+        scope.showHelp = false;
+
+        if (_.isString(attrs.title)) {
+          scope.title = attrs.title;
+        }
+        if (_.isString(attrs.description)) {
+          scope.description = attrs.description;
+        }
+
+        scope.toggleHelp = function() {
+          scope.showHelp = !scope.showHelp;
+        };
+
+        var widget = angular.element('.abstract-widget');
+        if (_.isObject(widget)) {
+          transclude(scope, function(clone) {
+            widget.append(clone);
+          });
+        }
       }
 
       return {
