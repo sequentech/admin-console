@@ -1,37 +1,35 @@
 <div class="abstract-setting">
-  <div class="row form-group">
-    <div class="col-sm-2 abstract-borders">
-      <div class="row sides-padding">
-        <label class="pull-right top-padding" ng-i18next>
+  <div class="rower abstract-borders top-rounded">
+    <div class="col-sm-6 ">
+      <div class="rower sides-padding">
+        <label class="top-padding" ng-i18next>
         {{ title }}
         </label>
       </div>
-      <div class="row sides-padding">
-        <p class=" text-muted pull-right" ng-i18next>
+      <div class="rower sides-padding">
+        <p class="text-muted" ng-i18next>
         {{ description }}
         </p>
       </div>
     </div>
-    <div class="col-sm-10 abstract-widget abstract-borders" id="widget1"></div>
+    <div class="col-sm-6 abstract-widget abs-border-left top-padding" id="widget1"></div>
   </div>
-  <div class="row top-padding bottom-padding">
-    <div class="col-sm-12 abstract-borders">
-      <div class="input-group">
-        <div class="pull-right">
-          <span class="input-group-btn">
-            <button
-              class="btn btn-default"
-              type="button"
-              ng-click="toggleHelp()">
-                <span>help</span>
-            </button>
-          </span>
-        </div>
+  <div ng-class="{'bottom-rounded': !showHelp}" class="rower top-padding bottom-padding sides-padding abs-border-left abs-border-right abs-border-bottom">
+    <div class="col-sm-12">
+      <div class="pull-right input-group">
+        <span class=" input-group-btn">
+          <button
+            class="btn btn-default"
+            type="button"
+            ng-click="toggleHelp()">
+              <span>help</span>
+          </button>
+        </span>
       </div>
     </div>
   </div>
-  <div class="row top-padding bottom-padding" ng-if="!!showHelp">
-    <div class="col-sm-12 abstract-borders">
+  <div ng-class="{'bottom-rounded': !!showHelp}" class="rower top-padding bottom-padding abs-border-left abs-border-right abs-border-bottom" ng-if="!!showHelp">
+    <div class="col-sm-12">
        <div av-plugin-html ng-bind-html="html"></div>
     </div>
   </div>

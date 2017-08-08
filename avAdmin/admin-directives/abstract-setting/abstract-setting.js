@@ -38,6 +38,7 @@ angular.module('avAdmin')
         scope.showHelp = false;
         scope.html = '';
         scope.helpPath = '';
+        scope.editable = !!attrs.editable;
 
         if (_.isString(attrs.title)) {
           scope.title = attrs.title;
@@ -55,7 +56,7 @@ angular.module('avAdmin')
             $http.get(scope.helpPath)
               .success(function (data) {
                 if (!scope.html) {
-                  scope.html = $sce.trustAsHtml(htmlText);
+                  scope.html = $sce.trustAsHtml(data);
                 }
               });
           }

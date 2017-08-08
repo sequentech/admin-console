@@ -17,12 +17,12 @@
 
     <p class="text-muted" ng-i18next>avAdmin.basic.intro</p>
 
-    <div av-abstract-setting title="avAdmin.basic.title.label" description="title description! !!" url-path="title_help.html">
+    <div av-abstract-setting title="avAdmin.basic.title.label" description="title description! !!" help-path="title_help.html" editable="electionEditable()">
         <input
           id="title"
           class="form-control"
           type="text"
-          ng-disabled="!electionEditable()"
+          ng-disabled="!editable"
           ng-i18next="[placeholder]avAdmin.basic.title.placeholder"
           ng-model="election.title"/>
     </div>
