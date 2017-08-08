@@ -16,13 +16,23 @@
   </div>
   <div class="row top-padding bottom-padding">
     <div class="col-sm-12 abstract-borders">
-      <span class="pull-right" ng-click="toggleHelp()">help</span>
-      <a class="pull-right sides-padding" href="https://agora/">API</a>
+      <div class="input-group">
+        <div class="pull-right">
+          <span class="input-group-btn">
+            <button
+              class="btn btn-default"
+              type="button"
+              ng-click="toggleHelp()">
+                <span>help</span>
+            </button>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row top-padding bottom-padding" ng-if="!!showHelp">
     <div class="col-sm-12 abstract-borders">
-      <p> hola caracola </p>
+       <div av-plugin-html ng-bind-html="html"></div>
     </div>
   </div>
 </div>

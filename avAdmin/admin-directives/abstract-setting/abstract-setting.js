@@ -20,7 +20,8 @@ angular.module('avAdmin')
     'avAbstractSetting', 
     function(
        $q,
-       $state, 
+       $state,
+       $http,
        Authmethod, 
        Plugins, 
        ElectionsApi, 
@@ -30,9 +31,12 @@ angular.module('avAdmin')
        SendMsg)
     {
       function link(scope, element, attrs, nullController, transclude) {
+        scope.election = ElectionsApi.currentElection;
         scope.title = '';
         scope.description = '';
         scope.showHelp = false;
+        scope.html = '';
+        scope.helpPath = '';
 
         if (_.isString(attrs.title)) {
           scope.title = attrs.title;
@@ -40,9 +44,20 @@ angular.module('avAdmin')
         if (_.isString(attrs.description)) {
           scope.description = attrs.description;
         }
+        if (_.isString(attrs.helpPath) && !!ConfigService.settingsHelpBaseUrl) {
+          scope.helpPath = ConfigService.settingsHelpBaseUrl + attrs.helpPath;
+        }
 
         scope.toggleHelp = function() {
           scope.showHelp = !scope.showHelp;
+          if (!!scope.showHelp && !scope.html && !!scope.helpPath) {
+            $http.get(scope.helpPath)
+              .success(function (data) {
+                if (!scope.html) {
+                  scope.html = $sce.trustAsHtml(htmlText);
+                }
+              });
+          }
         };
 
         var widget = angular.element('.abstract-widget');
@@ -54,7 +69,7 @@ angular.module('avAdmin')
       }
 
       return {
-        restrict: 'AEC',
+        restrict: 'AE',
         transclude: true,
         scope: {
         },
