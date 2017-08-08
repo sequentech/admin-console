@@ -54,11 +54,16 @@ angular.module('avAdmin')
           scope.showHelp = !scope.showHelp;
           if (!!scope.showHelp && !scope.html && !!scope.helpPath) {
             $http.get(scope.helpPath)
-              .success(function (data) {
-                if (!scope.html) {
-                  scope.html = $sce.trustAsHtml(data);
-                }
-              });
+              .then(
+                function (data) {
+                  if (!scope.html) {
+                    scope.html = $sce.trustAsHtml(data);
+                  }
+                },
+                function (err) {
+                  console.log("error loading setting help url\nurl: " + scope.helpPath + "\nerror: " + err);
+                  scope.html = $sce.trustAsHtml(ConfigService.settingsHelpUrlError);
+                });
           }
         };
 
