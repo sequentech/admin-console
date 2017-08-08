@@ -14,7 +14,9 @@
     </div>
     <div class="col-sm-6 abstract-widget abs-border-left top-padding" id="widget1"></div>
   </div>
-  <div ng-class="{'bottom-rounded': !showHelp}" class="rower top-padding bottom-padding sides-padding abs-border-left abs-border-right abs-border-bottom">
+  <div
+    ng-class="{'bottom-rounded': !showHelp}"
+    class="rower top-padding bottom-padding sides-padding abs-border-left abs-border-right abs-border-bottom">
     <div class="col-sm-12">
       <div class="pull-right input-group">
         <span class=" input-group-btn">
@@ -28,7 +30,10 @@
       </div>
     </div>
   </div>
-  <div ng-class="{'bottom-rounded': !!showHelp}" class="rower top-padding bottom-padding abs-border-left abs-border-right abs-border-bottom" ng-if="!!showHelp">
+  <div
+    ng-class="{'bottom-rounded': !!showHelp}"
+    class="rower top-padding bottom-padding abs-border-left abs-border-right abs-border-bottom"
+    ng-if="!!showHelp">
     <div class="col-sm-12">
        <div av-plugin-html ng-bind-html="html"></div>
     </div>
