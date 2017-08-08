@@ -17,17 +17,15 @@
 
     <p class="text-muted" ng-i18next>avAdmin.basic.intro</p>
 
-    <av-abstract-setting title="avAdmin.basic.title.label" description="title description! !!">
-            <div class="col-sm-10">
-                <input
-                  id="title"
-                  class="form-control"
-                  type="text"
-                  ng-disabled="!electionEditable()"
-                  ng-i18next="[placeholder]avAdmin.basic.title.placeholder"
-                  ng-model="election.title"/>
-            </div>
-    </av-abstract-setting>
+    <div av-abstract-setting title="avAdmin.basic.title.label" description="title description! !!">
+        <input
+          id="title"
+          class="form-control"
+          type="text"
+          ng-disabled="!electionEditable()"
+          ng-i18next="[placeholder]avAdmin.basic.title.placeholder"
+          ng-model="election.title"/>
+    </div>
 
     <form role="form" class="form form-horizontal" name="elbasic_form">
         <!-- title -->
