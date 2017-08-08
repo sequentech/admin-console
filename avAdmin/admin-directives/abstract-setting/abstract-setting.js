@@ -22,6 +22,7 @@ angular.module('avAdmin')
        $q,
        $state,
        $http,
+       $sce,
        Authmethod, 
        Plugins, 
        ElectionsApi, 
