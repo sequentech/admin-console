@@ -1,36 +1,40 @@
 <div class="abstract-setting">
   <div class="rower abstract-borders">
     <div class="col-sm-6 gray-back">
-      <div class="rower sides-padding top-padding">
-        <label class="title top-padding" ng-i18next>
+      <div class="rower">
+        <label class="title" ng-i18next>
         {{ title }}
         </label>
       </div>
-      <div class="rower sides-padding">
+      <div class="rower">
         <p ng-i18next>
         {{ description }}
         </p>
       </div>
     </div>
-    <div class="col-sm-6 abstract-widget abs-border-left top-padding" id="widget1"></div>
+    <div class="col-sm-6 abstract-widget" id="widget1"></div>
   </div>
   <div
-    class="rower top-padding bottom-padding sides-padding abs-border-left abs-border-right abs-border-bottom">
+    class="rower help-padding">
     <div class="col-sm-12 input-group">
         <span class="input-group-btn">
           <button
             class="pull-right btn btn-help"
             type="button"
             ng-click="toggleHelp()">
-              <span>help</span>
+              <span ng-i18next>avAdmin.topbar.help</span>
+              <span
+                ng-class="{'glyphicon-chevron-down': !!showHelp, 'glyphicon-chevron-right': !showHelp}"
+                class="glyphicon">
+              </span>
           </button>
         </span>
     </div>
   </div>
   <div
-    class="rower top-padding bottom-padding abs-border-left abs-border-right abs-border-bottom"
+    class="rower help-padding"
     ng-if="!!showHelp">
-    <div class="col-sm-12">
+    <div class="col-sm-12 help-plugin">
        <div av-plugin-html ng-bind-html="html"></div>
     </div>
   </div>
