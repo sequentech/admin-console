@@ -1,13 +1,13 @@
 <div class="abstract-setting">
   <div class="rower abstract-borders">
     <div class="col-sm-6 gray-back">
-      <div class="rower sides-padding top-padding bottom-padding">
-        <label class="title top-padding bottom-padding" ng-i18next>
+      <div class="rower sides-padding top-padding">
+        <label class="title top-padding" ng-i18next>
         {{ title }}
         </label>
       </div>
       <div class="rower sides-padding">
-        <p class="text-muted" ng-i18next>
+        <p ng-i18next>
         {{ description }}
         </p>
       </div>
@@ -16,17 +16,15 @@
   </div>
   <div
     class="rower top-padding bottom-padding sides-padding abs-border-left abs-border-right abs-border-bottom">
-    <div class="col-sm-12">
-      <div class="pull-right input-group">
-        <span class=" input-group-btn">
+    <div class="col-sm-12 input-group">
+        <span class="input-group-btn">
           <button
-            class="btn btn-default"
+            class="pull-right btn btn-help"
             type="button"
             ng-click="toggleHelp()">
               <span>help</span>
           </button>
         </span>
-      </div>
     </div>
   </div>
   <div
