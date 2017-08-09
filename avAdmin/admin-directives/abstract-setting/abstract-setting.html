@@ -1,8 +1,8 @@
 <div class="abstract-setting">
-  <div class="rower abstract-borders top-rounded">
-    <div class="col-sm-6 ">
-      <div class="rower sides-padding">
-        <label class="top-padding" ng-i18next>
+  <div class="rower abstract-borders">
+    <div class="col-sm-6 gray-back">
+      <div class="rower sides-padding top-padding bottom-padding">
+        <label class="title top-padding bottom-padding" ng-i18next>
         {{ title }}
         </label>
       </div>
@@ -15,7 +15,6 @@
     <div class="col-sm-6 abstract-widget abs-border-left top-padding" id="widget1"></div>
   </div>
   <div
-    ng-class="{'bottom-rounded': !showHelp}"
     class="rower top-padding bottom-padding sides-padding abs-border-left abs-border-right abs-border-bottom">
     <div class="col-sm-12">
       <div class="pull-right input-group">
@@ -31,7 +30,6 @@
     </div>
   </div>
   <div
-    ng-class="{'bottom-rounded': !!showHelp}"
     class="rower top-padding bottom-padding abs-border-left abs-border-right abs-border-bottom"
     ng-if="!!showHelp">
     <div class="col-sm-12">

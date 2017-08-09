@@ -56,8 +56,8 @@ angular.module('avAdmin')
             $http.get(scope.helpPath)
               .then(
                 function (data) {
-                  if (!scope.html) {
-                    scope.html = $sce.trustAsHtml(data);
+                  if (200 === data.status && !scope.html) {
+                    scope.html = $sce.trustAsHtml(data.data);
                   }
                 },
                 function (err) {
