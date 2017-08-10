@@ -38,7 +38,6 @@ angular.module('avAdmin')
         scope.showHelp = false;
         scope.html = '';
         scope.helpPath = '';
-        scope.editable = !!attrs.editable;
 
         if (_.isString(attrs.title)) {
           scope.title = attrs.title;
@@ -78,8 +77,7 @@ angular.module('avAdmin')
       return {
         restrict: 'AE',
         transclude: true,
-        scope: {
-        },
+        scope: true,
         link: link,
         templateUrl: 'avAdmin/admin-directives/abstract-setting/abstract-setting.html'
       };

@@ -18,22 +18,28 @@
     <p class="text-muted" ng-i18next>avAdmin.basic.intro</p>
 
     <!-- title -->
-    <div av-abstract-setting title="avAdmin.basic.title.label" description="title description! !!" help-path="title_help.html" editable="electionEditable()">
+    <div
+      av-abstract-setting title="avAdmin.basic.title.label"
+      description="avAdmin.basic.title.placeholder"
+      help-path="title_help.html">
         <input
           id="title"
           class="form-control"
           type="text"
-          ng-disabled="!editable"
+          ng-disabled="!electionEditable()"
           ng-i18next="[placeholder]avAdmin.basic.title.placeholder"
           ng-model="election.title"/>
     </div>
 
     <!-- description -->
-    <div av-abstract-setting title="avAdmin.basic.description.label" description="avAdmin.basic.description.placeholder" help-path="description_help.html" editable="electionEditable()">
+    <div
+      av-abstract-setting title="avAdmin.basic.description.label"
+      description="avAdmin.basic.description.placeholder"
+      help-path="description_help.html">
         <textarea
           id="desc"
           class="form-control"
-          ng-disabled="!editable"
+          ng-disabled="!electionEditable()"
           ng-i18next="[placeholder]avAdmin.basic.description.placeholder"
           ng-model="election.description"></textarea>
     </div>
@@ -42,13 +48,17 @@
     <!-- TODO, currently fixed auths -->
 
     <!-- layout -->
-    <div class="hidden" av-abstract-setting title="avAdmin.basic.layout.label" description="avAdmin.basic.layout.placeholder" help-path="layout_help.html" editable="electionEditable()">
-        <div class="radio" ng-repeat="o in ['simple']">
+    <div
+      class="hidden"
+      av-abstract-setting title="avAdmin.basic.layout.label"
+      description="avAdmin.basic.layout.placeholder"
+      help-path="layout_help.html">
+        <div class="radio" ng-repeat="o in layouts">
             <label>
                 <input
                   type="radio"
                   name="layout"
-                  ng-disabled="!editable"
+                  ng-disabled="!electionEditable()"
                   value="{{ o }}"
                   ng-model="election.layout"/>
                 <span ng-i18next="avAdmin.basic.layouts.{{ o }}"></span>
@@ -56,57 +66,99 @@
         </div>
     </div>
 
-    <form role="form" class="form form-horizontal" name="elbasic_form">
-        <!-- title -->
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="title" ng-i18next="avAdmin.basic.title.label"></label>
-            <div class="col-sm-10">
+    <!-- theme -->
+    <div
+      class="hidden"
+      av-abstract-setting title="avAdmin.basic.theme.label"
+      description="avAdmin.basic.theme.placeholder"
+      help-path="theme_help.html">
+        <div class="radio" ng-repeat="o in themes">
+            <label>
                 <input
-                  id="title"
-                  class="form-control"
-                  type="text"
+                  type="radio"
+                  name="theme"
                   ng-disabled="!electionEditable()"
-                  ng-i18next="[placeholder]avAdmin.basic.title.placeholder"
-                  ng-model="election.title"/>
-            </div>
+                  value="{{ o }}"
+                  ng-model="election.presentation.theme"/>
+                <span ng-i18next="avAdmin.basic.themes.{{ o }}"></span>
+            </label>
         </div>
+    </div>
 
-        <!-- description -->
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="desc" ng-i18next="avAdmin.basic.description.label"></label>
-            <div class="col-sm-10">
-                <textarea
-                  id="desc"
-                  class="form-control"
-                  ng-disabled="!electionEditable()"
-                  ng-i18next="[placeholder]avAdmin.basic.description.placeholder"
-                  ng-model="election.description"></textarea>
-            </div>
+    <!-- logo url -->
+    <div
+      av-abstract-setting title="avAdmin.basic.logo_url.label"
+      description="avAdmin.basic.logo_url.placeholder"
+      help-path="theme_help.html">
+        <input
+          id="logo"
+          class="form-control"
+          type="text"
+          ng-disabled="!electionEditable()"
+          ng-i18next="[placeholder]avAdmin.basic.logo_url.placeholder"
+          ng-model="election.logo_url"/>
+    </div>
+
+    <!-- number of revotes -->
+    <div
+      av-abstract-setting title="avAdmin.basic.num_successful_logins_allowed.label"
+      description="avAdmin.basic.num_successful_logins_allowed.placeholder"
+      help-path="num_successful_logins_allowed_help.html">
+        <div class="input-group col-xs-2">
+          <span class="input-group-btn">
+            <button
+              class="btn btn-default"
+              ng-disabled="!electionEditable()"
+              type="button"
+              ng-click="incLogins(-1)">
+                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+            </button>
+          </span>
+          <input
+            type="text"
+            name="max_num_logins"
+            min=1 step=1
+            class="form-control"
+            ng-disabled="!electionEditable()"
+            ng-model="election.num_successful_logins_allowed"
+            ui-keypress="{
+              37: 'incLogins(-1, $event)',
+              38: 'incLogins(1, $event)',
+              39: 'incLogins(1, $event)',
+              40: 'incLogins(-1, $event)'
+            }"
+            ui-validate="{
+              'input': 'validateNumLogins($value)',
+              'min': '$value >= 0'}"
+            ui-validate-watch="'election.num_successful_logins_allowed'"
+            required/>
+          <span class="input-group-btn">
+            <button
+              class="btn btn-default"
+              ng-disabled="!electionEditable()"
+              type="button"
+              ng-click="incLogins(1)">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </button>
+          </span>
         </div>
-
-        <!-- auths -->
-        <!-- TODO, currently fixed auths -->
-
-        <!-- layout -->
-        <div class="form-group hidden">
-            <label class="col-sm-2 control-label" for="layout" ng-i18next="avAdmin.basic.layout.label"></label>
-            <div class="col-sm-10">
-                <p class="text-muted" ng-i18next>
-                    avAdmin.basic.layout.placeholder
-                </p>
-                <div class="radio" ng-repeat="o in layouts">
-                    <label>
-                        <input
-                          type="radio"
-                          name="layout"
-                          ng-disabled="!electionEditable()"
-                          value="{{ o }}"
-                          ng-model="election.layout"/>
-                        <span ng-i18next="avAdmin.basic.layouts.{{ o }}"></span>
-                    </label>
-                </div>
-            </div>
+        <div class="col-xs-10 input-error">
+          <span
+            class="error text-brand-danger"
+            ng-show="!!elbasic_form.max_num_logins.$error.input"
+            ng-i18next>
+            [i18next]({num_successful_logins_allowed: election.num_successful_logins_allowed})avAdmin.basic.num_successful_logins_allowed.inputError
+          </span>
+          <span
+            class="error text-brand-danger"
+            ng-show="!!elbasic_form.max_num_logins.$error.min"
+            ng-i18next>
+            [i18next]({num_successful_logins_allowed: election.num_successful_logins_allowed})avAdmin.basic.num_successful_logins_allowed.minError
+          </span>
         </div>
+    </div>
+
+    <form role="form" class="form form-horizontal" name="elbasic_form">
 
         <!-- theme -->
         <div class="form-group hidden">
