@@ -67,7 +67,7 @@ angular.module('avAdmin')
           }
         };
 
-        var widget = angular.element('.abstract-widget');
+        var widget = element.find('.abstract-widget');
         if (_.isObject(widget)) {
           transclude(scope, function(clone) {
             widget.append(clone);
