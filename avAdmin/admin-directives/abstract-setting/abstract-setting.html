@@ -1,4 +1,4 @@
-<div class="abstract-setting">
+<div class="abstract-setting" title="{{ description | i18next }}">
   <div class="rower abstract-borders">
     <div class="col-sm-6 gray-back">
       <div class="rower">
@@ -21,6 +21,7 @@
           <button
             class="pull-right btn btn-help"
             type="button"
+            title="{{ avAdmin.setting.helpTooltip | i18next }}"
             ng-click="toggleHelp()">
               <span ng-i18next>avAdmin.topbar.help</span>
               <span

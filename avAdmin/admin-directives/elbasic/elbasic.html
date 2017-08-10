@@ -20,8 +20,9 @@
     <form role="form" class="form form-horizontal" name="elbasic_form">
       <!-- title -->
       <div
+        av-abstract-setting
         for="title"
-        av-abstract-setting title="avAdmin.basic.title.label"
+        title="avAdmin.basic.title.label"
         description="avAdmin.basic.title.placeholder"
         help-path="title_help.html">
           <input
@@ -35,8 +36,9 @@
 
       <!-- description -->
       <div
+        av-abstract-setting
+        title="avAdmin.basic.description.label"
         for="desc"
-        av-abstract-setting title="avAdmin.basic.description.label"
         description="avAdmin.basic.description.placeholder"
         help-path="description_help.html">
           <textarea
@@ -52,9 +54,10 @@
 
       <!-- layout -->
       <div
+        av-abstract-setting
+        title="avAdmin.basic.layout.label"
         for="layout"
         class="hidden"
-        av-abstract-setting title="avAdmin.basic.layout.label"
         description="avAdmin.basic.layout.placeholder"
         help-path="layout_help.html">
           <div class="radio" ng-repeat="o in layouts">
@@ -72,9 +75,10 @@
 
       <!-- theme -->
       <div
+        av-abstract-setting
+        title="avAdmin.basic.theme.label"
         for="theme"
         class="hidden"
-        av-abstract-setting title="avAdmin.basic.theme.label"
         description="avAdmin.basic.theme.placeholder"
         help-path="theme_help.html">
           <div class="radio" ng-repeat="o in themes">
@@ -92,8 +96,9 @@
 
       <!-- logo url -->
       <div
+        av-abstract-setting
+        title="avAdmin.basic.logo_url.label"
         for="logo"
-        av-abstract-setting title="avAdmin.basic.logo_url.label"
         description="avAdmin.basic.logo_url.placeholder"
         help-path="theme_help.html">
           <input
@@ -107,8 +112,9 @@
 
       <!-- number of revotes -->
       <div
+        av-abstract-setting
+        title="avAdmin.basic.num_successful_logins_allowed.label"
         for="num_logins"
-        av-abstract-setting title="avAdmin.basic.num_successful_logins_allowed.label"
         description="avAdmin.basic.num_successful_logins_allowed.placeholder"
         help-path="num_successful_logins_allowed_help.html">
           <div class="col-xs-5"></div>

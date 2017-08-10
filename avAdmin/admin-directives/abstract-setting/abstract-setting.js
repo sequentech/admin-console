@@ -48,6 +48,8 @@ angular.module('avAdmin')
         }
         if (_.isString(attrs.helpPath) && !!ConfigService.settingsHelpBaseUrl) {
           scope.helpPath = ConfigService.settingsHelpBaseUrl + attrs.helpPath;
+        } else if(!!ConfigService.settingsHelpDefaultUrl) {
+          scope.helpPath = ConfigService.settingsHelpDefaultUrl;
         }
         if (_.isString(attrs.for)) {
           scope.forLabel = attrs.for;
