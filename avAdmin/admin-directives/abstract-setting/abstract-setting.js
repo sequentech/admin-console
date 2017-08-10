@@ -38,6 +38,7 @@ angular.module('avAdmin')
         scope.showHelp = false;
         scope.html = '';
         scope.helpPath = '';
+        scope.forLabel = '';
 
         if (_.isString(attrs.title)) {
           scope.title = attrs.title;
@@ -47,6 +48,9 @@ angular.module('avAdmin')
         }
         if (_.isString(attrs.helpPath) && !!ConfigService.settingsHelpBaseUrl) {
           scope.helpPath = ConfigService.settingsHelpBaseUrl + attrs.helpPath;
+        }
+        if (_.isString(attrs.for)) {
+          scope.forLabel = attrs.for;
         }
 
         scope.toggleHelp = function() {
