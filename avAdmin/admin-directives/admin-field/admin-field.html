@@ -12,7 +12,7 @@
 
     <div
       class="col-sm-10"
-      ng-if="'text' === field.type">
+      ng-if="['textarea','text'].indexOf(field.type) !== -1">
       <p
         class="text-muted"
         ng-i18next="{{ field.description }}"
@@ -20,7 +20,7 @@
       </p>
       <input
         class="form-control"
-        type="text"
+        type="{{field.type}}"
         ng-disabled="!editable()"
         ng-i18next="{{ getPlaceholder() }}"
         ng-model="field.value"
@@ -89,11 +89,15 @@
                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
             </button>
           </span>
+          <div
+            av-int-field
+            int-data="field.value">
+          </div>
           <input
             type="text"
             class="form-control"
             ng-disabled="!editable()"
-            ng-model="value.val"
+            ng-model="field.value"
             ui-keypress="{
               37: 'incInt(-field.step, $event)',
               38: 'incInt(field.step, $event)',
@@ -104,7 +108,7 @@
               'number': 'validateNumber($value)',
               'min': 'validateMin($value)',
               'max': 'validateMax($value)'}"
-            ui-validate-watch="'value.val'"
+            ui-validate-watch="'field.value'"
             ng-required="field.required"
             name="adminFieldInput{{$index}}"
             id="adminFieldInput{{$index}}"/>
