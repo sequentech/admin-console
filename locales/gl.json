@@ -34,6 +34,9 @@
       "label": "Amosar puntos",
       "text": "Amosar os puntos que o voto dá a cada opción seleccionada"
     },
+    "setting": {
+      "helpTooltip": "Clickea para expandir/colapsar texto de ayuda sobre esta configuración"
+    },
     "shuffling_policy": {
       "categories_label": "Ramdomize categories",
       "categories_label_text": "Check to randomize",

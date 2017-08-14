@@ -33,6 +33,9 @@
       "label": "Show points",
       "text": "Show the points that the ballot is giving to each selected option"
     },
+    "setting": {
+      "helpTooltip": "Click to expand/collapse help text about this setting"
+    },
     "shuffling_policy": {
       "categories_label": "Ramdomize categories",
       "categories_label_text": "Check to randomize",
