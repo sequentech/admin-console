@@ -33,6 +33,9 @@
       "label": "Mostra punts",
       "text": "Mostra els punts que la papereta dóna a cada opció seleccionada"
     },
+    "setting": {
+      "helpTooltip": "Clickea para expandir/colapsar texto de ayuda sobre esta configuración"
+    },
     "shuffling_policy": {
       "categories_label": "Ramdomize categories",
       "categories_label_text": "Check to randomize",

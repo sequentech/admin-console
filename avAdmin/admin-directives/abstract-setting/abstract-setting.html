@@ -1,0 +1,42 @@
+<div class="abstract-setting" title="{{ description | i18next }}">
+  <div class="rower abstract-borders">
+    <div class="col-sm-6 gray-back">
+      <div class="rower">
+        <label class="title" for="{{ forLabel }}" ng-i18next>
+        {{ title }}
+        </label>
+      </div>
+      <div class="rower">
+        <p ng-i18next>
+        {{ description }}
+        </p>
+      </div>
+    </div>
+    <div class="col-sm-6 abstract-widget"></div>
+  </div>
+  <div
+    class="rower help-padding">
+    <div class="col-sm-12 input-group">
+        <span class="input-group-btn">
+          <button
+            class="pull-right btn btn-help"
+            type="button"
+            title="{{ 'avAdmin.setting.helpTooltip' | i18next }}"
+            ng-click="toggleHelp()">
+              <span ng-i18next>avAdmin.topbar.help</span>
+              <span
+                ng-class="{'glyphicon-chevron-down': !!showHelp, 'glyphicon-chevron-right': !showHelp}"
+                class="glyphicon">
+              </span>
+          </button>
+        </span>
+    </div>
+  </div>
+  <div
+    class="rower help-plugin"
+    ng-if="!!showHelp">
+    <div class="col-sm-12">
+       <div av-plugin-html ng-bind-html="html"></div>
+    </div>
+  </div>
+</div>
