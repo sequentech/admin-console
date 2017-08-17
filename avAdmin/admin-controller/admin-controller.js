@@ -102,12 +102,12 @@ angular.module('avAdmin').controller('AdminController',
     if (states.indexOf($scope.state) >= 0) {
         $scope.sidebarlinks = [
             {name: 'basic', icon: 'university'},
-            {name: 'adminFields', icon: 'user'},
             {name: 'questions', icon: 'question-circle'},
             {name: 'auth', icon: 'unlock'},
             {name: 'censusConfig', icon: 'newspaper-o'},
             {name: 'census', icon: 'users'},
             //{name: 'successAction', icon: 'star-o'},
+            {name: 'adminFields', icon: 'user'},
             //{name: 'tally', icon: 'pie-chart'},
         ];
         // if showSuccessAction is true,
