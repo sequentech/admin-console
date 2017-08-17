@@ -48,7 +48,7 @@ angular.module('avAdmin').controller('AdminController',
         ElectionsApi.newElection = true;
         return el;
     }
-    
+
     $scope.hasAdminFields = false;
     var next_states = ['admin.dashboard'];
 
@@ -93,12 +93,12 @@ angular.module('avAdmin').controller('AdminController',
         $scope.isTest = !$scope.current['real'];
     }
 
-    var states =[ 'admin.dashboard', 'admin.basic', 'admin.adminFields', 'admin.questions', 'admin.censusConfig', 'admin.census', 'admin.auth', 'admin.tally', 'admin.successAction', 'admin.create'];
-    
+    var states =[ 'admin.dashboard', 'admin.basic', 'admin.questions', 'admin.censusConfig', 'admin.census', 'admin.auth', 'admin.tally', 'admin.successAction', 'admin.adminFields', 'admin.create'];
+
     var plugins_data = {states: [] };
     Plugins.hook('add-dashboard-election-states', plugins_data);
     states = states.concat(plugins_data.states);
-    
+
     if (states.indexOf($scope.state) >= 0) {
         $scope.sidebarlinks = [
             {name: 'basic', icon: 'university'},
@@ -110,7 +110,7 @@ angular.module('avAdmin').controller('AdminController',
             //{name: 'successAction', icon: 'star-o'},
             //{name: 'tally', icon: 'pie-chart'},
         ];
-        // if showSuccessAction is true, 
+        // if showSuccessAction is true,
         // show the SuccessAction tab in the admin gui
         if (true === ConfigService.showSuccessAction) {
            $scope.sidebarlinks = $scope.sidebarlinks.concat([{name: 'successAction', icon: 'star-o'}]);
@@ -140,7 +140,7 @@ angular.module('avAdmin').controller('AdminController',
     $scope.sidebarlinks.forEach(
       function (sidebarlink) {
         next_states = next_states.concat(_.map(
-          sidebarlink.plugins, 
+          sidebarlink.plugins,
           function (plug) {
             return plug.link;
         }));
