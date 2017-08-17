@@ -352,6 +352,7 @@ angular.module('avAdmin')
                     urls: [],
                     theme_css: ''
                 },
+                logo_url: 'https://gostaging.nvotes.com/admin/img/nVotes_logo_small.png',
                 layout: 'simple',
                 real: false,
                 num_successful_logins_allowed: 0,
