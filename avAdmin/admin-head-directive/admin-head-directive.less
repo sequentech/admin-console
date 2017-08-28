@@ -1,3 +1,29 @@
+
+[av-admin-head] {
+  .navbar-admin > .container-fluid > div > ul {
+    .help-dropdown > ul.dropdown-menu {
+      min-width: 240px;
+      li > div {
+        a {
+          padding: 3px 20px;
+        }
+
+        a, a:link, a:visited, a:active, a:hover, a:focus {
+          text-decoration: none;
+          border:0!important;
+        }
+      }
+
+      li:hover > div, li:active > div, li:focus > div {
+        background-color: darken(@av-primary, 6%);
+        a, a:hover, a:focus {
+          color: @av-secondary;
+        }
+      }
+    }
+  }
+}
+
 .adminhead {
     background-color: @av-primary;
     color: @av-secondary;
@@ -70,20 +96,20 @@
 }
 .navbar-admin .navbar-nav > .dropdown > a:hover .caret,
 .navbar-admin .navbar-nav > .dropdown > a:focus .caret {
-  border-top-color: @av-secondary-contrast;
-  border-bottom-color: @av-secondary-contrast;
+  border-top-color: @av-primary;
+  border-bottom-color: @av-primary;
 }
 .navbar-admin .navbar-nav > .open > a,
 .navbar-admin .navbar-nav > .open > a:hover,
 .navbar-admin .navbar-nav > .open > a:focus {
   background-color: lighten(@av-secondary, 10%);
-  color: @av-secondary-contrast;
+  color: @av-primary;
 }
 .navbar-admin .navbar-nav > .open > a .caret,
 .navbar-admin .navbar-nav > .open > a:hover .caret,
 .navbar-admin .navbar-nav > .open > a:focus .caret {
-  border-top-color: @av-secondary-contrast;
-  border-bottom-color: @av-secondary-contrast;
+  border-top-color: @av-primary;
+  border-bottom-color: @av-primary;
 }
 .navbar-admin .navbar-nav > .dropdown > a .caret {
   border-top-color: @av-primary-contrast;
