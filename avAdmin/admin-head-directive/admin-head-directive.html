@@ -22,13 +22,6 @@
               </a>
             </li>
 
-            <!--li>
-              <a
-                href="{{ helpurl }}"
-                target="_blank">
-                <i class="fa fa-question-circle"></i>
-              </a>
-            </li-->
             <li class="dropdown">
               <a
                 href="#"
@@ -36,20 +29,16 @@
                 data-toggle="dropdown"
                 role="button"
                 aria-expanded="false">
-                <i class="fa fa-question-circle"></i>
+                <i class="fa fa-question-circle" aria-hidden="true"></i>
                 <span class="caret"></span>
               </a>
               <ul
                 class="dropdown-menu"
                 role="menu">
-                <li>
-                  <a
-                    href="{{ helpurl }}"
-                    target="_blank">
-                    helphere!
-                  </a>
+                <li ng-repeat="item in helpList">
+                    <div av-plugin-html ng-bind-html="item"></div>
                 </li>
-              </ul>
+               </ul>
             </li>
 
             <li class="signup" ng-if="!admin"><a ui-sref="admin.signup()" ng-i18next="avAdmin.topbar.freesignup"></a></li>

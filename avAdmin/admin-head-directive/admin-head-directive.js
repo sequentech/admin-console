@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminHead', function(Authmethod, $state, $cookies, $i18next, ConfigService) {
+  .directive('avAdminHead', function(Authmethod, $state, $cookies, $i18next, ConfigService, $sce) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
         var autheventid = Authmethod.getAuthevent();
@@ -27,6 +27,9 @@ angular.module('avAdmin')
         scope.technology = ConfigService.technology;
         scope.nologin = ('nologin' in attrs) || scope.admin;
         scope.helpurl = ConfigService.helpUrl;
+        scope.helpList = _.map(ConfigService.helpList, function (item, index) {
+          return $sce.trustAsHtml(item);
+        });
 
         scope.loginrequired = ('loginrequired' in attrs);
         if (scope.loginrequired && !scope.admin) {
