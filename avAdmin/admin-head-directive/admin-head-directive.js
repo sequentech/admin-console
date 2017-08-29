@@ -27,6 +27,7 @@ angular.module('avAdmin')
         scope.technology = ConfigService.technology;
         scope.nologin = ('nologin' in attrs) || scope.admin;
         scope.helpurl = ConfigService.helpUrl;
+        scope.signupLink = ConfigService.signupLink;
         scope.helpList = _.map(ConfigService.helpList, function (item, index) {
           return $sce.trustAsHtml(item);
         });
