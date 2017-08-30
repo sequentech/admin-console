@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin').controller('AdminController',
-  function(Plugins, ConfigService, $scope, $i18next, $state, $stateParams, ElectionsApi, $compile, NextButtonService) {
+  function(Plugins, ConfigService, $scope, $i18next, $state, $stateParams, ElectionsApi, $compile, NextButtonService, Authmethod) {
     var id = $stateParams.id;
     $scope.state = $state.current.name;
     $scope.current = null;
@@ -148,5 +148,68 @@ angular.module('avAdmin').controller('AdminController',
     });
     updateStates();
     NextButtonService.setStates(next_states);
+
+    function checkOpenModal() {
+      var autheventid = Authmethod.getAuthevent();
+      var req_fields = [];
+
+      Authmethod.viewEvent(autheventid)
+        .success(function(data) {
+          if (data.status === "ok") {
+            req_fields = _.filter(
+              data.events.extrafields,
+              function (item) {
+                return (true === item.required_when_registered &&
+                         (_.isUndefined(item.user_editable) ||
+                         true === item.user_editable));
+              });
+            Authmethod.getUserInfo().success( function (d) {
+              function checkRequiredWhenRegisteredField(field, metadata) {
+                var ret = true;
+                var el = metadata[field.name];
+                if (_.isUndefined(el)) {
+                  ret = false;
+                } else if ("text" === field.type || "password" === field.type ||
+                           "regex" === field.type || "email" === field.type ||
+                           "tlf" === field.type || "textarea" === field.type ||
+                           "dni" === field.type) {
+                  if (!_.isString(el)) {
+                    ret = false;
+                  } else if (_.isNumber(field.max) && el.length > field.max) {
+                    ret = false;
+                  } else if (_.isNumber(field.min) && el.length < field.min) {
+                    ret = false;
+                  }
+                } else if ("int" === field.type) {
+                  if (!_.isNumber(el)) {
+                    ret = false;
+                  } else if (_.isNumber(field.max) && el > field.max) {
+                    ret = false;
+                  } else if (_.isNumber(field.min) && el < field.min) {
+                    ret = false;
+                  }
+                } else if ("bool" === field.type && !_.isBoolean(el)) {
+                  ret = false;
+                }
+                return ret;
+              }
+
+              var open_modal = false;
+              if (_.isDefined(d.metadata)) {
+                for (var i = 0; i < req_fields.length; i++) {
+                  if (!checkRequiredWhenRegisteredField(req_fields[i], d.metadata)) {
+                    open_modal = true;
+                    break;
+                  }
+                }
+                if (open_modal) {
+                  console.log("open required when registered modal");
+                }
+              }
+            });
+          }
+        });
+    }
+    checkOpenModal();
   }
 );
