@@ -157,7 +157,7 @@ angular.module('avAdmin').controller('AdminController',
         .success(function(data) {
           if (data.status === "ok") {
             req_fields = _.filter(
-              data.events.extrafields,
+              data.events.extra_fields,
               function (item) {
                 return (true === item.required_when_registered &&
                          (_.isUndefined(item.user_editable) ||
@@ -195,7 +195,7 @@ angular.module('avAdmin').controller('AdminController',
               }
 
               var open_modal = false;
-              if (_.isDefined(d.metadata)) {
+              if (!_.isUndefined(d.metadata)) {
                 for (var i = 0; i < req_fields.length; i++) {
                   if (!checkRequiredWhenRegisteredField(req_fields[i], d.metadata)) {
                     open_modal = true;
@@ -203,8 +203,13 @@ angular.module('avAdmin').controller('AdminController',
                   }
                 }
                 if (open_modal) {
-                  console.log("open required when registered modal");
-                }
+                  $modal.open({
+                    templateUrl: "avAdmin/admin-directives/admin-profile/admin-profile.html",
+                    controller: 'AdminProfile',
+                    size: 'lg',
+                    resolve: {
+                    }
+                  });
               }
             });
           }
