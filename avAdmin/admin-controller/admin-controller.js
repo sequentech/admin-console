@@ -210,6 +210,7 @@ angular.module('avAdmin').controller('AdminController',
                     resolve: {
                     }
                   });
+                }
               }
             });
           }
