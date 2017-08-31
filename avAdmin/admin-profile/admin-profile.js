@@ -50,7 +50,7 @@ angular.module('avAdmin')
       
       // true if some value has been changed and needs to be saved
       function values_changed() {
-        val ret = false;
+        var ret = false;
         var field;
         for (var i = 0; i < fields_def.length; i++) {
           field = fields_def[i];
