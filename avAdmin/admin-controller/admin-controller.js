@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin').controller('AdminController',
-  function(Plugins, ConfigService, $scope, $i18next, $state, $modal, $stateParams, ElectionsApi, $compile, NextButtonService) {
+  function(Plugins, ConfigService, $scope, $i18next, $state, $stateParams, ElectionsApi, $compile, NextButtonService) {
     var id = $stateParams.id;
     $scope.state = $state.current.name;
     $scope.current = null;
