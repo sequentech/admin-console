@@ -17,12 +17,72 @@
 
 angular.module('avAdmin')
   .controller('AdminProfile',
-    function($scope, $modalInstance, ConfigService) {
+    function($scope, $modalInstance, ConfigService, $sce, Authmethod, fields_def, user_fields) {
+      console.log(fields_def);
+      console.log(user_fields);
+      
+      var field;
+      for (var i = 0; i < fields_def.length; i++) {
+        field = fields_def[i];
+        // adapt fields to have a label, to conform with admin-field directive
+        if (_.isUndefined(field.label)) {
+          field.label = field.name;
+        }
+        // give an initial value to fields
+        if (_.isUndefined(user_fields[field.name])) {
+          if (-1 !== ["text", "password", "regex", "email", "tlf", "textarea", 
+              "dni"].indexOf(field.type)) {
+           field.value = "";
+          } else if ("int" === field.type) {
+           field.value = 0;
+          } else if ("bool" === field.type) {
+           field.value = false;
+          }
+        } else {
+          // copy the value from the profile
+          field.value = angular.copy(user_fields[field.name]);
+        }
+      }
+
+      $scope.fields_def = fields_def;
+      $scope.user_fields = user_fields;
+      $scope.showWorking = false;
+      
+      // true if some value has been changed and needs to be saved
+      function values_changed() {
+        val ret = false;
+        var field;
+        for (var i = 0; i < fields_def.length; i++) {
+          field = fields_def[i];
+          if (field.value !== user_fields[field.name]) {
+            if ( false === ret) {
+              ret = {};
+              ret[field.name] = field.value;
+            }
+          }
+        }
+        return ret;
+      }
+
       $scope.ok = function () {
-        $modalInstance.close();
+        var changed = values_changed();
+        if (false === changed) {
+          $modalInstance.close();
+        } else {
+          $scope.showWorking = true;
+          Authmethod.updateUserExtra(changed)
+            .success(function (d) {
+              $modalInstance.close();
+            })
+            .error(function (e) {
+              $modalInstance.close();
+            });
+        }
       };
 
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
       };
+
+      $scope.html = $sce.trustAsHtml(ConfigService.profileHtml);
     });

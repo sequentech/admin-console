@@ -29,6 +29,9 @@
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda": "DesBorda"}
   },
   "avAdmin": {
+    "profile": {
+      "title": "Perfil"
+    },
     "show_points_policy": {
       "label": "Mostra punts",
       "text": "Mostra els punts que la papereta dóna a cada opció seleccionada"

@@ -30,6 +30,9 @@
   },
 
   "avAdmin": {
+    "profile": {
+      "title": "Perfil"
+    },
     "show_points_policy": {
       "label": "Amosar puntos",
       "text": "Amosar os puntos que o voto dá a cada opción seleccionada"

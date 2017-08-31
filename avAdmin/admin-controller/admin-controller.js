@@ -163,16 +163,15 @@ angular.module('avAdmin').controller('AdminController',
                          (_.isUndefined(item.user_editable) ||
                          true === item.user_editable));
               });
-            Authmethod.getUserInfo().success( function (d) {
+            Authmethod.getUserInfoExtra().success( function (d) {
               function checkRequiredWhenRegisteredField(field, metadata) {
                 var ret = true;
                 var el = metadata[field.name];
                 if (_.isUndefined(el)) {
                   ret = false;
-                } else if ("text" === field.type || "password" === field.type ||
-                           "regex" === field.type || "email" === field.type ||
-                           "tlf" === field.type || "textarea" === field.type ||
-                           "dni" === field.type) {
+                } else if (-1 !== 
+                    ["text", "password", "regex", "email", "tlf", "textarea", 
+                    "dni"].indexOf(field.type)) {
                   if (!_.isString(el)) {
                     ret = false;
                   } else if (_.isNumber(field.max) && el.length > field.max) {
@@ -204,10 +203,12 @@ angular.module('avAdmin').controller('AdminController',
                 }
                 if (open_modal) {
                   $modal.open({
-                    templateUrl: "avAdmin/admin-directives/admin-profile/admin-profile.html",
+                    templateUrl: "avAdmin/admin-profile/admin-profile.html",
                     controller: 'AdminProfile',
                     size: 'lg',
                     resolve: {
+                      fields_def: function () { return req_fields; },
+                      user_fields: function () { return d.metadata; }
                     }
                   });
                 }
