@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin').controller('AdminController',
-  function(Plugins, ConfigService, $scope, $i18next, $state, $modal, $stateParams, ElectionsApi, $compile, NextButtonService, Authmethod) {
+  function(Plugins, ConfigService, $scope, $i18next, $state, $modal, $stateParams, ElectionsApi, $compile, NextButtonService) {
     var id = $stateParams.id;
     $scope.state = $state.current.name;
     $scope.current = null;
@@ -148,75 +148,5 @@ angular.module('avAdmin').controller('AdminController',
     });
     updateStates();
     NextButtonService.setStates(next_states);
-
-    function checkOpenModal() {
-      var autheventid = Authmethod.getAuthevent();
-      var req_fields = [];
-
-      Authmethod.viewEvent(autheventid)
-        .success(function(data) {
-          if (data.status === "ok") {
-            req_fields = _.filter(
-              data.events.extra_fields,
-              function (item) {
-                return (true === item.required_when_registered &&
-                         (_.isUndefined(item.user_editable) ||
-                         true === item.user_editable));
-              });
-            Authmethod.getUserInfoExtra().success( function (d) {
-              function checkRequiredWhenRegisteredField(field, metadata) {
-                var ret = true;
-                var el = metadata[field.name];
-                if (_.isUndefined(el)) {
-                  ret = false;
-                } else if (-1 !== 
-                    ["text", "password", "regex", "email", "tlf", "textarea", 
-                    "dni"].indexOf(field.type)) {
-                  if (!_.isString(el)) {
-                    ret = false;
-                  } else if (_.isNumber(field.max) && el.length > field.max) {
-                    ret = false;
-                  } else if (_.isNumber(field.min) && el.length < field.min) {
-                    ret = false;
-                  }
-                } else if ("int" === field.type) {
-                  if (!_.isNumber(el)) {
-                    ret = false;
-                  } else if (_.isNumber(field.max) && el > field.max) {
-                    ret = false;
-                  } else if (_.isNumber(field.min) && el < field.min) {
-                    ret = false;
-                  }
-                } else if ("bool" === field.type && !_.isBoolean(el)) {
-                  ret = false;
-                }
-                return ret;
-              }
-
-              var open_modal = false;
-              if (!_.isUndefined(d.metadata)) {
-                for (var i = 0; i < req_fields.length; i++) {
-                  if (!checkRequiredWhenRegisteredField(req_fields[i], d.metadata)) {
-                    open_modal = true;
-                    break;
-                  }
-                }
-                if (open_modal) {
-                  $modal.open({
-                    templateUrl: "avAdmin/admin-profile/admin-profile.html",
-                    controller: 'AdminProfile',
-                    size: 'lg',
-                    resolve: {
-                      fields_def: function () { return req_fields; },
-                      user_fields: function () { return d.metadata; }
-                    }
-                  });
-                }
-              }
-            });
-          }
-        });
-    }
-    checkOpenModal();
   }
 );

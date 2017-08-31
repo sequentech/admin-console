@@ -17,10 +17,7 @@
 
 angular.module('avAdmin')
   .controller('AdminProfile',
-    function($scope, $modalInstance, ConfigService, $sce, Authmethod, fields_def, user_fields) {
-      console.log(fields_def);
-      console.log(user_fields);
-      
+    function($scope, $modalInstance, ConfigService, $sce, Authmethod, fields_def, user_fields) {      
       var field;
       for (var i = 0; i < fields_def.length; i++) {
         field = fields_def[i];
