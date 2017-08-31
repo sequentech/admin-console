@@ -104,6 +104,7 @@ angular.module('avAdmin')
               }
             });
         }
+        scope.openProfileEditorModal = openProfileEditorModal;
         openProfileEditorModal(true);
     }
 

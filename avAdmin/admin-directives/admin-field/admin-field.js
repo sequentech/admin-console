@@ -9,8 +9,8 @@ angular.module('avAdmin')
   {
     function link(scope, element, attrs) {
       scope.editable = function () {
-        if ("false" === attrs.editable) {
-          return false;
+        if (!_.isUndefined(attrs.editable)) {
+          return "true" === attrs.editable;
         }
         var election = ElectionsApi.currentElection;
         var editable = !election.id || election.status === "registered";
