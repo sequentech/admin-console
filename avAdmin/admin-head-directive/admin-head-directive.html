@@ -44,7 +44,31 @@
             <li class="signup" ng-if="!admin"><a href="{{ signupLink }}" ng-i18next="avAdmin.topbar.freesignup"></a></li>
             <li ng-if="!nologin"><a ui-sref="admin.login()" ng-i18next="avAdmin.topbar.login"></a></li>
 
-            <li ng-if="admin"><a ui-sref="admin.elections()"><i class="fa fa-user"></i> {{ (admin && admin !== 'undefined') ? admin  : '' }}</a></li>
+            <li
+              class="dropdown profile-dropdown"
+              ng-if="admin">
+              <a
+                href="#"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-expanded="false">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                {{ (admin && admin !== 'undefined') ? admin  : '' }}
+                <span class="caret"></span>
+              </a>
+              
+              <ul
+                class="dropdown-menu"
+                role="menu">
+                <li ng-click="openProfileEditorModal()">
+                  <div class="profile-menu-item">
+                    <i class="fa fa-sliders" aria-hidden="true"></i>
+                    <span ng-i18next>avAdmin.profile.title</span>
+                  </div>
+                </li>
+               </ul>
+            </li>
             <li ng-if="admin"><a ui-sref="admin.logout()"><i class="fa fa-power-off"></i></a></li>
 
             <li class="dropdown" av-change-lang></li>
