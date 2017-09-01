@@ -37,10 +37,16 @@ angular.module('avAdmin')
           check = !!check;
           var autheventid = Authmethod.getAuthevent();
           var req_fields = [];
+          var editable_fields = [];
 
           Authmethod.viewEvent(autheventid)
             .success(function(data) {
               if (data.status === "ok") {
+                editable_fields = _.filter(
+                  data.events.extra_fields,
+                  function (item) {
+                    return true === item.user_editable;
+                  });
                 req_fields = _.filter(
                   data.events.extra_fields,
                   function (item) {
@@ -94,7 +100,7 @@ angular.module('avAdmin')
                         controller: 'AdminProfile',
                         size: 'lg',
                         resolve: {
-                          fields_def: function () { return req_fields; },
+                          fields_def: function () { return editable_fields; },
                           user_fields: function () { return d.metadata; }
                         }
                       });
