@@ -31,7 +31,8 @@
 
   "avAdmin": {
     "profile": {
-      "title": "Perfil"
+      "title": "Perfil",
+      "save": "Guardar cambios"
     },
     "show_points_policy": {
       "label": "Amosar puntos",

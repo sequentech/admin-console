@@ -30,7 +30,8 @@
   },
   "avAdmin": {
     "profile": {
-      "title": "Profile"
+      "title": "Profile",
+      "save": "Save changes"
     },
     "show_points_policy": {
       "label": "Show points",
