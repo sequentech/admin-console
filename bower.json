@@ -1,6 +1,6 @@
 {
   "name": "agoraGuiAdmin",
-  "version" : "103111.3",
+  "version" : "103111.4",
   "main": "index.html",
   "ignore": [
     "**/.*",
