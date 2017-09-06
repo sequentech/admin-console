@@ -67,7 +67,7 @@ angular.module('avAdmin')
                     } else if (-1 !== 
                         ["text", "password", "regex", "email", "tlf", "textarea", 
                         "dni"].indexOf(field.type)) {
-                      if (!_.isString(el)) {
+                      if (!_.isString(el) || 0 === el.length) {
                         ret = false;
                       } else if (_.isNumber(field.max) && el.length > field.max) {
                         ret = false;
