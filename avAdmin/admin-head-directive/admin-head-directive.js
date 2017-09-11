@@ -107,6 +107,10 @@ angular.module('avAdmin')
                           fields_def: function () { return editable_fields; },
                           user_fields: function () { return d.metadata; }
                         }
+                      }).result.then(function (modalReturned) {
+                        scope.openProfileEditorModal(true);
+                      }, function (modalReturned) {
+                        scope.openProfileEditorModal(true);
                       });
                     }
                   }
