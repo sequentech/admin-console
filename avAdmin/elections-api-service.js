@@ -339,14 +339,12 @@ angular.module('avAdmin')
               return ret;
             }
 
-            var el;
-            if (angular.isString(ConfigService.electionTemplate)) {
-              /* jshint ignore:start */
-               el = eval(ConfigService.electionTemplate);
-              /* jshint ignore:end */
-            } else {
-              el = ConfigService.electionTemplate;
+            function evalElectionTemplate() {
+                /* jshint ignore:start */
+              return eval("(function(){ return" + ConfigService.electionTemplate +";})()");
+                /* jshint ignore:end */
             }
+            var el = (angular.isString(ConfigService.electionTemplate)? evalElectionTemplate(): ConfigService.electionTemplate);
             Plugins.hook('elections-api-template-el', {'el': el});
             return el;
         };
