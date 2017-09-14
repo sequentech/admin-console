@@ -149,12 +149,12 @@ angular.module('avAdmin')
                       function (value) {
                         isModalOpened = false;
                         deferred.resolve(value);
-                        adminprofile.openProfileModal(check);
+                        adminprofile.openProfileModal(true);
                       },
                       function (value) {
                         isModalOpened = false;
                         deferred.reject(value);
-                        adminprofile.openProfileModal(check);
+                        adminprofile.openProfileModal(true);
                       });
                   } else {
                     deferred.reject({});

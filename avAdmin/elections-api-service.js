@@ -328,9 +328,6 @@ angular.module('avAdmin')
         };
 
         electionsapi.templateEl = function() {
-            scope.profile = AdminProfile.profile;
-            scope.extra_fields = AdminProfile.extra_fields;
-
             function getShareTextDefault() {
               var ret = angular.copy(ConfigService.share_social.default);
               if(!!ret) {
