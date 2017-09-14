@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin')
-  .controller('AdminProfile',
+  .controller('AdminProfileController',
     function($scope, $modalInstance, ConfigService, $sce, Authmethod, fields_def, user_fields) {      
       var field;
       for (var i = 0; i < fields_def.length; i++) {
@@ -69,10 +69,10 @@ angular.module('avAdmin')
           $scope.showWorking = true;
           Authmethod.updateUserExtra(changed)
             .success(function (d) {
-              $modalInstance.close();
+              $modalInstance.close(changed);
             })
             .error(function (e) {
-              $modalInstance.close();
+              $modalInstance.close(changed);
             });
         }
       };

@@ -23,6 +23,7 @@ angular.module('avAdmin')
         Plugins,
         Authmethod,
         ConfigService,
+        AdminProfile,
         $i18next,
         $http,
         $cookies,
@@ -327,7 +328,6 @@ angular.module('avAdmin')
         };
 
         electionsapi.templateEl = function() {
-
             function getShareTextDefault() {
               var ret = angular.copy(ConfigService.share_social.default);
               if(!!ret) {
