@@ -18,13 +18,13 @@
 angular.module('avAdmin')
   .directive(
     'avAdminElquestions',
-    function($i18next, $state, ElectionsApi, ElectionLimits,NextButtonService)
+    function($i18next, $state, ElectionsApi, ElectionLimits,NextButtonService, ConfigService)
     {
       // we use it as something similar to a controller here
       function link(scope, element, attrs) {
         scope.election = ElectionsApi.currentElection;
         scope.electionLimits = ElectionLimits;
-        scope.vsystems = ['plurality-at-large', 'borda-nauru', 'borda', 'pairwise-beta'];
+        scope.vsystems = ConfigService.shownAdminQuestionVotingSystems;
         scope.lshuffleoptions = ['dont-shuffle','shuffle-all', 'shuffle-some'];
 
         scope.electionEditable = function() {
