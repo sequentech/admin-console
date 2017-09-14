@@ -32,8 +32,8 @@ angular.module('avAdmin')
         var isModalOpened = false;
         var modalPromise;
         var adminprofile = {
-          extra_fields: undefined,
-          profile: undefined
+          extra_fields: undefined, // list of admin extra fields and their properties
+          profile: undefined // extra fields values for the currently logged admin user
         };
 
         function updateProfile() {
