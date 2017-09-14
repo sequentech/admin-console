@@ -69,10 +69,10 @@ angular.module('avAdmin')
           $scope.showWorking = true;
           Authmethod.updateUserExtra(changed)
             .success(function (d) {
-              $modalInstance.close();
+              $modalInstance.close(changed);
             })
             .error(function (e) {
-              $modalInstance.close();
+              $modalInstance.close(changed);
             });
         }
       };
