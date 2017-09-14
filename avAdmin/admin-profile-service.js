@@ -17,7 +17,7 @@
 
 angular.module('avAdmin')
     .factory(
-      'AdminProfileService',
+      'AdminProfile',
       function(
         $q,
         Plugins,
@@ -25,21 +25,23 @@ angular.module('avAdmin')
         ConfigService,
         $i18next,
         $http,
+        $modal,
         $cookies,
         $rootScope)
       {
         var isModalOpened = false;
-        var modalPromise = undefined;
-        var extra_fields = undefined;
-        var profile = undefined;
-        var adminprofileservice = {};
+        var modalPromise;
+        var adminprofile = {
+          extra_fields: undefined,
+          profile: undefined
+        };
 
         function updateProfile() {
           var deferred = $q.defer();
           Authmethod.getUserInfoExtra()
             .success( function (d) {
-              profile = angular.copy(d.metadata);
-              deferred.resolve(profile);
+              adminprofile.profile = angular.copy(d.metadata);
+              deferred.resolve(adminprofile.profile);
             })
             .error(deferred.reject);
           return deferred.promise;
@@ -48,15 +50,15 @@ angular.module('avAdmin')
         function getExtraFields() {
           var deferred = $q.defer();
 
-          if (_.isUndefined(extra_fields)) {
+          if (_.isUndefined(adminprofile.extra_fields)) {
             var autheventid = Authmethod.getAuthevent();
             Authmethod.viewEvent(autheventid)
               .success(function(data) {
                 if (data.status === "ok") {
                   if (_.isObject(data.events) &&
                       _.isArray(data.events.extra_fields)) {
-                   extra_fields = angular.copy(data.events.extra_fields);
-                   deferred.resolve(extra_fields);
+                   adminprofile.extra_fields = angular.copy(data.events.extra_fields);
+                   deferred.resolve(adminprofile.extra_fields);
                   } else {
                     deferred.reject("error on data: " + data);
                   }
@@ -68,12 +70,12 @@ angular.module('avAdmin')
           }
           else {
             // we already have the extra fields
-            deferred.resolve(extra_fields);
+            deferred.resolve(adminprofile.extra_fields);
           }
           return deferred.promise;
         }
 
-        adminprofileservice.openProfileModal = function (check) {
+        adminprofile.openProfileModal = function (check) {
           if (!!isModalOpened) {
             return modalPromise;
           }
@@ -83,12 +85,12 @@ angular.module('avAdmin')
             .then(getExtraFields)
             .then(function (data) {
                 var editable_fields = _.filter(
-                  extra_fields,
+                  adminprofile.extra_fields,
                   function (item) {
                     return true === item.user_editable;
                   });
                 var req_fields = _.filter(
-                  extra_fields,
+                  adminprofile.extra_fields,
                   function (item) {
                     return (true === item.required_when_registered &&
                              (_.isUndefined(item.user_editable) ||
@@ -126,7 +128,7 @@ angular.module('avAdmin')
                   var open_modal = false;
                   if (check) {
                     for (var i = 0; i < req_fields.length; i++) {
-                      if (!checkRequiredWhenRegisteredField(req_fields[i], profile)) {
+                      if (!checkRequiredWhenRegisteredField(req_fields[i], adminprofile.profile)) {
                         open_modal = true;
                         break;
                       }
@@ -137,22 +139,22 @@ angular.module('avAdmin')
                     modalPromise = deferred.promise;
                     $modal.open({
                       templateUrl: "avAdmin/admin-profile/admin-profile.html",
-                      controller: 'AdminProfile',
+                      controller: 'AdminProfileController',
                       size: 'lg',
                       resolve: {
                         fields_def: function () { return editable_fields; },
-                        user_fields: function () { return profile; }
+                        user_fields: function () { return adminprofile.profile; }
                       }
                     }).result.then(
                       function (value) {
                         isModalOpened = false;
                         deferred.resolve(value);
-                        adminprofileservice.openProfileModal(check);
+                        adminprofile.openProfileModal(check);
                       },
                       function (value) {
                         isModalOpened = false;
                         deferred.reject(value);
-                        adminprofileservice.openProfileModal(check);
+                        adminprofile.openProfileModal(check);
                       });
                   } else {
                     deferred.reject({});
@@ -163,10 +165,10 @@ angular.module('avAdmin')
           return deferred.promise;
         };
 
-        adminprofileservice.getProfile = function () {
+        adminprofile.getProfile = function () {
           var deferred = $q.defer();
-          if (!_.isUndefined(profile)) {
-            deferred.resolve(profile);
+          if (!_.isUndefined(adminprofile.profile)) {
+            deferred.resolve(adminprofile.profile);
           } else {
             updateProfile()
               .then(deferred.resolve)
@@ -175,5 +177,5 @@ angular.module('avAdmin')
           return deferred.promise;
         };
 
-        return adminprofileservice;
+        return adminprofile;
       });
