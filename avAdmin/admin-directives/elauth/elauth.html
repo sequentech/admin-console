@@ -28,7 +28,7 @@
     </div>
 
     <!-- SMS conf -->
-    <div class="well" ng-if="election.census.auth_method === 'sms'">
+    <div ng-if="election.census.auth_method === 'sms'">
         <div
           av-abstract-setting
           title="avAdmin.auth.sms"
@@ -41,7 +41,7 @@
     </div>
 
     <!-- Email conf -->
-    <div class="well" ng-if="election.census.auth_method === 'email'">
+    <div ng-if="election.census.auth_method === 'email'">
         <div
           av-abstract-setting
           title="avAdmin.auth.emailsub"
