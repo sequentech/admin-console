@@ -148,7 +148,7 @@
                     <p class="text-muted" ng-i18next> avAdmin.questions.min.placeholder </p>
                     <div class="input-group col-xs-2">
                       <span class="input-group-btn">
-                        <button 
+                        <button
                           class="btn btn-default"
                           type="button"
                           ng-disabled="!electionEditable()"
@@ -180,7 +180,7 @@
                         ng-disabled="!electionEditable()"
                         required/>
                       <span class="input-group-btn">
-                        <button 
+                        <button
                           class="btn btn-default"
                           type="button"
                           ng-disabled="!electionEditable()"
@@ -275,6 +275,7 @@
 
             <!-- layout -->
             <div
+              ng-if="layouts.length > 0"
               av-abstract-setting
               title="avAdmin.questions.layout.label"
               for="layout"

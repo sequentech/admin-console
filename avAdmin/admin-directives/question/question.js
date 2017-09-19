@@ -16,16 +16,10 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminQuestion', function() {
+  .directive('avAdminQuestion', function(ConfigService) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
-      scope.layouts = [
-        "circles",
-        "accordion",
-        "simultaneous-questions"
-        /*"conditional-accordion",
-        "pcandidates-election"*/
-      ];
+      scope.layouts = ConfigService.shownAdminQuestionLayouts;
       scope.edittingIndex = -1;
 
       function fillCatList() {
@@ -108,7 +102,7 @@ angular.module('avAdmin')
 
       scope.$watch("internal.shuffling_cat_list", function (newValue, oldValue) {
           if ('shuffle-some' === scope.internal.shuffle_opts_policy) {
-            scope.q.extra_options.shuffle_category_list = 
+            scope.q.extra_options.shuffle_category_list =
               _.map (newValue.split(','), function (x) {
                 return x.trim();
               });
