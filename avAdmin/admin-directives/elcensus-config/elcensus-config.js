@@ -39,7 +39,7 @@ angular.module('avAdmin')
               var ef_namelist = _.pluck(efs, 'name');
               var base_name = "extra_field";
               var ef_namei = 0;
-              while (-1 === ef_namelist.indexOf(base_name + ef_namei.toString()) ) {
+              while (-1 !== ef_namelist.indexOf(base_name + ef_namei.toString()) ) {
                 ef_namei++;
               }
               return (base_name + ef_namei.toString());
