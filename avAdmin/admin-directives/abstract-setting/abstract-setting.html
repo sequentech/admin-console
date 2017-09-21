@@ -1,42 +1,50 @@
 <div class="abstract-setting" title="{{ description | i18next }}">
   <div class="rower abstract-borders">
-    <span class="expanded-glyphicon glyphicon glyphicon-chevron-down" ng-if="true" aria-hidden="true">
+    <span class="expanded-glyphicon glyphicon glyphicon-chevron-up" ng-if="!!expanded" aria-hidden="true">
     </span>
-    <div class="col-sm-6 gray-back">
+    <span class="expanded-glyphicon glyphicon glyphicon-chevron-down" ng-if="!expanded" aria-hidden="true">
+    </span>
+    <div class="col-sm-6 gray-back" ng-click="toggleExpand()">
       <div class="rower">
         <label class="title" for="{{ forLabel }}" ng-i18next>
         {{ title }}
         </label>
       </div>
-      <div class="rower">
+      <div class="rower" ng-if="!!expanded">
         <p ng-i18next>
         {{ description }}
         </p>
       </div>
     </div>
-    <div class="col-sm-6 abstract-widget"></div>
+    <div class="col-sm-6 white-back">
+      <div class="abstract-widget">
+      </div>
+    </div>
   </div>
   <div
-    class="rower help-padding">
-    <div class="col-sm-12 input-group">
-        <span class="input-group-btn">
-          <button
-            class="pull-right btn btn-help"
-            type="button"
-            title="{{ 'avAdmin.setting.helpTooltip' | i18next }}"
-            ng-click="toggleHelp()">
-              <span ng-i18next>avAdmin.topbar.help</span>
-              <span
-                ng-class="{'glyphicon-chevron-down': !!showHelp, 'glyphicon-chevron-right': !showHelp}"
-                class="glyphicon">
-              </span>
-          </button>
-        </span>
+    ng-if="!!expanded"
+    class="rower white-back">
+    <div class="help-padding">
+      <div class="col-sm-12 input-group">
+          <span class="input-group-btn">
+            <button
+              class="pull-right btn btn-help"
+              type="button"
+              title="{{ 'avAdmin.setting.helpTooltip' | i18next }}"
+              ng-click="toggleHelp()">
+                <span ng-i18next>avAdmin.topbar.help</span>
+                <span
+                  ng-class="{'glyphicon-chevron-down': !!showHelp, 'glyphicon-chevron-right': !showHelp}"
+                  class="glyphicon">
+                </span>
+            </button>
+          </span>
+      </div>
     </div>
   </div>
   <div
     class="rower help-plugin"
-    ng-if="!!showHelp">
+    ng-if="!!showHelp && !!expanded">
     <div class="col-sm-12">
        <div av-plugin-html ng-bind-html="html"></div>
     </div>
