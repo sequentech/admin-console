@@ -39,6 +39,10 @@ angular.module('avAdmin')
         scope.html = '';
         scope.helpPath = '';
         scope.forLabel = '';
+        scope.expanded = false;
+        scope.toggleExpand = function() {
+           scope.expanded = !scope.expanded;
+        };
 
         if (_.isString(attrs.title)) {
           scope.title = attrs.title;

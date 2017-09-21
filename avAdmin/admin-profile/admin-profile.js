@@ -54,8 +54,8 @@ angular.module('avAdmin')
           if (field.value !== user_fields[field.name]) {
             if ( false === ret) {
               ret = {};
-              ret[field.name] = field.value;
             }
+            ret[field.name] = field.value;
           }
         }
         return ret;
