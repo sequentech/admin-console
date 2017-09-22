@@ -22,11 +22,11 @@
       ng-click="!expanded && toggleExpand()">
       <div 
         class="abstract-widget"
-        ng-show="!!expanded">
+        ng-if="!!expanded">
       </div>
       <div
         class="collapsed-widget"
-        ng-show="!!expanded">
+        ng-if="!expanded">
           <input
             class="form-control collapsed-input"
             type="text"

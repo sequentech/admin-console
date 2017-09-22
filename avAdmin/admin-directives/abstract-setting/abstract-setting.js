@@ -40,8 +40,21 @@ angular.module('avAdmin')
         scope.helpPath = '';
         scope.forLabel = '';
         scope.expanded = false;
+
+        function transcludeWidget() {
+          var widget = element.find('.abstract-widget');
+          if (_.isObject(widget)) {
+            transclude(scope, function(clone) {
+              widget.append(clone);
+            });
+          }
+        }
+
         scope.toggleExpand = function() {
            scope.expanded = !scope.expanded;
+           if (!!scope.expanded) {
+             setTimeout(transcludeWidget, 0);
+           }
         };
 
         if (_.isString(attrs.title)) {
@@ -75,13 +88,7 @@ angular.module('avAdmin')
                 });
           }
         };
-
-        var widget = element.find('.abstract-widget');
-        if (_.isObject(widget)) {
-          transclude(scope, function(clone) {
-            widget.append(clone);
-          });
-        }
+        transcludeWidget();
       }
 
       return {
