@@ -40,6 +40,7 @@ angular.module('avAdmin')
         scope.helpPath = '';
         scope.forLabel = '';
         scope.expanded = false;
+        scope.shortValue = '';
         scope.toggleExpand = function() {
            scope.expanded = !scope.expanded;
         };
@@ -57,6 +58,9 @@ angular.module('avAdmin')
         }
         if (_.isString(attrs.for)) {
           scope.forLabel = attrs.for;
+        }
+        if (!_.isUndefined(attrs.shortValue)) {
+          scope.shortValue = attrs.shortValue + '';
         }
 
         scope.toggleHelp = function() {
