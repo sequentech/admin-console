@@ -19,7 +19,7 @@
     <div 
       class="col-sm-6 white-back"
       ng-class="{pointer: !expanded, nopointer: !!expanded}"
-      ng-if="!expanded && toggleExpand()">
+      ng-click="!expanded && toggleExpand()">
       <div 
         class="abstract-widget"
         ng-show="!!expanded">
@@ -28,10 +28,9 @@
         class="collapsed-widget"
         ng-show="!!expanded">
           <input
-            id="collapsed-input"
-            class="form-control"
+            class="form-control collapsed-input"
             type="text"
-            ng-disabled="true"
+            ng-disabled="isDisabled"
             ng-model="shortValue"/>
        </div>
     </div>

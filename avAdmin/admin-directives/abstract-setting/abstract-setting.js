@@ -40,7 +40,6 @@ angular.module('avAdmin')
         scope.helpPath = '';
         scope.forLabel = '';
         scope.expanded = false;
-        scope.shortValue = '';
         scope.toggleExpand = function() {
            scope.expanded = !scope.expanded;
         };
@@ -58,9 +57,6 @@ angular.module('avAdmin')
         }
         if (_.isString(attrs.for)) {
           scope.forLabel = attrs.for;
-        }
-        if (!_.isUndefined(attrs.shortValue)) {
-          scope.shortValue = attrs.shortValue + '';
         }
 
         scope.toggleHelp = function() {
@@ -91,7 +87,10 @@ angular.module('avAdmin')
       return {
         restrict: 'AE',
         transclude: true,
-        scope: true,
+        scope: {
+          shortValue: '@',
+          isDisabled: '@'
+        },
         link: link,
         templateUrl: 'avAdmin/admin-directives/abstract-setting/abstract-setting.html'
       };
