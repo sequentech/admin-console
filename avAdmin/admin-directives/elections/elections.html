@@ -62,4 +62,8 @@
     <div ng-if="loading" class="text-center bg-primary" ng-i18next>loading</div>
     <div ng-if="nomore" class="text-center bg-success" ng-i18next>nomore</div>
     <div ng-if="error" class="text-center bg-danger">{{ error }}</div>
+    <onboarding-popover
+        enabled="onboardingEnabled"
+        steps="onboardingSteps">
+    </onboarding-popover>
 </div>
