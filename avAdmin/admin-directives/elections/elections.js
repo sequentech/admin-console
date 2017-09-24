@@ -26,8 +26,7 @@ angular.module('avAdmin')
             scope.loading = false;
             scope.nomore = false;
             scope.elections = [];
-            scope.onboardingEnabled = true;
-            scope.steps = [
+            scope.onboardingSteps = [
                 {
                     title: "Create an election",
                     position: "right",
