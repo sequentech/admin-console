@@ -42,6 +42,12 @@ angular.module('avAdmin')
         scope.expanded = false;
         scope.shortValue = '';
         scope.isDisabled = false;
+        
+        function watchAttr(name) {
+          attrs.$observe(name, function (newValue) {
+            scope[name] = newValue;
+          });
+        }
 
         function transcludeWidget() {
           var widget = element.find('.abstract-widget');
@@ -74,6 +80,9 @@ angular.module('avAdmin')
           scope.shortValue = attrs.shortValue;
         }
         scope.isDisabled = ('true' === attrs.isDisabled);
+
+        watchAttr('shortValue');
+        watchAttr('isDisabled');
 
         scope.toggleHelp = function() {
           scope.showHelp = !scope.showHelp;
