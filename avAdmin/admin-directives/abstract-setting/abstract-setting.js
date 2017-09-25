@@ -41,8 +41,8 @@ angular.module('avAdmin')
         scope.forLabel = '';
         scope.expanded = false;
         scope.shortValue = '';
-        scope.isDisabled = false;
-        
+        scope.isDisabled = 'false';
+
         function watchAttr(name) {
           attrs.$observe(name, function (newValue) {
             scope[name] = newValue;
@@ -79,7 +79,9 @@ angular.module('avAdmin')
         if (_.isString(attrs.shortValue)) {
           scope.shortValue = attrs.shortValue;
         }
-        scope.isDisabled = ('true' === attrs.isDisabled);
+        if (_.isString(attrs.isDisabled)) {
+          scope.isDisabled = attrs.isDisabled;
+        }
 
         watchAttr('shortValue');
         watchAttr('isDisabled');
