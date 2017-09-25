@@ -54,9 +54,6 @@ angular.module('avAdmin')
 
         scope.toggleExpand = function() {
            scope.expanded = !scope.expanded;
-           if (!!scope.expanded) {
-             setTimeout(transcludeWidget, 0);
-           }
         };
 
         if (_.isString(attrs.title)) {
