@@ -5,7 +5,6 @@
     <div
       av-abstract-setting
       short-value="{{ election.census.auth_method }}"
-      is-disabled="{{ !electionEditable() }}"
       title="avAdmin.auth.auth"
       for="auth"
       description=""
@@ -34,7 +33,6 @@
         <div
           av-abstract-setting
           short-value="{{ election.census.config.msg }}"
-          is-disabled="{{ !electionEditable() }}"
           title="avAdmin.auth.sms"
           for="auth"
           description=""
@@ -49,7 +47,6 @@
         <div
           av-abstract-setting
           short-value="{{ election.census.config.subject }}"
-          is-disabled="{{ !electionEditable() }}"
           title="avAdmin.auth.emailsub"
           for="email-sub"
           description=""
@@ -59,7 +56,6 @@
         <div
           av-abstract-setting
           short-value="{{ election.census.config.msg }}"
-          is-disabled="{{ !electionEditable() }}"
           title="avAdmin.auth.email"
           for="email-text"
           description="avAdmin.auth.emailtemp"
