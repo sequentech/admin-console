@@ -17,8 +17,8 @@
       </div>
     </div>
     <div 
-      class="col-xs-6 white-back"
-      ng-class="{pointer: !expanded, nopointer: !!expanded}"
+      class="col-xs-6"
+      ng-class="{pointer: !expanded, nopointer: !!expanded, whiteback: !!expanded}"
       ng-click="!expanded && toggleExpand()">
       <div 
         class="abstract-widget"
@@ -27,17 +27,16 @@
       <div
         class="collapsed-widget"
         ng-show="!expanded">
-          <input
-            class="form-control collapsed-input"
-            type="text"
-            ng-disabled="'true' === isDisabled"
-            ng-model="shortValue"/>
+          <div
+            class="pointer collapsed-input">
+          {{ shortValue }}
+          </div>
        </div>
     </div>
   </div>
   <div
     ng-if="!!expanded"
-    class="rower white-back">
+    class="rower whiteback">
     <div class="help-padding">
       <div class="col-xs-12 input-group">
           <span class="input-group-btn">
