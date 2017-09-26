@@ -88,7 +88,7 @@ module.exports = function (grunt) {
         fs.readFile('avPluginsConfig.js', function(err, data) {
             if (err) {
                 grunt.log.ok('No avPluginsConfig.js file found, creating...');
-                var avPluginsConfigText = 
+                var avPluginsConfigText =
                     "var AV_PLUGINS_CONFIG_VERSION = '" + AV_CONFIG_VERSION + "';\n" +
                     "angular.module('avPluginsConfig', [])\n" +
                     "  .factory('PluginsConfigService', function() {\n" +
@@ -103,19 +103,19 @@ module.exports = function (grunt) {
                     "    return new PluginsConfigServiceProvider();\n" +
                     "    }];\n" +
                     "   });";
-                fs.writeFile("avPluginsConfig.js", 
-                    avPluginsConfigText, 
+                fs.writeFile("avPluginsConfig.js",
+                    avPluginsConfigText,
                     function(err) {
                         if(err) {
                             grunt.log.error(
                                 'Error creating avPluginsConfig.js file');
                             done(false);
                         } else {
-                            grunt.log.ok('Created avPluginsConfig.js file, ' + 
+                            grunt.log.ok('Created avPluginsConfig.js file, ' +
                                 'trying to read it again...');
                             checkAvPluginsConfig();
                         }
-                }); 
+                });
             } else {
                 var match = data.toString().match(
                     /AV_PLUGINS_CONFIG_VERSION = [\'\"]([\w\.]*)[\'\"];/);
@@ -164,7 +164,12 @@ module.exports = function (grunt) {
       main: {
         options: {
             jshintrc: '.jshintrc',
-            reporter: require('jshint-stylish')
+            reporter: require('jshint-stylish'),
+            ignores: [
+                'vendor/hopscotch-0.3.1/js/hopscotch.js',
+                'vendor/hopscotch-0.3.1/js/hopscotch.min.js'
+            ]
+
         },
         src: createFolderGlobs('*.js')
       }
