@@ -166,8 +166,7 @@ module.exports = function (grunt) {
             jshintrc: '.jshintrc',
             reporter: require('jshint-stylish'),
             ignores: [
-                'vendor/hopscotch-0.3.1/js/hopscotch.js',
-                'vendor/hopscotch-0.3.1/js/hopscotch.min.js'
+                'vendor/hopscotch-0.3.1/js/hopscotch.js'
             ]
 
         },
@@ -227,9 +226,9 @@ module.exports = function (grunt) {
           {src: ['img/**'], dest: 'dist/'},
           {
               expand: true,
-              cwd:'vendor/hopscotch-0.3.1/',
-              src: ['img/**'],
-              dest: 'dist/'
+              cwd:'vendor/hopscotch-0.3.1/img/',
+              src: ['**'],
+              dest: 'dist/img/'
           },
           {src: ['img/**'], dest: 'dist/'},
           {src: ['temp_data/**'], dest: 'dist/'},
@@ -310,6 +309,13 @@ module.exports = function (grunt) {
                 dest: 'dist/themes/',
                 ext: '.min.css',
                 extDot: 'first'
+            },
+            {
+                cwd:'vendor/hopscotch-0.3.1/css/',
+                src: ['hopscotch.css'],
+                dest: 'dist/',
+                ext: '.min.css',
+                extDot: 'first'
             }
         ]
       },
@@ -320,9 +326,6 @@ module.exports = function (grunt) {
           'dist/plugins.css': ['temp/plugins/**/*.css'],
           'dist/vendor.css': [
             'vendor/hopscotch-0.3.1/css/hopscotch.css'
-          ],
-          'dist/vendor.min.css': [
-            'vendor/hopscotch-0.3.1/css/hopscotch.min.css'
           ],
           'temp/libcompat.js': [
             'vendor/jquery.compat/jquery-1.11.1.js',
