@@ -225,7 +225,11 @@ module.exports = function (grunt) {
       main: {
         files: [
           {src: ['img/**'], dest: 'dist/'},
-          {src: ['vendor/hopscotch-0.3.1/img/**'], dest: 'dist/img/'},
+          {
+              cwd:'vendor/hopscotch-0.3.1/',
+              src: ['img/**'],
+              dest: 'dist/'
+          },
           {src: ['img/**'], dest: 'dist/'},
           {src: ['temp_data/**'], dest: 'dist/'},
           {src: ['bower_components/avCommon/dist/img/flags.png'], dest: 'dist/img/flags.png'},
