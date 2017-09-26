@@ -298,7 +298,10 @@ module.exports = function (grunt) {
         files: [{
             expand: true,
             cwd:'temp/bower_components/avCommon/themes',
-            src: ['**/app.css'],
+            src: [
+                '**/app.css',
+                'vendor/hopscotch-0.3.1/css/hopscotch.css'
+            ],
             dest: 'dist/themes/',
             ext: '.min.css',
             extDot: 'first'
