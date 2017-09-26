@@ -25,6 +25,7 @@
             <!-- title -->
             <div
               av-abstract-setting
+              short-value="{{ q.title }}"
               for="title"
               title="avAdmin.basic.title.label"
               description="avAdmin.basic.title.placeholder"
@@ -41,6 +42,7 @@
             <!-- description -->
             <div
               av-abstract-setting
+              short-value="{{ q.description }}"
               title="avAdmin.basic.description.label"
               for="desc"
               description="avAdmin.basic.description.placeholder"
@@ -56,6 +58,7 @@
             <!-- voting system -->
             <div
               av-abstract-setting
+              short-value="{{ q.tally_type }}"
               title="avCommon.votingSystem"
               for="voting"
               description="avCommon.votingSystem"
@@ -76,6 +79,7 @@
             <!-- number of winners -->
             <div
               av-abstract-setting
+              short-value="{{ q.num_winners }}"
               title="avAdmin.questions.winners.label"
               for="winners"
               description="avAdmin.questions.winners.placeholder"
@@ -141,6 +145,7 @@
             <!-- Minimum -->
             <div
               av-abstract-setting
+              short-value="{{ q.min }}"
               title="avAdmin.questions.min.label"
               for="min"
               description="avAdmin.questions.min.placeholder"
@@ -208,6 +213,7 @@
             <!-- Maximum -->
             <div
               av-abstract-setting
+              short-value="{{ q.max }}"
               title="avAdmin.questions.max.label"
               for="max"
               description="avAdmin.questions.max.placeholder"
@@ -277,6 +283,7 @@
             <div
               ng-if="layouts.length > 0"
               av-abstract-setting
+              short-value="{{ q.layout }}"
               title="avAdmin.questions.layout.label"
               for="layout"
               description="avAdmin.questions.layout.placeholder"
@@ -300,6 +307,7 @@
             <!-- Shuffling categories policy-->
             <div
               av-abstract-setting
+              short-value="{{ q.extra_options.shuffle_categories }}"
               title="avAdmin.shuffling_policy.categories_label"
               for="shuffling-categories-policy"
               description=""
@@ -321,6 +329,7 @@
             <!-- Shuffling options policy -->
             <div
               av-abstract-setting
+              short-value="{{ internal.shuffle_opts_policy }}"
               title="avAdmin.shuffling_policy.options_label"
               for="shuffleoptions"
               description=""
@@ -342,6 +351,7 @@
             <div
               ng-if="'shuffle-some' === internal.shuffle_opts_policy"
               av-abstract-setting
+              short-value="{{ internal.shuffling_cat_list }}"
               title="avAdmin.shuffling_policy.list_label"
               for="title"
               description="avAdmin.shuffling_policy.list_muted"
@@ -361,6 +371,7 @@
             <!-- show points-->
             <div
               av-abstract-setting
+              short-value="{{ q.extra_options.show_points }}"
               title="avAdmin.show_points_policy.label"
               for="show-points-policy"
               description=""
@@ -382,6 +393,7 @@
             <!-- Candidates -->
             <div
               av-abstract-setting
+              short-value="{{ q.answers }}"
               title="avAdmin.questions.candidates.label"
               for="candidates"
               description=""

@@ -4,9 +4,9 @@
     </span>
     <span class="expanded-glyphicon glyphicon glyphicon-chevron-down" ng-if="!expanded" aria-hidden="true">
     </span>
-    <div class="col-sm-6 gray-back" ng-click="toggleExpand()">
+    <div class="col-xs-6 gray-back" ng-click="toggleExpand()">
       <div class="rower">
-        <label class="title pointer" for="{{ forLabel }}" ng-i18next>
+        <label class="title pointer" ng-i18next>
         {{ title }}
         </label>
       </div>
@@ -17,18 +17,28 @@
       </div>
     </div>
     <div 
-      class="col-sm-6 white-back"
-      ng-class="{pointer: !expanded, nopointer: !!expanded}"
+      class="col-xs-6"
+      ng-class="{pointer: !expanded, nopointer: !!expanded, whiteback: !!expanded}"
       ng-click="!expanded && toggleExpand()">
-      <div class="abstract-widget">
+      <div 
+        class="abstract-widget"
+        ng-show="!!expanded">
       </div>
+      <div
+        class="collapsed-widget"
+        ng-show="!expanded">
+          <div
+            class="pointer collapsed-input">
+          {{ shortValue }}
+          </div>
+       </div>
     </div>
   </div>
   <div
     ng-if="!!expanded"
-    class="rower white-back">
+    class="rower whiteback">
     <div class="help-padding">
-      <div class="col-sm-12 input-group">
+      <div class="col-xs-12 input-group">
           <span class="input-group-btn">
             <button
               class="pull-right btn btn-help"
@@ -48,7 +58,7 @@
   <div
     class="rower help-plugin"
     ng-if="!!showHelp && !!expanded">
-    <div class="col-sm-12">
+    <div class="col-xs-12">
        <div av-plugin-html ng-bind-html="html"></div>
     </div>
   </div>
