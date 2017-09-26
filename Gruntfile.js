@@ -287,6 +287,7 @@ module.exports = function (grunt) {
             {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/admin/" href="/admin/themes/default/app.min.css">'},
             {selector:'head',html:'<link rel="stylesheet" id="plugins" data-base="/admin/" href="/admin/plugins.css">'},
             {selector:'head',html:'<link rel="stylesheet" href="election/intlTelInput.css" />'}
+            {selector:'head',html:'<link rel="stylesheet" id="vendor-css" data-base="/admin/" href="/admin/vendor.min.css">'}
           ]
         },
         src:'index.html',
@@ -295,23 +296,28 @@ module.exports = function (grunt) {
     },
     cssmin: {
       main: {
-        files: [{
-            expand: true,
-            cwd:'temp/bower_components/avCommon/themes',
-            src: [
-                '**/app.css',
-                'vendor/hopscotch-0.3.1/css/hopscotch.css'
-            ],
-            dest: 'dist/themes/',
-            ext: '.min.css',
-            extDot: 'first'
-        }]
+        files: [
+            {
+                expand: true,
+                cwd:'temp/bower_components/avCommon/themes',
+                src: ['**/app.css'],
+                dest: 'temp/themes/',
+                ext: '.min.css',
+                extDot: 'first'
+            }
+        ]
       },
     },
     concat: {
       main: {
         files: {
           'dist/plugins.css': ['temp/plugins/**/*.css'],
+          'dist/vendor.css': [
+            'vendor/hopscotch-0.3.1/css/hopscotch.css'
+          ],
+          'dist/vendor.min.css': [
+            'vendor/hopscotch-0.3.1/css/hopscotch.min.css'
+          ],
           'temp/libcompat.js': [
             'vendor/jquery.compat/jquery-1.11.1.js',
             'vendor/json3/json-v3.3.2.js',
