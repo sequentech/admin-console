@@ -301,7 +301,7 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd:'temp/bower_components/avCommon/themes',
                 src: ['**/app.css'],
-                dest: 'temp/themes/',
+                dest: 'dist/themes/',
                 ext: '.min.css',
                 extDot: 'first'
             }
