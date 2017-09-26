@@ -226,6 +226,7 @@ module.exports = function (grunt) {
         files: [
           {src: ['img/**'], dest: 'dist/'},
           {
+              expand: true,
               cwd:'vendor/hopscotch-0.3.1/',
               src: ['img/**'],
               dest: 'dist/'
