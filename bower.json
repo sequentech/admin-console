@@ -10,5 +10,8 @@
   "dependencies": {
     "avCommon": "https://github.com/agoravoting/agora-gui-common.git#next",
     "angular-local-storage": "~0.2.3"
+  },
+  "resolutions": {
+    "intl-tel-input": "^12.1.0"
   }
 }
