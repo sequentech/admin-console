@@ -39,6 +39,27 @@ angular.module('avAdmin')
         scope.html = '';
         scope.helpPath = '';
         scope.forLabel = '';
+        scope.expanded = false;
+        scope.shortValue = '';
+
+        function watchAttr(name) {
+          attrs.$observe(name, function (newValue) {
+            scope[name] = newValue;
+          });
+        }
+
+        function transcludeWidget() {
+          var widget = element.find('.abstract-widget');
+          if (_.isObject(widget)) {
+            transclude(scope, function(clone) {
+              widget.append(clone);
+            });
+          }
+        }
+
+        scope.toggleExpand = function() {
+           scope.expanded = !scope.expanded;
+        };
 
         if (_.isString(attrs.title)) {
           scope.title = attrs.title;
@@ -54,6 +75,11 @@ angular.module('avAdmin')
         if (_.isString(attrs.for)) {
           scope.forLabel = attrs.for;
         }
+        if (_.isString(attrs.shortValue)) {
+          scope.shortValue = attrs.shortValue;
+        }
+
+        watchAttr('shortValue');
 
         scope.toggleHelp = function() {
           scope.showHelp = !scope.showHelp;
@@ -71,13 +97,7 @@ angular.module('avAdmin')
                 });
           }
         };
-
-        var widget = element.find('.abstract-widget');
-        if (_.isObject(widget)) {
-          transclude(scope, function(clone) {
-            widget.append(clone);
-          });
-        }
+        transcludeWidget();
       }
 
       return {

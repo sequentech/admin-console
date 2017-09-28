@@ -23,56 +23,67 @@
         <div class="col-xs-12">
 
             <!-- title -->
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="title" ng-i18next="avAdmin.basic.title.label"></label>
-                <div class="col-sm-10">
-                    <input
-                      id="title"
-                      class="form-control"
-                      type="text"
-                      ng-disabled="!electionEditable()"
-                      ng-i18next="[placeholder]avAdmin.basic.title.placeholder"
-                      ng-model="q.title"/>
-                </div>
+            <div
+              av-abstract-setting
+              short-value="{{ q.title }}"
+              for="title"
+              title="avAdmin.basic.title.label"
+              description="avAdmin.basic.title.placeholder"
+              help-path="election/question-title/">
+                <input
+                  id="title"
+                  class="form-control"
+                  type="text"
+                  ng-disabled="!electionEditable()"
+                  ng-i18next="[placeholder]avAdmin.basic.title.placeholder"
+                  ng-model="q.title"/>
             </div>
 
             <!-- description -->
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="desc" ng-i18next="avAdmin.basic.description.label"></label>
-                <div class="col-sm-10">
-                    <textarea
-                    id="desc"
-                    class="form-control"
-                    ng-disabled="!electionEditable()"
-                    ng-i18next="[placeholder]avAdmin.basic.description.placeholder"
-                    ng-model="q.description">
-                    </textarea>
-                </div>
+            <div
+              av-abstract-setting
+              short-value="{{ q.description }}"
+              title="avAdmin.basic.description.label"
+              for="desc"
+              description="avAdmin.basic.description.placeholder"
+              help-path="election/question-description/">
+                <textarea
+                  id="desc"
+                  class="form-control"
+                  ng-disabled="!electionEditable()"
+                  ng-i18next="[placeholder]avAdmin.basic.description.placeholder"
+                  ng-model="q.description"></textarea>
             </div>
 
             <!-- voting system -->
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="voting" ng-i18next>avCommon.votingSystem</label>
-                <div class="col-sm-10">
-                    <div class="radio" ng-repeat="o in vsystems">
-                        <label>
-                            <input
-                              type="radio"
-                              name="voting"
-                              value="{{ o }}"
-                              ng-disabled="!electionEditable()"
-                              ng-model="q.tally_type"/>
-                            <span ng-i18next="avCommon.votings.{{ o }}"></span>
-                        </label>
-                    </div>
+            <div
+              av-abstract-setting
+              short-value="{{ q.tally_type }}"
+              title="avCommon.votingSystem"
+              for="voting"
+              description="avCommon.votingSystem"
+              help-path="election/question-voting-system/">
+                <div class="radio" ng-repeat="o in vsystems">
+                    <label>
+                        <input
+                          type="radio"
+                          name="voting"
+                          value="{{ o }}"
+                          ng-disabled="!electionEditable()"
+                          ng-model="q.tally_type"/>
+                        <span ng-i18next="avCommon.votings.{{ o }}"></span>
+                    </label>
                 </div>
             </div>
 
             <!-- number of winners -->
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="winners" ng-i18next>avAdmin.questions.winners.label</label>
-                <div class="col-sm-10">
-                    <p class="text-muted" ng-i18next>avAdmin.questions.winners.placeholder</p>
+            <div
+              av-abstract-setting
+              short-value="{{ q.num_winners }}"
+              title="avAdmin.questions.winners.label"
+              for="winners"
+              description="avAdmin.questions.winners.placeholder"
+              help-path="election/question-number-winners/">
                     <div class="input-group col-xs-2">
                       <span class="input-group-btn">
                         <button
@@ -129,17 +140,20 @@
                         avAdmin.questions.winners.minError
                       </span>
                     </div>
-                </div>
             </div>
 
             <!-- Minimum -->
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="winners" ng-i18next>avAdmin.questions.min.label</label>
-                <div class="col-sm-10">
+            <div
+              av-abstract-setting
+              short-value="{{ q.min }}"
+              title="avAdmin.questions.min.label"
+              for="min"
+              description="avAdmin.questions.min.placeholder"
+              help-path="election/question-minimum-selected/">
                     <p class="text-muted" ng-i18next> avAdmin.questions.min.placeholder </p>
                     <div class="input-group col-xs-2">
                       <span class="input-group-btn">
-                        <button 
+                        <button
                           class="btn btn-default"
                           type="button"
                           ng-disabled="!electionEditable()"
@@ -171,7 +185,7 @@
                         ng-disabled="!electionEditable()"
                         required/>
                       <span class="input-group-btn">
-                        <button 
+                        <button
                           class="btn btn-default"
                           type="button"
                           ng-disabled="!electionEditable()"
@@ -194,13 +208,16 @@
                         avAdmin.questions.min.minError
                       </span>
                     </div>
-                </div>
             </div>
 
             <!-- Maximum -->
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="winners" ng-i18next>avAdmin.questions.max.label</label>
-                <div class="col-sm-10">
+            <div
+              av-abstract-setting
+              short-value="{{ q.max }}"
+              title="avAdmin.questions.max.label"
+              for="max"
+              description="avAdmin.questions.max.placeholder"
+              help-path="election/question-max-selected/">
                     <p class="text-muted" ng-i18next> avAdmin.questions.max.placeholder </p>
                     <div class="input-group col-xs-2">
                       <span class="input-group-btn">
@@ -260,13 +277,17 @@
                         [i18next]avAdmin.questions.max.minError
                       </span>
                     </div>
-                </div>
             </div>
 
             <!-- layout -->
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="layout" ng-i18next="avAdmin.questions.layout.label"></label>
-                <div class="col-sm-10">
+            <div
+              ng-if="layouts.length > 0"
+              av-abstract-setting
+              short-value="{{ q.layout }}"
+              title="avAdmin.questions.layout.label"
+              for="layout"
+              description="avAdmin.questions.layout.placeholder"
+              help-path="election/question-layout/">
                     <p class="text-muted" ng-i18next>
                         avAdmin.questions.layout.placeholder
                     </p>
@@ -281,13 +302,16 @@
                             <span ng-i18next="avAdmin.questions.layout.{{ o }}"></span>
                         </label>
                     </div>
-                </div>
             </div>
 
             <!-- Shuffling categories policy-->
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="shuffling-categories-policy" ng-i18next>avAdmin.shuffling_policy.categories_label</label>
-                <div class="col-sm-10">
+            <div
+              av-abstract-setting
+              short-value="{{ q.extra_options.shuffle_categories }}"
+              title="avAdmin.shuffling_policy.categories_label"
+              for="shuffling-categories-policy"
+              description=""
+              help-path="election/question-shuffle-categories/">
                     <div class="checkbox">
                         <label>
                             <input
@@ -300,13 +324,16 @@
                             <span ng-i18next>avAdmin.shuffling_policy.categories_label_text</span>
                         </label>
                     </div>
-                </div>
             </div>
 
             <!-- Shuffling options policy -->
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="shuffleoptions" ng-i18next>avAdmin.shuffling_policy.options_label</label>
-                <div class="col-sm-10">
+            <div
+              av-abstract-setting
+              short-value="{{ internal.shuffle_opts_policy }}"
+              title="avAdmin.shuffling_policy.options_label"
+              for="shuffleoptions"
+              description=""
+              help-path="election/question-shuffle-options/">
                     <div class="radio" ng-repeat="o in lshuffleoptions">
                         <label>
                             <input
@@ -318,13 +345,17 @@
                             <span ng-i18next="avAdmin.shuffling_policy.{{ o }}"></span>
                         </label>
                     </div>
-                </div>
             </div>
 
             <!-- Shuffling category list -->
-            <div class="form-group" ng-if="'shuffle-some' === internal.shuffle_opts_policy">
-                <label class="col-sm-2 control-label" for="title" ng-i18next="avAdmin.shuffling_policy.list_label"></label>
-                <div class="col-sm-10">
+            <div
+              ng-if="'shuffle-some' === internal.shuffle_opts_policy"
+              av-abstract-setting
+              short-value="{{ internal.shuffling_cat_list }}"
+              title="avAdmin.shuffling_policy.list_label"
+              for="title"
+              description="avAdmin.shuffling_policy.list_muted"
+              help-path="election/question-shuffle-category-list/">
                     <p class="text-muted" ng-i18next>
                         avAdmin.shuffling_policy.list_muted
                     </p>
@@ -335,13 +366,16 @@
                       ng-disabled="!electionEditable()"
                       ng-i18next="[placeholder]avAdmin.shuffling_policy.list_placeholder"
                       ng-model="internal.shuffling_cat_list"/>
-                </div>
             </div>
 
             <!-- show points-->
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="show-points-policy" ng-i18next>avAdmin.show_points_policy.label</label>
-                <div class="col-sm-10">
+            <div
+              av-abstract-setting
+              short-value="{{ q.extra_options.show_points }}"
+              title="avAdmin.show_points_policy.label"
+              for="show-points-policy"
+              description=""
+              help-path="election/question-show-points/">
                     <div class="checkbox">
                         <label>
                             <input
@@ -354,13 +388,16 @@
                             <span ng-i18next>avAdmin.show_points_policy.text</span>
                         </label>
                     </div>
-                </div>
             </div>
 
             <!-- Candidates -->
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="candidates" ng-i18next>avAdmin.questions.candidates.label</label>
-                <div class="col-sm-10">
+            <div
+              av-abstract-setting
+              short-value="{{ q.answers }}"
+              title="avAdmin.questions.candidates.label"
+              for="candidates"
+              description=""
+              help-path="election/question-candidates/">
                     <p class="text-muted">
                         <span ng-i18next>
                           avAdmin.questions.candidates.placeholder
@@ -424,7 +461,6 @@
                         </div>
 
                     </div>
-                </div>
             </div>
             <!-- endof candidates -->
 
