@@ -222,6 +222,7 @@ module.exports = function (grunt) {
           {src: ['img/**'], dest: 'dist/'},
           {src: ['img/**'], dest: 'dist/'},
           {src: ['temp_data/**'], dest: 'dist/'},
+          {src: ['bower_components/avCommon/dist/img/flags.png'], dest: 'dist/img/flags.png'},
           {
             expand: true,
             cwd:'bower_components/avCommon/themes',
@@ -279,7 +280,8 @@ module.exports = function (grunt) {
             {selector:'body',html:'<script src="/admin/app-v103111.4.min.js"></script>'},
             {selector:'body',html:'<script src="/admin/avPlugins-v103111.4.js"></script>'},
             {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/admin/" href="/admin/themes/default/app.min.css">'},
-            {selector:'head',html:'<link rel="stylesheet" id="plugins" data-base="/admin/" href="/admin/plugins.css">'}
+            {selector:'head',html:'<link rel="stylesheet" id="plugins" data-base="/admin/" href="/admin/plugins.css">'},
+            {selector:'head',html:'<link rel="stylesheet" href="election/intlTelInput.css" />'}
           ]
         },
         src:'index.html',
