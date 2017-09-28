@@ -140,6 +140,7 @@
               min=1 step=1
               class="form-control"
               ng-disabled="!electionEditable()"
+              av-number-input
               ng-model="election.num_successful_logins_allowed"
               ui-keypress="{
                 37: 'incLogins(-1, $event)',
