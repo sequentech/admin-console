@@ -311,11 +311,8 @@ module.exports = function (grunt) {
                 extDot: 'first'
             },
             {
-                cwd:'vendor/hopscotch-0.3.1/css/',
-                src: ['hopscotch.css'],
-                dest: 'dist/',
-                ext: '.min.css',
-                extDot: 'first'
+                src: ['vendor/hopscotch-0.3.1/css/hopscotch.css'],
+                dest: 'dist/vendor.min.css'
             }
         ]
       },
