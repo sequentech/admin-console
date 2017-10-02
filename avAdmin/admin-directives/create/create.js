@@ -30,7 +30,8 @@ angular.module('avAdmin')
       $modal,
       ConfigService,
       ElectionLimits,
-      CheckerService)
+      CheckerService,
+      MustExtraFieldsService)
     {
       // we use it as something similar to a controller here
       function link(scope, element, attrs)
@@ -867,6 +868,18 @@ angular.module('avAdmin')
                 }
             });
         }
+        
+        function checkMustExtra() {
+            var index = 0;
+            for (; index < scope.elections.length; index++) {
+              MustExtraFieldsService(scope.elections[index]);
+            }
+        }
+        checkMustExtra();
+
+        scope.$watch("elections", function (newVal, oldVal) {
+          scope.$evalAsync(checkMustExtra});
+        }, true);
 
         angular.extend(scope, {
           createElections: createElections,
