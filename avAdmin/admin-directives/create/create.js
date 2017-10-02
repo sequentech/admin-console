@@ -878,7 +878,7 @@ angular.module('avAdmin')
         checkMustExtra();
 
         scope.$watch("elections", function (newVal, oldVal) {
-          scope.$evalAsync(checkMustExtra});
+          scope.$evalAsync(checkMustExtra);
         }, true);
 
         angular.extend(scope, {
