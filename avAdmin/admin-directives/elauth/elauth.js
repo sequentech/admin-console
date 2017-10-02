@@ -68,7 +68,7 @@ angular.module('avAdmin')
                 scope.election.census.voters, 
                 function (voter) {
                   if (_.isObject(voter.metadata)) {
-                    delete voter.metadata.tlf;
+                    delete voter.metadata.email;
                   }
                 });
             }
