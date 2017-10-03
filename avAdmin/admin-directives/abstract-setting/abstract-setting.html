@@ -5,8 +5,8 @@
       ng-click="toggleExpand()"
       ng-if="!!expanded"
       aria-hidden="true"
-      ng-mouseover="hoverShow = true"
-      ng-mouseleave="hoverShow = false"
+      ng-mouseover="mouseOver()"
+      ng-mouseleave="mouseLeave()"
       ng-show="collapsable && hoverShow">
     </span>
     <span
