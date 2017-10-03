@@ -22,6 +22,7 @@ angular.module('avAdmin')
     {
         function launchOnboardingTour()
         {
+            /* jshint ignore:start */
             var autolaunchTour = {
                 state: null,
                 tour:  null
@@ -207,6 +208,7 @@ angular.module('avAdmin')
                 $(hopscotch.getCurrTour().steps[hopscotch.getCurrStepNum()].highlightTarget).addClass("onboarding-focus");
             });
             hopscotch.startTour(tour);
+            /* jshint ignore:end */
         }
 
         // we use it as something similar to a controller here
