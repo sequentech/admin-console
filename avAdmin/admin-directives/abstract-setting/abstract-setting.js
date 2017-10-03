@@ -39,8 +39,8 @@ angular.module('avAdmin')
         scope.html = '';
         scope.helpPath = '';
         scope.forLabel = '';
-        scope.expanded = false;
-        scope.collapsable = true;
+        scope.expanded = true;
+        scope.collapsable = false;
         scope.shortValue = '';
 
         function watchAttr(name) {

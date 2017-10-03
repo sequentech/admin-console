@@ -3,7 +3,7 @@
     <span
       class="expanded-glyphicon glyphicon glyphicon-chevron-up"
       ng-click="toggleExpand()"
-      ng-class="{pointer: !expanded}"
+      ng-class="{pointer: !expanded && collapsable}"
       ng-if="!!expanded"
       aria-hidden="true"
       ng-show="collapsable">
@@ -11,14 +11,17 @@
     <span
       class="expanded-glyphicon glyphicon glyphicon-chevron-down"
       ng-click="toggleExpand()"
-      ng-class="{pointer: !expanded}"
+      ng-class="{pointer: !expanded && collapsable}"
       ng-if="!expanded"
       aria-hidden="true"
       ng-show="collapsable">
     </span>
     <div class="col-xs-6 gray-back" ng-click="toggleExpand()">
       <div class="rower">
-        <label class="title pointer" ng-i18next>
+        <label
+          class="title"
+          ng-class="{pointer: collapsable}"
+          ng-i18next>
         {{ title }}
         </label>
       </div>
@@ -30,7 +33,7 @@
     </div>
     <div 
       class="col-xs-6"
-      ng-class="{pointer: !expanded, nopointer: !!expanded, whiteback: !!expanded}"
+      ng-class="{pointer: !expanded && collapsable, nopointer: !!expanded && collapsable, whiteback: !!expanded}"
       ng-click="!expanded && toggleExpand()">
       <div 
         class="abstract-widget"
@@ -40,7 +43,8 @@
         class="collapsed-widget"
         ng-show="!expanded">
           <div
-            class="pointer collapsed-input">
+            class="collapsed-input"
+            ng-class="{pointer: collapsable}">
           {{ shortValue }}
           </div>
        </div>

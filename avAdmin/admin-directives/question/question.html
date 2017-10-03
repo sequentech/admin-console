@@ -310,6 +310,8 @@
             <!-- Shuffling categories policy-->
             <div
               av-abstract-setting
+              collapsable="true"
+              expanded="false"
               short-value="{{ q.extra_options.shuffle_categories }}"
               title="avAdmin.shuffling_policy.categories_label"
               for="shuffling-categories-policy"
@@ -332,6 +334,8 @@
             <!-- Shuffling options policy -->
             <div
               av-abstract-setting
+              collapsable="true"
+              expanded="false"
               short-value="{{ internal.shuffle_opts_policy }}"
               title="avAdmin.shuffling_policy.options_label"
               for="shuffleoptions"
@@ -354,6 +358,8 @@
             <div
               ng-if="'shuffle-some' === internal.shuffle_opts_policy"
               av-abstract-setting
+              collapsable="true"
+              expanded="false"
               short-value="{{ internal.shuffling_cat_list }}"
               title="avAdmin.shuffling_policy.list_label"
               for="title"
@@ -374,6 +380,8 @@
             <!-- show points-->
             <div
               av-abstract-setting
+              collapsable="true"
+              expanded="false"
               short-value="{{ q.extra_options.show_points }}"
               title="avAdmin.show_points_policy.label"
               for="show-points-policy"
