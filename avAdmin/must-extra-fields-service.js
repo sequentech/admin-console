@@ -28,7 +28,7 @@ angular.module('avAdmin')
         must = {
           "must": true,
           "name": "email",
-          "type": "text",
+          "type": "email",
           "required": true,
           "min": 2,
           "max": 200,
@@ -63,6 +63,13 @@ angular.module('avAdmin')
         if (e.name === name) {
           found = true;
           e.must = true;
+          if ('email' === e.name) {
+            e.type = 'email';
+          } else if ('tlf' === e.name) {
+            e.type = 'tlf';
+          } else if ('dni' === e.name) {
+            e.type = 'text';
+          }
         } else {
           e.must = false;
         }
