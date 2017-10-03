@@ -1,26 +1,26 @@
 <div class="abstract-setting" title="{{ description | i18next }}">
   <div class="rower abstract-borders">
     <span
-      class="expanded-glyphicon glyphicon glyphicon-chevron-up"
+      class="expanded-glyphicon glyphicon glyphicon-chevron-up pointer"
       ng-click="toggleExpand()"
-      ng-class="{pointer: !expanded && collapsable}"
       ng-if="!!expanded"
       aria-hidden="true"
       ng-show="collapsable">
     </span>
     <span
-      class="expanded-glyphicon glyphicon glyphicon-chevron-down"
+      class="expanded-glyphicon glyphicon glyphicon-chevron-down pointer"
       ng-click="toggleExpand()"
-      ng-class="{pointer: !expanded && collapsable}"
       ng-if="!expanded"
       aria-hidden="true"
       ng-show="collapsable">
     </span>
-    <div class="col-xs-6 gray-back" ng-click="toggleExpand()">
+    <div
+      class="col-xs-6 gray-back"
+      ng-click="toggleExpand()"
+      ng-class="{pointer: collapsable, nopointer: !collapsable}">
       <div class="rower">
         <label
           class="title"
-          ng-class="{pointer: collapsable}"
           ng-i18next>
         {{ title }}
         </label>
@@ -33,7 +33,7 @@
     </div>
     <div 
       class="col-xs-6"
-      ng-class="{pointer: !expanded && collapsable, nopointer: !!expanded && collapsable, whiteback: !!expanded}"
+      ng-class="{pointer: !expanded && collapsable, nopointer: !!expanded, whiteback: !!expanded}"
       ng-click="!expanded && toggleExpand()">
       <div 
         class="abstract-widget"
@@ -43,8 +43,7 @@
         class="collapsed-widget"
         ng-show="!expanded">
           <div
-            class="collapsed-input"
-            ng-class="{pointer: collapsable}">
+            class="collapsed-input">
           {{ shortValue }}
           </div>
        </div>
