@@ -5,14 +5,18 @@
       ng-click="toggleExpand()"
       ng-if="!!expanded"
       aria-hidden="true"
-      ng-show="collapsable">
+      ng-mouseover="hoverShow = true"
+      ng-mouseleave="hoverShow = false"
+      ng-show="collapsable && hoverShow">
     </span>
     <span
       class="expanded-glyphicon glyphicon glyphicon-chevron-down pointer"
       ng-click="toggleExpand()"
       ng-if="!expanded"
       aria-hidden="true"
-      ng-show="collapsable">
+      ng-mouseover="hoverShow = true"
+      ng-mouseleave="hoverShow = false"
+      ng-show="collapsable && hoverShow">
     </span>
     <div
       class="col-xs-6 gray-back"
@@ -21,6 +25,7 @@
       <div class="rower">
         <label
           class="title"
+           ng-class="{pointer: collapsable, nopointer: !collapsable}"
           ng-i18next>
         {{ title }}
         </label>

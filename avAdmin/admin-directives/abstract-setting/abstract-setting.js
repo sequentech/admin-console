@@ -42,6 +42,7 @@ angular.module('avAdmin')
         scope.expanded = true;
         scope.collapsable = false;
         scope.shortValue = '';
+        scope.hoverShow = false;
 
         function watchAttr(name) {
           attrs.$observe(name, function (newValue) {
