@@ -44,10 +44,10 @@ angular.module('avAdmin')
         scope.shortValue = '';
         scope.hoverShow = false;
         scope.mouseOver = function () {
-          hoverShow = true;
+          scope.hoverShow = true;
         };
         scope.mouseLeave = function () {
-          hoverShow = false;
+          scope.hoverShow = false;
         };
 
         function watchAttr(name) {
