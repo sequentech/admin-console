@@ -1,12 +1,34 @@
 <div class="abstract-setting" title="{{ description | i18next }}">
   <div class="rower abstract-borders">
-    <span class="expanded-glyphicon glyphicon glyphicon-chevron-up" ng-if="!!expanded" aria-hidden="true">
+    <span
+      class="expanded-glyphicon glyphicon glyphicon-chevron-up pointer ng-cloack"
+      ng-click="toggleExpand()"
+      ng-mouseenter="mouseEnter()"
+      ng-mouseleave="mouseLeave()"
+      ng-if="!!expanded"
+      aria-hidden="true"
+      ng-show="collapsable && hoverShow">
     </span>
-    <span class="expanded-glyphicon glyphicon glyphicon-chevron-down" ng-if="!expanded" aria-hidden="true">
+    <span
+      class="expanded-glyphicon glyphicon glyphicon-chevron-down pointer ng-cloack"
+      ng-click="toggleExpand()"
+      ng-mouseenter="mouseEnter()"
+      ng-mouseleave="mouseLeave()"
+      ng-if="!expanded"
+      aria-hidden="true"
+      ng-show="collapsable && hoverShow">
     </span>
-    <div class="col-xs-6 gray-back" ng-click="toggleExpand()">
+    <div
+      class="col-xs-6 gray-back"
+      ng-click="toggleExpand()"
+      ng-mouseenter="mouseEnter()"
+      ng-mouseleave="mouseLeave()"
+      ng-class="{pointer: collapsable, nopointer: !collapsable}">
       <div class="rower">
-        <label class="title pointer" ng-i18next>
+        <label
+          class="title"
+           ng-class="{pointer: collapsable, nopointer: !collapsable}"
+          ng-i18next>
         {{ title }}
         </label>
       </div>
@@ -18,8 +40,10 @@
     </div>
     <div 
       class="col-xs-6"
-      ng-class="{pointer: !expanded, nopointer: !!expanded, whiteback: !!expanded}"
-      ng-click="!expanded && toggleExpand()">
+      ng-class="{pointer: !expanded && collapsable, nopointer: !!expanded, whiteback: !!expanded}"
+      ng-click="!expanded && toggleExpand()"
+      ng-mouseenter="!expanded && mouseEnter()"
+      ng-mouseleave="!expanded && mouseLeave()">
       <div 
         class="abstract-widget"
         ng-show="!!expanded">
@@ -28,7 +52,7 @@
         class="collapsed-widget"
         ng-show="!expanded">
           <div
-            class="pointer collapsed-input">
+            class="collapsed-input">
           {{ shortValue }}
           </div>
        </div>
