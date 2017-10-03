@@ -43,7 +43,7 @@ angular.module('avAdmin')
         scope.collapsable = false;
         scope.shortValue = '';
         scope.hoverShow = false;
-        scope.mouseOver = function () {
+        scope.mouseEnter = function () {
           scope.hoverShow = true;
         };
         scope.mouseLeave = function () {

@@ -1,26 +1,28 @@
 <div class="abstract-setting" title="{{ description | i18next }}">
   <div class="rower abstract-borders">
     <span
-      class="expanded-glyphicon glyphicon glyphicon-chevron-up pointer"
+      class="expanded-glyphicon glyphicon glyphicon-chevron-up pointer ng-cloack"
       ng-click="toggleExpand()"
+      ng-mouseenter="mouseEnter()"
+      ng-mouseleave="mouseLeave()"
       ng-if="!!expanded"
       aria-hidden="true"
-      ng-mouseover="mouseOver()"
-      ng-mouseleave="mouseLeave()"
       ng-show="collapsable && hoverShow">
     </span>
     <span
-      class="expanded-glyphicon glyphicon glyphicon-chevron-down pointer"
+      class="expanded-glyphicon glyphicon glyphicon-chevron-down pointer ng-cloack"
       ng-click="toggleExpand()"
+      ng-mouseenter="mouseEnter()"
+      ng-mouseleave="mouseLeave()"
       ng-if="!expanded"
       aria-hidden="true"
-      ng-mouseover="hoverShow = true"
-      ng-mouseleave="hoverShow = false"
       ng-show="collapsable && hoverShow">
     </span>
     <div
       class="col-xs-6 gray-back"
       ng-click="toggleExpand()"
+      ng-mouseenter="mouseEnter()"
+      ng-mouseleave="mouseLeave()"
       ng-class="{pointer: collapsable, nopointer: !collapsable}">
       <div class="rower">
         <label
@@ -39,7 +41,9 @@
     <div 
       class="col-xs-6"
       ng-class="{pointer: !expanded && collapsable, nopointer: !!expanded, whiteback: !!expanded}"
-      ng-click="!expanded && toggleExpand()">
+      ng-click="!expanded && toggleExpand()"
+      ng-mouseenter="!expanded && mouseEnter()"
+      ng-mouseleave="!expanded && mouseLeave()">
       <div 
         class="abstract-widget"
         ng-show="!!expanded">
