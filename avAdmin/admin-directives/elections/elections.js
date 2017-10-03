@@ -103,13 +103,6 @@ angular.module('avAdmin')
                     placement: "bottom"
                 },
                 {
-                    title: "Start the election",
-                    content: "Click this button to start the election and send an authentication email to all census.",
-                    target: "button.actionbtn.btn.election-status-action-2",
-                    highlightTarget: "button.actionbtn.btn.election-status-action-2",
-                    placement: "top"
-                },
-                {
                     title: "Help",
                     content: "If you need any further help, you can click here to get it.",
                     target: "#navbar-collapse-1 .help-dropdown a",
@@ -124,6 +117,15 @@ angular.module('avAdmin')
                     placement: "top",
                     xOffset: -50,
                     arrowOffset: "center"
+                },
+                {
+                    title: "Start the election",
+                    content: "Click this button to start the election and send an authentication email to all census.",
+                    target: "button.actionbtn.btn.election-status-action-2",
+                    highlightTarget: "button.actionbtn.btn.election-status-action-2",
+                    placement: "top",
+                    nextOnTargetClick: true,
+                    showNextButton: false
                 }
 
                 ],
