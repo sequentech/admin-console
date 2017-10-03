@@ -1,8 +1,20 @@
 <div class="abstract-setting" title="{{ description | i18next }}">
   <div class="rower abstract-borders">
-    <span class="expanded-glyphicon glyphicon glyphicon-chevron-up" ng-if="!!expanded" aria-hidden="true">
+    <span
+      class="expanded-glyphicon glyphicon glyphicon-chevron-up"
+      ng-click="toggleExpand()"
+      ng-class="{pointer: !expanded}"
+      ng-if="!!expanded"
+      aria-hidden="true"
+      ng-show="collapsable">
     </span>
-    <span class="expanded-glyphicon glyphicon glyphicon-chevron-down" ng-if="!expanded" aria-hidden="true">
+    <span
+      class="expanded-glyphicon glyphicon glyphicon-chevron-down"
+      ng-click="toggleExpand()"
+      ng-class="{pointer: !expanded}"
+      ng-if="!expanded"
+      aria-hidden="true"
+      ng-show="collapsable">
     </span>
     <div class="col-xs-6 gray-back" ng-click="toggleExpand()">
       <div class="rower">
