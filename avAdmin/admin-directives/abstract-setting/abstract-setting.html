@@ -1,23 +1,25 @@
 <div class="abstract-setting" title="{{ description | i18next }}">
   <div class="rower abstract-borders">
-    <span
-      class="expanded-glyphicon glyphicon glyphicon-chevron-up pointer ng-cloack"
-      ng-click="toggleExpand()"
-      ng-mouseenter="mouseEnter()"
-      ng-mouseleave="mouseLeave()"
-      ng-if="!!expanded"
-      aria-hidden="true"
-      ng-show="collapsable && hoverShow">
-    </span>
-    <span
-      class="expanded-glyphicon glyphicon glyphicon-chevron-down pointer ng-cloack"
-      ng-click="toggleExpand()"
-      ng-mouseenter="mouseEnter()"
-      ng-mouseleave="mouseLeave()"
-      ng-if="!expanded"
-      aria-hidden="true"
-      ng-show="collapsable && hoverShow">
-    </span>
+    <div class="collapse-icon">
+      <span
+        class="expanded-glyphicon glyphicon glyphicon-chevron-up pointer ng-cloack"
+        ng-click="toggleExpand()"
+        ng-mouseenter="mouseEnter()"
+        ng-mouseleave="mouseLeave()"
+        ng-if="!!expanded"
+        aria-hidden="true"
+        ng-show="collapsable && hoverShow">
+      </span>
+      <span
+        class="expanded-glyphicon glyphicon glyphicon-chevron-down pointer ng-cloack"
+        ng-click="toggleExpand()"
+        ng-mouseenter="mouseEnter()"
+        ng-mouseleave="mouseLeave()"
+        ng-if="!expanded"
+        aria-hidden="true"
+        ng-show="collapsable && hoverShow">
+      </span>
+    </div>
     <div
       class="col-xs-6 gray-back"
       ng-click="toggleExpand()"
