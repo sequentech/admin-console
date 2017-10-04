@@ -20,10 +20,9 @@ angular.module('avAdmin')
     'OnboardingTourService',
     function()
     {
-        /* jshint ignore:start */
         return function (el)
         {
-            var hopscotch = hopscotch;
+            var hopscotch = window.hopscotch;
             var autolaunchTour = {
                 state: null,
                 tour:  null
@@ -239,7 +238,6 @@ angular.module('avAdmin')
                 }
             );
             hopscotch.startTour(tour);
-        }
-        /* jshint ignore:end */
+        };
     }
    );
