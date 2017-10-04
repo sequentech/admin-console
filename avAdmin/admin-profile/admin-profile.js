@@ -86,6 +86,12 @@ angular.module('avAdmin')
           $scope.showWorking = true;
           Authmethod.updateUserExtra(changed)
             .success(function (d) {
+                // launch the onboarding tour if the profile has been correctly
+                // filled up and the election list is zero
+                if ($window.electionsTotalCount !== undefined && $window.electionsTotalCount === 0)
+                {
+                    OnboardingTourService();
+                }
               $modalInstance.close(changed);
             })
             .error(function (e) {
