@@ -26,7 +26,7 @@ angular.module('avAdmin')
         $sce,
         Authmethod,
         fields_def,
-        user_fields,
+        user_fields
     ) {
       var field;
       for (var i = 0; i < fields_def.length; i++) {
@@ -82,7 +82,6 @@ angular.module('avAdmin')
           {
             OnboardingTourService();
           }
-        }
         } else {
           $scope.showWorking = true;
           Authmethod.updateUserExtra(changed)

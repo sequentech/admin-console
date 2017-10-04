@@ -20,11 +20,10 @@ angular.module('avAdmin')
     'OnboardingTourService',
     function()
     {
+        /* jshint ignore:start */
         return function (el)
         {
-            /* jshint ignore:start */
             var hopscotch = hopscotch;
-            /* jshint ignore:end */
             var autolaunchTour = {
                 state: null,
                 tour:  null
@@ -42,19 +41,15 @@ angular.module('avAdmin')
                 console.log("stateCallBack, launching tour");
                 autolaunchTour.tour = autolaunchTour.state = null;
                 setTimeout(
-                    function ()
-                    {
-                        hopscotch.startTour(autolaunchTour.tour);
-                    },
-                    300
-                );
+                    function () { hopscotch.startTour(autolaunchTour.tour); },
+                    300);
             }
             $(window).on("angular-state-change-success", stateCallback);
 
             function closeTour()
             {
                 $(".onboarding-focus").removeClass("onboarding-focus");
-                $("#onboarding-overlay").fadeOut({complete: function() { $(this).remove() }});
+                $("#onboarding-overlay").fadeOut({complete: function() { $(this).remove(); }});
             }
 
             function onStartTour()
@@ -245,5 +240,6 @@ angular.module('avAdmin')
             );
             hopscotch.startTour(tour);
         }
+        /* jshint ignore:end */
     }
    )

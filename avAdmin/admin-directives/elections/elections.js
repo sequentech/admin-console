@@ -53,9 +53,6 @@ angular.module('avAdmin')
                         scope.page += 1;
 
                         $window.electionsTotalCount = data.total_count;
-                        if (data.total_count === 0) {
-                            launchOnboardingTour();
-                        }
 
                         if (data.end_index === data.total_count) {
                             scope.nomore = true;
