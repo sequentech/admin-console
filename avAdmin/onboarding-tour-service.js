@@ -146,13 +146,13 @@ angular.module('avAdmin')
                 onStop: function()
                 {
                     closeTour();
-                    hopscotch.startTour(helpTour);
+                    setTimeout(function () { hopscotch.startTour(helpTour); }, 300);
                 },
                 onEnd: closeTour,
                 onClose: function()
                 {
                     closeTour();
-                    hopscotch.startTour(helpTour);
+                    setTimeout(function () { hopscotch.startTour(helpTour); }, 300);
                 }
             };
 
@@ -224,7 +224,7 @@ angular.module('avAdmin')
                 onClose: function()
                 {
                     closeTour();
-                    hopscotch.startTour(helpTour);
+                    setTimeout(function () { hopscotch.startTour(helpTour); }, 300);
                 }
             };
 
