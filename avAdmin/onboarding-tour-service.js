@@ -18,11 +18,11 @@
 angular.module('avAdmin')
   .factory(
     'OnboardingTourService',
-    function()
+    function($i18next, $window)
     {
         return function (el)
         {
-            var hopscotch = window.hopscotch;
+            var hopscotch = $window.hopscotch;
             var autolaunchTour = {
                 state: null,
                 tour:  null
@@ -36,7 +36,7 @@ angular.module('avAdmin')
                     console.log("stateCallBack, ignoring");
                     return;
                 }
-                $(window).off("angular-state-change-success", stateCallback);
+                $($window).off("angular-state-change-success", stateCallback);
                 console.log("stateCallBack, launching tour");
                 var nextTour = autolaunchTour.tour;
                 autolaunchTour.tour = autolaunchTour.state = null;
@@ -44,7 +44,7 @@ angular.module('avAdmin')
                     function () { hopscotch.startTour(nextTour); },
                     300);
             }
-            $(window).on("angular-state-change-success", stateCallback);
+            $($window).on("angular-state-change-success", stateCallback);
 
             function closeTour()
             {
@@ -86,15 +86,15 @@ angular.module('avAdmin')
                 id: "help-hopscotch",
                 steps: [
                     {
-                        title: "Help",
-                        content: "If you need any further help, you can click here to get it. You can <strong>launch again the tour</strong> there too!",
+                        title: $i18next("avAdmin.onboarding.help_tour.step0_help_title"),
+                        content: $i18next("avAdmin.onboarding.help_tour.step0_help_description"),
                         target: "#navbar-collapse-1 .help-dropdown a",
                         highlightTarget: "#navbar-collapse-1 .help-dropdown a",
                         placement: "bottom"
                     },
                     {
-                        title: "Assistance",
-                        content: "If you have any question, we'll be glad to answer you quickly through the chat.",
+                        title: $i18next("avAdmin.onboarding.help_tour.step1_chat_title"),
+                        content: $i18next("avAdmin.onboarding.help_tour.step1_chat_description"),
                         target: ".zsiq_cnt",
                         highlightTarget: ".zsiq_cnt",
                         placement: "top",

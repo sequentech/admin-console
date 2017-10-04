@@ -33,6 +33,15 @@
       "title": "Perfil",
       "save": "Guardar cambios"
     },
+    "onboarding": {
+      "help_tour": {
+        "step0_help_title": "Help",
+        "step0_help_content": "If you need any further help, you can click here to get it. You can <strong>launch again the tour</strong> there too!",
+
+        "step1_chat_title": "Chat with us",
+        "step1_chat_content": "If you have any question, we'll be glad to answer you quickly through the chat."
+      }
+    },
     "show_points_policy": {
       "label": "Mostrar puntos",
       "text": "Mostrar los puntos que la papeleta da a cada opción seleccionada"
