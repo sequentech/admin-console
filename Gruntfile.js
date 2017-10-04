@@ -88,7 +88,7 @@ module.exports = function (grunt) {
         fs.readFile('avPluginsConfig.js', function(err, data) {
             if (err) {
                 grunt.log.ok('No avPluginsConfig.js file found, creating...');
-                var avPluginsConfigText = 
+                var avPluginsConfigText =
                     "var AV_PLUGINS_CONFIG_VERSION = '" + AV_CONFIG_VERSION + "';\n" +
                     "angular.module('avPluginsConfig', [])\n" +
                     "  .factory('PluginsConfigService', function() {\n" +
@@ -103,19 +103,19 @@ module.exports = function (grunt) {
                     "    return new PluginsConfigServiceProvider();\n" +
                     "    }];\n" +
                     "   });";
-                fs.writeFile("avPluginsConfig.js", 
-                    avPluginsConfigText, 
+                fs.writeFile("avPluginsConfig.js",
+                    avPluginsConfigText,
                     function(err) {
                         if(err) {
                             grunt.log.error(
                                 'Error creating avPluginsConfig.js file');
                             done(false);
                         } else {
-                            grunt.log.ok('Created avPluginsConfig.js file, ' + 
+                            grunt.log.ok('Created avPluginsConfig.js file, ' +
                                 'trying to read it again...');
                             checkAvPluginsConfig();
                         }
-                }); 
+                });
             } else {
                 var match = data.toString().match(
                     /AV_PLUGINS_CONFIG_VERSION = [\'\"]([\w\.]*)[\'\"];/);
@@ -164,7 +164,11 @@ module.exports = function (grunt) {
       main: {
         options: {
             jshintrc: '.jshintrc',
-            reporter: require('jshint-stylish')
+            reporter: require('jshint-stylish'),
+            ignores: [
+                'vendor/hopscotch-0.3.1/js/hopscotch.js'
+            ]
+
         },
         src: createFolderGlobs('*.js')
       }
@@ -220,6 +224,12 @@ module.exports = function (grunt) {
       main: {
         files: [
           {src: ['img/**'], dest: 'dist/'},
+          {
+              expand: true,
+              cwd:'vendor/hopscotch-0.3.1/img/',
+              src: ['**'],
+              dest: 'dist/img/'
+          },
           {src: ['img/**'], dest: 'dist/'},
           {src: ['temp_data/**'], dest: 'dist/'},
           {src: ['bower_components/avCommon/dist/img/flags.png'], dest: 'dist/img/flags.png'},
@@ -281,7 +291,8 @@ module.exports = function (grunt) {
             {selector:'body',html:'<script src="/admin/avPlugins-v103111.5.js"></script>'},
             {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/admin/" href="/admin/themes/default/app.min.css">'},
             {selector:'head',html:'<link rel="stylesheet" id="plugins" data-base="/admin/" href="/admin/plugins.css">'},
-            {selector:'head',html:'<link rel="stylesheet" href="election/intlTelInput.css" />'}
+            {selector:'head',html:'<link rel="stylesheet" href="election/intlTelInput.css" />'},
+            {selector:'head',html:'<link rel="stylesheet" id="vendor-css" data-base="/admin/" href="/admin/vendor.min.css">'}
           ]
         },
         src:'index.html',
@@ -290,20 +301,29 @@ module.exports = function (grunt) {
     },
     cssmin: {
       main: {
-        files: [{
-            expand: true,
-            cwd:'temp/bower_components/avCommon/themes',
-            src: ['**/app.css'],
-            dest: 'dist/themes/',
-            ext: '.min.css',
-            extDot: 'first'
-        }]
+        files: [
+            {
+                expand: true,
+                cwd:'temp/bower_components/avCommon/themes',
+                src: ['**/app.css'],
+                dest: 'dist/themes/',
+                ext: '.min.css',
+                extDot: 'first'
+            },
+            {
+                src: ['vendor/hopscotch-0.3.1/css/hopscotch.css'],
+                dest: 'dist/vendor.min.css'
+            }
+        ]
       },
     },
     concat: {
       main: {
         files: {
           'dist/plugins.css': ['temp/plugins/**/*.css'],
+          'dist/vendor.css': [
+            'vendor/hopscotch-0.3.1/css/hopscotch.css'
+          ],
           'temp/libcompat.js': [
             'vendor/jquery.compat/jquery-1.11.1.js',
             'vendor/json3/json-v3.3.2.js',

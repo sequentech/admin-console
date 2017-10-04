@@ -33,6 +33,7 @@ angular.module(
   'avPluginsConfig',
   'jm.i18next',
   'avUi',
+  'ngOnboarding',
   'avRegistration',
   'avTest',
   'avAdmin',
@@ -271,6 +272,7 @@ angular.module('agora-gui-admin').run(function($http, $rootScope, ConfigService)
     function(event, toState, toParams, fromState, fromParams) {
       console.log("change success");
       $("#angular-preloading").hide();
+      $(window).trigger("angular-state-change-success", [event, toState, toParams, fromState, fromParams]);
     });
 });
 
