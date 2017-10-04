@@ -291,7 +291,7 @@ module.exports = function (grunt) {
             {selector:'body',html:'<script src="/admin/avPlugins-v103111.5.js"></script>'},
             {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/admin/" href="/admin/themes/default/app.min.css">'},
             {selector:'head',html:'<link rel="stylesheet" id="plugins" data-base="/admin/" href="/admin/plugins.css">'},
-            {selector:'head',html:'<link rel="stylesheet" href="election/intlTelInput.css" />'}
+            {selector:'head',html:'<link rel="stylesheet" href="election/intlTelInput.css" />'},
             {selector:'head',html:'<link rel="stylesheet" id="vendor-css" data-base="/admin/" href="/admin/vendor.min.css">'}
           ]
         },
