@@ -242,4 +242,4 @@ angular.module('avAdmin')
         }
         /* jshint ignore:end */
     }
-   )
+   );
