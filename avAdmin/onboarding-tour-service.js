@@ -112,29 +112,29 @@ angular.module('avAdmin')
                 id: "dashboard-hopscotch",
                 steps: [
                     {
-                        title: "Test election",
-                        content: "You have created a test election. Test elections have limited census size and a real election can only be created out of a successfully tallied test election.",
+                        title: $i18next("avAdmin.onboarding.dashboard_tour.step0_test_title"),
+                        content: $i18next("avAdmin.onboarding.dashboard_tour.step0_test_content"),
                         target: ".head-notification.warn-notification.ng-scope",
                         highlightTarget: ".head-notification.warn-notification.ng-scope",
                         placement: "bottom"
                     },
                     {
-                        title: "Real election",
-                        content: "Once this election is tallied, you will be able to create a real election clicking here.",
+                        title: $i18next("avAdmin.onboarding.dashboard_tour.step1_real_title"),
+                        content: $i18next("avAdmin.onboarding.dashboard_tour.step1_real_content"),
                         target: "button[ng-click='clickOnCreateRealElection()']",
                         highlightTarget: "button[ng-click='clickOnCreateRealElection()']",
                         placement: "top"
                     },
                     {
-                        title: "Election status",
-                        content: "This section shows you the state of the election and a button to move election to the next status.",
+                        title: $i18next("avAdmin.onboarding.dashboard_tour.step2_status_title"),
+                        content: $i18next("avAdmin.onboarding.dashboard_tour.step2_status_content"),
                         target: ".statusbar.row.text-center",
                         highlightTarget: ".statusbar.row.text-center",
                         placement: "bottom"
                     },
                     {
-                        title: "Start the election",
-                        content: "Click this button to start the election and send an authentication email to all census.",
+                        title: $i18next("avAdmin.onboarding.dashboard_tour.step3_start_title"),
+                        content: $i18next("avAdmin.onboarding.dashboard_tour.step3_start_content"),
                         target: "button.actionbtn.btn.election-status-action-2",
                         highlightTarget: "button.actionbtn.btn.election-status-action-2",
                         placement: "top",
@@ -160,8 +160,8 @@ angular.module('avAdmin')
                 id: "hello-hopscotch",
                 steps: [
                     {
-                        title: "Create an election",
-                        content: "Start creating a test election clicking in the <strong>New Election</strong> button. <br><br>Or watch our intro video:<br/>VIDEO_HERE",
+                        title: $i18next("avAdmin.onboarding.hello_tour.step0_create_title"),
+                        content: $i18next("avAdmin.onboarding.hello_tour.step0_create_content"),
                         target: "a[ui-sref='admin.new()']",
                         highlightTarget: "a[ui-sref='admin.new()']",
                         placement: "right",
@@ -169,23 +169,23 @@ angular.module('avAdmin')
                         showNextButton: false
                     },
                     {
-                        title: "Change the title",
-                        content: "Now you can edit all the details of the election, for example you could edit the election clicking title here.",
+                        title: $i18next("avAdmin.onboarding.hello_tour.step1_change_title"),
+                        content: $i18next("avAdmin.onboarding.hello_tour.step1_change_content"),
                         target: "[title='avAdmin.basic.title.label']",
                         highlightTarget: "[title='avAdmin.basic.title.label']",
                         placement: "bottom",
                         delay: 300
                     },
                     {
-                        title: "Sidebar",
-                        content: "You can personalize the election clicking through these sections.",
+                        title: $i18next("avAdmin.onboarding.hello_tour.step2_sidebar_title"),
+                        content: $i18next("avAdmin.onboarding.hello_tour.step2_sidebar_content"),
                         target: "ul[ng-if='current']",
                         highlightTarget: "ul[ng-if='current']",
                         placement: "right"
                     },
                     {
-                        title: "Review election to create it",
-                        content: "Once you are done, click the <strong>Create Election</strong> button to review and then create the election.",
+                        title: $i18next("avAdmin.onboarding.hello_tour.step3_review_title"),
+                        content: $i18next("avAdmin.onboarding.hello_tour.step3_review_content"),
                         target: "a[href='/admin/create/']",
                         highlightTarget: "a[href='/admin/create/']",
                         placement: "right",
@@ -193,18 +193,8 @@ angular.module('avAdmin')
                         showNextButton: false
                     },
                     {
-                        title: "Create the election",
-                        content: "Click this button to create the election. <br><br>Note that the election won't be created until you do so, and for security reasons it won't be editable afterwards.",
-                        target: "button[ng-click='createElections()']",
-                        highlightTarget: "button[ng-click='createElections()']",
-                        placement: "top",
-                        nextOnTargetClick: true,
-                        showNextButton: false,
-                        delay: 300
-                    },
-                    {
-                        title: "Create the election",
-                        content: "<strong>Click this button</strong> to create the election. <br><br>Note that the election won't be created until you do so, and for security reasons it won't be editable afterwards.",
+                        title: $i18next("avAdmin.onboarding.hello_tour.step4_create2_title"),
+                        content: $i18next("avAdmin.onboarding.hello_tour.step4_create2_content"),
                         target: "button[ng-click='createElections()']",
                         highlightTarget: "button[ng-click='createElections()']",
                         placement: "top",

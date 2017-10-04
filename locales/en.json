@@ -40,6 +40,35 @@
 
         "step1_chat_title": "Chat with us",
         "step1_chat_content": "If you have any question, we'll be glad to answer you quickly through the chat."
+      },
+      "dashboard_tour": {
+        "step0_test_title": "Test election",
+        "step0_test_content": "You have created a test election. Test elections have limited census size and a real election can only be created out of a successfully tallied test election.",
+
+        "step1_real_title": "Real election",
+        "step1_real_content": "Once this election is tallied, you will be able to create a real election clicking here.",
+
+        "step2_status_title": "Election status",
+        "step2_status_content": "This section shows you the state of the election and a button to move election to the next status.",
+
+        "step3_start_title": "Start the election",
+        "step3_start_content": "Click this button to start the election and send an authentication email to all census."
+      },
+      "hello_tour": {
+        "step0_create_title": "Create an election",
+        "step0_create_content": "Start creating a test election clicking in the <strong>New Election</strong> button. <br><br>Or watch our intro video:<br/>VIDEO_HERE",
+
+        "step1_change_title": "Change the title",
+        "step1_change_content": "Now you can edit all the details of the election, for example you could edit the election's title clicking title here.",
+
+        "step2_sidebar_title": "Sidebar",
+        "step2_sidebar_content": "You can personalize the election clicking through these sections.",
+
+        "step3_review_title": "Review election to create it",
+        "step3_review_content": "Once you are done configuring the election, click the <strong>Create Election</strong> section to review and then create the election.",
+
+        "step4_create2_title": "Create the election",
+        "step4_create2_content": "<strong>Click this button</strong> to create the election. <br><br>Note that the election won't be created until you do so, and for security reasons it won't be editable afterwards."
       }
     },
     "show_points_policy": {
