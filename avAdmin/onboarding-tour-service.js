@@ -38,9 +38,10 @@ angular.module('avAdmin')
                 }
                 $(window).off("angular-state-change-success", stateCallback);
                 console.log("stateCallBack, launching tour");
+                var nextTour = autolaunchTour.tour;
                 autolaunchTour.tour = autolaunchTour.state = null;
                 setTimeout(
-                    function () { hopscotch.startTour(autolaunchTour.tour); },
+                    function () { hopscotch.startTour(nextTour); },
                     300);
             }
             $(window).on("angular-state-change-success", stateCallback);
