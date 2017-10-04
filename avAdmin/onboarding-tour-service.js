@@ -87,14 +87,14 @@ angular.module('avAdmin')
                 steps: [
                     {
                         title: $i18next("avAdmin.onboarding.help_tour.step0_help_title"),
-                        content: $i18next("avAdmin.onboarding.help_tour.step0_help_description"),
+                        content: $i18next("avAdmin.onboarding.help_tour.step0_help_content"),
                         target: "#navbar-collapse-1 .help-dropdown a",
                         highlightTarget: "#navbar-collapse-1 .help-dropdown a",
                         placement: "bottom"
                     },
                     {
                         title: $i18next("avAdmin.onboarding.help_tour.step1_chat_title"),
-                        content: $i18next("avAdmin.onboarding.help_tour.step1_chat_description"),
+                        content: $i18next("avAdmin.onboarding.help_tour.step1_chat_content"),
                         target: ".zsiq_cnt",
                         highlightTarget: ".zsiq_cnt",
                         placement: "top",
