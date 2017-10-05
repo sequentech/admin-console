@@ -1,6 +1,6 @@
 {
   "name": "agoraGuiAdmin",
-  "version" : "103111.6",
+  "version": "103111.6",
   "main": "index.html",
   "ignore": [
     "**/.*",
@@ -9,7 +9,8 @@
   ],
   "dependencies": {
     "avCommon": "https://github.com/agoravoting/agora-gui-common.git#go-next",
-    "angular-local-storage": "~0.2.3"
+    "angular-local-storage": "~0.2.3",
+    "hopscotch": "^0.3.1"
   },
   "resolutions": {
     "intl-tel-input": "^12.1.0"
