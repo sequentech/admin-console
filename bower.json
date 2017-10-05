@@ -8,8 +8,9 @@
     "bower_components"
   ],
   "dependencies": {
-    "avCommon": "https://github.com/agoravoting/agora-gui-common.git#next",
-    "angular-local-storage": "~0.2.3"
+    "avCommon": "https://github.com/agoravoting/agora-gui-common.git#go-next",
+    "angular-local-storage": "~0.2.3",
+    "ngOnboarding": "^0.1.7"
   },
   "resolutions": {
     "intl-tel-input": "^12.1.0"
