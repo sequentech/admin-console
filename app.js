@@ -33,7 +33,6 @@ angular.module(
   'avPluginsConfig',
   'jm.i18next',
   'avUi',
-  'ngOnboarding',
   'avRegistration',
   'avTest',
   'avAdmin',
