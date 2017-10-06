@@ -13,7 +13,7 @@
 
  * You should have received a copy of the GNU Affero General Public License
  * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
-**/ 
+**/
 
 [av-abstract-setting] {
   .collapse-icon {
@@ -42,7 +42,7 @@
   .btn-help {
     color: #2f7bbf;
     background-color: #fff;
-    border-color: #fff;
+    border-color: transparent;
 
     &:hover {
       border-color: #ccc;
@@ -68,7 +68,7 @@
     border-right-style: solid;
     border-right-color: #dedede;
   }
-  
+
   .abstract-widget {
     background-color: white;
     padding: 10px;
@@ -88,6 +88,7 @@
     border-right-color: #dedede;
   }
 
+
   .help-padding {
     padding: 4px 10px;
     border-bottom: 1px;
@@ -104,6 +105,23 @@
   .abstract-setting>.rower {
     background-color: #f0f0f0;
     display: flex;
+
+    &.help-plugin {
+        background-color: white;
+
+        a {
+            color:  #2f7bbf;
+            border-bottom: 1px dotted;
+
+            &:hover {
+                color: #00BF7F;
+            }
+        }
+
+        img {
+            margin: 25px;
+        }
+    }
   }
 
   .whiteback {
