@@ -56,7 +56,7 @@
       },
       "hello_tour": {
         "step0_create_title": "Create an election",
-        "step0_create_content": "Start creating a test election clicking in the <strong>New Election</strong> button. <br><br>Or watch our intro video:<br/>VIDEO_HERE",
+        "step0_create_content": "Start creating a test election clicking in the <strong>New Election</strong> button.",
 
         "step1_change_title": "Change the title",
         "step1_change_content": "Now you can edit all the details of the election, for example you could edit the election's title clicking title here.",
