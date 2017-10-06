@@ -56,7 +56,7 @@
       },
       "hello_tour": {
         "step0_create_title": "Crea la votación",
-        "step0_create_content": "Comienza a crear una votación de prueba haciendo clic en el botón <strong>Nueva votación</strong>. <br><br>O mira nuestro video de introducción: <br/>VIDEO_HERE",
+        "step0_create_content": "Comienza a crear una votación de prueba haciendo clic en el botón <strong>Nueva votación</strong>.",
 
         "step1_change_title": "Cambiar el título",
         "step1_change_content": "Ahora puedes editar todos los detalles de la elección, por ejemplo podrías editar el título de la votación haciendo clic aquí.",
