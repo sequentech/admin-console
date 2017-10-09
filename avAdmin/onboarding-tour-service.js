@@ -165,7 +165,7 @@ angular.module('avAdmin')
                         target: "a[ui-sref='admin.new()']",
                         highlightTarget: "a[ui-sref='admin.new()']",
                         placement: "right",
-                        width: 700,
+                        width: 650,
                         nextOnTargetClick: true,
                         showNextButton: false
                     },
