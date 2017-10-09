@@ -28,6 +28,8 @@ angular.module('avAdmin')
         fields_def,
         user_fields
     ) {
+      $window.hopscotch.endTour();
+
       var field;
       for (var i = 0; i < fields_def.length; i++) {
         field = fields_def[i];
@@ -75,13 +77,6 @@ angular.module('avAdmin')
         var changed = values_changed();
         if (false === changed) {
           $modalInstance.close();
-
-          // launch the onboarding tour if the profile has been correctly
-          // filled up and the election list is zero
-          if ($window.electionsTotalCount !== undefined && $window.electionsTotalCount === 0)
-          {
-            OnboardingTourService();
-          }
         } else {
           $scope.showWorking = true;
           Authmethod.updateUserExtra(changed)
