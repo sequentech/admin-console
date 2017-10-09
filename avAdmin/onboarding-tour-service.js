@@ -80,7 +80,6 @@ angular.module('avAdmin')
                 '</style>').appendTo("body");
                 $("#onboarding-overlay").remove();
                 $('<div id="onboarding-overlay"></div>').hide().appendTo("body").fadeIn();
-                $("#onboarding-overlay").click(function()  {hopscotch.endTour(); });
             }
 
             var helpTour = {
