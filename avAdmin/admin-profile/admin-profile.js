@@ -28,6 +28,8 @@ angular.module('avAdmin')
         fields_def,
         user_fields
     ) {
+      $window.hopscotch.endTour();
+
       var field;
       for (var i = 0; i < fields_def.length; i++) {
         field = fields_def[i];
