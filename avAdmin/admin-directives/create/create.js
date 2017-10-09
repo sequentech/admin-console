@@ -687,7 +687,8 @@ angular.module('avAdmin')
                 extra_fields: [],
                 admin_fields: [],
                 real: el.real,
-                num_successful_logins_allowed: el.num_successful_logins_allowed
+                num_successful_logins_allowed: el.num_successful_logins_allowed,
+                allow_user_resend: el.census.allow_user_resend
             };
 
             d.admin_fields = _.filter(el.census.admin_fields, function(af) {
