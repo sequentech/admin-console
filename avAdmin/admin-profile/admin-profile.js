@@ -16,8 +16,20 @@
 **/
 
 angular.module('avAdmin')
-  .controller('AdminProfile',
-    function($scope, $modalInstance, ConfigService, $sce, Authmethod, fields_def, user_fields) {      
+  .controller('AdminProfileController',
+    function(
+        $scope,
+        $window,
+        OnboardingTourService,
+        $modalInstance,
+        ConfigService,
+        $sce,
+        Authmethod,
+        fields_def,
+        user_fields
+    ) {
+      $window.hopscotch.endTour();
+
       var field;
       for (var i = 0; i < fields_def.length; i++) {
         field = fields_def[i];
@@ -27,7 +39,7 @@ angular.module('avAdmin')
         }
         // give an initial value to fields
         if (_.isUndefined(user_fields[field.name])) {
-          if (-1 !== ["text", "password", "regex", "email", "tlf", "textarea", 
+          if (-1 !== ["text", "password", "regex", "email", "tlf", "textarea",
               "dni"].indexOf(field.type)) {
            field.value = "";
           } else if ("int" === field.type) {
@@ -44,7 +56,7 @@ angular.module('avAdmin')
       $scope.fields_def = fields_def;
       $scope.user_fields = user_fields;
       $scope.showWorking = false;
-      
+
       // true if some value has been changed and needs to be saved
       function values_changed() {
         var ret = false;
@@ -54,8 +66,8 @@ angular.module('avAdmin')
           if (field.value !== user_fields[field.name]) {
             if ( false === ret) {
               ret = {};
-              ret[field.name] = field.value;
             }
+            ret[field.name] = field.value;
           }
         }
         return ret;
@@ -69,10 +81,16 @@ angular.module('avAdmin')
           $scope.showWorking = true;
           Authmethod.updateUserExtra(changed)
             .success(function (d) {
-              $modalInstance.close();
+                // launch the onboarding tour if the profile has been correctly
+                // filled up and the election list is zero
+                if ($window.electionsTotalCount !== undefined && $window.electionsTotalCount === 0)
+                {
+                    OnboardingTourService();
+                }
+              $modalInstance.close(changed);
             })
             .error(function (e) {
-              $modalInstance.close();
+              $modalInstance.close(changed);
             });
         }
       };

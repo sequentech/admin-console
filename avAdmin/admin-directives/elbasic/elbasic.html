@@ -21,6 +21,7 @@
       <!-- title -->
       <div
         av-abstract-setting
+        short-value="{{ election.title }}"
         for="title"
         title="avAdmin.basic.title.label"
         description="avAdmin.basic.title.placeholder"
@@ -37,6 +38,7 @@
       <!-- description -->
       <div
         av-abstract-setting
+        short-value="{{ election.description }}"
         title="avAdmin.basic.description.label"
         for="desc"
         description="avAdmin.basic.description.placeholder"
@@ -55,6 +57,7 @@
       <!-- layout -->
       <div
         av-abstract-setting
+        short-value="{{ election.layout }}"
         title="avAdmin.basic.layout.label"
         for="layout"
         class="hidden"
@@ -76,6 +79,7 @@
       <!-- theme -->
       <div
         av-abstract-setting
+        short-value="{{ election.presentation.theme }}"
         title="avAdmin.basic.theme.label"
         for="theme"
         class="hidden"
@@ -97,6 +101,7 @@
       <!-- logo url -->
       <div
         av-abstract-setting
+        short-value="{{ election.logo_url }}"
         title="avAdmin.basic.logo_url.label"
         for="logo"
         description="avAdmin.basic.logo_url.placeholder"
@@ -113,6 +118,9 @@
       <!-- number of revotes -->
       <div
         av-abstract-setting
+        collapsable="true"
+        expanded="false"
+        short-value="{{ election.num_successful_logins_allowed }}"
         title="avAdmin.basic.num_successful_logins_allowed.label"
         for="num_logins"
         description="avAdmin.basic.num_successful_logins_allowed.placeholder"
@@ -134,6 +142,7 @@
               min=1 step=1
               class="form-control"
               ng-disabled="!electionEditable()"
+              av-number-input
               ng-model="election.num_successful_logins_allowed"
               ui-keypress="{
                 37: 'incLogins(-1, $event)',

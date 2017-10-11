@@ -29,7 +29,7 @@
 
     <div class="nav nav-pills nav-stacked" ng-repeat="l in sidebarlinks" ng-if="'adminFields' !== l.name || !!hasAdminFields">
       <li role="presentation" class="sub1" ng-class="{active:state == 'admin.'+p.name}" ng-repeat="p in l.plugins" ng-if="!!p.sidebarlink">
-        <a ui-sref="{{ p.link+'({id:current.id})' }}">
+        <a id="admin-sidebar-{{p.link}}" ui-sref="{{ p.link+'({id:current.id})' }}">
           <span ng-if="p.menu.html" ng-bind-html="p.menu.html()"></span>
           <span ng-if="!p.menu.html">
               <i class="fa-fw fa fa-{{ p.menu.icon }}" ng-if="p.menu.icon"></i>

@@ -33,6 +33,44 @@
       "title": "Perfil",
       "save": "Guardar cambios"
     },
+    "onboarding": {
+      "help_tour": {
+        "step0_help_title": "Ayuda",
+        "step0_help_content": "Si necesitas más ayuda, haz clic aquí para obtenerla. ¡También puedes <strong>iniciar de nuevo el tour</strong> desde aquí!",
+
+        "step1_chat_title": "Chatea con nosotros",
+        "step1_chat_content": "Si tienes alguna pregunta,, estaremos encantados de responderla rápidamente a través del chat."
+      },
+      "dashboard_tour": {
+        "step0_test_title": "Votación de prueba",
+        "step0_test_content": "Has creado una votación de prueba. Las elecciones de prueba tienen un tamaño de censo limitado y una votación real sólo se puede crear a partir de una votación de prueba recontada con éxito.",
+
+        "step1_real_title": "Votación real",
+        "step1_real_content": "Una vez que se realize el recuento de ésta votación, podras crear una votación real haciendo clic aquí.",
+
+        "step2_status_title": "Estado de la votación",
+        "step2_status_content": "Esta sección muestra el estado de la votación y en ella siempre aparece un botón para pasar la votación al siguiente estado.",
+
+        "step3_start_title": "Comienza la votación",
+        "step3_start_content": "Haz clic en este botón apra comenzar la votación y enviar el email de autenticación a todo el censo."
+      },
+      "hello_tour": {
+        "step0_create_title": "Crea la votación",
+        "step0_create_content": "Comienza a crear una votación de prueba haciendo clic en el botón <strong>Nueva votación</strong>. <br><br>O visualiza nuestro video de introducción:<br><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/eTZ3TQw5G_c?rel=0&amp;showinfo=0\" frameborder=\"0\" allowfullscreen></iframe>",
+
+        "step1_change_title": "Cambiar el título",
+        "step1_change_content": "Ahora puedes editar todos los detalles de la elección, por ejemplo podrías editar el título de la votación haciendo clic aquí.",
+
+        "step2_sidebar_title": "Barra lateral",
+        "step2_sidebar_content": "Podrías personalizar la votación haciendo clic en éstas secciones.",
+
+        "step3_review_title": "Revisa la votación antes de crearla",
+        "step3_review_content": "Una vez hayas terminado configurando la votación, haz clic en el botón <strong>Crear Votación</strong> para revisar y crear la votación.",
+
+        "step4_create2_title": "Crear la votación",
+        "step4_create2_content": "<strong>Haz clic en éste botón</strong> para crear la votación. <br><br>Ten en cuenta que la votación no se creará hasta que hagas clic en éste botón, y por razones de seguridad no se podrá editar posteriormente."
+      }
+    },
     "show_points_policy": {
       "label": "Mostrar puntos",
       "text": "Mostrar los puntos que la papeleta da a cada opción seleccionada"

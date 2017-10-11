@@ -19,7 +19,7 @@
 'use strict';
 
 var pkg = require('./package.json');
-var AV_CONFIG_VERSION = '103111.4';
+var AV_CONFIG_VERSION = '103111.6';
 
 //Using exclusion patterns slows down Grunt significantly
 //instead of creating a set of patterns like '**/*.js' and '!**/node_modules/**'
@@ -88,7 +88,7 @@ module.exports = function (grunt) {
         fs.readFile('avPluginsConfig.js', function(err, data) {
             if (err) {
                 grunt.log.ok('No avPluginsConfig.js file found, creating...');
-                var avPluginsConfigText = 
+                var avPluginsConfigText =
                     "var AV_PLUGINS_CONFIG_VERSION = '" + AV_CONFIG_VERSION + "';\n" +
                     "angular.module('avPluginsConfig', [])\n" +
                     "  .factory('PluginsConfigService', function() {\n" +
@@ -103,19 +103,19 @@ module.exports = function (grunt) {
                     "    return new PluginsConfigServiceProvider();\n" +
                     "    }];\n" +
                     "   });";
-                fs.writeFile("avPluginsConfig.js", 
-                    avPluginsConfigText, 
+                fs.writeFile("avPluginsConfig.js",
+                    avPluginsConfigText,
                     function(err) {
                         if(err) {
                             grunt.log.error(
                                 'Error creating avPluginsConfig.js file');
                             done(false);
                         } else {
-                            grunt.log.ok('Created avPluginsConfig.js file, ' + 
+                            grunt.log.ok('Created avPluginsConfig.js file, ' +
                                 'trying to read it again...');
                             checkAvPluginsConfig();
                         }
-                }); 
+                });
             } else {
                 var match = data.toString().match(
                     /AV_PLUGINS_CONFIG_VERSION = [\'\"]([\w\.]*)[\'\"];/);
@@ -164,7 +164,11 @@ module.exports = function (grunt) {
       main: {
         options: {
             jshintrc: '.jshintrc',
-            reporter: require('jshint-stylish')
+            reporter: require('jshint-stylish'),
+            ignores: [
+                'vendor/hopscotch-0.3.1/js/hopscotch.js'
+            ]
+
         },
         src: createFolderGlobs('*.js')
       }
@@ -220,8 +224,15 @@ module.exports = function (grunt) {
       main: {
         files: [
           {src: ['img/**'], dest: 'dist/'},
+          {
+              expand: true,
+              cwd:'vendor/hopscotch-0.3.1/img/',
+              src: ['**'],
+              dest: 'dist/img/'
+          },
           {src: ['img/**'], dest: 'dist/'},
           {src: ['temp_data/**'], dest: 'dist/'},
+          {src: ['bower_components/avCommon/dist/img/flags.png'], dest: 'dist/img/flags.png'},
           {
             expand: true,
             cwd:'bower_components/avCommon/themes',
@@ -271,15 +282,17 @@ module.exports = function (grunt) {
           remove: ['script[data-remove!="false"]','link[data-remove!="false"]'],
           append: [
             {selector:'body',html:'<%= variables.admin_html_body_include %>'},
-            {selector:'body',html:'<!--[if lte IE 8]><script src="/admin/libcompat-v103111.4.min.js"></script><![endif]--><!--[if gte IE 9]><script src="/admin/libnocompat-v103111.4.min.js"></script><![endif]--><!--[if !IE]><!--><script src="/admin/libnocompat-v103111.4.min.js"></script><!--<![endif]-->'},
+            {selector:'body',html:'<!--[if lte IE 8]><script src="/admin/libcompat-v103111.6.min.js"></script><![endif]--><!--[if gte IE 9]><script src="/admin/libnocompat-v103111.6.min.js"></script><![endif]--><!--[if !IE]><!--><script src="/admin/libnocompat-v103111.6.min.js"></script><!--<![endif]-->'},
             {selector:'body',html:'<!--All the source code of this program under copyright. Take a look at the license details at https://github.com/agoravoting/agora-core-view/blob/master/README.md -->'},
-            {selector:'body',html:'<script src="/admin/lib-v103111.4.min.js"></script>'},
-            {selector:'body',html:'<script src="/admin/avConfig-v103111.4.js"></script>'},
-            {selector:'body',html:'<script src="/admin/avThemes-v103111.4.js"></script>'},
-            {selector:'body',html:'<script src="/admin/app-v103111.4.min.js"></script>'},
-            {selector:'body',html:'<script src="/admin/avPlugins-v103111.4.js"></script>'},
+            {selector:'body',html:'<script src="/admin/lib-v103111.6.min.js"></script>'},
+            {selector:'body',html:'<script src="/admin/avConfig-v103111.6.js"></script>'},
+            {selector:'body',html:'<script src="/admin/avThemes-v103111.6.js"></script>'},
+            {selector:'body',html:'<script src="/admin/app-v103111.6.min.js"></script>'},
+            {selector:'body',html:'<script src="/admin/avPlugins-v103111.6.js"></script>'},
             {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/admin/" href="/admin/themes/default/app.min.css">'},
-            {selector:'head',html:'<link rel="stylesheet" id="plugins" data-base="/admin/" href="/admin/plugins.css">'}
+            {selector:'head',html:'<link rel="stylesheet" id="plugins" data-base="/admin/" href="/admin/plugins.css">'},
+            {selector:'head',html:'<link rel="stylesheet" href="election/intlTelInput.css" />'},
+            {selector:'head',html:'<link rel="stylesheet" id="vendor-css" data-base="/admin/" href="/admin/vendor.min.css">'}
           ]
         },
         src:'index.html',
@@ -288,20 +301,29 @@ module.exports = function (grunt) {
     },
     cssmin: {
       main: {
-        files: [{
-            expand: true,
-            cwd:'temp/bower_components/avCommon/themes',
-            src: ['**/app.css'],
-            dest: 'dist/themes/',
-            ext: '.min.css',
-            extDot: 'first'
-        }]
+        files: [
+            {
+                expand: true,
+                cwd:'temp/bower_components/avCommon/themes',
+                src: ['**/app.css'],
+                dest: 'dist/themes/',
+                ext: '.min.css',
+                extDot: 'first'
+            },
+            {
+                src: ['vendor/hopscotch-0.3.1/css/hopscotch.css'],
+                dest: 'dist/vendor.min.css'
+            }
+        ]
       },
     },
     concat: {
       main: {
         files: {
           'dist/plugins.css': ['temp/plugins/**/*.css'],
+          'dist/vendor.css': [
+            'vendor/hopscotch-0.3.1/css/hopscotch.css'
+          ],
           'temp/libcompat.js': [
             'vendor/jquery.compat/jquery-1.11.1.js',
             'vendor/json3/json-v3.3.2.js',
@@ -310,9 +332,9 @@ module.exports = function (grunt) {
           'temp/libnocompat.js': ['<%= dom_munger.data.libnocompatjs %>'],
           'temp/lib.js': ['<%= dom_munger.data.libjs %>'],
           'temp/app.js': ['<%= dom_munger.data.appjs %>','<%= ngtemplates.main.dest %>','<%= ngtemplates.common.dest %>'],
-          'dist/avConfig-v103111.4.js': ['avConfig.js'],
-          'dist/avThemes-v103111.4.js': ['bower_components/avCommon/dist/avThemes-v103111.4.js'],
-          'dist/avPlugins-v103111.4.js': [
+          'dist/avConfig-v103111.6.js': ['avConfig.js'],
+          'dist/avThemes-v103111.6.js': ['bower_components/avCommon/dist/avThemes-v103111.6.js'],
+          'dist/avPlugins-v103111.6.js': [
             'avPluginsConfig.js',
             'plugins/**/*.js',
             '!plugins/**/*-spec.js'
@@ -348,10 +370,10 @@ module.exports = function (grunt) {
           beautify: true
         },
         files: {
-          'dist/app-v103111.4.min.js': 'temp/app.js',
-          'dist/lib-v103111.4.min.js': 'temp/lib.js',
-          'dist/libnocompat-v103111.4.min.js': 'temp/libnocompat.js',
-          'dist/libcompat-v103111.4.min.js': 'temp/libcompat.js',
+          'dist/app-v103111.6.min.js': 'temp/app.js',
+          'dist/lib-v103111.6.min.js': 'temp/lib.js',
+          'dist/libnocompat-v103111.6.min.js': 'temp/libnocompat.js',
+          'dist/libcompat-v103111.6.min.js': 'temp/libcompat.js',
           'dist/avWidgets.min.js': 'avWidgets.js',
 
           "dist/locales/moment/en.js": "bower_components/moment/lang/en-gb.js",
