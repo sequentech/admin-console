@@ -418,51 +418,63 @@ angular.module('avAdmin')
                     key: "admin_fields",
                     appendOnErrorLambda: function (admin_fields) {
                       var adminNames = "";
-                      if (_.isArray(admin_fields)) {
-                        _.each(
-                          admin_fields,
-                          function (field) {
-                            if (true === field.required) {
-                              if (_.isUndefined(field.value) || 
-                                  (('text' === field.type ||
-                                    'email' === field.type) &&
-                                  _.isString(field.value) &&
-                                  0 === field.value.length)
-                              ) {
-                                var field_name = field.name;
-                                if (_.isString(field.label) && 0 < field.label.length) {
-                                  field_name = field.label;
-                                }
-                                if ("" === adminNames) {
-                                  adminNames += field_name;
-                                } else {
-                                  adminNames += ", " + field_name;
+                      function processFields(admin_fields, processor) {
+                        if (_.isArray(admin_fields)) {
+                          _.each(
+                            admin_fields,
+                            function (field) {
+                              if (true === field.required) {
+                                if (_.isUndefined(field.value) || 
+                                    (('text' === field.type ||
+                                      'email' === field.type) &&
+                                    _.isString(field.value) &&
+                                    0 === field.value.length)
+                                ) {
+                                  processor(field);
                                 }
                               }
-                            }
-                          });
+                            });
+                        }
                       }
+                      processFields(
+                        admin_fields,
+                        function (field) {
+                          var field_name = field.name;
+                          if (_.isString(field.label) && 0 < field.label.length) {
+                            field_name = field.label;
+                          }
+                          if ("" === adminNames) {
+                            adminNames += field_name;
+                          } else {
+                            adminNames += ", " + field_name;
+                          }
+                        });
                       return {"admin_names": adminNames};
                     },
                     validator: function (admin_fields) {
-                      if (_.isArray(admin_fields)) {
-                        return _.every(
-                          admin_fields,
-                          function (field) {
-                            if (true === field.required) {
-                              if (_.isUndefined(field.value)) {
-                                return false;
-                              }
-                              else if (('text' === field.type ||
-                                        'email' === field.type) &&
-                                       _.isString(field.value) &&
-                                       0 === field.value.length) {
-                                return false;
-                              }
-                            }
-                            return true;
-                          });
+                      function processFields(admin_fields, processor) {
+                        if (_.isArray(admin_fields)) {
+                          return _.every(
+                            admin_fields,
+                            processor);
+                        }
                       }
+                      processFields(
+                        admin_fields,
+                        function (field) {
+                          if (true === field.required) {
+                            if (_.isUndefined(field.value)) {
+                              return false;
+                            }
+                            else if (('text' === field.type ||
+                                      'email' === field.type) &&
+                                     _.isString(field.value) &&
+                                     0 === field.value.length) {
+                              return false;
+                            }
+                          }
+                          return true;
+                        });
                       return true;
                     },
                     postfix: "-admin-fields-required-value"
