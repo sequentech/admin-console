@@ -423,11 +423,11 @@ angular.module('avAdmin')
                           admin_fields,
                           function (field) {
                             if (true === field.required) {
-                              if (!_.isUndefined(field.value) && 
-                                  !(('text' === field.type ||
-                                        'email' === field.type) &&
-                                       _.isString(field.value) &&
-                                       0 === field.value.length)
+                              if (_.isUndefined(field.value) || 
+                                  (('text' === field.type ||
+                                    'email' === field.type) &&
+                                  _.isString(field.value) &&
+                                  0 === field.value.length)
                               ) {
                                 var field_name = field.name;
                                 if (_.isString(field.label) && 0 < field.label.length) {
