@@ -387,7 +387,7 @@ angular.module('avAdmin')
                   },
                   {
                     check: "lambda",
-                    key: "admin_fields",,
+                    key: "admin_fields",
                     appendOnErrorLambda: function (admin_fields) {
                       var adminNames = [];
                       if (_.isArray(admin_fields)) {
@@ -427,7 +427,7 @@ angular.module('avAdmin')
                   },
                   {
                     check: "lambda",
-                    key: "admin_fields",,
+                    key: "admin_fields",
                     appendOnErrorLambda: function (admin_fields) {
                       var adminNames = [];
                       if (_.isArray(admin_fields)) {
@@ -549,7 +549,7 @@ angular.module('avAdmin')
                   {
                     check: "lambda",
                     key: "admin_fields",
-                    append: {key: "max", value: ElectionLimits.maxLongStringLength},,
+                    append: {key: "max", value: ElectionLimits.maxLongStringLength},
                     appendOnErrorLambda: function (admin_fields) {
                       var adminNames = [];
                       if (_.isArray(admin_fields)) {
@@ -588,7 +588,7 @@ angular.module('avAdmin')
                   },
                   {
                     check: "lambda",
-                    key: "admin_fields",,
+                    key: "admin_fields",
                     appendOnErrorLambda: function (admin_fields) {
                       var adminNames = [];
                       if (_.isArray(admin_fields)) {
@@ -633,7 +633,7 @@ angular.module('avAdmin')
                   },
                   {
                     check: "lambda",
-                    key: "admin_fields",,
+                    key: "admin_fields",
                     appendOnErrorLambda: function (admin_fields) {
                       var adminNames = [];
                       if (_.isArray(admin_fields)) {
