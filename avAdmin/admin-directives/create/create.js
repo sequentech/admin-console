@@ -56,6 +56,10 @@ angular.module('avAdmin')
         function logError(text) {
           scope.log += "<p class=\"text-brand-danger\">" + text + "</p>";
         }
+        function validateEmail(email) {
+          var re = /^[^\s@]+@[^\s@.]+\.[^\s@.]+$/;
+          return re.test(email);
+        }
 
         /*
          * Checks elections for errors
@@ -349,18 +353,32 @@ angular.module('avAdmin')
                   {
                     check: "lambda",
                     key: "admin_fields",
+                    appendOnErrorLambda: function (admin_fields) {
+                      var adminNames = [];
+                      if (_.isArray(admin_fields)) {
+                        _.each(
+                          admin_fields,
+                          function (field) {
+                            if ('int' === field.type &&
+                                !_.isNumber(field.value)) {
+                              var field_name = field.name;
+                              if (_.isString(field.label) && 
+                                  0 < field.label.length) {
+                                field_name = field.label;
+                              }
+                              adminNames.push(field_name);
+                            }
+                          });
+                      }
+                      return {"admin_names": adminNames.join(", ")};
+                    },
                     validator: function (admin_fields) {
                       if (_.isArray(admin_fields)) {
                         return _.every(
                           admin_fields,
                           function (field) {
-                            if ('int' === field.type) {
-                              return (
-                                _.isUndefined(field.value) ||
-                                _.isNumber(field.value)
-                              );
-                            }
-                            return true;
+                            return ('int' !== field.type ||
+                                     _.isNumber(field.value));
                           });
                       }
                       return true;
@@ -369,13 +387,28 @@ angular.module('avAdmin')
                   },
                   {
                     check: "lambda",
-                    key: "admin_fields",
-                    validator: function (admin_fields) {
-                      function validateEmail(email) {
-                        var re = /^[^\s@]+@[^\s@.]+\.[^\s@.]+$/;
-                        return re.test(email);
+                    key: "admin_fields",,
+                    appendOnErrorLambda: function (admin_fields) {
+                      var adminNames = [];
+                      if (_.isArray(admin_fields)) {
+                        _.each(
+                          admin_fields,
+                          function (field) {
+                            if ('email' === field.type &&
+                                _.isString(field.value) &&
+                                !validateEmail(field.value)) {
+                              var field_name = field.name;
+                              if (_.isString(field.label) && 
+                                  0 < field.label.length) {
+                                field_name = field.label;
+                              }
+                              adminNames.push(field_name);
+                            }
+                          });
                       }
-
+                      return {"admin_names": adminNames.join(", ")};
+                    },
+                    validator: function (admin_fields) {
                       if (_.isArray(admin_fields)) {
                         return _.every(
                           admin_fields,
@@ -394,19 +427,33 @@ angular.module('avAdmin')
                   },
                   {
                     check: "lambda",
-                    key: "admin_fields",
+                    key: "admin_fields",,
+                    appendOnErrorLambda: function (admin_fields) {
+                      var adminNames = [];
+                      if (_.isArray(admin_fields)) {
+                        _.each(
+                          admin_fields,
+                          function (field) {
+                            if ('text' === field.type &&
+                                !_.isString(field.value)) {
+                              var field_name = field.name;
+                              if (_.isString(field.label) && 
+                                  0 < field.label.length) {
+                                field_name = field.label;
+                              }
+                              adminNames.push(field_name);
+                            }
+                          });
+                      }
+                      return {"admin_names": adminNames.join(", ")};
+                    },
                     validator: function (admin_fields) {
                       if (_.isArray(admin_fields)) {
                         return _.every(
                           admin_fields,
                           function (field) {
-                            if ('text' === field.type) {
-                              return (
-                                _.isUndefined(field.value) ||
-                                _.isString(field.value)
-                              );
-                            }
-                            return true;
+                            return ('text' !== field.type ||
+                                     _.isString(field.value));
                           });
                       }
                       return true;
@@ -417,65 +464,45 @@ angular.module('avAdmin')
                     check: "lambda",
                     key: "admin_fields",
                     appendOnErrorLambda: function (admin_fields) {
-                      var adminNames = "";
-                      function processFields(admin_fields, processor) {
-                        if (_.isArray(admin_fields)) {
-                          _.each(
-                            admin_fields,
-                            function (field) {
-                              if (true === field.required) {
-                                if (_.isUndefined(field.value) || 
-                                    (('text' === field.type ||
-                                      'email' === field.type) &&
-                                    _.isString(field.value) &&
-                                    0 === field.value.length)
-                                ) {
-                                  processor(field);
-                                }
+                      var adminNames = [];
+                      if (_.isArray(admin_fields)) {
+                        _.each(
+                          admin_fields,
+                          function (field) {
+                              if (_.isUndefined(field.value) || 
+                                  (('text' === field.type ||
+                                    'email' === field.type) &&
+                                  _.isString(field.value) &&
+                                  0 === field.value.length)) {
+                              var field_name = field.name;
+                              if (_.isString(field.label) && 
+                                  0 < field.label.length) {
+                                field_name = field.label;
                               }
-                            });
-                        }
+                              adminNames.push(field_name);
+                            }
+                          });
                       }
-                      processFields(
-                        admin_fields,
-                        function (field) {
-                          var field_name = field.name;
-                          if (_.isString(field.label) && 0 < field.label.length) {
-                            field_name = field.label;
-                          }
-                          if ("" === adminNames) {
-                            adminNames += field_name;
-                          } else {
-                            adminNames += ", " + field_name;
-                          }
-                        });
-                      return {"admin_names": adminNames};
+                      return {"admin_names": adminNames.join(", ")};
                     },
                     validator: function (admin_fields) {
-                      function processFields(admin_fields, processor) {
                         if (_.isArray(admin_fields)) {
                           return _.every(
                             admin_fields,
-                            processor);
+                            function (field) {
+                              if (true === field.required) {
+                                if (_.isUndefined(field.value) ||
+                                     (('text' === field.type ||
+                                       'email' === field.type) &&
+                                       _.isString(field.value) &&
+                                       0 === field.value.length)) {
+                                  return false;
+                                }
+                              }
+                              return true;
+                            });
                         }
                         return true;
-                      }
-                      return processFields(
-                        admin_fields,
-                        function (field) {
-                          if (true === field.required) {
-                            if (_.isUndefined(field.value)) {
-                              return false;
-                            }
-                            else if (('text' === field.type ||
-                                      'email' === field.type) &&
-                                     _.isString(field.value) &&
-                                     0 === field.value.length) {
-                              return false;
-                            }
-                          }
-                          return true;
-                        });
                     },
                     postfix: "-admin-fields-required-value"
                   },
@@ -483,6 +510,26 @@ angular.module('avAdmin')
                     check: "lambda",
                     key: "admin_fields",
                     append: {key: "max", value: ElectionLimits.maxLongStringLength},
+                    appendOnErrorLambda: function (admin_fields) {
+                      var adminNames = [];
+                      if (_.isArray(admin_fields)) {
+                        _.each(
+                          admin_fields,
+                          function (field) {
+                              if ('text' === field.type && 
+                                   _.isString(field.value) &&
+                                   (field.value.length > ElectionLimits.maxLongStringLength)) {
+                              var field_name = field.name;
+                              if (_.isString(field.label) && 
+                                  0 < field.label.length) {
+                                field_name = field.label;
+                              }
+                              adminNames.push(field_name);
+                            }
+                          });
+                      }
+                      return {"admin_names": adminNames.join(", ")};
+                    },
                     validator: function (admin_fields) {
                       if (_.isArray(admin_fields)) {
                         return _.every(
@@ -502,7 +549,27 @@ angular.module('avAdmin')
                   {
                     check: "lambda",
                     key: "admin_fields",
-                    append: {key: "max", value: ElectionLimits.maxLongStringLength},
+                    append: {key: "max", value: ElectionLimits.maxLongStringLength},,
+                    appendOnErrorLambda: function (admin_fields) {
+                      var adminNames = [];
+                      if (_.isArray(admin_fields)) {
+                        _.each(
+                          admin_fields,
+                          function (field) {
+                              if ('email' === field.type && 
+                                   _.isString(field.value) &&
+                                   (field.value.length > ElectionLimits.maxLongStringLength)) {
+                              var field_name = field.name;
+                              if (_.isString(field.label) && 
+                                  0 < field.label.length) {
+                                field_name = field.label;
+                              }
+                              adminNames.push(field_name);
+                            }
+                          });
+                      }
+                      return {"admin_names": adminNames.join(", ")};
+                    },
                     validator: function (admin_fields) {
                       if (_.isArray(admin_fields)) {
                         return _.every(
@@ -521,7 +588,30 @@ angular.module('avAdmin')
                   },
                   {
                     check: "lambda",
-                    key: "admin_fields",
+                    key: "admin_fields",,
+                    appendOnErrorLambda: function (admin_fields) {
+                      var adminNames = [];
+                      if (_.isArray(admin_fields)) {
+                        _.each(
+                          admin_fields,
+                          function (field) {
+                              if ('int' === field.type &&
+                                   !_.isUndefined(field.value) &&
+                                   _.isNumber(field.value) &&
+                                   !_.isUndefined(field.min) &&
+                                   _.isNumber(field.min) &&
+                                   field.min > field.value) {
+                              var field_name = field.name;
+                              if (_.isString(field.label) && 
+                                  0 < field.label.length) {
+                                field_name = field.label;
+                              }
+                              adminNames.push(field_name);
+                            }
+                          });
+                      }
+                      return {"admin_names": adminNames.join(", ")};
+                    },
                     validator: function (admin_fields) {
                       if (_.isArray(admin_fields)) {
                         return _.every(
@@ -543,7 +633,30 @@ angular.module('avAdmin')
                   },
                   {
                     check: "lambda",
-                    key: "admin_fields",
+                    key: "admin_fields",,
+                    appendOnErrorLambda: function (admin_fields) {
+                      var adminNames = [];
+                      if (_.isArray(admin_fields)) {
+                        _.each(
+                          admin_fields,
+                          function (field) {
+                              if ('int' === field.type &&
+                                   !_.isUndefined(field.value) &&
+                                   _.isNumber(field.value) &&
+                                   !_.isUndefined(field.max) &&
+                                   _.isNumber(field.max) &&
+                                   field.max < field.value) {
+                              var field_name = field.name;
+                              if (_.isString(field.label) && 
+                                  0 < field.label.length) {
+                                field_name = field.label;
+                              }
+                              adminNames.push(field_name);
+                            }
+                          });
+                      }
+                      return {"admin_names": adminNames.join(", ")};
+                    },
                     validator: function (admin_fields) {
                       if (_.isArray(admin_fields)) {
                         return _.every(
