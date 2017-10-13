@@ -429,10 +429,14 @@ angular.module('avAdmin')
                                        _.isString(field.value) &&
                                        0 === field.value.length)
                               ) {
+                                var field_name = field.name;
+                                if (_.isString(field.label) && 0 < field.label.length) {
+                                  field_name = field.label;
+                                }
                                 if ("" === adminNames) {
-                                  adminNames += field.name;
+                                  adminNames += field_name;
                                 } else {
-                                  adminNames += ", " + field.name;
+                                  adminNames += ", " + field_name;
                                 }
                               }
                             }
