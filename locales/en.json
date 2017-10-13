@@ -531,7 +531,7 @@
           "election-census-lambda-admin-fields-email-type-value": "Election '__eltitle__': the following admin fields have invalid email values: __admin_names__.",
           "election-census-lambda-admin-fields-int-min-value": "Election '__eltitle__': the following admin fields of integer type have a value that is less than their minimum allowed value : __admin_names__.",
           "election-census-lambda-admin-fields-int-max-value": "Election '__eltitle__': there is at least one field in admin fields with int type where the value is more than the maximum allowed value",
-          "election-census-lambda-admin-fields-string-type-value": "Election '__eltitle__':  the following admin fields are of string type but their values are not integers: __admin_names__.",
+          "election-census-lambda-admin-fields-string-type-value": "Election '__eltitle__':  the following admin fields are of string type but their values are not string: __admin_names__.",
           "election-census-lambda-admin-fields-required-value": "Election '__eltitle__': these admin fields are required but they are empty: __admin_names__.",
           "election-census-lambda-admin-fields-string-value-array-length": "Election '__eltitle__': the following admin fields of string type have a string character length that has exceeded the allowed maximum of __max__ characters: __admin_names__.",
           "election-census-lambda-admin-fields-email-value-array-length": "Election '__eltitle__': the following admin fields of email type have a string character length that has exceeded the allowed maximum of __max__ characters: __admin_names__.",
