@@ -416,6 +416,30 @@ angular.module('avAdmin')
                   {
                     check: "lambda",
                     key: "admin_fields",
+                    appendOnErrorLambda: function (admin_fields) {
+                      var adminNames = "";
+                      if (_.isArray(admin_fields)) {
+                        _.each(
+                          admin_fields,
+                          function (field) {
+                            if (true === field.required) {
+                              if (!_.isUndefined(field.value) && 
+                                  !(('text' === field.type ||
+                                        'email' === field.type) &&
+                                       _.isString(field.value) &&
+                                       0 === field.value.length)
+                              ) {
+                                if ("" === adminNames) {
+                                  adminNames += field.name;
+                                } else {
+                                  adminNames += ", " + field.name;
+                                }
+                              }
+                            }
+                          });
+                      }
+                      return {"admin_names": adminNames};
+                    },
                     validator: function (admin_fields) {
                       if (_.isArray(admin_fields)) {
                         return _.every(
