@@ -458,8 +458,9 @@ angular.module('avAdmin')
                             admin_fields,
                             processor);
                         }
+                        return true;
                       }
-                      processFields(
+                      return processFields(
                         admin_fields,
                         function (field) {
                           if (true === field.required) {
@@ -475,7 +476,6 @@ angular.module('avAdmin')
                           }
                           return true;
                         });
-                      return true;
                     },
                     postfix: "-admin-fields-required-value"
                   },
