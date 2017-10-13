@@ -118,7 +118,8 @@
       "minError": "__value__ is lower than __min__",
       "textError": "error on text __value__",
       "emailError": "error on email __value__",
-      "numberError": "__value__ must be a number"
+      "numberError": "__value__ must be a number",
+      "requiredError": "Missing value on required field"
     },
     "sidebar": {
         "elections": "Elections",

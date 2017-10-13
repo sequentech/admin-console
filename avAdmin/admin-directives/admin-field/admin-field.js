@@ -32,6 +32,10 @@ angular.module('avAdmin')
           event.preventDefault();
         }
       };
+      
+      scope.validateRequired = function (value) {
+        return _.isUndefined(value) || (_.isString(value) && 0 === value.length);
+      };
 
       scope.validateMax = function (value) {
         var parsed = parseInt(value);

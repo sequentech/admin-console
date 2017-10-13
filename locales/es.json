@@ -118,7 +118,8 @@
       "minError": "__value__ es menor de __min__",
       "textError": "error en texto __value__",
       "emailError": "error on email __value__",
-      "numberError": "__value__ ha de ser un número"
+      "numberError": "__value__ ha de ser un número",
+      "requiredError": "Campo requerido con valor vacío"
     },
     "sidebar": {
         "elections": "Votaciones",
