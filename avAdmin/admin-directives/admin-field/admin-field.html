@@ -34,13 +34,13 @@
         <div class="col-xs-10 input-error">
           <span
             class="error text-brand-danger"
-            ng-show="!!admin_fields_form.adminFieldInput{{$index}}.$error.text"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.text"
             ng-i18next>
             [i18next]({value: field.value})avAdmin.adminFields.textError
           </span>
           <span
             class="error text-brand-danger"
-            ng-show="!!admin_fields_form.adminFieldInput{{$index}}.$error.required"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.required"
             ng-i18next>
             avAdmin.adminFields.requiredError
           </span>
@@ -70,13 +70,13 @@
         <div class="col-xs-10 input-error">
           <span
             class="error text-brand-danger"
-            ng-show="!!admin_fields_form.adminFieldInput{{$index}}.$error.text"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.text"
             ng-i18next>
             [i18next]({value: field.value})avAdmin.adminFields.textError
           </span>
           <span
             class="error text-brand-danger"
-            ng-show="!!admin_fields_form.adminFieldInput{{$index}}.$error.required"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.required"
             ng-i18next>
             avAdmin.adminFields.requiredError
           </span>
@@ -107,13 +107,13 @@
         <div class="col-xs-10 input-error">
           <span
             class="error text-brand-danger"
-            ng-show="!!admin_fields_form.adminFieldInput{{$index}}.$error.text"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.text"
             ng-i18next>
             [i18next]({value: field.value})avAdmin.adminFields.emailError
           </span>
           <span
             class="error text-brand-danger"
-            ng-show="!!admin_fields_form.adminFieldInput{{$index}}.$error.required"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.required"
             ng-i18next>
             avAdmin.adminFields.requiredError
           </span>
@@ -193,7 +193,7 @@
           </p>
           <p
             class="error text-brand-danger"
-            ng-show="!!admin_fields_form.adminFieldInput{{$index}}.$error.required"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.required"
             ng-i18next>
             avAdmin.adminFields.requiredError
           </p>

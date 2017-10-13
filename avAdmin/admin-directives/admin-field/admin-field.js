@@ -34,7 +34,7 @@ angular.module('avAdmin')
       };
       
       scope.validateRequired = function (value) {
-        return _.isUndefined(value) || (_.isString(value) && 0 === value.length);
+        return !(_.isUndefined(value) || (_.isString(value) && 0 === value.length));
       };
 
       scope.validateMax = function (value) {
