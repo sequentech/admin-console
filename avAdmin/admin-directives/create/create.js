@@ -31,6 +31,7 @@ angular.module('avAdmin')
       ConfigService,
       ElectionLimits,
       CheckerService,
+      CsvLoad,
       MustExtraFieldsService)
     {
       // we use it as something similar to a controller here
@@ -746,7 +747,7 @@ angular.module('avAdmin')
               cancel: function () {},
               close: function () {}
             };
-            uploadUponElCreation(data)
+            CsvLoad.uploadUponElCreation(data)
                 .success(function(data) {
                     deferred.resolve(el);
                 }).error(deferred.reject);
