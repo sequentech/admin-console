@@ -79,7 +79,8 @@ angular.module('avAdmin')
         csvLoadService.scope.okhtml = pluginData.okhtml;
         csvLoadService.scope = _.extend(csvLoadService.scope, pluginData.scope);
         csvLoadService.scope.startClickedPlugin = pluginData.startClickedPlugin;
-      }
+        csvLoadService.scope.processBatchPlugin = pluginData.processBatchPlugin;
+      };
       
     ////////////////////////////////////////////////////////////////////////////
 
@@ -154,8 +155,8 @@ angular.module('avAdmin')
       function processBatchCaller() {
         processBatch()
           .then(function (processed) {
-            if (_.isFunction(pluginData.processBatchPlugin)) {
-              pluginData.processBatchPlugin(processed)
+            if (_.isFunction(csvLoadService.scope.processBatchPlugin)) {
+              csvLoadService.scope.processBatchPlugin(processed)
                 .then(function (ret) {
                   csvLoadService.scope.percent = ret.percent;
                   csvLoadService.scope.exportListIndex = ret.exportListIndex;
