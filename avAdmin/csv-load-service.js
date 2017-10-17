@@ -238,7 +238,7 @@ angular.module('avAdmin')
         csvLoadService.scope.processBatchPlugin = pluginData.processBatchPlugin;
         
         csvLoadService.uploadCSV()
-          .success(deferred.resolve)
+          .then(deferred.resolve)
           .catch(deferred.reject);
         return deferred.promise;
       };
