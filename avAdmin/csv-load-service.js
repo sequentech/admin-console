@@ -165,7 +165,7 @@ angular.module('avAdmin')
                   if (csvLoadService.scope.percent < 100) {
                     processBatchCaller()
                       .then(deferred.resolve)
-                      .error(deferred.reject);
+                      .catch(deferred.reject);
                     //setTimeout(processBatchCaller, 0);
                   } else  if (_.isFunction(csvLoadService.scope.close)) {
                     deferred.resolve();
@@ -178,7 +178,7 @@ angular.module('avAdmin')
               if (csvLoadService.scope.percent < 100) {
                 processBatchCaller()
                   .then(deferred.resolve)
-                  .error(deferred.reject);
+                  .catch(deferred.reject);
                 //setTimeout(processBatchCaller, 0);
               } else  if (_.isFunction(csvLoadService.scope.close)) {
                 deferred.resolve();
@@ -200,7 +200,7 @@ angular.module('avAdmin')
                 csvLoadService.scope.close();
               }
               deferred.resolve();
-          }).error(function (error) {
+          }).catch(function (error) {
             if (_.isFunction(csvLoadService.scope.cancel)) {
               csvLoadService.scope.cancel();
             }
@@ -239,7 +239,7 @@ angular.module('avAdmin')
         
         csvLoadService.uploadCSV()
           .success(deferred.resolve)
-          .error(deferred.reject);
+          .catch(deferred.reject);
         return deferred.promise;
       };
 
