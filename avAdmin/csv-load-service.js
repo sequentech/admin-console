@@ -17,7 +17,7 @@
 
 angular.module('avAdmin')
   .factory(
-    'CsvLoadService',
+    'CsvLoad',
     function($modalInstance, $q, ConfigService, Plugins, Authmethod)
     {
      

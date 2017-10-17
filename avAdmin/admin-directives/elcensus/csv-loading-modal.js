@@ -17,7 +17,7 @@
 
 angular.module('avAdmin')
   .controller('CsvLoadingModal',
-    function($scope, $modalInstance, ConfigService, CsvLoadService, election, textarea, errorFunc) {
+    function($scope, $modalInstance, ConfigService, CsvLoad, election, textarea, errorFunc) {
       $scope.election = election;
       $scope.textarea = textarea;
       $scope.helpurl = ConfigService.helpUrl;
@@ -28,10 +28,10 @@ angular.module('avAdmin')
         $modalInstance.dismiss('cancel');
       };
       
-      CsvLoadService.init($scope);
+      CsvLoad.init($scope);
 
       $scope.ok = function () {
         $scope.disableOk = true;
-        CsvLoadService.uploadCSV();
+        CsvLoad.uploadCSV();
       };
     });
