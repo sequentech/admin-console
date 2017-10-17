@@ -523,6 +523,7 @@
           "election-question-int-size-max-max": "Votación '__eltitle__', pregunta '__qtitle__': el máximo número de candidaturas que puede seleccionar un votante es __value__, pero no debe ser mayor que el número total de candidaturas, que es __max__",
           "election-question-int-size-min-num-winners": "Votación '__eltitle__', pregunta '__qtitle__': debe haber al menos un ganador, pero hay __value__",
           "election-question-int-size-max-num-winners": "Votación '__eltitle__', pregunta '__qtitle__': el número de ganadores es __value__, pero no puede ser mayor que el número total de candidaturas, que es __max__",
+          "election-census-createel-unknown": "Votación, un error desconocido ocurrió después de crear la votación: __message__",
           "election-census-is-array-admin-fields": "Votación '__eltitle__': admin_fields ha de ser un array",
           "election-census-array-length-max-admin-fields": "Votación '__eltitle__': el array admin_fields tiene una longitud de __len__ caracteres, excediendo el máximo de __max__",
           "election-census-lambda-admin-fields-int-type-value": "Votación '__eltitle__': hay al menos un campo en admin fields con tipo int donde el value no es un entero, pero ha de ser un entero.",

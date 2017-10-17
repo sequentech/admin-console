@@ -525,6 +525,7 @@
           "election-question-int-size-max-max": "Election '__eltitle__', question '__qtitle__': the maximum number of candidates that a voter can choose is __value__, but cannot be larger than the number of candidates which is __max__",
           "election-question-int-size-min-num-winners": "Election '__eltitle__', question '__qtitle__': there must be at least one winner, but it is __value__ instead",
           "election-question-int-size-max-num-winners": "Election '__eltitle__', question '__qtitle__': the number of winners is __value__, but cannot be bigger than the number of answers which is __max__",
+          "election-census-createel-unknown": "Election, an unknown error happened while adding census after creating the election: __message__",
           "election-census-is-array-admin-fields": "Election '__eltitle__': admin_fields must be an array",
           "election-census-array-length-max-admin-fields": "Election '__eltitle__': admin_fields array length is __len__, exceeding the maximum of __max__",
           "election-census-lambda-admin-fields-int-type-value": "Election '__eltitle__': there is at least one field in admin fields with int type where the value is not an integer, but it must be an integer.",

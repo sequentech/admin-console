@@ -730,13 +730,31 @@ angular.module('avAdmin')
         function addCensus(el) {
             console.log("adding census for election " + el.title);
             var deferred = $q.defer();
+
             // Adding the census
             logInfo($i18next('avAdmin.create.census', {title: el.title, id: el.id}));
-            var voters = _.map(el.census.voters, function (i) { return i.metadata; });
-            Authmethod.addCensus(el.id, voters, 'disabled')
+
+            data = {
+              election: el,
+              error: function (errorMsg) {
+                  scope.errors.push({
+                    data: {message: errorMsg},
+                    key: "election-census-createel-unknown"
+                  });
+                },
+              disableOk: false,
+              cancel: function () {
+                $modalInstance.dismiss('cancel');
+              },
+              close: function () {
+                $modalInstance.close('ok');
+              }
+            };
+            uploadUponElCreation(data)
                 .success(function(data) {
                     deferred.resolve(el);
                 }).error(deferred.reject);
+
             return deferred.promise;
         }
 

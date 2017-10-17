@@ -58,31 +58,38 @@ angular.module('avAdmin')
           return [];
       }
 
-      csvLoadService.init = function (scope) {
-        csvLoadService.scope = scope;
+      csvLoadService.processCsv = function (scope) {
+        if (!scope.election.id) {
+          csvLoadService.scope = scope;
 
-        csvLoadService.scope.batchSize = ConfigService.censusImportBatch;
-        // 0 to 100% (when finished)
-        csvLoadService.scope.disableOk = false;
+          csvLoadService.scope.batchSize = ConfigService.censusImportBatch;
+          // 0 to 100% (when finished)
+          csvLoadService.scope.percent = 0;
+          csvLoadService.scope.disableOk = false;
 
-        csvLoadService.scope.exportList = calculateExportList(csvLoadService.scope.textarea);
-        csvLoadService.scope.exportListIndex = 0;
+          csvLoadService.scope.exportList = calculateExportList(csvLoadService.scope.textarea);
+          csvLoadService.scope.exportListIndex = 0;
 
-        var pluginData = {
-          html: [],
-          scope: {},
-          okhtml: [],
-          processBatchPlugin: false,
-          startClickedPlugin: false,
-          election: csvLoadService.scope.election,
-          exportList: csvLoadService.scope.exportList
-        };
-        Plugins.hook('census-csv-loading-modal', pluginData);
-        csvLoadService.scope.exhtml = pluginData.html;
-        csvLoadService.scope.okhtml = pluginData.okhtml;
-        csvLoadService.scope = _.extend(csvLoadService.scope, pluginData.scope);
-        csvLoadService.scope.startClickedPlugin = pluginData.startClickedPlugin;
-        csvLoadService.scope.processBatchPlugin = pluginData.processBatchPlugin;
+          var pluginData = {
+            html: [],
+            scope: {},
+            okhtml: [],
+            processBatchPlugin: false,
+            startClickedPlugin: false,
+            election: csvLoadService.scope.election,
+            exportList: csvLoadService.scope.exportList
+          };
+          Plugins.hook('census-csv-loading-modal', pluginData);
+          csvLoadService.scope.exhtml = pluginData.html;
+          csvLoadService.scope.okhtml = pluginData.okhtml;
+          csvLoadService.scope = _.extend(csvLoadService.scope, pluginData.scope);
+          csvLoadService.scope.startClickedPlugin = pluginData.startClickedPlugin;
+          csvLoadService.scope.processBatchPlugin = pluginData.processBatchPlugin;
+        } else {
+          var exportList = calculateExportList(csvLoadService.scope.textarea);
+          var el = csvLoadService.scope.election;
+          el.census.voters.push.apply(exportList);
+        }
       };
 
       function calcPercent (index) {
@@ -144,16 +151,9 @@ angular.module('avAdmin')
         }
         return deferred.promise;
       }
-      
-      function setTimeoutOrClose() {
-        if (csvLoadService.scope.percent < 100) {
-          setTimeout(processBatchCaller, 0);
-        } else  if(_.isFunction(csvLoadService.scope.close)) {
-          csvLoadService.scope.close();
-        }
-      }
 
       function processBatchCaller() {
+        var deferred = $q.defer();
         processBatch()
           .then(function (processed) {
             if (_.isFunction(csvLoadService.scope.processBatchPlugin)) {
@@ -161,26 +161,84 @@ angular.module('avAdmin')
                 .then(function (ret) {
                   csvLoadService.scope.percent = ret.percent;
                   csvLoadService.scope.exportListIndex = ret.exportListIndex;
-                  setTimeoutOrClose();
+                  
+                  if (csvLoadService.scope.percent < 100) {
+                    processBatchCaller()
+                      .then(deferred.resolve)
+                      .error(deferred.reject);
+                    //setTimeout(processBatchCaller, 0);
+                  } else  if (_.isFunction(csvLoadService.scope.close)) {
+                    deferred.resolve();
+                  }
                 });
             } else {
               csvLoadService.scope.percent = processed.percent;
               csvLoadService.scope.exportListIndex = processed.exportListIndex;
-              setTimeoutOrClose();
+
+              if (csvLoadService.scope.percent < 100) {
+                processBatchCaller()
+                  .then(deferred.resolve)
+                  .error(deferred.reject);
+                //setTimeout(processBatchCaller, 0);
+              } else  if (_.isFunction(csvLoadService.scope.close)) {
+                deferred.resolve();
+              }
             }
           })
-          .catch(function (error) {
-            if (_.isFunction(csvLoadService.scope.cancel)) {
-              csvLoadService.scope.cancel();
-            }
-          });
+          .catch(deferred.reject);
+        return deferred.promise;
       }
 
       csvLoadService.uploadCSV = function () {
+        var deferred = $q.defer();
         if (_.isFunction(csvLoadService.scope.startClickedPlugin)) {
           csvLoadService.scope.startClickedPlugin();
         }
-        processBatchCaller();
+        processBatchCaller()
+          .success(function(data) {
+              csvLoadService.scope.close();
+              deferred.resolve();
+          }).error(function (error) {
+            if (_.isFunction(csvLoadService.scope.cancel)) {
+              csvLoadService.scope.cancel();
+            }
+            deferred.reject();
+          });
+        return deferred.promise;
+      };
+      
+      csvLoadService.uploadUponElCreation = function (scope) {
+        var deferred = $q.defer();
+        csvLoadService.scope = scope;
+
+        csvLoadService.scope.batchSize = ConfigService.censusImportBatch;
+        // 0 to 100% (when finished)
+        csvLoadService.scope.percent = 0;
+        csvLoadService.scope.disableOk = false;
+
+        csvLoadService.scope.exportList = csvLoadService.scope.election.census.voters;
+        csvLoadService.scope.exportListIndex = 0;
+
+        var pluginData = {
+          html: [],
+          scope: {},
+          okhtml: [],
+          processBatchPlugin: false,
+          startClickedPlugin: false,
+          election: csvLoadService.scope.election,
+          exportList: csvLoadService.scope.exportList
+        };
+        Plugins.hook('census-csv-loading-modal', pluginData);
+        csvLoadService.scope.exhtml = pluginData.html;
+        csvLoadService.scope.okhtml = pluginData.okhtml;
+        csvLoadService.scope = _.extend(csvLoadService.scope, pluginData.scope);
+        csvLoadService.scope.startClickedPlugin = pluginData.startClickedPlugin;
+        csvLoadService.scope.processBatchPlugin = pluginData.processBatchPlugin;
+        
+        csvLoadService.uploadCSV()
+          .success(deferred.resolve)
+          .error(deferred.reject);
+        return deferred.promise;
       };
 
       

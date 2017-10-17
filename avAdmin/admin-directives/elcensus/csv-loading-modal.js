@@ -32,7 +32,7 @@ angular.module('avAdmin')
         $modalInstance.close('ok');
       };
       
-      CsvLoad.init($scope);
+      CsvLoad.processCsv($scope);
 
       $scope.ok = function () {
         $scope.disableOk = true;
