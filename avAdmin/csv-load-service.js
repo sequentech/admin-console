@@ -59,9 +59,8 @@ angular.module('avAdmin')
       }
 
       csvLoadService.processCsv = function (scope) {
+        csvLoadService.scope = scope;
         if (!!scope.election.id) {
-          csvLoadService.scope = scope;
-
           csvLoadService.scope.batchSize = ConfigService.censusImportBatch;
           // 0 to 100% (when finished)
           csvLoadService.scope.percent = 0;
@@ -221,7 +220,8 @@ angular.module('avAdmin')
           csvLoadService.scope.percent = 0;
           csvLoadService.scope.disableOk = false;
 
-          csvLoadService.scope.exportList = csvLoadService.scope.election.census.voters;
+          csvLoadService.scope.exportList = 
+            _.pluck(csvLoadService.scope.election.census.voters, 'metadata');
           csvLoadService.scope.exportListIndex = 0;
 
           var pluginData = {
