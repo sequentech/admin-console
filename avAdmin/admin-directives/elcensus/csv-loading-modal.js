@@ -28,6 +28,10 @@ angular.module('avAdmin')
         $modalInstance.dismiss('cancel');
       };
       
+      $scope.close = function () {
+        $modalInstance.close('ok');
+      };
+      
       CsvLoad.init($scope);
 
       $scope.ok = function () {

@@ -18,10 +18,14 @@
 angular.module('avAdmin')
   .factory(
     'CsvLoad',
-    function($modalInstance, $q, ConfigService, Plugins, Authmethod)
+    function (
+      $q,
+      ConfigService,
+      Plugins,
+      Authmethod)
     {
-     
       var csvLoadService = {};
+
       function calculateExportList(textarea) {
           var el = csvLoadService.scope.election;
           var cs;
@@ -54,7 +58,6 @@ angular.module('avAdmin')
           return [];
       }
 
-      
       csvLoadService.init = function (scope) {
         csvLoadService.scope = scope;
 
@@ -81,8 +84,6 @@ angular.module('avAdmin')
         csvLoadService.scope.startClickedPlugin = pluginData.startClickedPlugin;
         csvLoadService.scope.processBatchPlugin = pluginData.processBatchPlugin;
       };
-      
-    ////////////////////////////////////////////////////////////////////////////
 
       function calcPercent (index) {
         return index*100.0/csvLoadService.scope.exportList.length;
@@ -147,8 +148,8 @@ angular.module('avAdmin')
       function setTimeoutOrClose() {
         if (csvLoadService.scope.percent < 100) {
           setTimeout(processBatchCaller, 0);
-        } else {
-          $modalInstance.close('ok');
+        } else  if(_.isFunction(csvLoadService.scope.close)) {
+          csvLoadService.scope.close();
         }
       }
 
@@ -169,10 +170,12 @@ angular.module('avAdmin')
             }
           })
           .catch(function (error) {
-            csvLoadService.scope.cancel();
+            if (_.isFunction(csvLoadService.scope.cancel)) {
+              csvLoadService.scope.cancel();
+            }
           });
       }
-      
+
       csvLoadService.uploadCSV = function () {
         if (_.isFunction(csvLoadService.scope.startClickedPlugin)) {
           csvLoadService.scope.startClickedPlugin();
@@ -180,8 +183,6 @@ angular.module('avAdmin')
         processBatchCaller();
       };
 
-    ////////////////////////////////////////////////////////////////////////////
       
       return csvLoadService;
-    }
-   );
+    });
