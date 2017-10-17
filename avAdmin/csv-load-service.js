@@ -59,7 +59,7 @@ angular.module('avAdmin')
       }
 
       csvLoadService.processCsv = function (scope) {
-        if (!scope.election.id) {
+        if (!!scope.election.id) {
           csvLoadService.scope = scope;
 
           csvLoadService.scope.batchSize = ConfigService.censusImportBatch;
@@ -86,8 +86,8 @@ angular.module('avAdmin')
           csvLoadService.scope.startClickedPlugin = pluginData.startClickedPlugin;
           csvLoadService.scope.processBatchPlugin = pluginData.processBatchPlugin;
         } else {
-          var exportList = calculateExportList(csvLoadService.scope.textarea);
           var el = csvLoadService.scope.election;
+          var exportList = calculateExportList(csvLoadService.scope.textarea);
           el.census.voters.push.apply(exportList);
         }
       };
