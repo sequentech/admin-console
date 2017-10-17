@@ -748,9 +748,9 @@ angular.module('avAdmin')
               close: function () {}
             };
             CsvLoad.uploadUponElCreation(data)
-                .success(function(data) {
+                .then(function(data) {
                     deferred.resolve(el);
-                }).error(deferred.reject);
+                }).catch(deferred.reject);
 
             return deferred.promise;
         }
