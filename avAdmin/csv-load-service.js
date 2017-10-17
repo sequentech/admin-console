@@ -195,8 +195,10 @@ angular.module('avAdmin')
           csvLoadService.scope.startClickedPlugin();
         }
         processBatchCaller()
-          .success(function(data) {
-              csvLoadService.scope.close();
+          .then(function(data) {
+              if (_.isFunction(csvLoadService.scope.close)) {
+                csvLoadService.scope.close();
+              }
               deferred.resolve();
           }).error(function (error) {
             if (_.isFunction(csvLoadService.scope.cancel)) {
