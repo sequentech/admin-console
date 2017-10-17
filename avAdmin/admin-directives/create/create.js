@@ -734,7 +734,7 @@ angular.module('avAdmin')
             // Adding the census
             logInfo($i18next('avAdmin.create.census', {title: el.title, id: el.id}));
 
-            data = {
+            var data = {
               election: el,
               error: function (errorMsg) {
                   scope.errors.push({
@@ -743,12 +743,8 @@ angular.module('avAdmin')
                   });
                 },
               disableOk: false,
-              cancel: function () {
-                $modalInstance.dismiss('cancel');
-              },
-              close: function () {
-                $modalInstance.close('ok');
-              }
+              cancel: function () {},
+              close: function () {}
             };
             uploadUponElCreation(data)
                 .success(function(data) {
