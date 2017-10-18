@@ -31,6 +31,7 @@ angular.module('avAdmin')
       $stateParams,
       $timeout,
       ConfigService,
+      CsvLoad,
       NextButtonService)
     {
     // we use it as something similar to a controller here
@@ -302,25 +303,33 @@ angular.module('avAdmin')
             election: function () { return scope.election; }
           }
         }).result.then(function(textarea) {
-          $modal.open({
-           templateUrl: "avAdmin/admin-directives/elcensus/csv-loading-modal.html",
-           controller: "CsvLoadingModal",
-           size: 'lg',
-           resolve: {
-             election: function () { return scope.election; },
-             textarea: function () { return textarea; },
-             errorFunc: function () {
-               function errorFunction(data) {
-                 if (_.isBoolean(data)) {
-                   scope.error = data;
+          if (!!scope.election.id) {
+            $modal.open({
+             templateUrl: "avAdmin/admin-directives/elcensus/csv-loading-modal.html",
+             controller: "CsvLoadingModal",
+             size: 'lg',
+             resolve: {
+               election: function () { return scope.election; },
+               textarea: function () { return textarea; },
+               errorFunc: function () {
+                 function errorFunction(data) {
+                   if (_.isBoolean(data)) {
+                     scope.error = data;
+                   }
+                   return scope.error;
                  }
-                 return scope.error;
+                 return errorFunction;
                }
-               return errorFunction;
              }
-           }
-          })
-          .result.then(scope.reloadCensus, scope.reloadCensus);
+            })
+            .result.then(scope.reloadCensus, scope.reloadCensus);
+          } else {
+            var data = {
+              election: scope.election,
+              textarea: textarea
+            };
+            CsvLoad.processCsv(data);
+          }
         });
       }
 

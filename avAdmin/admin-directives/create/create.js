@@ -31,6 +31,7 @@ angular.module('avAdmin')
       ConfigService,
       ElectionLimits,
       CheckerService,
+      CsvLoad,
       MustExtraFieldsService)
     {
       // we use it as something similar to a controller here
@@ -883,13 +884,27 @@ angular.module('avAdmin')
         function addCensus(el) {
             console.log("adding census for election " + el.title);
             var deferred = $q.defer();
+
             // Adding the census
             logInfo($i18next('avAdmin.create.census', {title: el.title, id: el.id}));
-            var voters = _.map(el.census.voters, function (i) { return i.metadata; });
-            Authmethod.addCensus(el.id, voters, 'disabled')
-                .success(function(data) {
+
+            var data = {
+              election: el,
+              error: function (errorMsg) {
+                  scope.errors.push({
+                    data: {message: errorMsg},
+                    key: "election-census-createel-unknown"
+                  });
+                },
+              disableOk: false,
+              cancel: function () {},
+              close: function () {}
+            };
+            CsvLoad.uploadUponElCreation(data)
+                .then(function(data) {
                     deferred.resolve(el);
-                }).error(deferred.reject);
+                }).catch(deferred.reject);
+
             return deferred.promise;
         }
 
