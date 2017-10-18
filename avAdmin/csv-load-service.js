@@ -58,6 +58,13 @@ angular.module('avAdmin')
           return [];
       }
 
+      /**
+       * After introducing the CSV text in a previous modal, this method will
+       * parse it. If the election hasn't been created yet, the added census
+       * will be included in the local election variable. If the election exists,
+       * additional steps will be performed to prepare the uploading census
+       * modal.
+       */
       csvLoadService.processCsv = function (scope) {
         csvLoadService.scope = scope;
         if (!!scope.election.id) {
@@ -188,6 +195,9 @@ angular.module('avAdmin')
         return deferred.promise;
       }
 
+      /**
+       * This function will upload the census to an election that already exists
+       */
       csvLoadService.uploadCSV = function () {
         var deferred = $q.defer();
         if (_.isFunction(csvLoadService.scope.startClickedPlugin)) {
@@ -207,7 +217,11 @@ angular.module('avAdmin')
           });
         return deferred.promise;
       };
-      
+
+      /**
+       * This function will be called just after creating the election, and it
+       * will upload the census to the election.
+       */
       csvLoadService.uploadUponElCreation = function (scope) {
         var deferred = $q.defer();
         if (0 === scope.election.census.voters.length) {
