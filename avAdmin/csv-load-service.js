@@ -20,6 +20,7 @@ angular.module('avAdmin')
     'CsvLoad',
     function (
       $q,
+      $timeout,
       ConfigService,
       Plugins,
       Authmethod)
@@ -165,30 +166,34 @@ angular.module('avAdmin')
             if (_.isFunction(csvLoadService.scope.processBatchPlugin)) {
               csvLoadService.scope.processBatchPlugin(processed)
                 .then(function (ret) {
-                  csvLoadService.scope.percent = ret.percent;
-                  csvLoadService.scope.exportListIndex = ret.exportListIndex;
-                  
-                  if (csvLoadService.scope.percent < 100) {
-                    processBatchCaller()
-                      .then(deferred.resolve)
-                      .catch(deferred.reject);
-                    //setTimeout(processBatchCaller, 0);
-                  } else  if (_.isFunction(csvLoadService.scope.close)) {
-                    deferred.resolve();
-                  }
+                  $timeout(function () {
+                    csvLoadService.scope.percent = ret.percent;
+                    csvLoadService.scope.exportListIndex = ret.exportListIndex;
+                    
+                    if (csvLoadService.scope.percent < 100) {
+                      processBatchCaller()
+                        .then(deferred.resolve)
+                        .catch(deferred.reject);
+                      //setTimeout(processBatchCaller, 0);
+                    } else  if (_.isFunction(csvLoadService.scope.close)) {
+                      deferred.resolve();
+                    }
+                  });
                 });
             } else {
-              csvLoadService.scope.percent = processed.percent;
-              csvLoadService.scope.exportListIndex = processed.exportListIndex;
+              $timeout(function () {
+                csvLoadService.scope.percent = processed.percent;
+                csvLoadService.scope.exportListIndex = processed.exportListIndex;
 
-              if (csvLoadService.scope.percent < 100) {
-                processBatchCaller()
-                  .then(deferred.resolve)
-                  .catch(deferred.reject);
-                //setTimeout(processBatchCaller, 0);
-              } else  if (_.isFunction(csvLoadService.scope.close)) {
-                deferred.resolve();
-              }
+                if (csvLoadService.scope.percent < 100) {
+                  processBatchCaller()
+                    .then(deferred.resolve)
+                    .catch(deferred.reject);
+                  //setTimeout(processBatchCaller, 0);
+                } else  if (_.isFunction(csvLoadService.scope.close)) {
+                  deferred.resolve();
+                }
+              });
             }
           })
           .catch(deferred.reject);
