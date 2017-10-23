@@ -352,78 +352,7 @@ angular.module('avAdmin')
         electionsapi.templateQ = function(title) {
             var q = {
                 "answer_total_votes_percentage": "over-total-valid-votes",
-                "answers": [
-                    {
-                        "answer_total_votes_percentage": "over-total-valid-votes",
-                        "answers": [
-                        {
-                            "category": "",
-                            "details": "This is an option with an simple example description.",
-                            "id": 0,
-                            "sort_order": 0,
-                            "text": "Example option 1",
-                            "urls": [
-                            {
-                                "title": "URL",
-                                "url": ""
-                            },
-                            {
-                                "title": "Image URL",
-                                "url": ""
-                            }
-                            ]
-                        },
-                        {
-                            "category": "",
-                            "details": "An option can contain a description. You can add simple html like <strong>bold</strong> or <a href=\"https://nvotes.com\">links to websites</a>. You can also set an image url below, but be sure it's HTTPS or else it won't load.\n\n<br><br>You need to use two br element for new paragraphs.",
-                            "id": 1,
-                            "sort_order": 1,
-                            "text": "Example option 2",
-                            "urls": [
-                            {
-                                "title": "URL",
-                                "url": "https://nvotes.com"
-                            },
-                            {
-                                "title": "Image URL",
-                                "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/The_Fabs.JPG/220px-The_Fabs.JPG"
-                            }
-                            ]
-                        },
-                        {
-                            "category": "",
-                            "details": "",
-                            "id": 2,
-                            "sort_order": 2,
-                            "text": "Example option 3",
-                            "urls": [
-                            {
-                                "title": "URL",
-                                "url": ""
-                            },
-                            {
-                                "title": "Image URL",
-                                "url": ""
-                            }
-                            ]
-                        }
-                        ],
-                        "description": "This is the description of this question. You can have multiple questions. You can add simple html like <strong>bold</strong> or <a href=\"https://nvotes.com\">links to websites</a>.\n\n<br><br>You need to use two br element for new paragraphs.",
-                        "layout": "accordion",
-                        "max": 1,
-                        "min": 1,
-                        "num_winners": 1,
-                        "tally_type": "plurality-at-large",
-                        "title": "Test question title",
-                        "extra_options": {
-                        "shuffle_categories": true,
-                        "shuffle_all_options": true,
-                        "shuffle_category_list": [],
-                        "show_points": false
-                        },
-                        "active": true
-                    }
-                ],
+                "answers": [],
                 "description": "This is the description of this question. You can have multiple questions. You can add simple html like <strong>bold</strong> or <a href=\"https://nvotes.com\">links to websites</a>.\n\n<br><br>You need to use two br element for new paragraphs.",
                 "layout": "accordion",
                 "max": 1,
