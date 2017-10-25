@@ -324,8 +324,8 @@ angular.module('avAdmin')
             })
             .result.then(
               scope.reloadCensus,
-              function (errorData) {
-                console.log(errorData);
+              function (error) {
+                Plugins.hook('census-csv-load-error', error);
                 scope.reloadCensus();
               });
           } else {
