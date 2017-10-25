@@ -322,7 +322,12 @@ angular.module('avAdmin')
                }
              }
             })
-            .result.then(scope.reloadCensus, scope.reloadCensus);
+            .result.then(
+              scope.reloadCensus,
+              function (error) {
+                Plugins.hook('census-csv-load-error', error);
+                scope.reloadCensus();
+              });
           } else {
             var data = {
               election: scope.election,
