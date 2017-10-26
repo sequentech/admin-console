@@ -50,6 +50,16 @@ angular.module('avAdmin')
           ElectionsApi.currentElections = [];
         }
 
+        if (0 < scope.elections.length) {
+          Authmethod.uploadUserDraft(scope.elections[0])
+            .success(function (data) {
+              console.log("sucess uploading draft: " + data);
+            })
+            .error(function (error) {
+              console.log("error uploading draft: " + error);
+            });
+        }
+
         function logInfo(text) {
           scope.log += "<p>" + text + "</p>";
         }
