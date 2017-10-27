@@ -52,6 +52,7 @@ angular.module('avAdmin')
                 "admin.create" === state)) {
             return false;
           }
+          return true;
         }
 
         draft_election.updateDraft = function () {
