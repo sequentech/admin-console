@@ -33,9 +33,9 @@ angular.module('avAdmin')
         $cookies,
         $rootScope)
       {
-        var election = undefined;
+        var election;
         var draft_election = {};
-        var promise = undefined;
+        var promise;
 
         function isEditingDraft() {
           var state = $state.current.name;
@@ -91,7 +91,7 @@ angular.module('avAdmin')
             .error(function (error) {
               console.log("error erasing draft: " + error);
             });
-        }
+        };
 
         return draft_election;
       });
