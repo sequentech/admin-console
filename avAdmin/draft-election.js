@@ -40,7 +40,7 @@ angular.module('avAdmin')
         function isEditingDraft() {
           var state = $state.current.name;
           var id = $stateParams.id;
-          if (!_.isUndefined(id)) {
+          if (id) {
             return false;
           }
           if (!("admin.basic" === state ||
