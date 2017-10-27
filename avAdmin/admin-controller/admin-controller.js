@@ -148,5 +148,9 @@ angular.module('avAdmin').controller('AdminController',
     });
     updateStates();
     NextButtonService.setStates(next_states);
+
+    if (!id) {
+      DraftElection.updateDraft();
+    }
   }
 );

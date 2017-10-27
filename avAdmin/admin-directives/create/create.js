@@ -22,6 +22,7 @@ angular.module('avAdmin')
       $q,
       Plugins,
       Authmethod,
+      DraftElection,
       ElectionsApi,
       $state,
       $stateParams,
@@ -48,16 +49,6 @@ angular.module('avAdmin')
         } else {
           scope.elections = ElectionsApi.currentElections;
           ElectionsApi.currentElections = [];
-        }
-
-        if (0 < scope.elections.length) {
-          Authmethod.uploadUserDraft(scope.elections[0])
-            .success(function (data) {
-              console.log("sucess uploading draft: " + data);
-            })
-            .error(function (error) {
-              console.log("error uploading draft: " + error);
-            });
         }
 
         function logInfo(text) {
@@ -974,6 +965,7 @@ angular.module('avAdmin')
             .then(function(el) {
                 console.log("waiting for election " + el.title);
                 waitForCreated(el.id, function () {
+                  DraftElection.eraseDraft();
                   addElection(i+1);
                 });
               })
