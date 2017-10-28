@@ -18,7 +18,7 @@
 angular.module('avAdmin')
   .directive(
     'avAdminElections',
-    function(Authmethod, ElectionsApi, $state, Plugins, $window)
+    function(Authmethod, ElectionsApi, DraftElection, $state, Plugins, $timeout, $window)
     {
         // we use it as something similar to a controller here
         function link(scope, element, attrs) {
@@ -26,6 +26,15 @@ angular.module('avAdmin')
             scope.loading = false;
             scope.nomore = false;
             scope.elections = [];
+            scope.draft = {};
+            scope.has_draft = false;
+
+            DraftElection.getDraft(function(el) {
+               $timeout(function () {
+                 scope.draft = el;
+                 scope.has_draft = ("{}" !=== JSON.stringify(el));
+               });
+              });
 
             function loadMoreElections() {
                 if (scope.loading || scope.nomore) {

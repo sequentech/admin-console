@@ -36,6 +36,23 @@ angular.module('avAdmin')
         var election;
         var draft_election = {};
         var promise;
+        draft_election.getDraft = function (update_func) {
+          if (_.isFunction(update_func)) {
+            if (!_.isUndefined(election) &&
+                "{}" !== JSON.stringify(election)) {
+              update_func(election);
+            }
+            
+          Authmethod.getUserDraft()
+            .success(function (data) {
+              election = data;
+              update_func(election);
+            })
+            .error(function (error) {
+              console.log("error downloading draft: " + error);
+            });
+          }
+        };
 
         function isEditingDraft() {
           var state = $state.current.name;
@@ -72,7 +89,6 @@ angular.module('avAdmin')
 
           Authmethod.uploadUserDraft(election)
             .success(function (data) {
-              console.log("sucess uploading draft: " + JSON.stringify(JSON.parse(angular.toJson(election)), null, 2));
             })
             .error(function (error) {
               console.log("error uploading draft: " + error);
