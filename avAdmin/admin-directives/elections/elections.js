@@ -29,12 +29,15 @@ angular.module('avAdmin')
             scope.draft = {};
             scope.has_draft = false;
 
-            DraftElection.getDraft(function(el) {
-               $timeout(function () {
-                 scope.draft = el;
-                 scope.has_draft = ("{}" !=== JSON.stringify(el));
-               });
-              });
+            function updateDraft(el) {
+             $timeout(function () {
+               scope.draft = el;
+               scope.has_draft = ("{}" !== JSON.stringify(el));
+             });
+            }
+
+            DraftElection.getDraft(updateDraft)
+              .then(updateDraft);
 
             function loadMoreElections() {
                 if (scope.loading || scope.nomore) {

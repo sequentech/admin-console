@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin').controller('AdminController',
-  function(Plugins, ConfigService, $scope, $i18next, $state, $stateParams, ElectionsApi, DraftElection, $compile, NextButtonService) {
+  function(Plugins, ConfigService, $scope, $i18next, $state, $stateParams, ElectionsApi, DraftElection, $compile, NextButtonService, $q) {
     var id = $stateParams.id;
     $scope.state = $state.current.name;
     $scope.current = null;
@@ -70,6 +70,19 @@ angular.module('avAdmin').controller('AdminController',
       }
     }
 
+    function loadDraft() {
+      var deferred = $q.defer();
+      DraftElection.getDraft()
+        .then(function (el) {
+            $scope.current = el;
+            ElectionsApi.setCurrent(el);
+            ElectionsApi.newElection = true;
+            deferred.resolve(el);
+          },
+          deferred.reject);
+      return deferred.promise;
+    }
+
     if (id) {
         ElectionsApi.getElection(id)
             .then(function(el) {
@@ -84,13 +97,24 @@ angular.module('avAdmin').controller('AdminController',
                 }
             });
     }
+    
+    function goToBasic() {
+      updateHasAdminFields();
+      $state.go("admin.basic");
+      $scope.isTest = !$scope.current['real'];
+    }
 
     if ($scope.state === 'admin.new') {
-        // New election
-        newElection();
-        updateHasAdminFields();
-        $state.go("admin.basic");
-        $scope.isTest = !$scope.current['real'];
+        var draft = $stateParams.draft;
+        if (true === draft) {
+          // Load draft
+          loadDraft()
+            .then(goToBasic);
+        } else {
+          // New election
+          newElection();
+          goToBasic();
+        }
     }
 
     var states =[ 'admin.dashboard', 'admin.basic', 'admin.questions', 'admin.censusConfig', 'admin.census', 'admin.auth', 'admin.tally', 'admin.successAction', 'admin.adminFields', 'admin.create'];

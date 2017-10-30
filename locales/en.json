@@ -144,6 +144,7 @@
     "elections": {
         "filter": "Filter...",
         "test": "test",
+        "draft": "draft",
         "real": "real",
         "status": "Status",
         "participation": "Participation"

@@ -37,6 +37,7 @@ angular.module('avAdmin')
         var draft_election = {};
         var promise;
         draft_election.getDraft = function (update_func) {
+          var deferred = $q.defer();
           if (_.isFunction(update_func)) {
             if (!_.isUndefined(election) &&
                 "{}" !== JSON.stringify(election)) {
@@ -46,12 +47,14 @@ angular.module('avAdmin')
           Authmethod.getUserDraft()
             .success(function (data) {
               election = data;
-              update_func(election);
+              deferred.resolve(election);
             })
             .error(function (error) {
               console.log("error downloading draft: " + error);
+              deferred.reject(error);
             });
           }
+          return deferred.promise;
         };
 
         function isEditingDraft() {
