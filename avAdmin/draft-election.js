@@ -43,6 +43,7 @@ angular.module('avAdmin')
                 "{}" !== JSON.stringify(election)) {
               update_func(election);
             }
+          }
             
           Authmethod.getUserDraft()
             .success(function (data) {
@@ -53,7 +54,6 @@ angular.module('avAdmin')
               console.log("error downloading draft: " + error);
               deferred.reject(error);
             });
-          }
           return deferred.promise;
         };
 

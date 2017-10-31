@@ -114,7 +114,7 @@ angular.module('agora-gui-admin').config(
       })
       // admin directives using the admin controller
       .state('admin.new', {
-        url: '/new',
+        url: '/new/:draft',
         templateUrl: 'avAdmin/admin-controller/admin-controller.html',
         controller: 'AdminController'
       })
