@@ -147,7 +147,11 @@
         "draft": "draft",
         "real": "real",
         "status": "Status",
-        "participation": "Participation"
+        "participation": "Participation",
+        "useDraftModal": {
+          "title": "Do you want to load the election Draft?",
+          "body": "This action will load the election Draft with title '__title__'. This action will load this draft and subsequent modifications of its configuration will rewrite the saved draft. Do you wish to proceed?"
+        }
     },
     "action": {
         "create": "create",

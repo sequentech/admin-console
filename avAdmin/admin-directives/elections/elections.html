@@ -29,14 +29,14 @@
         
           <tr ng-if="!!has_draft">
             <td>
-              <a ui-sref="admin.new({draft: true})" class="padded">
+              <a ng-click="loadDraft()" class="padded">
                   <span class="label label-draft" ng-i18next>avAdmin.elections.draft</span>
                   <span ng-if="!draft.real" class="label label-warning" ng-i18next>avAdmin.elections.test</span>
                   <span ng-if="draft.real" class="label label-primary" ng-i18next>avAdmin.elections.real</span>
               </a>
             </td>
             <td>
-              <a ui-sref="admin.new({draft: true})">
+              <a ng-click="loadDraft()">
                 <strong>{{ draft.title }}</strong>
                 <div
                   ng-bind-html="draft.description | htmlToText | truncate:150">

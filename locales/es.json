@@ -147,7 +147,11 @@
         "draft": "borrador",
         "real": "real",
         "status": "Estado",
-        "participation": "Participación"
+        "participation": "Participación",
+        "useDraftModal": {
+          "title": "Quieres cargar el borrador de la votación?",
+          "body": "Esta acción cargará el borrador de la votación con título '__title__'. Esta acción cargará el borrador y subsecuentes modificaciones de su configuración reescribirán el borrador. Desea proceder?"
+        }
     },
     "action": {
         "create": "crear",

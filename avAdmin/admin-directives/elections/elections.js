@@ -18,7 +18,7 @@
 angular.module('avAdmin')
   .directive(
     'avAdminElections',
-    function(Authmethod, ElectionsApi, DraftElection, $state, Plugins, $timeout, $window)
+    function(Authmethod, ElectionsApi, DraftElection, $state, Plugins, $modal, $timeout, $window)
     {
         // we use it as something similar to a controller here
         function link(scope, element, attrs) {
@@ -89,8 +89,26 @@ angular.module('avAdmin')
             }
             );
 
+            scope.loadDraft = function () {
+              // show a warning dialog before loading draft
+              $modal
+                .open({
+                  templateUrl: "avAdmin/admin-directives/use-draft-modal.html",
+                  controller: "UseDraftModal",
+                  size: 'lg',
+                  resolve: {
+                    title: scope.draft.title
+                  }
+                })
+                .result.then(function (data) {
+                    if ('ok' === data) {
+                      $state.go("admin.new", {"draft": true});
+                    }
+                  });
+            };
+
             angular.extend(scope, {
-            loadMoreElections: loadMoreElections,
+              loadMoreElections: loadMoreElections,
             });
         }
 
