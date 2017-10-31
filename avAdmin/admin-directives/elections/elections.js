@@ -93,7 +93,7 @@ angular.module('avAdmin')
               // show a warning dialog before loading draft
               $modal
                 .open({
-                  templateUrl: "avAdmin/admin-directives/use-draft-modal.html",
+                  templateUrl: "avAdmin/admin-directives/elections/use-draft-modal.html",
                   controller: "UseDraftModal",
                   size: 'lg',
                   resolve: {
