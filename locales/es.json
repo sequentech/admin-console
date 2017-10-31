@@ -154,7 +154,7 @@
         },
         "eraseDraftModal": {
           "title": "Deseas eliminar el borrador de la votación?",
-          "body": "Esta acción eliminará el borrador de la votación con título '__title__'. Esta acción no podrá ser revertida. Desa proceder?"
+          "body": "Esta acción eliminará el borrador de la votación con título '__title__'. Esta acción no podrá ser revertida. Desea proceder?"
         }
     },
     "action": {
