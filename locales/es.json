@@ -151,6 +151,10 @@
         "useDraftModal": {
           "title": "Quieres cargar el borrador de la votación?",
           "body": "Esta acción cargará el borrador de la votación con título '__title__'. Esta acción cargará el borrador y subsecuentes modificaciones de su configuración reescribirán el borrador. Desea proceder?"
+        },
+        "eraseDraftModal": {
+          "title": "Deseas eliminar el borrador de la votación?",
+          "body": "Esta acción eliminará el borrador de la votación con título '__title__'. Esta acción no podrá ser revertida. Desa proceder?"
         }
     },
     "action": {

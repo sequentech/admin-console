@@ -151,6 +151,10 @@
         "useDraftModal": {
           "title": "Do you want to load the election draft?",
           "body": "This action will load the election draft with title '__title__'. This action will load this draft and subsequent modifications of its configuration will rewrite the saved draft. Do you wish to proceed?"
+        },
+        "eraseDraftModal": {
+          "title": "Do you want to erase the election draft?",
+          "body": "This action will erase the election draft with title '__title__'. This action cannot be reverted. Do you wish to proceed?"
         }
     },
     "action": {

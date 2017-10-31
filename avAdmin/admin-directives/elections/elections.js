@@ -36,8 +36,11 @@ angular.module('avAdmin')
              });
             }
 
+            function getUpdateDraft() {
             DraftElection.getDraft(updateDraft)
               .then(updateDraft);
+            }
+            getUpdateDraft();
 
             function loadMoreElections() {
                 if (scope.loading || scope.nomore) {
@@ -103,6 +106,30 @@ angular.module('avAdmin')
                 .result.then(function (data) {
                     if ('ok' === data) {
                       $state.go("admin.new", {"draft": true});
+                    }
+                  });
+            };
+            
+            scope.eraseDraft = function () {
+              // show a warning dialog before erasing draft
+              $modal
+                .open({
+                  templateUrl: "avAdmin/admin-directives/elections/erase-draft-modal.html",
+                  controller: "EraseDraftModal",
+                  size: 'lg',
+                  resolve: {
+                    title: function () { return scope.draft.title; }
+                  }
+                })
+                .result.then(function (data) {
+                    if ('ok' === data) {
+                      DraftElection.eraseDraft()
+                        .then(function () {
+                          getUpdateDraft();
+                        },
+                        function (error) {
+                          console.log("error erasing draft: " + error);
+                        });
                     }
                   });
             };

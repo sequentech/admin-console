@@ -100,17 +100,15 @@ angular.module('avAdmin')
         };
 
         draft_election.eraseDraft = function () {
+          var deferred = $q.defer();
           election = undefined;
           if (!_.isUndefined(promise)) {
             $timeout.cancel(promise);
           }
           Authmethod.uploadUserDraft({})
-            .success(function (data) {
-              console.log("sucess erasing draft");
-            })
-            .error(function (error) {
-              console.log("error erasing draft: " + error);
-            });
+            .success(deferred.resolve)
+            .error(deferred.reject);
+          return deferred.promise;
         };
 
         return draft_election;
