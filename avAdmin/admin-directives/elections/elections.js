@@ -97,7 +97,7 @@ angular.module('avAdmin')
                   controller: "UseDraftModal",
                   size: 'lg',
                   resolve: {
-                    title: scope.draft.title
+                    title: function () { return scope.draft.title; }
                   }
                 })
                 .result.then(function (data) {
