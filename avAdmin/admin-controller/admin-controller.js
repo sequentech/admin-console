@@ -106,7 +106,7 @@ angular.module('avAdmin').controller('AdminController',
 
     if ($scope.state === 'admin.new') {
         var draft = $stateParams.draft;
-        if (true === draft) {
+        if ('true' === draft) {
           // Load draft
           loadDraft()
             .then(goToBasic);
