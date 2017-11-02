@@ -114,7 +114,7 @@ angular.module('avAdmin')
                 deferred.resolve();
               })
               .error(function(error) {
-                csvLoadService.scope.error(error.error);
+                csvLoadService.scope.error(error.error_codename);
                 Plugins.hook('add-to-census-error', {data: csExport, response: error});
                 deferred.reject(error);
               });

@@ -897,7 +897,9 @@ angular.module('avAdmin')
                   });
                 },
               disableOk: false,
-              cancel: function () {},
+              cancel: function (error) {
+                Plugins.hook('census-csv-load-error', error);
+              },
               close: function () {}
             };
             CsvLoad.uploadUponElCreation(data)
