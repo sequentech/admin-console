@@ -22,6 +22,7 @@ angular.module('avAdmin')
       $q,
       Plugins,
       Authmethod,
+      DraftElection,
       ElectionsApi,
       $state,
       $stateParams,
@@ -966,6 +967,7 @@ angular.module('avAdmin')
             .then(function(el) {
                 console.log("waiting for election " + el.title);
                 waitForCreated(el.id, function () {
+                  DraftElection.eraseDraft();
                   addElection(i+1);
                 });
               })
