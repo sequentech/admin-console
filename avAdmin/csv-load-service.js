@@ -114,9 +114,9 @@ angular.module('avAdmin')
                 deferred.resolve();
               })
               .error(function(error) {
-                csvLoadService.scope.error(error.error);
+                csvLoadService.scope.error(error.error_codename);
                 Plugins.hook('add-to-census-error', {data: csExport, response: error});
-                deferred.reject();
+                deferred.reject(error);
               });
           }
         } catch (error) {
@@ -147,9 +147,7 @@ angular.module('avAdmin')
                 ret.percent = calcPercent(ret.exportListIndex);
                 deferred.resolve(ret);
               })
-              .catch(function () {
-                deferred.reject(ret);
-              });
+              .catch(deferred.reject);
           } else {
             deferred.resolve(ret);
           }
@@ -216,7 +214,7 @@ angular.module('avAdmin')
               deferred.resolve();
           }).catch(function (error) {
             if (_.isFunction(csvLoadService.scope.cancel)) {
-              csvLoadService.scope.cancel();
+              csvLoadService.scope.cancel(error);
             }
             deferred.reject();
           });

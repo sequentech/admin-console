@@ -178,6 +178,7 @@ angular.module('avAdmin')
                   scope.loading = false;
                   scope.error = error.error;
                   Plugins.hook('add-to-census-error', {data: csExport, response: error});
+                  Plugins.hook('census-csv-load-error', error);
                 });
           }
       }
@@ -322,7 +323,12 @@ angular.module('avAdmin')
                }
              }
             })
-            .result.then(scope.reloadCensus, scope.reloadCensus);
+            .result.then(
+              scope.reloadCensus,
+              function (error) {
+                Plugins.hook('census-csv-load-error', error);
+                scope.reloadCensus();
+              });
           } else {
             var data = {
               election: scope.election,

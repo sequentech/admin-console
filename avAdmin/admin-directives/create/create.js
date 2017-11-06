@@ -22,6 +22,7 @@ angular.module('avAdmin')
       $q,
       Plugins,
       Authmethod,
+      DraftElection,
       ElectionsApi,
       $state,
       $stateParams,
@@ -897,7 +898,9 @@ angular.module('avAdmin')
                   });
                 },
               disableOk: false,
-              cancel: function () {},
+              cancel: function (error) {
+                Plugins.hook('census-csv-load-error', error);
+              },
               close: function () {}
             };
             CsvLoad.uploadUponElCreation(data)
@@ -964,6 +967,7 @@ angular.module('avAdmin')
             .then(function(el) {
                 console.log("waiting for election " + el.title);
                 waitForCreated(el.id, function () {
+                  DraftElection.eraseDraft();
                   addElection(i+1);
                 });
               })

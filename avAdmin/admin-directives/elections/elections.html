@@ -26,6 +26,30 @@
         </thead>
 
         <tbody>
+        
+          <tr ng-if="!!has_draft">
+            <td>
+              <a ng-click="loadDraft()" class="padded">
+                  <span class="label label-draft" ng-i18next>avAdmin.elections.draft</span>
+                  <span ng-if="!draft.real" class="label label-warning" ng-i18next>avAdmin.elections.test</span>
+                  <span ng-if="draft.real" class="label label-primary" ng-i18next>avAdmin.elections.real</span>
+              </a>
+            </td>
+            <td>
+              <a ng-click="loadDraft()">
+                <strong>{{ draft.title }}</strong>
+                <div
+                  ng-bind-html="draft.description | htmlToText | truncate:150">
+                </div>
+              </a>
+            </td>
+            <td class="text-center">
+            </td>
+            <td class="text-center align-close">
+              <button type="button" class="close close-center" ng-click="eraseDraft()">×</button>
+            </td>
+          </tr>
+
           <tr ng-repeat="election in elections | filter:q | orderBy:'-id'">
             <td>
               <a ui-sref="admin.dashboard({id: election.id})" class="padded">

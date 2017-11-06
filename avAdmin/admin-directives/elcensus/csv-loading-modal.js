@@ -24,8 +24,8 @@ angular.module('avAdmin')
       $scope.error = errorFunc;
       $scope.disableOk = false;
 
-      $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+      $scope.cancel = function (error) {
+        $modalInstance.dismiss(_.isUndefined(error)? 'cancel': error);
       };
       
       $scope.close = function () {
