@@ -38,20 +38,8 @@ angular.module('avAdmin')
             $state.go("admin.logout");
         }
 
-        function maybeStartOnboarding() {
-          // launch the onboarding tour if the profile has been correctly
-          // filled up and the election list is zero
-          if ('admin.elections' === $state.current.name &&
-              $window.electionsTotalCount !== undefined &&
-              $window.electionsTotalCount === 0)
-          {
-              OnboardingTourService();
-          }
-        }
-
         scope.openProfileEditorModal = AdminProfile.openProfileModal;
-        scope.openProfileEditorModal(true)
-          .then(maybeStartOnboarding,maybeStartOnboarding);
+        scope.openProfileEditorModal(true);
     }
 
     return {
