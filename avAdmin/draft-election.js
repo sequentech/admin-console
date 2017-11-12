@@ -73,7 +73,7 @@ angular.module('avAdmin')
             return false;
           }
           return true;
-        }
+        };
 
         draft_election.updateDraft = function () {
           if (!draft_election.isEditingDraft()) {
