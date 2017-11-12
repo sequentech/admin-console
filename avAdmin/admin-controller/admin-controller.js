@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin').controller('AdminController',
-  function(Plugins, ConfigService, $scope, $i18next, $state, $stateParams, ElectionsApi, DraftElection, $compile, NextButtonService, $q) {
+  function(Plugins, ConfigService, $scope, $i18next, $state, $stateParams, $timeout, ElectionsApi, DraftElection, $compile, NextButtonService, $q) {
     var id = $stateParams.id;
     $scope.state = $state.current.name;
     $scope.current = null;
@@ -173,13 +173,13 @@ angular.module('avAdmin').controller('AdminController',
     updateStates();
     NextButtonService.setStates(next_states);
 
-    scope.draft = {};
-    scope.has_draft = false;
+    $scope.draft = {};
+    $scope.has_draft = false;
 
     function updateDraft(el) {
      $timeout(function () {
-       scope.draft = el;
-       scope.has_draft = ("{}" !== JSON.stringify(el));
+       $scope.draft = el;
+       $scope.has_draft = ("{}" !== JSON.stringify(el));
      });
     }
 
@@ -189,7 +189,7 @@ angular.module('avAdmin').controller('AdminController',
     }
     getUpdateDraft();
 
-    scope.loadDraft = function () {
+    $scope.loadDraft = function () {
       // show a warning dialog before loading draft
       $modal
         .open({
@@ -197,7 +197,7 @@ angular.module('avAdmin').controller('AdminController',
           controller: "UseDraftModal",
           size: 'lg',
           resolve: {
-            title: function () { return scope.draft.title; }
+            title: function () { return $scope.draft.title; }
           }
         })
         .result.then(function (data) {
@@ -207,7 +207,7 @@ angular.module('avAdmin').controller('AdminController',
           });
     };
     
-    scope.eraseDraft = function () {
+    $scope.eraseDraft = function () {
       // show a warning dialog before erasing draft
       $modal
         .open({
@@ -215,7 +215,7 @@ angular.module('avAdmin').controller('AdminController',
           controller: "EraseDraftModal",
           size: 'lg',
           resolve: {
-            title: function () { return scope.draft.title; }
+            title: function () { return $scope.draft.title; }
           }
         })
         .result.then(function (data) {

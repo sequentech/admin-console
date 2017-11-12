@@ -18,7 +18,7 @@
 angular.module('avAdmin')
   .directive(
     'avAdminElections',
-    function(Authmethod, ElectionsApi, $state, Plugins, $modal, $timeout, $window)
+    function(Authmethod, ElectionsApi, $state, Plugins, $modal, $window)
     {
         // we use it as something similar to a controller here
         function link(scope, element, attrs) {
