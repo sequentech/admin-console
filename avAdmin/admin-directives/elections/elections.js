@@ -84,8 +84,6 @@ angular.module('avAdmin')
 
         return {
         restrict: 'AE',
-        scope: {
-        },
         link: link,
         templateUrl: 'avAdmin/admin-directives/elections/elections.html'
         };
