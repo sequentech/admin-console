@@ -41,7 +41,9 @@ angular.module('avAdmin')
         function maybeStartOnboarding() {
           // launch the onboarding tour if the profile has been correctly
           // filled up and the election list is zero
-          if ($window.electionsTotalCount !== undefined && $window.electionsTotalCount === 0)
+          if ('admin.elections' === $state.current.name &&
+              $window.electionsTotalCount !== undefined &&
+              $window.electionsTotalCount === 0)
           {
               OnboardingTourService();
           }
