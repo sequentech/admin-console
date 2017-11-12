@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminHead', function(Authmethod, $state, $cookies, $i18next, $modal, OnboardingTourService, ConfigService, AdminProfile, $sce) {
+  .directive('avAdminHead', function(Authmethod, $state, $window, $cookies, $i18next, $modal, OnboardingTourService, ConfigService, AdminProfile, $sce) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
         var autheventid = Authmethod.getAuthevent();
@@ -38,8 +38,18 @@ angular.module('avAdmin')
             $state.go("admin.logout");
         }
 
+        function maybeStartOnboarding() {
+          // launch the onboarding tour if the profile has been correctly
+          // filled up and the election list is zero
+          if ($window.electionsTotalCount !== undefined && $window.electionsTotalCount === 0)
+          {
+              OnboardingTourService();
+          }
+        }
+
         scope.openProfileEditorModal = AdminProfile.openProfileModal;
-        scope.openProfileEditorModal(true);
+        scope.openProfileEditorModal(true)
+          .then(maybeStartOnboarding,maybeStartOnboarding);
     }
 
     return {
