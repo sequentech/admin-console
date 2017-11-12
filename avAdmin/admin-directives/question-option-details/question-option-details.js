@@ -19,11 +19,12 @@ angular.module('avAdmin')
   .directive('avQuestionOptionDetails', function($state, ElectionsApi) {
     function link(scope, element, attrs) {
         scope.editting = false;
-        if (scope.answer.urls.length !== 2) {
-          scope.answer.urls = [
-            {title: "URL", url: ""},
-            {title: "Image URL", url: ""}
-          ];
+        var urlTitles = _.pluck(scope.answer.urls, 'title');
+        if (-1 === _.indexOf(urlTitles, 'URL')) {
+          scope.answer.urls.push({title: "URL", url: ""});
+        }
+        if (-1 === _.indexOf(urlTitles, 'Image URL')) {
+          scope.answer.urls.push({title: "Image URL", url: ""});
         }
 
         scope.answerBeingEdited = function() {
