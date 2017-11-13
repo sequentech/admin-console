@@ -18,7 +18,7 @@
 angular.module('avAdmin')
   .directive(
     'avAdminElections',
-    function(Authmethod, ElectionsApi, $state, Plugins, $window)
+    function(Authmethod, ElectionsApi, DraftElection, AdminProfile, OnboardingTourService, $state, Plugins, $modal, $timeout, $window)
     {
         // we use it as something similar to a controller here
         function link(scope, element, attrs) {
@@ -26,6 +26,16 @@ angular.module('avAdmin')
             scope.loading = false;
             scope.nomore = false;
             scope.elections = [];
+
+            function maybeStartOnboarding() {
+              // launch the onboarding tour if the profile has been correctly
+              // filled up and the election list is zero
+              if ($window.electionsTotalCount !== undefined &&
+                  $window.electionsTotalCount === 0)
+              {
+                  OnboardingTourService();
+              }
+            }
 
             function loadMoreElections() {
                 if (scope.loading || scope.nomore) {
@@ -53,6 +63,8 @@ angular.module('avAdmin')
                         scope.page += 1;
 
                         $window.electionsTotalCount = data.total_count;
+                        AdminProfile.openProfileModal(true)
+                          .then(maybeStartOnboarding,maybeStartOnboarding);
 
                         if (data.end_index === data.total_count) {
                             scope.nomore = true;

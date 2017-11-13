@@ -90,18 +90,12 @@ angular.module('avAdmin').controller('AdminController',
                 ElectionsApi.setCurrent(el);
                 updateStates();
                 NextButtonService.setStates(next_states);
-                if ('real' in el) {
-                    $scope.isTest = !el.real;
-                } else {
-                    $scope.isTest = true;
-                }
             });
     }
     
     function goToBasic() {
       updateHasAdminFields();
       $state.go("admin.basic");
-      $scope.isTest = !$scope.current['real'];
     }
 
     if ($scope.state === 'admin.new') {
@@ -147,7 +141,6 @@ angular.module('avAdmin').controller('AdminController',
                 current = newElection();
             }
             $scope.current = current;
-            $scope.isTest = !$scope.current['real'];
         }
     } else {
         $scope.sidebarlinks = [];
