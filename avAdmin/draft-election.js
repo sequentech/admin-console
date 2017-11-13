@@ -57,7 +57,7 @@ angular.module('avAdmin')
           return deferred.promise;
         };
 
-        function isEditingDraft() {
+        draft_election.isEditingDraft = function () {
           var state = $state.current.name;
           var id = $stateParams.id;
           if (id) {
@@ -73,10 +73,10 @@ angular.module('avAdmin')
             return false;
           }
           return true;
-        }
+        };
 
         draft_election.updateDraft = function () {
-          if (!isEditingDraft()) {
+          if (!draft_election.isEditingDraft()) {
             election = undefined;
             if (!_.isUndefined(promise)) {
               $timeout.cancel(promise);

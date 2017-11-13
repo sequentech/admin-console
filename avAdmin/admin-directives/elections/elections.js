@@ -26,21 +26,6 @@ angular.module('avAdmin')
             scope.loading = false;
             scope.nomore = false;
             scope.elections = [];
-            scope.draft = {};
-            scope.has_draft = false;
-
-            function updateDraft(el) {
-             $timeout(function () {
-               scope.draft = el;
-               scope.has_draft = ("{}" !== JSON.stringify(el));
-             });
-            }
-
-            function getUpdateDraft() {
-            DraftElection.getDraft(updateDraft)
-              .then(updateDraft);
-            }
-            getUpdateDraft();
 
             function maybeStartOnboarding() {
               // launch the onboarding tour if the profile has been correctly
@@ -104,48 +89,6 @@ angular.module('avAdmin')
             }
             );
 
-            scope.loadDraft = function () {
-              // show a warning dialog before loading draft
-              $modal
-                .open({
-                  templateUrl: "avAdmin/admin-directives/elections/use-draft-modal.html",
-                  controller: "UseDraftModal",
-                  size: 'lg',
-                  resolve: {
-                    title: function () { return scope.draft.title; }
-                  }
-                })
-                .result.then(function (data) {
-                    if ('ok' === data) {
-                      $state.go("admin.new", {"draft": true});
-                    }
-                  });
-            };
-            
-            scope.eraseDraft = function () {
-              // show a warning dialog before erasing draft
-              $modal
-                .open({
-                  templateUrl: "avAdmin/admin-directives/elections/erase-draft-modal.html",
-                  controller: "EraseDraftModal",
-                  size: 'lg',
-                  resolve: {
-                    title: function () { return scope.draft.title; }
-                  }
-                })
-                .result.then(function (data) {
-                    if ('ok' === data) {
-                      DraftElection.eraseDraft()
-                        .then(function () {
-                          getUpdateDraft();
-                        },
-                        function (error) {
-                          console.log("error erasing draft: " + error);
-                        });
-                    }
-                  });
-            };
-
             angular.extend(scope, {
               loadMoreElections: loadMoreElections,
             });
@@ -153,8 +96,6 @@ angular.module('avAdmin')
 
         return {
         restrict: 'AE',
-        scope: {
-        },
         link: link,
         templateUrl: 'avAdmin/admin-directives/elections/elections.html'
         };
