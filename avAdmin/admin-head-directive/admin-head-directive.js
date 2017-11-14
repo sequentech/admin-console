@@ -33,6 +33,15 @@ angular.module('avAdmin')
           return $sce.trustAsHtml(item);
         });
 
+        scope.showFeatures = function () {
+          if ("admin.login" === $state.current.name ||
+              "admin.login_email" === $state.current.name ||
+              "admin.signup" === $state.current.name) {
+            return false;
+          }
+          return true;
+        };
+
         scope.loginrequired = ('loginrequired' in attrs);
         if (scope.loginrequired && !scope.admin) {
             $state.go("admin.logout");

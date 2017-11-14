@@ -14,7 +14,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li ng-if="!admin">
+            <li ng-if="!admin && !!showFeatures()">
               <a
                 href="{{ technology.overview }}"
                 target="_blank"
