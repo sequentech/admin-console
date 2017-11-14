@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin').controller('AdminController',
-  function(Plugins, ConfigService, $scope, $i18next, $state, $stateParams, ElectionsApi, DraftElection, $compile, NextButtonService, $q) {
+  function(Plugins, ConfigService, $scope, $i18next, $state, $stateParams, $timeout, $modal, ElectionsApi, DraftElection, $compile, NextButtonService, $q) {
     var id = $stateParams.id;
     $scope.state = $state.current.name;
     $scope.current = null;
@@ -90,18 +90,12 @@ angular.module('avAdmin').controller('AdminController',
                 ElectionsApi.setCurrent(el);
                 updateStates();
                 NextButtonService.setStates(next_states);
-                if ('real' in el) {
-                    $scope.isTest = !el.real;
-                } else {
-                    $scope.isTest = true;
-                }
             });
     }
     
     function goToBasic() {
       updateHasAdminFields();
       $state.go("admin.basic");
-      $scope.isTest = !$scope.current['real'];
     }
 
     if ($scope.state === 'admin.new') {
@@ -147,7 +141,6 @@ angular.module('avAdmin').controller('AdminController',
                 current = newElection();
             }
             $scope.current = current;
-            $scope.isTest = !$scope.current['real'];
         }
     } else {
         $scope.sidebarlinks = [];
@@ -172,6 +165,64 @@ angular.module('avAdmin').controller('AdminController',
     });
     updateStates();
     NextButtonService.setStates(next_states);
+
+    $scope.draft = {};
+    $scope.has_draft = false;
+
+    function updateDraft(el) {
+     $timeout(function () {
+       $scope.draft = el;
+       $scope.has_draft = ("{}" !== JSON.stringify(el));
+     });
+    }
+
+    function getUpdateDraft() {
+    DraftElection.getDraft(updateDraft)
+      .then(updateDraft);
+    }
+    getUpdateDraft();
+
+    $scope.loadDraft = function () {
+      // show a warning dialog before loading draft
+      $modal
+        .open({
+          templateUrl: "avAdmin/admin-directives/elections/use-draft-modal.html",
+          controller: "UseDraftModal",
+          size: 'lg',
+          resolve: {
+            title: function () { return $scope.draft.title; }
+          }
+        })
+        .result.then(function (data) {
+            if ('ok' === data) {
+              $state.go("admin.new", {"draft": true});
+            }
+          });
+    };
+    
+    $scope.eraseDraft = function () {
+      // show a warning dialog before erasing draft
+      $modal
+        .open({
+          templateUrl: "avAdmin/admin-directives/elections/erase-draft-modal.html",
+          controller: "EraseDraftModal",
+          size: 'lg',
+          resolve: {
+            title: function () { return $scope.draft.title; }
+          }
+        })
+        .result.then(function (data) {
+            if ('ok' === data) {
+              DraftElection.eraseDraft()
+                .then(function () {
+                  getUpdateDraft();
+                },
+                function (error) {
+                  console.log("error erasing draft: " + error);
+                });
+            }
+          });
+    };
 
     if (!id) {
       DraftElection.updateDraft();

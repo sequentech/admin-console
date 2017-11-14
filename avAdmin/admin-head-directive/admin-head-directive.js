@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminHead', function(Authmethod, $state, $cookies, $i18next, $modal, OnboardingTourService, ConfigService, AdminProfile, $sce) {
+  .directive('avAdminHead', function(Authmethod, $state, $window, $cookies, $i18next, $modal, OnboardingTourService, ConfigService, AdminProfile, $sce) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
         var autheventid = Authmethod.getAuthevent();

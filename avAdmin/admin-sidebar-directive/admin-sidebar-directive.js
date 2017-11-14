@@ -33,7 +33,7 @@
 **/
   
 angular.module('avAdmin')
-  .directive('avAdminSidebar', ['$cookies', 'Authmethod', function($cookies, Authmethod) {
+  .directive('avAdminSidebar', ['$cookies', 'Authmethod', 'DraftElection', function($cookies, Authmethod, DraftElection) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
         var autheventid = Authmethod.getAuthevent();
@@ -41,6 +41,7 @@ angular.module('avAdmin')
         var admin = $cookies["user" + postfix];
         scope.admin = admin;
         scope.active = attrs.active;
+        scope.isEditingDraft = DraftElection.isEditingDraft;
     }
 
     return {

@@ -375,66 +375,11 @@ angular.module('avAdmin')
            }
         }
         el.id = null;
-        el.real = false;
         el.raw = null;
         scope.current = el;
         ElectionsApi.setCurrent(el);
         ElectionsApi.newElection = true;
         $state.go("admin.basic");
-      }
-
-      function createRealElection() {
-        var el = ElectionsApi.templateEl();
-        _.extend(el, angular.copy(scope.election));
-        if (el.census.extra_fields && el.census.extra_fields.length > 0) {
-           for (var i = 0; i < el.census.extra_fields.length; i++) {
-             var field = el.census.extra_fields[i];
-             if(field.slug) {
-               delete field['slug'];
-             }
-           }
-        }
-        scope.current = el;
-        el.id = null;
-        el.real = true;
-        ElectionsApi.setCurrent(el);
-        ElectionsApi.newElection = true;
-        $state.go("admin.create", {"autocreate": true});
-      }
-      
-      function clickOnCreateRealElection() {
-          var payload = {};
-          $modal.open({
-            templateUrl: "avAdmin/admin-directives/dashboard/confirm-create-real-modal.html",
-            controller: "ConfirmCreateRealModal",
-            size: 'lg',
-            resolve: {
-              payload: function () { return payload; },
-              election: function () { return scope.election; }
-            }
-          }).result.then(function (data) {
-            // This hook allows plugins to interrupt this function. This interruption
-            // usually happens because the plugin does some processing and decides to
-            // show another previous dialog at this step, for example.
-            var pluginData = {
-              election: scope.election,
-              deferred: false
-            };
-            
-            Plugins.hook(
-              'click-create-real-election',
-              pluginData);
-            if (!pluginData.deferred) {
-              createRealElection();
-            } else {
-              pluginData.deferred.promise
-              .then(function (futureData) {
-                createRealElection();
-              })
-              .catch(function (failureData) {
-              });
-            }
-          });
       }
 
       function changeSocial() {
@@ -457,7 +402,6 @@ angular.module('avAdmin')
         doActionConfirm: doActionConfirm,
         sendAuthCodes: sendAuthCodes,
         duplicateElection: duplicateElection,
-        clickOnCreateRealElection: clickOnCreateRealElection,
         changeSocial: changeSocial
       });
     }

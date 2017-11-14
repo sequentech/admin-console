@@ -841,7 +841,6 @@ angular.module('avAdmin')
                 auth_method_config: el.census.config,
                 extra_fields: [],
                 admin_fields: [],
-                real: el.real,
                 num_successful_logins_allowed: el.num_successful_logins_allowed
             };
 
