@@ -18,7 +18,7 @@
 angular.module('avAdmin')
   .directive(
     'avAdminElections',
-    function(Authmethod, ElectionsApi, DraftElection, $state, Plugins, $modal, $timeout, $window)
+    function(Authmethod, ElectionsApi, DraftElection, AdminProfile, OnboardingTourService, $state, Plugins, $modal, $timeout, $window)
     {
         // we use it as something similar to a controller here
         function link(scope, element, attrs) {
@@ -26,21 +26,16 @@ angular.module('avAdmin')
             scope.loading = false;
             scope.nomore = false;
             scope.elections = [];
-            scope.draft = {};
-            scope.has_draft = false;
 
-            function updateDraft(el) {
-             $timeout(function () {
-               scope.draft = el;
-               scope.has_draft = ("{}" !== JSON.stringify(el));
-             });
+            function maybeStartOnboarding() {
+              // launch the onboarding tour if the profile has been correctly
+              // filled up and the election list is zero
+              if ($window.electionsTotalCount !== undefined &&
+                  $window.electionsTotalCount === 0)
+              {
+                  OnboardingTourService();
+              }
             }
-
-            function getUpdateDraft() {
-            DraftElection.getDraft(updateDraft)
-              .then(updateDraft);
-            }
-            getUpdateDraft();
 
             function loadMoreElections() {
                 if (scope.loading || scope.nomore) {
@@ -68,6 +63,8 @@ angular.module('avAdmin')
                         scope.page += 1;
 
                         $window.electionsTotalCount = data.total_count;
+                        AdminProfile.openProfileModal(true)
+                          .then(maybeStartOnboarding,maybeStartOnboarding);
 
                         if (data.end_index === data.total_count) {
                             scope.nomore = true;
@@ -92,48 +89,6 @@ angular.module('avAdmin')
             }
             );
 
-            scope.loadDraft = function () {
-              // show a warning dialog before loading draft
-              $modal
-                .open({
-                  templateUrl: "avAdmin/admin-directives/elections/use-draft-modal.html",
-                  controller: "UseDraftModal",
-                  size: 'lg',
-                  resolve: {
-                    title: function () { return scope.draft.title; }
-                  }
-                })
-                .result.then(function (data) {
-                    if ('ok' === data) {
-                      $state.go("admin.new", {"draft": true});
-                    }
-                  });
-            };
-            
-            scope.eraseDraft = function () {
-              // show a warning dialog before erasing draft
-              $modal
-                .open({
-                  templateUrl: "avAdmin/admin-directives/elections/erase-draft-modal.html",
-                  controller: "EraseDraftModal",
-                  size: 'lg',
-                  resolve: {
-                    title: function () { return scope.draft.title; }
-                  }
-                })
-                .result.then(function (data) {
-                    if ('ok' === data) {
-                      DraftElection.eraseDraft()
-                        .then(function () {
-                          getUpdateDraft();
-                        },
-                        function (error) {
-                          console.log("error erasing draft: " + error);
-                        });
-                    }
-                  });
-            };
-
             angular.extend(scope, {
               loadMoreElections: loadMoreElections,
             });
@@ -141,8 +96,6 @@ angular.module('avAdmin')
 
         return {
         restrict: 'AE',
-        scope: {
-        },
         link: link,
         templateUrl: 'avAdmin/admin-directives/elections/elections.html'
         };

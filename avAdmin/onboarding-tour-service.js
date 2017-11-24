@@ -112,20 +112,6 @@ angular.module('avAdmin')
                 id: "dashboard-hopscotch",
                 steps: [
                     {
-                        title: $i18next("avAdmin.onboarding.dashboard_tour.step0_test_title"),
-                        content: $i18next("avAdmin.onboarding.dashboard_tour.step0_test_content"),
-                        target: ".head-notification.warn-notification.ng-scope",
-                        highlightTarget: ".head-notification.warn-notification.ng-scope",
-                        placement: "bottom"
-                    },
-                    {
-                        title: $i18next("avAdmin.onboarding.dashboard_tour.step1_real_title"),
-                        content: $i18next("avAdmin.onboarding.dashboard_tour.step1_real_content"),
-                        target: "button[ng-click='clickOnCreateRealElection()']",
-                        highlightTarget: "button[ng-click='clickOnCreateRealElection()']",
-                        placement: "top"
-                    },
-                    {
                         title: $i18next("avAdmin.onboarding.dashboard_tour.step2_status_title"),
                         content: $i18next("avAdmin.onboarding.dashboard_tour.step2_status_content"),
                         target: ".statusbar.row.text-center",

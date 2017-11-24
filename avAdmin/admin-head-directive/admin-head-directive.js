@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminHead', function(Authmethod, $state, $cookies, $i18next, $modal, OnboardingTourService, ConfigService, AdminProfile, $sce) {
+  .directive('avAdminHead', function(Authmethod, $state, $window, $cookies, $i18next, $modal, OnboardingTourService, ConfigService, AdminProfile, $sce) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
         var autheventid = Authmethod.getAuthevent();
@@ -32,6 +32,15 @@ angular.module('avAdmin')
         scope.helpList = _.map(ConfigService.helpList, function (item, index) {
           return $sce.trustAsHtml(item);
         });
+
+        scope.showFeatures = function () {
+          if ("admin.login" === $state.current.name ||
+              "admin.login_email" === $state.current.name ||
+              "admin.signup" === $state.current.name) {
+            return false;
+          }
+          return true;
+        };
 
         scope.loginrequired = ('loginrequired' in attrs);
         if (scope.loginrequired && !scope.admin) {

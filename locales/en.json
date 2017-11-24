@@ -89,11 +89,6 @@
       "shuffle-all": "Shuffle all options. Each voter will see the options for this question in a different order in the voting booth. If there are different categories, they will also be randomized.",
       "shuffle-some": "Shuffle the options of a selected list of categories."
     },
-    "notes": {
-      "noteTag": "Note",
-      "thisisATestElection": "This is a test election. For security reasons, real elections can only be created out of successful test elections.",
-      "thisisATestElectionPopover": "This is a test election. For security reasons, real elections can only be created out of successful test elections. You must complete the election process up to the results publish step."
-    },
     "results": {
       "downloadData": "Download data",
       "downloadBallotsCsv": "Download Ballots Spreadsheet (CSV format)",
