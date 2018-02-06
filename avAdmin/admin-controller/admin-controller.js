@@ -120,12 +120,12 @@ angular.module('avAdmin').controller('AdminController',
 
     if (states.indexOf($scope.state) >= 0) {
         $scope.sidebarlinks = [];
-        if (id) {
-            $scope.sidebarlinks.concat([
+        if (!!id) {
+            $scope.sidebarlinks = $scope.sidebarlinks.concat([
                 {name: 'activityLog', icon: 'pie-chart'},
             ]);
         }
-        $scope.sidebarlinks.concat([
+        $scope.sidebarlinks = $scope.sidebarlinks.concat([
             {name: 'basic', icon: 'university'},
             {name: 'questions', icon: 'question-circle'},
             {name: 'auth', icon: 'unlock'},
