@@ -112,7 +112,7 @@ angular.module('avAdmin').controller('AdminController',
         }
     }
 
-    var states =[ 'admin.dashboard', 'admin.basic', 'admin.questions', 'admin.censusConfig', 'admin.census', 'admin.auth', 'admin.tally', 'admin.successAction', 'admin.adminFields', 'admin.create'];
+    var states =[ 'admin.dashboard', 'admin.basic', 'admin.questions', 'admin.censusConfig', 'admin.census', 'admin.auth', 'admin.tally', 'admin.successAction', 'admin.adminFields', 'admin.create', 'admin.activityLog'];
 
     var plugins_data = {states: [] };
     Plugins.hook('add-dashboard-election-states', plugins_data);
