@@ -28,6 +28,7 @@ angular.module('avAdmin')
       scope.electionId = attrs.electionId;
       scope.reloadingActivity = false;
       scope.loading = false;
+      scope.activity = [];
       scope.nomore = false;
       scope.error = null;
       scope.page = 1;
@@ -40,8 +41,8 @@ angular.module('avAdmin')
       /**
        * Load more activity in infinite scrolling mode
        */
-      function loadMoreCensus(reload) {
-        if (scope.loading || !scope.nomore || newElection()) {
+      function loadMoreActivity(reload) {
+        if (scope.loading || !scope.nomore) {
           if (scope.reloadingActivity) {
             scope.reloadingActivity = false;
           }
@@ -52,7 +53,7 @@ angular.module('avAdmin')
         Authmethod.getActivity(
             scope.electionId,
             scope.page)
-        .then(
+        .success(
             function(data)
             {
                 scope.page += 1;
@@ -61,13 +62,13 @@ angular.module('avAdmin')
                     scope.reloadingActivity = false;
                 }
 
-                if (el.data.end_index === el.data.total_count) {
+                if (data.end_index === data.total_count) {
                     scope.nomore = true;
                 }
                 scope.loading = false;
             }
         )
-        .catch(
+        .error(
             function(data) {
                 scope.error = data;
                 scope.loading = false;
@@ -105,7 +106,6 @@ angular.module('avAdmin')
         reloadActivity: reloadActivity
       });
 
-      scope.activity = []
       scope.reloadActivity();
     }
 
