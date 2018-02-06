@@ -18,6 +18,7 @@
 angular.module('avAdmin').controller('AdminController',
   function(Plugins, ConfigService, $scope, $i18next, $state, $stateParams, $timeout, $modal, ElectionsApi, DraftElection, $compile, NextButtonService, $q) {
     var id = $stateParams.id;
+    $scope.electionId = id;
     $scope.state = $state.current.name;
     $scope.current = null;
     $scope.noplugin = true;
@@ -92,7 +93,7 @@ angular.module('avAdmin').controller('AdminController',
                 NextButtonService.setStates(next_states);
             });
     }
-    
+
     function goToBasic() {
       updateHasAdminFields();
       $state.go("admin.basic");
@@ -118,7 +119,13 @@ angular.module('avAdmin').controller('AdminController',
     states = states.concat(plugins_data.states);
 
     if (states.indexOf($scope.state) >= 0) {
-        $scope.sidebarlinks = [
+        $scope.sidebarlinks = [];
+        if (id) {
+            $scope.sidebarlinks.concat([
+                {name: 'activityLog', icon: 'pie-chart'},
+            ]);
+        }
+        $scope.sidebarlinks.concat([
             {name: 'basic', icon: 'university'},
             {name: 'questions', icon: 'question-circle'},
             {name: 'auth', icon: 'unlock'},
@@ -127,7 +134,7 @@ angular.module('avAdmin').controller('AdminController',
             //{name: 'successAction', icon: 'star-o'},
             {name: 'adminFields', icon: 'user'},
             //{name: 'tally', icon: 'pie-chart'},
-        ];
+        ]);
         // if showSuccessAction is true,
         // show the SuccessAction tab in the admin gui
         if (true === ConfigService.showSuccessAction) {
@@ -199,7 +206,7 @@ angular.module('avAdmin').controller('AdminController',
             }
           });
     };
-    
+
     $scope.eraseDraft = function () {
       // show a warning dialog before erasing draft
       $modal

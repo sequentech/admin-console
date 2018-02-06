@@ -13,6 +13,7 @@
         class="col-sm-9 admin-controller-content">
 
         <div av-admin-elections ng-switch-when="admin.elections"></div>
+        <div av-admin-activity-log ng-switch-when="admin.activityLog" election-id="{{electionId}}"></div>
         <div av-admin-import ng-switch-when="admin.import"></div>
         <div av-admin-elbasic ng-switch-when="admin.basic"></div>
         <div av-admin-fields ng-switch-when="admin.adminFields"></div>
