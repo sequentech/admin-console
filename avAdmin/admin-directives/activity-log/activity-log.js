@@ -42,7 +42,7 @@ angular.module('avAdmin')
        * Load more activity in infinite scrolling mode
        */
       function loadMoreActivity(reload) {
-        if (scope.loading || !scope.nomore) {
+        if (scope.loading || scope.nomore) {
           if (scope.reloadingActivity) {
             scope.reloadingActivity = false;
           }
