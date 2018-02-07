@@ -21,7 +21,8 @@ angular.module('avAdmin')
     function(
       Authmethod,
       ConfigService,
-      NextButtonService)
+      NextButtonService,
+      $timeout)
     {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
@@ -34,9 +35,8 @@ angular.module('avAdmin')
       scope.page = 1;
       scope.msg = null;
       scope.resizeSensor = null;
-      scope.helpurl = ConfigService.helpUrl;;
+      scope.helpurl = ConfigService.helpUrl;
       scope.filterStr = "";
-      scope.$filter = $filter;
       scope.filterTimeout = null;
       scope.filterOptions = {};
 
