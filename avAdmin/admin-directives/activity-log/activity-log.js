@@ -64,7 +64,6 @@ angular.module('avAdmin')
                 _.each(data.activity, function (obj) {
                     scope.activity.push(obj);
                 });
-                scope.activity.append(data.activity);
 
                 if (data.end_index === data.total_count) {
                     scope.nomore = true;
