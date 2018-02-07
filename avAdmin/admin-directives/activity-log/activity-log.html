@@ -41,6 +41,29 @@
       class="table data-table"
       infinite-scroll="loadMoreActivity()"
       infinite-scroll-distance="0">
+      <thead>
+        <tr>
+          <th class="small-col text-right">
+            <div
+              av-column-filter-int
+              filter-options-var="filterOptions"
+              filter-prefix="activity__id"
+              filter-i18n="avAdmin.census.idColumnHeader">
+            </div>
+          </th>
+          <th class="small-col text-right">
+            <div
+              av-column-filter-datetime
+              filter-options-var="filterOptions"
+              filter-prefix="activity__created"
+              filter-i18n="avAdmin.census.creationDateHeader">
+            </div>
+          </th>
+          <th ng-i18next>
+            avAdmin.activityLog.tableColumn.actionDescription
+          </th>
+        </tr>
+      </thead>
       <tbody ng-if="!reloadingActivity">
         <tr ng-repeat="obj in activity">
           <td class="small-col">

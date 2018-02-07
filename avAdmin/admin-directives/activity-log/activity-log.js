@@ -34,7 +34,11 @@ angular.module('avAdmin')
       scope.page = 1;
       scope.msg = null;
       scope.resizeSensor = null;
-      scope.helpurl = ConfigService.helpUrl;
+      scope.helpurl = ConfigService.helpUrl;;
+      scope.filterStr = "";
+      scope.$filter = $filter;
+      scope.filterTimeout = null;
+      scope.filterOptions = {};
 
       scope.goNext = NextButtonService.goNext;
 
@@ -52,7 +56,9 @@ angular.module('avAdmin')
 
         Authmethod.getActivity(
             scope.electionId,
-            scope.page)
+            scope.page,
+            scope.filterStr,
+            scope.filterOptions)
         .success(
             function(data)
             {
@@ -91,6 +97,30 @@ angular.module('avAdmin')
 
         loadMoreActivity();
       }
+
+      // debounced reloading
+      function reloadActivityDebounce() {
+        $timeout.cancel(scope.filterTimeout);
+        scope.filterTimeout = $timeout(function() {
+          scope.reloadActivity();
+        }, 500);
+      }
+
+      // debounced filter options
+      scope.$watch("filterOptions", function(newOpts, oldOpts) {
+        if (_.isEqual(newOpts, oldOpts)) {
+          return;
+        }
+        reloadActivityDebounce();
+      }, true);
+
+      // debounced filter
+      scope.$watch("filterStr", function(newStr, oldStr) {
+        if (newStr === oldStr) {
+          return;
+        }
+        reloadActivityDebounce();
+      });
 
       // overflow-x needs to resize the height
       var dataElement = angular.element(".data-table");
