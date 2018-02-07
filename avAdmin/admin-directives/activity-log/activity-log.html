@@ -44,19 +44,32 @@
       <tbody ng-if="!reloadingActivity">
         <tr ng-repeat="obj in activity">
           <td class="small-col">
-            <div class="text-right">
-                Id: {{obj.id}}
-                Executer: {{obj.executer_username}}
-                Receiver: {{obj.receiver_username}}
-                Action: {{obj.action_name}}
-                Event: {{obj.event_id}}
-            </div>
+            {{obj.id}}
+          </td>
+          <td class="small-col">
             <span
               am-time-ago="obj.created"
               tooltip="{{obj.created| amDateFormat:'LLLL'}}"
               tooltip-placement="right"
               popover-trigger="mouseenter">
             </span>
+          </td>
+          <td>
+            <div ng-if="obj.action_name === 'authevent:create'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.authevent.create
+            </div>
+            <div ng-if="obj.action_name === 'authevent:callback'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.authevent.callback
+            </div>
+            <div ng-if="obj.action_name === 'authevent:edit'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.authevent.edit
+            </div>
+            <div ng-if="obj.action_name === 'user:activate'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.user.activate
+            </div>
+            <div ng-if="obj.action_name === 'user:deactivate'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.user.deactivate
+            </div>
           </td>
         </tr>
       </tbody>

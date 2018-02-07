@@ -33,6 +33,17 @@
       "title": "Profile",
       "save": "Save changes"
     },
+    "activityLog": {
+      "title": "Activity Log",
+      "intro": "List of actions executed in the election.",
+      "manage": "Search and filter the activity log",
+      "action": {
+        "user": {
+          "activate": "<i>__executer_username__ (__executer_id__)</i> has <strong>activated</strong> user <i>__receiver_username__ (__receiver_id__)</i>",
+          "deactivate": "<i>__executer_username__ (__executer_id__)</i> has <strong>deactivated</strong> user <i>__receiver_username__ (__receiver_id__)</i>"
+        }
+      }
+    },
     "onboarding": {
       "help_tour": {
         "step0_help_title": "Help",
