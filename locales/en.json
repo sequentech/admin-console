@@ -41,6 +41,7 @@
       "tableColumn": {
         "idColumnHeader": "Id",
         "executerIdColumnHeader": "Executer Id",
+        "creationDateColumnHeader": "Created at",
         "receiverIdColumnHeader": "Receiver Id",
         "actionColumnHeader": "Description",
         "commentColumnHeader": "Comment"
