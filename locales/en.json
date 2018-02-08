@@ -39,7 +39,11 @@
       "manage": "Search and filter the activity log",
       "filter": "Search here..",
       "tableColumn": {
-        "actionDescription": "Description"
+        "idColumnHeader": "Id",
+        "executerIdColumnHeader": "Executer Id",
+        "receiverIdColumnHeader": "Receiver Id",
+        "actionColumnHeader": "Description",
+        "commentColumnHeader": "Comment"
       },
       "action": {
         "user": {

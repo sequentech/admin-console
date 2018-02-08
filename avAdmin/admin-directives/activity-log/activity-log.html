@@ -48,7 +48,23 @@
               av-column-filter-int
               filter-options-var="filterOptions"
               filter-prefix="activity__id"
-              filter-i18n="avAdmin.census.idColumnHeader">
+              filter-i18n="avAdmin.activityLog.tableColumn.idColumnHeader">
+            </div>
+          </th>
+          <th class="small-col text-right">
+            <div
+              av-column-filter-int
+              filter-options-var="filterOptions"
+              filter-prefix="activity__executer__id"
+              filter-i18n="avAdmin.activityLog.tableColumn.executerIdColumnHeader">
+            </div>
+          </th>
+          <th class="small-col text-right">
+            <div
+              av-column-filter-int
+              filter-options-var="filterOptions"
+              filter-prefix="activity__receiver__id"
+              filter-i18n="avAdmin.activityLog.tableColumn.receiverIdColumnHeader">
             </div>
           </th>
           <th class="small-col text-right">
@@ -56,11 +72,14 @@
               av-column-filter-datetime
               filter-options-var="filterOptions"
               filter-prefix="activity__created"
-              filter-i18n="avAdmin.census.creationDateHeader">
+              filter-i18n="avAdmin.activityLog.tableColumn.creationDateHeader">
             </div>
           </th>
           <th ng-i18next>
-            avAdmin.activityLog.tableColumn.actionDescription
+            avAdmin.activityLog.tableColumn.actionColumnHeader
+          </th>
+          <th ng-i18next>
+            avAdmin.activityLog.tableColumn.commentColumnHeader
           </th>
         </tr>
       </thead>
@@ -77,7 +96,7 @@
               popover-trigger="mouseenter">
             </span>
           </td>
-          <td>
+          <td colspan="3">
             <div ng-if="obj.action_name === 'authevent:create'" ng-i18next>
             [i18next:html](obj)avAdmin.activityLog.action.authevent.create
             </div>
@@ -93,6 +112,12 @@
             <div ng-if="obj.action_name === 'user:deactivate'" ng-i18next>
             [i18next:html](obj)avAdmin.activityLog.action.user.deactivate
             </div>
+          </td>
+          <td>
+            <div ng-if="!!obj.metadata.comment">
+                {{obj.metadata.comment}}
+            </div>
+            <div ng-if="!obj.metadata.comment">-</div>
           </td>
         </tr>
       </tbody>
