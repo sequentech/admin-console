@@ -57,8 +57,8 @@ angular.module('avAdmin')
         Authmethod.getActivity(
             scope.electionId,
             scope.page,
-            scope.filterStr,
-            scope.filterOptions)
+            scope.filterOptions,
+            scope.filterStr)
         .success(
             function(data)
             {
