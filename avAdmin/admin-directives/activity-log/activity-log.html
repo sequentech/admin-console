@@ -106,11 +106,38 @@
             <div ng-if="obj.action_name === 'authevent:edit'" ng-i18next>
             [i18next:html](obj)avAdmin.activityLog.action.authevent.edit
             </div>
+
+
+            <div ng-if="obj.action_name === 'authevent:start'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.authevent.start
+            </div>
+            <div ng-if="obj.action_name === 'authevent:stop'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.authevent.stop
+            </div>
+            <div ng-if="obj.action_name === 'authevent:delete'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.authevent.delete
+            </div>
+
+
             <div ng-if="obj.action_name === 'user:activate'" ng-i18next>
             [i18next:html](obj)avAdmin.activityLog.action.user.activate
             </div>
             <div ng-if="obj.action_name === 'user:deactivate'" ng-i18next>
             [i18next:html](obj)avAdmin.activityLog.action.user.deactivate
+            </div>
+
+
+            <div ng-if="obj.action_name === 'user:successful-login'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.user.successful-login
+            </div>
+            <div ng-if="obj.action_name === 'user:send-auth'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.user.send-auth
+            </div>
+            <div ng-if="obj.action_name === 'user:register'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.user.register
+            </div>
+            <div ng-if="obj.action_name === 'user:resend-authcode'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.user.resend-authcode
             </div>
           </td>
           <td>
