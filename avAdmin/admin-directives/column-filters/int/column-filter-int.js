@@ -30,6 +30,9 @@ angular.module('avAdmin')
         } catch(err) {
             val = undefined;
         }
+        if (!!val) {
+            setkey(scope.filterOptionsVar, attrs.filterPrefix + "__" + postfix, val);
+        }
         return (!!val) ? val : '';
       }
 
