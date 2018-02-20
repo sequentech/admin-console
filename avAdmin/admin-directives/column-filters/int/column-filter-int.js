@@ -16,15 +16,22 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avColumnFilterInt', function() {
+  .directive('avColumnFilterInt', function($location) {
     function link(scope, element, attrs) {
       scope.status = {
         isOpen: false
       };
+
+      // Allows query parameters to automatically set the initial filter
+      function getLocationVar(postfix) {
+        var val = $location.search(attrs.filterPrefix + "__" + postfix);
+        return (!!val) ? val : '';
+      }
+
       scope.filter = {
-        sort: '',
-        min: '',
-        max: ''
+        sort: getLocationVar('sort'),
+        min: getLocationVar('gt'),
+        max: getLocationVar('lt')
       };
       scope.filterPrefix = attrs.filterPrefix;
       scope.filterI18n = attrs.filterI18n;
