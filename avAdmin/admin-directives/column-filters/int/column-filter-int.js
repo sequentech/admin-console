@@ -25,6 +25,11 @@ angular.module('avAdmin')
       // Allows query parameters to automatically set the initial filter
       function getLocationVar(postfix) {
         var val = $location.search()[attrs.filterPrefix + "__" + postfix];
+        try {
+            val = parseInt(val, 10);
+        } catch(err) {
+            val = undefined;
+        }
         return (!!val) ? val : '';
       }
 
