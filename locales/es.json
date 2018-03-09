@@ -396,6 +396,11 @@
         "deactivatedCensusSuccessfully": "Se desactivaron las personas seleccionadas correctamente",
         "sentCodesSuccessfully": "Enviados los códigos de autenticación correctamente",
 
+        "activateOneAction": "Activar",
+        "deactivateOneAction": "Desactivar",
+        "removeCensusOneAction": "Eliminar",
+        "sendAuthCodesOneAction": "Enviar código de autenticación",
+
         "voted": "votó",
         "notVoted": "no votó",
         "votedColumnHeader": "Votó?",

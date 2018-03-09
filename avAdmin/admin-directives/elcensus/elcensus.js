@@ -19,6 +19,7 @@ angular.module('avAdmin')
   .directive(
     'avAdminElcensus',
     function(
+      $i18next,
       $window,
       $state,
       ElectionsApi,
@@ -161,6 +162,80 @@ angular.module('avAdmin')
           enableFunc: function() {
             return scope.numSelected(scope.shown()) > 0;
           }
+        }
+      ];
+
+      function selectVoter(voter) {
+        _.each(scope.election.census.voters, function (v) { v.selected = false; });
+        voter.selected = true;
+      }
+
+      scope.row_commands = [
+        {
+	  text: $i18next("avAdmin.census.activateOneAction"),
+          iconClass: 'fa fa-user',
+          actionFunc: function(voter) {
+	    selectVoter(voter);
+            $modal.open({
+              templateUrl: "avAdmin/admin-directives/elcensus/confirm-activate-people-modal.html",
+              controller: "ConfirmActivatePeopleModal",
+              size: 'lg',
+              resolve: {
+                election: function () { return scope.election; },
+                numSelectedShown: function() {
+                  return scope.numSelected(scope.shown());
+                }
+              }
+            }).result.then(scope.activateSelected);
+          },
+          enableFunc: function() { return scope.election && scope.election.id; }
+        },
+        {
+	  text: $i18next("avAdmin.census.deactivateOneAction"),
+          iconClass: 'fa fa-user-times',
+          actionFunc: function(voter) {
+	    selectVoter(voter);
+            $modal.open({
+              templateUrl: "avAdmin/admin-directives/elcensus/confirm-deactivate-people-modal.html",
+              controller: "ConfirmDeactivatePeopleModal",
+              size: 'lg',
+              resolve: {
+                election: function () { return scope.election; },
+                numSelectedShown: function() {
+                  return scope.numSelected(scope.shown());
+                }
+              }
+            }).result.then(scope.deactivateSelected);
+          },
+          enableFunc: function() { return scope.election && scope.election.id; }
+        },
+        {
+	  text: $i18next("avAdmin.census.removeCensusOneAction"),
+          iconClass: 'fa fa-trash-o',
+          actionFunc: function(voter) {
+	    selectVoter(voter);
+            $modal.open({
+              templateUrl: "avAdmin/admin-directives/elcensus/confirm-remove-people-modal.html",
+              controller: "ConfirmRemovePeopleModal",
+              size: 'lg',
+              resolve: {
+                election: function () { return scope.election; },
+                numSelectedShown: function() {
+                  return scope.numSelected(scope.shown());
+                }
+              }
+            }).result.then(scope.removeSelected);
+          },
+          enableFunc: function() { return true; }
+        },
+        {
+	  text: $i18next("avAdmin.census.sendAuthCodesOneAction"),
+          iconClass: 'fa fa-paper-plane-o',
+          actionFunc: function(voter) {
+	    selectVoter(voter);
+	    return sendAuthCodesSelected();
+          },
+          enableFunc: function() { return true; }
         }
       ];
 
