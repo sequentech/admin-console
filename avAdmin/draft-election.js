@@ -40,11 +40,15 @@ angular.module('avAdmin')
           var deferred = $q.defer();
           if (_.isFunction(update_func)) {
             if (!_.isUndefined(election) &&
-                "{}" !== JSON.stringify(election)) {
+                "{}" !== JSON.stringify(election))
+            {
+              if (election.id) {
+                  delete election.id;
+            }
               update_func(election);
             }
           }
-            
+
           Authmethod.getUserDraft()
             .success(function (data) {
               election = data;
