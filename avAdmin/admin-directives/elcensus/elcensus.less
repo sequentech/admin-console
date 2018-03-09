@@ -114,6 +114,21 @@
       }
     }
   }
+
+  .census-actions {
+    span {
+      margin: 10px;
+      opacity: 0;
+      font-size: large;
+    }
+
+    .disabled { display: none; }
+  }
+
+  .censustable tr:hover .census-actions span {
+    opacity: 1;
+    transition: opacity 0.5s;
+  }
 }
 
 .export-all-census-modal progressbar {

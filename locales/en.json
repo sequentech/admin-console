@@ -397,6 +397,11 @@
         "deactivatedCensusSuccessfully": "Deactivated selected people in census successfully",
         "sentCodesSuccessfully": "Sent authentication codes successfully",
 
+        "activateOneAction": "Activate",
+        "deactivateOneAction": "Deactivate",
+        "removeCensusOneAction": "Remove",
+        "sendAuthCodesOneAction": "Send auth codes",
+
         "voted": "voted",
         "notVoted": "not voted",
         "votedColumnHeader": "Voted?",
