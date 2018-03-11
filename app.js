@@ -163,6 +163,11 @@ angular.module('agora-gui-admin').config(
         templateUrl: 'avAdmin/admin-controller/admin-controller.html',
         controller: 'AdminController'
       })
+      .state('admin.activityLog', {
+        url: '/activity/:id',
+        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
+        controller: 'AdminController'
+      })
       .state('admin.tally', {
         url: '/tally/:id',
         templateUrl: 'avAdmin/admin-controller/admin-controller.html',
