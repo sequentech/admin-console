@@ -69,6 +69,10 @@ angular.module('avAdmin')
                     scope.reloadingActivity = false;
                 }
                 _.each(data.activity, function (obj) {
+		    // I'm doing this because if we try to get this from the
+		    // template, doesn't work: {{obj.metadata.comment}} is
+		    // always undefined
+                    obj.metadatacomment = obj.metadata.comment;
                     scope.activity.push(obj);
                 });
 
