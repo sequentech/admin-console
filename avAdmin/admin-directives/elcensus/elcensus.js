@@ -340,6 +340,7 @@ angular.module('avAdmin')
           Authmethod.activateUsersIds(scope.election.id, scope.election, user_ids, comment)
           .success(function(r) {
             scope.loading = false;
+            scope.comment.activateComment = "";
             scope.msg = "avAdmin.census.activatedCensusSuccessfully";
             scope.reloadCensus();
           })
@@ -354,6 +355,7 @@ angular.module('avAdmin')
           Authmethod.deactivateUsersIds(scope.election.id, scope.election, user_ids, comment)
           .success(function(r) {
             scope.loading = false;
+            scope.comment.deactivateComment = "";
             scope.msg = "avAdmin.census.activatedCensusSuccessfully";
             scope.reloadCensus();
           })
