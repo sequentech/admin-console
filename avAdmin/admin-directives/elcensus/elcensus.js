@@ -54,6 +54,10 @@ angular.module('avAdmin')
       scope.resizeSensor = null;
       scope.helpurl = ConfigService.helpUrl;
       scope.showSuccessAction = ConfigService.showSuccessAction;
+      scope.comment = {
+        activateComment: "",
+        deactivateComment: ""
+      };
 
       scope.goNext = NextButtonService.goNext;
 
@@ -106,6 +110,7 @@ angular.module('avAdmin')
               controller: "ConfirmActivatePeopleModal",
               size: 'lg',
               resolve: {
+                comment: function () { return scope.comment; },
                 election: function () { return scope.election; },
                 numSelectedShown: function() {
                   return scope.numSelected(scope.shown());
@@ -126,6 +131,7 @@ angular.module('avAdmin')
               controller: "ConfirmDeactivatePeopleModal",
               size: 'lg',
               resolve: {
+                comment: function () { return scope.comment; },
                 election: function () { return scope.election; },
                 numSelectedShown: function() {
                   return scope.numSelected(scope.shown());
@@ -181,6 +187,7 @@ angular.module('avAdmin')
               controller: "ConfirmActivatePeopleModal",
               size: 'lg',
               resolve: {
+                comment: function () { return scope.comment; },
                 election: function () { return scope.election; },
                 numSelectedShown: function() {
                   return scope.numSelected(scope.shown());
@@ -200,6 +207,7 @@ angular.module('avAdmin')
               controller: "ConfirmDeactivatePeopleModal",
               size: 'lg',
               resolve: {
+                comment: function () { return scope.comment; },
                 election: function () { return scope.election; },
                 numSelectedShown: function() {
                   return scope.numSelected(scope.shown());
@@ -328,9 +336,11 @@ angular.module('avAdmin')
       function activateSelected() {
         var selectedList = scope.selected(scope.shown());
           var user_ids = _.pluck(selectedList, "id");
-          Authmethod.activateUsersIds(scope.election.id, scope.election, user_ids)
+          var comment = scope.comment.activateComment;
+          Authmethod.activateUsersIds(scope.election.id, scope.election, user_ids, comment)
           .success(function(r) {
             scope.loading = false;
+            scope.comment.activateComment = "";
             scope.msg = "avAdmin.census.activatedCensusSuccessfully";
             scope.reloadCensus();
           })
@@ -341,9 +351,11 @@ angular.module('avAdmin')
       function deactivateSelected() {
         var selectedList = scope.selected(scope.shown());
           var user_ids = _.pluck(selectedList, "id");
-          Authmethod.deactivateUsersIds(scope.election.id, scope.election, user_ids)
+          var comment = scope.comment.deactivateComment;
+          Authmethod.deactivateUsersIds(scope.election.id, scope.election, user_ids, comment)
           .success(function(r) {
             scope.loading = false;
+            scope.comment.deactivateComment = "";
             scope.msg = "avAdmin.census.activatedCensusSuccessfully";
             scope.reloadCensus();
           })

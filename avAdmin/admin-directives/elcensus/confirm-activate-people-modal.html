@@ -9,11 +9,11 @@
   </h4>
 </div>
 <div class="modal-body">
-  <p>
-    <span ng-i18next>
-      [i18next]({num: numSelectedShown})avAdmin.census.modals.activatePeopleBody
-    </span>
+  <p ng-i18next>
+    [i18next]({num: numSelectedShown})avAdmin.census.modals.activatePeopleBody
   </p>
+  <label for="activate-comment" class="control-label" ng-i18next>avAdmin.census.modals.comment</label>
+  <textarea id="activate-comment" class="form-control" rows="2" maxlength="255" ng-model="comment.activateComment"></textarea>
 </div>
 <div class="modal-footer">
   <button class="btn btn-warning" ng-click="ok()" ng-i18next>

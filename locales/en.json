@@ -389,6 +389,7 @@
         },
 
         "modals": {
+          "comment": "Comment",
           "csvLoadingHeader": "Uploading CSV to census",
           "csvLoadingBody": "Please click on the start upload button to add the users from the CSV to the census. Please wait until the process is finished and don't close this window.",
           "csvLoadingStartButton": "Start upload NOW",
