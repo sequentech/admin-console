@@ -24,6 +24,7 @@
       <input
         type="text"
         class="form-control"
+        ng-if="!ef.autofill"
         placeholder="{{ef.name | htmlToText}}"
         ng-model="newcensus[ef.name]"/>
     </div>

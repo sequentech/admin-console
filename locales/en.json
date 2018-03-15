@@ -469,6 +469,7 @@
         "fieldHelpLabel": "Help text",
         "fieldHelpPlaceholder": "Example: Insert both your name and surname",
         "fieldRequiredLabel": "Required",
+        "fieldAutofillLabel": "Auto fill",
         "fieldUniqueLabel": "Unique",
         "fieldRequiredAuthLabel": "Checked against census in authentication",
         "fieldMatchCensusOnRegistrationLabel": "Checked against census in registration (only for pre-registration)",

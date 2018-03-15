@@ -49,6 +49,7 @@ angular.module('avAdmin')
                 name: genEfName(),
                 type: "text",
                 required: false,
+                autofill: false,
                 min: 2,
                 max: 200,
                 private: false,

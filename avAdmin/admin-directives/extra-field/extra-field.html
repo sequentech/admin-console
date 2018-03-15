@@ -333,6 +333,28 @@
       </div>
     </div>
   </div>
+
+  <!-- autofill -->
+  <div class="row"  ng-if="['email', 'text', 'int', 'bool', 'textarea'].indexOf(field.type) !== -1">
+    <div class="form-group">
+      <label
+        class="control-label col-sm-4 text-right">
+        <input
+          type="checkbox"
+          class="form-control"
+          id="fieldAutofillInput{{$index}}"
+          ng-model="field.autofill" />
+      </label>
+      <div class="col-sm-8">
+        <label
+          ng-i18next="avAdmin.census.fieldAutofillLabel"
+          class="text-left"
+          for="fieldAutofillInput{{$index}}">
+        </label>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- view field -->
