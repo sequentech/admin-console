@@ -112,7 +112,7 @@ angular.module('avAdmin').controller('AdminController',
         }
     }
 
-    var states =[ 'admin.dashboard', 'admin.basic', 'admin.questions', 'admin.censusConfig', 'admin.census', 'admin.auth', 'admin.tally', 'admin.successAction', 'admin.adminFields', 'admin.create', 'admin.activityLog'];
+    var states =[ 'admin.dashboard', 'admin.basic', 'admin.questions', 'admin.censusConfig', 'admin.census', 'admin.auth', 'admin.tally', 'admin.successAction', 'admin.adminFields', 'admin.create', 'admin.activityLog', 'admin.ballotBox'];
 
     var plugins_data = {states: [] };
     Plugins.hook('add-dashboard-election-states', plugins_data);
@@ -123,6 +123,8 @@ angular.module('avAdmin').controller('AdminController',
         if (!!id) {
             $scope.sidebarlinks = $scope.sidebarlinks.concat([
                 {name: 'activityLog', icon: 'pie-chart'},
+                // TODO: add only when election is paper ballot
+                {name: 'ballotBox', icon: 'archive'},
             ]);
         }
         $scope.sidebarlinks = $scope.sidebarlinks.concat([
