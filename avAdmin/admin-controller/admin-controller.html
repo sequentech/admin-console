@@ -14,6 +14,7 @@
 
         <div av-admin-elections ng-switch-when="admin.elections"></div>
         <div av-admin-activity-log ng-switch-when="admin.activityLog" election-id="{{electionId}}"></div>
+        <div av-admin-ballot-box ng-switch-when="admin.ballotBox" election-id="{{electionId}}"></div>
         <div av-admin-import ng-switch-when="admin.import"></div>
         <div av-admin-elbasic ng-switch-when="admin.basic"></div>
         <div av-admin-fields ng-switch-when="admin.adminFields"></div>
@@ -28,7 +29,6 @@
         <div av-admin-account ng-switch-when="admin.account"></div>
         <div av-admin-billinginfo ng-switch-when="admin.billinfo"></div>
         <div av-admin-billinghistory ng-switch-when="admin.billhistory"></div>
-        <div av-admin-ballot-box ng-switch-when="admin.ballotBox"></div>
       </div>
       <div
         class="col-sm-9 admin-controller-content"
