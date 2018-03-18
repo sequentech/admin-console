@@ -33,6 +33,19 @@
       "title": "Profile",
       "save": "Save changes"
     },
+    "ballotBox": {
+      "title": "Ballot Boxes",
+      "intro": "List of ballot boxes and their tally sheets.",
+      "manage": "Search and filter looking for ballot boxes",
+      "filter": "Search here..",
+      "tableColumn": {
+        "idColumnHeader": "Id",
+        "nameColumnHeader": "Título",
+        "lastUpdateColumnHeader": "Última actualización",
+        "versionColumnHeader": "Número de versiones",
+        "usernameColumnHeader": "Nombre de usuario"
+      }
+    },
     "activityLog": {
       "title": "Activity Log",
       "intro": "List of actions executed in the election.",
@@ -164,6 +177,7 @@
         "myAccount": "My account",
         "billinfo": "Billing information",
         "billhistory": "Billing history",
+        "ballotBox": "Ballot Boxes",
         "buy": "Buy credits",
         "adminFields": "Admin fields"
     },
