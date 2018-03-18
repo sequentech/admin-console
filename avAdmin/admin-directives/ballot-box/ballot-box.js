@@ -22,7 +22,10 @@ angular.module('avAdmin')
       Authmethod,
       ConfigService,
       NextButtonService,
-      $timeout)
+      $timeout,
+      $i18next,
+      $modal,
+    )
     {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
@@ -131,13 +134,14 @@ angular.module('avAdmin')
       });
       /* jshint ignore:end */
       scope.$on("$destroy", function() { delete scope.resizeSensor; });
+
+      // list of row commands
       scope.row_commands = [
         {
           text: $i18next("avAdmin.ballotBox.viewTallySheetAction"),
           iconClass: 'fa fa-file-alt',
           actionFunc: function(ballot_box)
           {
-            selectBallotBox(ballot_box);
             $modal.open({
               templateUrl: "avAdmin/admin-directives/ballot-box/view-tally-sheet-modal.html",
               controller: "ViewBallotBoxModal",
@@ -155,7 +159,6 @@ angular.module('avAdmin')
           iconClass: 'fa fa-edit',
           actionFunc: function(ballot_box)
           {
-            selectBallotBox(ballot_box);
             $modal.open({
               templateUrl: "avAdmin/admin-directives/ballot-box/write-tally-sheet-modal.html",
               controller: "WriteBallotBoxModal",
@@ -173,7 +176,6 @@ angular.module('avAdmin')
           iconClass: 'fa fa-file-minus',
           actionFunc: function(ballot_box)
           {
-            selectBallotBox(ballot_box);
             $modal.open({
               templateUrl: "avAdmin/admin-directives/ballot-box/delete-tally-sheet-modal.html",
               controller: "RemoveBallotBoxModal",
@@ -191,7 +193,6 @@ angular.module('avAdmin')
           iconClass: 'fa fa-trash',
           actionFunc: function(ballot_box)
           {
-            selectBallotBox(ballot_box);
             $modal.open({
               templateUrl: "avAdmin/admin-directives/ballot-box/delete-ballot-box-modal.html",
               controller: "RemoveBallotBoxModal",
