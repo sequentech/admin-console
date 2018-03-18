@@ -24,7 +24,7 @@ angular.module('avAdmin')
       NextButtonService,
       $timeout,
       $i18next,
-      $modal,
+      $modal
     )
     {
     // we use it as something similar to a controller here
