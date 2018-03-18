@@ -40,11 +40,16 @@
       "filter": "Search here..",
       "tableColumn": {
         "idColumnHeader": "Id",
-        "nameColumnHeader": "Título",
-        "lastUpdateColumnHeader": "Última actualización",
-        "versionColumnHeader": "Número de versiones",
-        "usernameColumnHeader": "Nombre de usuario"
-      }
+        "nameColumnHeader": "Title",
+        "actionsColumnHeader": "Actions",
+        "lastUpdateColumnHeader": "Last Update",
+        "versionColumnHeader": "Number of versions",
+        "usernameColumnHeader": "Username"
+      },
+      "viewTallySheetAction": "View tally sheet",
+      "writeTallySheetAction": "Write tally sheet..",
+      "deleteTallySheetAction": "Delete tally sheet..",
+      "deleteBallotBoxAction": "Delete ballot box.."
     },
     "activityLog": {
       "title": "Activity Log",

@@ -73,6 +73,9 @@
           <th ng-i18next>
             avAdmin.ballotBox.tableColumn.usernameColumnHeader
           </th>
+          <th ng-i18next>
+            avAdmin.ballotBox.tableColumn.actionsColumnHeader
+          </th>
         </tr>
       </thead>
       <tbody ng-if="!reloading">
@@ -92,10 +95,31 @@
             </span>
           </td>
           <td class="small-col">
-            {{obj.num_tally_sheets}}
+            <span ng-if="!!obj.num_tally_sheets">
+                {{obj.num_tally_sheets}}
+            </span>
+            <span ng-if="!obj.num_tally_sheets">
+                -
+            </span>
           </td>
           <td class="small-col">
-            {{obj.creator_username}}
+            <span ng-if="!!obj.creator_username">
+                {{obj.creator_username}}
+            </span>
+            <span ng-if="!obj.creator_username">
+                -
+            </span>
+          </td>
+          <td class="actions">
+            <span
+                ng-repeat="command in row_commands"
+                ng-class="{'disabled': !command.enableFunc(obj)}">
+                <a ng-click="command.actionFunc(obj)">
+                    <i class="{{command.iconClass}}"
+                        tooltip="{{command.text}}">
+                    </i>
+                </a>
+            </span>
           </td>
         </tr>
       </tbody>
