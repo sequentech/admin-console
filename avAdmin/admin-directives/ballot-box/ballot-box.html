@@ -54,8 +54,13 @@
           <th ng-i18next>
             avAdmin.ballotBox.tableColumn.nameColumnHeader
           </th>
-          <th ng-i18next>
-            avAdmin.ballotBox.tableColumn.lastUpdateColumnHeader
+          <th class="small-col text-right">
+            <div
+              av-column-filter-datetime
+              filter-options-var="filterOptions"
+              filter-prefix="ballotbox__last_updated"
+              filter-i18n="avAdmin.activityLog.tableColumn.lastUpdateColumnHeader">
+            </div>
           </th>
           <th class="small-col text-right">
             <div
