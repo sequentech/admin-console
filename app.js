@@ -193,6 +193,11 @@ angular.module('agora-gui-admin').config(
         templateUrl: 'avAdmin/admin-controller/admin-controller.html',
         controller: 'AdminController'
       })
+      .state('admin.ballotBox', {
+        url: '/ballot-box/:id',
+        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
+        controller: 'AdminController'
+      })
       .state('admin.create', {
           url: '/create/:autocreate',
         templateUrl: 'avAdmin/admin-controller/admin-controller.html',
