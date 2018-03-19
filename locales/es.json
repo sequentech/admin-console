@@ -285,6 +285,7 @@
         "layouts": { "simple": "Simple", "2questions-conditional": "Sí/No", "pcandidates-election": "Tabla de candidatos" },
         "theme": { "label": "Tema", "placeholder": "¿Cómo se verá la votación?" },
         "themes": { "default": "Por defecto", "podemos": "Morado" },
+        "show_login_link_on_home": "Mostrar link a login en página principal",
         "questionOptionsSummary": "<strong>__num_answers__</strong> candidatos. Los votantes seleccionan entre <strong>__min__</strong> y <strong>__max__</strong> opciones y hay <strong>__num_winners__</strong> ganadores. El método de recuento es <strong>__tally_method__</strong>. Orden aleatorio de categorías: <strong>shuffle_categories</strong>, orden aleatorio de todas las opciones: <strong>shuffle_all_options</strong>.",
         "censusSize": "__num__ personas",
         "registerAndCreateElection": "No sólo registrar la votación, sino crearla en las autoridades de votación. Esto significa que ya no se podrá modificar la votación.",

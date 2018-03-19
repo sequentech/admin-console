@@ -95,6 +95,8 @@ angular.module('avAdmin')
           scope.shortValue = attrs.shortValue;
         }
 
+        scope.hideHelpBtn = !!attrs.hideHelpBtn;
+
         watchAttr('shortValue');
 
         scope.toggleHelp = function() {

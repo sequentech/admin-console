@@ -51,6 +51,20 @@
             ng-model="election.description"></textarea>
       </div>
 
+      <!-- link on homepage -->
+      <div
+        av-abstract-setting
+        short-value="{{ election.basic.show_login_link_on_home }}"
+        title="avAdmin.basic.show_login_link_on_home"
+        hide-help-btn="true"
+        for="show_login_link_on_home">
+          <input
+            type="checkbox"
+            name="show_login_link_on_home"
+            ng-disabled="!electionEditable()"
+            ng-model="election.presentation.show_login_link_on_home"/>
+      </div>
+
       <!-- auths -->
       <!-- TODO, currently fixed auths -->
 
