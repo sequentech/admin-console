@@ -51,7 +51,7 @@
               filter-i18n="avAdmin.ballotBox.tableColumn.idColumnHeader">
             </div>
           </th>
-          <th ng-i18next>
+          <th class="small-col text-right" ng-i18next>
             avAdmin.ballotBox.tableColumn.nameColumnHeader
           </th>
           <th class="small-col text-right">
@@ -80,10 +80,10 @@
       </thead>
       <tbody ng-if="!reloading">
         <tr ng-repeat="obj in object_list">
-          <td class="small-col">
+          <td class="small-col text-right">
             {{obj.id}}
           </td>
-          <td class="small-col">
+          <td class="small-col text-right">
             {{obj.name}}
           </td>
           <td class="small-col text-right">
