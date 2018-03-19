@@ -70,10 +70,10 @@
               filter-i18n="avAdmin.ballotBox.tableColumn.versionColumnHeader">
             </div>
           </th>
-          <th ng-i18next>
+          <th class="small-col text-right" ng-i18next>
             avAdmin.ballotBox.tableColumn.usernameColumnHeader
           </th>
-          <th ng-i18next>
+          <th class="small-col text-right" ng-i18next>
             avAdmin.ballotBox.tableColumn.actionsColumnHeader
           </th>
         </tr>
@@ -103,7 +103,7 @@
                 {{obj.num_tally_sheets}}
             </span>
             <span ng-if="!obj.num_tally_sheets">
-                -
+                0
             </span>
           </td>
           <td class="small-col text-right">
@@ -114,7 +114,7 @@
                 -
             </span>
           </td>
-          <td class="actions">
+          <td class="small-col text-right actions">
             <span
                 ng-repeat="command in row_commands"
                 ng-class="{'disabled': !command.enableFunc(obj)}">
