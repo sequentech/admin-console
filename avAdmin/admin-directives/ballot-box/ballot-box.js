@@ -72,6 +72,10 @@ angular.module('avAdmin')
                     scope.reloading = false;
                 }
 
+                _.each(data.object_list, function (obj) {
+                    scope.object_list.push(obj);
+                });
+
                 if (data.end_index === data.total_count) {
                     scope.nomore = true;
                 }
