@@ -25,9 +25,13 @@
 
     .disabled { display: none; }
   }
+  .data-table tr:hover {
+    background-color: #f4f4f4;
+    transition: background-color 0.5s;
 
-  .data-table tr:hover .actions span {
-    opacity: 1;
-    transition: opacity 0.5s;
+    &.actions span {
+      opacity: 1;
+      transition: opacity 0.5s;
+    }
   }
 }
