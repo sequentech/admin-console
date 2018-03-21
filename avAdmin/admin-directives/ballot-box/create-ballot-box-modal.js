@@ -21,7 +21,7 @@ angular.module('avAdmin')
     function($scope, $modalInstance, election, ConfigService)
     {
       $scope.election = election;
-      $scope.textarea = "";
+      $scope.ballotboxes_input = "";
       $scope.helpurl = ConfigService.helpUrl;
       $scope.ok = function () {
         $modalInstance.close($scope.ballotboxes_input);

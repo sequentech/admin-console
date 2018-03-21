@@ -50,6 +50,7 @@
           "createBallotBox": {
             "header": "Create ballot boxes",
             "body": "Add one ballot box name per line. It won't create any if any of them already exist.",
+            "holder": "Ballot box name 1\nBallot box name 2..",
             "button": "Confirm and CREATE ballot boxes"
           },
           "checkingBallotBox": {
