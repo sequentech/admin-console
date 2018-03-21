@@ -26,7 +26,7 @@ angular.module('avAdmin')
       election,
       textarea,
       ConfigService,
-      AuthMethod
+      Authmethod
     ) {
       $scope.election = election;
       $scope.boxNames = textarea.split("\n");
@@ -57,7 +57,7 @@ angular.module('avAdmin')
 
       $scope.state = "checking-existing";
       Authmethod.getBallotBoxes(
-        scope.election.id,
+        $scope.election.id,
         0,
         null,
         {name__in: $scope.boxNames.join("|")},
