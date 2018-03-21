@@ -18,13 +18,12 @@
 angular.module('avAdmin')
   .controller(
     'CreateBallotBoxModal',
-    function($scope, $modalInstance, election, ConfigService)
+    function($scope, $modalInstance, ConfigService)
     {
-      $scope.election = election;
-      $scope.ballotboxes_input = "";
+      $scope.ballotBoxes = {input: ""};
       $scope.helpurl = ConfigService.helpUrl;
       $scope.ok = function () {
-        $modalInstance.close($scope.ballotboxes_input);
+        $modalInstance.close($scope.ballotBoxes.input);
       };
 
       $scope.cancel = function () {

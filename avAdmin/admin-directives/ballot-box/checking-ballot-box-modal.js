@@ -23,12 +23,12 @@ angular.module('avAdmin')
     function(
       $scope,
       $modalInstance,
-      election,
+      electionId,
       textarea,
       ConfigService,
       Authmethod
     ) {
-      $scope.election = election;
+      $scope.electionId = electionId;
       $scope.boxNames = textarea.split("\n");
       $scope.existingBoxes = [];
       $scope.createdBoxes = [];
@@ -41,7 +41,7 @@ angular.module('avAdmin')
           $scope.boxNames,
           function(name)
           {
-            Authmethod.createBallotBox($scope.election.id, name)
+            Authmethod.createBallotBox($scope.electionId, name)
               .success(function (data) {
                 $scope.createdBoxes.append(name);
                 if ($scope.createdBoxes.length === $scope.boxNames.length) {
@@ -57,7 +57,7 @@ angular.module('avAdmin')
 
       $scope.state = "checking-existing";
       Authmethod.getBallotBoxes(
-        $scope.election.id,
+        $scope.electionId,
         0,
         null,
         {name__in: $scope.boxNames.join("|")},

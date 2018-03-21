@@ -145,9 +145,7 @@ angular.module('avAdmin')
           templateUrl: "avAdmin/admin-directives/ballot-box/create-ballot-box-modal.html",
           controller: "CreateBallotBoxModal",
           size: 'lg',
-          resolve: {
-            election: function () { return scope.election; }
-          }
+          resolve: {}
         })
         .result.then(function(textarea) {
           $modal.open({
@@ -155,7 +153,7 @@ angular.module('avAdmin')
               controller: "CheckingBallotBoxModal",
               size: 'lg',
               resolve: {
-                election: function () { return scope.election; },
+                electionId: function () { return scope.electionId; },
                 textarea: function () { return textarea; },
                 errorFunc: function ()
                 {
@@ -192,7 +190,7 @@ angular.module('avAdmin')
               size: 'lg',
               resolve: {
                 ballotBox: function () { return ballot_box; },
-                election: function () { return scope.election; },
+                electionId: function () { return scope.electionId; },
               }
             });
           },
@@ -209,7 +207,7 @@ angular.module('avAdmin')
               size: 'lg',
               resolve: {
                 ballotBox: function () { return ballot_box; },
-                election: function () { return scope.election; },
+                electionId: function () { return scope.electionId; },
               }
             });
           },
@@ -226,7 +224,7 @@ angular.module('avAdmin')
               size: 'lg',
               resolve: {
                 ballotBox: function () { return ballot_box; },
-                election: function () { return scope.election; },
+                electionId: function () { return scope.electionId; },
               }
             });
           },
@@ -243,7 +241,7 @@ angular.module('avAdmin')
               size: 'lg',
               resolve: {
                 ballotBox: function () { return ballot_box; },
-                election: function () { return scope.election; },
+                electionId: function () { return scope.electionId; },
               }
             });
           },
