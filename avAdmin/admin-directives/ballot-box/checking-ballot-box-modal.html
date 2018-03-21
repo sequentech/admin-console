@@ -17,7 +17,7 @@
     <span ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.hasExisting
     </span>
-    <span ng-repeat="obj in existingBoxes.object_list">{{obj.name}}, </span>
+    <span ng-repeat="obj in existingBoxes">{{obj.name}}, </span>
   <p class="text-error" ng-switch-when="error-checking-existing">
     <span ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.errorCheckingExisting

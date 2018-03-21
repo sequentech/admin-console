@@ -61,7 +61,7 @@ angular.module('avAdmin')
         $scope.electionId,
         1,
         null,
-        {name__in: $scope.boxNames.join("|")},
+        {ballotbox__name__in: $scope.boxNames.join("|")},
         null
       )
         .success(
