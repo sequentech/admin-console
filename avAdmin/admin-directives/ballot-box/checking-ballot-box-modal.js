@@ -30,6 +30,7 @@ angular.module('avAdmin')
     ) {
       $scope.electionId = electionId;
       $scope.boxNames = textarea.split("\n");
+      $scope.errorCheckingExisting = "";
       $scope.existingBoxes = [];
       $scope.createdBoxes = [];
       $scope.errorCreatingBoxes = [];
@@ -48,8 +49,8 @@ angular.module('avAdmin')
                   $scope.state = "success";
                 }
               })
-              .error(function (data) {
-                $scope.errorCreatingBoxes.append(name);
+              .error(function (error) {
+                $scope.errorCreatingBoxes.append(error);
               });
           }
         );
@@ -58,7 +59,7 @@ angular.module('avAdmin')
       $scope.state = "checking-existing";
       Authmethod.getBallotBoxes(
         $scope.electionId,
-        0,
+        1,
         null,
         {name__in: $scope.boxNames.join("|")},
         null
@@ -76,8 +77,9 @@ angular.module('avAdmin')
           }
         )
         .error(
-          function(data) {
-            $scope.error = data;
+          function(existing) {
+            $scope.state = "error-checking-existing";
+            $scope.errorCheckingExisting = errorCheckingExisting;
           }
         );
 

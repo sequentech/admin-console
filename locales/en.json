@@ -57,8 +57,9 @@
             "header": "Creating ballot boxes",
             "checkingExisting": "Checking if any ballot box requested already exist..",
             "hasExisting": "No ballot box was created, because the following already exist: ",
+            "errorCheckingExisting": "There was an error checking existing ballot boxes:",
             "creatingBoxes": "Creating the ballot boxes: ",
-            "errorCreatingBoxes": "Error creating the following ballot boxes: ",
+            "errorCreatingBoxes": "Error while creating some ballot boxes: ",
             "success": "All the ballot boxes were created successfully.",
             "button": "Close"
           }

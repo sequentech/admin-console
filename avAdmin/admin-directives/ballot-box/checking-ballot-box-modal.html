@@ -17,7 +17,12 @@
     <span ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.hasExisting
     </span>
-    <span ng-repeat="name in existingBoxes">{{name}}, </span>
+    <span ng-repeat="obj in existingBoxes.object_list">{{obj.name}}, </span>
+  <p class="text-error" ng-switch-when="error-checking-existing">
+    <span ng-i18next>
+      avAdmin.ballotBox.modals.checkingBallotBox.errorCheckingExisting
+    </span>
+    <span>{{errorCheckingExisting}}</span>
   </p>
   <p class="text-info" ng-switch-when="creating|success" ng-if="createdBoxes.length > 0">
     <span ng-i18next>
@@ -25,11 +30,11 @@
     </span>
     <span ng-repeat="name in createdBoxes">{{name}}, </span>
   </p>
-  <p class="text-error" ng-switch-when="errorCreatingBoxes" ng-if="errorCreatingBoxes.length > 0">
+  <p class="text-error" ng-switch-when="creating" ng-if="errorCreatingBoxes.length > 0">
     <span ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.errorCreatingBoxes
     </span>
-    <span ng-repeat="name in errorCreatingBoxes">{{name}}, </span>
+    <span ng-repeat="error in errorCreatingBoxes">{{error}}, </span>
   </p>
   <p class="text-success" ng-switch-when="success">
     <span ng-i18next>
@@ -38,7 +43,10 @@
   </p>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-success" ng-click="ok()" ng-if="state == 'success'" ng-i18next>
+  <button
+    class="btn btn-success"
+    ng-click="ok()"
+    ng-i18next>
     avAdmin.ballotBox.modals.checkingBallotBox.button
   </button>
 </div>
