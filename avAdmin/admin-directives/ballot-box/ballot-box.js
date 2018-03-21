@@ -155,25 +155,26 @@ angular.module('avAdmin')
               controller: "CheckingBallotBoxes",
               size: 'lg',
               resolve: {
-              election: function () { return scope.election; },
-              textarea: function () { return textarea; },
-              errorFunc: function () {
-                  function errorFunction(data) {
-                  if (_.isBoolean(data)) {
+                election: function () { return scope.election; },
+                textarea: function () { return textarea; },
+                errorFunc: function ()
+                {
+                  function errorFunction(data)
+                  {
+                    if (_.isBoolean(data)) {
                       scope.error = data;
-                  }
+                    }
                   return scope.error;
                   }
                   return errorFunction;
-              }
+                }
               }
           })
           .result.then(
-              scope.reloadCensus,
-              function (error) {
-              Plugins.hook('census-csv-load-error', error);
-              scope.reloadCensus();
-              }
+            scope.reload,
+            function (error) {
+            scope.reload();
+            }
           );
         });
       };
