@@ -60,7 +60,7 @@
             "errorCreatingBoxes": "Error creating the following ballot boxes: ",
             "success": "All the ballot boxes were created successfully.",
             "button": "Close"
-          },
+          }
       },
       "viewTallySheetAction": "View tally sheet",
       "writeTallySheetAction": "Write tally sheet..",

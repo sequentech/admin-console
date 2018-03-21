@@ -152,7 +152,7 @@ angular.module('avAdmin')
         .result.then(function(textarea) {
           $modal.open({
               templateUrl: "avAdmin/admin-directives/ballot-box/checking-ballot-box-modal.html",
-              controller: "CheckingBallotBoxes",
+              controller: "CheckingBallotBoxModal",
               size: 'lg',
               resolve: {
                 election: function () { return scope.election; },
@@ -173,7 +173,7 @@ angular.module('avAdmin')
           .result.then(
             scope.reload,
             function (error) {
-            scope.reload();
+              scope.reload();
             }
           );
         });
