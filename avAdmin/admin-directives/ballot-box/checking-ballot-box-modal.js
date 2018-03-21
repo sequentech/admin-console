@@ -79,7 +79,7 @@ angular.module('avAdmin')
         .error(
           function(existing) {
             $scope.state = "error-checking-existing";
-            $scope.errorCheckingExisting = errorCheckingExisting;
+            $scope.errorCheckingExisting = existing;
           }
         );
 
