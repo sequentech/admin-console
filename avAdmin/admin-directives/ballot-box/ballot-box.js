@@ -139,6 +139,45 @@ angular.module('avAdmin')
       /* jshint ignore:end */
       scope.$on("$destroy", function() { delete scope.resizeSensor; });
 
+      scope.createBallotBox = function()
+      {
+        $modal.open({
+          templateUrl: "avAdmin/admin-directives/ballot-box/create-ballot-box-modal.html",
+          controller: "CreateBallotBoxModal",
+          size: 'lg',
+          resolve: {
+            election: function () { return scope.election; }
+          }
+        })
+        .result.then(function(textarea) {
+          $modal.open({
+              templateUrl: "avAdmin/admin-directives/ballot-box/checking-ballot-box-modal.html",
+              controller: "CheckingBallotBoxes",
+              size: 'lg',
+              resolve: {
+              election: function () { return scope.election; },
+              textarea: function () { return textarea; },
+              errorFunc: function () {
+                  function errorFunction(data) {
+                  if (_.isBoolean(data)) {
+                      scope.error = data;
+                  }
+                  return scope.error;
+                  }
+                  return errorFunction;
+              }
+              }
+          })
+          .result.then(
+              scope.reloadCensus,
+              function (error) {
+              Plugins.hook('census-csv-load-error', error);
+              scope.reloadCensus();
+              }
+          );
+        });
+      };
+
       // list of row commands
       scope.row_commands = [
         {
@@ -194,7 +233,7 @@ angular.module('avAdmin')
         },
         {
           text: $i18next("avAdmin.ballotBox.deleteBallotBoxAction"),
-          iconClass: 'fa fa-trash',
+          iconClass: 'fa fa-times',
           actionFunc: function(ballot_box)
           {
             $modal.open({

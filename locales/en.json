@@ -46,6 +46,22 @@
         "versionColumnHeader": "Number of versions",
         "usernameColumnHeader": "Username"
       },
+      "modals": {
+          "createBallotBox": {
+            "header": "Create ballot boxes",
+            "body": "Add one ballot box name per line. It won't create any if any of them already exist.",
+            "button": "Confirm and CREATE ballot boxes"
+          },
+          "checkingBallotBox": {
+            "header": "Creating ballot boxes",
+            "checkingExisting": "Checking if any ballot box requested already exist..",
+            "hasExisting": "No ballot box was created, because the following already exist: ",
+            "creatingBoxes": "Creating the ballot boxes: ",
+            "errorCreatingBoxes": "Error creating the following ballot boxes: ",
+            "success": "All the ballot boxes were created successfully.",
+            "button": "Close"
+          },
+      },
       "viewTallySheetAction": "View tally sheet",
       "writeTallySheetAction": "Write tally sheet..",
       "deleteTallySheetAction": "Delete tally sheet..",
