@@ -19,7 +19,7 @@
     </span>
     <span ng-repeat="obj in existingBoxes">
       {{obj.name}}
-      <span nf-if="!$last">, </span>
+      <span ng-if="!$last">, </span>
     </span>
   <p class="text-error" ng-if="state === 'error-checking-existing'">
     <span ng-i18next>
@@ -33,7 +33,7 @@
     </span>
     <span ng-repeat="name in createdBoxes">
       {{name}},
-      <span nf-if="!$last">, </span>
+      <span ng-if="!$last">, </span>
     </span>
   </p>
   <p class="text-error" ng-if="state === 'creating' && errorCreatingBoxes.length > 0">
@@ -42,7 +42,7 @@
     </span>
     <span ng-repeat="error in errorCreatingBoxes">
       {{error}}
-      <span nf-if="!$last">, </span>
+      <span ng-if="!$last">, </span>
     </span>
   </p>
   <p class="modal-text-success" ng-if="state === 'success'">
