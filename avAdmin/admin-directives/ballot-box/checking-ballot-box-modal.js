@@ -44,13 +44,13 @@ angular.module('avAdmin')
           {
             Authmethod.createBallotBox($scope.electionId, name)
               .success(function (data) {
-                $scope.createdBoxes.append(name);
+                $scope.createdBoxes.push(name);
                 if ($scope.createdBoxes.length === $scope.boxNames.length) {
                   $scope.state = "success";
                 }
               })
               .error(function (error) {
-                $scope.errorCreatingBoxes.append(error);
+                $scope.errorCreatingBoxes.push(error);
               });
           }
         );

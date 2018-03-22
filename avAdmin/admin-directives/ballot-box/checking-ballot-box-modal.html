@@ -7,36 +7,36 @@
     </span>
   </h4>
 </div>
-<div class="modal-body" ng-switch="state">
-  <p ng-switch-when="checking-existing|has-existing|creating|success">
+<div class="modal-body">
+  <p ng-if="_.contains(['checking-existing', 'has-existing', 'creating', 'success'], state)">
     <span class="text-info" ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.checkingExisting
     </span>
   </p>
-  <p class="text-error" ng-switch-when="has-existing">
+  <p class="text-error" ng-if="state === 'has-existing'">
     <span ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.hasExisting
     </span>
     <span ng-repeat="obj in existingBoxes">{{obj.name}}, </span>
-  <p class="text-error" ng-switch-when="error-checking-existing">
+  <p class="text-error" ng-if="state === 'error-checking-existing'">
     <span ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.errorCheckingExisting
     </span>
     <span>{{errorCheckingExisting}}</span>
   </p>
-  <p class="text-info" ng-switch-when="creating|success" ng-if="createdBoxes.length > 0">
+  <p class="text-info" ng-if="_.contains(['creating', 'success'], state) && createdBoxes.length > 0">
     <span ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.creatingBoxes
     </span>
     <span ng-repeat="name in createdBoxes">{{name}}, </span>
   </p>
-  <p class="text-error" ng-switch-when="creating" ng-if="errorCreatingBoxes.length > 0">
+  <p class="text-error" ng-if="state === 'creating' && errorCreatingBoxes.length > 0">
     <span ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.errorCreatingBoxes
     </span>
     <span ng-repeat="error in errorCreatingBoxes">{{error}}, </span>
   </p>
-  <p class="text-success" ng-switch-when="success">
+  <p class="text-success" ng-if="state === 'success'">
     <span ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.success
     </span>
