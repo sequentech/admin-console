@@ -8,7 +8,7 @@
   </h4>
 </div>
 <div class="modal-body">
-  <p ng-if="_.contains(['checking-existing', 'has-existing', 'creating', 'success'], state)">
+  <p ng-if="['checking-existing', 'has-existing', 'creating', 'success'].indexOf(state) > -1">
     <span class="text-info" ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.checkingExisting
     </span>
@@ -24,7 +24,7 @@
     </span>
     <span>{{errorCheckingExisting}}</span>
   </p>
-  <p class="text-info" ng-if="_.contains(['creating', 'success'], state) && createdBoxes.length > 0">
+  <p class="text-info" ng-if="['creating', 'success'].indexOf(state) > -1 && createdBoxes.length > 0">
     <span ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.creatingBoxes
     </span>

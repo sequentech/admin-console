@@ -29,6 +29,7 @@ angular.module('avAdmin')
       Authmethod
     ) {
       $scope.electionId = electionId;
+      $scope.state = "checking-existing";
       $scope.boxNames = textarea.split("\n");
       $scope.errorCheckingExisting = "";
       $scope.existingBoxes = [];
@@ -56,7 +57,6 @@ angular.module('avAdmin')
         );
       }
 
-      $scope.state = "checking-existing";
       Authmethod.getBallotBoxes(
         $scope.electionId,
         1,
