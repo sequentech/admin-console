@@ -17,7 +17,10 @@
     <span ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.hasExisting
     </span>
-    <span ng-repeat="obj in existingBoxes">{{obj.name}}, </span>
+    <span ng-repeat="obj in existingBoxes">
+      {{obj.name}}
+      <span nf-if="!$last">, </span>
+    </span>
   <p class="text-error" ng-if="state === 'error-checking-existing'">
     <span ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.errorCheckingExisting
@@ -28,15 +31,21 @@
     <span ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.creatingBoxes
     </span>
-    <span ng-repeat="name in createdBoxes">{{name}}, </span>
+    <span ng-repeat="name in createdBoxes">
+      {{name}},
+      <span nf-if="!$last">, </span>
+    </span>
   </p>
   <p class="text-error" ng-if="state === 'creating' && errorCreatingBoxes.length > 0">
     <span ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.errorCreatingBoxes
     </span>
-    <span ng-repeat="error in errorCreatingBoxes">{{error}}, </span>
+    <span ng-repeat="error in errorCreatingBoxes">
+      {{error}}
+      <span nf-if="!$last">, </span>
+    </span>
   </p>
-  <p class="text-success" ng-if="state === 'success'">
+  <p class="modal-text-success" ng-if="state === 'success'">
     <span ng-i18next>
       avAdmin.ballotBox.modals.checkingBallotBox.success
     </span>
