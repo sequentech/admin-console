@@ -21,7 +21,7 @@ angular.module('avAdmin')
       var ef = el.census.extra_fields;
 
       var name = 'email';
-      var must = {};
+      var must = null;
 
       if (el.census.auth_method === 'email') {
         name = 'email';
@@ -56,6 +56,11 @@ angular.module('avAdmin')
           "max": 200,
           "required_on_authentication": true
         };
+      }
+
+      // the authmethod doesn't have a required field so we do nothing here
+      if (must === null) {
+        return;
       }
 
       var found = false;
