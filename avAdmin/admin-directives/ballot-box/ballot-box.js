@@ -220,7 +220,7 @@ angular.module('avAdmin')
           {
             $modal.open({
               templateUrl: "avAdmin/admin-directives/ballot-box/delete-tally-sheet-modal.html",
-              controller: "RemoveBallotBoxModal",
+              controller: "DeleteBallotBoxModal",
               size: 'lg',
               resolve: {
                 ballotBox: function () { return ballot_box; },
@@ -237,7 +237,7 @@ angular.module('avAdmin')
           {
             $modal.open({
               templateUrl: "avAdmin/admin-directives/ballot-box/delete-ballot-box-modal.html",
-              controller: "RemoveBallotBoxModal",
+              controller: "DeleteBallotBoxModal",
               size: 'lg',
               resolve: {
                 ballotBox: function () { return ballot_box; },
