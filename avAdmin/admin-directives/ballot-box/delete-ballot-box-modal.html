@@ -16,10 +16,15 @@
     <a href="{{helpurl}}" class="learn-more" target="_blank" ng-i18next>
       avAdmin.learnMore
     </a>
-    <input
-      type="text"
-      ng-model="deleteText.text"
-      placeholder="{{'avAdmin.ballotBox.modals.deleteBallotBox.holder' | i18next}}"/>
+    <form class="form">
+      <div class="form-group">
+        <input
+          class="form-control"
+          type="text"
+          ng-model="deleteText.text"
+          placeholder="{{'avAdmin.ballotBox.modals.deleteBallotBox.holder' | i18next}}"/>
+      </div>
+    </form>
   </p>
 </div>
 <div class="modal-footer">
