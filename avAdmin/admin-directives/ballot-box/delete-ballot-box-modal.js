@@ -32,7 +32,7 @@ angular.module('avAdmin')
       $scope.helpurl = ConfigService.helpUrl;
       $scope.ok = function ()
       {
-        Authmethod.deleteBallotBox($scope.electionId, ballotBox.name)
+        Authmethod.deleteBallotBox($scope.electionId, ballotBox.id)
           .success(
             function (data)
             {

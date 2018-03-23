@@ -243,7 +243,13 @@ angular.module('avAdmin')
                 ballotBox: function () { return ballot_box; },
                 electionId: function () { return scope.electionId; },
               }
-            });
+            })
+            .result.then(
+              scope.reload,
+              function (error) {
+                scope.reload();
+              }
+            );
           },
           enableFunc: function(ballot_box) { return true; }
         }
