@@ -17,7 +17,7 @@
 
 angular.module('avAdmin')
   .controller(
-    'ConfirmRemovePeopleModal',
+    'DeleteBallotBoxModal',
     function(
       $scope,
       $modalInstance,
