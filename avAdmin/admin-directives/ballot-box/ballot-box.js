@@ -206,8 +206,7 @@ angular.module('avAdmin')
               controller: "WriteBallotBoxModal",
               size: 'lg',
               resolve: {
-                ballotBox: function () { return ballot_box; },
-                electionId: function () { return scope.electionId; },
+                ballotBox: function () { return ballot_box; }
               }
             });
           },

@@ -68,6 +68,16 @@
             "errorCreatingBoxes": "Error while creating some ballot boxes: ",
             "success": "All the ballot boxes were created successfully.",
             "button": "Close"
+          },
+          "writeTallySheet": {
+            "header": "Register tally sheet",
+            "step1": "Step 1 of 2: Fill the tally sheet form",
+            "ballotBoxLabel": "Ballot box name:",
+            "registeredVotesLabel": "Number of voters registered:",
+            "voteCountLabel": "Number of votes:",
+            "electionIdLabel": "Election id:",
+            "electionTitleLabel": "Election title:",
+            "continue": "Continue"
           }
       },
       "viewTallySheetAction": "View tally sheet",
