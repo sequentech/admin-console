@@ -28,7 +28,8 @@ angular.module('avAdmin')
       tallySheet
     ) {
 
-      $scope.tallySheet = tallySheet;
+      $scope.tallySheet = tallySheet.data;
+      $scope.tallySheetId = tallySheet.id;
       $scope.ballotBox = ballotBox;
       $scope.allowEdit = allowEdit;
 

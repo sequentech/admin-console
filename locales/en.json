@@ -92,7 +92,8 @@
           },
           "viewTallySheet": {
             "header": "View tally sheet",
-            "edit": "Edit and change tally sheet"
+            "edit": "Edit and change tally sheet",
+            "tallySheetIdLabel": "Tally sheet id:"
           }
       },
       "viewTallySheetAction": "View tally sheet",
