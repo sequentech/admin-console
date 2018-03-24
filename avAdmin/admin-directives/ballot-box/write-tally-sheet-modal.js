@@ -15,21 +15,54 @@
  * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+// Form to register a ballot box tally sheet
 angular.module('avAdmin')
   .controller(
-    'WriteBallotBoxModal',
+    'WriteTallySheetModal',
     function(
       $scope,
       $modalInstance,
       ElectionsApi,
       ballotBox,
       Authmethod,
-      ConfigService
     ) {
-      $scope.tallySheet = angular.copy(ElectionsApi.currentElection);
+      $scope.tallySheet = {
+        id: ElectionsApi.currentElection.id,
+        title: ElectionsApi.currentElection.title,
+
+        registeredVotes: 0,
+        observations: "",
+        totals: {
+          total_count: 0
+        },
+
+        questions: _.map(
+          $scope.election,
+          function (question)
+          {
+            return {
+              title: question.title,
+              totals: {
+                blank_votes: 0,
+                null_votes: 0,
+              },
+              questions: _.map(
+                question.answers,
+                function (answer)
+                {
+                  return {
+                    id: answer.id,
+                    title: answer.title,
+                    total_count: 0
+                  };
+                }
+              )
+            }
+          }
+        )
+      };
       $scope.ballotBox = ballotBox;
       $scope.deleteText = {text: ""};
-      $scope.helpurl = ConfigService.helpUrl;
       $scope.ok = function ()
       {
         $modalInstance.close($scope.tallySheet);

@@ -19,6 +19,7 @@
       <div class="row">
         <!-- first row -->
         <div class="col-xs-6">
+          <!-- display ballot box name -->
           <div class="form-group">
             <label
               class="col-xs-5 control-label"
@@ -29,6 +30,7 @@
             </div>
           </div>
 
+          <!-- display number of registered votes -->
           <div class="form-group">
             <label
               class="col-xs-5 control-label"
@@ -39,24 +41,27 @@
             </div>
           </div>
 
+          <!-- enter number of ballots -->
           <div class="form-group">
             <label
-              for="voteCount"
+              for="totalCount"
               class="col-xs-5 control-label"
               ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.voteCountLabel">
             </label>
             <div class="col-xs-5">
               <input
-                id="voteCount"
+                id="totalCount"
                 class="form-control"
-                type="text"
-                ng-model="tallySheet.vote_count" />
+                type="number"
+                min="0"
+                ng-model="tallySheet.totals.total_count" />
             </div>
           </div>
         </div>
 
         <!-- second row -->
         <div class="col-xs-6">
+          <!-- display election id -->
           <div class="form-group">
             <label
               class="col-xs-5 control-label"
@@ -67,6 +72,7 @@
             </div>
           </div>
 
+          <!-- display election title -->
           <div class="form-group">
             <label
               for="ballotBox"
@@ -78,7 +84,68 @@
             </div>
           </div>
         </div>
-    </div>
+      </div>
+
+      <!-- for each question -->
+      <div class="row" ng-repeat="question in tallySheet.questions">
+        <p class="question-title">
+          {{$index+1}}: {{question.title}}
+        </p>
+
+        <!-- enter number of blank votes -->
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label
+              for="q{{$index}}BlankVotes"
+              class="col-xs-5 control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.blankVotesLabel">
+            </label>
+            <div class="col-xs-5">
+              <input
+                id="q{{$index}}BlankVotes"
+                class="form-control"
+                type="number"
+                min="0"
+                ng-model="question.totals.blank_votes" />
+            </div>
+          </div>
+
+        <!-- enter number of null votes -->
+          <div class="form-group">
+            <label
+              for="q{{$index}}NullVotes"
+              class="col-xs-5 control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.nullVotesLabel">
+            </label>
+            <div class="col-xs-5">
+              <input
+                id="q{{$index}}NullVotes"
+                class="form-control"
+                type="number"
+                min="0"
+                ng-model="question.totals.total_count" />
+            </div>
+          </div>
+
+        <!-- enter results for each answer -->
+        <div class="col-xs-6" ng-repeat="answer in question.answers" ng-init="qIndex = $index">
+          <div class="form-group">
+            <label
+              for="q{{qIndex}}a{{$index}}TotalCount"
+              class="col-xs-5 control-label">
+              {{answer.title}}
+            </label>
+            <div class="col-xs-5">
+              <input
+                id="q{{qIndex}}a{{$index}}TotalCount"
+                class="form-control"
+                type="number"
+                min="0"
+                ng-model="answer.total_count" />
+            </div>
+          </div>
+        </div>
+      </div>
     </form>
   </div>
 </div>

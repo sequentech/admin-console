@@ -203,7 +203,7 @@ angular.module('avAdmin')
           {
             $modal.open({
               templateUrl: "avAdmin/admin-directives/ballot-box/write-tally-sheet-modal.html",
-              controller: "WriteBallotBoxModal",
+              controller: "WriteTallySheetModal",
               windowClass: "write-tally-sheet-modal",
               resolve: {
                 ballotBox: function () { return ballotBox; }
