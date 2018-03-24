@@ -71,8 +71,8 @@
           },
           "writeTallySheet": {
             "step0header": "Step 1 of 2: Register tally sheet",
-            "step1header": "Step 2 of 2: Review and send",
-            "reviewStep": "Review and send the tally sheet",
+            "step1header": "Step 2 of 2: Review and send the tally sheet",
+            "reviewStep": "Please review carefully the tally sheet before sending it",
             "ballotBoxLabel": "Ballot box name:",
             "registeredVotesLabel": "Number of voters registered:",
             "voteCountLabel": "Number of votes:",
