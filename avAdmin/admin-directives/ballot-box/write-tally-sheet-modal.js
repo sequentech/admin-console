@@ -32,7 +32,7 @@ angular.module('avAdmin')
       $scope.mismatchTotalCount = false;
       var timeoutReview = 5;
       $scope.timeout = {val: timeoutReview};
-      $scope.sendi18n = $i18n.t(
+      $scope.sendi18n = $i18next.t(
         "avAdmin.ballotBox.modals.writeTallySheet.send",
         {timeout: timeout.val}
       );
@@ -42,7 +42,7 @@ angular.module('avAdmin')
           return;
         }
         $scope.timeout.val = $scope.timeout.val - 1;
-        $scope.sendi18n = $i18n.t(
+        $scope.sendi18n = $i18next.t(
           "avAdmin.ballotBox.modals.writeTallySheet.send",
           {timeout: timeout.val}
         );
