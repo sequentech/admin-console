@@ -24,30 +24,11 @@ angular.module('avAdmin')
       $modalInstance,
       ElectionsApi,
       ballotBox,
-      Authmethod,
-      $i18next
+      Authmethod
     ) {
       $scope.step = 0;
       $scope.sending = false;
       $scope.mismatchTotalCount = false;
-      var timeoutReview = 5;
-      $scope.timeout = {val: timeoutReview};
-      $scope.sendi18n = $i18next(
-        "avAdmin.ballotBox.modals.writeTallySheet.send",
-        {timeout: $scope.timeout.val}
-      );
-
-      function decreaseTimeout() {
-        if ($scope.timeout.val <= 0) {
-          return;
-        }
-        $scope.timeout.val = $scope.timeout.val - 1;
-        $scope.sendi18n = $i18next(
-          "avAdmin.ballotBox.modals.writeTallySheet.send",
-          {timeout: $scope.timeout.val}
-        );
-        setTimeout(decreaseTimeout, 1000);
-      }
 
       $scope.goToStep = function(step) {
         if ($scope.step === 0 && step === 1) {
