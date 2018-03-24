@@ -63,6 +63,58 @@ angular.module('avAdmin')
       };
       $scope.ballotBox = ballotBox;
       $scope.deleteText = {text: ""};
+      $scope.numbersError = false;
+
+
+      // used inside checkNumbers() to validate a tally sheet number
+      function checkNumber(i)
+      {
+        if (!angular.isNumber(i) || i < 0)
+        {
+          throw "Invalid";
+        }
+      }
+
+      // throws an exception if expr is false
+      function assert(expr)
+      {
+        if (!expr) {
+          throw "Invalid";
+        }
+      }
+
+      // Checks if all numbers are valid (>=0) and add up
+      $scope.checkNumbers = function()
+      {
+        $scope.numbersError = false;
+        try {
+          checkNumber($scope.tallySheet.totals.total_count);
+          _.each(
+            $scope.tallySheet.questions,
+            function(question) {
+              checkNumber(question.totals.blank_votes);
+              checkNumber(question.totals.null_votes);
+              assert(
+                $scope.tallySheet.totals.total_count === (
+                  question.totals.blank_votes +
+                  question.totals.null_votes +
+                  _.map(
+                    question.answers,
+                    function (answer)
+                    {
+                      checkNumber(answer.total_count);
+                      return answer.total_count;
+                    }
+                  )
+                )
+              );
+            }
+          );
+        } catch(e) {
+          $scope.numbersError = true;
+        }
+      };
+
       $scope.ok = function ()
       {
         $modalInstance.close($scope.tallySheet);

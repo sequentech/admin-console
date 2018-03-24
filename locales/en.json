@@ -79,7 +79,8 @@
             "electionTitleLabel": "Election title:",
             "continue": "Continue",
             "blankVotesLabel": "Blank votes:",
-            "nullVotesLabel": "Null votes:"
+            "nullVotesLabel": "Null votes:",
+            "mismatchedNumbersError": "The numbers don't add up or are invalid, plese review them"
           }
       },
       "viewTallySheetAction": "View tally sheet",

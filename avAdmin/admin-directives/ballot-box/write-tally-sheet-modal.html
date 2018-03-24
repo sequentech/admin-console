@@ -54,6 +54,7 @@
                 class="form-control"
                 type="number"
                 min="0"
+                ng-change="checkNumbers()"
                 ng-model="tallySheet.totals.total_count" />
             </div>
           </div>
@@ -106,6 +107,7 @@
                 class="form-control"
                 type="number"
                 min="0"
+                ng-change="checkNumbers()"
                 ng-model="question.totals.blank_votes" />
             </div>
           </div>
@@ -125,7 +127,8 @@
                 class="form-control"
                 type="number"
                 min="0"
-                ng-model="question.totals.total_count" />
+                ng-change="checkNumbers()"
+                ng-model="question.totals.null_votes" />
             </div>
           </div>
         </div>
@@ -144,18 +147,24 @@
                 class="form-control"
                 type="number"
                 min="0"
+                ng-change="checkNumbers()"
                 ng-model="answer.total_count" />
             </div>
           </div>
         </div>
       </div>
     </form>
+
+    <p class="text-error" ng-if="numbersError" ng-i18next>
+        avAdmin.ballotBox.modals.writeTallySheet.mismatchedNumbersError
+    </p>
   </div>
 </div>
 <div class="modal-footer">
   <button
     class="btn btn-success"
     ng-click="ok()"
+    ng-class="{'disabled': numbersError}"
     ng-i18next>
     [i18next]avAdmin.ballotBox.modals.writeTallySheet.continue
   </button>
