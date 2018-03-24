@@ -355,12 +355,12 @@
 <!-- step 2 -->
 <div class="modal-body" ng-if="step === 2">
   <div class="container-fluid">
+    <p class="text-left text-success" ng-i18next>
+      avAdmin.ballotBox.modals.writeTallySheet.success
+    </p>
   </div>
 </div>
 <div class="modal-footer" ng-if="step === 2">
-  <p class="text-left text-success" ng-i18next>
-    avAdmin.ballotBox.modals.writeTallySheet.success
-  </p>
   <button
     class="btn btn-success"
     ng-click="close()"

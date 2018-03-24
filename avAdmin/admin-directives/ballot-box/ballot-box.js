@@ -184,15 +184,34 @@ angular.module('avAdmin')
           iconClass: 'fa fa-file-alt',
           actionFunc: function(ballotBox)
           {
-            $modal.open({
-              templateUrl: "avAdmin/admin-directives/ballot-box/view-tally-sheet-modal.html",
-              controller: "ViewBallotBoxModal",
-              size: 'lg',
-              resolve: {
-                ballotBox: function () { return ballotBox; },
-                electionId: function () { return scope.electionId; },
-              }
-            });
+            Authmethod.getTallySheet(
+              ElectionsApi.currentElection.id,
+              ballotBox.id
+            )
+          .success(
+            function(data)
+            {
+              $modal.open({
+                templateUrl: "avAdmin/admin-directives/ballot-box/view-tally-sheet-modal.html",
+                controller: "ViewBallotBoxModal",
+                size: 'lg',
+                resolve: {
+                  ballotBox: function () { return ballotBox; },
+                  electionId: function () { return scope.electionId; },
+                }
+              })
+              .result.then(
+                function (action) {
+                  if (action === "edit-tally-sheet") {
+                    scope.row_commands[1](ballotBox);
+                  }
+                },
+                function (error) {
+                  scope.reload();
+                }
+              );
+            }
+          );
           },
           enableFunc: function(ballotBox) { return ballotBox.num_tally_sheets > 0; }
         },
@@ -208,13 +227,19 @@ angular.module('avAdmin')
               resolve: {
                 ballotBox: function () { return ballotBox; }
               }
-            });
+            })
+            .result.then(
+              scope.reload,
+              function (error) {
+                scope.reload();
+              }
+            );
           },
           enableFunc: function(ballotBox) { return true; }
         },
         {
           text: $i18next("avAdmin.ballotBox.deleteTallySheetAction"),
-          iconClass: 'fa fa-file-minus',
+          iconClass: 'fa fa-minus-square',
           actionFunc: function(ballotBox)
           {
             $modal.open({
