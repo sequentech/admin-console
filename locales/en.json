@@ -70,17 +70,23 @@
             "button": "Close"
           },
           "writeTallySheet": {
-            "header": "Register tally sheet",
-            "step1": "Step 1 of 2: Fill the tally sheet form",
+            "step0header": "Step 1 of 2: Register tally sheet",
+            "step1header": "Step 2 of 2: Review and send",
+            "reviewStep": "Review and send the tally sheet",
             "ballotBoxLabel": "Ballot box name:",
             "registeredVotesLabel": "Number of voters registered:",
             "voteCountLabel": "Number of votes:",
             "electionIdLabel": "Election id:",
             "electionTitleLabel": "Election title:",
+            "commentsLabel": "Observaciones:",
             "continue": "Continue",
             "blankVotesLabel": "Blank votes:",
             "nullVotesLabel": "Null votes:",
-            "mismatchedNumbersError": "The numbers don't add up or are invalid, plese review them"
+            "mismatchedNumbersError": "The numbers don't add up or are invalid, plese review them",
+            "mismatchTotalCount": "The registered number of votes and the entered number of votes differ",
+            "send": "Wait __timeout__: Confirm and send",
+            "backAndEdit": "Go back and edit"
+
           }
       },
       "viewTallySheetAction": "View tally sheet",

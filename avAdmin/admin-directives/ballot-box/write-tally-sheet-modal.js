@@ -26,6 +26,28 @@ angular.module('avAdmin')
       ballotBox,
       Authmethod
     ) {
+      $scope.step = 0;
+      scope.sending = false;
+      var timeoutReview = 5;
+      $scope.timeout = timeoutReview;
+
+      function decreaseTimeout() {
+        if ($scope.timeout <= 0) {
+          return;
+        }
+        $scope.timeout = $scope.timeout - 1;
+        setTimeout(decreaseTimeout, 1000);
+      }
+
+      $scope.goToStep = function(step) {
+        $scope.step = step;
+        if ($scope.step === 0 && step === 1) {
+          $scope.timeout = timeoutReview;
+          scope.sending = false;
+          decreaseTimeout();
+        }
+      };
+
       $scope.tallySheet = {
         id: ElectionsApi.currentElection.id,
         title: ElectionsApi.currentElection.title,
@@ -65,7 +87,7 @@ angular.module('avAdmin')
       // used inside checkNumbers() to validate a tally sheet number
       function checkNumber(i)
       {
-        if (!angular.isNumber(i) || i < 0)
+        if (!angular.isNumber(i) || i < 0 || i ^ 0 !== i)
         {
           throw "Invalid";
         }
@@ -112,9 +134,27 @@ angular.module('avAdmin')
         }
       };
 
-      $scope.ok = function ()
+      $scope.sendTally = function ()
       {
-        $modalInstance.close($scope.tallySheet);
+        scope.sending = true;
+        Authmethod.postTallySheet(
+          ElectionsApi.currentElection.id,
+          ballotBox.id,
+          $scope.tallySheet
+        )
+          .success(
+              function(data)
+              {
+                $modalInstance.close();
+              }
+          )
+          .error(
+              function(data) {
+                  scope.error = data;
+                  scope.sending = false;
+              }
+          );
+        $modalInstance.close();
       };
 
       $scope.cancel = function ()
