@@ -190,12 +190,13 @@ angular.module('avAdmin')
               null
             )
           .success(
-            function(data)
+            function(tallySheet)
             {
               $modal.open({
                 templateUrl: "avAdmin/admin-directives/ballot-box/view-tally-sheet-modal.html",
                 controller: "ViewTallySheetModal",
                 resolve: {
+                  tallySheet: function () { return tallySheet; },
                   allowEdit: function () { return true; },
                   ballotBox: function () { return ballotBox; },
                   electionId: function () { return scope.electionId; },
