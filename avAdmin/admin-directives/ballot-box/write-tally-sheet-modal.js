@@ -57,7 +57,7 @@ angular.module('avAdmin')
                   };
                 }
               )
-            }
+            };
           }
         )
       };
