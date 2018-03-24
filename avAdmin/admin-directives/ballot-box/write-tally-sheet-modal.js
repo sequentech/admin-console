@@ -142,7 +142,7 @@ angular.module('avAdmin')
           .success(
             function(data)
             {
-              $modalInstance.close();
+              $scope.step = 2;
             }
           )
           .error(
@@ -151,6 +151,11 @@ angular.module('avAdmin')
               $scope.sending = false;
             }
           );
+      };
+
+      $scope.close = function ()
+      {
+        $modalInstance.close();
       };
 
       $scope.cancel = function ()

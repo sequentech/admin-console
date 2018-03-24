@@ -70,8 +70,9 @@
             "button": "Close"
           },
           "writeTallySheet": {
-            "step0header": "Step 1 of 2: Register tally sheet",
-            "step1header": "Step 2 of 2: Review and send the tally sheet",
+            "step0header": "Step 1 of 3: Register tally sheet",
+            "step1header": "Step 2 of 3: Review and send the tally sheet",
+            "step2header": "Step 3 of 3: Successfully added tally sheet",
             "reviewStep": "Please review carefully the tally sheet before sending it",
             "ballotBoxLabel": "Ballot box name:",
             "registeredVotesLabel": "Number of voters registered:",
@@ -85,7 +86,9 @@
             "mismatchedNumbersError": "The numbers don't add up or are invalid, plese review them",
             "mismatchTotalCount": "The registered number of votes and the entered number of votes differ",
             "send": "Confirm and send tally sheet",
-            "backAndEdit": "Go back and edit"
+            "backAndEdit": "Go back and edit",
+            "success": "Congratulations, you successfully added the tally sheet!",
+            "okClose": "Close"
 
           }
       },

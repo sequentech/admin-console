@@ -1,3 +1,4 @@
+<!-- step 0 -->
 <div class="modal-header dialog-header-warning">
   <h4 class="modal-title">
     <span class="glyphicon glyphicon-warning-sign">
@@ -7,6 +8,9 @@
     </span>
     <span class="title" ng-if="step === 1" ng-i18next>
       avAdmin.ballotBox.modals.writeTallySheet.step1header
+    </span>
+    <span class="title" ng-if="step === 2" ng-i18next>
+      avAdmin.ballotBox.modals.writeTallySheet.step2header
     </span>
     <button type="button" class="close pull-right" ng-click="cancel()">×</button>
   </h4>
@@ -195,6 +199,7 @@
   </button>
 </div>
 
+<!-- step 1 -->
 <div class="modal-body" ng-if="step === 1">
   <div class="container-fluid">
   <p class="important tex-center" ng-i18next>
@@ -345,4 +350,22 @@
   <button class="btn btn-cancel" ng-click="goToStep(0)" ng-i18next>
     avAdmin.ballotBox.modals.writeTallySheet.backAndEdit
   </button>
+</div>
+
+<!-- step 2 -->
+<div class="modal-body" ng-if="step === 2">
+  <div class="container-fluid">
+  </div>
+</div>
+<div class="modal-footer" ng-if="step === 2">
+  <p class="text-left" ng-if="mismatchTotalCount" ng-i18next>
+    avAdmin.ballotBox.modals.writeTallySheet.success
+  </p>
+  <button
+    class="btn btn-success"
+    ng-click="close()"
+    ng-i18next>
+    avAdmin.ballotBox.modals.writeTallySheet.okClose
+  </button>
+  </div>
 </div>
