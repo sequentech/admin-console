@@ -37,7 +37,7 @@ angular.module('avAdmin')
         },
 
         questions: _.map(
-          $scope.election,
+          ElectionsApi.currentElection.questions,
           function (question)
           {
             return {
@@ -46,7 +46,7 @@ angular.module('avAdmin')
                 blank_votes: 0,
                 null_votes: 0,
               },
-              questions: _.map(
+              answers: _.map(
                 question.answers,
                 function (answer)
                 {
