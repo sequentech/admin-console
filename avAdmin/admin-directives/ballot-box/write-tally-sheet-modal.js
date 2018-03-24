@@ -41,12 +41,12 @@ angular.module('avAdmin')
       }
 
       $scope.goToStep = function(step) {
-        $scope.step = step;
         if ($scope.step === 0 && step === 1) {
           $scope.timeout = timeoutReview;
           $scope.sending = false;
           decreaseTimeout();
         }
+        $scope.step = step;
       };
 
       $scope.tallySheet = {

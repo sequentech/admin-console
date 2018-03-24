@@ -79,7 +79,7 @@
             "electionIdLabel": "Election id:",
             "electionTitleLabel": "Election title:",
             "observationsLabel": "Observaciones:",
-            "continue": "Continue",
+            "continue": "Continue and review",
             "blankVotesLabel": "Blank votes:",
             "nullVotesLabel": "Null votes:",
             "mismatchedNumbersError": "The numbers don't add up or are invalid, plese review them",
