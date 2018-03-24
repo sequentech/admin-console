@@ -206,7 +206,7 @@ angular.module('avAdmin')
               .result.then(
                 function (action) {
                   if (action === "edit-tally-sheet") {
-                    scope.row_commands[1](ballotBox);
+                    scope.row_commands[1].actionFunc(ballotBox);
                   }
                 },
                 function (error) {
