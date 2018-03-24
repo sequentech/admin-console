@@ -34,7 +34,7 @@ angular.module('avAdmin')
       $scope.timeout = {val: timeoutReview};
       $scope.sendi18n = $i18next.t(
         "avAdmin.ballotBox.modals.writeTallySheet.send",
-        {timeout: timeout.val}
+        {timeout: $scope.timeout.val}
       );
 
       function decreaseTimeout() {
@@ -44,7 +44,7 @@ angular.module('avAdmin')
         $scope.timeout.val = $scope.timeout.val - 1;
         $scope.sendi18n = $i18next.t(
           "avAdmin.ballotBox.modals.writeTallySheet.send",
-          {timeout: timeout.val}
+          {timeout: $scope.timeout.val}
         );
         setTimeout(decreaseTimeout, 1000);
       }
