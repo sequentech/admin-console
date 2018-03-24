@@ -339,8 +339,9 @@
   <button
     class="btn btn-success"
     ng-click="sendTally()"
-    ng-class="{'disabled': timeout.val > 0}">
-    {{sendi18n}}
+    ng-class="{'disabled': timeout.val > 0}"
+    ng-i18next>
+    avAdmin.ballotBox.modals.writeTallySheet.send
   </button>
   <button class="btn btn-cancel" ng-click="goToStep(0)" ng-i18next>
     avAdmin.ballotBox.modals.writeTallySheet.backAndEdit

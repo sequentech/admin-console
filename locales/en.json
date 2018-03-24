@@ -84,7 +84,7 @@
             "nullVotesLabel": "Null votes:",
             "mismatchedNumbersError": "The numbers don't add up or are invalid, plese review them",
             "mismatchTotalCount": "The registered number of votes and the entered number of votes differ",
-            "send": "Wait __timeout__: Confirm and send",
+            "send": "Confirm and send tally sheet",
             "backAndEdit": "Go back and edit"
 
           }
