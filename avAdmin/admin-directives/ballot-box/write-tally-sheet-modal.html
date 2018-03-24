@@ -9,7 +9,7 @@
   </h4>
 </div>
 <div class="modal-body">
-  <p class="text-center">
+  <p class="text-center step">
     <span ng-i18next>
       [i18next]avAdmin.ballotBox.modals.writeTallySheet.step1
     </span>
@@ -25,10 +25,7 @@
               ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.ballotBoxLabel">
             </label>
             <div class="col-xs-5">
-              <label
-                class="control-label"
-                ng-model="ballotBox.name">
-              </label>
+              {{ballotBox.name}}
             </div>
           </div>
 
@@ -38,10 +35,7 @@
               ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.registeredVotesLabel">
             </label>
             <div class="col-xs-5">
-              <label
-                class="control-label"
-                ng-model="tallySheet.registeredVotes">
-              </label>
+              {{tallySheet.registeredVotes}}
             </div>
           </div>
 
@@ -69,10 +63,7 @@
               ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.electionIdLabel">
             </label>
             <div class="col-xs-5">
-              <label
-                class="control-label"
-                ng-model="election.id">
-              </label>
+              {{election.id}}
             </div>
           </div>
 
@@ -83,10 +74,7 @@
               ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.electionTitleLabel">
             </label>
             <div class="col-xs-5">
-              <label
-                class="control-label"
-                ng-model="election.title">
-              </label>
+              {{election.title}}
             </div>
           </div>
         </div>
