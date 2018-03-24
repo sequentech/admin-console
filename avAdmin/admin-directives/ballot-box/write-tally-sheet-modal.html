@@ -135,7 +135,7 @@
         <div class="col-xs-6" ng-repeat="answer in question.answers" ng-init="qIndex = $index">
           <div class="form-group">
             <label
-              for="q{{qIndex}}a{{$index}}TotalCount"
+              for="q{{qIndex}}a{$index}}TotalCount"
               class="col-xs-5 control-label">
               {{answer.text}}
             </label>
@@ -159,10 +159,10 @@
           <div class="form-group">
             <label
               for="comments"
-              class="col-xs-2 control-label"
+              class="col-xs-3 control-label"
               ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.observationsLabel">
             </label>
-            <div class="col-xs-10">
+            <div class="col-xs-9">
               <textarea
                 id="observations"
                 class="form-control"
@@ -301,7 +301,7 @@
           <div class="form-group">
             <label
               class="col-xs-5 control-label">
-              {{answer.text}}
+              {{answer.text}}:
             </label>
             <div class="col-xs-5">
               {{answer.num_votes}}
@@ -316,10 +316,10 @@
         <div class="col-xs-12">
           <div class="form-group">
             <label
-              class="col-xs-2 control-label"
+              class="col-xs-3 control-label"
               ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.observationsLabel">
             </label>
-            <div class="col-xs-10">
+            <div class="col-xs-9">
               {{tallySheet.observations}}
             </div>
           </div>
