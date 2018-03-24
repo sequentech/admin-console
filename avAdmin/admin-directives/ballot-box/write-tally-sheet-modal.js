@@ -32,9 +32,7 @@ angular.module('avAdmin')
 
         registeredVotes: 0,
         observations: "",
-        totals: {
-          total_count: 0
-        },
+        num_votes: 0,
 
         questions: _.map(
           ElectionsApi.currentElection.questions,
@@ -42,10 +40,8 @@ angular.module('avAdmin')
           {
             return {
               title: question.title,
-              totals: {
-                blank_votes: 0,
-                null_votes: 0,
-              },
+              blank_votes: 0,
+              null_votes: 0,
               answers: _.map(
                 question.answers,
                 function (answer)
@@ -53,7 +49,7 @@ angular.module('avAdmin')
                   return {
                     id: answer.id,
                     text: answer.text,
-                    total_count: 0
+                    num_votes: 0
                   };
                 }
               )
@@ -88,23 +84,24 @@ angular.module('avAdmin')
       {
         $scope.numbersError = false;
         try {
-          checkNumber($scope.tallySheet.totals.total_count);
+          checkNumber($scope.tallySheet.num_votes);
           _.each(
             $scope.tallySheet.questions,
             function(question) {
-              checkNumber(question.totals.blank_votes);
-              checkNumber(question.totals.null_votes);
+              checkNumber(question.blank_votes);
+              checkNumber(question.null_votes);
               assert(
-                $scope.tallySheet.totals.total_count === (
-                  question.totals.blank_votes +
-                  question.totals.null_votes +
-                  _.map(
+                $scope.tallySheet.num_votes === (
+                  question.blank_votes +
+                  question.null_votes +
+                  _.reduce(
                     question.answers,
-                    function (answer)
+                    function (sum, answer)
                     {
-                      checkNumber(answer.total_count);
-                      return answer.total_count;
-                    }
+                      checkNumber(answer.num_votes);
+                      return sum + answer.num_votes;
+                    },
+                    0
                   )
                 )
               );
