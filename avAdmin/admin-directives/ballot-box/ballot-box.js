@@ -195,6 +195,7 @@ angular.module('avAdmin')
               $modal.open({
                 templateUrl: "avAdmin/admin-directives/ballot-box/view-tally-sheet-modal.html",
                 controller: "ViewTallySheetModal",
+                windowClass: "view-tally-sheet-modal",
                 resolve: {
                   tallySheet: function () { return tallySheet; },
                   allowEdit: function () { return true; },
