@@ -204,7 +204,7 @@ angular.module('avAdmin')
             $modal.open({
               templateUrl: "avAdmin/admin-directives/ballot-box/write-tally-sheet-modal.html",
               controller: "WriteBallotBoxModal",
-              size: 'lg',
+              windowClass: "write-tally-sheet-modal",
               resolve: {
                 ballotBox: function () { return ballotBox; }
               }
@@ -220,7 +220,6 @@ angular.module('avAdmin')
             $modal.open({
               templateUrl: "avAdmin/admin-directives/ballot-box/delete-tally-sheet-modal.html",
               controller: "DeleteBallotBoxModal",
-              size: 'lg',
               resolve: {
                 ballotBox: function () { return ballotBox; },
                 electionId: function () { return scope.electionId; },
@@ -237,7 +236,6 @@ angular.module('avAdmin')
             $modal.open({
               templateUrl: "avAdmin/admin-directives/ballot-box/delete-ballot-box-modal.html",
               controller: "DeleteBallotBoxModal",
-              size: 'lg',
               resolve: {
                 ballotBox: function () { return ballotBox; },
                 electionId: function () { return scope.electionId; },
