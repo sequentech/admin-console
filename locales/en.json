@@ -78,7 +78,7 @@
             "voteCountLabel": "Number of votes:",
             "electionIdLabel": "Election id:",
             "electionTitleLabel": "Election title:",
-            "commentsLabel": "Observaciones:",
+            "observationsLabel": "Observaciones:",
             "continue": "Continue",
             "blankVotesLabel": "Blank votes:",
             "nullVotesLabel": "Null votes:",
