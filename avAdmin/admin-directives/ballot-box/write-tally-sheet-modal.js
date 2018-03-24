@@ -27,7 +27,7 @@ angular.module('avAdmin')
       Authmethod
     ) {
       $scope.step = 0;
-      scope.sending = false;
+      $scope.sending = false;
       var timeoutReview = 5;
       $scope.timeout = timeoutReview;
 
@@ -43,7 +43,7 @@ angular.module('avAdmin')
         $scope.step = step;
         if ($scope.step === 0 && step === 1) {
           $scope.timeout = timeoutReview;
-          scope.sending = false;
+          $scope.sending = false;
           decreaseTimeout();
         }
       };
@@ -136,7 +136,7 @@ angular.module('avAdmin')
 
       $scope.sendTally = function ()
       {
-        scope.sending = true;
+        $scope.sending = true;
         Authmethod.postTallySheet(
           ElectionsApi.currentElection.id,
           ballotBox.id,
@@ -150,8 +150,8 @@ angular.module('avAdmin')
           )
           .error(
               function(data) {
-                  scope.error = data;
-                  scope.sending = false;
+                  $scope.error = data;
+                  $scope.sending = false;
               }
           );
         $modalInstance.close();
