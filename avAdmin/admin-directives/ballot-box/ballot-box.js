@@ -181,7 +181,7 @@ angular.module('avAdmin')
       scope.row_commands = [
         {
           text: $i18next("avAdmin.ballotBox.viewTallySheetAction"),
-          iconClass: 'fa fa-file-alt',
+          iconClass: 'fa fa-file',
           actionFunc: function(ballotBox)
           {
             Authmethod.getTallySheet(
@@ -195,7 +195,6 @@ angular.module('avAdmin')
               $modal.open({
                 templateUrl: "avAdmin/admin-directives/ballot-box/view-tally-sheet-modal.html",
                 controller: "ViewBallotBoxModal",
-                size: 'lg',
                 resolve: {
                   ballotBox: function () { return ballotBox; },
                   electionId: function () { return scope.electionId; },

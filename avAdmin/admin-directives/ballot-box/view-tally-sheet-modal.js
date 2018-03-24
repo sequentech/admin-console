@@ -38,7 +38,7 @@ angular.module('avAdmin')
       };
       $scope.close = function ()
       {
-        $modalInstance.close("launchEdit");
+        $modalInstance.close("edit-tally-sheet");
       };
 
       $scope.cancel = function ()
