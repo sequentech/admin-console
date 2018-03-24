@@ -30,19 +30,19 @@ angular.module('avAdmin')
       $scope.sending = false;
       $scope.mismatchTotalCount = false;
       var timeoutReview = 5;
-      $scope.timeout = timeoutReview;
+      $scope.timeout = {val: timeoutReview};
 
       function decreaseTimeout() {
-        if ($scope.timeout <= 0) {
+        if ($scope.timeout.val <= 0) {
           return;
         }
-        $scope.timeout = $scope.timeout - 1;
+        $scope.timeout.val = $scope.timeout.val - 1;
         setTimeout(decreaseTimeout, 1000);
       }
 
       $scope.goToStep = function(step) {
         if ($scope.step === 0 && step === 1) {
-          $scope.timeout = timeoutReview;
+          $scope.timeout.val = timeoutReview;
           $scope.sending = false;
           decreaseTimeout();
         }
