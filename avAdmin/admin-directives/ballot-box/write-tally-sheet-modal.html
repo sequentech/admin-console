@@ -152,17 +152,17 @@
         </div>
       </div>
 
-      <div class="row" ng-repeat="question in tallySheet.questions">
+      <div class="row">
         <!-- enter observations -->
         <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
             <label
               for="comments"
-              class="col-xs-4 control-label"
+              class="col-xs-2 control-label"
               ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.observationsLabel">
             </label>
-            <div class="col-xs-5">
+            <div class="col-xs-10">
               <textarea
                 id="observations"
                 class="form-control"
@@ -310,16 +310,16 @@
         </div>
       </div>
 
-      <div class="row" ng-repeat="question in tallySheet.questions">
+      <div class="row">
         <!-- review observations -->
         <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
             <label
-              class="col-xs-4 control-label"
+              class="col-xs-2 control-label"
               ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.observationsLabel">
             </label>
-            <div class="col-xs-5">
+            <div class="col-xs-10">
               {{tallySheet.observations}}
             </div>
           </div>
