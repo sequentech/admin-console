@@ -109,7 +109,9 @@
                 ng-model="question.totals.blank_votes" />
             </div>
           </div>
+        </div>
 
+        <div class="col-xs-6">
         <!-- enter number of null votes -->
           <div class="form-group">
             <label
@@ -133,7 +135,7 @@
             <label
               for="q{{qIndex}}a{{$index}}TotalCount"
               class="col-xs-5 control-label">
-              {{answer.title}}
+              {{answer.text}}
             </label>
             <div class="col-xs-5">
               <input

@@ -52,7 +52,7 @@ angular.module('avAdmin')
                 {
                   return {
                     id: answer.id,
-                    title: answer.title,
+                    text: answer.text,
                     total_count: 0
                   };
                 }
