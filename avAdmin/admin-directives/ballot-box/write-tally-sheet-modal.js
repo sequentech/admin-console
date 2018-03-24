@@ -24,7 +24,7 @@ angular.module('avAdmin')
       $modalInstance,
       ElectionsApi,
       ballotBox,
-      Authmethod,
+      Authmethod
     ) {
       $scope.tallySheet = {
         id: ElectionsApi.currentElection.id,
