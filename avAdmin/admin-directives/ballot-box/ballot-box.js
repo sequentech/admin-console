@@ -182,64 +182,64 @@ angular.module('avAdmin')
         {
           text: $i18next("avAdmin.ballotBox.viewTallySheetAction"),
           iconClass: 'fa fa-file-alt',
-          actionFunc: function(ballot_box)
+          actionFunc: function(ballotBox)
           {
             $modal.open({
               templateUrl: "avAdmin/admin-directives/ballot-box/view-tally-sheet-modal.html",
               controller: "ViewBallotBoxModal",
               size: 'lg',
               resolve: {
-                ballotBox: function () { return ballot_box; },
+                ballotBox: function () { return ballotBox; },
                 electionId: function () { return scope.electionId; },
               }
             });
           },
-          enableFunc: function(ballot_box) { return ballot_box.num_tally_sheets > 0; }
+          enableFunc: function(ballotBox) { return ballotBox.num_tally_sheets > 0; }
         },
         {
           text: $i18next("avAdmin.ballotBox.writeTallySheetAction"),
           iconClass: 'fa fa-edit',
-          actionFunc: function(ballot_box)
+          actionFunc: function(ballotBox)
           {
             $modal.open({
               templateUrl: "avAdmin/admin-directives/ballot-box/write-tally-sheet-modal.html",
               controller: "WriteBallotBoxModal",
               size: 'lg',
               resolve: {
-                ballotBox: function () { return ballot_box; }
+                ballotBox: function () { return ballotBox; }
               }
             });
           },
-          enableFunc: function(ballot_box) { return true; }
+          enableFunc: function(ballotBox) { return true; }
         },
         {
           text: $i18next("avAdmin.ballotBox.deleteTallySheetAction"),
           iconClass: 'fa fa-file-minus',
-          actionFunc: function(ballot_box)
+          actionFunc: function(ballotBox)
           {
             $modal.open({
               templateUrl: "avAdmin/admin-directives/ballot-box/delete-tally-sheet-modal.html",
               controller: "DeleteBallotBoxModal",
               size: 'lg',
               resolve: {
-                ballotBox: function () { return ballot_box; },
+                ballotBox: function () { return ballotBox; },
                 electionId: function () { return scope.electionId; },
               }
             });
           },
-          enableFunc: function(ballot_box) { return ballot_box.num_tally_sheets > 0; }
+          enableFunc: function(ballotBox) { return ballotBox.num_tally_sheets > 0; }
         },
         {
           text: $i18next("avAdmin.ballotBox.deleteBallotBoxAction"),
           iconClass: 'fa fa-times',
-          actionFunc: function(ballot_box)
+          actionFunc: function(ballotBox)
           {
             $modal.open({
               templateUrl: "avAdmin/admin-directives/ballot-box/delete-ballot-box-modal.html",
               controller: "DeleteBallotBoxModal",
               size: 'lg',
               resolve: {
-                ballotBox: function () { return ballot_box; },
+                ballotBox: function () { return ballotBox; },
                 electionId: function () { return scope.electionId; },
               }
             })
@@ -250,7 +250,7 @@ angular.module('avAdmin')
               }
             );
           },
-          enableFunc: function(ballot_box) { return true; }
+          enableFunc: function(ballotBox) { return true; }
         }
       ];
 
