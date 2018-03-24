@@ -135,18 +135,17 @@ angular.module('avAdmin')
           $scope.tallySheet
         )
           .success(
-              function(data)
-              {
-                $modalInstance.close();
-              }
+            function(data)
+            {
+              $modalInstance.close();
+            }
           )
           .error(
-              function(data) {
-                  $scope.error = data;
-                  $scope.sending = false;
-              }
+            function(data) {
+              $scope.error = data;
+              $scope.sending = false;
+            }
           );
-        $modalInstance.close();
       };
 
       $scope.cancel = function ()
