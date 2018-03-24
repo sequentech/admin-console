@@ -154,13 +154,12 @@
         </div>
       </div>
     </form>
-
-    <p class="text-error" ng-if="numbersError" ng-i18next>
-        avAdmin.ballotBox.modals.writeTallySheet.mismatchedNumbersError
-    </p>
   </div>
 </div>
 <div class="modal-footer">
+  <p class="text-right text-error" ng-if="numbersError" ng-i18next>
+    avAdmin.ballotBox.modals.writeTallySheet.mismatchedNumbersError
+  </p>
   <button
     class="btn btn-success"
     ng-click="ok()"
