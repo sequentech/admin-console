@@ -197,7 +197,7 @@
 
 <div class="modal-body" ng-if="step === 1">
   <div class="container-fluid">
-  <p class="important" ng-i18next>
+  <p class="important tex-center" ng-i18next>
     avAdmin.ballotBox.modals.writeTallySheet.reviewStep
   </p>
     <form class="form-horizontal" role="form">
@@ -320,7 +320,10 @@
               ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.observationsLabel">
             </label>
             <div class="col-xs-9 value-label">
+              <span ng-if="!!tallySheet.observations">
               {{tallySheet.observations}}
+              </span>
+              <span ng-if="!tallySheet.observations">-</span>
             </div>
           </div>
         </div>
@@ -330,9 +333,6 @@
   </div>
 </div>
 <div class="modal-footer" ng-if="step === 1">
-  <p class="text-right text-danger" ng-if="numbersError" ng-i18next>
-    avAdmin.ballotBox.modals.writeTallySheet.mismatchedNumbersError
-  </p>
   <p class="text-right text-warning" ng-if="mismatchTotalCount" ng-i18next>
     avAdmin.ballotBox.modals.writeTallySheet.mismatchTotalCount
   </p>

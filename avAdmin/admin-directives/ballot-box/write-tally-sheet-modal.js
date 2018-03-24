@@ -28,6 +28,7 @@ angular.module('avAdmin')
     ) {
       $scope.step = 0;
       $scope.sending = false;
+      $scope.mismatchTotalCount = false;
       var timeoutReview = 5;
       $scope.timeout = timeoutReview;
 
@@ -107,6 +108,9 @@ angular.module('avAdmin')
         $scope.numbersError = false;
         try {
           checkNumber($scope.tallySheet.num_votes);
+          $scope.mismatchTotalCount = (
+            $scope.tallySheet.num_votes === $scope.tallySheet.registeredVotes
+          );
           _.each(
             $scope.tallySheet.questions,
             function(question) {
