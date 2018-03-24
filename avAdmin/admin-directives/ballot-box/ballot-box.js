@@ -194,7 +194,7 @@ angular.module('avAdmin')
             {
               $modal.open({
                 templateUrl: "avAdmin/admin-directives/ballot-box/view-tally-sheet-modal.html",
-                controller: "ViewBallotBoxModal",
+                controller: "ViewTallySheetModal",
                 resolve: {
                   ballotBox: function () { return ballotBox; },
                   electionId: function () { return scope.electionId; },
