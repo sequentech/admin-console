@@ -185,8 +185,9 @@ angular.module('avAdmin')
           actionFunc: function(ballotBox)
           {
             Authmethod.getTallySheet(
-              ElectionsApi.currentElection.id,
-              ballotBox.id
+              scope.electionId,
+              ballotBox.id,
+              null
             )
           .success(
             function(data)
