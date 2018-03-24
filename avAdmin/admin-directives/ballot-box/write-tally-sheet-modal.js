@@ -32,9 +32,7 @@ angular.module('avAdmin')
 
       $scope.goToStep = function(step) {
         if ($scope.step === 0 && step === 1) {
-          $scope.timeout.val = timeoutReview;
           $scope.sending = false;
-          decreaseTimeout();
         }
         $scope.step = step;
       };
