@@ -59,6 +59,12 @@
             "holder": "Write DELETE here to confirm..",
             "ok": "Confirm and DELETE ballot box"
           },
+          "deleteTallySheet": {
+            "header": "Confirm to DELETE tally sheet",
+            "body": "Please to confirm that you want to delete the tally sheet with id __id__ for ballot box __name__, write 'DELETE' below:",
+            "holder": "Write DELETE here to confirm..",
+            "ok": "Confirm and DELETE tally sheet"
+          },
           "checkingBallotBox": {
             "header": "Creating ballot boxes",
             "checkingExisting": "Checking if any ballot box requested already exist..",

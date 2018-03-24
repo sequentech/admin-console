@@ -245,13 +245,29 @@ angular.module('avAdmin')
           iconClass: 'fa fa-minus-square',
           actionFunc: function(ballotBox)
           {
-            $modal.open({
-              templateUrl: "avAdmin/admin-directives/ballot-box/delete-tally-sheet-modal.html",
-              controller: "DeleteBallotBoxModal",
-              resolve: {
-                ballotBox: function () { return ballotBox; },
-                electionId: function () { return scope.electionId; },
-              }
+             Authmethod.getTallySheet(
+              scope.electionId,
+              ballotBox.id,
+              null
+            )
+          .success(
+            function(tallySheet)
+            {
+              $modal.open({
+                templateUrl: "avAdmin/admin-directives/ballot-box/delete-tally-sheet-modal.html",
+                controller: "DeleteTallySheetModal",
+                resolve: {
+                  ballotBox: function () { return ballotBox; },
+                  tallySheetId: function () { return tallySheet.id; },
+                  electionId: function () { return scope.electionId; },
+                }
+              })
+              .result.then(
+                scope.reload,
+                function (error) {
+                  scope.reload();
+                }
+              );
             });
           },
           enableFunc: function(ballotBox) { return ballotBox.num_tally_sheets > 0; }
