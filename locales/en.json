@@ -89,7 +89,10 @@
             "backAndEdit": "Go back and edit",
             "success": "Congratulations, you successfully added the tally sheet!",
             "okClose": "Close"
-
+          },
+          "viewTallySheet": {
+            "header": "View tally sheet",
+            "edit": "Edit and change tally sheet"
           }
       },
       "viewTallySheetAction": "View tally sheet",

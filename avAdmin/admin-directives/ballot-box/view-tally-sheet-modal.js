@@ -32,11 +32,7 @@ angular.module('avAdmin')
       $scope.ballotBox = ballotBox;
       $scope.allowEdit = allowEdit;
 
-      $scope.close = function ()
-      {
-        $modalInstance.close();
-      };
-      $scope.close = function ()
+      $scope.edit = function ()
       {
         $modalInstance.close("edit-tally-sheet");
       };
