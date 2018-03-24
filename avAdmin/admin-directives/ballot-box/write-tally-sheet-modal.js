@@ -53,6 +53,7 @@ angular.module('avAdmin')
               title: question.title,
               blank_votes: 0,
               null_votes: 0,
+              tally_type: question.tally_type,
               answers: _.map(
                 question.answers,
                 function (answer)
@@ -129,6 +130,10 @@ angular.module('avAdmin')
       $scope.sendTally = function ()
       {
         $scope.sending = true;
+        var sheet = angular.copy($scope.tallySheet);
+        delete sheet["registeredVotes"];
+        delete sheet["id"];
+
         Authmethod.postTallySheet(
           ElectionsApi.currentElection.id,
           ballotBox.id,
