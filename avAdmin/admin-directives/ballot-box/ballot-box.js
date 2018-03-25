@@ -318,7 +318,7 @@ angular.module('avAdmin')
             }
             var ballotBox = data.object_list[0];
 
-            AuthMethod.getTallySheet(
+            Authmethod.getTallySheet(
               scope.electionId,
               ballotBox.id,
               $location.search().view_tally_sheet_id
@@ -362,7 +362,7 @@ angular.module('avAdmin')
           1,
           null,
           {
-            activity__id__equals=action_id
+            activity__id__equals: action_id
           }
         )
         .success(
@@ -373,32 +373,22 @@ angular.module('avAdmin')
             }
             var action = data.activity[0];
 
-            AuthMethod.getTallySheet(
-              scope.electionId,
-              ballotBox.id,
-              $location.search().view_tally_sheet_id
-            )
-            .success(
-              function(tallySheet)
-              {
-                $modal.open({
-                  templateUrl: "avAdmin/admin-directives/ballot-box/view-tally-sheet-modal.html",
-                  controller: "ViewTallySheetModal",
-                  windowClass: "view-tally-sheet-modal",
-                  resolve: {
-                    tallySheet: function () { return tallySheet; },
-                    allowEdit: function () { return false; },
-                    ballotBox: function () {
-                      return {
-                        id: ballot_box_id,
-                        name: ballot_box_name
-                      };
-                    },
-                    electionId: function () { return scope.electionId; },
-                  }
-                });
+            $modal.open({
+              templateUrl: "avAdmin/admin-directives/ballot-box/view-tally-sheet-modal.html",
+              controller: "ViewTallySheetModal",
+              windowClass: "view-tally-sheet-modal",
+              resolve: {
+                tallySheet: function () { return tallySheet; },
+                allowEdit: function () { return false; },
+                ballotBox: function () {
+                  return {
+                    id: ballot_box_id,
+                    name: ballot_box_name
+                  };
+                },
+                electionId: function () { return scope.electionId; },
               }
-            );
+            });
           }
         );
       }
