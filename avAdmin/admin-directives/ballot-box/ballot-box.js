@@ -297,6 +297,11 @@ angular.module('avAdmin')
         }
       ];
 
+      angular.extend(scope, {
+        loadMore: loadMore,
+        reload: reload
+      });
+
       if ($location.search().view_ballot_box_name)
       {
         scope.filterStr = $location.search().view_ballot_box_name;
@@ -392,11 +397,6 @@ angular.module('avAdmin')
           }
         );
       }
-
-      angular.extend(scope, {
-        loadMore: loadMore,
-        reload: reload
-      });
 
       scope.reload();
     }
