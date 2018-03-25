@@ -24,7 +24,8 @@ angular.module('avAdmin')
       NextButtonService,
       $timeout,
       $i18next,
-      $modal
+      $modal,
+      $location
     )
     {
     // we use it as something similar to a controller here
@@ -295,6 +296,112 @@ angular.module('avAdmin')
           enableFunc: function(ballotBox) { return true; }
         }
       ];
+
+      if ($location.search().view_ballot_box_name)
+      {
+        scope.filterStr = $location.search().view_ballot_box_name;
+        scope.reload();
+      } else if ($location.search().view_tally_sheet_id && $location.search().ballot_box_id)
+      {
+        Authmethod.getBallotBoxes(
+          scope.electionId,
+          1,
+          null,
+          {ballotbox__id__equals: $location.search().ballot_box_id},
+          ""
+        )
+        .success(
+          function(data)
+          {
+            if (data.total_count !== 1) {
+              return;
+            }
+            var ballotBox = data.object_list[0];
+
+            AuthMethod.getTallySheet(
+              scope.electionId,
+              ballotBox.id,
+              $location.search().view_tally_sheet_id
+            )
+            .success(
+              function(tallySheet)
+              {
+                $modal.open({
+                  templateUrl: "avAdmin/admin-directives/ballot-box/view-tally-sheet-modal.html",
+                  controller: "ViewTallySheetModal",
+                  windowClass: "view-tally-sheet-modal",
+                  resolve: {
+                    tallySheet: function () { return tallySheet; },
+                    allowEdit: function () { return true; },
+                    ballotBox: function () { return ballotBox; },
+                    electionId: function () { return scope.electionId; },
+                  }
+                })
+                .result.then(
+                  function (action) {
+                    if (action === "edit-tally-sheet") {
+                      scope.row_commands[1].actionFunc(ballotBox);
+                    }
+                  },
+                  function (error) {
+                    scope.reload();
+                  }
+                );
+              }
+            );
+          }
+        );
+
+      } else if ($location.search().view_tally_sheet_from_action_id && $location.search().ballot_box_id && $location.search().ballot_box_name)
+      {
+        var action_id = $location.search().view_tally_sheet_from_action_id;
+        var ballot_box_id = $location.search().ballot_box_id;
+        var ballot_box_name = $location.search().ballot_box_name;
+        Authmethod.getActivity(
+          scope.electionId,
+          1,
+          null,
+          {
+            activity__id__equals=action_id
+          }
+        )
+        .success(
+          function(data)
+          {
+            if (data.total_count !== 1) {
+              return;
+            }
+            var action = data.activity[0];
+
+            AuthMethod.getTallySheet(
+              scope.electionId,
+              ballotBox.id,
+              $location.search().view_tally_sheet_id
+            )
+            .success(
+              function(tallySheet)
+              {
+                $modal.open({
+                  templateUrl: "avAdmin/admin-directives/ballot-box/view-tally-sheet-modal.html",
+                  controller: "ViewTallySheetModal",
+                  windowClass: "view-tally-sheet-modal",
+                  resolve: {
+                    tallySheet: function () { return tallySheet; },
+                    allowEdit: function () { return false; },
+                    ballotBox: function () {
+                      return {
+                        id: ballot_box_id,
+                        name: ballot_box_name
+                      };
+                    },
+                    electionId: function () { return scope.electionId; },
+                  }
+                });
+              }
+            );
+          }
+        );
+      }
 
       angular.extend(scope, {
         loadMore: loadMore,
