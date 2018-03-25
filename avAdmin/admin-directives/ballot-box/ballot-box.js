@@ -378,7 +378,7 @@ angular.module('avAdmin')
               controller: "ViewTallySheetModal",
               windowClass: "view-tally-sheet-modal",
               resolve: {
-                tallySheet: function () { return tallySheet; },
+                tallySheet: function () { return data.metadata; },
                 allowEdit: function () { return false; },
                 ballotBox: function () {
                   return {
