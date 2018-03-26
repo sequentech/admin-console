@@ -454,6 +454,7 @@
         "codeOption": "code",
         "textOption": "text",
         "tlfOption": "tel",
+        "dateOption": "date",
         "intOption": "int",
         "boolOption": "bool",
         "captchaOption": "captcha",

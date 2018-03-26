@@ -422,6 +422,7 @@
         "codeOption": "código",
         "textOption": "texto",
         "tlfOption": "teléfono",
+        "dateOption": "fecha",
         "intOption": "entero",
         "boolOption": "booleano",
         "fieldRegExLabel": "Expresión regular",
