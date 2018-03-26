@@ -20,12 +20,12 @@ angular.module('avAdmin')
     return function (el) {
       var ef = el.census.extra_fields;
 
-      var name = 'email';
+      var names = ['email'];
       var must = null;
 
       if (el.census.auth_method === 'email') {
-        name = 'email';
-        must = {
+        names = ['email'];
+        must = [{
           "must": true,
           "name": "email",
           "type": "email",
@@ -33,10 +33,10 @@ angular.module('avAdmin')
           "min": 2,
           "max": 200,
           "required_on_authentication": true
-        };
+        }];
       } else if (el.census.auth_method === 'sms') {
-        name = 'tlf';
-        must = {
+        names = ['tlf'];
+        must = [{
           "must": true,
           "name": "tlf",
           "type": "tlf",
@@ -44,10 +44,10 @@ angular.module('avAdmin')
           "min": 2,
           "max": 200,
           "required_on_authentication": true
-        };
+        }];
       } else if (el.census.auth_method === 'dnie') {
-        name = 'dni';
-        must = {
+        names = ['dni'];
+        must = [{
           "must": true,
           "name": "dni",
           "type": "text",
@@ -55,7 +55,47 @@ angular.module('avAdmin')
           "min": 2,
           "max": 200,
           "required_on_authentication": true
-        };
+        }];
+      } else if (el.census.auth_method === 'user-and-password') {
+        names = ['username', 'password'];
+        must = [{
+          "must": true,
+          "name": "username",
+          "type": "text",
+          "required": true,
+          "min": 3,
+          "max": 200,
+          "required_on_authentication": true
+        },
+        {
+          "must": true,
+          "name": "password",
+          "type": "password",
+          "required": true,
+          "min": 3,
+          "max": 200,
+          "required_on_authentication": true
+        }];
+      } else if (el.census.auth_method === 'email-and-password') {
+        names = ['email', 'password'];
+        must = [{
+          "must": true,
+          "name": "email",
+          "type": "email",
+          "required": true,
+          "min": 2,
+          "max": 200,
+          "required_on_authentication": true
+        },
+        {
+          "must": true,
+          "name": "password",
+          "type": "password",
+          "required": true,
+          "min": 3,
+          "max": 200,
+          "required_on_authentication": true
+        }];
       }
 
       // the authmethod doesn't have a required field so we do nothing here
@@ -65,7 +105,7 @@ angular.module('avAdmin')
 
       var found = false;
       ef.forEach(function(e) {
-        if (e.name === name) {
+        if (_.find(names, function(n) { return e.name === n; })) {
           found = true;
           e.must = true;
           if ('email' === e.name) {
@@ -74,6 +114,10 @@ angular.module('avAdmin')
             e.type = 'tlf';
           } else if ('dni' === e.name) {
             e.type = 'text';
+          } else if ('username' === e.name) {
+            e.type = 'text';
+          } else if ('password' === e.name) {
+            e.type = 'password';
           }
         } else {
           e.must = false;
@@ -81,7 +125,7 @@ angular.module('avAdmin')
       });
 
       if (!found) {
-        ef.push(must);
+        _.each(must, function(m) { ef.push(m); });
       }
     };
   });
