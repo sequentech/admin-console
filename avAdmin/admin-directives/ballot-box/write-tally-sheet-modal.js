@@ -77,7 +77,7 @@ angular.module('avAdmin')
       // used inside checkNumbers() to validate a tally sheet number
       function checkNumber(i)
       {
-        if (!angular.isNumber(i) || i < 0 || i ^ 0 !== i)
+        if (!angular.isNumber(i) || i < 0 || (i ^ 0) !== i)
         {
           throw "Invalid";
         }
