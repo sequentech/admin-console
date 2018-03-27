@@ -120,7 +120,7 @@ angular.module('avAdmin')
                   if (census.auth_method !== 'email') {
                     return true;
                   }
-                  
+
                   return census.config.msg.length > 0;
                 },
                 appendOnErrorLambda: function (census) {
@@ -138,7 +138,7 @@ angular.module('avAdmin')
                   if (census.auth_method !== 'email') {
                     return true;
                   }
-                  
+
                   return census.config.msg.length <= 5000;
                 },
                 appendOnErrorLambda: function (census) {
@@ -156,7 +156,7 @@ angular.module('avAdmin')
                   if (census.auth_method !== 'email') {
                     return true;
                   }
-                  
+
                   return census.config.subject.length > 0;
                 },
                 appendOnErrorLambda: function (census) {
@@ -174,7 +174,7 @@ angular.module('avAdmin')
                   if (census.auth_method !== 'email') {
                     return true;
                   }
-                  
+
                   return census.config.subject.length <= 1024;
                 },
                 appendOnErrorLambda: function (census) {
@@ -192,7 +192,7 @@ angular.module('avAdmin')
                   if (census.auth_method !== 'sms') {
                     return true;
                   }
-                  
+
                   return census.config.msg.length > 0;
                 },
                 appendOnErrorLambda: function (census) {
@@ -210,7 +210,7 @@ angular.module('avAdmin')
                   if (census.auth_method !== 'sms') {
                     return true;
                   }
-                  
+
                   return census.config.msg.length <= 200;
                 },
                 appendOnErrorLambda: function (census) {
@@ -364,7 +364,7 @@ angular.module('avAdmin')
                             if ('int' === field.type &&
                                 !_.isNumber(field.value)) {
                               var field_name = field.name;
-                              if (_.isString(field.label) && 
+                              if (_.isString(field.label) &&
                                   0 < field.label.length) {
                                 field_name = field.label;
                               }
@@ -400,7 +400,7 @@ angular.module('avAdmin')
                                 _.isString(field.value) &&
                                 !validateEmail(field.value)) {
                               var field_name = field.name;
-                              if (_.isString(field.label) && 
+                              if (_.isString(field.label) &&
                                   0 < field.label.length) {
                                 field_name = field.label;
                               }
@@ -439,7 +439,7 @@ angular.module('avAdmin')
                             if ('text' === field.type &&
                                 !_.isString(field.value)) {
                               var field_name = field.name;
-                              if (_.isString(field.label) && 
+                              if (_.isString(field.label) &&
                                   0 < field.label.length) {
                                 field_name = field.label;
                               }
@@ -471,13 +471,13 @@ angular.module('avAdmin')
                         _.each(
                           admin_fields,
                           function (field) {
-                              if (_.isUndefined(field.value) || 
+                              if (_.isUndefined(field.value) ||
                                   (('text' === field.type ||
                                     'email' === field.type) &&
                                   _.isString(field.value) &&
                                   0 === field.value.length)) {
                               var field_name = field.name;
-                              if (_.isString(field.label) && 
+                              if (_.isString(field.label) &&
                                   0 < field.label.length) {
                                 field_name = field.label;
                               }
@@ -518,11 +518,11 @@ angular.module('avAdmin')
                         _.each(
                           admin_fields,
                           function (field) {
-                              if ('text' === field.type && 
+                              if ('text' === field.type &&
                                    _.isString(field.value) &&
                                    (field.value.length > ElectionLimits.maxLongStringLength)) {
                               var field_name = field.name;
-                              if (_.isString(field.label) && 
+                              if (_.isString(field.label) &&
                                   0 < field.label.length) {
                                 field_name = field.label;
                               }
@@ -537,7 +537,7 @@ angular.module('avAdmin')
                         return _.every(
                           admin_fields,
                           function (field) {
-                            if ('text' === field.type && 
+                            if ('text' === field.type &&
                                 _.isString(field.value)) {
                               return (field.value.length <= ElectionLimits.maxLongStringLength);
                             }
@@ -558,11 +558,11 @@ angular.module('avAdmin')
                         _.each(
                           admin_fields,
                           function (field) {
-                              if ('email' === field.type && 
+                              if ('email' === field.type &&
                                    _.isString(field.value) &&
                                    (field.value.length > ElectionLimits.maxLongStringLength)) {
                               var field_name = field.name;
-                              if (_.isString(field.label) && 
+                              if (_.isString(field.label) &&
                                   0 < field.label.length) {
                                 field_name = field.label;
                               }
@@ -577,7 +577,7 @@ angular.module('avAdmin')
                         return _.every(
                           admin_fields,
                           function (field) {
-                            if ('email' === field.type && 
+                            if ('email' === field.type &&
                                 _.isString(field.value)) {
                               return (field.value.length <= ElectionLimits.maxLongStringLength);
                             }
@@ -604,7 +604,7 @@ angular.module('avAdmin')
                                    _.isNumber(field.min) &&
                                    field.min > field.value) {
                               var field_name = field.name;
-                              if (_.isString(field.label) && 
+                              if (_.isString(field.label) &&
                                   0 < field.label.length) {
                                 field_name = field.label;
                               }
@@ -649,7 +649,7 @@ angular.module('avAdmin')
                                    _.isNumber(field.max) &&
                                    field.max < field.value) {
                               var field_name = field.name;
-                              if (_.isString(field.label) && 
+                              if (_.isString(field.label) &&
                                   0 < field.label.length) {
                                 field_name = field.label;
                               }
@@ -837,6 +837,7 @@ angular.module('avAdmin')
 
             var d = {
                 auth_method: el.census.auth_method,
+                has_ballot_boxes: el.census.has_ballot_boxes,
                 census: el.census.census,
                 auth_method_config: el.census.config,
                 extra_fields: [],
@@ -1039,7 +1040,7 @@ angular.module('avAdmin')
                 }
             });
         }
-        
+
         function checkMustExtra() {
             var index = 0;
             for (; index < scope.elections.length; index++) {
