@@ -17,16 +17,16 @@
 
 angular.module('avAdmin')
   .directive(
-    'avAdminDashboard', 
+    'avAdminDashboard',
     function(
        $q,
-       $state, 
-       Authmethod, 
-       Plugins, 
-       ElectionsApi, 
-       $stateParams, 
-       $modal, 
-       PercentVotesService, 
+       $state,
+       Authmethod,
+       Plugins,
+       ElectionsApi,
+       $stateParams,
+       $modal,
+       PercentVotesService,
        ConfigService,
        SendMsg)
     {
@@ -58,7 +58,7 @@ angular.module('avAdmin')
         'avAdmin.dashboard.publish'
       ];
 
-      scope.calculateResultsJson = angular.copy(ConfigService.calculateResultsDefault);
+      scope.calculateResultsJson = "";
 
 
       var commands = [
@@ -134,14 +134,14 @@ angular.module('avAdmin')
           path: 'calculate-results',
           method: 'POST',
           confirmController: "ConfirmCalculateResultsModal",
-          payload: angular.toJson(scope.calculateResultsJson, true),
+          payload: scope.calculateResultsJson,
           confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-calculate-results-modal.html",
           doAction: function (data)
           {
             // calculate results command
             var command = commands[5];
             command.payload = data;
-            scope.calculateResultsJson = angular.fromJson(data);
+            scope.calculateResultsJson = data;
             var ignorecache = true;
             ElectionsApi.getElection(id, ignorecache)
               .then(function(el) {
@@ -189,6 +189,14 @@ angular.module('avAdmin')
         .then(function(el) {
           scope.loading = false;
           scope.election = el;
+
+          if (!!el.resultsConfig && el.resultsConfig.length > 0) {
+            commands[5].payload = scope.calculateResultsJson = el.resultsConfig;
+          } else {
+            commands[5].payload = scope.calculateResultsJson = angular.toJson(ConfigService.calculateResultsDefault, true);
+
+          }
+
           scope.intally = el.status === 'doing_tally';
           if (scope.intally) {
             scope.index = statuses.indexOf('stopped') + 1;
@@ -271,7 +279,7 @@ angular.module('avAdmin')
         {
           return;
         }
-        
+
         function doActionConfirmBulk() {
           if (!angular.isDefined(command.confirmController)) {
             doAction(index);
@@ -304,7 +312,7 @@ angular.module('avAdmin')
           .catch(function (failureData) {
           });
         }
-        
+
 
       }
 

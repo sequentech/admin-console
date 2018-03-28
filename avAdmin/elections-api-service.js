@@ -156,6 +156,7 @@ angular.module('avAdmin')
 
                     // updating census
                     el.census.auth_method = data.events.auth_method;
+                    el.census.has_ballot_boxes = data.events.has_ballot_boxes;
                     el.census.extra_fields = data.events.extra_fields;
                     el.census.admin_fields = data.events.admin_fields;
                     el.census.census = data.events.census;
@@ -241,13 +242,17 @@ angular.module('avAdmin')
             return conf;
         };
 
+        electionsapi.getCachedEditPerm = function(id) {
+            return electionsapi.permcache[id];
+        };
+
         electionsapi.getEditPerm = function(id) {
             var deferred = $q.defer();
 
             var cached = electionsapi.permcache[id];
             if (!cached) {
                 Authmethod.getPerm(
-                    "edit|create|register|update|update-share|view|delete|send-auth|send-auth-all|view-results|view-stats|view-voters|view-census|start|stop|tally|calculate-results|publish-results|census-add|census-delete|census-activation",
+                    "edit|create|register|update|update-share|view|delete|send-auth|send-auth-all|view-results|view-stats|view-voters|view-census|start|stop|tally|calculate-results|publish-results|census-add|census-delete|census-activation|add-ballot-boxes|list-ballot-boxes|delete-ballot-boxes|add-tally-sheets|override-tally-sheets|list-tally-sheets|delete-tally-sheets",
                     "AuthEvent",
                     id
                 )
