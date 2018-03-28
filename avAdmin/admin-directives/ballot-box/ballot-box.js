@@ -142,7 +142,7 @@ angular.module('avAdmin')
       scope.$on("$destroy", function() { delete scope.resizeSensor; });
 
       scope.canCreateBallotBox = (
-        ElectionsApi.getCachedEditPerm(id).indexOf('add-ballot-boxes')  !== -1
+        ElectionsApi.getCachedEditPerm(scope.electionId).indexOf('add-ballot-boxes')  !== -1
       );
 
       scope.createBallotBox = function()
@@ -225,7 +225,7 @@ angular.module('avAdmin')
           enableFunc: function(ballotBox) {
             return (
               ballotBox.num_tally_sheets > 0 &&
-              ElectionsApi.getCachedEditPerm(id).indexOf('list-tally-sheets') !== -1
+              ElectionsApi.getCachedEditPerm(scope.electionId).indexOf('list-tally-sheets') !== -1
             );
           }
         },
@@ -254,10 +254,10 @@ angular.module('avAdmin')
               ['stopped', 'tally_ok'].indexOf(ElectionsApi.currentElection.status) !== -1 && (
                 (
                 ballotBox.num_tally_sheets > 0 &&
-                ElectionsApi.getCachedEditPerm(id).indexOf('override-tally-sheets') !== -1
+                ElectionsApi.getCachedEditPerm(scope.electionId).indexOf('override-tally-sheets') !== -1
                 ) || (
                   ballotBox.num_tally_sheets === 0 &&
-                  ElectionsApi.getCachedEditPerm(id).indexOf('add-tally-sheets') !== -1
+                  ElectionsApi.getCachedEditPerm(scope.electionId).indexOf('add-tally-sheets') !== -1
                 )
               )
             );
@@ -297,7 +297,7 @@ angular.module('avAdmin')
             return (
               ['stopped', 'tally_ok'].indexOf(ElectionsApi.currentElection.status) !== -1 &&
               ballotBox.num_tally_sheets > 0 &&
-              ElectionsApi.getCachedEditPerm(id).indexOf('delete-tally-sheets') !== -1
+              ElectionsApi.getCachedEditPerm(scope.electionId).indexOf('delete-tally-sheets') !== -1
             );
           }
         },
@@ -323,7 +323,7 @@ angular.module('avAdmin')
           },
           enableFunc: function(ballotBox) {
             return (
-              ElectionsApi.getCachedEditPerm(id).indexOf('delete-ballot-boxes') !== -1
+              ElectionsApi.getCachedEditPerm(scope.electionId).indexOf('delete-ballot-boxes') !== -1
             );
           }
         }
