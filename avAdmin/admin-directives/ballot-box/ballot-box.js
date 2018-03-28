@@ -140,6 +140,10 @@ angular.module('avAdmin')
       /* jshint ignore:end */
       scope.$on("$destroy", function() { delete scope.resizeSensor; });
 
+      scope.canCreateBallotBox = (
+        ElectionsApi.getCachedEditPerm(id).indexOf('add-ballot-boxes')  !== -1
+      );
+
       scope.createBallotBox = function()
       {
         $modal.open({
@@ -217,7 +221,12 @@ angular.module('avAdmin')
             }
           );
           },
-          enableFunc: function(ballotBox) { return ballotBox.num_tally_sheets > 0; }
+          enableFunc: function(ballotBox) {
+            return (
+              ballotBox.num_tally_sheets > 0 &&
+              ElectionsApi.getCachedEditPerm(id).indexOf('list-tally-sheets') !== -1
+            );
+          }
         },
         {
           text: $i18next("avAdmin.ballotBox.writeTallySheetAction"),
@@ -239,7 +248,19 @@ angular.module('avAdmin')
               }
             );
           },
-          enableFunc: function(ballotBox) { return true; }
+          enableFunc: function(ballotBox) {
+            return (
+              ['stopped', 'tally_ok'].indexOf(ElectionsApi.currentElection.status) !== -1 && (
+                (
+                ballotBox.num_tally_sheets > 0 &&
+                ElectionsApi.getCachedEditPerm(id).indexOf('override-tally-sheets') !== -1
+                ) || (
+                  ballotBox.num_tally_sheets == 0 &&
+                  ElectionsApi.getCachedEditPerm(id).indexOf('add-tally-sheets') !== -1
+                )
+              )
+            );
+          }
         },
         {
           text: $i18next("avAdmin.ballotBox.deleteTallySheetAction"),
@@ -271,7 +292,13 @@ angular.module('avAdmin')
               );
             });
           },
-          enableFunc: function(ballotBox) { return ballotBox.num_tally_sheets > 0; }
+          enableFunc: function(ballotBox) {
+            return (
+              ['stopped', 'tally_ok'].indexOf(ElectionsApi.currentElection.status) !== -1 &&
+              ballotBox.num_tally_sheets > 0 &&
+              ElectionsApi.getCachedEditPerm(id).indexOf('delete-tally-sheets') !== -1
+            );
+          }
         },
         {
           text: $i18next("avAdmin.ballotBox.deleteBallotBoxAction"),
@@ -293,7 +320,11 @@ angular.module('avAdmin')
               }
             );
           },
-          enableFunc: function(ballotBox) { return true; }
+          enableFunc: function(ballotBox) {
+            return (
+              ElectionsApi.getCachedEditPerm(id).indexOf('delete-ballot-boxes') !== -1
+            );
+          }
         }
       ];
 
