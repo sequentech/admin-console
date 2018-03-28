@@ -191,9 +191,9 @@ angular.module('avAdmin')
           scope.election = el;
 
           if (!!el.resultsConfig && el.resultsConfig.length > 0) {
-            scope.calculateResultsJson = el.resultsConfig;
+            commands[5].payload = scope.calculateResultsJson = el.resultsConfig;
           } else {
-            scope.calculateResultsJson = angular.toJson(ConfigService.calculateResultsDefault, true);
+            commands[5].payload = scope.calculateResultsJson = angular.toJson(ConfigService.calculateResultsDefault, true);
 
           }
 
