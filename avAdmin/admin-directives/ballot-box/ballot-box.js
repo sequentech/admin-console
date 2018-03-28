@@ -25,7 +25,8 @@ angular.module('avAdmin')
       $timeout,
       $i18next,
       $modal,
-      $location
+      $location,
+      ElectionsApi
     )
     {
     // we use it as something similar to a controller here
@@ -255,7 +256,7 @@ angular.module('avAdmin')
                 ballotBox.num_tally_sheets > 0 &&
                 ElectionsApi.getCachedEditPerm(id).indexOf('override-tally-sheets') !== -1
                 ) || (
-                  ballotBox.num_tally_sheets == 0 &&
+                  ballotBox.num_tally_sheets === 0 &&
                   ElectionsApi.getCachedEditPerm(id).indexOf('add-tally-sheets') !== -1
                 )
               )
