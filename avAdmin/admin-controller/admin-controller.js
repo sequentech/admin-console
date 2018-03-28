@@ -131,7 +131,7 @@ angular.module('avAdmin').controller('AdminController',
                 if (el.census.has_ballot_boxes &&
                     ElectionsApi.getCachedEditPerm(id).indexOf('list-ballot-boxes') !== -1)
                 {
-                    $scope.sidebarlinks = $scope.sidebarlinks.splice(1, 0, [
+                    $scope.sidebarlinks.splice(1, 0, [
                         {name: 'ballotBox', icon: 'archive'}
                     ]);
                 }
