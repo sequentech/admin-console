@@ -126,7 +126,7 @@ angular.module('avAdmin').controller('AdminController',
             ]);
 
             ElectionsApi.getElection(id).then(
-              function()
+              function(el)
               {
                 if (el.census.has_ballot_boxes &&
                     ElectionsApi.getCachedEditPerm(id).indexOf('list-ballot-boxes') !== -1)
