@@ -156,6 +156,7 @@ angular.module('avAdmin')
 
                     // updating census
                     el.census.auth_method = data.events.auth_method;
+                    el.census.has_ballot_boxes = data.events.has_ballot_boxes;
                     el.census.extra_fields = data.events.extra_fields;
                     el.census.admin_fields = data.events.admin_fields;
                     el.census.census = data.events.census;
