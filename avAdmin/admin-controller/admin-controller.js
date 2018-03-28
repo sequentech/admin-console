@@ -122,10 +122,15 @@ angular.module('avAdmin').controller('AdminController',
         $scope.sidebarlinks = [];
         if (!!id) {
             $scope.sidebarlinks = $scope.sidebarlinks.concat([
-                {name: 'activityLog', icon: 'pie-chart'},
-                // TODO: add only when election is paper ballot
-                {name: 'ballotBox', icon: 'archive'},
+                {name: 'activityLog', icon: 'pie-chart'}
             ]);
+            if (ElectionsApi.currentElection.census.has_ballot_boxes &&
+              ElectionsApi.getCachedEditPerm(id).indexOf('list-ballot-boxes'))
+            {
+                $scope.sidebarlinks = $scope.sidebarlinks.concat([
+                    {name: 'ballotBox', icon: 'archive'}
+                ]);
+            }
         }
         $scope.sidebarlinks = $scope.sidebarlinks.concat([
             {name: 'basic', icon: 'university'},
