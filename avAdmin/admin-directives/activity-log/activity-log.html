@@ -142,6 +142,49 @@
             <div ng-if="obj.action_name === 'user:resend-authcode'" ng-i18next>
             [i18next:html](obj)avAdmin.activityLog.action.user.resend-authcode
             </div>
+
+
+            <div ng-if="obj.action_name === 'ballot-box:create'">
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                event_id: obj.event_id,
+                ballot_box_id: obj.metadata.ballot_box_id,
+                ballot_box_name: obj.metadata.ballot_box_name
+              })avAdmin.activityLog.action.ballotBox.create
+            </div>
+            <div ng-if="obj.action_name === 'ballot-box:delete'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                event_id: obj.event_id,
+                ballot_box_id: obj.metadata.ballot_box_id,
+                ballot_box_name: obj.metadata.ballot_box_name
+              })avAdmin.activityLog.action.ballotBox.delete
+            </div>
+
+
+            <div ng-if="obj.action_name === 'tally-sheet:create'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                event_id: obj.event_id,
+                ballot_box_id: obj.metadata.ballot_box_id,
+                ballot_box_name: obj.metadata.ballot_box_name,
+                tally_sheet_id: obj.metadata.tally_sheet_id,
+              })avAdmin.activityLog.action.tallySheet.create
+            </div>
+            <div ng-if="obj.action_name === 'tally-sheet:delete'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                event_id: obj.event_id,
+                ballot_box_id: obj.metadata.ballot_box_id,
+                ballot_box_name: obj.metadata.ballot_box_name,
+                tally_sheet_id: obj.metadata.tally_sheet_id,
+                action_id: obj.id
+              })avAdmin.activityLog.action.tallySheet.delete
+            </div>
           </td>
           <td>
             <div ng-if="!!obj.metadatacomment">

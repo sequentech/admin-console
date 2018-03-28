@@ -15,12 +15,19 @@
  * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-[av-admin-activity-log] {
-  .data-table tr:hover {
-    background-color: #f4f4f4;
-  }
+angular.module('avAdmin')
+  .controller(
+    'CreateBallotBoxModal',
+    function($scope, $modalInstance, ConfigService)
+    {
+      $scope.ballotBoxes = {input: ""};
+      $scope.helpurl = ConfigService.helpUrl;
+      $scope.ok = function () {
+        $modalInstance.close($scope.ballotBoxes.input);
+      };
 
-  .data-table tbody tr td a {
-    text-decoration: underline;
-  }
-}
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+    }
+  );

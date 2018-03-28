@@ -1,0 +1,170 @@
+<div>
+    <h2 ng-i18next>avAdmin.ballotBox.title</h2>
+
+    <p class="text-muted">
+      <span ng-i18next>avAdmin.ballotBox.intro</span>
+      <a href="{{helpurl}}" class="learn-more" target="_blank" ng-i18next>
+        avAdmin.learnMore
+      </a>
+    </p>
+
+    <div av-admin-alerts></div>
+
+    <div class="affix-placeholder"></div>
+    <h4
+      class="header-block"
+      av-affix-top-offset="50"
+      affix-placeholder=".affix-placeholder">
+      <span
+        class="glyphicon glyphicon-chevron-right"
+        aria-hidden="true">
+      </span>
+      <span ng-i18next>avAdmin.ballotBox.manage</span>
+      <button class="btn btn-default" ng-click="reload()"><i class="fa fa-refresh"></i></button>
+      <button class="btn btn-default" ng-click="createBallotBox()"><i class="fa fa-plus"></i></button>
+
+      <div class="input-group search pull-right col-xs-3">
+        <input
+          type="text"
+          class="form-control"
+          ng-model="filterStr"
+          placeholder="{{'avAdmin.ballotBox.filter' | i18next}}">
+        <span class="input-group-btn">
+          <button
+            class="btn btn-default"
+            type="button">
+            <i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+    </h4>
+    <table
+      class="table data-table"
+      infinite-scroll="loadMore()"
+      infinite-scroll-distance="0">
+      <thead>
+        <tr>
+          <th class="small-col text-right">
+            <div
+              av-column-filter-int
+              filter-options-var="filterOptions"
+              filter-prefix="ballotbox__id"
+              filter-i18n="avAdmin.ballotBox.tableColumn.idColumnHeader">
+            </div>
+          </th>
+          <th class="small-col text-right" ng-i18next>
+            avAdmin.ballotBox.tableColumn.nameColumnHeader
+          </th>
+          <th class="small-col text-right">
+            <div
+              av-column-filter-datetime
+              filter-options-var="filterOptions"
+              filter-prefix="ballotbox__last_updated"
+              filter-i18n="avAdmin.ballotBox.tableColumn.lastUpdateColumnHeader">
+            </div>
+          </th>
+          <th class="small-col text-right">
+            <div
+              av-column-filter-int
+              filter-options-var="filterOptions"
+              filter-prefix="ballotbox__num_tally_sheets"
+              filter-i18n="avAdmin.ballotBox.tableColumn.versionColumnHeader">
+            </div>
+          </th>
+          <th class="small-col text-right" ng-i18next>
+            avAdmin.ballotBox.tableColumn.usernameColumnHeader
+          </th>
+          <th class="small-col text-right" ng-i18next>
+            avAdmin.ballotBox.tableColumn.actionsColumnHeader
+          </th>
+        </tr>
+      </thead>
+      <tbody ng-if="!reloading">
+        <tr ng-repeat="obj in object_list">
+          <td class="small-col text-right">
+            {{obj.id}}
+          </td>
+          <td class="small-col text-right">
+            {{obj.name}}
+          </td>
+          <td class="small-col text-right">
+            <span
+              ng-if="!!obj.last_updated"
+              am-time-ago="obj.last_updated"
+              tooltip="{{obj.last_updated| amDateFormat:'LLLL'}}"
+              tooltip-placement="right"
+              popover-trigger="mouseenter">
+            </span>
+            <span ng-if="!obj.last_updated">
+                -
+            </span>
+          </td>
+          <td class="small-col text-right">
+            <span ng-if="!!obj.num_tally_sheets">
+                {{obj.num_tally_sheets}}
+            </span>
+            <span ng-if="!obj.num_tally_sheets">
+                0
+            </span>
+          </td>
+          <td class="small-col text-right">
+            <span ng-if="!!obj.creator_username">
+                {{obj.creator_username}}
+            </span>
+            <span ng-if="!obj.creator_username">
+                -
+            </span>
+          </td>
+          <td class="small-col text-right actions">
+            <span
+                ng-repeat="command in row_commands"
+                ng-class="{'disabled': !command.enableFunc(obj)}">
+                <a ng-click="command.actionFunc(obj)">
+                    <i class="{{command.iconClass}}"
+                        tooltip="{{command.text}}">
+                    </i>
+                </a>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr ng-if="loading">
+          <td
+            class="wide text-muted"
+            colspan="{{election.census.extra_fields.length + 4}}">
+            <i class="fa fa-cog fa-spin fa-sw"></i>
+            <span ng-i18next>loading</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div ng-if="showSuccessAction">
+      <button
+        ng-click="goNext(admin.successAction())"
+        ng-if="!election.id"
+        class="btn btn-block btn-success"
+        ng-i18next>
+        next
+      </button>
+      <button
+        ng-click="goNext({id:election.id})"
+        ng-if="!!election.id"
+        class="btn btn-block btn-success"
+        ng-i18next>
+        next
+      </button>
+    </div>
+
+    <div ng-if="!showSuccessAction">
+      <button
+        ng-click="goNext(admin.create())"
+        ng-if="!election.id"
+        class="btn btn-block btn-success"
+        ng-i18next>
+        next
+      </button>
+    </div>
+
+</div>

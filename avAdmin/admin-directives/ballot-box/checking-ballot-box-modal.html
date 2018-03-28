@@ -1,0 +1,61 @@
+<div class="modal-header dialog-header-warning">
+  <h4 class="modal-title">
+    <span class="glyphicon glyphicon-warning-sign">
+    </span>
+    <span class="title" ng-i18next>
+      avAdmin.ballotBox.modals.checkingBallotBox.header
+    </span>
+  </h4>
+</div>
+<div class="modal-body">
+  <p ng-if="['checking-existing', 'has-existing', 'creating', 'success'].indexOf(state) > -1">
+    <span class="text-info" ng-i18next>
+      avAdmin.ballotBox.modals.checkingBallotBox.checkingExisting
+    </span>
+  </p>
+  <p class="text-error" ng-if="state === 'has-existing'">
+    <span ng-i18next>
+      avAdmin.ballotBox.modals.checkingBallotBox.hasExisting
+    </span>
+    <span ng-repeat="obj in existingBoxes">
+      {{obj.name}}
+      <span ng-if="!$last">, </span>
+    </span>
+  <p class="text-error" ng-if="state === 'error-checking-existing'">
+    <span ng-i18next>
+      avAdmin.ballotBox.modals.checkingBallotBox.errorCheckingExisting
+    </span>
+    <span>{{errorCheckingExisting}}</span>
+  </p>
+  <p class="text-info" ng-if="['creating', 'success'].indexOf(state) > -1 && createdBoxes.length > 0">
+    <span ng-i18next>
+      avAdmin.ballotBox.modals.checkingBallotBox.creatingBoxes
+    </span>
+    <span ng-repeat="name in createdBoxes">
+      {{name}}
+      <span ng-if="!$last">, </span>
+    </span>
+  </p>
+  <p class="text-error" ng-if="state === 'creating' && errorCreatingBoxes.length > 0">
+    <span ng-i18next>
+      avAdmin.ballotBox.modals.checkingBallotBox.errorCreatingBoxes
+    </span>
+    <span ng-repeat="error in errorCreatingBoxes">
+      {{error}}
+      <span ng-if="!$last">, </span>
+    </span>
+  </p>
+  <p class="modal-text-success" ng-if="state === 'success'">
+    <span ng-i18next>
+      avAdmin.ballotBox.modals.checkingBallotBox.success
+    </span>
+  </p>
+</div>
+<div class="modal-footer">
+  <button
+    class="btn btn-success"
+    ng-click="ok()"
+    ng-i18next>
+    avAdmin.ballotBox.modals.checkingBallotBox.button
+  </button>
+</div>

@@ -15,12 +15,32 @@
  * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-[av-admin-activity-log] {
-  .data-table tr:hover {
-    background-color: #f4f4f4;
-  }
+// Form to register a ballot box tally sheet
+angular.module('avAdmin')
+  .controller(
+    'ViewTallySheetModal',
+    function(
+      $scope,
+      $modalInstance,
+      ElectionsApi,
+      allowEdit,
+      ballotBox,
+      tallySheet
+    ) {
 
-  .data-table tbody tr td a {
-    text-decoration: underline;
-  }
-}
+      $scope.tallySheet = tallySheet.data;
+      $scope.tallySheetId = tallySheet.id;
+      $scope.ballotBox = ballotBox;
+      $scope.allowEdit = allowEdit;
+
+      $scope.edit = function ()
+      {
+        $modalInstance.close("edit-tally-sheet");
+      };
+
+      $scope.cancel = function ()
+      {
+        $modalInstance.dismiss('cancel');
+      };
+    }
+  );
