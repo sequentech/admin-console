@@ -251,7 +251,7 @@ angular.module('avAdmin')
           },
           enableFunc: function(ballotBox) {
             return (
-              ['stopped', 'tally_ok'].indexOf(ElectionsApi.currentElection.status) !== -1 && (
+              ['stopped', 'tally_ok', 'results_ok'].indexOf(ElectionsApi.currentElection.status) !== -1 && (
                 (
                 ballotBox.num_tally_sheets > 0 &&
                 ElectionsApi.getCachedEditPerm(scope.electionId).indexOf('override-tally-sheets') !== -1
