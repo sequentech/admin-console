@@ -464,7 +464,7 @@
     "auth": {
         "intro": "La autenticación se usa para asegurar que un elector es quien dice ser. Aquí tienes que llegar a un compromiso entre seguridad, usabilidad y coste",
         "auth": "Método de autenticación",
-        "auths": {"email": "Correo electrónico", "sms": "SMS", "dnie": "DNI electrónico"},
+        "auths": {"email": "Correo electrónico", "sms": "SMS", "dnie": "DNI electrónico", "user-and-password": "Usuario y contraseña"},
         "sms": "Mensaje SMS",
         "smstemp": "Plantilla usada en el SMS a enviar al usuario. Usa __CODE__ para insertar el código SMS y __URL__ para insertar el enlace de votación, o __URL2__ para insertar un enlace que incluya el código",
         "smsdef": "Este es tu código de votación __CODE__",
