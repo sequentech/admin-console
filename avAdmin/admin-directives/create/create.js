@@ -842,7 +842,8 @@ angular.module('avAdmin')
                 auth_method_config: el.census.config,
                 extra_fields: [],
                 admin_fields: [],
-                num_successful_logins_allowed: el.num_successful_logins_allowed
+                num_successful_logins_allowed: el.num_successful_logins_allowed,
+                allow_public_census_query: el.allow_public_census_query
             };
 
             d.admin_fields = _.filter(el.census.admin_fields, function(af) {
