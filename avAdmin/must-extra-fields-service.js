@@ -34,7 +34,7 @@ angular.module('avAdmin')
           "max": 200,
           "required_on_authentication": true
         }];
-      } else if (el.census.auth_method === 'sms') {
+      } else if (el.census.auth_method === 'sms' || el.census.auth_method === 'sms-otp') {
         names = ['tlf'];
         must = [{
           "must": true,
