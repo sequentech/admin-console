@@ -101,7 +101,7 @@
             </div>
           </th>
           <th ng-repeat="field in election.census.extra_fields">
-            {{ field.name| htmlToText }}
+            {{ field.name | htmlToText | limitTo:15 }}
           </th>
           <th ng-i18next>avAdmin.census.actionsDropdown</th>
         </tr>

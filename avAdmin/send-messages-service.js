@@ -113,7 +113,7 @@ angular.module('avAdmin')
         return false;
       }
 
-      if('sms' === service.election.census.auth_method) {
+      if('sms' === service.election.census.auth_method || 'sms-otp' === service.election.census.auth_method) {
         var email_field = getExtraField('email');
         if(email_field && 'email' === email_field.type) {
           return true;
