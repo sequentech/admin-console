@@ -580,6 +580,7 @@ angular.module('avAdmin')
       function main() {
         scope.electionLoaded = true;
         scope.election = ElectionsApi.currentElection;
+        scope.census_data_fields = Authmethod.getCensusDataFields(scope.election);
         MustExtraFieldsService(scope.election);
         if (scope.page === 1 && !newElection()) {
           reloadCensus();

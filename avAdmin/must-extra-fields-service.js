@@ -96,6 +96,17 @@ angular.module('avAdmin')
           "max": 200,
           "required_on_authentication": true
         }];
+      } else if (el.census.auth_method === 'openid-connect') {
+        names = ['sub'];
+        must = [{
+          "must": true,
+          "name": "sub",
+          "type": "text",
+          "required": true,
+          "min": 1,
+          "max": 255,
+          "required_on_authentication": true
+        }];
       }
 
       // the authmethod doesn't have a required field so we do nothing here
@@ -118,6 +129,8 @@ angular.module('avAdmin')
             e.type = 'text';
           } else if ('password' === e.name) {
             e.type = 'password';
+          } else if ('sub' === e.name) {
+            e.type = 'text';
           }
         } else {
           e.must = false;
