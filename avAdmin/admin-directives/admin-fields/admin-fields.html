@@ -1,0 +1,19 @@
+<div>
+  <div class="container-fluid elbasic-container">
+    <div class="pull-left">
+      <h2 ng-i18next>avAdmin.adminFields.title</h2>
+    </div>
+  </div>
+
+  <p class="text-muted" ng-i18next>avAdmin.adminFields.intro</p>
+  
+  
+  <div
+    av-admin-field
+    ng-repeat="field in election.census.admin_fields">
+  </div>
+
+  <div class="modal-body">
+    <button ng-click="goNext({id:election.id})" class="btn btn-block btn-success" ng-i18next>next</button>
+  </div>
+</div>

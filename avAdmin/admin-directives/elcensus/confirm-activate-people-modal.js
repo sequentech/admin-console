@@ -17,8 +17,9 @@
 
 angular.module('avAdmin')
   .controller('ConfirmActivatePeopleModal',
-    function($scope, $modalInstance, election, numSelectedShown) {
+    function($scope, $modalInstance, election, comment, numSelectedShown) {
       $scope.election = election;
+      $scope.comment = comment;
       $scope.numSelectedShown = numSelectedShown;
       $scope.ok = function () {
         $modalInstance.close();

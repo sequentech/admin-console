@@ -29,9 +29,54 @@
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda": "DesBorda"}
   },
   "avAdmin": {
+    "profile": {
+      "title": "Perfil",
+      "save": "Guardar cambios"
+    },
+    "onboarding": {
+      "help_tour": {
+        "step0_help_title": "Ayuda",
+        "step0_help_content": "Si necesitas más ayuda, haz clic aquí para obtenerla. ¡También puedes <strong>iniciar de nuevo el tour</strong> desde aquí!",
+
+        "step1_chat_title": "Chatea con nosotros",
+        "step1_chat_content": "Si tienes alguna pregunta,, estaremos encantados de responderla rápidamente a través del chat."
+      },
+      "dashboard_tour": {
+        "step0_test_title": "Votación de prueba",
+        "step0_test_content": "Has creado una votación de prueba. Las elecciones de prueba tienen un tamaño de censo limitado y una votación real sólo se puede crear a partir de una votación de prueba recontada con éxito.",
+
+        "step1_real_title": "Votación real",
+        "step1_real_content": "Una vez que se realize el recuento de ésta votación, podras crear una votación real haciendo clic aquí.",
+
+        "step2_status_title": "Estado de la votación",
+        "step2_status_content": "Esta sección muestra el estado de la votación y en ella siempre aparece un botón para pasar la votación al siguiente estado.",
+
+        "step3_start_title": "Comienza la votación",
+        "step3_start_content": "Haz clic en este botón apra comenzar la votación y enviar el email de autenticación a todo el censo."
+      },
+      "hello_tour": {
+        "step0_create_title": "Crea la votación",
+        "step0_create_content": "Comienza a crear una votación de prueba haciendo clic en el botón <strong>Nueva votación</strong>. <br><br>O visualiza nuestro video de introducción:<br><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/eTZ3TQw5G_c?rel=0&amp;showinfo=0\" frameborder=\"0\" allowfullscreen></iframe>",
+
+        "step1_change_title": "Cambiar el título",
+        "step1_change_content": "Ahora puedes editar todos los detalles de la elección, por ejemplo podrías editar el título de la votación haciendo clic aquí.",
+
+        "step2_sidebar_title": "Barra lateral",
+        "step2_sidebar_content": "Podrías personalizar la votación haciendo clic en éstas secciones.",
+
+        "step3_review_title": "Revisa la votación antes de crearla",
+        "step3_review_content": "Una vez hayas terminado configurando la votación, haz clic en el botón <strong>Crear Votación</strong> para revisar y crear la votación.",
+
+        "step4_create2_title": "Crear la votación",
+        "step4_create2_content": "<strong>Haz clic en éste botón</strong> para crear la votación. <br><br>Ten en cuenta que la votación no se creará hasta que hagas clic en éste botón, y por razones de seguridad no se podrá editar posteriormente."
+      }
+    },
     "show_points_policy": {
       "label": "Mostra punts",
       "text": "Mostra els punts que la papereta dóna a cada opció seleccionada"
+    },
+    "setting": {
+      "helpTooltip": "Clickea para expandir/colapsar texto de ayuda sobre esta configuración"
     },
     "shuffling_policy": {
       "categories_label": "Ramdomize categories",
@@ -43,11 +88,6 @@
       "dont-shuffle": "Don't shuffle the options. All voters will see the options in the same order in the voting booth",
       "shuffle-all": "Shuffle all options. Each voter will see the options for this question in a different order in the voting booth. If there are different categories, they will also be randomized.",
       "shuffle-some": "Shuffle the options of a selected list of categories."
-    },
-    "notes": {
-      "noteTag": "Nota",
-      "thisisATestElection": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas.",
-      "thisisATestElectionPopover": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas. Para ello, debes completar el proceso de la votación hasta el paso de publicar resultados"
     },
     "results": {
       "downloadData": "Descargar datos",
@@ -66,6 +106,14 @@
         "logout": "salir"
     },
     "learnMore": "Learn more..",
+    "adminFields": {
+      "title": "Campos admin",
+      "intro": "Campos admin",
+      "maxError": "__value__ es mayor de __max__",
+      "minError": "__value__ es menor de __min__",
+      "textError": "error en texto __value__",
+      "numberError": "__value__ ha de ser un número"
+    },
     "sidebar": {
         "elections": "Votaciones",
         "newel": "Nueva votació",
@@ -83,7 +131,8 @@
         "myAccount": "Mi cuenta",
         "billinfo": "Información de pago",
         "billhistory": "Historial de pagos",
-        "buy": "Comprar créditos"
+        "buy": "Comprar créditos",
+        "adminFields": "Admin fields"
     },
     "elections": {
         "filter": "Filtrar...",
@@ -144,6 +193,9 @@
           "createHeader": "Create election",
           "createBody": "To create the election, its configuration is sent to the election authorities and they create election public encryption keys. After that, the election is no longer editable. Before doing this, please check that the configuration is correct (for example taking a look at the demo voting booth). If you need to change the election after this, you will have to create a new one.",
           "confirmCreateButton": "Confirm and CREATE election",
+          "createRealHeader": "Crear votación real",
+          "createRealBody": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas. Para ello, debes completar el proceso de la votación hasta el paso de publicar resultados.",
+          "confirmCreateRealButton": "Confirmar y CREAR votación real",
           "calculateResultsHeader": "Calcular resultados",
           "calculateResultsBody": "El recuento se ha realizado y el próximo paso es el cálculo de resultados. Aunque el recuento sólo se permite realizar una vez, el cálculo de resultados se puede realizar tantas veces como sea necesario antes de publicarlos.",
           "calculateResultsButton": "Confirmar y CALCULAR resultados",
@@ -249,6 +301,12 @@
         "census": {"open": "Registro abierto", "close": "Registro cerrado"},
         "fields": {"label": "Campos extra", "placeholder": "Campos extra del votante"},
         "censusadd": "Voters added to the census",
+
+        "modals": {
+          "csvLoadingHeader": "Uploading CSV to census",
+          "csvLoadingBody": "Please click on the start upload button to add the users from the CSV to the census. Please wait until the process is finished and don't close this window.",
+          "csvLoadingStartButton": "Start upload NOW"
+        },
         "actionsDropdown": "Actions",
         "exportCensusAction": "Export all census to CSV",
         "removeCensusAction": "Remove __num__ selected people",

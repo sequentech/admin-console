@@ -44,11 +44,11 @@ angular.module('avAdmin')
               console.log("retrieveFile complete");
               scope.loading = false;
               var els = ImportService(results.data);
-              // only works for one election, the first
-              ElectionsApi.currentElections = els;
-              ElectionsApi.setCurrent(els[0]);
-              ElectionsApi.newElection = true;
-              $state.go("admin.create");
+              // only works for one election, the first                                                                                                                    
+              ElectionsApi.currentElections = els;                                                                                                                         
+              ElectionsApi.setCurrent(els[0]);                                                                                                                             
+              ElectionsApi.newElection = true;                                                                                                                             
+              $state.go("admin.create"); 
             },
           });
         }

@@ -1,0 +1,236 @@
+<div>
+    <h2 ng-i18next>avAdmin.activityLog.title</h2>
+
+    <p class="text-muted">
+      <span ng-i18next>avAdmin.activityLog.intro</span>
+      <a href="{{helpurl}}" class="learn-more" target="_blank" ng-i18next>
+        avAdmin.learnMore
+      </a>
+    </p>
+
+    <div av-admin-alerts></div>
+
+    <div class="affix-placeholder"></div>
+    <h4
+      class="header-block"
+      av-affix-top-offset="50"
+      affix-placeholder=".affix-placeholder">
+      <span
+        class="glyphicon glyphicon-chevron-right"
+        aria-hidden="true">
+      </span>
+      <span ng-i18next>avAdmin.activityLog.manage</span>
+      <button class="btn btn-default" ng-click="reloadActivity()"><i class="fa fa-refresh"></i></button>
+
+      <div class="input-group search pull-right col-xs-3">
+        <input
+          type="text"
+          class="form-control"
+          ng-model="filterStr"
+          placeholder="{{'avAdmin.activityLog.filter' | i18next}}">
+        <span class="input-group-btn">
+          <button
+            class="btn btn-default"
+            type="button">
+            <i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+    </h4>
+    <table
+      class="table data-table"
+      infinite-scroll="loadMoreActivity()"
+      infinite-scroll-distance="0">
+      <thead>
+        <tr>
+          <th class="small-col text-right">
+            <div
+              av-column-filter-int
+              filter-options-var="filterOptions"
+              filter-prefix="activity__id"
+              filter-i18n="avAdmin.activityLog.tableColumn.idColumnHeader">
+            </div>
+          </th>
+          <th class="small-col text-right">
+            <div
+              av-column-filter-int
+              filter-options-var="filterOptions"
+              filter-prefix="activity__executer__id"
+              filter-i18n="avAdmin.activityLog.tableColumn.executerIdColumnHeader">
+            </div>
+          </th>
+          <th class="small-col text-right">
+            <div
+              av-column-filter-int
+              filter-options-var="filterOptions"
+              filter-prefix="activity__receiver__id"
+              filter-i18n="avAdmin.activityLog.tableColumn.receiverIdColumnHeader">
+            </div>
+          </th>
+          <th class="small-col text-right">
+            <div
+              av-column-filter-datetime
+              filter-options-var="filterOptions"
+              filter-prefix="activity__created"
+              filter-i18n="avAdmin.activityLog.tableColumn.creationDateColumnHeader">
+            </div>
+          </th>
+          <th ng-i18next>
+            avAdmin.activityLog.tableColumn.actionColumnHeader
+          </th>
+          <th ng-i18next>
+            avAdmin.activityLog.tableColumn.commentColumnHeader
+          </th>
+        </tr>
+      </thead>
+      <tbody ng-if="!reloadingActivity">
+        <tr ng-repeat="obj in activity">
+          <td class="small-col">
+            {{obj.id}}
+          </td>
+          <td class="small-col">
+            <span
+              am-time-ago="obj.created"
+              tooltip="{{obj.created| amDateFormat:'LLLL'}}"
+              tooltip-placement="right"
+              popover-trigger="mouseenter">
+            </span>
+          </td>
+          <td colspan="3">
+            <div ng-if="obj.action_name === 'authevent:create'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.authevent.create
+            </div>
+            <div ng-if="obj.action_name === 'authevent:callback'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.authevent.callback
+            </div>
+            <div ng-if="obj.action_name === 'authevent:edit'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.authevent.edit
+            </div>
+
+
+            <div ng-if="obj.action_name === 'authevent:start'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.authevent.start
+            </div>
+            <div ng-if="obj.action_name === 'authevent:stop'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.authevent.stop
+            </div>
+            <div ng-if="obj.action_name === 'authevent:delete'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.authevent.delete
+            </div>
+
+
+            <div ng-if="obj.action_name === 'user:activate'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.user.activate
+            </div>
+            <div ng-if="obj.action_name === 'user:deactivate'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.user.deactivate
+            </div>
+
+
+            <div ng-if="obj.action_name === 'user:successful-login'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.user.successful-login
+            </div>
+            <div ng-if="obj.action_name === 'user:send-auth'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.user.send-auth
+            </div>
+            <div ng-if="obj.action_name === 'user:register'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.user.register
+            </div>
+            <div ng-if="obj.action_name === 'user:added-to-census'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.user.added-to-census
+            </div>
+            <div ng-if="obj.action_name === 'user:resend-authcode'" ng-i18next>
+            [i18next:html](obj)avAdmin.activityLog.action.user.resend-authcode
+            </div>
+
+
+            <div ng-if="obj.action_name === 'ballot-box:create'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                event_id: obj.event_id,
+                ballot_box_id: obj.metadata.ballot_box_id,
+                ballot_box_name: obj.metadata.ballot_box_name
+              })avAdmin.activityLog.action.ballotBox.create
+            </div>
+            <div ng-if="obj.action_name === 'ballot-box:delete'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                event_id: obj.event_id,
+                ballot_box_id: obj.metadata.ballot_box_id,
+                ballot_box_name: obj.metadata.ballot_box_name
+              })avAdmin.activityLog.action.ballotBox.delete
+            </div>
+
+
+            <div ng-if="obj.action_name === 'tally-sheet:create'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                event_id: obj.event_id,
+                ballot_box_id: obj.metadata.ballot_box_id,
+                ballot_box_name: obj.metadata.ballot_box_name,
+                tally_sheet_id: obj.metadata.tally_sheet_id,
+              })avAdmin.activityLog.action.tallySheet.create
+            </div>
+            <div ng-if="obj.action_name === 'tally-sheet:delete'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                event_id: obj.event_id,
+                ballot_box_id: obj.metadata.ballot_box_id,
+                ballot_box_name: obj.metadata.ballot_box_name,
+                tally_sheet_id: obj.metadata.tally_sheet_id,
+                action_id: obj.id
+              })avAdmin.activityLog.action.tallySheet.delete
+            </div>
+          </td>
+          <td>
+            <div ng-if="!!obj.metadatacomment">
+                {{obj.metadatacomment}}
+            </div>
+            <div ng-if="!obj.metadatacomment">-</div>
+          </td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr ng-if="loading">
+          <td
+            class="wide text-muted"
+            colspan="{{election.census.extra_fields.length + 4}}">
+            <i class="fa fa-cog fa-spin fa-sw"></i>
+            <span ng-i18next>loading</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div ng-if="showSuccessAction">
+      <button
+        ng-click="goNext(admin.successAction())"
+        ng-if="!election.id"
+        class="btn btn-block btn-success"
+        ng-i18next>
+        next
+      </button>
+      <button
+        ng-click="goNext({id:election.id})"
+        ng-if="!!election.id"
+        class="btn btn-block btn-success"
+        ng-i18next>
+        next
+      </button>
+    </div>
+
+    <div ng-if="!showSuccessAction">
+      <button
+        ng-click="goNext(admin.create())"
+        ng-if="!election.id"
+        class="btn btn-block btn-success"
+        ng-i18next>
+        next
+      </button>
+    </div>
+
+</div>

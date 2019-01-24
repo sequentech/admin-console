@@ -30,6 +30,7 @@ angular.module(
   'infinite-scroll',
   'angularMoment',
   'avConfig',
+  'avPluginsConfig',
   'jm.i18next',
   'avUi',
   'avRegistration',
@@ -97,6 +98,11 @@ angular.module('agora-gui-admin').config(
         templateUrl: 'avAdmin/admin-login-controller/admin-login-controller.html',
         controller: "AdminLoginController"
       })
+      .state('admin.login_email', {
+        url: '/login/:email',
+        templateUrl: 'avAdmin/admin-login-controller/admin-login-controller.html',
+        controller: "AdminLoginController"
+      })
       .state('admin.signup', {
         url: '/signup',
         templateUrl: 'avAdmin/admin-signup-controller/admin-signup-controller.html',
@@ -108,7 +114,7 @@ angular.module('agora-gui-admin').config(
       })
       // admin directives using the admin controller
       .state('admin.new', {
-        url: '/new',
+        url: '/new/:draft',
         templateUrl: 'avAdmin/admin-controller/admin-controller.html',
         controller: 'AdminController'
       })
@@ -124,6 +130,11 @@ angular.module('agora-gui-admin').config(
       })
       .state('admin.basic', {
         url: '/basic/:id',
+        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
+        controller: 'AdminController'
+      })
+      .state('admin.adminFields', {
+        url: '/admin-fields/:id',
         templateUrl: 'avAdmin/admin-controller/admin-controller.html',
         controller: 'AdminController'
       })
@@ -152,6 +163,11 @@ angular.module('agora-gui-admin').config(
         templateUrl: 'avAdmin/admin-controller/admin-controller.html',
         controller: 'AdminController'
       })
+      .state('admin.activityLog', {
+        url: '/activity/:id',
+        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
+        controller: 'AdminController'
+      })
       .state('admin.tally', {
         url: '/tally/:id',
         templateUrl: 'avAdmin/admin-controller/admin-controller.html',
@@ -174,6 +190,11 @@ angular.module('agora-gui-admin').config(
       })
       .state('admin.billhistory', {
         url: '/billhistory',
+        templateUrl: 'avAdmin/admin-controller/admin-controller.html',
+        controller: 'AdminController'
+      })
+      .state('admin.ballotBox', {
+        url: '/ballot-box/:id',
         templateUrl: 'avAdmin/admin-controller/admin-controller.html',
         controller: 'AdminController'
       })
@@ -229,9 +250,11 @@ angular.module('agora-gui-admin').config(
 /**
  * IF the cookie is there we make the autologin
  */
-angular.module('agora-gui-admin').run(function($cookies, $http, Authmethod) {
-    if ($cookies.auth) {
-        Authmethod.setAuth($cookies.auth, $cookies.isAdmin);
+angular.module('agora-gui-admin').run(function($cookies, $http, Authmethod, ConfigService) {
+    var adminId = ConfigService.freeAuthId + '';
+    var postfix = "_authevent_" + adminId;
+    if ($cookies["auth" + postfix]) {
+        Authmethod.setAuth($cookies["auth" + postfix], $cookies["isAdmin" + postfix], adminId);
     }
 });
 
@@ -258,6 +281,7 @@ angular.module('agora-gui-admin').run(function($http, $rootScope, ConfigService)
     function(event, toState, toParams, fromState, fromParams) {
       console.log("change success");
       $("#angular-preloading").hide();
+      $(window).trigger("angular-state-change-success", [event, toState, toParams, fromState, fromParams]);
     });
 });
 

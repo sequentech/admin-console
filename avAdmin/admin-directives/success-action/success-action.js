@@ -29,7 +29,8 @@ angular.module('avAdmin')
       $state,
       ElectionsApi,
       MustExtraFieldsService,
-      ConfigService)
+      ConfigService,
+      NextButtonService)
     {
       function link(scope, element, attrs)
       {
@@ -44,6 +45,8 @@ angular.module('avAdmin')
         scope.electionEditable = function() {
           return !scope.election.id;
         };
+
+        scope.goNext = NextButtonService.goNext;
 
         // if the election is not loaded yet, then once it's loaded, update the
         // election scope variable

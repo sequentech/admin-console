@@ -1,0 +1,371 @@
+<!-- step 0 -->
+<div class="modal-header dialog-header-warning">
+  <h4 class="modal-title">
+    <span class="glyphicon glyphicon-warning-sign">
+    </span>
+    <span class="title" ng-if="step === 0" ng-i18next>
+      avAdmin.ballotBox.modals.writeTallySheet.step0header
+    </span>
+    <span class="title" ng-if="step === 1" ng-i18next>
+      avAdmin.ballotBox.modals.writeTallySheet.step1header
+    </span>
+    <span class="title" ng-if="step === 2" ng-i18next>
+      avAdmin.ballotBox.modals.writeTallySheet.step2header
+    </span>
+    <button type="button" class="close pull-right" ng-click="cancel()">×</button>
+  </h4>
+</div>
+<div class="modal-body" ng-if="step === 0">
+  <div class="container-fluid">
+    <form class="form-horizontal" role="form">
+      <div class="row">
+        <!-- first row -->
+        <div class="col-xs-6">
+          <!-- display ballot box name -->
+          <div class="form-group">
+            <label
+              class="col-xs-5 control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.ballotBoxLabel">
+            </label>
+            <div class="col-xs-5 value-label">
+              {{ballotBox.name}}
+            </div>
+          </div>
+
+          <!-- display number of registered votes -->
+          <div class="form-group">
+            <label
+              class="col-xs-5 control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.registeredVotesLabel">
+            </label>
+            <div class="col-xs-5 value-label">
+              {{tallySheet.registeredVotes}}
+            </div>
+          </div>
+
+          <!-- enter number of ballots -->
+          <div class="form-group">
+            <label
+              for="totalCount"
+              class="col-xs-5 control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.voteCountLabel">
+            </label>
+            <div class="col-xs-5">
+              <input
+                id="totalCount"
+                class="form-control"
+                type="number"
+                min="0"
+                ng-change="checkNumbers()"
+                ng-model="tallySheet.num_votes" />
+            </div>
+          </div>
+        </div>
+
+        <!-- second row -->
+        <div class="col-xs-6">
+          <!-- display election id -->
+          <div class="form-group">
+            <label
+              class="col-xs-5 control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.electionIdLabel">
+            </label>
+            <div class="col-xs-5 value-label">
+              {{tallySheet.id}}
+            </div>
+          </div>
+
+          <!-- display election title -->
+          <div class="form-group">
+            <label
+              for="ballotBox"
+              class="col-xs-5 control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.electionTitleLabel">
+            </label>
+            <div class="col-xs-5 value-label">
+              {{tallySheet.title}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- for each question -->
+      <div class="row" ng-repeat="question in tallySheet.questions">
+        <p class="question-title">
+          {{$index+1}}: {{question.title}}
+        </p>
+
+        <!-- enter number of blank votes -->
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label
+              for="q{{$index}}BlankVotes"
+              class="col-xs-5 control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.blankVotesLabel">
+            </label>
+            <div class="col-xs-5">
+              <input
+                id="q{{$index}}BlankVotes"
+                class="form-control"
+                type="number"
+                min="0"
+                ng-change="checkNumbers()"
+                ng-model="question.blank_votes" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-6">
+        <!-- enter number of null votes -->
+          <div class="form-group">
+            <label
+              for="q{{$index}}NullVotes"
+              class="col-xs-5 control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.nullVotesLabel">
+            </label>
+            <div class="col-xs-5">
+              <input
+                id="q{{$index}}NullVotes"
+                class="form-control"
+                type="number"
+                min="0"
+                ng-change="checkNumbers()"
+                ng-model="question.null_votes" />
+            </div>
+          </div>
+        </div>
+
+        <!-- enter results for each answer -->
+        <div class="col-xs-6" ng-repeat="answer in question.answers" ng-init="qIndex = $index">
+          <div class="form-group">
+            <label
+              for="q{{qIndex}}a{$index}}TotalCount"
+              class="col-xs-5 control-label">
+              {{answer.text}}:
+            </label>
+            <div class="col-xs-5">
+              <input
+                id="q{{qIndex}}a{{$index}}TotalCount"
+                class="form-control"
+                type="number"
+                min="0"
+                ng-change="checkNumbers()"
+                ng-model="answer.num_votes" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- enter observations -->
+        <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label
+              for="comments"
+              class="label-obs control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.observationsLabel">
+            </label>
+            <div class="data-obs">
+              <textarea
+                id="observations"
+                class="form-control"
+                ng-change="checkNumbers()"
+                ng-model="tallySheet.observations">
+              </textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer" ng-if="step === 0">
+  <p class="text-right text-danger" ng-if="numbersError" ng-i18next>
+    avAdmin.ballotBox.modals.writeTallySheet.mismatchedNumbersError
+  </p>
+  <p class="text-right text-warning" ng-if="mismatchTotalCount" ng-i18next>
+    avAdmin.ballotBox.modals.writeTallySheet.mismatchTotalCount
+  </p>
+  <button
+    class="btn btn-success"
+    ng-click="goToStep(1)"
+    ng-class="{'disabled': numbersError}"
+    ng-i18next>
+    [i18next]avAdmin.ballotBox.modals.writeTallySheet.continue
+  </button>
+  <button class="btn btn-cancel" ng-click="cancel()" ng-i18next>
+    avCommon.cancel
+  </button>
+</div>
+
+<!-- step 1 -->
+<div class="modal-body" ng-if="step === 1">
+  <div class="container-fluid">
+  <p class="important tex-center" ng-i18next>
+    avAdmin.ballotBox.modals.writeTallySheet.reviewStep
+  </p>
+    <form class="form-horizontal" role="form">
+      <div class="row">
+        <!-- first row -->
+        <div class="col-xs-6">
+          <!-- display ballot box name -->
+          <div class="form-group">
+            <label
+              class="col-xs-5 control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.ballotBoxLabel">
+            </label>
+            <div class="col-xs-5 value-label">
+              {{ballotBox.name}}
+            </div>
+          </div>
+
+          <!-- display number of registered votes -->
+          <div class="form-group">
+            <label
+              class="col-xs-5 control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.registeredVotesLabel">
+            </label>
+            <div class="col-xs-5 value-label">
+              {{tallySheet.registeredVotes}}
+            </div>
+          </div>
+
+          <!-- review number of ballots -->
+          <div class="form-group">
+            <label
+              class="col-xs-5 control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.voteCountLabel">
+            </label>
+            <div class="col-xs-5 value-label">
+              {{tallySheet.num_votes}}
+            </div>
+          </div>
+        </div>
+
+        <!-- second row -->
+        <div class="col-xs-6">
+          <!-- display election id -->
+          <div class="form-group">
+            <label
+              class="col-xs-5 control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.electionIdLabel">
+            </label>
+            <div class="col-xs-5 value-label">
+              {{tallySheet.id}}
+            </div>
+          </div>
+
+          <!-- display election title -->
+          <div class="form-group">
+            <label
+              class="col-xs-5 control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.electionTitleLabel">
+            </label>
+            <div class="col-xs-5 value-label">
+              {{tallySheet.title}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- for each question -->
+      <div class="row" ng-repeat="question in tallySheet.questions">
+        <p class="question-title">
+          {{$index+1}}: {{question.title}}
+        </p>
+
+        <!-- review number of blank votes -->
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label
+              class="col-xs-5 control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.blankVotesLabel">
+            </label>
+            <div class="col-xs-5 value-label">
+              {{question.blank_votes}}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-6">
+        <!-- review number of null votes -->
+          <div class="form-group">
+            <label
+              class="col-xs-5 control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.nullVotesLabel">
+            </label>
+            <div class="col-xs-5 value-label">
+              {{question.null_votes}}
+            </div>
+          </div>
+        </div>
+
+        <!-- review results for each answer -->
+        <div class="col-xs-6" ng-repeat="answer in question.answers" ng-init="qIndex = $index">
+          <div class="form-group">
+            <label
+              class="col-xs-5 control-label">
+              {{answer.text}}:
+            </label>
+            <div class="col-xs-5 value-label">
+              {{answer.num_votes}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- review observations -->
+        <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label
+              class="label-obs control-label"
+              ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.observationsLabel">
+            </label>
+            <div class="data-obs value-label">
+              <span ng-if="!!tallySheet.observations">
+              {{tallySheet.observations}}
+              </span>
+              <span ng-if="!tallySheet.observations">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer" ng-if="step === 1">
+  <p class="text-right text-warning" ng-if="mismatchTotalCount" ng-i18next>
+    avAdmin.ballotBox.modals.writeTallySheet.mismatchTotalCount
+  </p>
+  <button
+    class="btn btn-success"
+    ng-click="sendTally()"
+    ng-i18next>
+    avAdmin.ballotBox.modals.writeTallySheet.send
+  </button>
+  <button class="btn btn-cancel" ng-click="goToStep(0)" ng-i18next>
+    avAdmin.ballotBox.modals.writeTallySheet.backAndEdit
+  </button>
+</div>
+
+<!-- step 2 -->
+<div class="modal-body" ng-if="step === 2">
+  <div class="container-fluid">
+    <p class="text-left text-success" ng-i18next>
+      avAdmin.ballotBox.modals.writeTallySheet.success
+    </p>
+  </div>
+</div>
+<div class="modal-footer" ng-if="step === 2">
+  <button
+    class="btn btn-success"
+    ng-click="close()"
+    ng-i18next>
+    avAdmin.ballotBox.modals.writeTallySheet.okClose
+  </button>
+  </div>
+</div>

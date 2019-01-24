@@ -113,7 +113,7 @@ angular.module('avAdmin')
         return false;
       }
 
-      if('sms' === service.election.census.auth_method) {
+      if('sms' === service.election.census.auth_method || 'sms-otp' === service.election.census.auth_method) {
         var email_field = getExtraField('email');
         if(email_field && 'email' === email_field.type) {
           return true;
@@ -132,6 +132,17 @@ angular.module('avAdmin')
      * is
      */
     service.sendAuthCodesModal = function() {
+      var pluginData = {
+        continue: true,
+        el: service.election,
+        ids: service.user_ids,
+        extra: service.extra
+      };
+      Plugins.hook('send-auth-codes-modal', pluginData);
+      if (!pluginData.continue) {
+        return;
+      }
+
       service.selectable_auth_method = service.authMethodIsSelectable();
       service.selected_auth_method = angular.copy(service.election.census.auth_method);
       // If skip dialog flag is activated, then we jump directly to the

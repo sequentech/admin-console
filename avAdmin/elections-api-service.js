@@ -23,6 +23,7 @@ angular.module('avAdmin')
         Plugins,
         Authmethod,
         ConfigService,
+        AdminProfile,
         $i18next,
         $http,
         $cookies,
@@ -36,13 +37,15 @@ angular.module('avAdmin')
          * as a cookie.
          */
         function getSavedElectionKey() {
-          if (!$cookies.savedElectionKey) {
+          var autheventid = Authmethod.getAuthevent();
+          var postfix = "_authevent_" + autheventid;
+          if (!$cookies["savedElectionKey" + postfix]) {
             /* jshint ignore:start */
-            $cookies.savedElectionKey = "savedElectionKey_" + sjcl.codec.base64.fromBits(sjcl.random.randomWords(8, 0));
+            $cookies["savedElectionKey" + postfix] = "savedElectionKey_" + sjcl.codec.base64.fromBits(sjcl.random.randomWords(8, 0));
             /* jshint ignore:end */
           }
 
-          return $cookies.savedElectionKey;
+          return $cookies["savedElectionKey" + postfix];
         }
 
         /**
@@ -92,10 +95,12 @@ angular.module('avAdmin')
             electionsapi.currentElection = el;
             electionsapi.newElection = !el.id;
 
+            Plugins.hook('elections-api-set-current', {election: el , rootScope: $rootScope});
+
             $rootScope.currentElection = el;
             if (!$rootScope.watchingElection) {
                 $rootScope.$watch('currentElection', function(newv, oldv) {
-                  Plugins.hook('election-modified', {'old': oldv, 'el': newv});
+                  Plugins.hook('election-modified', {old: oldv, el: newv, rootScope: $rootScope});
                   if (!$rootScope.currentElection.id) {
                     localSaveElection($rootScope.currentElection);
                   }
@@ -151,7 +156,9 @@ angular.module('avAdmin')
 
                     // updating census
                     el.census.auth_method = data.events.auth_method;
+                    el.census.has_ballot_boxes = data.events.has_ballot_boxes;
                     el.census.extra_fields = data.events.extra_fields;
+                    el.census.admin_fields = data.events.admin_fields;
                     el.census.census = data.events.census;
                     if(!!data.events.num_successful_logins_allowed || 0 === data.events.num_successful_logins_allowed) {
                       el.num_successful_logins_allowed = data.events.num_successful_logins_allowed;
@@ -235,13 +242,17 @@ angular.module('avAdmin')
             return conf;
         };
 
+        electionsapi.getCachedEditPerm = function(id) {
+            return electionsapi.permcache[id];
+        };
+
         electionsapi.getEditPerm = function(id) {
             var deferred = $q.defer();
 
             var cached = electionsapi.permcache[id];
             if (!cached) {
                 Authmethod.getPerm(
-                    "edit|create|create-notreal|register|update|update-share|view|delete|send-auth|send-auth-all|view-results|view-stats|view-voters|view-census|start|stop|tally|calculate-results|publish-results|census-add|census-delete|census-activation",
+                    "edit|create|register|update|update-share|view|delete|send-auth|send-auth-all|view-results|view-stats|view-voters|view-census|start|stop|tally|calculate-results|publish-results|census-add|census-delete|census-activation|add-ballot-boxes|list-ballot-boxes|delete-ballot-boxes|add-tally-sheets|override-tally-sheets|list-tally-sheets|delete-tally-sheets",
                     "AuthEvent",
                     id
                 )
@@ -322,7 +333,6 @@ angular.module('avAdmin')
         };
 
         electionsapi.templateEl = function() {
-
             function getShareTextDefault() {
               var ret = angular.copy(ConfigService.share_social.default);
               if(!!ret) {
@@ -334,54 +344,56 @@ angular.module('avAdmin')
               return ret;
             }
 
-            var el = {
-                title: $i18next('avAdmin.sidebar.newel'),
-                description: "",
-                start_date: "2015-01-27T16:00:00.001",
-                end_date: "2015-01-27T16:00:00.001",
-                authorities: ConfigService.authorities,
-                director: ConfigService.director,
-                presentation: {
-                    theme: 'default',
-                    share_text: getShareTextDefault(),
-                    urls: [],
-                    theme_css: ''
-                },
-                layout: 'simple',
-                real: false,
-                num_successful_logins_allowed: 0,
-                census: {
-                    voters: [],
-                    auth_method: 'email',
-                    census:'close',
-                    extra_fields: [ ],
-                    config: {
-                        "msg": $i18next('avAdmin.auth.emaildef'),
-                        "subject": $i18next('avAdmin.auth.emailsubdef',
-                          {name: ConfigService.organization.orgName}),
-                        "authentication-action": {
-                          "mode": "vote",
-                          "mode-config": {
-                            "url": ""
-                          }
-                        },
-                        "registration-action": {
-                          "mode": "vote",
-                          "mode-config": null
-                        }
-                    }
-                },
-                questions: [],
-                extra_data: {}
-            };
+            function evalElectionTemplate() {
+                /* jshint ignore:start */
+              return eval("(function(){ return" + ConfigService.electionTemplate +";})()");
+                /* jshint ignore:end */
+            }
+            var el = (angular.isString(ConfigService.electionTemplate)? evalElectionTemplate(): ConfigService.electionTemplate);
+            Plugins.hook('elections-api-template-el', {'el': el});
             return el;
         };
 
         electionsapi.templateQ = function(title) {
             var q = {
                 "answer_total_votes_percentage": "over-total-valid-votes",
-                "answers": [],
-                "description": "",
+                "answers": [
+                  {
+                    "category": "",
+                    "details": "This is an option with a simple example description.",
+                    "id": 0,
+                    "sort_order": 0,
+                    "text": "Example option 1",
+                    "urls": [
+                      {
+                        "title": "URL",
+                        "url": ""
+                      },
+                      {
+                        "title": "Image URL",
+                        "url": ""
+                      }
+                    ]
+                  },
+                  {
+                    "category": "",
+                    "details": "An option can contain a description. You can add simple html like <strong>bold</strong> or <a href=\"https://nvotes.com\">links to websites</a>. You can also set an image url below, but be sure it's HTTPS or else it won't load.\n\n<br><br>You need to use two br element for new paragraphs.",
+                    "id": 1,
+                    "sort_order": 1,
+                    "text": "Example option 2",
+                    "urls": [
+                      {
+                        "title": "URL",
+                        "url": "https://nvotes.com"
+                      },
+                      {
+                        "title": "Image URL",
+                        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/The_Fabs.JPG/220px-The_Fabs.JPG"
+                      }
+                    ]
+                  }
+                ],
+                "description": "This is the description of this question. You can have multiple questions. You can add simple html like <strong>bold</strong> or <a href=\"https://nvotes.com\">links to websites</a>.\n\n<br><br>You need to use two br element for new paragraphs.",
                 "layout": "accordion",
                 "max": 1,
                 "min": 1,

@@ -16,20 +16,39 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminHead', function(Authmethod, $state, $cookies, $i18next, ConfigService) {
+  .directive('avAdminHead', function(Authmethod, $state, $window, $cookies, $i18next, $modal, OnboardingTourService, ConfigService, AdminProfile, $sce) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
-        var admin = $cookies.user;
+        var autheventid = Authmethod.getAuthevent();
+        var postfix = "_authevent_" + autheventid;
+        var admin = $cookies["user" + postfix];
         scope.admin = admin;
         scope.organization = ConfigService.organization;
         scope.technology = ConfigService.technology;
         scope.nologin = ('nologin' in attrs) || scope.admin;
         scope.helpurl = ConfigService.helpUrl;
+        scope.signupLink = ConfigService.signupLink;
+        scope.OnboardingTourService = OnboardingTourService;
+        scope.helpList = _.map(ConfigService.helpList, function (item, index) {
+          return $sce.trustAsHtml(item);
+        });
+
+        scope.showFeatures = function () {
+          if ("admin.login" === $state.current.name ||
+              "admin.login_email" === $state.current.name ||
+              "admin.signup" === $state.current.name) {
+            return false;
+          }
+          return true;
+        };
 
         scope.loginrequired = ('loginrequired' in attrs);
         if (scope.loginrequired && !scope.admin) {
             $state.go("admin.logout");
         }
+
+        scope.openProfileEditorModal = AdminProfile.openProfileModal;
+        scope.openProfileEditorModal(true);
     }
 
     return {

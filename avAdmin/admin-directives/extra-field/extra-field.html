@@ -100,6 +100,9 @@
           <option value="tlf" ng-i18next>
             avAdmin.census.tlfOption
           </option>
+          <option value="date" ng-i18next>
+            avAdmin.census.dateOption
+          </option>
         </select>
       </div>
     </div>
@@ -116,6 +119,11 @@
         ng-i18next="avAdmin.census.fieldRegExLabel">
       </label>
       <div class="col-sm-8">
+        <div
+          av-int-field
+          int-data="field.regex"
+          ng-if="'int' === field.type">
+        </div>
         <input
           type="text"
           class="form-control"
@@ -140,6 +148,10 @@
                     <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                 </button>
               </span>
+              <div
+                av-int-field
+                int-data="field.min">
+              </div>
               <input
                 type="text"
                 step="1"
@@ -174,6 +186,10 @@
                     <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                 </button>
               </span>
+              <div
+                av-int-field
+                int-data="field.max">
+              </div>
               <input
                 type="text"
                 min="{{field.min}}" step="1"
@@ -320,6 +336,28 @@
       </div>
     </div>
   </div>
+
+  <!-- autofill -->
+  <div class="row"  ng-if="['email', 'text', 'int', 'bool', 'textarea'].indexOf(field.type) !== -1">
+    <div class="form-group">
+      <label
+        class="control-label col-sm-4 text-right">
+        <input
+          type="checkbox"
+          class="form-control"
+          id="fieldAutofillInput{{$index}}"
+          ng-model="field.autofill" />
+      </label>
+      <div class="col-sm-8">
+        <label
+          ng-i18next="avAdmin.census.fieldAutofillLabel"
+          class="text-left"
+          for="fieldAutofillInput{{$index}}">
+        </label>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- view field -->
@@ -359,6 +397,7 @@
       <div avr-bool-field ng-switch-when="bool"></div>
       <div avr-captcha-field ng-switch-when="captcha"></div>
       <div avr-textarea-field ng-switch-when="textarea"></div>
+      <div avr-date-field ng-switch-when="date"></div>
       <div ng-switch-when="dict" class="col-sm-4 text-right dict-field">
         <span>{{field.name}}</span>
       </div>

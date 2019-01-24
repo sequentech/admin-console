@@ -51,7 +51,7 @@
   </h3>
 
   <!-- SMS conf -->
-  <div ng-if="'sms' === selected_auth_method" class="preview">
+  <div ng-if="'sms' === selected_auth_method || 'sms-otp' === selected_auth_method" class="preview">
     <div class="form-group">
       <label
         class="col-xs-3 control-label text-right padding-top-sm"
@@ -61,7 +61,7 @@
         <div
           ng-click="editAuthCodes()"
           class="preview-data preview-body"
-          ng-bind="exampleMsg()">
+          ng-bind="parseMessage(election.census.config.msg)">
         </div>
       </div>
     </div>
@@ -78,7 +78,7 @@
         <div
           ng-click="editAuthCodes()"
           class="preview-data"
-          ng-bind="election.census.config.subject">
+          ng-bind="parseMessage(election.census.config.subject)">
         </div>
       </div>
     </div>
@@ -93,7 +93,7 @@
         <div
           ng-click="editAuthCodes()"
           class="preview-data preview-body"
-          ng-bind="exampleMsg()">
+          ng-bind="parseMessage(election.census.config.msg)">
         </div>
       </div>
     </div>

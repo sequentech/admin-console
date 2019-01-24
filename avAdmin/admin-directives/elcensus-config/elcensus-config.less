@@ -16,7 +16,15 @@
 **/
 
 [av-admin-elcensus-config] {
-  .form-group .radio {
+  [avr-email-field]>.form-group>.col-sm-8 {
+    display: none;
+  }
+
+  [avr-text-field][ng-switch-when=tlf]>ng-form>.form-group>.col-sm-8 {
+    display: none;
+  }
+
+  .abstract-setting .radio {
     border: 2px solid transparent;
     border-radius: 4px;
     padding: 10px 15px 10px 45px;

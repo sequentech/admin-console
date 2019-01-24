@@ -8,21 +8,14 @@
     <span ng-i18next>avAdmin.census.configurationHeader</span>
   </h4>
 
-  <form role="form" class="form form-horizontal">
-    <!-- Registration -->
-    <div class="form-group">
-      <label class="col-sm-2" ng-i18next>
-        avAdmin.census.reg.label
-      </label>
-      <div class="col-sm-10">
-        <p class="text-muted">
-          <span ng-i18next>
-            avAdmin.census.reg.placeholder
-          </span>
-          <a href="{{helpurl}}" class="learn-more" target="_blank" ng-i18next>
-            avAdmin.learnMore
-          </a>
-        </p>
+  <!-- Registration -->
+  <div
+    av-abstract-setting
+    short-value="{{ election.census.census }}"
+    title="avAdmin.census.reg.label"
+    for=""
+    description="avAdmin.census.reg.placeholder"
+    help-path="election/census-registration/">
         <label
           for="census{{o}}"
           class="radio"
@@ -44,9 +37,7 @@
             avAdmin.learnMore
           </a>
         </label>
-      </div>
-    </div>
-  </form>
+  </div>
 
   <div class="extra-fields-affix-placeholder"></div>
   <h4
@@ -108,5 +99,6 @@
       </div>
   </form>
 
-    <button ui-sref="admin.census()" ng-if="!election.id" class="btn btn-block btn-success" ng-i18next>next</button>
+  <button ng-click="goNext(admin.census())" ng-if="!election.id" class="btn btn-block btn-success" ng-i18next>next</button>
+  <button ng-click="goNext({id:election.id})" ng-if="!!election.id" class="btn btn-block btn-success" ng-i18next>next</button>
 </div>
