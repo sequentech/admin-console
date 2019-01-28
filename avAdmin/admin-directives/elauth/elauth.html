@@ -29,7 +29,7 @@
     </div>
 
     <!-- SMS conf -->
-    <div ng-if="election.census.auth_method === 'sms'">
+    <div ng-if="election.census.auth_method === 'sms' || election.census.auth_method === 'sms-otp'">
         <div
           av-abstract-setting
           short-value="{{ election.census.config.msg }}"
