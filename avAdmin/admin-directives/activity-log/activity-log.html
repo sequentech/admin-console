@@ -143,7 +143,7 @@
                 receiver_username: obj.receiver_username,
                 receiver_id: obj.receiver_id,
                 event_id: obj.event_id,
-                metadata: obj.metadata
+                metadata: JSON.stringify(obj.metadata)
             })avAdmin.activityLog.action.user.added-to-census
             </div>
             <div ng-if="obj.action_name === 'user:deleted-from-census'" ng-i18next>
@@ -151,7 +151,7 @@
                 executer_username: obj.executer_username,
                 executer_id: obj.executer_id,
                 event_id: obj.event_id,
-                metadata: obj.metadata
+                metadata: JSON.stringify(obj.metadata)
             })avAdmin.activityLog.action.user.deleted-from-census
             </div>
             <div ng-if="obj.action_name === 'user:resend-authcode'" ng-i18next>
