@@ -39,6 +39,7 @@ angular.module('avAdmin')
       scope.filterStr = "";
       scope.filterTimeout = null;
       scope.filterOptions = {};
+      scope.stringify = JSON.stringify;
 
       scope.goNext = NextButtonService.goNext;
 
