@@ -233,6 +233,9 @@ module.exports = function (grunt) {
           {src: ['img/**'], dest: 'dist/'},
           {src: ['temp_data/**'], dest: 'dist/'},
           {src: ['bower_components/avCommon/dist/img/flags.png'], dest: 'dist/img/flags.png'},
+          {src: ['bower_components/avCommon/dist/utils.js'], dest: 'dist/utils.js'},
+          {src: ['bower_components/avCommon/dist/intlTelInput.css'], dest: 'dist/intlTelInput.css'},
+
           {
             expand: true,
             cwd:'bower_components/avCommon/themes',
@@ -291,7 +294,9 @@ module.exports = function (grunt) {
             {selector:'body',html:'<script src="/admin/avPlugins-v103111.8.js"></script>'},
             {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/admin/" href="/admin/themes/default/app.min.css">'},
             {selector:'head',html:'<link rel="stylesheet" id="plugins" data-base="/admin/" href="/admin/plugins.css">'},
-            {selector:'head',html:'<link rel="stylesheet" id="vendor-css" data-base="/admin/" href="/admin/vendor.min.css">'}
+            {selector:'head',html:'<link rel="stylesheet" id="vendor-css" data-base="/admin/" href="/admin/vendor.min.css">'},
+            {selector:'head',html:'<link rel="stylesheet" href="/admin/intlTelInput.css" />'}
+
           ]
         },
         src:'index.html',
