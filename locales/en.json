@@ -122,19 +122,23 @@
       },
       "action": {
         "user": {
-          "activate": "<i>__executer_username__ (__executer_id__)</i> <strong>activated</strong> user <i>__receiver_username__ (__receiver_id__)</i>",
-          "deactivate": "<i>__executer_username__ (__executer_id__)</i> <strong>deactivated</strong> user <i>__receiver_username__ (__receiver_id__)</i>",
-          "successful-login": "<i>__executer_username__ (__executer_id__)</i> <strong>logged in successfully</strong>",
-          "send-auth": "<i>__executer_username__ (__executer_id__)</i> <strong>sent authentication codes</strong> to <i>__receiver_username__ (__receiver_id__)</i>",
-          "resend-authcode": "There was a request to <strong>re-send authentication codes</strong> to <i>__receiver_username__ (__receiver_id__)</i>",
-          "added-to-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>added to census</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> to <i>__receiver_username__(__receiver_id__)</i> __metadata__",
+          "activate": "<i>__executer_username__ (__executer_id__)</i> <strong>activated</strong> user <i>__receiver_username__ (__receiver_id__)</i>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "deactivate": "<i>__executer_username__ (__executer_id__)</i> <strong>deactivated</strong> user <i>__receiver_username__ (__receiver_id__)</i> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "authenticate": "<i>__receiver_username__ (__receiver_id__)</i> <strong>authenticated</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "register": "<i>__receiver_username__ (__receiver_id__)</i> <strong>registered</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "successful-login": "<i>__executer_username__ (__executer_id__)</i> <strong>voted</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "send-auth": "<i>__executer_username__ (__executer_id__)</i> <strong>sent authentication codes</strong> to <i>__receiver_username__ (__receiver_id__)</i>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "resend-authcode": "There was a request to <strong>re-send authentication codes</strong> to <i>__receiver_username__ (__receiver_id__)</i>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+	  "added-to-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>added to census</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> to <i>__receiver_username__(__receiver_id__)</i> __metadata__",
           "deleted-from-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>deleted from census</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> to __metadata__"
         },
         "authevent": {
           "create": "<i>__executer_username__ (__executer_id__)</i> <strong>created</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "callback": "<i>__executer_username__ (__executer_id__)</i> <strong>received callback</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "edit": "<i>__executer_username__ (__executer_id__)</i> <strong>edited</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "start": "<i>__executer_username__ (__executer_id__)</i> <strong>started</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
-          "stop": "<i>__executer_username__ (__executer_id__)</i> <strong>stopped</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>"
+          "stop": "<i>__executer_username__ (__executer_id__)</i> <strong>stopped</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>deleted</strong> election __event_id__"
         },
         "ballotBox": {
           "create": "<i>__executer_username__ (__executer_id__)</i> <strong>created</strong> ballot box <a href=\"/admin/ballot-box/__event_id__?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",

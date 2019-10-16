@@ -19,7 +19,7 @@
 'use strict';
 
 var pkg = require('./package.json');
-var AV_CONFIG_VERSION = '17.04';
+var AV_CONFIG_VERSION = '103111.8';
 
 //Using exclusion patterns slows down Grunt significantly
 //instead of creating a set of patterns like '**/*.js' and '!**/node_modules/**'
@@ -235,7 +235,6 @@ module.exports = function (grunt) {
           {src: ['bower_components/avCommon/dist/img/flags.png'], dest: 'dist/img/flags.png'},
           {src: ['bower_components/avCommon/dist/utils.js'], dest: 'dist/utils.js'},
           {src: ['bower_components/avCommon/dist/intlTelInput.css'], dest: 'dist/intlTelInput.css'},
-
           {
             expand: true,
             cwd:'bower_components/avCommon/themes',
@@ -296,7 +295,6 @@ module.exports = function (grunt) {
             {selector:'head',html:'<link rel="stylesheet" id="plugins" data-base="/admin/" href="/admin/plugins.css">'},
             {selector:'head',html:'<link rel="stylesheet" id="vendor-css" data-base="/admin/" href="/admin/vendor.min.css">'},
             {selector:'head',html:'<link rel="stylesheet" href="/admin/intlTelInput.css" />'}
-
           ]
         },
         src:'index.html',
