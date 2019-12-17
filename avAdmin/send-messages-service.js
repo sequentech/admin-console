@@ -106,7 +106,7 @@ angular.module('avAdmin')
 
       function getExtraField(name) {
         for (var i = 0; i < service.election.census.extra_fields.length; i++) {
-           if(service.election.census.extra_fields[i].type === type) {
+           if(service.election.census.extra_fields[i].type === name) {
             return service.election.census.extra_fields[i];
            }
         }
