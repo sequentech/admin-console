@@ -827,7 +827,7 @@ angular.module('avAdmin')
 
             // sanitize some unneeded values that might still be there. This
             // needs to be done because how we use ng-model
-            if (el.census.config.subject && !(el.census.auth_method in ['email', 'email-otp'])) {
+            if (el.census.config.subject && !_.contains(['email', 'email-otp'], el.census.auth_method)) {
               delete el.census.config.subject;
             }
             var authAction = el.census.config['authentication-action'];

@@ -23,7 +23,7 @@ angular.module('avAdmin')
       var names = ['email'];
       var must = null;
 
-      if (el.census.auth_method in ['email', 'email-otp']) {
+      if (_.contains(['email', 'email-otp'], el.census.auth_method)) {
         names = ['email'];
         must = [{
           "must": true,
@@ -34,7 +34,7 @@ angular.module('avAdmin')
           "max": 200,
           "required_on_authentication": true
         }];
-      } else if (el.census.auth_method === 'sms' || el.census.auth_method === 'sms-otp') {
+      } else if (_.contains(['sms', 'sms-otp'], el.census.auth_method)) {
         names = ['tlf'];
         must = [{
           "must": true,

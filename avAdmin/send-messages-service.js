@@ -113,12 +113,12 @@ angular.module('avAdmin')
         return false;
       }
 
-      if(service.election.census.auth_method in ['sms', 'sms-otp']) {
+      if(_.contains(['sms', 'sms-otp'], service.election.census.auth_method)) {
         var email_field = getExtraField('email');
         if(email_field && 'email' === email_field.type) {
           return true;
         }
-      } else if(service.election.census.auth_method in ['email', 'email-otp']) {
+      } else if(_.contains(['email', 'email-otp'], service.election.census.auth_method)) {
         var tlf_field = getExtraField('tlf');
         if(tlf_field && 'tlf' === tlf_field.type) {
           return true;
