@@ -117,7 +117,7 @@ angular.module('avAdmin')
                 check: "lambda",
                 key: "census",
                 validator: function (census) {
-                  if (census.auth_method !== 'email') {
+                  if (census.auth_method !== 'email' && census.auth_method !== 'email-otp') {
                     return true;
                   }
 
@@ -135,7 +135,7 @@ angular.module('avAdmin')
                 check: "lambda",
                 key: "census",
                 validator: function (census) {
-                  if (census.auth_method !== 'email') {
+                  if (census.auth_method !== 'email'  && census.auth_method !== 'email-otp') {
                     return true;
                   }
 
@@ -153,7 +153,7 @@ angular.module('avAdmin')
                 check: "lambda",
                 key: "census",
                 validator: function (census) {
-                  if (census.auth_method !== 'email') {
+                  if (census.auth_method !== 'email'  && census.auth_method !== 'email-otp') {
                     return true;
                   }
 
@@ -171,7 +171,7 @@ angular.module('avAdmin')
                 check: "lambda",
                 key: "census",
                 validator: function (census) {
-                  if (census.auth_method !== 'email') {
+                  if (census.auth_method !== 'email'  && census.auth_method !== 'email-otp') {
                     return true;
                   }
 
@@ -189,7 +189,7 @@ angular.module('avAdmin')
                 check: "lambda",
                 key: "census",
                 validator: function (census) {
-                  if (census.auth_method !== 'sms') {
+                  if (census.auth_method !== 'sms' && census.auth_method !== 'sms-otp') {
                     return true;
                   }
 
@@ -827,7 +827,7 @@ angular.module('avAdmin')
 
             // sanitize some unneeded values that might still be there. This
             // needs to be done because how we use ng-model
-            if (el.census.config.subject && el.census.auth_method !== 'email') {
+            if (el.census.config.subject && !(el.census.auth_method in ['email', 'email-otp'])) {
               delete el.census.config.subject;
             }
             var authAction = el.census.config['authentication-action'];
