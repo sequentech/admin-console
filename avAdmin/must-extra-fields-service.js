@@ -23,7 +23,7 @@ angular.module('avAdmin')
       var names = ['email'];
       var must = null;
 
-      if (el.census.auth_method === 'email') {
+      if (el.census.auth_method in ['email', 'email-otp']) {
         names = ['email'];
         must = [{
           "must": true,

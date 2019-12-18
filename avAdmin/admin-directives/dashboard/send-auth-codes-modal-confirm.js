@@ -133,7 +133,7 @@ angular.module('avAdmin')
         }
 
         var identity = "/aabb@gmail.com";
-        if("sms" === election.census.auth_method || "sms-otp" === election.census.auth_method) {
+        if(election.census.auth_method in ["sms", "sms-otp"]) {
           identity = "/+34666666666";
         }
         var url = "https://" + $location.host() + "/election/" + election.id + "/public/login" + identity;
