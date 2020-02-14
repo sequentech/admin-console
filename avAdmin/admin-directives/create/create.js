@@ -950,6 +950,21 @@ angular.module('avAdmin')
             }
             return deferred.promise;
         }
+        
+        function waitForCreated(id, f) {
+          console.log("waiting for election id = " + id);
+          ElectionsApi.getElection(id, true)
+            .then(function(el) {
+                var deferred = $q.defer();
+                if (scope.createElectionBool && el.status === 'created' ||
+                  !scope.createElectionBool && el.status === 'registered')
+                {
+                  f();
+                } else {
+                  setTimeout(function() { waitForCreated(id, f); }, 3000);
+                }
+            });
+        }
 
         function addElection(i) {
           var deferred = $q.defer();
@@ -1025,21 +1040,6 @@ angular.module('avAdmin')
 
         if ($stateParams.autocreate === "true") {
             createElections();
-        }
-
-        function waitForCreated(id, f) {
-          console.log("waiting for election id = " + id);
-          ElectionsApi.getElection(id, true)
-            .then(function(el) {
-                var deferred = $q.defer();
-                if (scope.createElectionBool && el.status === 'created' ||
-                  !scope.createElectionBool && el.status === 'registered')
-                {
-                  f();
-                } else {
-                  setTimeout(function() { waitForCreated(id, f); }, 3000);
-                }
-            });
         }
 
         function checkMustExtra() {

@@ -27,16 +27,6 @@ angular.module('avAdmin')
           document.querySelector("#importfile").click();
         }
 
-        function uploadFile(element) {
-          scope.loading = true;
-
-          var f = element.files[0];
-          scope.$apply(function() {
-            scope.file = f;
-          });
-          retrieveFile(f);
-        }
-
         function retrieveFile(f) {
           console.log("retrieveFile");
           $window.Papa.parse(f, {
@@ -51,6 +41,16 @@ angular.module('avAdmin')
               $state.go("admin.create"); 
             },
           });
+        }
+
+        function uploadFile(element) {
+          scope.loading = true;
+
+          var f = element.files[0];
+          scope.$apply(function() {
+            scope.file = f;
+          });
+          retrieveFile(f);
         }
 
         scope.$watch('filesDrop', function () {

@@ -41,6 +41,12 @@ angular.module('avAdmin')
           scope.socialConfig = angular.copy(scope.election.presentation.share_text);
         }
 
+        function expandItem(index) {
+          var qs = scope.socialConfig;
+          _.map(qs, function(q) { q.active = false; });
+          qs[index].active = true;
+        }
+
         scope.newItem = function () {
             // New item
             var q = {
@@ -63,12 +69,6 @@ angular.module('avAdmin')
             q.active = true;
           }
         };
-
-        function expandItem(index) {
-          var qs = scope.socialConfig;
-          _.map(qs, function(q) { q.active = false; });
-          qs[index].active = true;
-        }
 
         scope.delItem = function(index) {
           var qs = scope.socialConfig;

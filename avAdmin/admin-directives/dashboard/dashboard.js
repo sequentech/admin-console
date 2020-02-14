@@ -60,6 +60,61 @@ angular.module('avAdmin')
 
       scope.calculateResultsJson = "";
 
+      function calculateResults(el) {
+        if ('tally_ok' !== el.status && 'results_ok' !== el.status) {
+          return;
+        }
+
+        scope.loading = true;
+        scope.prevStatus = 'tally_ok';
+        scope.waiting = true;
+        /* jshint ignore:start */
+        setTimeout(waitElectionChange, 1000);
+        /* jshint ignore:end */
+
+        var path = 'calculate-results';
+        var method = 'POST';
+        ElectionsApi.command(el, path, method, scope.calculateResultsJson)
+          .catch(function(error) { scope.loading = false; scope.error = error; });
+      }
+
+      function waitElectionChange() {
+        var ignorecache = true;
+        ElectionsApi.getElection(id, ignorecache)
+          .then(function(el) {
+            if (el.status === scope.prevStatus && scope.waiting) {
+              setTimeout(waitElectionChange, 1000);
+            } else {
+              scope.waiting = false;
+              scope.loading = false;
+              scope.prevStatus = null;
+              Plugins.hook('election-modified', {old: scope.election, el: el, calculateResults: calculateResults});
+              scope.election = el;
+
+              scope.intally = el.status === 'doing_tally';
+              if (scope.intally) {
+                scope.index = statuses.indexOf('stopped') + 1;
+                scope.nextaction = false;
+                scope.prevStatus = scope.election.status;
+                scope.waiting = true;
+                waitElectionChange();
+              } else {
+                scope.index = statuses.indexOf(el.status) + 1;
+                scope.nextaction = nextactions[scope.index - 1];
+
+                if (el.status === 'results_ok') {
+                  ElectionsApi.results(el);
+                  if (!!ConfigService.always_publish) {
+                    scope.loading = true;
+                    scope.prevStatus = scope.election.status;
+                    scope.waiting = true;
+                    setTimeout(waitElectionChange, 1000);
+                  }
+                }
+              }
+            }
+          });
+      }
 
       var commands = [
         {path: 'register', method: 'GET'},
@@ -220,42 +275,34 @@ angular.module('avAdmin')
         setTimeout(waitElectionChange, 1000);
       }
 
-      function waitElectionChange() {
-        var ignorecache = true;
-        ElectionsApi.getElection(id, ignorecache)
-          .then(function(el) {
-            if (el.status === scope.prevStatus && scope.waiting) {
-              setTimeout(waitElectionChange, 1000);
-            } else {
-              scope.waiting = false;
-              scope.loading = false;
-              scope.prevStatus = null;
-              Plugins.hook('election-modified', {old: scope.election, el: el, calculateResults: calculateResults});
-              scope.election = el;
+      function doAction(index, data) {
+        if (scope.intally) {
+          return;
+        }
+        scope.loading = true;
+        scope.prevStatus = scope.election.status;
+        scope.waiting = true;
+        setTimeout(waitElectionChange, 1000);
 
-              scope.intally = el.status === 'doing_tally';
-              if (scope.intally) {
-                scope.index = statuses.indexOf('stopped') + 1;
-                scope.nextaction = false;
-                scope.prevStatus = scope.election.status;
-                scope.waiting = true;
-                waitElectionChange();
-              } else {
-                scope.index = statuses.indexOf(el.status) + 1;
-                scope.nextaction = nextactions[scope.index - 1];
+        var c = commands[index];
 
-                if (el.status === 'results_ok') {
-                  ElectionsApi.results(el);
-                  if (!!ConfigService.always_publish) {
-                    scope.loading = true;
-                    scope.prevStatus = scope.election.status;
-                    scope.waiting = true;
-                    setTimeout(waitElectionChange, 1000);
-                  }
-                }
-              }
-            }
-          });
+        if (angular.isDefined(c.doAction)) {
+          c.doAction(data);
+          return;
+        }
+
+        ElectionsApi.command(scope.election, c.path, c.method, c.data)
+          .catch(function(error) { scope.loading = false; scope.error = error; });
+
+        if (c.path === 'start') {
+          Authmethod.changeAuthEvent(scope.election.id, 'started')
+            .error(function(error) { scope.loading = false; scope.error = error; });
+        }
+
+        if (c.path === 'stop') {
+          Authmethod.changeAuthEvent(scope.election.id, 'stopped')
+            .error(function(error) { scope.loading = false; scope.error = error; });
+        }
       }
 
       function doActionConfirm(index) {
@@ -312,54 +359,6 @@ angular.module('avAdmin')
           .catch(function (failureData) {
           });
         }
-
-
-      }
-
-      function doAction(index, data) {
-        if (scope.intally) {
-          return;
-        }
-        scope.loading = true;
-        scope.prevStatus = scope.election.status;
-        scope.waiting = true;
-        setTimeout(waitElectionChange, 1000);
-
-        var c = commands[index];
-
-        if (angular.isDefined(c.doAction)) {
-          c.doAction(data);
-          return;
-        }
-
-        ElectionsApi.command(scope.election, c.path, c.method, c.data)
-          .catch(function(error) { scope.loading = false; scope.error = error; });
-
-        if (c.path === 'start') {
-          Authmethod.changeAuthEvent(scope.election.id, 'started')
-            .error(function(error) { scope.loading = false; scope.error = error; });
-        }
-
-        if (c.path === 'stop') {
-          Authmethod.changeAuthEvent(scope.election.id, 'stopped')
-            .error(function(error) { scope.loading = false; scope.error = error; });
-        }
-      }
-
-      function calculateResults(el) {
-          if ('tally_ok' !== el.status && 'results_ok' !== el.status) {
-            return;
-          }
-
-          scope.loading = true;
-          scope.prevStatus = 'tally_ok';
-          scope.waiting = true;
-          setTimeout(waitElectionChange, 1000);
-
-          var path = 'calculate-results';
-          var method = 'POST';
-          ElectionsApi.command(el, path, method, scope.calculateResultsJson)
-            .catch(function(error) { scope.loading = false; scope.error = error; });
       }
 
       function sendAuthCodes() {

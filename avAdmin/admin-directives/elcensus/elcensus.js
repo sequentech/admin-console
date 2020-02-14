@@ -65,6 +65,26 @@ angular.module('avAdmin')
         return !$stateParams.id;
       }
 
+
+      function selectQueried(selectStatus) {
+        _.each(scope.election.census.voters,
+          function (i) {
+            i.selected = selectStatus;
+          });
+      }
+      
+      function sendAuthCodesSelected() {
+        var selectedList = scope.selected(scope.shown());
+        var user_ids = _.pluck(selectedList, "id");
+
+        SendMsg.setElection(scope.election);
+        SendMsg.scope = scope;
+        SendMsg.user_ids = user_ids;
+        SendMsg.sendAuthCodesModal();
+
+        return false;
+      }
+
       scope.commands = [
         {
           i18nString: 'addPersonAction',
@@ -237,11 +257,11 @@ angular.module('avAdmin')
           enableFunc: function() { return true; }
         },
         {
-	  text: $i18next("avAdmin.census.sendAuthCodesOneAction"),
+	        text: $i18next("avAdmin.census.sendAuthCodesOneAction"),
           iconClass: 'fa fa-paper-plane-o',
           actionFunc: function(voter) {
-	    selectVoter(voter);
-	    return sendAuthCodesSelected();
+            selectVoter(voter);
+            return sendAuthCodesSelected();
           },
           enableFunc: function() { return true; }
         }
@@ -288,17 +308,6 @@ angular.module('avAdmin')
           el.census.voters = cs.slice(0, index).concat(cs.slice(index+1,cs.length));
       }
 
-      function exportCensusModal() {
-        $modal.open({
-          templateUrl: "avAdmin/admin-directives/elcensus/export-all-census-modal.html",
-          controller: "ExportAllCensusModal",
-          size: 'lg',
-          resolve: {
-            election: function () { return scope.election; }
-          }
-        }).result.then(exportCensus);
-      }
-
       function exportCensus(el) {
         var cs = el.census.voters;
         var csExport = _.map(cs, function (i) {
@@ -311,6 +320,17 @@ angular.module('avAdmin')
         var blob = new $window.Blob([text], {type: "text/csv"});
         $window.saveAs(blob, el.id + "-census"+".csv");
         return false;
+      }
+
+      function exportCensusModal() {
+        $modal.open({
+          templateUrl: "avAdmin/admin-directives/elcensus/export-all-census-modal.html",
+          controller: "ExportAllCensusModal",
+          size: 'lg',
+          resolve: {
+            election: function () { return scope.election; }
+          }
+        }).result.then(exportCensus);
       }
 
       function removeSelected() {
@@ -361,25 +381,6 @@ angular.module('avAdmin')
           })
           .error(function(error) { scope.loading = false; scope.error = error.error; });
         return false;
-      }
-
-      function sendAuthCodesSelected() {
-        var selectedList = scope.selected(scope.shown());
-        var user_ids = _.pluck(selectedList, "id");
-
-        SendMsg.setElection(scope.election);
-        SendMsg.scope = scope;
-        SendMsg.user_ids = user_ids;
-        SendMsg.sendAuthCodesModal();
-
-        return false;
-      }
-
-      function selectQueried(selectStatus) {
-        _.each(scope.election.census.voters,
-          function (i) {
-            i.selected = selectStatus;
-          });
       }
 
       function addCsvModal() {

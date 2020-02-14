@@ -22,6 +22,14 @@ angular.module('avAdmin')
         isOpen: false
       };
 
+      function setkey(el, key, val) {
+        if (val === '') {
+          delete el[key];
+        } else {
+          el[key] = val;
+        }
+      }
+      
       // Allows query parameters to automatically set the initial filter
       function getLocationVar(postfix) {
         var val = $location.search()[attrs.filterPrefix + "__" + postfix];
@@ -43,14 +51,6 @@ angular.module('avAdmin')
       };
       scope.filterPrefix = attrs.filterPrefix;
       scope.filterI18n = attrs.filterI18n;
-
-      function setkey(el, key, val) {
-        if (val === '') {
-          delete el[key];
-        } else {
-          el[key] = val;
-        }
-      }
 
       scope.$watch('filter', function (newFilter, oldFilter) {
         if (_.isEqual(newFilter, oldFilter)) {

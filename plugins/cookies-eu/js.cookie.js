@@ -23,6 +23,7 @@
 }(function ($) {
 
 	var pluses = /\+/g;
+	var api = null;
 
 	function encode(s) {
 		return api.raw ? s : encodeURIComponent(s);
@@ -34,6 +35,10 @@
 
 	function stringifyCookieValue(value) {
 		return encode(api.json ? JSON.stringify(value) : String(value));
+	}
+
+	function isFunction(obj) {
+		return Object.prototype.toString.call(obj) === '[object Function]';
 	}
 
 	function parseCookieValue(s) {
@@ -69,11 +74,7 @@
 		return result;
 	}
 
-	function isFunction(obj) {
-		return Object.prototype.toString.call(obj) === '[object Function]';
-	}
-
-	var api = function (key, value, options) {
+	api = function (key, value, options) {
 
 		// Write
 
