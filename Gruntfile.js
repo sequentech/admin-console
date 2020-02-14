@@ -229,6 +229,12 @@ module.exports = function (grunt) {
             src: ['*'],
             dest: 'temp/node_modules/agora-gui-common/'
           },
+          {
+            expand: true,
+            cwd: 'node_modules/intl-tel-input/build/css/', 
+            src: ['*'],
+            dest: 'temp/'
+          }
         ]
       },
       main: {

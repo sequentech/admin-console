@@ -1919,6 +1919,11 @@ ini@^1.3.4:
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
   integrity sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
 
+intl-tel-input@^12.1.0:
+  version "12.4.0"
+  resolved "https://registry.yarnpkg.com/intl-tel-input/-/intl-tel-input-12.4.0.tgz#047cd4008befa6d0f784c5a049c60f19be6a723f"
+  integrity sha512-tVXt9QcczIp9Y6yWxDf6p8+4YfmU1NGSbNU3kxY4EPY+QV++j4DlC1gZ/wkNIi8oTpyJUWZKqzynCF9Y135weQ==
+
 irregular-plurals@^1.0.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/irregular-plurals/-/irregular-plurals-1.4.0.tgz#2ca9b033651111855412f16be5d77c62a458a766"
