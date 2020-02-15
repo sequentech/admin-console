@@ -262,7 +262,7 @@ angular.module('avAdmin')
             service.selected_auth_method,
             service.extra
           ).then(
-            function(response)
+            function onSuccess(response)
             {
               // if the sending is successful, show it
               scope.loading = false;
@@ -274,8 +274,8 @@ angular.module('avAdmin')
                 {el: service.election, ids: service.user_ids, response: response.data});
 
               deferred.resolve(response.data);
-            })
-            .error(function(response)
+            },
+            function onError(response)
             {
               // if there was an error, show it in the gui
               scope.loading = false;

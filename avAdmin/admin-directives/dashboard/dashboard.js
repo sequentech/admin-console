@@ -295,13 +295,21 @@ angular.module('avAdmin')
           .catch(function(error) { scope.loading = false; scope.error = error; });
 
         if (c.path === 'start') {
-          Authmethod.changeAuthEvent(scope.election.id, 'started')
-            .error(function(error) { scope.loading = false; scope.error = error; });
+          Authmethod
+            .changeAuthEvent(scope.election.id, 'started')
+            .then(
+              function onSuccess(){}, 
+              function onError(response) { scope.loading = false; scope.error = response.data; }
+            );
         }
 
         if (c.path === 'stop') {
-          Authmethod.changeAuthEvent(scope.election.id, 'stopped')
-            .error(function(error) { scope.loading = false; scope.error = error; });
+          Authmethod
+            .changeAuthEvent(scope.election.id, 'stopped')
+            .then(
+              function onSuccess(){}, 
+              function onError(response) { scope.loading = false; scope.error = response.data; }
+            );
         }
       }
 
