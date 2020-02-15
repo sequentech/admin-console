@@ -27,16 +27,20 @@ angular.module('avAdmin')
       } else if (scope.field.type === 'image') {
         scope.viewImage = function() {
           window.mdata = scope.c.metadata;
-          Authmethod.getImage(scope.election.id, scope.c.metadata[scope.field.name])
-            .success(function(data) {
+          Authmethod
+            .getImage(scope.election.id, scope.c.metadata[scope.field.name])
+            .then(
+              function onSuccess(response) {
                 $('#imageModalFields').empty();
-                scope.election.census.extra_fields.forEach(function(f) {
+                scope.election.census.extra_fields.forEach(
+                  function(f) {
                     if (f.type !== 'image') {
                         var fi = scope.c.metadata[f.name];
                         $('#imageModalFields').append(f.name + ': ' + fi + '<br/>');
                     }
-                });
-                $('#imageModal').find('img').attr('src', data.img);
+                  }
+                );
+                $('#imageModal').find('img').attr('src', response.data.img);
                 $('#imageModal').modal('toggle');
             });
           return false;

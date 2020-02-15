@@ -261,36 +261,38 @@ angular.module('avAdmin')
             service.user_ids,
             service.selected_auth_method,
             service.extra
-          ).success(function(r)
-          {
-            // if the sending is successful, show it
-            scope.loading = false;
-            scope.msg = "avAdmin.census.sentCodesSuccessfully";
+          ).then(
+            function(response)
+            {
+              // if the sending is successful, show it
+              scope.loading = false;
+              scope.msg = "avAdmin.census.sentCodesSuccessfully";
 
-            // Let plugins know about the success
-            Plugins.hook(
-              'send-auth-codes-success',
-              {el: service.election, ids: service.user_ids, response: r});
+              // Let plugins know about the success
+              Plugins.hook(
+                'send-auth-codes-success',
+                {el: service.election, ids: service.user_ids, response: response.data});
 
-            deferred.resolve(r);
-          })
-          .error(function(error)
-          {
-            // if there was an error, show it in the gui
-            scope.loading = false;
-            scope.error = error.error_codename || error.error || error;
+              deferred.resolve(response.data);
+            })
+            .error(function(response)
+            {
+              // if there was an error, show it in the gui
+              scope.loading = false;
+              scope.error = response.data.error_codename || response.data.error || response.data;
 
-            // and let plugins know
-            Plugins.hook(
-                'send-auth-codes-error',
-                {
-                  el: service.election,
-                  ids: service.user_ids,
-                  response: error
-                });
+              // and let plugins know
+              Plugins.hook(
+                  'send-auth-codes-error',
+                  {
+                    el: service.election,
+                    ids: service.user_ids,
+                    response: response.data
+                  });
 
-            deferred.reject(error);
-          });
+              deferred.reject(response.data);
+            }
+          );
       }
       return deferred.promise;
     };

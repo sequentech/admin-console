@@ -270,19 +270,22 @@ angular.module('avAdmin')
       function censusCall(id, csExport, opt) {
           // this hook can avoid the addCensus call
           if (Plugins.hook('add-to-census-pre', csExport)) {
-              Authmethod.addCensus(id, csExport, opt)
-                .success(function(r) {
-                  scope.loading = false;
-                  scope.msg = "avAdmin.census.censusadd";
-                  scope.reloadCensus();
-                  Plugins.hook('add-to-census-success', {data: csExport, response: r});
-                })
-                .error(function(error) {
-                  scope.loading = false;
-                  scope.error = error.error;
-                  Plugins.hook('add-to-census-error', {data: csExport, response: error});
-                  Plugins.hook('census-csv-load-error', error);
-                });
+              Authmethod
+                .addCensus(id, csExport, opt)
+                .then(
+                  function onSuccess(response) {
+                    scope.loading = false;
+                    scope.msg = "avAdmin.census.censusadd";
+                    scope.reloadCensus();
+                    Plugins.hook('add-to-census-success', {data: csExport, response: response.data});
+                  },
+                  function onError(response) {
+                    scope.loading = false;
+                    scope.error = response.data.error;
+                    Plugins.hook('add-to-census-error', {data: csExport, response: response.data});
+                    Plugins.hook('census-csv-load-error', response.data);
+                  }
+                );
           }
       }
 
@@ -342,44 +345,61 @@ angular.module('avAdmin')
           });
         } else {
           var user_ids = _.pluck(selectedList, "id");
-          Authmethod.removeUsersIds(scope.election.id, scope.election, user_ids)
-          .success(function(r) {
-            scope.loading = false;
-            scope.msg = "avAdmin.census.removedCensusSuccessfully";
-            scope.reloadCensus();
-          })
-          .error(function(error) { scope.loading = false; scope.error = error.error; });
+          Authmethod
+            .removeUsersIds(scope.election.id, scope.election, user_ids)
+            .then(
+              function(response) {
+                scope.loading = false;
+                scope.msg = "avAdmin.census.removedCensusSuccessfully";
+                scope.reloadCensus();
+              },
+              function onError(response) {
+                scope.loading = false; 
+                scope.error = response.data.error;
+              }
+            );
         }
         return false;
       }
 
       function activateSelected() {
         var selectedList = scope.selected(scope.shown());
-          var user_ids = _.pluck(selectedList, "id");
-          var comment = scope.comment.activateComment;
-          Authmethod.activateUsersIds(scope.election.id, scope.election, user_ids, comment)
-          .success(function(r) {
-            scope.loading = false;
-            scope.comment.activateComment = "";
-            scope.msg = "avAdmin.census.activatedCensusSuccessfully";
-            scope.reloadCensus();
-          })
-          .error(function(error) { scope.loading = false; scope.error = error.error; });
+        var user_ids = _.pluck(selectedList, "id");
+        var comment = scope.comment.activateComment;
+        Authmethod
+          .activateUsersIds(scope.election.id, scope.election, user_ids, comment)
+          .then(
+            function(response) {
+              scope.loading = false;
+              scope.comment.activateComment = "";
+              scope.msg = "avAdmin.census.activatedCensusSuccessfully";
+              scope.reloadCensus();
+            },
+            function onError(response) {
+              scope.loading = false; 
+              scope.error = response.data.error;
+            }
+          );
         return false;
       }
 
       function deactivateSelected() {
         var selectedList = scope.selected(scope.shown());
-          var user_ids = _.pluck(selectedList, "id");
-          var comment = scope.comment.deactivateComment;
-          Authmethod.deactivateUsersIds(scope.election.id, scope.election, user_ids, comment)
-          .success(function(r) {
-            scope.loading = false;
-            scope.comment.deactivateComment = "";
-            scope.msg = "avAdmin.census.activatedCensusSuccessfully";
-            scope.reloadCensus();
-          })
-          .error(function(error) { scope.loading = false; scope.error = error.error; });
+        var user_ids = _.pluck(selectedList, "id");
+        var comment = scope.comment.deactivateComment;
+        Authmethod
+          .deactivateUsersIds(scope.election.id, scope.election, user_ids, comment)
+          .then(function(response) {
+              scope.loading = false;
+              scope.comment.deactivateComment = "";
+              scope.msg = "avAdmin.census.activatedCensusSuccessfully";
+              scope.reloadCensus();
+            },
+            function onError(response) {
+              scope.loading = false; 
+              scope.error = response.data.error;
+            }
+          );
         return false;
       }
 

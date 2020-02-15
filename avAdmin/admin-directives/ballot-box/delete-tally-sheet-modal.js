@@ -36,15 +36,13 @@ angular.module('avAdmin')
       $scope.ok = function ()
       {
         Authmethod.deleteTallySheet($scope.electionId, ballotBox.id, $scope.tallySheetId)
-          .success(
-            function (data)
+          .then(
+            function onSuccess(response)
             {
               $modalInstance.close();
-            }
-          )
-          .error(
-            function (error) {
-              $scope.errorDeleteTallySheet = error;
+            },
+            function onError(response) {
+              $scope.errorDeleteTallySheet = response.data;
             }
           );
       };

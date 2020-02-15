@@ -82,12 +82,14 @@ angular.module('avAdmin')
         } else {
           $scope.showWorking = true;
           Authmethod.updateUserExtra(changed)
-            .success(function (d) {
-              $modalInstance.close(changed);
-            })
-            .error(function (e) {
-              $modalInstance.close(changed);
-            });
+            .then(
+              function onSuccess(response) {
+                $modalInstance.close(changed);
+              },
+              function onError(response) {
+                $modalInstance.close(changed);
+              }
+            );
         }
       };
 

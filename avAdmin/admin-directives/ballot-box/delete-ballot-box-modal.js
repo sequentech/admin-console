@@ -33,15 +33,13 @@ angular.module('avAdmin')
       $scope.ok = function ()
       {
         Authmethod.deleteBallotBox($scope.electionId, ballotBox.id)
-          .success(
-            function (data)
+          .then(
+            function onSuccess(response)
             {
               $modalInstance.close();
-            }
-          )
-          .error(
-            function (error) {
-              $scope.errorDeleteBox = error;
+            },
+            function onError(response) {
+              $scope.errorDeleteBox = response.data;
             }
           );
       };

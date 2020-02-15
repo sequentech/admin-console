@@ -876,10 +876,13 @@ angular.module('avAdmin')
             });
 
             Authmethod.createEvent(d)
-                .success(function(data) {
-                    el.id = data.id;
+                .then(
+                  function onSuccess(response) {
+                    el.id = response.data.id;
                     deferred.resolve(el);
-                }).error(deferred.reject);
+                  },
+                  deferred.reject
+                );
             return deferred.promise;
         }
 

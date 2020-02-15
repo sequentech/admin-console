@@ -109,15 +109,17 @@ angular.module('avAdmin')
           // this hook can avoid the addCensus call
           if (Plugins.hook('add-to-census-pre', csExport)) {
             Authmethod.addCensus(id, csExport, opt)
-              .success(function(r) {
-                Plugins.hook('add-to-census-success', {data: csExport, response: r});
-                deferred.resolve();
-              })
-              .error(function(error) {
-                csvLoadService.scope.error(error.error_codename);
-                Plugins.hook('add-to-census-error', {data: csExport, response: error});
-                deferred.reject(error);
-              });
+              .then(
+                function onSuccess(response) {
+                  Plugins.hook('add-to-census-success', {data: csExport, response: response.data});
+                  deferred.resolve();
+                },
+                function onError(response) {
+                  csvLoadService.scope.error(response.data.error_codename);
+                  Plugins.hook('add-to-census-error', {data: csExport, response: response.data});
+                  deferred.reject(response.data);
+                }
+              );
           }
         } catch (error) {
           deferred.reject(error);

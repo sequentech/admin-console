@@ -39,11 +39,13 @@ angular.module('avAdmin')
         function updateProfile() {
           var deferred = $q.defer();
           Authmethod.getUserInfoExtra()
-            .success( function (d) {
-              adminprofile.profile = angular.copy(d.metadata);
-              deferred.resolve(adminprofile.profile);
-            })
-            .error(deferred.reject);
+            .then(
+              function onSuccess(response) {
+                adminprofile.profile = angular.copy(response.data.metadata);
+                deferred.resolve(adminprofile.profile);
+              },
+              deferred.reject
+            );
           return deferred.promise;
         }
 
@@ -53,20 +55,22 @@ angular.module('avAdmin')
           if (_.isUndefined(adminprofile.extra_fields)) {
             var autheventid = Authmethod.getAuthevent();
             Authmethod.viewEvent(autheventid)
-              .success(function(data) {
-                if (data.status === "ok") {
-                  if (_.isObject(data.events) &&
-                      _.isArray(data.events.extra_fields)) {
-                   adminprofile.extra_fields = angular.copy(data.events.extra_fields);
-                   deferred.resolve(adminprofile.extra_fields);
+              .then(
+                function onSuccess(response) {
+                  if (response.data.status === "ok") {
+                    if (_.isObject(response.data.events) &&
+                        _.isArray(response.data.events.extra_fields)) {
+                    adminprofile.extra_fields = angular.copy(response.data.events.extra_fields);
+                    deferred.resolve(adminprofile.extra_fields);
+                    } else {
+                      deferred.reject("error on data: " + response.data);
+                    }
                   } else {
-                    deferred.reject("error on data: " + data);
+                    deferred.reject(response.data.status);
                   }
-                } else {
-                  deferred.reject(data.status);
-                }
-              })
-              .error(deferred.reject);
+                },
+                deferred.reject
+              );
           }
           else {
             // we already have the extra fields
