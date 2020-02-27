@@ -9,6 +9,11 @@
   </h4>
 </div>
 <div class="modal-body">
+  <div class="extra-info extension-point">
+    <div ng-repeat="html in exhtml">
+        <div av-plugin-html ng-bind-html="html"></div>
+    </div>
+  </div>
   <p>
     <span ng-i18next>
       avAdmin.census.modals.addCsvBody

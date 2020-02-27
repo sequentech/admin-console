@@ -16,18 +16,11 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avColumnFilterInt', function() {
+  .directive('avColumnFilterInt', function($location) {
     function link(scope, element, attrs) {
       scope.status = {
         isOpen: false
       };
-      scope.filter = {
-        sort: '',
-        min: '',
-        max: ''
-      };
-      scope.filterPrefix = attrs.filterPrefix;
-      scope.filterI18n = attrs.filterI18n;
 
       function setkey(el, key, val) {
         if (val === '') {
@@ -36,6 +29,28 @@ angular.module('avAdmin')
           el[key] = val;
         }
       }
+      
+      // Allows query parameters to automatically set the initial filter
+      function getLocationVar(postfix) {
+        var val = $location.search()[attrs.filterPrefix + "__" + postfix];
+        try {
+            val = parseInt(val, 10);
+        } catch(err) {
+            val = undefined;
+        }
+        if (!!val) {
+            setkey(scope.filterOptionsVar, attrs.filterPrefix + "__" + postfix, val);
+        }
+        return (!!val) ? val : '';
+      }
+
+      scope.filter = {
+        sort: getLocationVar('sort'),
+        min: getLocationVar('gt'),
+        max: getLocationVar('lt')
+      };
+      scope.filterPrefix = attrs.filterPrefix;
+      scope.filterI18n = attrs.filterI18n;
 
       scope.$watch('filter', function (newFilter, oldFilter) {
         if (_.isEqual(newFilter, oldFilter)) {

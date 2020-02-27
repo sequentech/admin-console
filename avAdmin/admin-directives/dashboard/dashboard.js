@@ -17,15 +17,16 @@
 
 angular.module('avAdmin')
   .directive(
-    'avAdminDashboard', 
+    'avAdminDashboard',
     function(
-       $state, 
-       Authmethod, 
-       Plugins, 
-       ElectionsApi, 
-       $stateParams, 
-       $modal, 
-       PercentVotesService, 
+       $q,
+       $state,
+       Authmethod,
+       Plugins,
+       ElectionsApi,
+       $stateParams,
+       $modal,
+       PercentVotesService,
        ConfigService,
        SendMsg)
     {
@@ -57,19 +58,63 @@ angular.module('avAdmin')
         'avAdmin.dashboard.publish'
       ];
 
-      scope.calculateResultsJson = [
-        [
-          "agora_results.pipes.results.do_tallies",
-          {"ignore_invalid_votes": true}
-        ],
-        [
-          "agora_results.pipes.sort.sort_non_iterative",
-          {
-            "question_indexes": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-          }
-        ]
-      ];
+      scope.calculateResultsJson = "";
 
+      function calculateResults(el) {
+        if ('tally_ok' !== el.status && 'results_ok' !== el.status) {
+          return;
+        }
+
+        scope.loading = true;
+        scope.prevStatus = 'tally_ok';
+        scope.waiting = true;
+        /* jshint ignore:start */
+        setTimeout(waitElectionChange, 1000);
+        /* jshint ignore:end */
+
+        var path = 'calculate-results';
+        var method = 'POST';
+        ElectionsApi.command(el, path, method, scope.calculateResultsJson)
+          .catch(function(error) { scope.loading = false; scope.error = error; });
+      }
+
+      function waitElectionChange() {
+        var ignorecache = true;
+        ElectionsApi.getElection(id, ignorecache)
+          .then(function(el) {
+            if (el.status === scope.prevStatus && scope.waiting) {
+              setTimeout(waitElectionChange, 1000);
+            } else {
+              scope.waiting = false;
+              scope.loading = false;
+              scope.prevStatus = null;
+              Plugins.hook('election-modified', {old: scope.election, el: el, calculateResults: calculateResults});
+              scope.election = el;
+
+              scope.intally = el.status === 'doing_tally';
+              if (scope.intally) {
+                scope.index = statuses.indexOf('stopped') + 1;
+                scope.nextaction = false;
+                scope.prevStatus = scope.election.status;
+                scope.waiting = true;
+                waitElectionChange();
+              } else {
+                scope.index = statuses.indexOf(el.status) + 1;
+                scope.nextaction = nextactions[scope.index - 1];
+
+                if (el.status === 'results_ok') {
+                  ElectionsApi.results(el);
+                  if (!!ConfigService.always_publish) {
+                    scope.loading = true;
+                    scope.prevStatus = scope.election.status;
+                    scope.waiting = true;
+                    setTimeout(waitElectionChange, 1000);
+                  }
+                }
+              }
+            }
+          });
+      }
 
       var commands = [
         {path: 'register', method: 'GET'},
@@ -144,14 +189,14 @@ angular.module('avAdmin')
           path: 'calculate-results',
           method: 'POST',
           confirmController: "ConfirmCalculateResultsModal",
-          payload: angular.toJson(scope.calculateResultsJson, true),
+          payload: scope.calculateResultsJson,
           confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-calculate-results-modal.html",
           doAction: function (data)
           {
             // calculate results command
             var command = commands[5];
             command.payload = data;
-            scope.calculateResultsJson = angular.fromJson(data);
+            scope.calculateResultsJson = data;
             var ignorecache = true;
             ElectionsApi.getElection(id, ignorecache)
               .then(function(el) {
@@ -199,6 +244,14 @@ angular.module('avAdmin')
         .then(function(el) {
           scope.loading = false;
           scope.election = el;
+
+          if (!!el.resultsConfig && el.resultsConfig.length > 0) {
+            commands[5].payload = scope.calculateResultsJson = el.resultsConfig;
+          } else {
+            commands[5].payload = scope.calculateResultsJson = angular.toJson(ConfigService.calculateResultsDefault, true);
+
+          }
+
           scope.intally = el.status === 'doing_tally';
           if (scope.intally) {
             scope.index = statuses.indexOf('stopped') + 1;
@@ -222,63 +275,6 @@ angular.module('avAdmin')
         setTimeout(waitElectionChange, 1000);
       }
 
-      function waitElectionChange() {
-        var ignorecache = true;
-        ElectionsApi.getElection(id, ignorecache)
-          .then(function(el) {
-            if (el.status === scope.prevStatus && scope.waiting) {
-              setTimeout(waitElectionChange, 1000);
-            } else {
-              scope.waiting = false;
-              scope.loading = false;
-              scope.prevStatus = null;
-              scope.election = el;
-
-              scope.intally = el.status === 'doing_tally';
-              if (scope.intally) {
-                scope.index = statuses.indexOf('stopped') + 1;
-                scope.nextaction = false;
-                scope.prevStatus = scope.election.status;
-                scope.waiting = true;
-                waitElectionChange();
-              } else {
-                scope.index = statuses.indexOf(el.status) + 1;
-                scope.nextaction = nextactions[scope.index - 1];
-
-                if (el.status === 'results_ok') {
-                  ElectionsApi.results(el);
-                }
-              }
-            }
-          });
-      }
-
-      function doActionConfirm(index) {
-        if (scope.intally) {
-          return;
-        }
-        var command = commands[index];
-        if (!angular.isDefined(command.confirmController)) {
-          doAction(index);
-          return;
-        }
-        var payload = {};
-        if(angular.isDefined(command.payload)) {
-          payload = command.payload;
-        }
-
-        $modal.open({
-          templateUrl: command.confirmTemplateUrl,
-          controller: command.confirmController,
-          size: 'lg',
-          resolve: {
-            payload: function () { return payload; }
-          }
-        }).result.then(function (data) {
-          doAction(index, data);
-        });
-      }
-
       function doAction(index, data) {
         if (scope.intally) {
           return;
@@ -299,30 +295,78 @@ angular.module('avAdmin')
           .catch(function(error) { scope.loading = false; scope.error = error; });
 
         if (c.path === 'start') {
-          Authmethod.changeAuthEvent(scope.election.id, 'started')
-            .error(function(error) { scope.loading = false; scope.error = error; });
+          Authmethod
+            .changeAuthEvent(scope.election.id, 'started')
+            .then(
+              function onSuccess(){}, 
+              function onError(response) { scope.loading = false; scope.error = response.data; }
+            );
         }
 
         if (c.path === 'stop') {
-          Authmethod.changeAuthEvent(scope.election.id, 'stopped')
-            .error(function(error) { scope.loading = false; scope.error = error; });
+          Authmethod
+            .changeAuthEvent(scope.election.id, 'stopped')
+            .then(
+              function onSuccess(){}, 
+              function onError(response) { scope.loading = false; scope.error = response.data; }
+            );
         }
       }
 
-      function calculateResults(el) {
-          if ('tally_ok' !== el.status && 'results_ok' !== el.status) {
+      function doActionConfirm(index) {
+        if (scope.intally) {
+          return;
+        }
+        var command = commands[index];
+
+        // This hook allows plugins to interrupt this function. This interruption
+        // usually happens because the plugin does some processing and decides to
+        // show another previous dialog at this step, for example.
+        var pluginData = {
+          election: scope.election,
+          command: command,
+          deferred: false
+        };
+
+        if (!Plugins.hook(
+          'dashboard-before-do-action',
+          pluginData))
+        {
+          return;
+        }
+
+        function doActionConfirmBulk() {
+          if (!angular.isDefined(command.confirmController)) {
+            doAction(index);
             return;
           }
+          var payload = {};
+          if(angular.isDefined(command.payload)) {
+            payload = command.payload;
+          }
 
-          scope.loading = true;
-          scope.prevStatus = 'tally_ok';
-          scope.waiting = true;
-          setTimeout(waitElectionChange, 1000);
+          $modal.open({
+            templateUrl: command.confirmTemplateUrl,
+            controller: command.confirmController,
+            size: 'lg',
+            resolve: {
+              payload: function () { return payload; }
+            }
+          }).result.then(function (data) {
+            doAction(index, data);
+          });
+        }
 
-          var path = 'calculate-results';
-          var method = 'POST';
-          ElectionsApi.command(el, path, method, scope.calculateResultsJson)
-            .catch(function(error) { scope.loading = false; scope.error = error; });
+        if (!pluginData.deferred) {
+          doActionConfirmBulk();
+        } else {
+          pluginData.deferred.promise
+          .then(function (futureData) {
+            doActionConfirmBulk();
+          })
+          .catch(function (failureData) {
+          });
+        }
       }
 
       function sendAuthCodes() {
@@ -353,25 +397,6 @@ angular.module('avAdmin')
         $state.go("admin.basic");
       }
 
-      function createRealElection() {
-        var el = ElectionsApi.templateEl();
-        _.extend(el, angular.copy(scope.election));
-        if (el.census.extra_fields && el.census.extra_fields.length > 0) {
-           for (var i = 0; i < el.census.extra_fields.length; i++) {
-             var field = el.census.extra_fields[i];
-             if(field.slug) {
-               delete field['slug'];
-             }
-           }
-        }
-        scope.current = el;
-        el.id = null;
-        el.real = true;
-        ElectionsApi.setCurrent(el);
-        ElectionsApi.newElection = true;
-        $state.go("admin.create", {"autocreate": true});
-      }
-
       function changeSocial() {
         if(ConfigService.share_social.allow_edit) {
           $modal.open({
@@ -392,7 +417,6 @@ angular.module('avAdmin')
         doActionConfirm: doActionConfirm,
         sendAuthCodes: sendAuthCodes,
         duplicateElection: duplicateElection,
-        createRealElection: createRealElection,
         changeSocial: changeSocial
       });
     }

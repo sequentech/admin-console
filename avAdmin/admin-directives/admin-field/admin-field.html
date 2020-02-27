@@ -1,0 +1,203 @@
+<!-- edit fields -->
+<form
+  role="form"
+  class="form form-horizontal"
+  name="admin_fields_form{{$index}}">
+  <div class="form-group">
+    <label
+      class="col-sm-5 control-label"
+      for="adminFieldInput{{$index}}"
+      ng-i18next="{{field.label}}">
+    </label>
+
+    <div
+      class="col-sm-7"
+      ng-if="['text'].indexOf(field.type) !== -1">
+      <p
+        class="text-muted"
+        ng-i18next="{{ field.description }}"
+        ng-if="has_description">
+      </p>
+      <input
+        class="form-control"
+        type="{{field.type}}"
+        ng-disabled="!editable()"
+        ng-i18next="{{ getPlaceholder() }}"
+        ng-model="field.value"
+        ng-required="field.required"
+        name="adminFieldInput{{$index}}"
+        ui-validate="{
+          'text': 'validateText($value)',
+          'required': 'validateRequired($value)'}"
+        ui-validate-watch="'field.value'"
+        id="adminFieldInput{{$index}}"/>
+        <div class="col-xs-10 input-error">
+          <span
+            class="error text-brand-danger"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.text"
+            ng-i18next>
+            [i18next]({value: field.value})avAdmin.adminFields.textError
+          </span>
+          <span
+            class="error text-brand-danger"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.required"
+            ng-i18next>
+            avAdmin.adminFields.requiredError
+          </span>
+        </div>
+    </div>
+
+    <div
+      class="col-sm-7"
+      ng-if="['textarea'].indexOf(field.type) !== -1">
+      <p
+        class="text-muted"
+        ng-i18next="{{ field.description }}"
+        ng-if="has_description">
+      </p>
+      <textarea
+        class="form-control"
+        ng-disabled="!editable()"
+        ng-i18next="{{ getPlaceholder() }}"
+        ng-model="field.value"
+        ng-required="field.required"
+        name="adminFieldInput{{$index}}"
+        ui-validate="{
+          'text': 'validateText($value)',
+          'required': 'validateRequired($value)'}"
+        ui-validate-watch="'field.value'"
+        id="adminFieldInput{{$index}}"></textarea>
+        <div class="col-xs-10 input-error">
+          <span
+            class="error text-brand-danger"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.text"
+            ng-i18next>
+            [i18next]({value: field.value})avAdmin.adminFields.textError
+          </span>
+          <span
+            class="error text-brand-danger"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.required"
+            ng-i18next>
+            avAdmin.adminFields.requiredError
+          </span>
+        </div>
+    </div>
+    <div
+      class="col-sm-7"
+      ng-if="'email' === field.type">
+      <p
+        class="text-muted"
+        ng-i18next="{{ field.description }}"
+        ng-if="has_description">
+      </p>
+
+      <input
+        class="form-control"
+        type="text"
+        ng-disabled="!editable()"
+        ng-i18next="{{ getPlaceholder() }}"
+        ng-model="field.value"
+        ng-required="field.required"
+        name="adminFieldInput{{$index}}"
+        ui-validate="{
+          'text': 'validateEmail($value)',
+          'required': 'validateRequired($value)'}"
+        ui-validate-watch="'field.value'"
+        id="adminFieldInput{{$index}}"/>
+        <div class="col-xs-10 input-error">
+          <span
+            class="error text-brand-danger"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.text"
+            ng-i18next>
+            [i18next]({value: field.value})avAdmin.adminFields.emailError
+          </span>
+          <span
+            class="error text-brand-danger"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.required"
+            ng-i18next>
+            avAdmin.adminFields.requiredError
+          </span>
+        </div>
+    </div>
+
+    <div
+      class="col-sm-7"
+      ng-if="'int' === field.type">
+        <p
+          class="text-muted"
+          ng-i18next="{{ field.description }}"
+          ng-if="has_description">
+        </p>
+        <div class="input-group col-xs-2">
+          <span class="input-group-btn">
+            <button
+              class="btn btn-default"
+              ng-disabled="!editable()"
+              type="button"
+              ng-click="incInt(-field.step)">
+                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+            </button>
+          </span>
+          <div
+            av-int-field
+            int-data="field.value">
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            ng-disabled="!editable()"
+            ng-model="field.value"
+            ui-keypress="{
+              37: 'incInt(-field.step, $event)',
+              38: 'incInt(field.step, $event)',
+              39: 'incInt(field.step, $event)',
+              40: 'incInt(-field.step, $event)'
+            }"
+            ui-validate="{
+              'number': 'validateNumber($value)',
+              'min': 'validateMin($value)',
+              'max': 'validateMax($value)',
+              'required': 'validateRequired($value)'}"
+            ui-validate-watch="'field.value'"
+            ng-required="field.required"
+            name="adminFieldInput{{$index}}"
+            id="adminFieldInput{{$index}}"/>
+          <span class="input-group-btn">
+            <button
+              class="btn btn-default"
+              ng-disabled="!editable()"
+              type="button"
+              ng-click="incInt(field.step)">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </button>
+          </span>
+        </div>
+        <div class="col-xs-10 input-error" ng-if="!!editable()">
+          <p
+            class="error text-brand-danger"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.number"
+            ng-i18next>
+            [i18next]({value: field.value})avAdmin.adminFields.numberError
+          </p>
+          <p
+            class="error text-brand-danger"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.max"
+            ng-i18next>
+            [i18next]({max: field.max, value: field.value})avAdmin.adminFields.maxError
+          </p>
+          <p
+            class="error text-brand-danger"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.min"
+            ng-i18next>
+            [i18next]({min: field.min, value: field.value})avAdmin.adminFields.minError
+          </p>
+          <p
+            class="error text-brand-danger"
+            ng-show="!!admin_fields_form{{$index}}.adminFieldInput{{$index}}.$error.required"
+            ng-i18next>
+            avAdmin.adminFields.requiredError
+          </p>
+        </div>
+    </div>
+  </div>
+</form>

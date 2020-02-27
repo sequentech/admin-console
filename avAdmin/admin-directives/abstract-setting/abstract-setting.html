@@ -1,0 +1,91 @@
+<div class="abstract-setting" title="{{ description | i18next }}">
+  <div class="rower abstract-borders">
+    <div class="collapse-icon">
+      <span
+        class="expanded-glyphicon glyphicon glyphicon-chevron-up pointer ng-cloack"
+        ng-click="toggleExpand()"
+        ng-mouseenter="mouseEnter()"
+        ng-mouseleave="mouseLeave()"
+        ng-if="!!expanded"
+        aria-hidden="true"
+        ng-show="collapsable && hoverShow">
+      </span>
+      <span
+        class="expanded-glyphicon glyphicon glyphicon-chevron-down pointer ng-cloack"
+        ng-click="toggleExpand()"
+        ng-mouseenter="mouseEnter()"
+        ng-mouseleave="mouseLeave()"
+        ng-if="!expanded"
+        aria-hidden="true"
+        ng-show="collapsable && hoverShow">
+      </span>
+    </div>
+    <div
+      class="col-xs-6 gray-back"
+      ng-click="toggleExpand()"
+      ng-mouseenter="mouseEnter()"
+      ng-mouseleave="mouseLeave()"
+      ng-class="{pointer: collapsable, nopointer: !collapsable}">
+      <div class="rower">
+        <label
+          class="title"
+           ng-class="{pointer: collapsable, nopointer: !collapsable}"
+          ng-i18next>
+        {{ title }}
+        </label>
+      </div>
+      <div class="rower" ng-if="!!expanded">
+        <p ng-i18next>
+        {{ description }}
+        </p>
+      </div>
+    </div>
+    <div 
+      class="col-xs-6"
+      ng-class="{pointer: !expanded && collapsable, nopointer: !!expanded, whiteback: !!expanded}"
+      ng-click="!expanded && toggleExpand()"
+      ng-mouseenter="!expanded && mouseEnter()"
+      ng-mouseleave="!expanded && mouseLeave()">
+      <div 
+        class="abstract-widget"
+        ng-show="!!expanded">
+      </div>
+      <div
+        class="collapsed-widget"
+        ng-show="!expanded">
+          <div
+            class="collapsed-input">
+          {{ shortValue }}
+          </div>
+       </div>
+    </div>
+  </div>
+  <div
+    ng-if="!!expanded"
+    class="rower whiteback">
+    <div class="help-padding">
+      <div class="col-xs-12 input-group">
+          <span class="input-group-btn">
+            <button
+              class="pull-right btn btn-help"
+              type="button"
+              title="{{ 'avAdmin.setting.helpTooltip' | i18next }}"
+              ng-click="toggleHelp()">
+                <span ng-i18next>avAdmin.topbar.help</span>
+                <span
+                  ng-class="{'glyphicon-chevron-down': !!showHelp, 'glyphicon-chevron-right': !showHelp}"
+                  class="glyphicon">
+                </span>
+            </button>
+          </span>
+      </div>
+    </div>
+  </div>
+  <div
+    class="rower help-plugin"
+    ng-if="!!showHelp && !!expanded">
+    <div class="col-xs-12">
+       <div av-plugin-html ng-bind-html="html"></div>
+    </div>
+  </div>
+</div>

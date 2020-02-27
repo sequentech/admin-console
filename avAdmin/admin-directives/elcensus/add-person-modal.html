@@ -24,8 +24,13 @@
       <input
         type="text"
         class="form-control"
+        ng-if="!ef.autofill && ef.type !== 'date'"
         placeholder="{{ef.name | htmlToText}}"
         ng-model="newcensus[ef.name]"/>
+
+      <div ng-if="ef.type==='date' && !ef.autofill">
+        <div avr-date-field label="ef.name | htmlToText" ng-model="newcensus[ef.name]"></div>
+      </div>
     </div>
   </form>
 </div>

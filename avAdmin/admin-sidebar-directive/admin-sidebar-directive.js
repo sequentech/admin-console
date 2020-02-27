@@ -31,14 +31,17 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
 **/
-
+  
 angular.module('avAdmin')
-  .directive('avAdminSidebar', ['$cookies', function($cookies) {
+  .directive('avAdminSidebar', ['$cookies', 'Authmethod', 'DraftElection', function($cookies, Authmethod, DraftElection) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
-        var admin = $cookies.user;
+        var autheventid = Authmethod.getAuthevent();
+        var postfix = "_authevent_" + autheventid;
+        var admin = $cookies["user" + postfix];
         scope.admin = admin;
         scope.active = attrs.active;
+        scope.isEditingDraft = DraftElection.isEditingDraft;
     }
 
     return {

@@ -106,19 +106,19 @@ angular.module('avAdmin')
 
       function getExtraField(name) {
         for (var i = 0; i < service.election.census.extra_fields.length; i++) {
-           if(service.election.census.extra_fields[i].name === name) {
+           if(service.election.census.extra_fields[i].type === name) {
             return service.election.census.extra_fields[i];
            }
         }
         return false;
       }
 
-      if('sms' === service.election.census.auth_method) {
+      if(_.contains(['sms', 'sms-otp'], service.election.census.auth_method)) {
         var email_field = getExtraField('email');
         if(email_field && 'email' === email_field.type) {
           return true;
         }
-      } else if('email' === service.election.census.auth_method) {
+      } else if(_.contains(['email', 'email-otp'], service.election.census.auth_method)) {
         var tlf_field = getExtraField('tlf');
         if(tlf_field && 'tlf' === tlf_field.type) {
           return true;
@@ -132,6 +132,17 @@ angular.module('avAdmin')
      * is
      */
     service.sendAuthCodesModal = function() {
+      var pluginData = {
+        continue: true,
+        el: service.election,
+        ids: service.user_ids,
+        extra: service.extra
+      };
+      Plugins.hook('send-auth-codes-modal', pluginData);
+      if (!pluginData.continue) {
+        return;
+      }
+
       service.selectable_auth_method = service.authMethodIsSelectable();
       service.selected_auth_method = angular.copy(service.election.census.auth_method);
       // If skip dialog flag is activated, then we jump directly to the
@@ -250,36 +261,38 @@ angular.module('avAdmin')
             service.user_ids,
             service.selected_auth_method,
             service.extra
-          ).success(function(r)
-          {
-            // if the sending is successful, show it
-            scope.loading = false;
-            scope.msg = "avAdmin.census.sentCodesSuccessfully";
+          ).then(
+            function onSuccess(response)
+            {
+              // if the sending is successful, show it
+              scope.loading = false;
+              scope.msg = "avAdmin.census.sentCodesSuccessfully";
 
-            // Let plugins know about the success
-            Plugins.hook(
-              'send-auth-codes-success',
-              {el: service.election, ids: service.user_ids, response: r});
+              // Let plugins know about the success
+              Plugins.hook(
+                'send-auth-codes-success',
+                {el: service.election, ids: service.user_ids, response: response.data});
 
-            deferred.resolve(r);
-          })
-          .error(function(error)
-          {
-            // if there was an error, show it in the gui
-            scope.loading = false;
-            scope.error = error.error_codename || error.error || error;
+              deferred.resolve(response.data);
+            },
+            function onError(response)
+            {
+              // if there was an error, show it in the gui
+              scope.loading = false;
+              scope.error = response.data.error_codename || response.data.error || response.data;
 
-            // and let plugins know
-            Plugins.hook(
-                'send-auth-codes-error',
-                {
-                  el: service.election,
-                  ids: service.user_ids,
-                  response: error
-                });
+              // and let plugins know
+              Plugins.hook(
+                  'send-auth-codes-error',
+                  {
+                    el: service.election,
+                    ids: service.user_ids,
+                    response: response.data
+                  });
 
-            deferred.reject(error);
-          });
+              deferred.reject(response.data);
+            }
+          );
       }
       return deferred.promise;
     };

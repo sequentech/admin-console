@@ -16,5 +16,5 @@
     </h1>
 
     <div av-admin-question question="q" ng-repeat="q in election.questions"> </div>
-    <button ng-click="saveQuestions()" class="btn btn-block btn-success" ng-i18next>next</button>
+    <button ng-click="goNext({id:election.id})" class="btn btn-block btn-success" ng-i18next>next</button>
 </div>

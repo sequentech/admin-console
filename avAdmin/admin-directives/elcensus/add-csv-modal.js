@@ -17,13 +17,19 @@
 
 angular.module('avAdmin')
   .controller('AddCsvModal',
-    function($scope, $modalInstance, election, ConfigService) {
+    function($scope, $modalInstance, election, ConfigService, Plugins) {
       $scope.election = election;
       $scope.textarea = "";
       $scope.helpurl = ConfigService.helpUrl;
       $scope.ok = function () {
         $modalInstance.close($("#csv-textarea").val());
       };
+      var exhtml = {html: [], scope: {}};
+      Plugins.hook(
+       'census-add-csv-modal',
+       { exhtml: exhtml });
+      $scope.exhtml = exhtml.html;
+      $scope = _.extend($scope, exhtml.scope);
 
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');

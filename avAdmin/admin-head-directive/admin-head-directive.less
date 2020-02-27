@@ -1,3 +1,47 @@
+
+[av-admin-head] {
+  .navbar-header {
+    margin-left: 0px !important;
+    padding-left: 15px !important;
+  }
+
+  .navbar-admin > .container-fluid > div > ul,
+  .navbar-admin > .container > div > ul {
+    .help-dropdown > ul.dropdown-menu,
+    .profile-dropdown > ul.dropdown-menu {
+      min-width: 240px;
+      li > div {
+        a {
+          padding: 3px 20px;
+        }
+
+        a, a:link, a:visited, a:active, a:hover, a:focus {
+          text-decoration: none;
+          border:0!important;
+        }
+      }
+
+      li:hover > div, li:active > div, li:focus > div {
+        background-color: darken(@av-primary, 6%);
+        a, a:hover, a:focus {
+          color: @av-secondary;
+        }
+      }
+
+      li > div.profile-menu-item {
+        padding: 3px 20px;
+      }
+
+      li:hover > div.profile-menu-item, li:active > div.profile-menu-item, li:focus > div.profile-menu-item {
+        background-color: darken(@av-primary, 6%);
+        a, a:hover, a:focus {
+          color: @av-secondary;
+        }
+      }
+    }
+  }
+}
+
 .adminhead {
     background-color: @av-primary;
     color: @av-secondary;
@@ -18,14 +62,15 @@
 }
 .navbar-admin .navbar-brand {
   color: @av-primary-contrast;
-  margin-top: 15px;
+  margin-top: 14px;
   margin-right: 15px;
-  margin-left: 8px;
+  margin-left: -15px !important;
   background-image: url('@{imgdir}/nVotes_logo_small.png');
-  height: 18px;
+  height: 20px;
   padding: 0;
-  width: 100px;
+  width: 98px;
 }
+
 .navbar-admin .navbar-brand:hover,
 .navbar-admin .navbar-brand:focus {
   color: #e6e6e6;
@@ -70,20 +115,20 @@
 }
 .navbar-admin .navbar-nav > .dropdown > a:hover .caret,
 .navbar-admin .navbar-nav > .dropdown > a:focus .caret {
-  border-top-color: @av-secondary-contrast;
-  border-bottom-color: @av-secondary-contrast;
+  border-top-color: @av-primary;
+  border-bottom-color: @av-primary;
 }
 .navbar-admin .navbar-nav > .open > a,
 .navbar-admin .navbar-nav > .open > a:hover,
 .navbar-admin .navbar-nav > .open > a:focus {
   background-color: lighten(@av-secondary, 10%);
-  color: @av-secondary-contrast;
+  color: @av-primary;
 }
 .navbar-admin .navbar-nav > .open > a .caret,
 .navbar-admin .navbar-nav > .open > a:hover .caret,
 .navbar-admin .navbar-nav > .open > a:focus .caret {
-  border-top-color: @av-secondary-contrast;
-  border-bottom-color: @av-secondary-contrast;
+  border-top-color: @av-primary;
+  border-bottom-color: @av-primary;
 }
 .navbar-admin .navbar-nav > .dropdown > a .caret {
   border-top-color: @av-primary-contrast;

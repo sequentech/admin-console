@@ -16,64 +16,92 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminElections', ['Authmethod', 'ElectionsApi', '$state', function(Authmethod, ElectionsApi, $state) {
-    // we use it as something similar to a controller here
-    function link(scope, element, attrs) {
-        scope.page = 1;
-        scope.loading = false;
-        scope.nomore = false;
-        scope.elections = [];
+  .directive(
+    'avAdminElections',
+    function(Authmethod, ElectionsApi, DraftElection, AdminProfile, OnboardingTourService, $state, Plugins, $modal, $timeout, $window)
+    {
+        // we use it as something similar to a controller here
+        function link(scope, element, attrs) {
+            scope.page = 1;
+            scope.loading = false;
+            scope.nomore = false;
+            scope.elections = [];
 
-        function loadMoreElections() {
-            if (scope.loading || scope.nomore) {
-                return;
-            }
-            scope.loading = true;
-
-            function getAllElections(list) {
-                list.forEach(function (perm) {
-                    ElectionsApi.getElection(perm.object_id)
-                        .then(function(d) {
-                            scope.elections.push(d);
-                            scope.loading -= 1;
-                        })
-                        .catch(function(d) {
-                            // election doesn't exists in agora-elections
-                            console.log("Not in agora elections: " + perm.object_id);
-                            scope.loading -= 1;
-                        });
-                });
+            function maybeStartOnboarding() {
+              // launch the onboarding tour if the profile has been correctly
+              // filled up and the election list is zero
+              if ($window.electionsTotalCount !== undefined &&
+                  $window.electionsTotalCount === 0)
+              {
+                  OnboardingTourService();
+              }
             }
 
-            Authmethod.electionsIds(scope.page)
-                .success(function(data) {
-                    scope.page += 1;
+            function loadMoreElections() {
+                if (scope.loading || scope.nomore) {
+                    return;
+                }
+                scope.loading = true;
 
-                    if (data.end_index === data.total_count) {
-                        scope.nomore = true;
-                    }
+                function getAllElections(list) {
+                    list.forEach(function (perm) {
+                        ElectionsApi.getElection(perm.object_id)
+                            .then(function(d) {
+                                scope.elections.push(d);
+                                scope.loading -= 1;
+                            })
+                            .catch(function(d) {
+                                // election doesn't exists in agora-elections
+                                console.log("Not in agora elections: " + perm.object_id);
+                                scope.loading -= 1;
+                            });
+                    });
+                }
 
-                    // here we've the elections id, then we need to ask to
-                    // ElectionsApi for each election and load it.
-                    scope.loading = data.perms.length;
-                    getAllElections(data.perms);
-                })
-                .error(function(data) {
-                    scope.loading = false;
-                    scope.error = data;
-                });
+                Authmethod
+                    .electionsIds(scope.page)
+                    .then(
+                        function(response) {
+                            scope.page += 1;
+
+                            $window.electionsTotalCount = response.data.total_count;
+                            AdminProfile
+                                .openProfileModal(true)
+                                .then(maybeStartOnboarding, maybeStartOnboarding);
+
+                            if (response.data.end_index === response.data.total_count) {
+                                scope.nomore = true;
+                            }
+
+                            // here we've the elections id, then we need to ask to
+                            // ElectionsApi for each election and load it.
+                            scope.loading = response.data.perms.length;
+                            getAllElections(response.data.perms);
+                        },
+                        function onError(response) {
+                            scope.loading = false;
+                            scope.error = response.data;
+                        }
+                    );
+            }
+
+            scope.exhtml = [];
+            Plugins.hook(
+            'admin-elections-list-extra-html',
+            {
+                'exhtml': scope.exhtml
+            }
+            );
+
+            angular.extend(scope, {
+              loadMoreElections: loadMoreElections,
+            });
         }
 
-        angular.extend(scope, {
-          loadMoreElections: loadMoreElections,
-        });
+        return {
+        restrict: 'AE',
+        link: link,
+        templateUrl: 'avAdmin/admin-directives/elections/elections.html'
+        };
     }
-
-    return {
-      restrict: 'AE',
-      scope: {
-      },
-      link: link,
-      templateUrl: 'avAdmin/admin-directives/elections/elections.html'
-    };
-  }]);
+  );

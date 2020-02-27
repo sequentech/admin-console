@@ -29,9 +29,54 @@
     "votings": {"plurality-at-large": "Voto en bloque o Escrutinio Mayoritario Plurinominal", "borda-nauru": "Borda de Nauru o Borda Dowdall (1/n)", "borda": "Borda Count (tradicional)", "pairwise-beta": "Comparación de pares (distribución beta)", "desborda": "DesBorda"}
   },
   "avAdmin": {
+    "profile": {
+      "title": "Perfil",
+      "save": "Guardar cambios"
+    },
+    "onboarding": {
+      "help_tour": {
+        "step0_help_title": "Ayuda",
+        "step0_help_content": "Si necesitas más ayuda, haz clic aquí para obtenerla. ¡También puedes <strong>iniciar de nuevo el tour</strong> desde aquí!",
+
+        "step1_chat_title": "Chatea con nosotros",
+        "step1_chat_content": "Si tienes alguna pregunta,, estaremos encantados de responderla rápidamente a través del chat."
+      },
+      "dashboard_tour": {
+        "step0_test_title": "Votación de prueba",
+        "step0_test_content": "Has creado una votación de prueba. Las elecciones de prueba tienen un tamaño de censo limitado y una votación real sólo se puede crear a partir de una votación de prueba recontada con éxito.",
+
+        "step1_real_title": "Votación real",
+        "step1_real_content": "Una vez que se realize el recuento de ésta votación, podras crear una votación real haciendo clic aquí.",
+
+        "step2_status_title": "Estado de la votación",
+        "step2_status_content": "Esta sección muestra el estado de la votación y en ella siempre aparece un botón para pasar la votación al siguiente estado.",
+
+        "step3_start_title": "Comienza la votación",
+        "step3_start_content": "Haz clic en este botón apra comenzar la votación y enviar el email de autenticación a todo el censo."
+      },
+      "hello_tour": {
+        "step0_create_title": "Crea la votación",
+        "step0_create_content": "Comienza a crear una votación de prueba haciendo clic en el botón <strong>Nueva votación</strong>. <br><br>O visualiza nuestro video de introducción:<br><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/eTZ3TQw5G_c?rel=0&amp;showinfo=0\" frameborder=\"0\" allowfullscreen></iframe>",
+
+        "step1_change_title": "Cambiar el título",
+        "step1_change_content": "Ahora puedes editar todos los detalles de la elección, por ejemplo podrías editar el título de la votación haciendo clic aquí.",
+
+        "step2_sidebar_title": "Barra lateral",
+        "step2_sidebar_content": "Podrías personalizar la votación haciendo clic en éstas secciones.",
+
+        "step3_review_title": "Revisa la votación antes de crearla",
+        "step3_review_content": "Una vez hayas terminado configurando la votación, haz clic en el botón <strong>Crear Votación</strong> para revisar y crear la votación.",
+
+        "step4_create2_title": "Crear la votación",
+        "step4_create2_content": "<strong>Haz clic en éste botón</strong> para crear la votación. <br><br>Ten en cuenta que la votación no se creará hasta que hagas clic en éste botón, y por razones de seguridad no se podrá editar posteriormente."
+      }
+    },
     "show_points_policy": {
       "label": "Mostrar puntos",
       "text": "Mostrar los puntos que la papeleta da a cada opción seleccionada"
+    },
+    "setting": {
+      "helpTooltip": "Clickea para expandir/colapsar texto de ayuda sobre esta configuración"
     },
     "shuffling_policy": {
       "categories_label": "Ramdomize categories",
@@ -43,11 +88,6 @@
       "dont-shuffle": "Don't shuffle the options. All voters will see the options in the same order in the voting booth",
       "shuffle-all": "Shuffle all options. Each voter will see the options for this question in a different order in the voting booth. If there are different categories, they will also be randomized.",
       "shuffle-some": "Shuffle the options of a selected list of categories."
-    },
-    "notes": {
-      "noteTag": "Nota",
-      "thisisATestElection": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas.",
-      "thisisATestElectionPopover": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas. Para ello, debes completar el proceso de la votación hasta el paso de publicar resultados"
     },
     "results": {
       "downloadData": "Descargar datos",
@@ -66,6 +106,16 @@
         "logout": "salir"
     },
     "learnMore": "Más información..",
+    "adminFields": {
+      "title": "Campos admin",
+      "intro": "Campos admin",
+      "maxError": "__value__ es mayor de __max__",
+      "minError": "__value__ es menor de __min__",
+      "textError": "error en texto __value__",
+      "emailError": "error on email __value__",
+      "numberError": "__value__ ha de ser un número",
+      "requiredError": "Campo requerido con valor vacío"
+    },
     "sidebar": {
         "elections": "Votaciones",
         "newel": "Nueva votación",
@@ -83,14 +133,24 @@
         "myAccount": "Mi cuenta",
         "billinfo": "Información de pago",
         "billhistory": "Historial de pagos",
-        "buy": "Comprar créditos"
+        "buy": "Comprar créditos",
+        "adminFields": "Admin fields"
     },
     "elections": {
         "filter": "Filtrar...",
         "test": "prueba",
+        "draft": "borrador",
         "real": "real",
         "status": "Estado",
-        "participation": "Participación"
+        "participation": "Participación",
+        "useDraftModal": {
+          "title": "Quieres cargar el borrador de la votación?",
+          "body": "Esta acción cargará el borrador de la votación con título '__title__'. Esta acción cargará el borrador y subsecuentes modificaciones de su configuración reescribirán el borrador. Desea proceder?"
+        },
+        "eraseDraftModal": {
+          "title": "Deseas eliminar el borrador de la votación?",
+          "body": "Esta acción eliminará el borrador de la votación con título '__title__'. Esta acción no podrá ser revertida. Desea proceder?"
+        }
     },
     "action": {
         "create": "crear",
@@ -145,6 +205,9 @@
           "createHeader": "Crear votación",
           "createBody": "Para crear la votación, su configuración es enviada a las autoridades y estas crean las claves públicas de la votación. Tras esto, la votación ya no es editable. Antes de proceder a realizar este paso, por favor comprueba que la configuración es correcta (por ejemplo comprobándolo en la cabina de votación de prueba). Si necesitas cambiar la votación pasado este paso, deberás crear una nueva.",
           "confirmCreateButton": "Confirmar y CREAR la votación",
+          "createRealHeader": "Crear votación real",
+          "createRealBody": "Esta es una votación de prueba. Por motivos de seguridad, sólo pueden crearse votaciones reales a partir de votaciones de prueba exitosas. Para ello, debes completar el proceso de la votación hasta el paso de publicar resultados.",
+          "confirmCreateRealButton": "Confirmar y CREAR votación real",
           "calculateResultsHeader": "Calcular resultados",
           "calculateResultsBody": "El recuento se ha realizado y el próximo paso es el cálculo de resultados. Aunque el recuento sólo se permite realizar una vez, el cálculo de resultados se puede realizar tantas veces como sea necesario antes de publicarlos.",
           "calculateResultsButton": "Confirmar y CALCULAR resultados",
@@ -295,6 +358,10 @@
         "fields": {"label": "Campos extra", "placeholder": "Campos extra del votante"},
 
         "modals": {
+          "comment": "Observaciones",
+          "csvLoadingHeader": "Uploading CSV to census",
+          "csvLoadingBody": "Please click on the start upload button to add the users from the CSV to the census. Please wait until the process is finished and don't close this window.",
+          "csvLoadingStartButton": "Start upload NOW",
           "addCsvHeader": "Añadir CSV al censo",
           "addCsvBody": "Aqui puedes añadir muchas personas al censo de una tacada. El formato es CSV, con una persona por línea de texto. Se utiliza el punto y coma como separador de campos, en orden. Nótese que no se realiza validación alguna de los datos, así que es tu responsabilidad insertar datos correctos.",
           "addCsvTextareaPlaceholder": "Un elector por línea, siguiendo el orden de los campos separando por punto y coma",
@@ -330,6 +397,11 @@
         "deactivatedCensusSuccessfully": "Se desactivaron las personas seleccionadas correctamente",
         "sentCodesSuccessfully": "Enviados los códigos de autenticación correctamente",
 
+        "activateOneAction": "Activar",
+        "deactivateOneAction": "Desactivar",
+        "removeCensusOneAction": "Eliminar",
+        "sendAuthCodesOneAction": "Enviar código de autenticación",
+
         "voted": "votó",
         "notVoted": "no votó",
         "votedColumnHeader": "Votó?",
@@ -350,6 +422,7 @@
         "codeOption": "código",
         "textOption": "texto",
         "tlfOption": "teléfono",
+        "dateOption": "fecha",
         "intOption": "entero",
         "boolOption": "booleano",
         "fieldRegExLabel": "Expresión regular",
@@ -368,6 +441,7 @@
         "fieldRequiredAuthLabel": "Contrastar con el censo durante la autenticación",
         "fieldMatchCensusOnRegistrationLabel": "Contrastar con el censo durante el registro (sólo para pre-registro)",
         "fieldFillIfEmptyOnRegistrationLabel": "Requerido durante el registro, pero puede estar vacío en el pre-registro",
+        "fieldAutofillLabel": "Relleno automático",
         "fieldUniqueLabel": "Único (cada votante debe aportar un valor diferente a este campo)",
         "fieldPrivateLabel": "Privado (solo los administradores pueden ver y usar este campo)",
         "extraFieldsHeader": "Campos extra",
@@ -390,7 +464,7 @@
     "auth": {
         "intro": "La autenticación se usa para asegurar que un elector es quien dice ser. Aquí tienes que llegar a un compromiso entre seguridad, usabilidad y coste",
         "auth": "Método de autenticación",
-        "auths": {"email": "Correo electrónico", "sms": "SMS", "dnie": "DNI electrónico"},
+        "auths": {"email": "Correo electrónico", "sms": "SMS", "dnie": "DNI electrónico", "user-and-password": "Usuario y contraseña"},
         "sms": "Mensaje SMS",
         "smstemp": "Plantilla usada en el SMS a enviar al usuario. Usa __CODE__ para insertar el código SMS y __URL__ para insertar el enlace de votación, o __URL2__ para insertar un enlace que incluya el código",
         "smsdef": "Este es tu código de votación __CODE__",
@@ -461,7 +535,33 @@
           "election-question-int-size-min-max": "Votación '__eltitle__', pregunta '__qtitle__': el máximo número de candidaturas que puede seleccionar un votante es __value__, pero debe ser mayor o igual que el mínimo, que es __min__",
           "election-question-int-size-max-max": "Votación '__eltitle__', pregunta '__qtitle__': el máximo número de candidaturas que puede seleccionar un votante es __value__, pero no debe ser mayor que el número total de candidaturas, que es __max__",
           "election-question-int-size-min-num-winners": "Votación '__eltitle__', pregunta '__qtitle__': debe haber al menos un ganador, pero hay __value__",
-          "election-question-int-size-max-num-winners": "Votación '__eltitle__', pregunta '__qtitle__': el número de ganadores es __value__, pero no puede ser mayor que el número total de candidaturas, que es __max__"
+          "election-question-int-size-max-num-winners": "Votación '__eltitle__', pregunta '__qtitle__': el número de ganadores es __value__, pero no puede ser mayor que el número total de candidaturas, que es __max__",
+          "election-census-createel-unknown": "Votación, un error desconocido ocurrió después de crear la votación: __message__",
+          "election-census-is-array-admin-fields": "Votación '__eltitle__': admin_fields ha de ser un array",
+          "election-census-array-length-max-admin-fields": "Votación '__eltitle__': el array admin_fields tiene una longitud de __len__ caracteres, excediendo el máximo de __max__",
+          "election-census-lambda-admin-fields-int-type-value": "Votación '__eltitle__': los siguientes admin fields son de tipo entero pero sus valores no lo son: __admin_names__.",
+          "election-census-lambda-admin-fields-email-type-value": "Votación '__eltitle__': los siguientes admin fields tienen emails inválidos: __admin_names__.",
+          "election-census-lambda-admin-fields-int-min-value": "Votación '__eltitle__': los siguientes admin fields de tipo int tienen un valor menor que el mínimo valor permitido para los mismos: __admin_names__.",
+          "election-census-lambda-admin-fields-int-max-value": "Votación '__eltitle__': hay al menos un campo en admin fields con tipo int donde el value es mayor que el máximo valor permitido",
+          "election-census-lambda-admin-fields-string-type-value": "Votación '__eltitle__': los siguientes admin fields son de tipo string pero sus valores no lo son: __admin_names__.",
+          "election-census-lambda-admin-fields-required-value": "Election '__eltitle__': estos campos de admin fields son obligatorios pero están vacíos: __admin_names__.",
+          "election-census-lambda-admin-fields-string-value-array-length": "Votación '__eltitle__': los siguientes admin fields de tipo string tienen un string con un número de caracteres que ha excedido el máximo número de caracteres permitidos __max__: __admin_names__.",
+          "election-census-lambda-admin-fields-email-value-array-length": "Votación '__eltitle__': los siguientes admin fields de tipo email tienen un string con un número de caracteres que ha excedido el máximo número de caracteres permitidos __max__: __admin_names__.",
+          "election-census-admin-fields-is-string-if-defined-placeholder": "Votación '__eltitle__': el campo de admin field __fname__ placeholder ha de ser un string",
+          "election-census-admin-fields-array-length-if-defined-max-placeholder": "Votación '__eltitle__': el campo de admin field __fname__ placeholder tiene una longitud de __len__ caracteres, excediendo el máximo de __max__",
+          "election-census-admin-fields-is-string-label": "Votación '__eltitle__': el campo de admin field __fname__ label ha de ser un string",
+          "election-census-admin-fields-array-length-max-label": "Votación '__eltitle__': el campo de admin field __fname__ label tiene una longitud de __len__ caracteres, excediendo el máximo de __max__",
+          "election-census-admin-fields-is-string-if-defined-description": "Votación '__eltitle__': el campo de admin field __fname__ description ha de ser un string",
+          "election-census-admin-fields-array-length-if-defined-max-description": "Votación '__eltitle__': el campo de admin field __fname__ description tiene una longitud de __len__ caracteres, excediendo el máximo de __max__",
+          "election-census-admin-fields-is-string-name": "Votación '__eltitle__': el campo de admin field __fname__ name ha de ser un string",
+          "election-census-admin-fields-array-length-max-name": "Votación '__eltitle__': el campo de admin field __fname__ name tiene una longitud de __len__ caracteres, excediendo el máximo de __max__",
+          "election-census-admin-fields-is-string-type": "Votación '__eltitle__': el campo de admin field __fname__ type ha de ser un string",
+          "election-census-admin-fields-array-length-max-type": "Votación '__eltitle__': el campo de admin field __fname__ type tiene una longitud de __len__ caracteres, excediendo el máximo de __max__",
+          "election-census-admin-fields-lambda-min-number": "Votación '__eltitle__': el campo admin field __fname__ min ha de ser un número",
+          "election-census-admin-fields-lambda-max-number": "Votación '__eltitle__': el campo admin field __fname__ max ha de ser un número",
+          "election-census-admin-fields-lambda-step-number": "Votación '__eltitle__': el campo admin field __fname__ step ha de ser un número",
+          "election-census-admin-fields-lambda-required-boolean": "Votación '__eltitle__': el campo admin field __fname__ required ha de ser un booleano",
+          "election-census-admin-fields-lambda-private-boolean": "Votación '__eltitle__': el campo admin field __fname__ private ha de ser un booleano"
         }
     },
 

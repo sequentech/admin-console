@@ -27,6 +27,22 @@ angular.module('avAdmin')
           document.querySelector("#importfile").click();
         }
 
+        function retrieveFile(f) {
+          console.log("retrieveFile");
+          $window.Papa.parse(f, {
+            complete: function(results) {
+              console.log("retrieveFile complete");
+              scope.loading = false;
+              var els = ImportService(results.data);
+              // only works for one election, the first                                                                                                                    
+              ElectionsApi.currentElections = els;                                                                                                                         
+              ElectionsApi.setCurrent(els[0]);                                                                                                                             
+              ElectionsApi.newElection = true;                                                                                                                             
+              $state.go("admin.create"); 
+            },
+          });
+        }
+
         function uploadFile(element) {
           scope.loading = true;
 
@@ -35,22 +51,6 @@ angular.module('avAdmin')
             scope.file = f;
           });
           retrieveFile(f);
-        }
-
-        function retrieveFile(f) {
-          console.log("retrieveFile");
-          $window.Papa.parse(f, {
-            complete: function(results) {
-              console.log("retrieveFile complete");
-              scope.loading = false;
-              var els = ImportService(results.data);
-              // only works for one election, the first
-              ElectionsApi.currentElections = els;
-              ElectionsApi.setCurrent(els[0]);
-              ElectionsApi.newElection = true;
-              $state.go("admin.create");
-            },
-          });
         }
 
         scope.$watch('filesDrop', function () {

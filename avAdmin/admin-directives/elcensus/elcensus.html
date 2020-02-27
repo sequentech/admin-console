@@ -101,8 +101,9 @@
             </div>
           </th>
           <th ng-repeat="field in election.census.extra_fields">
-            {{ field.name| htmlToText }}
+            {{ field.name | htmlToText | limitTo:15 }}
           </th>
+          <th ng-i18next>avAdmin.census.actionsDropdown</th>
         </tr>
       </thead>
       <tbody ng-if="!reloadingCensus">
@@ -139,6 +140,15 @@
           </td>
           <td ng-repeat="field in election.census.extra_fields" av-census-field>
           </td>
+          <td class="census-actions">
+            <span ng-repeat="command in row_commands"
+                  ng-class="{'disabled': !command.enableFunc()}">
+                <a ng-click="command.actionFunc(c)">
+                  <i class="{{command.iconClass}}"
+                     tooltip="{{command.text}}"></i>
+                </a>
+            </span>
+          </td>
         </tr>
       </tbody>
       <tbody>
@@ -171,8 +181,15 @@
 
     <div ng-if="showSuccessAction">
       <button
-        ui-sref="admin.successAction()"
+        ng-click="goNext(admin.successAction())"
         ng-if="!election.id"
+        class="btn btn-block btn-success"
+        ng-i18next>
+        next
+      </button>
+      <button
+        ng-click="goNext({id:election.id})"
+        ng-if="!!election.id"
         class="btn btn-block btn-success"
         ng-i18next>
         next
@@ -181,7 +198,7 @@
 
     <div ng-if="!showSuccessAction">
       <button
-        ui-sref="admin.create()"
+        ng-click="goNext(admin.create())"
         ng-if="!election.id"
         class="btn btn-block btn-success"
         ng-i18next>

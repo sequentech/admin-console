@@ -29,9 +29,171 @@
     "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda": "DesBorda"}
   },
   "avAdmin": {
+    "profile": {
+      "title": "Profile",
+      "save": "Save changes"
+    },
+    "ballotBox": {
+      "title": "Ballot Boxes",
+      "intro": "List of ballot boxes and their tally sheets.",
+      "manage": "Search and filter looking for ballot boxes",
+      "filter": "Search here..",
+      "tableColumn": {
+        "idColumnHeader": "Id",
+        "nameColumnHeader": "Title",
+        "actionsColumnHeader": "Actions",
+        "lastUpdateColumnHeader": "Last Update",
+        "versionColumnHeader": "Number of versions",
+        "usernameColumnHeader": "Username"
+      },
+      "modals": {
+          "createBallotBox": {
+            "header": "Create ballot boxes",
+            "body": "Add one ballot box name per line. It won't create any if any of them already exist.",
+            "holder": "Ballot box name 1\nBallot box name 2..",
+            "button": "Confirm and CREATE ballot boxes"
+          },
+          "deleteBallotBox": {
+            "header": "Confirm to DELETE ballot box",
+            "body": "Please to confirm that you want to delete the ballot box __name__ and all the tally sheets related to it, write 'DELETE' below:",
+            "holder": "Write DELETE here to confirm..",
+            "ok": "Confirm and DELETE ballot box"
+          },
+          "deleteTallySheet": {
+            "header": "Confirm to DELETE tally sheet",
+            "body": "Please to confirm that you want to delete the tally sheet with id __id__ for ballot box __name__, write 'DELETE' below:",
+            "holder": "Write DELETE here to confirm..",
+            "ok": "Confirm and DELETE tally sheet"
+          },
+          "checkingBallotBox": {
+            "header": "Creating ballot boxes",
+            "checkingExisting": "Checking if any ballot box requested already exist..",
+            "hasExisting": "No ballot box was created, because the following already exist: ",
+            "errorCheckingExisting": "There was an error checking existing ballot boxes:",
+            "creatingBoxes": "Creating the ballot boxes: ",
+            "errorCreatingBoxes": "Error while creating some ballot boxes: ",
+            "success": "All the ballot boxes were created successfully.",
+            "button": "Close"
+          },
+          "writeTallySheet": {
+            "step0header": "Step 1 of 3: Register tally sheet",
+            "step1header": "Step 2 of 3: Review and send the tally sheet",
+            "step2header": "Step 3 of 3: Successfully added tally sheet",
+            "reviewStep": "Please review carefully the tally sheet before sending it",
+            "ballotBoxLabel": "Ballot box name:",
+            "registeredVotesLabel": "Number of voters registered:",
+            "voteCountLabel": "Number of votes:",
+            "electionIdLabel": "Election id:",
+            "electionTitleLabel": "Election title:",
+            "observationsLabel": "Observaciones:",
+            "continue": "Continue and review",
+            "blankVotesLabel": "Blank votes:",
+            "nullVotesLabel": "Null votes:",
+            "mismatchedNumbersError": "The numbers don't add up or are invalid, plese review them",
+            "mismatchTotalCount": "The registered number of votes and the entered number of votes differ",
+            "send": "Confirm and send tally sheet",
+            "backAndEdit": "Go back and edit",
+            "success": "Congratulations, you successfully added the tally sheet!",
+            "okClose": "Close"
+          },
+          "viewTallySheet": {
+            "header": "View tally sheet",
+            "edit": "Edit and change tally sheet",
+            "tallySheetIdLabel": "Tally sheet id:"
+          }
+      },
+      "viewTallySheetAction": "View tally sheet",
+      "writeTallySheetAction": "Write tally sheet..",
+      "deleteTallySheetAction": "Delete tally sheet..",
+      "deleteBallotBoxAction": "Delete ballot box.."
+    },
+    "activityLog": {
+      "title": "Activity Log",
+      "intro": "List of actions executed in the election.",
+      "manage": "Search and filter the activity log",
+      "filter": "Search here..",
+      "tableColumn": {
+        "idColumnHeader": "Id",
+        "executerIdColumnHeader": "Executer Id",
+        "creationDateColumnHeader": "Created at",
+        "receiverIdColumnHeader": "Receiver Id",
+        "actionColumnHeader": "Description",
+        "commentColumnHeader": "Comment"
+      },
+      "action": {
+        "user": {
+          "activate": "<i>__executer_username__ (__executer_id__)</i> <strong>activated</strong> user <i>__receiver_username__ (__receiver_id__)</i>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "deactivate": "<i>__executer_username__ (__executer_id__)</i> <strong>deactivated</strong> user <i>__receiver_username__ (__receiver_id__)</i> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "authenticate": "<i>__receiver_username__ (__receiver_id__)</i> <strong>authenticated</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "register": "<i>__receiver_username__ (__receiver_id__)</i> <strong>registered</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "successful-login": "<i>__executer_username__ (__executer_id__)</i> <strong>voted</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "send-auth": "<i>__executer_username__ (__executer_id__)</i> <strong>sent authentication codes</strong> to <i>__receiver_username__ (__receiver_id__)</i>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "resend-authcode": "There was a request to <strong>re-send authentication codes</strong> to <i>__receiver_username__ (__receiver_id__)</i>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+	  "added-to-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>added to census</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> to <i>__receiver_username__(__receiver_id__)</i> __metadata__",
+          "deleted-from-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>deleted from census</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> to __metadata__"
+        },
+        "authevent": {
+          "create": "<i>__executer_username__ (__executer_id__)</i> <strong>created</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "callback": "<i>__executer_username__ (__executer_id__)</i> <strong>received callback</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "edit": "<i>__executer_username__ (__executer_id__)</i> <strong>edited</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "start": "<i>__executer_username__ (__executer_id__)</i> <strong>started</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "stop": "<i>__executer_username__ (__executer_id__)</i> <strong>stopped</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>deleted</strong> election __event_id__"
+        },
+        "ballotBox": {
+          "create": "<i>__executer_username__ (__executer_id__)</i> <strong>created</strong> ballot box <a href=\"/admin/ballot-box/__event_id__?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>deleted</strong> ballot box <strong>__ballot_box_name__</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>"
+        },
+        "tallySheet": {
+          "create": "<i>__executer_username__ (__executer_id__)</i> <strong>uploaded</strong> a <a href=\"/admin/ballot-box/__event_id__?view_tally_sheet_id=__tally_sheet_id__&ballot_box_id=__ballot_box_id__\">tally sheet</a> for ballot box <a href=\"/admin/ballot-box/__event_id__?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>deleted</strong> a <a href=\"/admin/ballot-box/__event_id__?view_tally_sheet_from_action_id=__action_id__&ballot_box_name=__ballot_box_name__&ballot_box_id=__ballot_box_id__\">tally sheet</a> for ballot box <a href=\"/admin/ballot-box/__event_id__?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>"
+        }
+      }
+    },
+    "onboarding": {
+      "help_tour": {
+        "step0_help_title": "Help",
+        "step0_help_content": "If you need any further help, you can click here to get it. You can <strong>launch again the tour</strong> there too!",
+
+        "step1_chat_title": "Chat with us",
+        "step1_chat_content": "If you have any question, we'll be glad to answer you quickly through the chat."
+      },
+      "dashboard_tour": {
+        "step0_test_title": "Test election",
+        "step0_test_content": "You have created a test election. Test elections have limited census size and a real election can only be created out of a successfully tallied test election.",
+
+        "step1_real_title": "Real election",
+        "step1_real_content": "Once this election is tallied, you will be able to create a real election clicking here.",
+
+        "step2_status_title": "Election status",
+        "step2_status_content": "This section shows you the state of the election and a button to move election to the next status.",
+
+        "step3_start_title": "Start the election",
+        "step3_start_content": "Click this button to start the election and send an authentication email to all census."
+      },
+      "hello_tour": {
+        "step0_create_title": "Create an election",
+        "step0_create_content": "Start creating a test election clicking in the <strong>New Election</strong> button. <br><br>Or watch the intro video:<br><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/eTZ3TQw5G_c?rel=0&amp;showinfo=0\" frameborder=\"0\" allowfullscreen></iframe>",
+
+        "step1_change_title": "Change the title",
+        "step1_change_content": "Now you can edit all the details of the election, for example you could edit the election's title clicking title here.",
+
+        "step2_sidebar_title": "Sidebar",
+        "step2_sidebar_content": "You can personalize the election clicking through these sections.",
+
+        "step3_review_title": "Review election to create it",
+        "step3_review_content": "Once you are done configuring the election, click the <strong>Create Election</strong> section to review and then create the election.",
+
+        "step4_create2_title": "Create the election",
+        "step4_create2_content": "<strong>Click this button</strong> to create the election. <br><br>Note that the election won't be created until you do so, and for security reasons it won't be editable afterwards."
+      }
+    },
     "show_points_policy": {
       "label": "Show points",
       "text": "Show the points that the ballot is giving to each selected option"
+    },
+    "setting": {
+      "helpTooltip": "Click to expand/collapse help text about this setting"
     },
     "shuffling_policy": {
       "categories_label": "Ramdomize categories",
@@ -43,11 +205,6 @@
       "dont-shuffle": "Don't shuffle the options. All voters will see the options in the same order in the voting booth",
       "shuffle-all": "Shuffle all options. Each voter will see the options for this question in a different order in the voting booth. If there are different categories, they will also be randomized.",
       "shuffle-some": "Shuffle the options of a selected list of categories."
-    },
-    "notes": {
-      "noteTag": "Note",
-      "thisisATestElection": "This is a test election. For security reasons, real elections can only be created out of successful test elections.",
-      "thisisATestElectionPopover": "This is a test election. For security reasons, real elections can only be created out of successful test elections. You must complete the election process up to the results publish step."
     },
     "results": {
       "downloadData": "Download data",
@@ -66,12 +223,23 @@
         "logout": "logout"
     },
     "learnMore": "Learn more..",
+    "adminFields": {
+      "title": "Admin fields",
+      "intro": "Admin fields",
+      "maxError": "__value__ is greater than __max__",
+      "minError": "__value__ is lower than __min__",
+      "textError": "error on text __value__",
+      "emailError": "error on email __value__",
+      "numberError": "__value__ must be a number",
+      "requiredError": "Missing value on required field"
+    },
     "sidebar": {
         "elections": "Elections",
         "newel": "New election",
         "import": "Import",
         "currentel": "Current election",
         "dashboard": "Dashboard",
+        "activityLog": "Activity Log",
         "basic": "Basic details",
         "questions": "Questions",
         "censusConfig": "Census Configuration",
@@ -83,14 +251,25 @@
         "myAccount": "My account",
         "billinfo": "Billing information",
         "billhistory": "Billing history",
-        "buy": "Buy credits"
+        "ballotBox": "Ballot Boxes",
+        "buy": "Buy credits",
+        "adminFields": "Admin fields"
     },
     "elections": {
         "filter": "Filter...",
         "test": "test",
+        "draft": "draft",
         "real": "real",
         "status": "Status",
-        "participation": "Participation"
+        "participation": "Participation",
+        "useDraftModal": {
+          "title": "Do you want to load the election draft?",
+          "body": "This action will load the election draft with title '__title__'. This action will load this draft and subsequent modifications of its configuration will rewrite the saved draft. Do you wish to proceed?"
+        },
+        "eraseDraftModal": {
+          "title": "Do you want to erase the election draft?",
+          "body": "This action will erase the election draft with title '__title__'. This action cannot be reverted. Do you wish to proceed?"
+        }
     },
     "action": {
         "create": "create",
@@ -145,6 +324,9 @@
           "createHeader": "Create election",
           "createBody": "To create the election, its configuration is sent to the election authorities and they create election encryption public keys. After that, the election is no longer editable. Before doing this, please check that the configuration is correct (for example taking a look at the demo voting booth). If you need to change the election after this, you will have to create a new one.",
           "confirmCreateButton": "Confirm and CREATE election",
+          "createRealHeader": "Create real election",
+          "createRealBody": "This is a test election. For security reasons, real elections can only be created out of successful test elections. You must complete the election process up to the results publish step.",
+          "confirmCreateRealButton": "Confirm and CREATE real election",
           "calculateResultsHeader": "Calculate results",
           "calculateResultsBody": "The election has been tallied and the next step is to calculate the results. Although the election can only be tallied once, the election results can be calculated as many times as you need before publishing them.",
           "calculateResultsButton": "Confirm and CALCULATE results",
@@ -295,6 +477,10 @@
         },
 
         "modals": {
+          "comment": "Comment",
+          "csvLoadingHeader": "Uploading CSV to census",
+          "csvLoadingBody": "Please click on the start upload button to add the users from the CSV to the census. Please wait until the process is finished and don't close this window.",
+          "csvLoadingStartButton": "Start upload NOW",
           "addCsvHeader": "Add CSV to census",
           "addCsvBody": "Here you can add many people at once. The format is CSV, one person per line. Use semicolon to split fields, in order. Note that no data validation is done, so it's up to you to insert valid data.",
           "addCsvTextareaPlaceholder": "one voter per line, keep the field order",
@@ -331,6 +517,11 @@
         "deactivatedCensusSuccessfully": "Deactivated selected people in census successfully",
         "sentCodesSuccessfully": "Sent authentication codes successfully",
 
+        "activateOneAction": "Activate",
+        "deactivateOneAction": "Deactivate",
+        "removeCensusOneAction": "Remove",
+        "sendAuthCodesOneAction": "Send auth codes",
+
         "voted": "voted",
         "notVoted": "not voted",
         "votedColumnHeader": "Voted?",
@@ -351,6 +542,7 @@
         "codeOption": "code",
         "textOption": "text",
         "tlfOption": "tel",
+        "dateOption": "date",
         "intOption": "int",
         "boolOption": "bool",
         "captchaOption": "captcha",
@@ -366,6 +558,7 @@
         "fieldHelpLabel": "Help text",
         "fieldHelpPlaceholder": "Example: Insert both your name and surname",
         "fieldRequiredLabel": "Required",
+        "fieldAutofillLabel": "Auto fill",
         "fieldUniqueLabel": "Unique",
         "fieldRequiredAuthLabel": "Checked against census in authentication",
         "fieldMatchCensusOnRegistrationLabel": "Checked against census in registration (only for pre-registration)",
@@ -389,7 +582,14 @@
     "auth": {
         "intro": "Authentication is the means used to ensure that an elector is who he sais he is. Here you need to find a balance between security, usability and cost",
         "auth": "Auth method",
-        "auths": {"email": "Email links", "sms": "SMS", "dnie": "spanish eDNI"},
+        "auths": {
+          "email": "Email links", 
+          "sms": "SMS", 
+          "dnie": "spanish eDNI", 
+          "user-and-password": "User and password", 
+          "sms-otp": "SMS OTP",
+          "email-otp": "Email OTP"
+        },
         "sms": "SMS message",
         "smstemp": "Template used in the SMS to send to the user. Use __CODE__ to insert the SMS code and __URL__ for the authentication url, or __URL2__ to insert a link that includes the code",
         "smsdef": "This is your vote code: __CODE__",
@@ -463,7 +663,33 @@
           "election-question-int-size-min-max": "Election '__eltitle__', question '__qtitle__': the maximum number of candidates that a voter can choose is __value__, but must be bigger or equal than the minimum which is __min__",
           "election-question-int-size-max-max": "Election '__eltitle__', question '__qtitle__': the maximum number of candidates that a voter can choose is __value__, but cannot be larger than the number of candidates which is __max__",
           "election-question-int-size-min-num-winners": "Election '__eltitle__', question '__qtitle__': there must be at least one winner, but it is __value__ instead",
-          "election-question-int-size-max-num-winners": "Election '__eltitle__', question '__qtitle__': the number of winners is __value__, but cannot be bigger than the number of answers which is __max__"
+          "election-question-int-size-max-num-winners": "Election '__eltitle__', question '__qtitle__': the number of winners is __value__, but cannot be bigger than the number of answers which is __max__",
+          "election-census-createel-unknown": "Election, an unknown error happened while adding census after creating the election: __message__",
+          "election-census-is-array-admin-fields": "Election '__eltitle__': admin_fields must be an array",
+          "election-census-array-length-max-admin-fields": "Election '__eltitle__': admin_fields array length is __len__, exceeding the maximum of __max__",
+          "election-census-lambda-admin-fields-int-type-value": "Election '__eltitle__': the following admin fields are of integer type but their values are not integers: __admin_names__.",
+          "election-census-lambda-admin-fields-email-type-value": "Election '__eltitle__': the following admin fields have invalid email values: __admin_names__.",
+          "election-census-lambda-admin-fields-int-min-value": "Election '__eltitle__': the following admin fields of integer type have a value that is less than their minimum allowed value : __admin_names__.",
+          "election-census-lambda-admin-fields-int-max-value": "Election '__eltitle__': there is at least one field in admin fields with int type where the value is more than the maximum allowed value",
+          "election-census-lambda-admin-fields-string-type-value": "Election '__eltitle__':  the following admin fields are of string type but their values are not string: __admin_names__.",
+          "election-census-lambda-admin-fields-required-value": "Election '__eltitle__': these admin fields are required but they are empty: __admin_names__.",
+          "election-census-lambda-admin-fields-string-value-array-length": "Election '__eltitle__': the following admin fields of string type have a string character length that has exceeded the allowed maximum of __max__ characters: __admin_names__.",
+          "election-census-lambda-admin-fields-email-value-array-length": "Election '__eltitle__': the following admin fields of email type have a string character length that has exceeded the allowed maximum of __max__ characters: __admin_names__.",
+          "election-census-admin-fields-is-string-if-defined-placeholder": "Election '__eltitle__': admin field __fname__ placeholder must be a string",
+          "election-census-admin-fields-array-length-if-defined-max-placeholder": "Election '__eltitle__': admin field __fname__ placeholder length is __len__ characters, exceeding the maximum of __max__",
+          "election-census-admin-fields-is-string-label": "Election '__eltitle__': admin field __fname__ label must be a string",
+          "election-census-admin-fields-array-length-max-label": "Election '__eltitle__': admin field __fname__ label length is __len__ characters, exceeding the maximum of __max__",
+          "election-census-admin-fields-is-string-if-defined-description": "Election '__eltitle__': admin field __fname__ description must be a string",
+          "election-census-admin-fields-array-length-if-defined-max-description": "Election '__eltitle__': admin field __fname__ description length is __len__ characters, exceeding the maximum of __max__",
+          "election-census-admin-fields-is-string-name": "Election '__eltitle__': admin field __fname__ name must be a string",
+          "election-census-admin-fields-array-length-max-name": "Election '__eltitle__': admin field __fname__ name length is __len__ characters, exceeding the maximum of __max__",
+          "election-census-admin-fields-is-string-type": "Election '__eltitle__': admin field __fname__ type must be a string",
+          "election-census-admin-fields-array-length-max-type": "Election '__eltitle__': admin field __fname__ type length is __len__ characters, exceeding the maximum of __max__",
+          "election-census-admin-fields-lambda-min-number": "Election '__eltitle__': admin field __fname__ min must be a number",
+          "election-census-admin-fields-lambda-max-number": "Election '__eltitle__': admin field __fname__ max must be a number",
+          "election-census-admin-fields-lambda-step-number": "Election '__eltitle__': admin field __fname__ step must be a number",
+          "election-census-admin-fields-lambda-required-boolean": "Election '__eltitle__': admin field __fname__ required must be a boolean",
+          "election-census-admin-fields-lambda-private-boolean": "Election '__eltitle__': admin field __fname__ private must be a boolean"
         }
     },
 

@@ -1,0 +1,55 @@
+/**
+ * This file is part of agora-gui-admin.
+ * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-admin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-admin  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
+angular.module('avAdmin')
+  .controller(
+    'DeleteTallySheetModal',
+    function(
+      $scope,
+      $modalInstance,
+      electionId,
+      ballotBox,
+      tallySheetId,
+      Authmethod,
+      ConfigService
+    ) {
+      $scope.electionId = electionId;
+      $scope.ballotBox = ballotBox;
+      $scope.tallySheetId = tallySheetId;
+      $scope.deleteText = {text: ""};
+      $scope.helpurl = ConfigService.helpUrl;
+      $scope.errorDeleteTallySheet = "";
+      $scope.ok = function ()
+      {
+        Authmethod.deleteTallySheet($scope.electionId, ballotBox.id, $scope.tallySheetId)
+          .then(
+            function onSuccess(response)
+            {
+              $modalInstance.close();
+            },
+            function onError(response) {
+              $scope.errorDeleteTallySheet = response.data;
+            }
+          );
+      };
+
+      $scope.cancel = function ()
+      {
+        $modalInstance.dismiss('cancel');
+      };
+    }
+  );

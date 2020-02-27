@@ -18,21 +18,25 @@
 angular.module('avAdmin')
   .directive(
     'avAdminElquestions',
-    function($i18next, $state, ElectionsApi, ElectionLimits)
+    function($i18next, $state, ElectionsApi, ElectionLimits,NextButtonService, ConfigService)
     {
       // we use it as something similar to a controller here
       function link(scope, element, attrs) {
         scope.election = ElectionsApi.currentElection;
         scope.electionLimits = ElectionLimits;
-        scope.vsystems = ['plurality-at-large', 'borda-nauru', 'borda', 'pairwise-beta'];
+        scope.vsystems = ConfigService.shownAdminQuestionVotingSystems;
         scope.lshuffleoptions = ['dont-shuffle','shuffle-all', 'shuffle-some'];
 
         scope.electionEditable = function() {
           return !scope.election.id || scope.election.status === "registered";
         };
 
-        function save() {
-            $state.go("admin.auth");
+        scope.goNext = NextButtonService.goNext;
+
+        function expandQuestion(index) {
+          var qs = ElectionsApi.currentElection.questions;
+          _.map(qs, function(q) { q.active = false; });
+          qs[index].active = true;
         }
 
         function newQuestion() {
@@ -49,12 +53,6 @@ angular.module('avAdmin')
         function delQuestion(index) {
           var qs = ElectionsApi.currentElection.questions;
           ElectionsApi.currentElection.questions = qs.slice(0, index).concat(qs.slice(index+1,qs.length));
-        }
-
-        function expandQuestion(index) {
-          var qs = ElectionsApi.currentElection.questions;
-          _.map(qs, function(q) { q.active = false; });
-          qs[index].active = true;
         }
 
         function collapseQuestion(index) {
@@ -142,7 +140,6 @@ angular.module('avAdmin')
         }
 
         angular.extend(scope, {
-          saveQuestions: save,
           newQuestion: newQuestion,
           delQuestion: delQuestion,
           expandQuestion: expandQuestion,

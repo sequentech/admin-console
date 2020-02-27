@@ -6,33 +6,38 @@
     <base href="/">
     <meta charset="utf-8" />
     <link href="/themes/default/app.less" type="text/css" rel="stylesheet/less" id="themes" />
+    <link href="/vendor.css" type="text/css" rel="stylesheet/css" class="other-css" />
   </head>
-<body>
+<body style="background-color: #eee;">
   <!-- Livereload script for development only (stripped during dist build) -->
   <script src="http://localhost:35729/livereload.js"></script>
 
   <!-- IE8 bind workaround (needed for less) -->
   <script src="/ie8-bind-workaround.js"></script>
-  
+
   <!-- JS from Bower Components -->
-  <script src="bower_components/avCommon/dist/libnocompat-v17.04.js" class="libnocompat"></script>
-  <script src="bower_components/avCommon/dist/libCommon-v17.04.js" class="lib"></script>
-  <script src="bower_components/angular-local-storage/dist/angular-local-storage.js" class="lib"></script>
+  <script src="node_modules/agora-gui-common/dist/libnocompat-v20.2.0.js" class="libnocompat"></script>
+  <script src="node_modules/agora-gui-common/dist/libCommon-v20.2.0.js" class="lib"></script>
+  <script src="node_modules/angular-local-storage/dist/angular-local-storage.js" class="lib"></script>
 
   <script src="vendor/angular-date-picker-polyfill/angular-date-picker-polyfill.js" class="lib"></script>
   <script src="vendor/jquery.nanoscroller/nanoscroller.js" class="lib"></script>
   <script src="vendor/jquery.actual/jquery.actual.js" class="lib"></script>
   <script src="vendor/iframe-resizer/iframeResizer.contentWindow.min.js" class="lib"></script>
+  <script src="vendor/hopscotch-0.3.1/js/hopscotch.js" class="lib"></script>
   <!-- Add New Vendor Component JS Above -->
 
-  <!-- Configuration file JS -->
+  <!-- Plugins configuration file JS -->
   <script src="/avConfig.js"></script>
 
+  <!-- Configuration file JS -->
+  <script src="/avPluginsConfig.js"></script>
+
   <!-- Themes JS -->
-  <script src="bower_components/avCommon/dist/avTheme-v17.04.js"></script>
+  <script src="node_modules/agora-gui-common/dist/avTheme-v20.2.0.js"></script>
 
   <!-- avCommon -->
-  <script src="bower_components/avCommon/dist/appCommon-v17.04.js" class="app"></script>
+  <script src="node_modules/agora-gui-common/dist/appCommon-v20.2.0.js" class="app"></script>
 
   <script src="app.js" class="app"></script>
 
@@ -44,20 +49,38 @@
   <script src="avAdmin/admin-login-controller/admin-login-controller.js" class="app"></script>
   <script src="avAdmin/admin-signup-controller/admin-signup-controller.js" class="app"></script>
   <script src="avAdmin/admin-controller/admin-controller.js" class="app"></script>
+  <script src="avAdmin/int-field-directive/int-field-directive.js" class="app"></script>
+  <script src="avAdmin/admin-profile/admin-profile.js" class="app"></script>
 
   <!-- admin directives -->
+  <script src="avAdmin/admin-directives/abstract-setting/abstract-setting.js" class="app"></script>
+  <script src="avAdmin/admin-directives/admin-field/admin-field.js" class="app"></script>
+  <script src="avAdmin/admin-directives/admin-fields/admin-fields.js" class="app"></script>
+  <script src="avAdmin/admin-directives/activity-log/activity-log.js" class="app"></script>
   <script src="avAdmin/admin-directives/extra-field/extra-field.js" class="app"></script>
   <script src="avAdmin/admin-directives/elquestions/elquestions.js" class="app"></script>
   <script src="avAdmin/admin-directives/question/question.js" class="app"></script>
   <script src="avAdmin/admin-directives/eltally/eltally.js" class="app"></script>
+  <script src="avAdmin/admin-directives/ballot-box/ballot-box.js" class="app"></script>
+
+  <script src="avAdmin/admin-directives/ballot-box/create-ballot-box-modal.js" class="app"></script>
+  <script src="avAdmin/admin-directives/ballot-box/checking-ballot-box-modal.js" class="app"></script>
+  <script src="avAdmin/admin-directives/ballot-box/view-tally-sheet-modal.js" class="app"></script>
+  <script src="avAdmin/admin-directives/ballot-box/write-tally-sheet-modal.js" class="app"></script>
+  <script src="avAdmin/admin-directives/ballot-box/delete-tally-sheet-modal.js" class="app"></script>
+  <script src="avAdmin/admin-directives/ballot-box/delete-ballot-box-modal.js" class="app"></script>
+
   <script src="avAdmin/admin-directives/create/create.js" class="app"></script>
   <script src="avAdmin/admin-directives/create/edit-election-json-modal.js" class="app"></script>
   <script src="avAdmin/admin-directives/success-action/success-action.js" class="app"></script>
   <script src="avAdmin/admin-directives/census-field/census-field.js" class="app"></script>
+  <script src="avAdmin/admin-directives/elections/erase-draft-modal.js" class="app"></script>
+  <script src="avAdmin/admin-directives/elections/use-draft-modal.js" class="app"></script>
   <script src="avAdmin/admin-directives/elections/elections.js" class="app"></script>
   <script src="avAdmin/admin-directives/elcensus/elcensus.js" class="app"></script>
   <script src="avAdmin/admin-directives/elcensus/add-person-modal.js" class="app"></script>
   <script src="avAdmin/admin-directives/elcensus/add-csv-modal.js" class="app"></script>
+  <script src="avAdmin/admin-directives/elcensus/csv-loading-modal.js" class="app"></script>
   <script src="avAdmin/admin-directives/elcensus/confirm-remove-people-modal.js" class="app"></script>
   <script src="avAdmin/admin-directives/elcensus/confirm-activate-people-modal.js" class="app"></script>
   <script src="avAdmin/admin-directives/elcensus/confirm-deactivate-people-modal.js" class="app"></script>
@@ -89,13 +112,19 @@
   <script src="avAdmin/admin-directives/column-filters/int/column-filter-int.js" class="app"></script>
   <script src="avAdmin/admin-directives/column-filters/bool/column-filter-bool.js" class="app"></script>
   <script src="avAdmin/admin-directives/column-filters/datetime/column-filter-datetime.js" class="app"></script>
+  <script src="avAdmin/admin-directives/number-input/number-input.js" class="app"></script>
   <script src="avAdmin/import-service.js" class="app"></script>
   <script src="avAdmin/send-messages-service.js" class="app"></script>
+  <script src="avAdmin/onboarding-tour-service.js" class="app"></script>
   <!-- endof admin directives -->
 
+  <script src="avAdmin/next-button-service.js" class="app"></script>
   <script src="avAdmin/elections-api-service.js" class="app"></script>
   <script src="avAdmin/election-limits-service.js" class="app"></script>
   <script src="avAdmin/must-extra-fields-service.js" class="app"></script>
+  <script src="avAdmin/admin-profile-service.js" class="app"></script>
+  <script src="avAdmin/csv-load-service.js" class="app"></script>
+  <script src="avAdmin/draft-election.js" class="app"></script>
 
   <script src="test/test.js" class="app"></script>
 
@@ -106,7 +135,7 @@
 
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <script src="/ie10-viewport-bug-workaround.js"></script>
-  
+
   <!-- IE9 console workaround -->
   <script src="/ie9-console-workaround.js"></script>
   <!-- Add New Component JS Above -->
@@ -119,7 +148,7 @@
     For security reasons, your browser is unsupported. Please use a newer web browser (if you are using Internet Explorer, use version 9 or newer).
   </div>
 
-  <div>
+  <div style="background-color: white;">
     <!-- Shown while loading -->
     <div id="angular-preloading" class="avb-start-loading">
     </div>

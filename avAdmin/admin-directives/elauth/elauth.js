@@ -16,15 +16,69 @@
 **/
 
 angular.module('avAdmin')
-  .directive('avAdminElauth', ['ElectionsApi', function(ElectionsApi) {
+  .directive('avAdminElauth', ['ConfigService', 'ElectionsApi', 'NextButtonService', 'Plugins', function(ConfigService, ElectionsApi, NextButtonService, Plugins) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
         scope.election = ElectionsApi.currentElection;
-        scope.auth = ['email', 'sms'];
-        //scope.auth = ['email', 'sms', 'dnie'];
+        scope.auth = ConfigService.auth_methods;
         scope.electionEditable = function() {
           return !scope.election.id || scope.election.status === "registered";
         };
+        scope.goNext = NextButtonService.goNext;
+        scope.$watch('election.census.auth_method', function (newVal, oldVal) {
+          // check if any voter in the census has the authType field defined
+          function censusFilledAuthType(authType) {
+            var ret = false;
+            if (_.isArray(scope.election.census.voters) &&
+                0 < scope.election.census.voters.length) {
+              var index = 0;
+              for (; index < scope.election.census.voters.length; index++) {
+                var censusEl = scope.election.census.voters[index];
+                if (_.isObject(censusEl.metadata) && 
+                    _.isString(censusEl.metadata[authType]) &&
+                    censusEl.metadata[authType].length > 0) {
+                  ret = true;
+                  break;
+                }
+              }
+            }
+            return ret;
+          }
+
+          function removeRequiredExtra(name) {
+            if(!censusFilledAuthType(name)) {
+              // remove the name extra field
+              scope.election.census.extra_fields = 
+                _.filter(
+                  scope.election.census.extra_fields,
+                  function (ef) {
+                    return name !== ef.name;
+                  });
+              // no census data is lost if we remove the name field from 
+              // voters, so we do that
+              _.each(
+                scope.election.census.voters, 
+                function (voter) {
+                  if (_.isObject(voter.metadata)) {
+                    delete voter.metadata[name];
+                  }
+                });
+            } else {
+              _.each(scope.election.census.extra_fields, function (ef) { ef.must = false; });
+            }
+          }
+
+          scope.$evalAsync(function () {
+            if (newVal !== oldVal) {
+              if ('email' !== newVal) {
+                removeRequiredExtra("email");
+              } 
+              if ('sms' !== newVal) {
+                removeRequiredExtra("tlf");
+              }
+            }
+          });
+        }, true);
     }
 
     return {

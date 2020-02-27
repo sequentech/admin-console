@@ -1,0 +1,156 @@
+/**
+ * This file is part of agora-gui-admin.
+ * Copyright (C) 2017  Agora Voting SL <agora@agoravoting.com>
+
+ * agora-gui-admin is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * agora-gui-admin  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
+[av-abstract-setting] {
+  .collapse-icon {
+    width: 24px;
+  }
+
+  .expanded-glyphicon {
+    font-size: large;
+    margin: 5px 0px 0px 5px;
+  }
+
+  .abstract-setting {
+    margin: 15px 0px;
+  }
+
+  .collapsed-widget {
+    margin: 8px;
+    padding: 10px;
+  }
+
+  .collapsed-input {
+    height: 20px;
+    overflow: hidden;
+  }
+
+  .btn-help {
+    color: #2f7bbf;
+    background-color: #fff;
+    border-color: transparent;
+
+    &:hover {
+      border-color: #ccc;
+    }
+
+    &:active, &:focus {
+      outline: none !important;
+    }
+
+    .glyphicon {
+      font-size: 0.8em;
+    }
+  }
+
+  .title {
+    font-size: x-large;
+  }
+
+  .gray-back {
+    background-color: #f0f0f0;
+    padding: 15px 20px 10px 5px;
+    border-right: 1px;
+    border-right-style: solid;
+    border-right-color: #dedede;
+  }
+
+  .abstract-widget {
+    background-color: white;
+    padding: 10px;
+    margin: 8px;
+  }
+
+  .help-plugin {
+    padding: 15px 5px;
+    border-bottom: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #dedede;
+    border-left: 1px;
+    border-left-style: solid;
+    border-left-color: #dedede;
+    border-right: 1px;
+    border-right-style: solid;
+    border-right-color: #dedede;
+  }
+
+
+  .help-padding {
+    padding: 4px 10px;
+    border-bottom: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #dedede;
+    border-left: 1px;
+    border-left-style: solid;
+    border-left-color: #dedede;
+    border-right: 1px;
+    border-right-style: solid;
+    border-right-color: #dedede;
+  }
+
+  .abstract-setting>.rower {
+    background-color: #f0f0f0;
+    display: flex;
+
+    &.help-plugin {
+        background-color: white;
+
+        a {
+            color:  #2f7bbf;
+            border-bottom: 1px dotted;
+
+            &:hover {
+                color: #00BF7F;
+            }
+
+            &.headerlink {
+                display: none;
+            }
+        }
+
+        img {
+            margin: 25px;
+        }
+
+        h1 {
+            background-color: transparent;
+        }
+
+
+    }
+  }
+
+  .whiteback {
+    background-color: white !important;
+    padding: 0;
+    margin: 0;
+  }
+
+  .pointer {
+    cursor: pointer !important;
+  }
+
+  .nopointer {
+    cursor: default !important;
+  }
+
+  .abstract-borders {
+    border: 1px;
+    border-style: solid;
+    border-color: #dedede;
+  }
+}

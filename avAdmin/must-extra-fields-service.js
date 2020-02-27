@@ -20,23 +20,23 @@ angular.module('avAdmin')
     return function (el) {
       var ef = el.census.extra_fields;
 
-      var name = 'email';
-      var must = {};
+      var names = ['email'];
+      var must = null;
 
-      if (el.census.auth_method === 'email') {
-        name = 'email';
-        must = {
+      if (_.contains(['email', 'email-otp'], el.census.auth_method)) {
+        names = ['email'];
+        must = [{
           "must": true,
           "name": "email",
-          "type": "text",
+          "type": "email",
           "required": true,
           "min": 2,
           "max": 200,
           "required_on_authentication": true
-        };
-      } else if (el.census.auth_method === 'sms') {
-        name = 'tlf';
-        must = {
+        }];
+      } else if (_.contains(['sms', 'sms-otp'], el.census.auth_method)) {
+        names = ['tlf'];
+        must = [{
           "must": true,
           "name": "tlf",
           "type": "tlf",
@@ -44,10 +44,10 @@ angular.module('avAdmin')
           "min": 2,
           "max": 200,
           "required_on_authentication": true
-        };
+        }];
       } else if (el.census.auth_method === 'dnie') {
-        name = 'dni';
-        must = {
+        names = ['dni'];
+        must = [{
           "must": true,
           "name": "dni",
           "type": "text",
@@ -55,21 +55,90 @@ angular.module('avAdmin')
           "min": 2,
           "max": 200,
           "required_on_authentication": true
-        };
+        }];
+      } else if (el.census.auth_method === 'user-and-password') {
+        names = ['username', 'password'];
+        must = [{
+          "must": true,
+          "name": "username",
+          "type": "text",
+          "required": true,
+          "min": 3,
+          "max": 200,
+          "required_on_authentication": true
+        },
+        {
+          "must": true,
+          "name": "password",
+          "type": "password",
+          "required": true,
+          "min": 3,
+          "max": 200,
+          "required_on_authentication": true
+        }];
+      } else if (el.census.auth_method === 'email-and-password') {
+        names = ['email', 'password'];
+        must = [{
+          "must": true,
+          "name": "email",
+          "type": "email",
+          "required": true,
+          "min": 2,
+          "max": 200,
+          "required_on_authentication": true
+        },
+        {
+          "must": true,
+          "name": "password",
+          "type": "password",
+          "required": true,
+          "min": 3,
+          "max": 200,
+          "required_on_authentication": true
+        }];
+      } else if (el.census.auth_method === 'openid-connect') {
+        names = ['sub'];
+        must = [{
+          "must": true,
+          "name": "sub",
+          "type": "text",
+          "required": true,
+          "min": 1,
+          "max": 255,
+          "required_on_authentication": true
+        }];
+      }
+
+      // the authmethod doesn't have a required field so we do nothing here
+      if (must === null) {
+        return;
       }
 
       var found = false;
       ef.forEach(function(e) {
-        if (e.name === name) {
+        if (_.find(names, function(n) { return e.name === n; })) {
           found = true;
           e.must = true;
+          if ('email' === e.name) {
+            e.type = 'email';
+          } else if ('tlf' === e.name) {
+            e.type = 'tlf';
+          } else if ('dni' === e.name) {
+            e.type = 'text';
+          } else if ('username' === e.name) {
+            e.type = 'text';
+          } else if ('password' === e.name) {
+            e.type = 'password';
+          } else if ('sub' === e.name) {
+            e.type = 'text';
+          }
         } else {
           e.must = false;
         }
       });
 
       if (!found) {
-        ef.push(must);
+        _.each(must, function(m) { ef.push(m); });
       }
     };
   });
