@@ -278,7 +278,7 @@ angular.module('avAdmin')
 
             electionsapi.command(el, 'stats', 'GET')
                 .then(function(d) {
-                        el.stats = d.payload;
+                        el.stats = d.data.payload;
                         deferred.resolve(el);
                       })
                  .catch(deferred.reject);
