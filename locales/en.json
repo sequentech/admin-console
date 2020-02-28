@@ -257,6 +257,10 @@
     },
     "elections": {
         "filter": "Filter...",
+        "list": {
+          "all": "All",
+          "archived": "Archived"
+        },
         "test": "test",
         "draft": "draft",
         "real": "real",

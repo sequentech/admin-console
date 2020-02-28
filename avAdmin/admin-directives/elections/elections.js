@@ -25,11 +25,11 @@ angular.module('avAdmin')
             scope.page = 1;
             scope.loading = false;
             scope.nomore = false;
-            scope.listType = 'all';
+            scope.listType = {type: 'all'};
             scope.elections = [];
 
             function setListType(listType) {
-                scope.listType = listType;
+                scope.list.type = listType;
             }
 
             function maybeStartOnboarding() {
@@ -64,7 +64,7 @@ angular.module('avAdmin')
                 }
 
                 Authmethod
-                    .electionsIds(scope.page, scope.listType)
+                    .electionsIds(scope.page, scope.list.type)
                     .then(
                         function(response) {
                             scope.page += 1;

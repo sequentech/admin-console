@@ -137,6 +137,10 @@
         "adminFields": "Admin fields"
     },
     "elections": {
+        "list": {
+          "all": "Todas",
+          "archived": "Archivadas"
+        },
         "filter": "Filtrar...",
         "test": "prueba",
         "draft": "borrador",
