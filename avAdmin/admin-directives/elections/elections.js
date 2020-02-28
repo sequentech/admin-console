@@ -25,7 +25,7 @@ angular.module('avAdmin')
             scope.page = 1;
             scope.loading = false;
             scope.nomore = false;
-            scope.listType = {type: 'all'};
+            scope.list = {type: 'all'};
             scope.elections = [];
 
             function setListType(listType) {
