@@ -38,8 +38,8 @@ angular.module('avAdmin')
               }
             }
 
-            function loadMoreElections() {
-                if (scope.loading || scope.nomore) {
+            function loadMoreElections(force) {
+                if (scope.loading || !force && scope.nomore) {
                     return;
                 }
                 scope.loading = true;
@@ -89,7 +89,7 @@ angular.module('avAdmin')
             function setListType(listType) {
                 scope.list.type = listType;
                 scope.page = 1;
-                scope.loadMoreElections();
+                scope.loadMoreElections(true);
             }
 
             scope.exhtml = [];
