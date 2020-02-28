@@ -39,7 +39,7 @@ angular.module('avAdmin')
             }
 
             function loadMoreElections(force) {
-                if (scope.loading || !force && scope.nomore) {
+                if (scope.loading || scope.nomore) {
                     return;
                 }
                 scope.loading = true;
@@ -91,6 +91,8 @@ angular.module('avAdmin')
             function setListType(listType) {
                 scope.list.type = listType;
                 scope.page = 1;
+                scope.nomore = false;
+                scope.elections.splice(0, scope.elections.length);
                 scope.loadMoreElections(true);
             }
 
