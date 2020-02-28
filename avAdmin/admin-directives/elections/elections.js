@@ -28,10 +28,6 @@ angular.module('avAdmin')
             scope.list = {type: 'all'};
             scope.elections = [];
 
-            function setListType(listType) {
-                scope.list.type = listType;
-            }
-
             function maybeStartOnboarding() {
               // launch the onboarding tour if the profile has been correctly
               // filled up and the election list is zero
@@ -88,6 +84,12 @@ angular.module('avAdmin')
                             scope.error = response.data;
                         }
                     );
+            }
+
+            function setListType(listType) {
+                scope.list.type = listType;
+                scope.page = 1;
+                scope.loadMoreElections();
             }
 
             scope.exhtml = [];
