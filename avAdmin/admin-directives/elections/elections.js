@@ -66,9 +66,11 @@ angular.module('avAdmin')
                             scope.page += 1;
 
                             $window.electionsTotalCount = response.data.total_count;
-                            AdminProfile
-                                .openProfileModal(true)
-                                .then(maybeStartOnboarding, maybeStartOnboarding);
+                            if (!force) {
+                                AdminProfile
+                                    .openProfileModal(true)
+                                    .then(maybeStartOnboarding, maybeStartOnboarding);
+                            }
 
                             if (response.data.end_index === response.data.total_count) {
                                 scope.nomore = true;
