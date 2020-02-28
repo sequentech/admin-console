@@ -20,6 +20,16 @@
                 </span>
               </div>
             </th>
+            <th>
+              <ul class="nav nav-pills">
+                <li role="presentation" ng-class="{'active': listType === 'all'}">
+                  <a ng-click="setListType('all')">avAdmin.elections.list.all</a>
+                </li>
+                <li role="presentation" ng-class="{'active': listType === 'archived'}">
+                  <a ng-click="setListType('archived')" ng-i18next>avAdmin.elections.list.archived</a>
+                </li>
+              </ul>
+            </th>
             <th class="text-center" ng-i18next> avAdmin.elections.status </th>
             <th class="text-center" ng-i18next> avAdmin.elections.participation </th>
           </tr>
