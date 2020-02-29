@@ -226,6 +226,18 @@ angular.module('avAdmin')
           iconClass: 'fa fa-paper-plane-o',
           actionFunc: function() { return scope.sendAuthCodes(); },
           enableFunc: function() { return 'started' === scope.election.status; }
+        },
+        {
+          i18nString: 'archiveElection',
+          iconClass: 'fa fa-archive',
+          actionFunc: function() { return scope.archiveElection("archive"); },
+          enableFunc: function() { return true; }
+        },
+        {
+          i18nString: 'unarchiveElection',
+          iconClass: 'fa fa-folder-open-o',
+          actionFunc: function() { return scope.archiveElection("unarchive"); },
+          enableFunc: function() { return true; }
         }
       ];
 
@@ -409,6 +421,32 @@ angular.module('avAdmin')
             }
           }).result.then(function(whateverReturned) {
           });
+        }
+      }
+
+      function archiveElection(mode) {
+        if(ConfigService.share_social.allow_edit) {
+          $modal.open({
+            templateUrl: "avAdmin/admin-directives/dashboard/confirm-modal.html",
+            controller: "ConfirmModal",
+            size: 'lg',
+            resolve: {
+              dialogName: function () { return mode; },
+            }
+          }).result.then(
+            function confirmed() {
+              var method = {
+                'archive': Authmethod.archive,
+                'unarchive': Authmethod.unarchive,
+              };
+              
+              method[mode](scope.election.id)
+                .then(
+                  function onSuccess() {}, 
+                  function onError(response) { scope.error = response.data; }
+                );  
+            }
+          );
         }
       }
 
