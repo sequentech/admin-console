@@ -322,8 +322,8 @@
           "actionsLabel": "Actions",
           "changeSocial": "Edit social...",
           "sendAuthCodes": "Send auth codes...",
-          "archive": "Archive election...",
-          "unarchive": "Unarchive election..."
+          "archiveElection": "Archive election...",
+          "unarchiveElection": "Unarchive election..."
         },
         "modals": {
           "createHeader": "Create election",

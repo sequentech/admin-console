@@ -173,7 +173,6 @@
         "duplicateElection": "Duplicar votación",
         "sendAuthCodes": "Enviar autenticación",
         "donow": "pulsa para hacer ahora",
-        "votes": "Votos",
         "census": "Censo",
         "questions": "Preguntas",
         "answers": "Respuestas",
@@ -203,7 +202,9 @@
         "actions": {
           "actionsLabel": "Acciones",
           "changeSocial": "Editar social...",
-          "sendAuthCodes": "Enviar autenticación..."
+          "sendAuthCodes": "Enviar autenticación...",
+          "archiveElection": "Archivar votación...",
+          "unarchiveElection": "Desarchivar votación..."
         },
         "modals": {
           "createHeader": "Crear votación",
@@ -277,6 +278,16 @@
 
               "unknownError": "Los mensajes no fueron enviados ni cobrados. Un error no catalogado ocurrió mientras se enviaban los mensajes. Si el problema persiste, por favor contacta con nosotros enviando un email __email__ o llamándonos al __tlf__."
             }
+          },
+          "archive": {
+            "header": "Confirmar archivar votación",
+            "body": "Esta acción archivará la votación. Fracasará si la votación ya está archivada. Archivar una votación elimina la votación de la lista de votaciones en la interfaz de administración, pero aún se puede acceder desde la lista de votaciones archivadas. También se puede desarchivar más tarde.",
+            "confirmButton": "Archivar votación"
+          },
+          "unarchive": {
+            "header": "Confirmar desarchivar votación",
+            "body": "Esta acción desarchivar la votación. Fracasará si la votación no se encuentra actualmente en estado archivado. Desarchivar una votación hace que vuelva a aparecer en la lista de votaciones en la interfaz de administración. También se puede archivar nuevamente más tarde.",
+            "confirmButton": "Desarchivar votación"
           }
         }
     },
