@@ -25,6 +25,7 @@ angular.module('avAdmin')
             scope.page = 1;
             scope.loading = false;
             scope.nomore = false;
+            scope.list = {type: 'all'};
             scope.elections = [];
 
             function maybeStartOnboarding() {
@@ -37,7 +38,7 @@ angular.module('avAdmin')
               }
             }
 
-            function loadMoreElections() {
+            function loadMoreElections(force) {
                 if (scope.loading || scope.nomore) {
                     return;
                 }
@@ -59,15 +60,17 @@ angular.module('avAdmin')
                 }
 
                 Authmethod
-                    .electionsIds(scope.page)
+                    .electionsIds(scope.page, scope.list.type)
                     .then(
                         function(response) {
                             scope.page += 1;
 
                             $window.electionsTotalCount = response.data.total_count;
-                            AdminProfile
-                                .openProfileModal(true)
-                                .then(maybeStartOnboarding, maybeStartOnboarding);
+                            if (!force) {
+                                AdminProfile
+                                    .openProfileModal(true)
+                                    .then(maybeStartOnboarding, maybeStartOnboarding);
+                            }
 
                             if (response.data.end_index === response.data.total_count) {
                                 scope.nomore = true;
@@ -85,6 +88,14 @@ angular.module('avAdmin')
                     );
             }
 
+            function setListType(listType) {
+                scope.list.type = listType;
+                scope.page = 1;
+                scope.nomore = false;
+                scope.elections.splice(0, scope.elections.length);
+                scope.loadMoreElections(true);
+            }
+
             scope.exhtml = [];
             Plugins.hook(
             'admin-elections-list-extra-html',
@@ -95,6 +106,7 @@ angular.module('avAdmin')
 
             angular.extend(scope, {
               loadMoreElections: loadMoreElections,
+              setListType: setListType
             });
         }
 

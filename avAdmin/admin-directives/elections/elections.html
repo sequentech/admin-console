@@ -19,6 +19,14 @@
                   <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
                 </span>
               </div>
+              <ul class="nav nav-pills">
+                <li role="presentation" ng-class="{'active': list.type === 'all'}">
+                  <a ng-click="setListType('all')" ng-i18next>avAdmin.elections.list.all</a>
+                </li>
+                <li role="presentation" ng-class="{'active': list.type === 'archived'}">
+                  <a ng-click="setListType('archived')" ng-i18next>avAdmin.elections.list.archived</a>
+                </li>
+              </ul>
             </th>
             <th class="text-center" ng-i18next> avAdmin.elections.status </th>
             <th class="text-center" ng-i18next> avAdmin.elections.participation </th>
