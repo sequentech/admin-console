@@ -425,29 +425,27 @@ angular.module('avAdmin')
       }
 
       function archiveElection(mode) {
-        if(ConfigService.share_social.allow_edit) {
-          $modal.open({
-            templateUrl: "avAdmin/admin-directives/dashboard/confirm-modal.html",
-            controller: "ConfirmModal",
-            size: 'lg',
-            resolve: {
-              dialogName: function () { return mode; },
-            }
-          }).result.then(
-            function confirmed() {
-              var method = {
-                'archive': Authmethod.archive,
-                'unarchive': Authmethod.unarchive,
-              };
+        $modal.open({
+          templateUrl: "avAdmin/admin-directives/dashboard/confirm-modal.html",
+          controller: "ConfirmModal",
+          size: 'lg',
+          resolve: {
+            dialogName: function () { return mode; },
+          }
+        }).result.then(
+          function confirmed() {
+            var method = {
+              'archive': Authmethod.archive,
+              'unarchive': Authmethod.unarchive,
+            };
 
-              method[mode](scope.election.id)
-                .then(
-                  function onSuccess() {}, 
-                  function onError(response) { scope.error = response.data; }
-                );  
-            }
-          );
-        }
+            method[mode](scope.election.id)
+              .then(
+                function onSuccess() {}, 
+                function onError(response) { scope.error = response.data; }
+              );  
+          }
+        );
       }
 
       angular.extend(scope, {
