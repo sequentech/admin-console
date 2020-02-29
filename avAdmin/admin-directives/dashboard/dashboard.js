@@ -439,7 +439,7 @@ angular.module('avAdmin')
                 'archive': Authmethod.archive,
                 'unarchive': Authmethod.unarchive,
               };
-              
+
               method[mode](scope.election.id)
                 .then(
                   function onSuccess() {}, 
@@ -455,7 +455,8 @@ angular.module('avAdmin')
         doActionConfirm: doActionConfirm,
         sendAuthCodes: sendAuthCodes,
         duplicateElection: duplicateElection,
-        changeSocial: changeSocial
+        changeSocial: changeSocial,
+        archiveElection: archiveElection
       });
     }
 
