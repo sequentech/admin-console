@@ -305,7 +305,7 @@ angular.module('avAdmin')
 
             electionsapi.command(el, 'results', 'GET')
                 .then(function(d) {
-                        el.results = angular.fromJson(d.payload);
+                        el.results = angular.fromJson(d.data.payload);
                         deferred.resolve(el);
                       })
                  .catch(deferred.reject);
@@ -427,7 +427,7 @@ angular.module('avAdmin')
             }
 
             function getAuthCensus(d) {
-              var voters = d.payload;
+              var voters = d.data.payload;
               var deferred = $q.defer();
               var params = {};
 
