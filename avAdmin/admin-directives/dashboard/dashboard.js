@@ -149,7 +149,7 @@ angular.module('avAdmin')
           doAction: function (mode)
           {
             // tally command
-            var command = commands[5];
+            var command = commands[4];
 
             if (mode === 'all') {
               ElectionsApi.command(
@@ -439,7 +439,7 @@ angular.module('avAdmin')
           i18nString: 'calculateResults',
           iconClass: 'fa fa-calculator',
           actionFunc: function() { 
-            return doActionConfirm(4); // calculate results
+            return doActionConfirm(5); // calculate results
           },
           enableFunc: function() { 
             return ['stopped', 'tally_ok', 'results_ok'].indexOf(scope.election.status) !== -1;
