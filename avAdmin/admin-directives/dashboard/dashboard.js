@@ -107,7 +107,7 @@ angular.module('avAdmin')
                 scope.index = statuses.indexOf(el.status) + 1;
                 scope.nextaction = nextactions[scope.index - 1];
 
-                if (el.status === 'results_ok') {
+                if (el.status === 'results_ok' || el.status === 'stopped') {
                   ElectionsApi.results(el);
                   if (!!ConfigService.always_publish) {
                     scope.loading = true;
