@@ -149,7 +149,7 @@ angular.module('avAdmin')
           doAction: function (mode)
           {
             // tally command
-            var command = commands[4];
+            var command = commands[5];
 
             if (mode === 'all') {
               ElectionsApi.command(
@@ -205,7 +205,7 @@ angular.module('avAdmin')
             var ignorecache = true;
             ElectionsApi.getElection(id, ignorecache)
               .then(function(el) {
-                 if ('tally_ok' === el.status || 'results_ok' === el.status) {
+                 if ('tally_ok' === el.status || 'results_ok' === el.status || 'stopped' === el.status) {
                    calculateResults(el);
                  }
               });
