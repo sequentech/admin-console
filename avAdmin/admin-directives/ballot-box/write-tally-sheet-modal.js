@@ -38,7 +38,7 @@ angular.module('avAdmin')
         $scope.step = step;
       };
 
-      $scope.tallySheet = tallySheet || {
+      $scope.tallySheet = !!tallySheet && tallySheet.data || {
         id: ElectionsApi.currentElection.id,
         title: ElectionsApi.currentElection.title,
 

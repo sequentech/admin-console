@@ -138,7 +138,7 @@
     },
     "elections": {
         "list": {
-          "all": "Todas",
+          "all": "Activas",
           "archived": "Archivadas"
         },
         "filter": "Filtrar...",
