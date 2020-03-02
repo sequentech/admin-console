@@ -1045,14 +1045,6 @@ angular.module('avAdmin')
             createElections();
         }
 
-        function checkMustExtra() {
-            var index = 0;
-            for (; index < scope.elections.length; index++) {
-              MustExtraFieldsService(scope.elections[index]);
-            }
-        }
-        checkMustExtra();
-
         scope.$watch("elections", function (newVal, oldVal) {
           scope.$evalAsync(checkMustExtra);
         }, true);
