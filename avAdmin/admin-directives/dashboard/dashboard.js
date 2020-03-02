@@ -254,7 +254,7 @@ angular.module('avAdmin')
             scope.nextaction = nextactions[scope.index - 1];
           }
 
-          if (el.status === 'results_ok') {
+          if (el.status === 'results_ok' || el.status === 'stopped') {
             ElectionsApi.results(el);
           }
 
