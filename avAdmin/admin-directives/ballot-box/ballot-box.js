@@ -65,8 +65,8 @@ angular.module('avAdmin')
             null,
             scope.filterOptions,
             scope.filterStr)
-        .success(
-            function(data)
+        .then(
+            function onSuccess(response)
             {
                 scope.page += 1;
                 if (scope.reloading)
@@ -74,19 +74,17 @@ angular.module('avAdmin')
                     scope.reloading = false;
                 }
 
-                _.each(data.object_list, function (obj) {
+                _.each(response.data.object_list, function (obj) {
                     scope.object_list.push(obj);
                 });
 
-                if (data.end_index === data.total_count) {
+                if (response.data.end_index === response.data.total_count) {
                     scope.nomore = true;
                 }
                 scope.loading = false;
-            }
-        )
-        .error(
-            function(data) {
-                scope.error = data;
+            },
+            function onError(response) {
+                scope.error = response.data;
                 scope.loading = false;
 
                 if (scope.reloading) {
@@ -195,15 +193,15 @@ angular.module('avAdmin')
               ballotBox.id,
               null
             )
-          .success(
-            function(tallySheet)
+          .then(
+            function onSuccess(response)
             {
               $modal.open({
                 templateUrl: "avAdmin/admin-directives/ballot-box/view-tally-sheet-modal.html",
                 controller: "ViewTallySheetModal",
                 windowClass: "view-tally-sheet-modal",
                 resolve: {
-                  tallySheet: function () { return tallySheet; },
+                  tallySheet: function () { return response.data; },
                   allowEdit: function () { return true; },
                   ballotBox: function () { return ballotBox; },
                   electionId: function () { return scope.electionId; },
@@ -251,7 +249,7 @@ angular.module('avAdmin')
           },
           enableFunc: function(ballotBox) {
             return (
-              ['stopped', 'tally_ok'].indexOf(ElectionsApi.currentElection.status) !== -1 && (
+              ['stopped', 'tally_ok', 'results_ok'].indexOf(ElectionsApi.currentElection.status) !== -1 && (
                 (
                 ballotBox.num_tally_sheets > 0 &&
                 ElectionsApi.getCachedEditPerm(scope.electionId).indexOf('override-tally-sheets') !== -1
@@ -273,15 +271,15 @@ angular.module('avAdmin')
               ballotBox.id,
               null
             )
-          .success(
-            function(tallySheet)
+          .then(
+            function onSuccess(response)
             {
               $modal.open({
                 templateUrl: "avAdmin/admin-directives/ballot-box/delete-tally-sheet-modal.html",
                 controller: "DeleteTallySheetModal",
                 resolve: {
                   ballotBox: function () { return ballotBox; },
-                  tallySheetId: function () { return tallySheet.id; },
+                  tallySheetId: function () { return response.data.id; },
                   electionId: function () { return scope.electionId; },
                 }
               })
@@ -347,28 +345,28 @@ angular.module('avAdmin')
           {ballotbox__id__equals: $location.search().ballot_box_id},
           ""
         )
-        .success(
-          function(data)
+        .then(
+          function onSuccess(response)
           {
-            if (data.total_count !== 1) {
+            if (response.data.total_count !== 1) {
               return;
             }
-            var ballotBox = data.object_list[0];
+            var ballotBox = response.data.object_list[0];
 
             Authmethod.getTallySheet(
               scope.electionId,
               ballotBox.id,
               $location.search().view_tally_sheet_id
             )
-            .success(
-              function(tallySheet)
+            .then(
+              function onSuccess(tallySheetResponse)
               {
                 $modal.open({
                   templateUrl: "avAdmin/admin-directives/ballot-box/view-tally-sheet-modal.html",
                   controller: "ViewTallySheetModal",
                   windowClass: "view-tally-sheet-modal",
                   resolve: {
-                    tallySheet: function () { return tallySheet; },
+                    tallySheet: function () { return tallySheetResponse.data; },
                     allowEdit: function () { return true; },
                     ballotBox: function () { return ballotBox; },
                     electionId: function () { return scope.electionId; },
@@ -402,13 +400,13 @@ angular.module('avAdmin')
             activity__id__equals: action_id
           }
         )
-        .success(
-          function(data)
+        .then(
+          function onSuccess(response)
           {
-            if (data.total_count !== 1) {
+            if (response.data.total_count !== 1) {
               return;
             }
-            var action = data.activity[0];
+            var action = response.data.activity[0];
 
             $modal.open({
               templateUrl: "avAdmin/admin-directives/ballot-box/view-tally-sheet-modal.html",

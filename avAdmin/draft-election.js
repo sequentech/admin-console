@@ -50,14 +50,16 @@ angular.module('avAdmin')
           }
 
           Authmethod.getUserDraft()
-            .success(function (data) {
-              election = data;
-              deferred.resolve(election);
-            })
-            .error(function (error) {
-              console.log("error downloading draft: " + error);
-              deferred.reject(error);
-            });
+            .then(
+              function onSuccess(response) {
+                election = response.data;
+                deferred.resolve(election);
+              },
+              function onError(response) {
+                console.log("error downloading draft: " + response.data);
+                deferred.reject(response.data);
+              }
+            );
           return deferred.promise;
         };
 
@@ -95,11 +97,13 @@ angular.module('avAdmin')
           }
 
           Authmethod.uploadUserDraft(election)
-            .success(function (data) {
-            })
-            .error(function (error) {
-              console.log("error uploading draft: " + error);
-            });
+            .then(
+              function onSuccess(data) {
+              },
+              function onError(response) {
+                console.log("error uploading draft: " + response.data);
+              }
+            );
           promise = $timeout(draft_election.updateDraft, 60000);
         };
 
@@ -109,9 +113,9 @@ angular.module('avAdmin')
           if (!_.isUndefined(promise)) {
             $timeout.cancel(promise);
           }
-          Authmethod.uploadUserDraft({})
-            .success(deferred.resolve)
-            .error(deferred.reject);
+          Authmethod
+            .uploadUserDraft({})
+            .then(deferred.resolve, deferred.reject);
           return deferred.promise;
         };
 

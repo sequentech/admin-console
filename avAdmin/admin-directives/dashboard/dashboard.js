@@ -60,6 +60,61 @@ angular.module('avAdmin')
 
       scope.calculateResultsJson = "";
 
+      function calculateResults(el) {
+        if ('tally_ok' !== el.status && 'results_ok' !== el.status) {
+          return;
+        }
+
+        scope.loading = true;
+        scope.prevStatus = 'tally_ok';
+        scope.waiting = true;
+        /* jshint ignore:start */
+        setTimeout(waitElectionChange, 1000);
+        /* jshint ignore:end */
+
+        var path = 'calculate-results';
+        var method = 'POST';
+        ElectionsApi.command(el, path, method, scope.calculateResultsJson)
+          .catch(function(error) { scope.loading = false; scope.error = error; });
+      }
+
+      function waitElectionChange() {
+        var ignorecache = true;
+        ElectionsApi.getElection(id, ignorecache)
+          .then(function(el) {
+            if (el.status === scope.prevStatus && scope.waiting) {
+              setTimeout(waitElectionChange, 1000);
+            } else {
+              scope.waiting = false;
+              scope.loading = false;
+              scope.prevStatus = null;
+              Plugins.hook('election-modified', {old: scope.election, el: el, calculateResults: calculateResults});
+              scope.election = el;
+
+              scope.intally = el.status === 'doing_tally';
+              if (scope.intally) {
+                scope.index = statuses.indexOf('stopped') + 1;
+                scope.nextaction = false;
+                scope.prevStatus = scope.election.status;
+                scope.waiting = true;
+                waitElectionChange();
+              } else {
+                scope.index = statuses.indexOf(el.status) + 1;
+                scope.nextaction = nextactions[scope.index - 1];
+
+                if (el.status === 'results_ok') {
+                  ElectionsApi.results(el);
+                  if (!!ConfigService.always_publish) {
+                    scope.loading = true;
+                    scope.prevStatus = scope.election.status;
+                    scope.waiting = true;
+                    setTimeout(waitElectionChange, 1000);
+                  }
+                }
+              }
+            }
+          });
+      }
 
       var commands = [
         {path: 'register', method: 'GET'},
@@ -171,6 +226,18 @@ angular.module('avAdmin')
           iconClass: 'fa fa-paper-plane-o',
           actionFunc: function() { return scope.sendAuthCodes(); },
           enableFunc: function() { return 'started' === scope.election.status; }
+        },
+        {
+          i18nString: 'archiveElection',
+          iconClass: 'fa fa-archive',
+          actionFunc: function() { return scope.archiveElection("archive"); },
+          enableFunc: function() { return true; }
+        },
+        {
+          i18nString: 'unarchiveElection',
+          iconClass: 'fa fa-folder-open-o',
+          actionFunc: function() { return scope.archiveElection("unarchive"); },
+          enableFunc: function() { return true; }
         }
       ];
 
@@ -336,30 +403,78 @@ angular.module('avAdmin')
           .catch(function(error) { scope.loading = false; scope.error = error; });
 
         if (c.path === 'start') {
-          Authmethod.changeAuthEvent(scope.election.id, 'started')
-            .error(function(error) { scope.loading = false; scope.error = error; });
+          Authmethod
+            .changeAuthEvent(scope.election.id, 'started')
+            .then(
+              function onSuccess(){}, 
+              function onError(response) { scope.loading = false; scope.error = response.data; }
+            );
         }
 
         if (c.path === 'stop') {
-          Authmethod.changeAuthEvent(scope.election.id, 'stopped')
-            .error(function(error) { scope.loading = false; scope.error = error; });
+          Authmethod
+            .changeAuthEvent(scope.election.id, 'stopped')
+            .then(
+              function onSuccess(){}, 
+              function onError(response) { scope.loading = false; scope.error = response.data; }
+            );
         }
       }
 
-      function calculateResults(el) {
-          if ('tally_ok' !== el.status && 'results_ok' !== el.status) {
+      function doActionConfirm(index) {
+        if (scope.intally) {
+          return;
+        }
+        var command = commands[index];
+
+        // This hook allows plugins to interrupt this function. This interruption
+        // usually happens because the plugin does some processing and decides to
+        // show another previous dialog at this step, for example.
+        var pluginData = {
+          election: scope.election,
+          command: command,
+          deferred: false
+        };
+
+        if (!Plugins.hook(
+          'dashboard-before-do-action',
+          pluginData))
+        {
+          return;
+        }
+
+        function doActionConfirmBulk() {
+          if (!angular.isDefined(command.confirmController)) {
+            doAction(index);
             return;
           }
+          var payload = {};
+          if(angular.isDefined(command.payload)) {
+            payload = command.payload;
+          }
 
-          scope.loading = true;
-          scope.prevStatus = 'tally_ok';
-          scope.waiting = true;
-          setTimeout(waitElectionChange, 1000);
+          $modal.open({
+            templateUrl: command.confirmTemplateUrl,
+            controller: command.confirmController,
+            size: 'lg',
+            resolve: {
+              payload: function () { return payload; }
+            }
+          }).result.then(function (data) {
+            doAction(index, data);
+          });
+        }
 
-          var path = 'calculate-results';
-          var method = 'POST';
-          ElectionsApi.command(el, path, method, scope.calculateResultsJson)
-            .catch(function(error) { scope.loading = false; scope.error = error; });
+        if (!pluginData.deferred) {
+          doActionConfirmBulk();
+        } else {
+          pluginData.deferred.promise
+          .then(function (futureData) {
+            doActionConfirmBulk();
+          })
+          .catch(function (failureData) {
+          });
+        }
       }
 
       function sendAuthCodes() {
@@ -405,12 +520,37 @@ angular.module('avAdmin')
         }
       }
 
+      function archiveElection(mode) {
+        $modal.open({
+          templateUrl: "avAdmin/admin-directives/dashboard/confirm-modal.html",
+          controller: "ConfirmModal",
+          size: 'lg',
+          resolve: {
+            dialogName: function () { return mode; },
+          }
+        }).result.then(
+          function confirmed() {
+            var method = {
+              'archive': Authmethod.archive,
+              'unarchive': Authmethod.unarchive,
+            };
+
+            method[mode](scope.election.id)
+              .then(
+                function onSuccess() {}, 
+                function onError(response) { scope.error = response.data; }
+              );  
+          }
+        );
+      }
+
       angular.extend(scope, {
         doAction: doAction,
         doActionConfirm: doActionConfirm,
         sendAuthCodes: sendAuthCodes,
         duplicateElection: duplicateElection,
-        changeSocial: changeSocial
+        changeSocial: changeSocial,
+        archiveElection: archiveElection
       });
     }
 

@@ -16,37 +16,15 @@
 **/
 
 angular.module('avAdmin')
-  .controller(
-    'DeleteBallotBoxModal',
-    function(
-      $scope,
-      $modalInstance,
-      electionId,
-      ballotBox,
-      Authmethod,
-      ConfigService
-    ) {
-      $scope.electionId = electionId;
-      $scope.ballotBox = ballotBox;
-      $scope.deleteText = {text: ""};
+  .controller('ConfirmModal',
+    function($scope, $modalInstance, ConfigService, dialogName) {
       $scope.helpurl = ConfigService.helpUrl;
-      $scope.ok = function ()
-      {
-        Authmethod.deleteBallotBox($scope.electionId, ballotBox.id)
-          .then(
-            function onSuccess(response)
-            {
-              $modalInstance.close();
-            },
-            function onError(response) {
-              $scope.errorDeleteBox = response.data;
-            }
-          );
+      $scope.dialogName = dialogName;
+      $scope.ok = function () {
+        $modalInstance.close();
       };
 
-      $scope.cancel = function ()
-      {
+      $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
       };
-    }
-  );
+    });

@@ -137,6 +137,10 @@
         "adminFields": "Admin fields"
     },
     "elections": {
+        "list": {
+          "all": "Todas",
+          "archived": "Archivadas"
+        },
         "filter": "Filtrar...",
         "test": "prueba",
         "draft": "borrador",
@@ -169,7 +173,6 @@
         "duplicateElection": "Duplicar votación",
         "sendAuthCodes": "Enviar autenticación",
         "donow": "pulsa para hacer ahora",
-        "votes": "Votos",
         "census": "Censo",
         "questions": "Preguntas",
         "answers": "Respuestas",
@@ -199,7 +202,9 @@
         "actions": {
           "actionsLabel": "Acciones",
           "changeSocial": "Editar social...",
-          "sendAuthCodes": "Enviar autenticación..."
+          "sendAuthCodes": "Enviar autenticación...",
+          "archiveElection": "Archivar votación...",
+          "unarchiveElection": "Desarchivar votación..."
         },
         "modals": {
           "createHeader": "Crear votación",
@@ -273,6 +278,16 @@
 
               "unknownError": "Los mensajes no fueron enviados ni cobrados. Un error no catalogado ocurrió mientras se enviaban los mensajes. Si el problema persiste, por favor contacta con nosotros enviando un email __email__ o llamándonos al __tlf__."
             }
+          },
+          "archive": {
+            "header": "Confirmar archivar votación",
+            "body": "Esta acción archivará la votación. Fracasará si la votación ya está archivada. Archivar una votación elimina la votación de la lista de votaciones en la interfaz de administración, pero aún se puede acceder desde la lista de votaciones archivadas. También se puede desarchivar más tarde.",
+            "confirmButton": "Archivar votación"
+          },
+          "unarchive": {
+            "header": "Confirmar desarchivar votación",
+            "body": "Esta acción desarchivar la votación. Fracasará si la votación no se encuentra actualmente en estado archivado. Desarchivar una votación hace que vuelva a aparecer en la lista de votaciones en la interfaz de administración. También se puede archivar nuevamente más tarde.",
+            "confirmButton": "Desarchivar votación"
           }
         }
     },
@@ -422,6 +437,7 @@
         "codeOption": "código",
         "textOption": "texto",
         "tlfOption": "teléfono",
+        "dateOption": "fecha",
         "intOption": "entero",
         "boolOption": "booleano",
         "fieldRegExLabel": "Expresión regular",
@@ -463,7 +479,7 @@
     "auth": {
         "intro": "La autenticación se usa para asegurar que un elector es quien dice ser. Aquí tienes que llegar a un compromiso entre seguridad, usabilidad y coste",
         "auth": "Método de autenticación",
-        "auths": {"email": "Correo electrónico", "sms": "SMS", "dnie": "DNI electrónico"},
+        "auths": {"email": "Correo electrónico", "sms": "SMS", "dnie": "DNI electrónico", "user-and-password": "Usuario y contraseña"},
         "sms": "Mensaje SMS",
         "smstemp": "Plantilla usada en el SMS a enviar al usuario. Usa __CODE__ para insertar el código SMS y __URL__ para insertar el enlace de votación, o __URL2__ para insertar un enlace que incluya el código",
         "smsdef": "Este es tu código de votación __CODE__",

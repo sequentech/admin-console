@@ -254,17 +254,17 @@
                   <dt>{{ q.totals.valid_votes|number }}</dt>
                   <dd>
                       <span ng-i18next>avAdmin.dashboard.optionvotes</span>
-                      <span>({{ percentVotes(q.totals.valid_votes, q) }})</span>
+                      <span>({{ percentVotes(q.totals.valid_votes, q, "over-all") }})</span>
                   </dd>
                   <dt>{{ q.totals.blank_votes }}</dt>
                   <dd>
                       <span ng-i18next>avAdmin.dashboard.blankvotes</span>
-                      <span>({{ percentVotes(q.totals.blank_votes, q) }})</span>
+                      <span>({{ percentVotes(q.totals.blank_votes, q, "over-all") }})</span>
                   </dd>
                   <dt>{{ q.totals.null_votes }}</dt>
                   <dd>
                       <span ng-i18next>avAdmin.dashboard.nullvotes</span>
-                      <span>({{ percentVotes(q.totals.null_votes, q) }})</span>
+                      <span>({{ percentVotes(q.totals.null_votes, q, "over-all") }})</span>
                   </dd>
                 </dl>
             </div>
@@ -282,7 +282,7 @@
                 <td>{{ $index + 1 }}</td>
                 <td ng-bind-html="an.text"></td>
                 <td>{{ an.total_count|number }}</td>
-                <td>{{ percentVotes(an.total_count, q, "over-valid-votes") }}</td>
+                <td>{{ percentVotes(an.total_count, q) }}</td>
                 <td ng-if="an.winner_position === 0 || an.winner_position">{{ an.winner_position + 1}}</td>
                 <td ng-if="!(an.winner_position === 0 || an.winner_position)">--</td>
             </tr>

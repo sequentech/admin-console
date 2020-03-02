@@ -25,6 +25,7 @@ angular.module('avAdmin')
             scope.page = 1;
             scope.loading = false;
             scope.nomore = false;
+            scope.list = {type: 'all'};
             scope.elections = [];
 
             function maybeStartOnboarding() {
@@ -37,7 +38,7 @@ angular.module('avAdmin')
               }
             }
 
-            function loadMoreElections() {
+            function loadMoreElections(force) {
                 if (scope.loading || scope.nomore) {
                     return;
                 }
@@ -58,27 +59,41 @@ angular.module('avAdmin')
                     });
                 }
 
-                Authmethod.electionsIds(scope.page)
-                    .success(function(data) {
-                        scope.page += 1;
+                Authmethod
+                    .electionsIds(scope.page, scope.list.type)
+                    .then(
+                        function(response) {
+                            scope.page += 1;
 
-                        $window.electionsTotalCount = data.total_count;
-                        AdminProfile.openProfileModal(true)
-                          .then(maybeStartOnboarding,maybeStartOnboarding);
+                            $window.electionsTotalCount = response.data.total_count;
+                            if (!force) {
+                                AdminProfile
+                                    .openProfileModal(true)
+                                    .then(maybeStartOnboarding, maybeStartOnboarding);
+                            }
 
-                        if (data.end_index === data.total_count) {
-                            scope.nomore = true;
+                            if (response.data.end_index === response.data.total_count) {
+                                scope.nomore = true;
+                            }
+
+                            // here we've the elections id, then we need to ask to
+                            // ElectionsApi for each election and load it.
+                            scope.loading = response.data.perms.length;
+                            getAllElections(response.data.perms);
+                        },
+                        function onError(response) {
+                            scope.loading = false;
+                            scope.error = response.data;
                         }
+                    );
+            }
 
-                        // here we've the elections id, then we need to ask to
-                        // ElectionsApi for each election and load it.
-                        scope.loading = data.perms.length;
-                        getAllElections(data.perms);
-                    })
-                    .error(function(data) {
-                        scope.loading = false;
-                        scope.error = data;
-                    });
+            function setListType(listType) {
+                scope.list.type = listType;
+                scope.page = 1;
+                scope.nomore = false;
+                scope.elections.splice(0, scope.elections.length);
+                scope.loadMoreElections(true);
             }
 
             scope.exhtml = [];
@@ -91,6 +106,7 @@ angular.module('avAdmin')
 
             angular.extend(scope, {
               loadMoreElections: loadMoreElections,
+              setListType: setListType
             });
         }
 

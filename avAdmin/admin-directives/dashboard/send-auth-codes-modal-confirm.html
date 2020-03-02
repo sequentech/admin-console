@@ -51,7 +51,7 @@
   </h3>
 
   <!-- SMS conf -->
-  <div ng-if="'sms' === selected_auth_method" class="preview">
+  <div ng-if="selected_auth_method === 'sms' || selected_auth_method === 'sms-otp'" class="preview">
     <div class="form-group">
       <label
         class="col-xs-3 control-label text-right padding-top-sm"
@@ -68,7 +68,7 @@
   </div>
 
   <!-- Email conf -->
-  <div ng-if="'email' === selected_auth_method" class="preview">
+  <div ng-if="selected_auth_method === 'email' || selected_auth_method === 'email-otp'" class="preview">
     <div class="form-group">
       <label
         class="col-xs-3 control-label text-right padding-top-sm"

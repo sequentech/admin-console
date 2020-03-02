@@ -134,20 +134,19 @@ angular.module('avAdmin')
         delete sheet["registeredVotes"];
         delete sheet["id"];
 
-        Authmethod.postTallySheet(
-          ElectionsApi.currentElection.id,
-          ballotBox.id,
-          $scope.tallySheet
-        )
-          .success(
-            function(data)
+        Authmethod
+          .postTallySheet(
+            ElectionsApi.currentElection.id,
+            ballotBox.id,
+            $scope.tallySheet
+          )
+          .then(
+            function onSuccess(response)
             {
               $scope.step = 2;
-            }
-          )
-          .error(
-            function(data) {
-              $scope.error = data;
+            },
+            function onError(response) {
+              $scope.error = response.data;
               $scope.sending = false;
             }
           );

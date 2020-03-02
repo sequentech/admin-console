@@ -33,6 +33,12 @@ angular.module('avAdmin')
 
         scope.goNext = NextButtonService.goNext;
 
+        function expandQuestion(index) {
+          var qs = ElectionsApi.currentElection.questions;
+          _.map(qs, function(q) { q.active = false; });
+          qs[index].active = true;
+        }
+
         function newQuestion() {
             var el = ElectionsApi.currentElection;
             if (!el.questions) {
@@ -47,12 +53,6 @@ angular.module('avAdmin')
         function delQuestion(index) {
           var qs = ElectionsApi.currentElection.questions;
           ElectionsApi.currentElection.questions = qs.slice(0, index).concat(qs.slice(index+1,qs.length));
-        }
-
-        function expandQuestion(index) {
-          var qs = ElectionsApi.currentElection.questions;
-          _.map(qs, function(q) { q.active = false; });
-          qs[index].active = true;
         }
 
         function collapseQuestion(index) {

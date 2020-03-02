@@ -65,6 +65,26 @@ angular.module('avAdmin')
         return !$stateParams.id;
       }
 
+
+      function selectQueried(selectStatus) {
+        _.each(scope.election.census.voters,
+          function (i) {
+            i.selected = selectStatus;
+          });
+      }
+      
+      function sendAuthCodesSelected() {
+        var selectedList = scope.selected(scope.shown());
+        var user_ids = _.pluck(selectedList, "id");
+
+        SendMsg.setElection(scope.election);
+        SendMsg.scope = scope;
+        SendMsg.user_ids = user_ids;
+        SendMsg.sendAuthCodesModal();
+
+        return false;
+      }
+
       scope.commands = [
         {
           i18nString: 'addPersonAction',
@@ -237,11 +257,11 @@ angular.module('avAdmin')
           enableFunc: function() { return true; }
         },
         {
-	  text: $i18next("avAdmin.census.sendAuthCodesOneAction"),
+	        text: $i18next("avAdmin.census.sendAuthCodesOneAction"),
           iconClass: 'fa fa-paper-plane-o',
           actionFunc: function(voter) {
-	    selectVoter(voter);
-	    return sendAuthCodesSelected();
+            selectVoter(voter);
+            return sendAuthCodesSelected();
           },
           enableFunc: function() { return true; }
         }
@@ -250,19 +270,22 @@ angular.module('avAdmin')
       function censusCall(id, csExport, opt) {
           // this hook can avoid the addCensus call
           if (Plugins.hook('add-to-census-pre', csExport)) {
-              Authmethod.addCensus(id, csExport, opt)
-                .success(function(r) {
-                  scope.loading = false;
-                  scope.msg = "avAdmin.census.censusadd";
-                  scope.reloadCensus();
-                  Plugins.hook('add-to-census-success', {data: csExport, response: r});
-                })
-                .error(function(error) {
-                  scope.loading = false;
-                  scope.error = error.error;
-                  Plugins.hook('add-to-census-error', {data: csExport, response: error});
-                  Plugins.hook('census-csv-load-error', error);
-                });
+              Authmethod
+                .addCensus(id, csExport, opt)
+                .then(
+                  function onSuccess(response) {
+                    scope.loading = false;
+                    scope.msg = "avAdmin.census.censusadd";
+                    scope.reloadCensus();
+                    Plugins.hook('add-to-census-success', {data: csExport, response: response.data});
+                  },
+                  function onError(response) {
+                    scope.loading = false;
+                    scope.error = response.data.error;
+                    Plugins.hook('add-to-census-error', {data: csExport, response: response.data});
+                    Plugins.hook('census-csv-load-error', response.data);
+                  }
+                );
           }
       }
 
@@ -288,17 +311,6 @@ angular.module('avAdmin')
           el.census.voters = cs.slice(0, index).concat(cs.slice(index+1,cs.length));
       }
 
-      function exportCensusModal() {
-        $modal.open({
-          templateUrl: "avAdmin/admin-directives/elcensus/export-all-census-modal.html",
-          controller: "ExportAllCensusModal",
-          size: 'lg',
-          resolve: {
-            election: function () { return scope.election; }
-          }
-        }).result.then(exportCensus);
-      }
-
       function exportCensus(el) {
         var cs = el.census.voters;
         var csExport = _.map(cs, function (i) {
@@ -313,6 +325,17 @@ angular.module('avAdmin')
         return false;
       }
 
+      function exportCensusModal() {
+        $modal.open({
+          templateUrl: "avAdmin/admin-directives/elcensus/export-all-census-modal.html",
+          controller: "ExportAllCensusModal",
+          size: 'lg',
+          resolve: {
+            election: function () { return scope.election; }
+          }
+        }).result.then(exportCensus);
+      }
+
       function removeSelected() {
         var selectedList = scope.selected(scope.shown());
         if (!scope.election.id) {
@@ -322,64 +345,62 @@ angular.module('avAdmin')
           });
         } else {
           var user_ids = _.pluck(selectedList, "id");
-          Authmethod.removeUsersIds(scope.election.id, scope.election, user_ids)
-          .success(function(r) {
-            scope.loading = false;
-            scope.msg = "avAdmin.census.removedCensusSuccessfully";
-            scope.reloadCensus();
-          })
-          .error(function(error) { scope.loading = false; scope.error = error.error; });
+          Authmethod
+            .removeUsersIds(scope.election.id, scope.election, user_ids)
+            .then(
+              function(response) {
+                scope.loading = false;
+                scope.msg = "avAdmin.census.removedCensusSuccessfully";
+                scope.reloadCensus();
+              },
+              function onError(response) {
+                scope.loading = false; 
+                scope.error = response.data.error;
+              }
+            );
         }
         return false;
       }
 
       function activateSelected() {
         var selectedList = scope.selected(scope.shown());
-          var user_ids = _.pluck(selectedList, "id");
-          var comment = scope.comment.activateComment;
-          Authmethod.activateUsersIds(scope.election.id, scope.election, user_ids, comment)
-          .success(function(r) {
-            scope.loading = false;
-            scope.comment.activateComment = "";
-            scope.msg = "avAdmin.census.activatedCensusSuccessfully";
-            scope.reloadCensus();
-          })
-          .error(function(error) { scope.loading = false; scope.error = error.error; });
+        var user_ids = _.pluck(selectedList, "id");
+        var comment = scope.comment.activateComment;
+        Authmethod
+          .activateUsersIds(scope.election.id, scope.election, user_ids, comment)
+          .then(
+            function(response) {
+              scope.loading = false;
+              scope.comment.activateComment = "";
+              scope.msg = "avAdmin.census.activatedCensusSuccessfully";
+              scope.reloadCensus();
+            },
+            function onError(response) {
+              scope.loading = false; 
+              scope.error = response.data.error;
+            }
+          );
         return false;
       }
 
       function deactivateSelected() {
         var selectedList = scope.selected(scope.shown());
-          var user_ids = _.pluck(selectedList, "id");
-          var comment = scope.comment.deactivateComment;
-          Authmethod.deactivateUsersIds(scope.election.id, scope.election, user_ids, comment)
-          .success(function(r) {
-            scope.loading = false;
-            scope.comment.deactivateComment = "";
-            scope.msg = "avAdmin.census.activatedCensusSuccessfully";
-            scope.reloadCensus();
-          })
-          .error(function(error) { scope.loading = false; scope.error = error.error; });
-        return false;
-      }
-
-      function sendAuthCodesSelected() {
-        var selectedList = scope.selected(scope.shown());
         var user_ids = _.pluck(selectedList, "id");
-
-        SendMsg.setElection(scope.election);
-        SendMsg.scope = scope;
-        SendMsg.user_ids = user_ids;
-        SendMsg.sendAuthCodesModal();
-
+        var comment = scope.comment.deactivateComment;
+        Authmethod
+          .deactivateUsersIds(scope.election.id, scope.election, user_ids, comment)
+          .then(function(response) {
+              scope.loading = false;
+              scope.comment.deactivateComment = "";
+              scope.msg = "avAdmin.census.activatedCensusSuccessfully";
+              scope.reloadCensus();
+            },
+            function onError(response) {
+              scope.loading = false; 
+              scope.error = response.data.error;
+            }
+          );
         return false;
-      }
-
-      function selectQueried(selectStatus) {
-        _.each(scope.election.census.voters,
-          function (i) {
-            i.selected = selectStatus;
-          });
       }
 
       function addCsvModal() {

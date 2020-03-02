@@ -44,42 +44,42 @@ angular.module('avAdmin')
           function(name)
           {
             Authmethod.createBallotBox($scope.electionId, name)
-              .success(function (data) {
-                $scope.createdBoxes.push(name);
-                if ($scope.createdBoxes.length === $scope.boxNames.length) {
-                  $scope.state = "success";
+              .then(
+                function onSuccess(response) {
+                  $scope.createdBoxes.push(name);
+                  if ($scope.createdBoxes.length === $scope.boxNames.length) {
+                    $scope.state = "success";
+                  }
+                },
+                function onError(response) {
+                  $scope.errorCreatingBoxes.push(response.data);
                 }
-              })
-              .error(function (error) {
-                $scope.errorCreatingBoxes.push(error);
-              });
+              );
           }
         );
       }
 
-      Authmethod.getBallotBoxes(
-        $scope.electionId,
-        1,
-        null,
-        {ballotbox__name__in: $scope.boxNames.join("|")},
-        null
-      )
-        .success(
-          function(data)
+      Authmethod
+        .getBallotBoxes(
+          $scope.electionId,
+          1,
+          null,
+          {ballotbox__name__in: $scope.boxNames.join("|")},
+          null
+        ).then(
+          function onSuccess(response)
           {
-            if (data.total_count !== 0)
+            if (response.data.total_count !== 0)
             {
               $scope.state = "has-existing";
-              $scope.existingBoxes = data.object_list;
+              $scope.existingBoxes = response.data.object_list;
             } else {
               createBallotBoxes();
             }
-          }
-        )
-        .error(
-          function(existing) {
+          },
+          function onError(response) {
             $scope.state = "error-checking-existing";
-            $scope.errorCheckingExisting = existing;
+            $scope.errorCheckingExisting = response.data;
           }
         );
 

@@ -39,6 +39,7 @@ angular.module('avAdmin')
       scope.filterStr = "";
       scope.filterTimeout = null;
       scope.filterOptions = {};
+      scope.stringify = JSON.stringify;
 
       scope.goNext = NextButtonService.goNext;
 
@@ -54,37 +55,36 @@ angular.module('avAdmin')
         }
         scope.loading = true;
 
-        Authmethod.getActivity(
+        Authmethod
+          .getActivity(
             scope.electionId,
             scope.page,
             null,
             scope.filterOptions,
-            scope.filterStr)
-        .success(
-            function(data)
+            scope.filterStr
+          ).then(
+            function onSuccess(response)
             {
                 scope.page += 1;
                 if (scope.reloadingActivity)
                 {
                     scope.reloadingActivity = false;
                 }
-                _.each(data.activity, function (obj) {
-		    // I'm doing this because if we try to get this from the
-		    // template, doesn't work: {{obj.metadata.comment}} is
-		    // always undefined
+                _.each(response.data.activity, function (obj) {
+                    // I'm doing this because if we try to get this from the
+                    // template, doesn't work: {{obj.metadata.comment}} is
+                    // always undefined
                     obj.metadatacomment = obj.metadata.comment;
                     scope.activity.push(obj);
                 });
 
-                if (data.end_index === data.total_count) {
+                if (response.data.end_index === response.data.total_count) {
                     scope.nomore = true;
                 }
                 scope.loading = false;
-            }
-        )
-        .error(
-            function(data) {
-                scope.error = data;
+            },
+            function onError(response) {
+                scope.error = response.data;
                 scope.loading = false;
 
                 if (scope.reloadingActivity) {

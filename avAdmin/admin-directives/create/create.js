@@ -117,7 +117,7 @@ angular.module('avAdmin')
                 check: "lambda",
                 key: "census",
                 validator: function (census) {
-                  if (census.auth_method !== 'email') {
+                  if (census.auth_method !== 'email' && census.auth_method !== 'email-otp') {
                     return true;
                   }
 
@@ -135,7 +135,7 @@ angular.module('avAdmin')
                 check: "lambda",
                 key: "census",
                 validator: function (census) {
-                  if (census.auth_method !== 'email') {
+                  if (census.auth_method !== 'email'  && census.auth_method !== 'email-otp') {
                     return true;
                   }
 
@@ -153,7 +153,7 @@ angular.module('avAdmin')
                 check: "lambda",
                 key: "census",
                 validator: function (census) {
-                  if (census.auth_method !== 'email') {
+                  if (census.auth_method !== 'email'  && census.auth_method !== 'email-otp') {
                     return true;
                   }
 
@@ -171,7 +171,7 @@ angular.module('avAdmin')
                 check: "lambda",
                 key: "census",
                 validator: function (census) {
-                  if (census.auth_method !== 'email') {
+                  if (census.auth_method !== 'email'  && census.auth_method !== 'email-otp') {
                     return true;
                   }
 
@@ -189,7 +189,7 @@ angular.module('avAdmin')
                 check: "lambda",
                 key: "census",
                 validator: function (census) {
-                  if (census.auth_method !== 'sms') {
+                  if (census.auth_method !== 'sms' && census.auth_method !== 'sms-otp') {
                     return true;
                   }
 
@@ -827,7 +827,7 @@ angular.module('avAdmin')
 
             // sanitize some unneeded values that might still be there. This
             // needs to be done because how we use ng-model
-            if (el.census.config.subject && el.census.auth_method !== 'email') {
+            if (el.census.config.subject && !_.contains(['email', 'email-otp'], el.census.auth_method)) {
               delete el.census.config.subject;
             }
             var authAction = el.census.config['authentication-action'];
@@ -842,7 +842,8 @@ angular.module('avAdmin')
                 auth_method_config: el.census.config,
                 extra_fields: [],
                 admin_fields: [],
-                num_successful_logins_allowed: el.num_successful_logins_allowed
+                num_successful_logins_allowed: el.num_successful_logins_allowed,
+                allow_public_census_query: el.allow_public_census_query
             };
 
             d.admin_fields = _.filter(el.census.admin_fields, function(af) {
@@ -875,10 +876,13 @@ angular.module('avAdmin')
             });
 
             Authmethod.createEvent(d)
-                .success(function(data) {
-                    el.id = data.id;
+                .then(
+                  function onSuccess(response) {
+                    el.id = response.data.id;
                     deferred.resolve(el);
-                }).error(deferred.reject);
+                  },
+                  deferred.reject
+                );
             return deferred.promise;
         }
 
@@ -948,6 +952,21 @@ angular.module('avAdmin')
               deferred.resolve(el);
             }
             return deferred.promise;
+        }
+        
+        function waitForCreated(id, f) {
+          console.log("waiting for election id = " + id);
+          ElectionsApi.getElection(id, true)
+            .then(function(el) {
+                var deferred = $q.defer();
+                if (scope.createElectionBool && el.status === 'created' ||
+                  !scope.createElectionBool && el.status === 'registered')
+                {
+                  f();
+                } else {
+                  setTimeout(function() { waitForCreated(id, f); }, 3000);
+                }
+            });
         }
 
         function addElection(i) {
@@ -1026,20 +1045,17 @@ angular.module('avAdmin')
             createElections();
         }
 
-        function waitForCreated(id, f) {
-          console.log("waiting for election id = " + id);
-          ElectionsApi.getElection(id, true)
-            .then(function(el) {
-                var deferred = $q.defer();
-                if (scope.createElectionBool && el.status === 'created' ||
-                  !scope.createElectionBool && el.status === 'registered')
-                {
-                  f();
-                } else {
-                  setTimeout(function() { waitForCreated(id, f); }, 3000);
-                }
-            });
+        function checkMustExtra() {
+            var index = 0;
+            for (; index < scope.elections.length; index++) {
+              MustExtraFieldsService(scope.elections[index]);
+            }
         }
+        checkMustExtra();
+
+        scope.$watch("elections", function (newVal, oldVal) {
+          scope.$evalAsync(checkMustExtra);
+        }, true);
 
         function checkMustExtra() {
             var index = 0;
