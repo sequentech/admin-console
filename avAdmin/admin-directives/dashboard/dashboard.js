@@ -219,33 +219,6 @@ angular.module('avAdmin')
         }
       ];
 
-      scope.actions = [
-        {
-          i18nString: 'changeSocial',
-          iconClass: 'fa fa-comment-o',
-          actionFunc: function() { return scope.changeSocial(); },
-          enableFunc: function() { return ConfigService.share_social.allow_edit; }
-        },
-        {
-          i18nString: 'sendAuthCodes',
-          iconClass: 'fa fa-paper-plane-o',
-          actionFunc: function() { return scope.sendAuthCodes(); },
-          enableFunc: function() { return 'started' === scope.election.status; }
-        },
-        {
-          i18nString: 'archiveElection',
-          iconClass: 'fa fa-archive',
-          actionFunc: function() { return scope.archiveElection("archive"); },
-          enableFunc: function() { return true; }
-        },
-        {
-          i18nString: 'unarchiveElection',
-          iconClass: 'fa fa-folder-open-o',
-          actionFunc: function() { return scope.archiveElection("unarchive"); },
-          enableFunc: function() { return true; }
-        }
-      ];
-
       scope.statuses = statuses;
       scope.election = {};
       scope.index = 0;
@@ -454,6 +427,43 @@ angular.module('avAdmin')
           }
         );
       }
+
+      scope.actions = [
+        {
+          i18nString: 'changeSocial',
+          iconClass: 'fa fa-comment-o',
+          actionFunc: function() { return scope.changeSocial(); },
+          enableFunc: function() { return ConfigService.share_social.allow_edit; }
+        },
+        {
+          i18nString: 'calculateResults',
+          iconClass: 'fa fa-calculator',
+          actionFunc: function() { 
+            return doActionConfirm(4); // calculate results
+          },
+          enableFunc: function() { 
+            return ['stopped', 'tally_ok', 'results_ok'].indexOf(scope.election.status) !== -1;
+          }
+        },
+        {
+          i18nString: 'sendAuthCodes',
+          iconClass: 'fa fa-paper-plane-o',
+          actionFunc: function() { return scope.sendAuthCodes(); },
+          enableFunc: function() { return 'started' === scope.election.status; }
+        },
+        {
+          i18nString: 'archiveElection',
+          iconClass: 'fa fa-archive',
+          actionFunc: function() { return scope.archiveElection("archive"); },
+          enableFunc: function() { return true; }
+        },
+        {
+          i18nString: 'unarchiveElection',
+          iconClass: 'fa fa-folder-open-o',
+          actionFunc: function() { return scope.archiveElection("unarchive"); },
+          enableFunc: function() { return true; }
+        }
+      ];
 
       angular.extend(scope, {
         doAction: doAction,

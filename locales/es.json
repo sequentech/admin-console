@@ -204,7 +204,8 @@
           "changeSocial": "Editar social...",
           "sendAuthCodes": "Enviar autenticación...",
           "archiveElection": "Archivar votación...",
-          "unarchiveElection": "Desarchivar votación..."
+          "unarchiveElection": "Desarchivar votación...",
+          "calculateResults": "Calcular resultados..."
         },
         "modals": {
           "createHeader": "Crear votación",
