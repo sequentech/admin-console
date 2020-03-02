@@ -74,8 +74,13 @@ angular.module('avAdmin')
 
         var path = 'calculate-results';
         var method = 'POST';
-        ElectionsApi.command(el, path, method, scope.calculateResultsJson)
-          .catch(function(error) { scope.loading = false; scope.error = error; });
+        ElectionsApi
+          .command(el, path, method, scope.calculateResultsJson)
+          .catch(
+            function(error) {
+              scope.loading = false; scope.error = error; 
+            }
+          );
       }
 
       function waitElectionChange() {

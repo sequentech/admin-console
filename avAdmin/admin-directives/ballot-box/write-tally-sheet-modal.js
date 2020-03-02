@@ -24,7 +24,8 @@ angular.module('avAdmin')
       $modalInstance,
       ElectionsApi,
       ballotBox,
-      Authmethod
+      Authmethod,
+      tallySheet
     ) {
       $scope.step = 0;
       $scope.sending = false;
@@ -37,7 +38,7 @@ angular.module('avAdmin')
         $scope.step = step;
       };
 
-      $scope.tallySheet = {
+      $scope.tallySheet = tallySheet || {
         id: ElectionsApi.currentElection.id,
         title: ElectionsApi.currentElection.title,
 
