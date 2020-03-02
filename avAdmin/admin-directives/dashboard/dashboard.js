@@ -76,6 +76,9 @@ angular.module('avAdmin')
         var method = 'POST';
         ElectionsApi
           .command(el, path, method, scope.calculateResultsJson)
+          .then(function onSuccess(response) {
+            ElectionsApi.results(el);
+          })
           .catch(
             function(error) {
               scope.loading = false; scope.error = error; 
