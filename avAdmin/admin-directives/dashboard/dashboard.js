@@ -61,7 +61,7 @@ angular.module('avAdmin')
       scope.calculateResultsJson = "";
 
       function calculateResults(el) {
-        if ('tally_ok' !== el.status && 'results_ok' !== el.status) {
+        if ('tally_ok' !== el.status && 'results_ok' !== el.status && 'stopped' !== el.status) {
           return;
         }
 
