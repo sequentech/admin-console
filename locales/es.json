@@ -282,12 +282,14 @@
           "archive": {
             "header": "Confirmar archivar votación",
             "body": "Esta acción archivará la votación. Fracasará si la votación ya está archivada. Archivar una votación elimina la votación de la lista de votaciones en la interfaz de administración, pero aún se puede acceder desde la lista de votaciones archivadas. También se puede desarchivar más tarde.",
-            "confirmButton": "Archivar votación"
+            "confirmButton": "Archivar votación",
+            "success": "Votación archivada con éxito"
           },
           "unarchive": {
             "header": "Confirmar desarchivar votación",
             "body": "Esta acción desarchivar la votación. Fracasará si la votación no se encuentra actualmente en estado archivado. Desarchivar una votación hace que vuelva a aparecer en la lista de votaciones en la interfaz de administración. También se puede archivar nuevamente más tarde.",
-            "confirmButton": "Desarchivar votación"
+            "confirmButton": "Desarchivar votación",
+            "success": "Votación desarchivada con éxito"
           }
         }
     },

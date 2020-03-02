@@ -404,12 +404,14 @@
           "archive": {
             "header": "Confirm archive election",
             "body": "This action will archive the election. It will fail if the election is already archived. Archiving an election removes the election from the election list in the admin interface but it can still be accessed from the archived elections list. It can also be unarchived later.",
-            "confirmButton": "Archive election"
+            "confirmButton": "Archive election",
+            "success": "Election archived successfully"
           },
           "unarchive": {
             "header": "Confirm unarchive election",
             "body": "This action will unarchive the election. It will fail if the election is not currently in an archived state. UnArchiving an election makes it appear again in the election list in the admin interface. It can also be archived again later.",
-            "confirmButton": "Unarchive election"
+            "confirmButton": "Unarchive election",
+            "success": "Election unarchived successfully"
           }
         }
     },

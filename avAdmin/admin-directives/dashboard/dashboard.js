@@ -441,7 +441,9 @@ angular.module('avAdmin')
 
             method[mode](scope.election.id)
               .then(
-                function onSuccess() {}, 
+                function onSuccess() {
+                  scope.msg = "avAdmin.dashboard.modals." + mode + ".success"; 
+                }, 
                 function onError(response) { scope.error = response.data; }
               );  
           }
