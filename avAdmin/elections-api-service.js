@@ -216,6 +216,9 @@ angular.module('avAdmin')
             conf.status = election.state;
             conf.stats = {};
             conf.results = {};
+            if (election.resultsConfig) {
+              conf.resultsConfig = election.resultsConfig;
+            }
 
             conf.votes = 0;
             conf.votes_percentage = 0;
