@@ -843,7 +843,8 @@ angular.module('avAdmin')
                 extra_fields: [],
                 admin_fields: [],
                 num_successful_logins_allowed: el.num_successful_logins_allowed,
-                allow_public_census_query: el.allow_public_census_query
+                allow_public_census_query: el.allow_public_census_query,
+                hide_default_login_lookup_field: el.hide_default_login_lookup_field
             };
 
             d.admin_fields = _.filter(el.census.admin_fields, function(af) {
