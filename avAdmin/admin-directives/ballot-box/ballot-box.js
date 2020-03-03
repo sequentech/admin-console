@@ -232,18 +232,47 @@ angular.module('avAdmin')
           iconClass: 'fa fa-edit',
           actionFunc: function(ballotBox)
           {
-            $modal.open({
-              templateUrl: "avAdmin/admin-directives/ballot-box/write-tally-sheet-modal.html",
-              controller: "WriteTallySheetModal",
-              windowClass: "write-tally-sheet-modal",
-              resolve: {
-                ballotBox: function () { return ballotBox; }
-              }
-            })
-            .result.then(
-              scope.reload,
-              function (error) {
-                scope.reload();
+            Authmethod.getTallySheet(
+              scope.electionId,
+              ballotBox.id,
+              null
+            )
+            .then(
+              function onSuccess(response)
+              {
+                $modal.open({
+                  templateUrl: "avAdmin/admin-directives/ballot-box/write-tally-sheet-modal.html",
+                  controller: "WriteTallySheetModal",
+                  windowClass: "write-tally-sheet-modal",
+                  resolve: {
+                    tallySheet: function () { return response.data; },
+                    ballotBox: function () { return ballotBox; }
+                  }
+                })
+                .result.then(
+                  scope.reload,
+                  function (error) {
+                    scope.reload();
+                  }
+                );
+              },
+              function onError(response)
+              {
+                $modal.open({
+                  templateUrl: "avAdmin/admin-directives/ballot-box/write-tally-sheet-modal.html",
+                  controller: "WriteTallySheetModal",
+                  windowClass: "write-tally-sheet-modal",
+                  resolve: {
+                    tallySheet: function () { return null; },
+                    ballotBox: function () { return ballotBox; }
+                  }
+                })
+                .result.then(
+                  scope.reload,
+                  function (error) {
+                    scope.reload();
+                  }
+                );
               }
             );
           },

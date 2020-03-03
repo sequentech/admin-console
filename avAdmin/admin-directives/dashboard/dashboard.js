@@ -61,7 +61,7 @@ angular.module('avAdmin')
       scope.calculateResultsJson = "";
 
       function calculateResults(el) {
-        if ('tally_ok' !== el.status && 'results_ok' !== el.status) {
+        if ('tally_ok' !== el.status && 'results_ok' !== el.status && 'stopped' !== el.status) {
           return;
         }
 
@@ -74,8 +74,16 @@ angular.module('avAdmin')
 
         var path = 'calculate-results';
         var method = 'POST';
-        ElectionsApi.command(el, path, method, scope.calculateResultsJson)
-          .catch(function(error) { scope.loading = false; scope.error = error; });
+        ElectionsApi
+          .command(el, path, method, scope.calculateResultsJson)
+          .then(function onSuccess(response) {
+            ElectionsApi.results(el);
+          })
+          .catch(
+            function(error) {
+              scope.loading = false; scope.error = error; 
+            }
+          );
       }
 
       function waitElectionChange() {
@@ -102,7 +110,7 @@ angular.module('avAdmin')
                 scope.index = statuses.indexOf(el.status) + 1;
                 scope.nextaction = nextactions[scope.index - 1];
 
-                if (el.status === 'results_ok') {
+                if (el.status === 'results_ok' || el.status === 'stopped') {
                   ElectionsApi.results(el);
                   if (!!ConfigService.always_publish) {
                     scope.loading = true;
@@ -200,7 +208,7 @@ angular.module('avAdmin')
             var ignorecache = true;
             ElectionsApi.getElection(id, ignorecache)
               .then(function(el) {
-                 if ('tally_ok' === el.status || 'results_ok' === el.status) {
+                 if ('tally_ok' === el.status || 'results_ok' === el.status || 'stopped' === el.status) {
                    calculateResults(el);
                  }
               });
@@ -211,33 +219,6 @@ angular.module('avAdmin')
           method: 'POST',
           confirmController: "ConfirmPublishResultsModal",
           confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-publish-results-modal.html"
-        }
-      ];
-
-      scope.actions = [
-        {
-          i18nString: 'changeSocial',
-          iconClass: 'fa fa-comment-o',
-          actionFunc: function() { return scope.changeSocial(); },
-          enableFunc: function() { return ConfigService.share_social.allow_edit; }
-        },
-        {
-          i18nString: 'sendAuthCodes',
-          iconClass: 'fa fa-paper-plane-o',
-          actionFunc: function() { return scope.sendAuthCodes(); },
-          enableFunc: function() { return 'started' === scope.election.status; }
-        },
-        {
-          i18nString: 'archiveElection',
-          iconClass: 'fa fa-archive',
-          actionFunc: function() { return scope.archiveElection("archive"); },
-          enableFunc: function() { return true; }
-        },
-        {
-          i18nString: 'unarchiveElection',
-          iconClass: 'fa fa-folder-open-o',
-          actionFunc: function() { return scope.archiveElection("unarchive"); },
-          enableFunc: function() { return true; }
         }
       ];
 
@@ -273,7 +254,7 @@ angular.module('avAdmin')
             scope.nextaction = nextactions[scope.index - 1];
           }
 
-          if (el.status === 'results_ok') {
+          if (el.status === 'results_ok' || el.status === 'stopped') {
             ElectionsApi.results(el);
           }
 
@@ -441,12 +422,51 @@ angular.module('avAdmin')
 
             method[mode](scope.election.id)
               .then(
-                function onSuccess() {}, 
+                function onSuccess() {
+                  scope.msg = "avAdmin.dashboard.modals." + mode + ".success"; 
+                }, 
                 function onError(response) { scope.error = response.data; }
               );  
           }
         );
       }
+
+      scope.actions = [
+        {
+          i18nString: 'changeSocial',
+          iconClass: 'fa fa-comment-o',
+          actionFunc: function() { return scope.changeSocial(); },
+          enableFunc: function() { return ConfigService.share_social.allow_edit; }
+        },
+        {
+          i18nString: 'calculateResults',
+          iconClass: 'fa fa-calculator',
+          actionFunc: function() { 
+            return doActionConfirm(5); // calculate results
+          },
+          enableFunc: function() { 
+            return ['stopped', 'tally_ok', 'results_ok'].indexOf(scope.election.status) !== -1;
+          }
+        },
+        {
+          i18nString: 'sendAuthCodes',
+          iconClass: 'fa fa-paper-plane-o',
+          actionFunc: function() { return scope.sendAuthCodes(); },
+          enableFunc: function() { return 'started' === scope.election.status; }
+        },
+        {
+          i18nString: 'archiveElection',
+          iconClass: 'fa fa-archive',
+          actionFunc: function() { return scope.archiveElection("archive"); },
+          enableFunc: function() { return true; }
+        },
+        {
+          i18nString: 'unarchiveElection',
+          iconClass: 'fa fa-folder-open-o',
+          actionFunc: function() { return scope.archiveElection("unarchive"); },
+          enableFunc: function() { return true; }
+        }
+      ];
 
       angular.extend(scope, {
         doAction: doAction,
