@@ -921,6 +921,9 @@ angular.module('avAdmin')
               if (typeof el.extra_data === 'object') {
                   el.extra_data = JSON.stringify(el.extra_data);
               }
+              if (typeof el.resultsConfig === 'object') {
+                el.resultsConfig = JSON.stringify(el.resultsConfig);
+              }
             _.each(el.questions, function (q) {
               _.each(q.answers, function (answer) {
                 answer.urls = _.filter(answer.urls, function(url) { return $.trim(url.url).length > 0;});
@@ -941,7 +944,7 @@ angular.module('avAdmin')
               console.log("creating election " + el.title);
               Plugins.hook('election-create', {'el': el});
               if (typeof el.extra_data === 'object') {
-                  el.extra_data = JSON.stringify(el.extra_data);
+                el.extra_data = JSON.stringify(el.extra_data);
               }
               // Creating the election
               logInfo($i18next('avAdmin.create.creatingEl', {title: el.title, id: el.id}));
