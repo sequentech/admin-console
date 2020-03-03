@@ -1058,11 +1058,6 @@ angular.module('avAdmin')
         scope.$watch("elections", function (newVal, oldVal) {
           scope.$evalAsync(checkMustExtra);
         }, true);
-        checkMustExtra();
-
-        scope.$watch("elections", function (newVal, oldVal) {
-          scope.$evalAsync(checkMustExtra);
-        }, true);
 
         angular.extend(scope, {
           createElections: createElections,
