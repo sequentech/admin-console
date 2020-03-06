@@ -326,7 +326,8 @@
           "sendAuthCodes": "Send auth codes...",
           "archiveElection": "Archive election...",
           "unarchiveElection": "Unarchive election...",
-          "calculateResults": "Calculate results..."
+          "calculateResults": "Calculate results...",
+          "editChildrenParent": "Edit Children and Parent elections.."
         },
         "modals": {
           "createHeader": "Create election",

@@ -438,7 +438,7 @@ angular.module('avAdmin')
           controller: "ConfirmModal",
           size: 'lg',
           resolve: {
-            dialogName: function () { return mode; },
+            dialogName: function () { return 'editChildrenParent'; },
             data: function() {
               return JSON.stringify({
                 parent_id: scope.election.parent_id,
@@ -511,7 +511,9 @@ angular.module('avAdmin')
           i18nString: 'editChildrenParent',
           iconClass: 'fa fa-code-fork',
           actionFunc: function() { return scope.editChildrenParent(); },
-          enableFunc: function() { return true; }
+          enableFunc: function() { 
+            return ['registered', 'created'].indexOf(scope.election.status) !== -1; 
+          }
         },
       ];
 
