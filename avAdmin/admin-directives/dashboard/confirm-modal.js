@@ -23,7 +23,7 @@ angular.module('avAdmin')
 
       $scope.textarea = {
         data: data
-      }
+      };
 
       $scope.ok = function () {
         $modalInstance.close($scope.textarea.data);

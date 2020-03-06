@@ -443,7 +443,7 @@ angular.module('avAdmin')
               return JSON.stringify({
                 parent_id: scope.election.parent_id,
                 children_election_info: scope.election.children_election_info
-              })
+              });
             }
           }
         }).result.then(
