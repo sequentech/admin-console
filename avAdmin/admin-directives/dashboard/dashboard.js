@@ -412,6 +412,7 @@ angular.module('avAdmin')
           size: 'lg',
           resolve: {
             dialogName: function () { return mode; },
+            data: function () { return ""; },
           }
         }).result.then(
           function confirmed() {
@@ -427,6 +428,46 @@ angular.module('avAdmin')
                 }, 
                 function onError(response) { scope.error = response.data; }
               );  
+          }
+        );
+      }
+
+      function editChildrenParent(mode) {
+        $modal.open({
+          templateUrl: "avAdmin/admin-directives/dashboard/confirm-modal.html",
+          controller: "ConfirmModal",
+          size: 'lg',
+          resolve: {
+            dialogName: function () { return mode; },
+            data: function() {
+              return JSON.stringify({
+                parent_id: scope.election.parent_id,
+                children_election_info: scope.election.children_election_info
+              })
+            }
+          }
+        }).result.then(
+          function confirmed(dataString) {
+            var method = {
+              'archive': Authmethod.archive,
+              'unarchive': Authmethod.unarchive,
+            };
+
+            var dataJson = {};
+            try {
+              dataJson = JSON.parse(dataString);
+            } catch (e) {
+              scope.error = "Error parsing json";
+              return;
+            }
+
+            Authmethod.editChildrenParent(dataJson, scope.election.id)
+              .then(
+                function onSuccess() {
+                  scope.msg = "avAdmin.dashboard.modals.editChildrenParent.success"; 
+                }, 
+                function onError(response) { scope.error = response.data; }
+              );
           }
         );
       }
@@ -465,7 +506,13 @@ angular.module('avAdmin')
           iconClass: 'fa fa-folder-open-o',
           actionFunc: function() { return scope.archiveElection("unarchive"); },
           enableFunc: function() { return true; }
-        }
+        },
+        {
+          i18nString: 'editChildrenParent',
+          iconClass: 'fa fa-code-fork',
+          actionFunc: function() { return scope.editChildrenParent(); },
+          enableFunc: function() { return true; }
+        },
       ];
 
       angular.extend(scope, {
@@ -474,7 +521,8 @@ angular.module('avAdmin')
         sendAuthCodes: sendAuthCodes,
         duplicateElection: duplicateElection,
         changeSocial: changeSocial,
-        archiveElection: archiveElection
+        archiveElection: archiveElection,
+        editChildrenParent: editChildrenParent
       });
     }
 

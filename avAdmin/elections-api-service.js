@@ -161,6 +161,12 @@ angular.module('avAdmin')
                     // updating census
                     el.census.auth_method = response.data.events.auth_method;
                     el.census.has_ballot_boxes = response.data.events.has_ballot_boxes;
+
+                    el.children_election_info = response.data.events.children_election_info;
+                    el.parent_id = response.data.events.parent_id;
+                    el.hide_default_login_lookup_field = response.data.events.hide_default_login_lookup_field;
+                    el.allow_public_census_query = response.data.events.allow_public_census_query;
+
                     el.census.extra_fields = response.data.events.extra_fields;
                     el.census.admin_fields = response.data.events.admin_fields;
                     el.census.census = response.data.events.census;

@@ -17,11 +17,16 @@
 
 angular.module('avAdmin')
   .controller('ConfirmModal',
-    function($scope, $modalInstance, ConfigService, dialogName) {
+    function($scope, $modalInstance, ConfigService, dialogName, data) {
       $scope.helpurl = ConfigService.helpUrl;
       $scope.dialogName = dialogName;
+
+      $scope.textarea = {
+        data: data
+      }
+
       $scope.ok = function () {
-        $modalInstance.close();
+        $modalInstance.close($scope.textarea.data);
       };
 
       $scope.cancel = function () {
