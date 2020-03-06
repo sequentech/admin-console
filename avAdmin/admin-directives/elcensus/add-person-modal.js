@@ -21,6 +21,7 @@ angular.module('avAdmin')
       $scope.election = election;
       $scope.newcensus = newcensus;
       $scope.helpurl = ConfigService.helpUrl;
+
       $scope.ok = function () {
         for (var i = 0; i < election.census.extra_fields.length; i++) {
           var field = election.census.extra_fields[i];

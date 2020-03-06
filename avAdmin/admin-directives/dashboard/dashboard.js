@@ -448,11 +448,6 @@ angular.module('avAdmin')
           }
         }).result.then(
           function confirmed(dataString) {
-            var method = {
-              'archive': Authmethod.archive,
-              'unarchive': Authmethod.unarchive,
-            };
-
             var dataJson = {};
             try {
               dataJson = JSON.parse(dataString);

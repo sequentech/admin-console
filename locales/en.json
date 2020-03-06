@@ -417,7 +417,7 @@
           },
           "editChildrenParent": {
             "header": "Edit Children and Parent election info",
-            "body": "Edit in the textare the parent_id and children_election_info in JSON.",
+            "body": "Edit in the textarea the parent_id and children_election_info in JSON.",
             "confirmButton": "Send updated data",
             "success": "Election children and parent info updated successfully"
           }
