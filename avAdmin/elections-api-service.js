@@ -424,7 +424,7 @@ angular.module('avAdmin')
             return q;
         };
 
-        electionsapi.getCensus = function(el, page, size, filterStr, filterOptions) {
+        electionsapi.getCensus = function(election, page, size, filterStr, filterOptions) {
             var deferred = $q.defer();
 
             if (size === 'max') {
@@ -433,6 +433,36 @@ angular.module('avAdmin')
               size = parseInt(size);
             } else {
               size = 10;
+            }
+
+            var electionNames = {};
+
+            // if there's a parent election, add those fields at the end of the example
+            if (election.children_election_info) {
+              _.each(
+                election.children_election_info.presentation.categories,
+                function (category) {
+                  _.each(
+                    category.events,
+                    function (election) {
+                      electionNames[election.event_id] = election.title;
+                    }
+                  );
+                }
+              );
+            }
+      
+            function childrenElectionNames(metadata) {
+              if (!metadata.children_event_id_list) {
+                return [];
+              } else {
+                return _.map(
+                  metadata.children_event_id_list,
+                  function (electionId) {
+                    return electionNames[electionId];
+                  }
+                );
+              }
             }
 
             function getAuthCensus(d) {
@@ -450,31 +480,35 @@ angular.module('avAdmin')
                 params.filter = filterStr;
               }
 
-              Authmethod.getCensus(el.id, params)
+              Authmethod.getCensus(election.id, params)
                 .then(
                   function onSuccess(response) {
                     _.each(response.data.object_list, function(user) {
                       user.vote = false;
+                      user.selected = false;
                       if (voters.indexOf(user.username) >= 0) {
                         user.vote = true;
                       }
+                      if (user.metadata.children_event_id_list) {
+                        user.childrenElectionNames = childrenElectionNames(user.metadata);
+                      }
                     });
-                    if (!angular.isArray(el.census.voters)) {
-                      el.census.voters = [];
+                    if (!angular.isArray(election.census.voters)) {
+                      election.census.voters = [];
                     }
                     _.each(response.data.object_list, function (obj) {
-                      obj.selected = false;
-                      el.census.voters.push(obj);
+                      election.census.voters.push(obj);
+
                     });
-                    el.data = response.data;
-                    deferred.resolve(el);
+                    election.data = response.data;
+                    deferred.resolve(election);
                   },
                   deferred.reject
                 );
                 return deferred.promise;
             }
 
-            electionsapi.command(el, 'voters', 'GET')
+            electionsapi.command(election, 'voters', 'GET')
                 .then(getAuthCensus)
                 .then(deferred.resolve)
                 .catch(deferred.reject);
