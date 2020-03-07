@@ -154,7 +154,7 @@
             <strong ng-if="c.voted_children_elections.length > 0 && !election.children_election_info" ng-i18next>
               avAdmin.census.voted
             </strong>
-            <span ng-if="!c.voted_children_elections" ng-i18next>
+            <span ng-if="c.voted_children_elections.length === 0" ng-i18next>
               avAdmin.census.notVoted
             </span>
           </td>
