@@ -319,13 +319,9 @@ angular.module('avAdmin')
                     election.children_election_info.natural_order,
                     function (electionId) 
                     {
-                      if (censusElement.metadata[electionId].trim().toLowerCase() === "true")
-                      {
-                        delete censusElement.metadata[electionId];
-                        return true;
-                      } else {
-                        return false;
-                      }
+                      var ret = (censusElement.metadata[electionId].trim().toLowerCase() === "true");
+                      delete censusElement.metadata[electionId];
+                      return ret;
                     }
                   );
                 }
