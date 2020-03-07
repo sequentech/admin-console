@@ -146,7 +146,7 @@
           <td ng-repeat="field in election.census.extra_fields" av-census-field>
           </td>
           <td ng-if="election.children_election_info">
-            {{ c.metadata.children_event_id_list | htmlToText}}
+            {{ c.childrenElectionNames | htmlToText}}
           </td>
           <td class="census-actions">
             <span ng-repeat="command in row_commands"
