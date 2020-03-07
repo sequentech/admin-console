@@ -553,6 +553,7 @@
         "voted": "voted",
         "notVoted": "not voted",
         "votedColumnHeader": "Voted?",
+        "childrenVotedColumnHeader": "Voted in",
         "activeColumnHeader": "Active?",
 
         "censusadd": "Voters added to the census",

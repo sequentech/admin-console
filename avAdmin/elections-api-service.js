@@ -452,12 +452,12 @@ angular.module('avAdmin')
               );
             }
       
-            function childrenElectionNames(metadata) {
-              if (!metadata.children_event_id_list) {
+            function childrenElectionNames(children_event_id_list) {
+              if (!children_event_id_list) {
                 return [];
               } else {
                 return _.map(
-                  metadata.children_event_id_list,
+                  children_event_id_list,
                   function (electionId) {
                     return electionNames[electionId];
                   }
@@ -465,53 +465,43 @@ angular.module('avAdmin')
               }
             }
 
-            function getAuthCensus(d) {
-              var voters = d.data.payload;
-              var deferred = $q.defer();
-              var params = {};
+            var params = {};
 
-              if (!angular.isNumber(page)) {
-                page = 1;
-              }
-              params.page = page;
-              params.size = size;
-              _.extend(params, filterOptions);
-              if (filterStr && filterStr.length > 0) {
-                params.filter = filterStr;
-              }
-
-              Authmethod.getCensus(election.id, params)
-                .then(
-                  function onSuccess(response) {
-                    _.each(response.data.object_list, function(user) {
-                      user.vote = false;
-                      user.selected = false;
-                      if (voters.indexOf(user.username) >= 0) {
-                        user.vote = true;
-                      }
-                      if (user.metadata.children_event_id_list) {
-                        user.childrenElectionNames = childrenElectionNames(user.metadata);
-                      }
-                    });
-                    if (!angular.isArray(election.census.voters)) {
-                      election.census.voters = [];
-                    }
-                    _.each(response.data.object_list, function (obj) {
-                      election.census.voters.push(obj);
-
-                    });
-                    election.data = response.data;
-                    deferred.resolve(election);
-                  },
-                  deferred.reject
-                );
-                return deferred.promise;
+            if (!angular.isNumber(page)) {
+              page = 1;
+            }
+            params.page = page;
+            params.size = size;
+            _.extend(params, filterOptions);
+            if (filterStr && filterStr.length > 0) {
+              params.filter = filterStr;
             }
 
-            electionsapi.command(election, 'voters', 'GET')
-                .then(getAuthCensus)
-                .then(deferred.resolve)
-                .catch(deferred.reject);
+            Authmethod.getCensus(election.id, params)
+              .then(
+                function onSuccess(response) 
+                {
+                  if (!angular.isArray(election.census.voters)) {
+                    election.census.voters = [];
+                  }
+                  _.each(response.data.object_list, function (user) {
+                    user.selected = false;
+                    if (user.metadata.children_event_id_list) {
+                      user.childrenElectionNames = childrenElectionNames(user.metadata.children_event_id_list);
+                    }
+                    if (user.voted_children_elections) {
+                      user.votedChildrenElectionNames = childrenElectionNames(user.voted_children_elections);
+                    }
+                    election.census.voters.push(user);
+                  });
+                  election.data = response.data;
+                  deferred.resolve(election);
+                },
+                deferred.reject
+              );
+              return deferred.promise;
+          }
+
 
             return deferred.promise;
         };

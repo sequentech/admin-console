@@ -90,10 +90,22 @@
           </th>
           <th class="small-col text-right">
             <div
+              ng-if="!election.children_election_info"
               av-column-filter-bool
               filter-options-var="filterOptions"
               filter-prefix="has_voted"
               filter-i18n="avAdmin.census.votedColumnHeader"
+              filter-i18n-yes="yes"
+              filter-i18n-no="no"
+              filter-disable-sort="yes"
+            >
+            </div>
+            <div
+              ng-if="!election.children_election_info"
+              av-column-filter-bool
+              filter-options-var="filterOptions"
+              filter-prefix="has_voted"
+              filter-i18n="avAdmin.census.childrenVotedColumnHeader"
               filter-i18n-yes="yes"
               filter-i18n-no="no"
               filter-disable-sort="yes"
@@ -136,10 +148,10 @@
             </span>
           </td>
           <td class="small-col text-right">
-            <strong ng-if="c.vote" ng-i18next>
-              avAdmin.census.voted
+            <strong ng-if="c.voted_children_elections && !election.children_election_info" ng-i18next>
+              {{ c.votedChildrenElectionNames | htmlToText}}
             </strong>
-            <span ng-if="!c.vote" ng-i18next>
+            <span ng-if="!c.voted_children_elections" ng-i18next>
               avAdmin.census.notVoted
             </span>
           </td>
