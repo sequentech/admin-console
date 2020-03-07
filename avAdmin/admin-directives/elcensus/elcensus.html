@@ -103,7 +103,11 @@
           <th ng-repeat="field in election.census.extra_fields">
             {{ field.name | htmlToText | limitTo:15 }}
           </th>
-          <th ng-i18next>avAdmin.census.childrenElections</th>
+          <th 
+            ng-if="election.children_election_info" 
+            ng-i18next>
+            avAdmin.census.childrenElections
+          </th>
           <th ng-i18next>avAdmin.census.actionsDropdown</th>
         </tr>
       </thead>
@@ -141,7 +145,7 @@
           </td>
           <td ng-repeat="field in election.census.extra_fields" av-census-field>
           </td>
-          <td>
+          <td ng-if="election.children_election_info">
             {{ c.metadata.children_event_id_list | htmlToText}}
           </td>
           <td class="census-actions">
