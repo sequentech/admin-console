@@ -28,32 +28,53 @@ angular.module('avAdmin')
       var csvLoadService = {};
 
       function calculateExportList(textarea) {
-          var el = csvLoadService.scope.election;
-          var cs;
-          if (!el.id) {
-            cs = el.census.voters;
+          var election = csvLoadService.scope.election;
+          var census;
+          if (!election.id) {
+            census = election.census.voters;
           } else {
-            cs = [];
+            census = [];
           }
 
-          var fields = el.census.extra_fields;
+          var fields = election.census.extra_fields;
 
           var lines = textarea.split("\n");
           lines.forEach(function(l) {
-              var lf = l.split(";");
-              var nv = {};
-              fields.forEach(function(f, i) { nv[f.name] = lf[i].trim(); });
-              if (nv.tlf) {
-                nv.tlf = nv.tlf.replace(" ", "");
+              var splittedLine = l.split(";");
+              var censusElement = {};
+              fields.forEach(
+                function(field, index) {
+                  censusElement[field.name] = splittedLine[index].trim(); 
+                }
+              );
+
+              if (censusElement.tlf) {
+                censusElement.tlf = censusElement.tlf.replace(" ", "");
               }
-              if (nv.email) {
-                nv.email = nv.email.replace(" ", "");
+              if (censusElement.email) {
+                censusElement.email = censusElement.email.replace(" ", "");
               }
-              cs.push({selected: false, vote: false, username: "", metadata: nv});
+
+              // if it's a parent election, process children elections
+              if (scope.election.children_election_info) {
+                censusElement.children_event_id_list = _.filter(
+                  scope.election.children_election_info.natural_order,
+                  function (electionId, index) {
+                    return splittedLine[fields.length + index].trim().toLowerCase() == "true";
+                  }
+                );
+              }
+              census.push({
+                selected: false, 
+                vote: false, 
+                username: "", 
+                metadata: censusElement,
+                children_event_id_list: children_event_id_list
+              });
           });
 
-          if (!!el.id) {
-            var csExport = _.map(cs, function (i) { return i.metadata; });
+          if (!!election.id) {
+            var csExport = _.map(census, function (i) { return i.metadata; });
             return csExport;
           }
           return [];
@@ -103,20 +124,20 @@ angular.module('avAdmin')
         return index*100.0/csvLoadService.scope.exportList.length;
       }
 
-      function censusCall(id, csExport, opt) {
+      function censusCall(id, census, opt) {
         var deferred = $q.defer();
         try {
           // this hook can avoid the addCensus call
-          if (Plugins.hook('add-to-census-pre', csExport)) {
-            Authmethod.addCensus(id, csExport, opt)
+          if (Plugins.hook('add-to-census-pre', census)) {
+            Authmethod.addCensus(id, census, opt)
               .then(
                 function onSuccess(response) {
-                  Plugins.hook('add-to-census-success', {data: csExport, response: response.data});
+                  Plugins.hook('add-to-census-success', {data: census, response: response.data});
                   deferred.resolve();
                 },
                 function onError(response) {
                   csvLoadService.scope.error(response.data.error_codename);
-                  Plugins.hook('add-to-census-error', {data: csExport, response: response.data});
+                  Plugins.hook('add-to-census-error', {data: census, response: response.data});
                   deferred.reject(response.data);
                 }
               );

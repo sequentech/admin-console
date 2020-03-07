@@ -21,6 +21,7 @@ angular.module('avAdmin')
       $scope.election = election;
       $scope.newcensus = newcensus;
       $scope.helpurl = ConfigService.helpUrl;
+      $scope.children_election_info = $scope.election.children_election_info;
 
       $scope.ok = function () {
         for (var i = 0; i < election.census.extra_fields.length; i++) {
@@ -31,6 +32,20 @@ angular.module('avAdmin')
               newcensus[field.name] = "";
             }
           }
+        }
+
+        if ($scope.children_election_info) {
+          _.each(
+            $scope.children_election_info.presentation.categories,
+            function (category) {
+              _.each(
+                category.events,
+                function (election) {
+                  newcensus[election.event_id] = election.data ? "true" : "false";
+                }
+              );
+            }
+          );
         }
         $modalInstance.close();
       };
