@@ -148,8 +148,11 @@
             </span>
           </td>
           <td class="small-col text-right">
-            <strong ng-if="c.voted_children_elections && !election.children_election_info" ng-i18next>
+            <strong ng-if="c.voted_children_elections.length > 0 && election.children_election_info">
               {{ c.votedChildrenElectionNames | htmlToText}}
+            </strong>
+            <strong ng-if="c.voted_children_elections.length > 0 && !election.children_election_info" ng-i18next>
+              avAdmin.census.voted
             </strong>
             <span ng-if="!c.voted_children_elections" ng-i18next>
               avAdmin.census.notVoted
