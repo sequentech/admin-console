@@ -27,7 +27,7 @@
     <span ng-repeat="ef in election.census.extra_fields">
       {{ ef.name | htmlToText }}<span ng-if="!$last && childrenElections.length == 0">;<span>
     </span>
-    <span ng-repeat="electionName in cgildrenElections">
+    <span ng-repeat="electionName in childrenElections">
       {{ electionName | htmlToText }}<span ng-if="!$last">;<span>
     </span>
   </p>
