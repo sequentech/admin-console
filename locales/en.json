@@ -515,6 +515,7 @@
 
           "addPersonHeader": "Add Person to census",
           "addPersonBody": "Manually add a single person to the census. Note that no data validation is done, so it's up to you to insert valid data.",
+          "addPersonChildrenElections": "Select in which children elections can this person vote:",
           "confirmAddPersonButton": "Confirm and ADD person to census",
 
           "removePeopleHeader": "Remove selected people from census",
