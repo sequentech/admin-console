@@ -375,7 +375,26 @@ angular.module('avAdmin')
         var cs = el.census.voters;
         var csExport = _.map(cs, function (i) {
           var ret = angular.copy(i.metadata);
-          ret.vote = i.vote;
+          if (!el.children_election_info) {
+            if (i.voted_children_elections.length === 0) {
+              ret.vote = "false";
+            } else {
+              ret.vote = "true";
+            }
+          } else {
+            _.each(
+              scope.election.children_election_info.natural_order, 
+              function (electionId) 
+              {
+                if (i.voted_children_elections.indexOf(electionId) !== -1) 
+                {
+                  ret[scope.electionNames[electionId]] = "true";
+                } else {
+                  ret[scope.electionNames[electionId]] = "false";
+                }
+              }
+            );
+          }
           ret.voterid = i.username;
           return ret;
         });
