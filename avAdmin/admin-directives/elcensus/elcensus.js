@@ -59,6 +59,29 @@ angular.module('avAdmin')
         deactivateComment: ""
       };
 
+      // if there's a parent election, add those fields at the end of the example
+      if (scope.election.children_election_info) {
+        var electionNames = {};
+        _.each(
+          scope.election.children_election_info.presentation.categories,
+          function (category) {
+            _.each(
+              category.events,
+              function (election) {
+                electionNames[election.event_id] = election.title;
+              }
+            );
+          }
+        );
+
+        scope.childrenElections = _.map(
+          scope.election.children_election_info.natural_order,
+          function (election_id) { return electionNames[election_id]; }
+        );
+      } else {
+        scope.childrenElections  = [];
+      }
+
       scope.goNext = NextButtonService.goNext;
 
       function newElection() {
@@ -315,7 +338,7 @@ angular.module('avAdmin')
                 // if it's a parent election, process children elections
                 if (election.children_election_info) 
                 {
-                  censusElement.children_event_id_list = _.filter(
+                  censusElement.metadata.children_event_id_list = _.filter(
                     election.children_election_info.natural_order,
                     function (electionId) 
                     {
