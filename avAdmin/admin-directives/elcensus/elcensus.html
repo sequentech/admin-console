@@ -103,6 +103,7 @@
           <th ng-repeat="field in election.census.extra_fields">
             {{ field.name | htmlToText | limitTo:15 }}
           </th>
+          <th ng-i18next>avAdmin.census.childrenElections</th>
           <th ng-i18next>avAdmin.census.actionsDropdown</th>
         </tr>
       </thead>
@@ -139,6 +140,9 @@
             </span>
           </td>
           <td ng-repeat="field in election.census.extra_fields" av-census-field>
+          </td>
+          <td>
+            {{ c.children_event_id_list | htmlToText}}
           </td>
           <td class="census-actions">
             <span ng-repeat="command in row_commands"

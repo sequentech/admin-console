@@ -557,6 +557,7 @@
 
         "censusadd": "Voters added to the census",
         "actionsDropdown": "Actions",
+        "childrenElections": "Allowed children elections",
         "selectAllShownAction": "Select all people shown",
         "deselectAllShownAction": "Deselect all people shown",
         "exportCensusAction": "Export all census to CSV..",
