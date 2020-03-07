@@ -21,7 +21,7 @@ angular.module('avAdmin')
       $scope.election = election;
       $scope.newcensus = newcensus;
       $scope.helpurl = ConfigService.helpUrl;
-      $scope.children_election_info = $scope.election.children_election_info;
+      $scope.children_election_info = angular.copy($scope.election.children_election_info);
 
       $scope.ok = function () {
         for (var i = 0; i < election.census.extra_fields.length; i++) {

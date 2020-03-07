@@ -56,11 +56,11 @@ angular.module('avAdmin')
               }
 
               // if it's a parent election, process children elections
-              if (scope.election.children_election_info) {
+              if (csvLoadService.scope.election.children_election_info) {
                 censusElement.children_event_id_list = _.filter(
-                  scope.election.children_election_info.natural_order,
+                  csvLoadService.scope.election.children_election_info.natural_order,
                   function (electionId, index) {
-                    return splittedLine[fields.length + index].trim().toLowerCase() == "true";
+                    return splittedLine[fields.length + index].trim().toLowerCase() === "true";
                   }
                 );
               }
@@ -68,8 +68,7 @@ angular.module('avAdmin')
                 selected: false, 
                 vote: false, 
                 username: "", 
-                metadata: censusElement,
-                children_event_id_list: children_event_id_list
+                metadata: censusElement
               });
           });
 
