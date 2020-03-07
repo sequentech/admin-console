@@ -289,18 +289,51 @@ angular.module('avAdmin')
           }
       }
 
-      function addToCensus(textarea) {
-          var el = scope.election;
-          var cs = [];
-          if (!el.id) {
-            cs = el.census.voters;
-            cs.push({selected: false, vote: false, username: "", metadata: scope.newcensus});
+      function addToCensus() {
+          var election = scope.election;
+          var census = [];
+          if (!election.id) {
+            census = election.census.voters;
+            census.push({
+              selected: false, 
+              vote: false, 
+              username: "", 
+              metadata: scope.newcensus
+            });
           } else {
-            cs.push({selected: false, vote: false, username: "", metadata: scope.newcensus});
+            census.push({
+              selected: false, 
+              vote: false, 
+              username: "", 
+              metadata: scope.newcensus
+            });
 
-            var csExport = _.map(cs, function (i) { return i.metadata; });
+            var csExport = _.map(
+              census, 
+              function (censusElement) 
+              {
+                // if it's a parent election, process children elections
+                if (election.children_election_info) 
+                {
+                  censusElement.children_event_id_list = _.filter(
+                    election.children_election_info.natural_order,
+                    function (electionId) 
+                    {
+                      if (censusElement.metadata[electionId].trim().toLowerCase() === "true")
+                      {
+                        delete censusElement.metadata[electionId];
+                        return true;
+                      } else {
+                        return false;
+                      }
+                    }
+                  );
+                }
+                return censusElement.metadata;
+              }
+            );
             scope.loading = true;
-            censusCall(el.id, csExport, 'disabled');
+            censusCall(election.id, csExport, 'disabled');
           }
           scope.newcensus = {};
       }
@@ -456,8 +489,8 @@ angular.module('avAdmin')
             election: function () { return scope.election; },
             newcensus: function() { return scope.newcensus; }
           }
-        }).result.then(function(textarea) {
-          scope.addToCensus(textarea);
+        }).result.then(function() {
+          scope.addToCensus();
         });
       }
 
