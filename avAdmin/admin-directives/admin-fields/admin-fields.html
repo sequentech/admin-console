@@ -14,6 +14,9 @@
   </div>
 
   <div class="modal-body">
-    <button ng-click="goNext({id:election.id})" class="btn btn-block btn-success" ng-i18next>next</button>
+    <button 
+      ng-click="goNext({id:election.id})" 
+      ng-if="!election.id"
+      class="btn btn-block btn-success" ng-i18next>next</button>
   </div>
 </div>
