@@ -388,10 +388,11 @@ angular.module('avAdmin')
               {
                 if (i.voted_children_elections.indexOf(electionId) !== -1) 
                 {
-                  ret[scope.electionNames[electionId]] = "true";
+                  ret["voted in " + scope.electionNames[electionId]] = "true";
                 } else {
-                  ret[scope.electionNames[electionId]] = "false";
+                  ret["voted in " + scope.electionNames[electionId]] = "false";
                 }
+                delete i.metadata.children_event_id_list;
               }
             );
           }
