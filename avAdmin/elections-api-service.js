@@ -151,11 +151,11 @@ angular.module('avAdmin')
                     el.auth.census = response.data.events.users;
                     el.raw = response.data.events;
                     if (el.auth.census) {
-                        el.votes = el.stats.votes;
-                        el.votes_percentage = ( el.stats.votes * 100 )/ el.auth.census;
+                        el.votes = el.stats.total_votes;
+                        el.votes_percentage = ( el.stats.total_votes * 100 ) / el.auth.census;
                     } else {
                         el.votes_percentage = 0;
-                        el.votes = el.stats.votes || 0;
+                        el.votes = el.stats.total_votes || 0;
                     }
 
                     // updating census
@@ -312,17 +312,37 @@ angular.module('avAdmin')
         };
 
         electionsapi.autoreloadStatsTimer = null;
-        electionsapi.autoreloadStats = function(el) {
+        electionsapi.autoreloadStats = function(election) {
             clearTimeout(electionsapi.autoreloadStatsTimer);
-            if (!el) {
-                return;
+            if (!election) {
+              return;
+            }
+            function voteStats(election) {
+              var deferred = $q.defer();
+    
+              Authmethod.voteStats(election.id)
+                .then(function(d) {
+                  election.stats = d.data;
+                  deferred.resolve(election);
+                })
+                .catch(deferred.reject);
+    
+                return deferred.promise;
             }
 
-            electionsapi.stats(el)
+            voteStats(election)
                 .then(asyncElectionAuth)
-                .finally(function() {
-                    electionsapi.autoreloadStatsTimer = setTimeout(function() { electionsapi.autoreloadStats(el); }, 5000);
-                });
+                .finally(
+                  function() 
+                  {
+                    electionsapi.autoreloadStatsTimer = setTimeout(
+                      function() {
+                        electionsapi.autoreloadStats(election); 
+                      }, 
+                      5000
+                    );
+                  }
+                );
         };
 
         electionsapi.results = function(el) {

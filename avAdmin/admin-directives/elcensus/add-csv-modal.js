@@ -33,7 +33,7 @@ angular.module('avAdmin')
         $scope.childrenElections = _.map(
           $scope.election.children_election_info.natural_order,
           function (election_id) { 
-            return scope.election.childrenElectionNames[election_id]; 
+            return $scope.election.childrenElectionNames[election_id]; 
           }
         );
       } else {
