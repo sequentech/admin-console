@@ -58,22 +58,6 @@ angular.module('avAdmin')
         activateComment: "",
         deactivateComment: ""
       };
-      scope.electionNames = {};
-
-      // if there's a parent election, add those fields at the end of the example
-      if (scope.election.children_election_info) {
-        _.each(
-          scope.election.children_election_info.presentation.categories,
-          function (category) {
-            _.each(
-              category.events,
-              function (election) {
-                scope.electionNames[election.event_id] = election.title;
-              }
-            );
-          }
-        );
-      }
 
       function childrenElectionNames(metadata) {
         if (!metadata.children_event_id_list) {
@@ -82,7 +66,7 @@ angular.module('avAdmin')
           return _.map(
             metadata.children_event_id_list,
             function (electionId) {
-              return scope.electionNames[electionId];
+              return scope.election.childrenElectionNames[electionId];
             }
           );
         }
@@ -388,9 +372,9 @@ angular.module('avAdmin')
               {
                 if (i.voted_children_elections.indexOf(electionId) !== -1) 
                 {
-                  ret["voted in " + scope.electionNames[electionId]] = "true";
+                  ret["voted in " + scope.election.childrenElectionNames[electionId]] = "true";
                 } else {
-                  ret["voted in " + scope.electionNames[electionId]] = "false";
+                  ret["voted in " + scope.election.childrenElectionNames[electionId]] = "false";
                 }
                 delete i.metadata.children_event_id_list;
               }

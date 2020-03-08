@@ -16,8 +16,10 @@
 **/
 
 angular.module('avAdmin')
-  .controller('AddCsvModal',
-    function($scope, $modalInstance, election, ConfigService, Plugins) {
+  .controller(
+    'AddCsvModal',
+    function($scope, $modalInstance, election, ConfigService, Plugins) 
+    {
       $scope.election = election;
       $scope.textarea = "";
       $scope.helpurl = ConfigService.helpUrl;
@@ -26,36 +28,28 @@ angular.module('avAdmin')
       };
 
       // if there's a parent election, add those fields at the end of the example
-      if ($scope.election.children_election_info) {
-        var electionNames = {};
-        _.each(
-          $scope.election.children_election_info.presentation.categories,
-          function (category) {
-            _.each(
-              category.events,
-              function (election) {
-                electionNames[election.event_id] = election.title;
-              }
-            );
-          }
-        );
-
+      if ($scope.election.children_election_info) 
+      {
         $scope.childrenElections = _.map(
           $scope.election.children_election_info.natural_order,
-          function (election_id) { return electionNames[election_id]; }
+          function (election_id) { 
+            return scope.election.childrenElectionNames[election_id]; 
+          }
         );
       } else {
-        $scope.childrenElections  = [];
+        $scope.childrenElections = [];
       }
 
       var exhtml = {html: [], scope: {}};
       Plugins.hook(
        'census-add-csv-modal',
-       { exhtml: exhtml });
+       { exhtml: exhtml }
+      );
       $scope.exhtml = exhtml.html;
       $scope = _.extend($scope, exhtml.scope);
 
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
       };
-    });
+    }
+  );

@@ -182,6 +182,22 @@ angular.module('avAdmin')
                     }
                     el.census.config = newConf;
 
+                    // make it easy to get children election' names
+                    el.childrenElectionNames = {};
+                    if (el.children_election_info) {
+                      _.each(
+                        el.children_election_info.presentation.categories,
+                        function (category) {
+                          _.each(
+                            category.events,
+                            function (election) {
+                              el.childrenElectionNames[election.event_id] = election.title;
+                            }
+                          );
+                        }
+                      );
+                    }
+
                     deferred.resolve(el);
                   },
                   deferred.reject
