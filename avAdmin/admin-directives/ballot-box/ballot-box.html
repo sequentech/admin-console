@@ -145,16 +145,6 @@
       </tbody>
     </table>
 
-    <div ng-if="showSuccessAction">
-      <button
-        ng-click="goNext(admin.successAction())"
-        ng-if="!election.id"
-        class="btn btn-block btn-success"
-        ng-i18next>
-        next
-      </button>
-    </div>
-
     <div ng-if="!showSuccessAction">
       <button
         ng-click="goNext(admin.create())"
