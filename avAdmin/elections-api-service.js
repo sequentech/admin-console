@@ -216,7 +216,7 @@ angular.module('avAdmin')
             var cached = electionsapi.cache[id];
             if (ignorecache || !cached) {
                 asyncElection(id)
-                  .then(electionsapi.stats)
+                  .then(electionsapi.voteStats)
                   .then(asyncElectionAuth)
                   .then(deferred.resolve)
                   .catch(deferred.reject);
@@ -298,15 +298,15 @@ angular.module('avAdmin')
             return deferred.promise;
         };
 
-        electionsapi.stats = function(el) {
-            var deferred = $q.defer();
+        electionsapi.voteStats = function(election) {
+          var deferred = $q.defer();
 
-            electionsapi.command(el, 'stats', 'GET')
-                .then(function(d) {
-                        el.stats = d.data.payload;
-                        deferred.resolve(el);
-                      })
-                 .catch(deferred.reject);
+          Authmethod.voteStats(election.id)
+            .then(function(d) {
+              election.stats = d.data;
+              deferred.resolve(election);
+            })
+            .catch(deferred.reject);
 
             return deferred.promise;
         };
@@ -317,20 +317,8 @@ angular.module('avAdmin')
             if (!election) {
               return;
             }
-            function voteStats(election) {
-              var deferred = $q.defer();
-    
-              Authmethod.voteStats(election.id)
-                .then(function(d) {
-                  election.stats = d.data;
-                  deferred.resolve(election);
-                })
-                .catch(deferred.reject);
-    
-                return deferred.promise;
-            }
 
-            voteStats(election)
+            electionsapi.voteStats(election)
                 .then(asyncElectionAuth)
                 .finally(
                   function() 
