@@ -20,6 +20,7 @@ angular.module('avAdmin')
     'avAdminActivityLog',
     function(
       Authmethod,
+      ElectionsApi,
       ConfigService,
       NextButtonService,
       $timeout)
@@ -27,6 +28,7 @@ angular.module('avAdmin')
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
       scope.electionId = attrs.electionId;
+      scope.election = ElectionsApi.currentElection;
       scope.reloadingActivity = false;
       scope.loading = false;
       scope.activity = [];
