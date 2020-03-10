@@ -85,15 +85,30 @@
             </td>
           </tr>
 
-          <tr ng-repeat="election in elections | filter:q | orderBy:'-id'">
+          <tr 
+            ng-class="{child: !!election.parent_id, 'hide': !election.visible}"
+            ng-repeat="election in elections | filter:q | orderBy:'-id'">
             <td>
               <a
+                ng-if="!election.children_election_info"
                 ui-sref="admin.dashboard({id: election.id})"
                 class="padded">
                 {{ election.id }}
               </a>
+              <a
+                ng-if="!!election.children_election_info"
+                ui-sref="toggleShowChildren(election)"
+                class="padded">
+                <span 
+                  ng-class="{'glyphicon glyphicon-menu-right': !election.showingChildren, 'glyphicon glyphicon-menu-down
+                  glyphicon glyphicon-': !election.showingChildren}"
+                  class="glyphicon" 
+                  aria-hidden="true">
+                </span>
+                {{ election.id }}
+              </a>
             </td>
-            <td>
+            <td class="main">
               <a ui-sref="admin.dashboard({id: election.id})">
                 <strong>{{ election.title }}</strong>
                 <div

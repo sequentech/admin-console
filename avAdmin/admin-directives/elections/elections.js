@@ -28,6 +28,102 @@ angular.module('avAdmin')
             scope.list = {type: 'all'};
             scope.elections = [];
 
+            /**
+             * Downloads elections from Elections api, initialize them and
+             * insert them in the list in the appropiate place.
+             */
+            function getAllElections(list, insertionIndex) 
+            {
+                list.forEach(function (event) 
+                    {
+                        ElectionsApi.getElection(event.id, false, event)
+                            .then(function(d) 
+                            {
+                                d.showingChildren = false;
+                                d.childrenDownloaded = false;
+                                d.visible = true;
+                                if (!insertionIndex) {
+                                    scope.elections.push(d);
+                                } else {
+                                    scope.elections.splice(insertionIndex, 0, d);
+                                }
+                                scope.loading -= 1;
+                            })
+                            .catch(function(d) 
+                            {
+                                // election doesn't exists in agora-elections
+                                console.log("Not in agora elections: " + event.id);
+                                scope.loading -= 1;
+                            });
+                    }
+                );
+            }
+
+            /**
+             * Hides or shows the children of an election
+             */
+            function setChildrenVisibility(parentElectionId, visible) {
+                _.each(
+                    scope.elections,
+                    function (election) {
+                        if (election.parent_id === parentElectionId) {
+                            election.visible = visible;
+                        }
+                    }
+                );
+            }
+
+            /**
+             * Toggles the visibility of an election's children. It also
+             * first downloads these election if needed. 
+             * 
+             * Called from the template.
+             */
+            function toggleShowChildren(election)
+            {
+                if (scope.loading) {
+                    return;
+                }
+                election.showingChildren = !election.showingChildren;
+                
+                // if this is the first time and children need to be downloaded
+                if (!election.childrenDownloaded && !election.showingChildren)
+                {
+                    // find where the election is in the list
+                    var elIndex = _.findIndex(
+                        scope.election,
+                        function predicate(oneElection) {
+                            return oneElection.id = election.id;
+                        }
+                    );
+                    if (elIndex === -1) {
+                        console.log("error, toggle election not found");
+                    }
+
+                    var childrenIds = election.children_election_info.natural_order;
+
+                    // download children and add them after the index in the list
+                    Authmethod
+                    .electionsIds(scope.page, scope.list.type, childrenIds)
+                    .then(
+                        function(response) 
+                        {
+                            // here we've the elections id, then we need to ask to
+                            // ElectionsApi for each election and load it.
+                            scope.loading = response.data.events.length;
+                            getAllElections(response.data.events, elIndex+1);
+                        },
+                        function onError(response) 
+                        {
+                            scope.loading = false;
+                            scope.error = response.data;
+                        }
+                    );
+                } else {
+                    setChildrenVisibility(election.id, election.showingChildren);
+                }
+            }
+
             function maybeStartOnboarding() {
               // launch the onboarding tour if the profile has been correctly
               // filled up and the election list is zero
@@ -38,41 +134,31 @@ angular.module('avAdmin')
               }
             }
 
-            function loadMoreElections(force) {
-                if (scope.loading || scope.nomore) {
+            function loadMoreElections(force) 
+            {
+                if (scope.loading || scope.nomore) 
+                {
                     return;
                 }
                 scope.loading = true;
 
-                function getAllElections(list) {
-                    list.forEach(function (event) {
-                        ElectionsApi.getElection(event.id)
-                            .then(function(d) {
-                                scope.elections.push(d);
-                                scope.loading -= 1;
-                            })
-                            .catch(function(d) {
-                                // election doesn't exists in agora-elections
-                                console.log("Not in agora elections: " + event.id);
-                                scope.loading -= 1;
-                            });
-                    });
-                }
-
                 Authmethod
                     .electionsIds(scope.page, scope.list.type)
                     .then(
-                        function(response) {
+                        function(response) 
+                        {
                             scope.page += 1;
 
                             $window.electionsTotalCount = response.data.total_count;
-                            if (!force) {
+                            if (!force) 
+                            {
                                 AdminProfile
                                     .openProfileModal(true)
                                     .then(maybeStartOnboarding, maybeStartOnboarding);
                             }
 
-                            if (response.data.end_index === response.data.total_count) {
+                            if (response.data.end_index === response.data.total_count) 
+                            {
                                 scope.nomore = true;
                             }
 
@@ -81,7 +167,8 @@ angular.module('avAdmin')
                             scope.loading = response.data.events.length;
                             getAllElections(response.data.events);
                         },
-                        function onError(response) {
+                        function onError(response) 
+                        {
                             scope.loading = false;
                             scope.error = response.data;
                         }
@@ -106,7 +193,8 @@ angular.module('avAdmin')
 
             angular.extend(scope, {
               loadMoreElections: loadMoreElections,
-              setListType: setListType
+              setListType: setListType,
+              toggleShowChildren: toggleShowChildren
             });
         }
 
