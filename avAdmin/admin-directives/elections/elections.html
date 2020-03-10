@@ -113,36 +113,34 @@
                 </div>
               </a>
               <!-- children elections-->
-              <a
-                ng-if="!!election.children_election_info"
-                ng-repeat="childElection in election.childrenElections  | filter:q | orderBy:'-id'"
-                ui-sref="admin.dashboard({id: childElection.id})"
-                class="padded">
-                <table role="table" class="table children-list">
-                  <tbody>
-                    <tr>
-                      <td>
-                        {{ childElection.id }}
-                      </td>
-                      <td>
-                        <strong>{{ childElection.title }}</strong>
-                        <div
-                          ng-bind-html="childElection.description | htmlToText | truncate:150">
-                        </div>
-                      </td>
-                      <td>
-                        {{ childElection.status|i18next }}
-                      </td>
-                      <td>
-                        <strong>{{ childElection.votes }}</strong>
-                        <div clasS="italic">
-                          ({{ childElection.votes_percentage|number:0 }}%)
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </a>
+              <table 
+              role="table" 
+              ng-if="!!election.children_election_info"
+              class="table children-list">
+                <tbody>
+                  <tr 
+                  ng-repeat="childElection in election.childrenElections  | filter:q | orderBy:'-id'">
+                    <td class="text-center">
+                      {{ childElection.id }}
+                    </td>
+                    <td>
+                      <strong>{{ childElection.title }}</strong>
+                      <div
+                        ng-bind-html="childElection.description | htmlToText | truncate:150">
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      {{ childElection.status|i18next }}
+                    </td>
+                    <td class="text-center">
+                      <strong>{{ childElection.votes }}</strong>
+                      <div clasS="italic">
+                        ({{ childElection.votes_percentage|number:0 }}%)
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </td>
             <td class="text-center">
               <a 
