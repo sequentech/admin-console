@@ -42,7 +42,7 @@ angular.module('avAdmin')
                                 d.showingChildren = false;
                                 d.childrenDownloaded = false;
                                 d.visible = true;
-                                if (!insertionIndex) {
+                                if (insertionIndex === undefined) {
                                     scope.elections.push(d);
                                 } else {
                                     scope.elections.splice(insertionIndex, 0, d);
@@ -111,7 +111,7 @@ angular.module('avAdmin')
                                 // here we've the elections id, then we need to ask to
                                 // ElectionsApi for each election and load it.
                                 scope.loading = response.data.events.length;
-                                getAllElections(response.data.events, elIndex);
+                                getAllElections(response.data.events, elIndex+1);
                             },
                             function onError(response) 
                             {
