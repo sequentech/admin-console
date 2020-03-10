@@ -87,7 +87,7 @@ angular.module('avAdmin')
                 election.showingChildren = !election.showingChildren;
 
                 // if this is the first time and children need to be downloaded
-                if (!election.childrenDownloaded && !election.showingChildren)
+                if (!election.childrenDownloaded && election.showingChildren)
                 {
                     // find where the election is in the list
                     var elIndex = _.findIndex(
