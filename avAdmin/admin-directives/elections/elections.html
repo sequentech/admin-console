@@ -118,16 +118,30 @@
                 ng-repeat="childElection in election.childrenElections  | filter:q | orderBy:'-id'"
                 ui-sref="admin.dashboard({id: childElection.id})"
                 class="padded">
-                <span>({{ childElection.id }})</span>
-                <strong>({{ childElection.title }})</strong>
-                <div
-                  ng-bind-html="childElection.description | htmlToText | truncate:150">
-                </div>
-                <span>{{ childElection.status|i18next }}</span>
-                <strong>{{ childElection.votes }}</strong>
-                <div clasS="italic">
-                  ({{ childElection.votes_percentage|number:0 }}%)
-                </div>
+                <table role="table" class="table children-list">
+                  <tbody>
+                    <tr>
+                      <td>
+                        {{ childElection.id }}
+                      </td>
+                      <td>
+                        <strong>{{ childElection.title }}</strong>
+                        <div
+                          ng-bind-html="childElection.description | htmlToText | truncate:150">
+                        </div>
+                      </td>
+                      <td>
+                        {{ childElection.status|i18next }}
+                      </td>
+                      <td>
+                        <strong>{{ childElection.votes }}</strong>
+                        <div clasS="italic">
+                          ({{ childElection.votes_percentage|number:0 }}%)
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </a>
             </td>
             <td class="text-center">
