@@ -208,7 +208,6 @@ angular.module('avAdmin')
                     deferred.resolve(el);
                   }
                 )
-                .then(deferred.resolve)
                 .catch(deferred.reject);
 
             return deferred.promise;
@@ -226,7 +225,6 @@ angular.module('avAdmin')
                 if (!electionAuth) {
                   asyncElection(id)
                     .then(asyncElectionAuth)
-                    .then(deferred.resolve)
                     .catch(deferred.reject);
                 } else {
                   asyncElection(id)
@@ -237,7 +235,6 @@ angular.module('avAdmin')
                         deferred.resolve(el);
                       }
                     )
-                    .then(deferred.resolve)
                     .catch(deferred.reject);
                 }
             } else {
