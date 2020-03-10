@@ -230,7 +230,6 @@ angular.module('avAdmin')
                   asyncElection(id)
                     .then(
                       function (el) {
-                        var deferred = $q.defer();
                         processElectionAuth(el, electionAuth);
                         deferred.resolve(el);
                       }

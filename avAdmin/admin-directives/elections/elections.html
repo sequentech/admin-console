@@ -100,9 +100,8 @@
                 ui-sref="toggleShowChildren(election)"
                 class="padded">
                 <span 
-                  ng-class="{'glyphicon glyphicon-menu-right': !election.showingChildren, 'glyphicon glyphicon-menu-down
-                  glyphicon glyphicon-': !election.showingChildren}"
-                  class="glyphicon" 
+                  ng-class="{'glyphicon-menu-right': !election.showingChildren, 'glyphicon-menu-down': !!election.showingChildren}"
+                  class="glyphicon"
                   aria-hidden="true">
                 </span>
                 {{ election.id }}
