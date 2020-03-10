@@ -111,7 +111,7 @@ angular.module('avAdmin')
                                 // here we've the elections id, then we need to ask to
                                 // ElectionsApi for each election and load it.
                                 scope.loading = response.data.events.length;
-                                getAllElections(response.data.events, elIndex+1);
+                                getAllElections(response.data.events, elIndex);
                             },
                             function onError(response) 
                             {
