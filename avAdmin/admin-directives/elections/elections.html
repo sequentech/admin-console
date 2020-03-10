@@ -115,28 +115,36 @@
               <!-- children elections-->
               <table 
               role="table" 
-              ng-if="!!election.children_election_info"
+              ng-if="election.showingChildren"
               class="table children-list">
                 <tbody>
                   <tr 
                   ng-repeat="childElection in election.childrenElections  | filter:q | orderBy:'-id'">
                     <td class="text-center">
+                      <a ui-sref="admin.dashboard({id: childElection.id})">
                       {{ childElection.id }}
+                      </a>
                     </td>
                     <td>
-                      <strong>{{ childElection.title }}</strong>
-                      <div
-                        ng-bind-html="childElection.description | htmlToText | truncate:150">
-                      </div>
+                      <a ui-sref="admin.dashboard({id: childElection.id})">
+                        <strong>{{ childElection.title }}</strong>
+                        <div
+                          ng-bind-html="childElection.description | htmlToText | truncate:150">
+                        </div>
+                      </a>
                     </td>
                     <td class="text-center">
+                      <a ui-sref="admin.dashboard({id: childElection.id})">
                       {{ childElection.status|i18next }}
+                      </a>
                     </td>
                     <td class="text-center">
-                      <strong>{{ childElection.votes }}</strong>
-                      <div clasS="italic">
-                        ({{ childElection.votes_percentage|number:0 }}%)
-                      </div>
+                      <a ui-sref="admin.dashboard({id: childElection.id})">
+                        <strong>{{ childElection.votes }}</strong>
+                        <div clasS="italic">
+                          ({{ childElection.votes_percentage|number:0 }}%)
+                        </div>
+                      </a>
                     </td>
                   </tr>
                 </tbody>
