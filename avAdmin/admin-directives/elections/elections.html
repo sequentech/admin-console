@@ -8,28 +8,52 @@
         avAdmin.sidebar.elections
     </h2>
 
-    <table role="table" class="table electionlist" infinite-scroll="loadMoreElections()" infinite-scroll-distance="0">
+    <table 
+      role="table"
+      class="table electionlist"
+      infinite-scroll="loadMoreElections()"
+      infinite-scroll-distance="0">
         <!-- header row -->
         <thead>
           <tr>
             <th colspan="2">
               <div class="input-group search">
-                <input type="text" class="form-control" ng-model="q" placeholder="{{'avAdmin.elections.filter' | i18next}}">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  ng-model="q" 
+                  placeholder="{{'avAdmin.elections.filter' | i18next}}">
                 <span class="input-group-btn">
-                  <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                  <button 
+                    class="btn btn-default" 
+                    type="button">
+                    <i class="fa fa-search"></i>
+                  </button>
                 </span>
               </div>
               <ul class="nav nav-pills">
-                <li role="presentation" ng-class="{'active': list.type === 'all'}">
-                  <a ng-click="setListType('all')" ng-i18next>avAdmin.elections.list.all</a>
+                <li 
+                  role="presentation" 
+                  ng-class="{'active': list.type === 'all'}">
+                  <a ng-click="setListType('all')" ng-i18next>
+                    avAdmin.elections.list.all
+                  </a>
                 </li>
-                <li role="presentation" ng-class="{'active': list.type === 'archived'}">
-                  <a ng-click="setListType('archived')" ng-i18next>avAdmin.elections.list.archived</a>
+                <li 
+                  role="presentation" 
+                  ng-class="{'active': list.type === 'archived'}">
+                  <a ng-click="setListType('archived')" ng-i18next>
+                    avAdmin.elections.list.archived
+                  </a>
                 </li>
               </ul>
             </th>
-            <th class="text-center" ng-i18next> avAdmin.elections.status </th>
-            <th class="text-center" ng-i18next> avAdmin.elections.participation </th>
+            <th class="text-center" ng-i18next> 
+              avAdmin.elections.status
+            </th>
+            <th class="text-center" ng-i18next>
+              avAdmin.elections.participation
+            </th>
           </tr>
         </thead>
 
@@ -38,7 +62,9 @@
           <tr ng-if="!!has_draft">
             <td>
               <a ng-click="loadDraft()" class="padded">
-                  <span class="label label-draft" ng-i18next>avAdmin.elections.draft</span>
+                  <span class="label label-draft" ng-i18next>
+                    avAdmin.elections.draft
+                  </span>
               </a>
             </td>
             <td>
@@ -52,13 +78,18 @@
             <td class="text-center">
             </td>
             <td class="text-center align-close">
-              <button type="button" class="close close-center" ng-click="eraseDraft()">×</button>
+              <button 
+                type="button" 
+                class="close close-center" 
+                ng-click="eraseDraft()">×</button>
             </td>
           </tr>
 
           <tr ng-repeat="election in elections | filter:q | orderBy:'-id'">
             <td>
-              <a ui-sref="admin.dashboard({id: election.id})" class="padded">
+              <a
+                ui-sref="admin.dashboard({id: election.id})"
+                class="padded">
                 {{ election.id }}
               </a>
             </td>
@@ -71,7 +102,9 @@
               </a>
             </td>
             <td class="text-center">
-              <a ui-sref="admin.dashboard({id: election.id})" class="padded text-av-secondary">
+              <a 
+                ui-sref="admin.dashboard({id: election.id})" 
+                class="padded text-av-secondary">
                 {{ election.status|i18next }}
               </a>
             </td>
@@ -87,7 +120,19 @@
           </tr>
         </tbody>
     </table>
-    <div ng-if="loading" class="text-center bg-primary" ng-i18next>loading</div>
-    <div ng-if="nomore" class="text-center bg-success" ng-i18next>nomore</div>
-    <div ng-if="error" class="text-center bg-danger">{{ error }}</div>
+    <div
+      ng-if="loading"
+      class="text-center bg-primary" ng-i18next>
+      loading
+    </div>
+    <div
+      ng-if="nomore"
+      class="text-center bg-success" ng-i18next>
+      nomore
+    </div>
+    <div
+      ng-if="error"
+      class="text-center bg-danger">
+      {{ error }}
+    </div>
 </div>

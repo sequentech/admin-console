@@ -45,15 +45,15 @@ angular.module('avAdmin')
                 scope.loading = true;
 
                 function getAllElections(list) {
-                    list.forEach(function (perm) {
-                        ElectionsApi.getElection(perm.object_id)
+                    list.forEach(function (event) {
+                        ElectionsApi.getElection(event.id)
                             .then(function(d) {
                                 scope.elections.push(d);
                                 scope.loading -= 1;
                             })
                             .catch(function(d) {
                                 // election doesn't exists in agora-elections
-                                console.log("Not in agora elections: " + perm.object_id);
+                                console.log("Not in agora elections: " + event.id);
                                 scope.loading -= 1;
                             });
                     });
@@ -78,8 +78,8 @@ angular.module('avAdmin')
 
                             // here we've the elections id, then we need to ask to
                             // ElectionsApi for each election and load it.
-                            scope.loading = response.data.perms.length;
-                            getAllElections(response.data.perms);
+                            scope.loading = response.data.events.length;
+                            getAllElections(response.data.events);
                         },
                         function onError(response) {
                             scope.loading = false;
