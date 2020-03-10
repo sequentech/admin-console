@@ -48,7 +48,7 @@ angular.module('avAdmin')
                                     parentElection.childrenElections.push(d);
                                 }
                                 scope.loading -= 1;
-                                if (scope.loading === 0) {
+                                if (scope.loading === 0 && !!parentElection) {
                                     parentElection.childrenDownloaded = true;
                                 }
                             })
