@@ -97,7 +97,7 @@
               </a>
               <a
                 ng-if="!!election.children_election_info"
-                ui-sref="toggleShowChildren(election)"
+                ng-click="toggleShowChildren(election)"
                 class="padded">
                 <span 
                   ng-class="{'glyphicon-menu-right': !election.showingChildren, 'glyphicon-menu-down': !!election.showingChildren}"
