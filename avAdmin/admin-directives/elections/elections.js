@@ -85,13 +85,13 @@ angular.module('avAdmin')
                     return;
                 }
                 election.showingChildren = !election.showingChildren;
-                
+
                 // if this is the first time and children need to be downloaded
                 if (!election.childrenDownloaded && !election.showingChildren)
                 {
                     // find where the election is in the list
                     var elIndex = _.findIndex(
-                        scope.election,
+                        scope.elections,
                         function predicate(oneElection) {
                             return oneElection.id = election.id;
                         }
