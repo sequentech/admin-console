@@ -104,21 +104,21 @@ angular.module('avAdmin')
 
                     // download children and add them after the index in the list
                     Authmethod
-                    .electionsIds(scope.page, scope.list.type, childrenIds)
-                    .then(
-                        function(response) 
-                        {
-                            // here we've the elections id, then we need to ask to
-                            // ElectionsApi for each election and load it.
-                            scope.loading = response.data.events.length;
-                            getAllElections(response.data.events, elIndex+1);
-                        },
-                        function onError(response) 
-                        {
-                            scope.loading = false;
-                            scope.error = response.data;
-                        }
-                    );
+                        .electionsIds(0, scope.list.type, childrenIds)
+                        .then(
+                            function(response) 
+                            {
+                                // here we've the elections id, then we need to ask to
+                                // ElectionsApi for each election and load it.
+                                scope.loading = response.data.events.length;
+                                getAllElections(response.data.events, elIndex+1);
+                            },
+                            function onError(response) 
+                            {
+                                scope.loading = false;
+                                scope.error = response.data;
+                            }
+                        );
                 } else {
                     setChildrenVisibility(election.id, election.showingChildren);
                 }
