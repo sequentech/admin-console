@@ -85,9 +85,7 @@
             </td>
           </tr>
 
-          <tr 
-            ng-class="{child: !!election.parent_id, 'hide': !election.visible}"
-            ng-repeat="election in elections">
+          <tr ng-repeat="election in elections | filter:q | orderBy:'-id'">
             <td>
               <a
                 ng-if="!election.children_election_info"
@@ -112,6 +110,23 @@
                 <strong>{{ election.title }}</strong>
                 <div
                   ng-bind-html="election.description | htmlToText | truncate:150">
+                </div>
+              </a>
+              <!-- children elections-->
+              <a
+                ng-if="!!election.children_election_info"
+                ng-repeat="childElection in election.childrenElections  | filter:q | orderBy:'-id'"
+                ui-sref="admin.dashboard({id: childElection.id})"
+                class="padded">
+                <span>({{ childElection.id }})</span>
+                <strong>({{ childElection.title }})</strong>
+                <div
+                  ng-bind-html="childElection.description | htmlToText | truncate:150">
+                </div>
+                <span>{{ childElection.status|i18next }}</span>
+                <strong>{{ childElection.votes }}</strong>
+                <div clasS="italic">
+                  ({{ childElection.votes_percentage|number:0 }}%)
                 </div>
               </a>
             </td>

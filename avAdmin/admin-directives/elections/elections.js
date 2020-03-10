@@ -32,7 +32,7 @@ angular.module('avAdmin')
              * Downloads elections from Elections api, initialize them and
              * insert them in the list in the appropiate place.
              */
-            function getAllElections(list, insertionIndex) 
+            function getAllElections(list, parentElection) 
             {
                 list.forEach(function (event) 
                     {
@@ -42,10 +42,11 @@ angular.module('avAdmin')
                                 d.showingChildren = false;
                                 d.childrenDownloaded = false;
                                 d.visible = true;
-                                if (insertionIndex === undefined) {
+                                if (parentElection === undefined) {
+                                    d.childrenElections = [];
                                     scope.elections.push(d);
                                 } else {
-                                    scope.elections.splice(insertionIndex, 0, d);
+                                    parentElection.childrenElections.push(d);
                                 }
                                 scope.loading -= 1;
                             })
@@ -111,7 +112,7 @@ angular.module('avAdmin')
                                 // here we've the elections id, then we need to ask to
                                 // ElectionsApi for each election and load it.
                                 scope.loading = response.data.events.length;
-                                getAllElections(response.data.events, elIndex+1);
+                                getAllElections(response.data.events, election);
                             },
                             function onError(response) 
                             {
