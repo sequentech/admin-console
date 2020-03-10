@@ -87,7 +87,7 @@
 
           <tr 
             ng-class="{child: !!election.parent_id, 'hide': !election.visible}"
-            ng-repeat="election in elections | filter:q | orderBy:'-id'">
+            ng-repeat="election in elections | filter:q">
             <td>
               <a
                 ng-if="!election.children_election_info"
