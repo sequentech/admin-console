@@ -41,7 +41,6 @@ angular.module('avAdmin')
                             {
                                 d.showingChildren = false;
                                 d.childrenDownloaded = false;
-                                d.visible = true;
                                 if (parentElection === undefined) {
                                     d.childrenElections = [];
                                     scope.elections.push(d);
@@ -49,6 +48,9 @@ angular.module('avAdmin')
                                     parentElection.childrenElections.push(d);
                                 }
                                 scope.loading -= 1;
+                                if (scope.loading === 0) {
+                                    parentElection.childrenDownloaded = true;
+                                }
                             })
                             .catch(function(d) 
                             {
