@@ -81,12 +81,12 @@
           }
         }
 
-        table.children-list tbody tr:hover td {
+        table.children-list tbody tr, table.children-list tbody tr td {
           transition: 0.3s linear all;
         }
-        
-        table.children-list tbody tr:hover td {
-          background-color: darken(@gray-lighter, 25%);
+
+        table.children-list tbody tr:hover, table.children-list tbody tr:hover td {
+          background-color: darken(@gray-lighter, 10%);
         }
 
         &:hover > td {
