@@ -128,11 +128,22 @@ angular.module('avAdmin').controller('AdminController',
             ElectionsApi.getElection(id).then(
               function(el)
               {
-                if (el.census.has_ballot_boxes &&
-                    ElectionsApi.getCachedEditPerm(id).indexOf('list-ballot-boxes') !== -1)
-                {
-                    $scope.sidebarlinks.splice(1, 0, {name: 'ballotBox', icon: 'archive'});
-                }
+                ElectionsApi
+                  .getEditPerm(id)
+                  .then(
+                    function (perm) {
+                      if (
+                        el.census.has_ballot_boxes &&
+                        perm.indexOf('list-ballot-boxes') !== -1
+                      ) {
+                        $scope.sidebarlinks.splice(
+                          1, 
+                          0, 
+                          {name: 'ballotBox', icon: 'archive'}
+                        );
+                      }
+                    }
+                  );
               }
             );
         }
