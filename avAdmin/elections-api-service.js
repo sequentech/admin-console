@@ -205,9 +205,11 @@ angular.module('avAdmin')
                 .then(
                   function onSuccess (response) {
                     processElectionAuth(el, response.data.events);
-                  },
-                  deferred.reject
-                );
+                    deferred.resolve(el);
+                  }
+                )
+                .then(deferred.resolve)
+                .catch(deferred.reject);
 
             return deferred.promise;
         }
