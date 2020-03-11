@@ -288,34 +288,32 @@ angular.module('avAdmin')
           return;
         }
 
-        ElectionsApi
-          .command(scope.election, c.path, c.method, c.data)
-          .catch(function(error) {
-            scope.loading = false; scope.error = error;
-          });
-
         if (c.path === 'start') {
           Authmethod
             .changeAuthEvent(scope.election.id, 'started')
             .then(
-              function onSuccess(){}, 
+              function onSuccess() {}, 
               function onError(response) {
                 scope.loading = false;
                 scope.error = response.data;
               }
             );
-        }
-
-        if (c.path === 'stop') {
+        } else if (c.path === 'stop') {
           Authmethod
             .changeAuthEvent(scope.election.id, 'stopped')
             .then(
-              function onSuccess(){}, 
+              function onSuccess() {}, 
               function onError(response) {
                 scope.loading = false;
                 scope.error = response.data;
               }
             );
+        } else {
+          ElectionsApi
+            .command(scope.election, c.path, c.method, c.data)
+            .catch(function(error) {
+              scope.loading = false; scope.error = error;
+            });
         }
       }
 
