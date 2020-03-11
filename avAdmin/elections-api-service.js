@@ -225,6 +225,7 @@ angular.module('avAdmin')
                 if (!electionAuth) {
                   asyncElection(id)
                     .then(asyncElectionAuth)
+                    .then(deferred.resolve)
                     .catch(deferred.reject);
                 } else {
                   asyncElection(id)
