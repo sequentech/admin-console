@@ -125,7 +125,10 @@ angular.module('avAdmin')
       }
 
       var commands = [
-        {path: 'register', method: 'GET'},
+        {
+          path: 'register', 
+          method: 'GET'
+        },
         {
           path: 'create',
           method: 'POST',
@@ -268,7 +271,8 @@ angular.module('avAdmin')
         setTimeout(waitElectionChange, 1000);
       }
 
-      function doAction(index, data) {
+      function doAction(index, data) 
+      {
         if (scope.intally) {
           return;
         }
@@ -284,15 +288,21 @@ angular.module('avAdmin')
           return;
         }
 
-        ElectionsApi.command(scope.election, c.path, c.method, c.data)
-          .catch(function(error) { scope.loading = false; scope.error = error; });
+        ElectionsApi
+          .command(scope.election, c.path, c.method, c.data)
+          .catch(function(error) {
+            scope.loading = false; scope.error = error;
+          });
 
         if (c.path === 'start') {
           Authmethod
             .changeAuthEvent(scope.election.id, 'started')
             .then(
               function onSuccess(){}, 
-              function onError(response) { scope.loading = false; scope.error = response.data; }
+              function onError(response) {
+                scope.loading = false;
+                scope.error = response.data;
+              }
             );
         }
 
@@ -301,7 +311,10 @@ angular.module('avAdmin')
             .changeAuthEvent(scope.election.id, 'stopped')
             .then(
               function onSuccess(){}, 
-              function onError(response) { scope.loading = false; scope.error = response.data; }
+              function onError(response) {
+                scope.loading = false;
+                scope.error = response.data;
+              }
             );
         }
       }
@@ -473,6 +486,36 @@ angular.module('avAdmin')
           iconClass: 'fa fa-comment-o',
           actionFunc: function() { return scope.changeSocial(); },
           enableFunc: function() { return ConfigService.share_social.allow_edit; }
+        },
+        {
+          i18nString: 'startElection',
+          iconClass: 'fa fa-play',
+          actionFunc: function() { 
+            return doActionConfirm(2); // start
+          },
+          enableFunc: function() { 
+            return [
+              'created',
+              'stopped',
+              'started'
+            ].indexOf(scope.election.status) !== -1;
+          }
+        },
+        {
+          i18nString: 'stopElection',
+          iconClass: 'fa fa-stop',
+          actionFunc: function() { 
+            return doActionConfirm(5); // stop
+          },
+          enableFunc: function() { 
+            return [
+              'started',
+              'stopped',
+              'doing_tally',
+              'tally_ok',
+              'results_ok'
+            ].indexOf(scope.election.status) !== -1;
+          }
         },
         {
           i18nString: 'calculateResults',

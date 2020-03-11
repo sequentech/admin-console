@@ -327,7 +327,9 @@
           "archiveElection": "Archive election...",
           "unarchiveElection": "Unarchive election...",
           "calculateResults": "Calculate results...",
-          "editChildrenParent": "Edit Children and Parent elections.."
+          "editChildrenParent": "Edit Children and Parent elections..",
+          "startElection": "Start election..",
+          "stopElection": "Start election.."
         },
         "modals": {
           "createHeader": "Create election",
