@@ -503,7 +503,7 @@ angular.module('avAdmin')
           i18nString: 'stopElection',
           iconClass: 'fa fa-stop',
           actionFunc: function() { 
-            return doActionConfirm(5); // stop
+            return doActionConfirm(3); // stop
           },
           enableFunc: function() { 
             return [

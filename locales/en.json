@@ -329,7 +329,7 @@
           "calculateResults": "Calculate results...",
           "editChildrenParent": "Edit Children and Parent elections..",
           "startElection": "Start election..",
-          "stopElection": "Start election.."
+          "stopElection": "Stop election.."
         },
         "modals": {
           "createHeader": "Create election",
