@@ -17,8 +17,38 @@
 
 angular.module('avAdmin')
   .controller('ConfirmTallyModal',
-    function($scope, $modalInstance, ConfigService) {
+    function($scope, $modalInstance, ConfigService, payload) {
       $scope.helpurl = ConfigService.helpUrl;
+      $scope.election = payload;
+      $scope.children_election_info = {
+        presentation: { 
+          categories: []
+        }
+      };
+
+      if ($scope.election.children_election_info && $scope.election.children_tally_status) {
+        var statusMap = {};
+        _.each(
+          $scope.election.children_tally_status,
+          function (election) {
+            statusMap[election.id] = election.tally_status;
+          }
+        );
+
+        $scope.children_election_info = angular.copy($scope.election.children_election_info);
+        _.each(
+          $scope.children_election_info.presentation.categories,
+          function (category) {
+            _.each(
+              category.events,
+              function (event) {
+                event.data = ('notstarted' === event.tally_status);
+              }
+            );
+          }
+        );
+      }
+
       $scope.census_dump_modes = [
         {
           name: 'all',
@@ -29,11 +59,31 @@ angular.module('avAdmin')
           enabled: true
         }
       ];
+
       $scope.binding = {
         census_dump_mode: 'active'
       };
+
       $scope.ok = function () {
-        $modalInstance.close($scope.binding.census_dump_mode);
+        var tallyElectionIds = [];
+        _.each(
+          $scope.children_election_info.presentation.categories,
+          function (category) {
+            _.each(
+              category.events,
+              function (event) {
+                if (event.data) {
+                  tallyElectionIds.push(event.event_id);
+                }
+              }
+            );
+          }
+        );
+
+        $modalInstance.close({
+          mode: $scope.binding.census_dump_mode,
+          tallyElectionIds: $scope.tallyElectionIds
+        });
       };
 
       $scope.cancel = function () {

@@ -152,12 +152,13 @@ angular.module('avAdmin')
           method: 'POST',
           confirmController: "ConfirmTallyModal",
           confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-tally-modal.html",
-          doAction: function (mode)
+          payload: scope.election,
+          doAction: function (data)
           {
             // tally command
             var command = commands[4];
 
-            if (mode === 'all') {
+            if (data.mode === 'all') {
               ElectionsApi.command(
                 scope.election,
                 command.path,
@@ -170,29 +171,22 @@ angular.module('avAdmin')
                   scope.error = error;
                 }
               );
+
             // tally only active users
             } else {
-              $modal.open({
-                templateUrl: "avAdmin/admin-directives/dashboard/confirm-tally-active-modal.html",
-                controller: 'ConfirmTallyActiveModal',
-                size: 'lg',
-                resolve: {
-                  election: function () { return scope.election; },
-                }
-              }).result.then(function (voterids) {
-                 ElectionsApi.command(
-                  scope.election,
-                  'tally-voter-ids',
-                  'POST',
-                  voterids
-                ).catch(
+              Authmethod
+                .launchTally(
+                  scope.election.id,
+                  data.tallyElectionIds,
+                  'do-not-force'
+                )
+                .catch(
                   function(error)
                   {
                     scope.loading = false;
                     scope.error = error;
                   }
                 );
-              });
             }
           }
         },

@@ -49,6 +49,19 @@
         ng-i18next="[html]avAdmin.dashboard.modals.censusDumpMode.{{ mode.name }}Description">
       </span>
 
+      <div
+        ng-if="mode == 'active' && children_election_info"
+        class="active-mode-settings">
+        <p ng-i18next>
+          avAdmin.dashboard.modals.chooseChildrenToTally
+        </p>
+        <div
+          av-children-elections
+          mode="checkbox"
+          children-election-info="{{children_election_info}}">
+        </div>
+      </div>
+
       <a href="{{helpurl}}" class="learn-more" target="_blank" ng-i18next>
         avAdmin.learnMore
       </a>
