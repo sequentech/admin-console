@@ -279,7 +279,7 @@ angular.module('avAdmin')
                         controller: "WriteTallySheetModal",
                         windowClass: "write-tally-sheet-modal",
                         resolve: {
-                          tallySheet: function () { return response.data; },
+                          tallySheet: function () { return null; },
                           ballotBox: function () { return ballotBox; },
                           election: function () { return election; }
                         }
