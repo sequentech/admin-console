@@ -269,21 +269,32 @@ angular.module('avAdmin')
               },
               function onError(response)
               {
-                $modal.open({
-                  templateUrl: "avAdmin/admin-directives/ballot-box/write-tally-sheet-modal.html",
-                  controller: "WriteTallySheetModal",
-                  windowClass: "write-tally-sheet-modal",
-                  resolve: {
-                    tallySheet: function () { return null; },
-                    ballotBox: function () { return ballotBox; }
-                  }
-                })
-                .result.then(
-                  scope.reload,
-                  function onError(error) {
-                    scope.reload();
-                  }
-                );
+                ElectionsApi
+                  .getElection(ballotBox.event_id)
+                  .then(
+                    function onSuccess(election) 
+                    {
+                      $modal.open({
+                        templateUrl: "avAdmin/admin-directives/ballot-box/write-tally-sheet-modal.html",
+                        controller: "WriteTallySheetModal",
+                        windowClass: "write-tally-sheet-modal",
+                        resolve: {
+                          tallySheet: function () { return response.data; },
+                          ballotBox: function () { return ballotBox; },
+                          election: function () { return election; }
+                        }
+                      })
+                      .result.then(
+                        scope.reload,
+                        function onError(error) {
+                          scope.reload();
+                        }
+                      );
+                    },
+                    function onError(error) {
+                      scope.reload();
+                    }
+                  );
               }
             );
           },
