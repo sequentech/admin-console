@@ -22,7 +22,6 @@ angular.module('avAdmin')
     function(
       $scope,
       $modalInstance,
-      ElectionsApi,
       allowEdit,
       ballotBox,
       tallySheet
