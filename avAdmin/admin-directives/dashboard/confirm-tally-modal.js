@@ -42,7 +42,7 @@ angular.module('avAdmin')
             _.each(
               category.events,
               function (event) {
-                event.data = ('notstarted' === event.tally_status);
+                event.data = ('notstarted' === statusMap[event.event_id]);
               }
             );
           }
