@@ -239,8 +239,9 @@ angular.module('avAdmin')
             commands[5].payload = scope.calculateResultsJson = el.resultsConfig;
           } else {
             commands[5].payload = scope.calculateResultsJson = angular.toJson(ConfigService.calculateResultsDefault, true);
+          } 
 
-          }
+          commands[4].payload = angular.copy(scope.election);
 
           scope.intally = el.status === 'doing_tally';
           if (scope.intally) {
