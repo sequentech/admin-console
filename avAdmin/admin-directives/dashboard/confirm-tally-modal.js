@@ -55,7 +55,7 @@ angular.module('avAdmin')
           enabled: false
         },
         {
-          mode: 'active',
+          name: 'active',
           enabled: true
         }
       ];
