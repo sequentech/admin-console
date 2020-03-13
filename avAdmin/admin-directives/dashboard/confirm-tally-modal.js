@@ -82,7 +82,7 @@ angular.module('avAdmin')
 
         $modalInstance.close({
           mode: $scope.binding.census_dump_mode,
-          tallyElectionIds: $scope.tallyElectionIds
+          tallyElectionIds: tallyElectionIds
         });
       };
 
