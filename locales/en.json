@@ -140,6 +140,7 @@
           "stop": "<i>__executer_username__ (__executer_id__)</i> <strong>stopped</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
           "tally": "<i>__executer_username__ (__executer_id__)</i> <strong>requested to tally</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
           "tally_error": "<strong>error when launching tally</strong> eof lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "tally_started": "<strong>started the tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
           "tally_error_during_tally": "<strong>error during tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
           "tally_success": "<strong>successful tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
           "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>deleted</strong> election __event_id__",
