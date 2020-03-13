@@ -153,6 +153,13 @@
                 metadata: stringify(obj.metadata)
               })avAdmin.activityLog.action.authevent.tally_error
             </div>
+            <div ng-if="obj.action_name === 'authevent:tally:error-no-votes'" ng-i18next>
+              [i18next:html]({
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event],
+                metadata: stringify(obj.metadata)
+              })avAdmin.activityLog.action.authevent.tally_error_no_votes
+            </div>
             <div ng-if="obj.action_name === 'authevent:tally:error-during-tally'" ng-i18next>
               [i18next:html]({
                 event_id: obj.event_id,
