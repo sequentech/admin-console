@@ -970,7 +970,7 @@ angular.module('avAdmin')
                 {
                   f();
                 } else {
-                  setTimeout(function() { waitForCreated(id, f); }, 3000);
+                  setTimeout(function() { waitForCreated(id, f); }, 5000);
                 }
             });
         }

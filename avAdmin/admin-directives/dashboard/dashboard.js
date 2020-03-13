@@ -69,7 +69,7 @@ angular.module('avAdmin')
         scope.prevStatus = 'tally_ok';
         scope.waiting = true;
         /* jshint ignore:start */
-        setTimeout(waitElectionChange, 1000);
+        setTimeout(waitElectionChange, 5000);
         /* jshint ignore:end */
 
         var path = 'calculate-results';
@@ -91,7 +91,7 @@ angular.module('avAdmin')
         ElectionsApi.getElection(id, ignorecache)
           .then(function(el) {
             if (el.status === scope.prevStatus && scope.waiting) {
-              setTimeout(waitElectionChange, 1000);
+              setTimeout(waitElectionChange, 5000);
             } else {
               scope.waiting = false;
               scope.loading = false;
@@ -116,7 +116,7 @@ angular.module('avAdmin')
                     scope.loading = true;
                     scope.prevStatus = scope.election.status;
                     scope.waiting = true;
-                    setTimeout(waitElectionChange, 1000);
+                    setTimeout(waitElectionChange, 5000);
                   }
                 }
               }
@@ -264,7 +264,7 @@ angular.module('avAdmin')
         scope.loading = true;
         scope.prevStatus = scope.election.status;
         scope.waiting = true;
-        setTimeout(waitElectionChange, 1000);
+        setTimeout(waitElectionChange, 5000);
       }
 
       function doAction(index, data) 
@@ -275,7 +275,7 @@ angular.module('avAdmin')
         scope.loading = true;
         scope.prevStatus = scope.election.status;
         scope.waiting = true;
-        setTimeout(waitElectionChange, 1000);
+        setTimeout(waitElectionChange, 5000);
 
         var c = commands[index];
 
