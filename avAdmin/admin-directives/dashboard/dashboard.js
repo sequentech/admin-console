@@ -153,6 +153,7 @@ angular.module('avAdmin')
           confirmController: "ConfirmTallyModal",
           confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-tally-modal.html",
           payload: scope.election,
+          windowClass: 'confirm-tally-modal',
           doAction: function (data)
           {
             // tally command
@@ -348,6 +349,7 @@ angular.module('avAdmin')
             templateUrl: command.confirmTemplateUrl,
             controller: command.confirmController,
             size: 'lg',
+            windowClass: command.windowClass || '',
             resolve: {
               payload: function () { return payload; }
             }
