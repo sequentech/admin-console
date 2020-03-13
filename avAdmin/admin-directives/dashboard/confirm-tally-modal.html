@@ -29,7 +29,7 @@
       for="census-dump-{{mode.name}}"
       class="descriptive-radio"
       ng-repeat="mode in census_dump_modes"
-      ng-class="{'selected': binding.census_dump_mode === mode.name}">
+      ng-class="{'selected': binding.census_dump_mode === mode.name, 'disabled': !mode.enabled}">
 
       <input
         id="census-dump-{{mode.name}}"
@@ -50,10 +50,10 @@
       </span>
 
       <div
-        ng-if="mode == 'active' && children_election_info"
+        ng-if="mode.name == 'active' && children_election_info"
         class="active-mode-settings">
         <p ng-i18next>
-          avAdmin.dashboard.modals.chooseChildrenToTally
+          avAdmin.dashboard.modals.censusDumpMode.chooseChildrenToTally
         </p>
         <div
           av-children-elections
