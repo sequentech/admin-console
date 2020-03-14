@@ -27,9 +27,15 @@ angular.module('avAdmin')
         for (var i = 0; i < election.census.extra_fields.length; i++) {
           var field = election.census.extra_fields[i];
           if(!newcensus.hasOwnProperty(field.name)) {
-            if(('tlf' === field.name) ||
-               ('email' === field.name && field.type === 'email')) {
+            if(
+              ('tlf' === field.name) ||
+              ('email' === field.name && field.type === 'email')
+            ) {
               newcensus[field.name] = "";
+            }
+          } else {
+            if (field.type === 'int') {
+              newcensus[field.name] = parseInt(newcensus[field.name], 10);
             }
           }
         }
