@@ -146,6 +146,18 @@
                 metadata: stringify(obj.metadata)
               })avAdmin.activityLog.action.authevent.tally_started
             </div>
+            <div ng-if="obj.action_name === 'authevent:virtual-tally:success'" ng-i18next>
+              [i18next:html]({
+                event_id: obj.event_id,
+                metadata: stringify(obj.metadata)
+              })avAdmin.activityLog.action.authevent.virtual_tally_success
+            </div>
+            <div ng-if="obj.action_name === 'authevent:virtual-tally:error'" ng-i18next>
+              [i18next:html]({
+                event_id: obj.event_id,
+                metadata: stringify(obj.metadata)
+              })avAdmin.activityLog.action.authevent.virtual_tally_error
+            </div>
             <div ng-if="obj.action_name === 'authevent:tally:error'" ng-i18next>
               [i18next:html]({
                 event_id: obj.event_id,
