@@ -674,7 +674,7 @@ angular.module('avAdmin')
               ElectionsApi.results(election);
             }
 
-            ElectionsApi.autoreloadStats(electionId);
+            ElectionsApi.autoreloadStats(election.id);
           });
       }
 
