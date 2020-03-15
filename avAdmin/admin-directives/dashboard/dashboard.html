@@ -219,7 +219,7 @@
             ng-if="!!election.children_election_info"
             av-children-elections
             mode="toggle-and-callback"
-            callback="showResults"
+            callback="showResults(electionId)"
             parent-election-id="{{election.id}}"
             children-election-info="{{election.children_election_info}}"
             >
