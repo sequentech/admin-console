@@ -407,7 +407,7 @@ angular.module('avAdmin')
             function (election)
             {
               scope.resultsElection = election;
-              ElectionsApi.results(election);
+              ElectionsApi.autoreloadStats(electionId);
             }
           );
       }
@@ -674,7 +674,7 @@ angular.module('avAdmin')
               ElectionsApi.results(election);
             }
 
-            ElectionsApi.autoreloadStats(election);
+            ElectionsApi.autoreloadStats(electionId);
           });
       }
 

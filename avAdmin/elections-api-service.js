@@ -335,21 +335,23 @@ angular.module('avAdmin')
         };
 
         electionsapi.autoreloadStatsTimer = null;
-        electionsapi.autoreloadStats = function(election) 
+        electionsapi.autoreloadStats = function(electionId) 
         {
           clearTimeout(electionsapi.autoreloadStatsTimer);
-          if (!election) 
+          if (!electionId) 
           {
             return;
           }
 
-          asyncElectionAuth(election)
+          electionsapi.getElection(electionId)
+            .then(asyncElectionAuth)
+            .then(electionsapi.results)
             .finally(
               function() 
               {
                 electionsapi.autoreloadStatsTimer = setTimeout(
                   function() {
-                    electionsapi.autoreloadStats(election); 
+                    electionsapi.autoreloadStats(electionId); 
                   }, 
                   5000
                 );
