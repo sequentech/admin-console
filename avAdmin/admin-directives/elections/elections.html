@@ -60,14 +60,14 @@
         <tbody>
         
           <tr ng-if="!!has_draft">
-            <td>
+            <td class="td-2">
               <a ng-click="loadDraft()" class="padded">
                   <span class="label label-draft" ng-i18next>
                     avAdmin.elections.draft
                   </span>
               </a>
             </td>
-            <td>
+            <td class="td-6">
               <a ng-click="loadDraft()">
                 <strong>{{ draft.title }}</strong>
                 <div
@@ -75,9 +75,9 @@
                 </div>
               </a>
             </td>
-            <td class="text-center">
+            <td class="text-center td-2">
             </td>
-            <td class="text-center align-close">
+            <td class="text-center align-close td-2">
               <button 
                 type="button" 
                 class="close close-center" 
@@ -86,7 +86,7 @@
           </tr>
 
           <tr ng-repeat="election in elections | filter:q | orderBy:'-id'">
-            <td>
+            <td class="td-2">
               <a
                 ng-if="!election.children_election_info"
                 ui-sref="admin.dashboard({id: election.id})"
@@ -105,7 +105,7 @@
                 {{ election.id }}
               </a>
             </td>
-            <td class="main">
+            <td class="main td-6">
               <a ui-sref="admin.dashboard({id: election.id})">
                 <strong>{{ election.title }}</strong>
                 <div
@@ -120,12 +120,12 @@
                 <tbody>
                   <tr 
                   ng-repeat="childElection in election.childrenElections  | filter:q | orderBy:'-id'">
-                    <td class="text-center">
+                    <td class="text-center td-2">
                       <a ui-sref="admin.dashboard({id: childElection.id})">
                       {{ childElection.id }}
                       </a>
                     </td>
-                    <td>
+                    <td class="td-6">
                       <a ui-sref="admin.dashboard({id: childElection.id})">
                         <strong>{{ childElection.title }}</strong>
                         <div
@@ -133,12 +133,12 @@
                         </div>
                       </a>
                     </td>
-                    <td class="text-center">
+                    <td class="text-center td-2">
                       <a ui-sref="admin.dashboard({id: childElection.id})">
                       {{ childElection.status|i18next }}
                       </a>
                     </td>
-                    <td class="text-center">
+                    <td class="text-center td-2">
                       <a ui-sref="admin.dashboard({id: childElection.id})">
                         <strong>{{ childElection.votes }}</strong>
                         <div clasS="italic">
@@ -150,14 +150,14 @@
                 </tbody>
               </table>
             </td>
-            <td class="text-center">
+            <td class="text-center td-2">
               <a 
                 ui-sref="admin.dashboard({id: election.id})" 
                 class="padded text-av-secondary">
                 {{ election.status|i18next }}
               </a>
             </td>
-            <td class="text-center">
+            <td class="text-center td-2">
               <a ui-sref="admin.dashboard({id: election.id})">
                 <strong>{{ election.votes }}</strong>
                 <br/>
