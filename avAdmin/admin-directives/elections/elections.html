@@ -22,7 +22,7 @@
                   type="text" 
                   class="form-control" 
                   ng-model="q" 
-                  placeholder="{{'avAdmin.elections.filter' | i18next}}">
+                  placeholder="{{'avAdmin.elections.filter' | i18next}}" />
                 <span class="input-group-btn">
                   <button 
                     class="btn btn-default" 
@@ -33,14 +33,13 @@
               </div>
               
               <button 
-                class="btn btn-default" 
+                class="btn btn-default float-left" 
                 ng-click="reloadList()">
                 <i class="fa fa-refresh"></i>
               </button>
               
               <button
-                class="btn btn-default"
-                ng-if="canCreateBallotBox"
+                class="btn btn-default  float-left"
                 ui-sref="admin.new()">
                 <i class="fa fa-plus"></i>
               </button>
