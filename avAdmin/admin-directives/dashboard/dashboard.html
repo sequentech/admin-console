@@ -207,11 +207,13 @@
     <!-- end of general -->
 
     <!-- allows to choose which children election to show -->
-    <h2 ng-i18next>
+    <h2 
+      ng-if="!!election.children_election_info"
+      ng-i18next>
       avAdmin.dashboard.results
     </h2>
     <div
-      ng-if="election.children_election_info"
+      ng-if="!!election.children_election_info"
       av-children-elections
       mode="toggle-and-callback"
       callback="showResults"
