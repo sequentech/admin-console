@@ -744,6 +744,9 @@
       "urlModeDescription": "Load an URL that you can specify. Only https urls allowed.",
       "urlModePlaceholder": "https://example.com/foo/bar",
       "invalidUrl": "Invalid URL. Example of a valid URL: https://example.com/foo/bar"
+    },
+    "childrenElections": {
+      "main": "Main election"
     }
   }
 }

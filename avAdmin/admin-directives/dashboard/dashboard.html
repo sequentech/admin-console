@@ -204,11 +204,27 @@
             </div>
         </div>
     </div>
-    <!-- endof general -->
+    <!-- end of general -->
+
+    <!-- allows to choose which children election to show -->
+    <h2 ng-i18next>
+      avAdmin.dashboard.results
+    </h2>
+    <div
+      ng-if="election.children_election_info"
+      av-children-elections
+      mode="toggle-and-callback"
+      callback="showResults"
+      parent-election-id="{{election.id}}"
+      children-election-info="{{election.children_election_info}}"
+      >
+    </div>
 
     <!-- results -->
-    <h2 ng-if="election.results.questions">
-      <span ng-i18next>avAdmin.dashboard.results</span>
+    <h2 ng-if="resultsElection.results.questions">
+      <span ng-i18next>
+        avAdmin.dashboard.results
+      </span>
 
       <div class="btn-group">
         <button
@@ -226,7 +242,7 @@
         <ul class="dropdown-menu download-data-dropdown" role="menu">
           <li>
             <a
-              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/ballots.csv"
+              ng-href="{{publicURL}}/{{resultsElection.id}}/{{resultsElection.results.results_dirname}}/ballots.csv"
               target="_blank"
               class="wrap">
               <span ng-i18next>
@@ -237,7 +253,7 @@
 
           <li>
             <a
-              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.csv"
+              ng-href="{{publicURL}}/{{resultsElection.id}}/{{resultsElection.results.results_dirname}}/{{resultsElection.id}}.results.csv"
               target="_blank"
               class="wrap">
               <span ng-i18next>
@@ -248,7 +264,7 @@
 
           <li>
             <a
-              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.json"
+              ng-href="{{publicURL}}/{{resultsElection.id}}/{{resultsElection.results.results_dirname}}/{{resultsElection.id}}.results.json"
               target="_blank"
               class="wrap">
               <span ng-i18next>
@@ -259,7 +275,7 @@
 
           <li>
             <a
-              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.pretty"
+              ng-href="{{publicURL}}/{{resultsElection.id}}/{{resultsElection.results.results_dirname}}/{{resultsElection.id}}.results.pretty"
               target="_blank"
               class="wrap">
               <span ng-i18next>
@@ -270,7 +286,7 @@
 
           <li>
             <a
-              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.pdf"
+              ng-href="{{publicURL}}/{{resultsElection.id}}/{{resultsElection.results.results_dirname}}/{{resultsElection.id}}.results.pdf"
               target="_blank"
               class="wrap">
               <span ng-i18next>
@@ -281,7 +297,7 @@
         </ul>
       </div>
     </h2>
-    <div class="well question-result" ng-repeat="q in election.results.questions">
+    <div class="well question-result" ng-repeat="q in resultsElection.results.questions">
         <div class="row">
             <div class="col-md-7">
                 <h2>{{ q.title }}</h2>
@@ -324,7 +340,9 @@
                 <td ng-bind-html="an.text"></td>
                 <td>{{ an.total_count|number }}</td>
                 <td>{{ percentVotes(an.total_count, q) }}</td>
-                <td ng-if="an.winner_position === 0 || an.winner_position">{{ an.winner_position + 1}}</td>
+                <td ng-if="an.winner_position === 0 || an.winner_position">
+                  {{ an.winner_position + 1}}
+                </td>
                 <td ng-if="!(an.winner_position === 0 || an.winner_position)">--</td>
             </tr>
         </table>

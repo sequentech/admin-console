@@ -316,54 +316,67 @@ angular.module('avAdmin')
             return deferred.promise;
         };
 
-        electionsapi.voteStats = function(election) {
+        electionsapi.voteStats = function(election) 
+        {
           var deferred = $q.defer();
 
-          Authmethod.voteStats(election.id)
-            .then(function(d) {
-              election.stats = d.data;
-              deferred.resolve(election);
-            })
+          Authmethod
+            .voteStats(election.id)
+            .then(
+                function(response) 
+                {
+                election.stats = response.data;
+                deferred.resolve(election);
+              }
+            )
             .catch(deferred.reject);
 
             return deferred.promise;
         };
 
         electionsapi.autoreloadStatsTimer = null;
-        electionsapi.autoreloadStats = function(election) {
-            clearTimeout(electionsapi.autoreloadStatsTimer);
-            if (!election) {
-              return;
-            }
+        electionsapi.autoreloadStats = function(election) 
+        {
+          clearTimeout(electionsapi.autoreloadStatsTimer);
+          if (!election) 
+          {
+            return;
+          }
 
-            asyncElectionAuth(election)
-                .finally(
-                  function() 
-                  {
-                    electionsapi.autoreloadStatsTimer = setTimeout(
-                      function() {
-                        electionsapi.autoreloadStats(election); 
-                      }, 
-                      5000
-                    );
-                  }
+          asyncElectionAuth(election)
+            .finally(
+              function() 
+              {
+                electionsapi.autoreloadStatsTimer = setTimeout(
+                  function() {
+                    electionsapi.autoreloadStats(election); 
+                  }, 
+                  5000
                 );
+              }
+            );
         };
 
-        electionsapi.results = function(el) {
-            var deferred = $q.defer();
+        electionsapi.results = function(el) 
+        {
+          var deferred = $q.defer();
 
-            electionsapi.command(el, 'results', 'GET')
-                .then(function(d) {
-                        el.results = angular.fromJson(d.data.payload);
-                        deferred.resolve(el);
-                      })
-                 .catch(deferred.reject);
+          electionsapi
+            .command(el, 'results', 'GET')
+            .then(
+              function(response)
+              {
+                el.results = angular.fromJson(response.data.payload);
+                deferred.resolve(el);
+              }
+            )
+            .catch(deferred.reject);
 
-            return deferred.promise;
+          return deferred.promise;
         };
 
-        electionsapi.command = function(el, command, method, data) {
+        electionsapi.command = function(el, command, method, data) 
+        {
             var deferred = $q.defer();
             var m = {};
             var d = data || {};
