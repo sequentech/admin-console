@@ -207,19 +207,25 @@
     <!-- end of general -->
 
     <!-- allows to choose which children election to show -->
-    <h3 
-      ng-if="!!election.children_election_info"
-      ng-i18next>
-      avAdmin.dashboard.chilldrenResultsTitle
-    </h3>
-    <div
-      ng-if="!!election.children_election_info"
-      av-children-elections
-      mode="toggle-and-callback"
-      callback="showResults"
-      parent-election-id="{{election.id}}"
-      children-election-info="{{election.children_election_info}}"
-      >
+    <div class="row general">
+      <div class="col-md-12">
+        <div class="well">
+          <h3 
+            ng-if="!!election.children_election_info"
+            ng-i18next>
+            avAdmin.dashboard.chilldrenResultsTitle
+          </h3>
+          <div
+            ng-if="!!election.children_election_info"
+            av-children-elections
+            mode="toggle-and-callback"
+            callback="showResults"
+            parent-election-id="{{election.id}}"
+            children-election-info="{{election.children_election_info}}"
+            >
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- results -->
