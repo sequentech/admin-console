@@ -685,7 +685,8 @@ angular.module('avAdmin')
         duplicateElection: duplicateElection,
         changeSocial: changeSocial,
         archiveElection: archiveElection,
-        editChildrenParent: editChildrenParent
+        editChildrenParent: editChildrenParent,
+        showResults: showResults
       });
 
       // initialize
