@@ -92,17 +92,6 @@ angular.module('avAdmin')
                 // if this is the first time and children need to be downloaded
                 if (!election.childrenDownloaded && election.showingChildren)
                 {
-                    // find where the election is in the list
-                    var elIndex = _.findIndex(
-                        scope.elections,
-                        function predicate(oneElection) {
-                            return oneElection.id = election.id;
-                        }
-                    );
-                    if (elIndex === -1) {
-                        console.log("error, toggle election not found");
-                    }
-
                     var childrenIds = election.children_election_info.natural_order;
 
                     // download children and add them after the index in the list
