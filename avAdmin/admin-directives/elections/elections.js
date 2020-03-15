@@ -175,6 +175,13 @@ angular.module('avAdmin')
                 scope.loadMoreElections(true);
             }
 
+            function reloadList() {
+                scope.page = 1;
+                scope.nomore = false;
+                scope.elections.splice(0, scope.elections.length);
+                scope.loadMoreElections(true);
+            }
+
             scope.exhtml = [];
             Plugins.hook(
             'admin-elections-list-extra-html',
@@ -186,7 +193,8 @@ angular.module('avAdmin')
             angular.extend(scope, {
               loadMoreElections: loadMoreElections,
               setListType: setListType,
-              toggleShowChildren: toggleShowChildren
+              toggleShowChildren: toggleShowChildren,
+              reloadList: reloadList
             });
         }
 

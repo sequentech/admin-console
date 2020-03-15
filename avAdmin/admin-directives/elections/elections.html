@@ -31,6 +31,20 @@
                   </button>
                 </span>
               </div>
+              
+              <button 
+                class="btn btn-default" 
+                ng-click="reloadList()">
+                <i class="fa fa-refresh"></i>
+              </button>
+              
+              <button
+                class="btn btn-default"
+                ng-if="canCreateBallotBox"
+                ui-sref="admin.new()">
+                <i class="fa fa-plus"></i>
+              </button>
+
               <ul class="nav nav-pills">
                 <li 
                   role="presentation" 
@@ -60,14 +74,14 @@
         <tbody>
         
           <tr ng-if="!!has_draft">
-            <td class="td-2">
+            <td class="td-1">
               <a ng-click="loadDraft()" class="padded">
                   <span class="label label-draft" ng-i18next>
                     avAdmin.elections.draft
                   </span>
               </a>
             </td>
-            <td class="td-6">
+            <td class="td-7">
               <a ng-click="loadDraft()">
                 <strong>{{ draft.title }}</strong>
                 <div
@@ -86,7 +100,7 @@
           </tr>
 
           <tr ng-repeat="election in elections | filter:q | orderBy:'-id'">
-            <td class="td-2">
+            <td class="td-1">
               <a
                 ng-if="!election.children_election_info"
                 ui-sref="admin.dashboard({id: election.id})"
@@ -105,7 +119,7 @@
                 {{ election.id }}
               </a>
             </td>
-            <td class="main td-6">
+            <td class="main td-7">
               <a ui-sref="admin.dashboard({id: election.id})">
                 <strong>{{ election.title }}</strong>
                 <div
