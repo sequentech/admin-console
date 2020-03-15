@@ -298,6 +298,7 @@
         "dropFilesHere": "Drop CSV file here"
     },
     "dashboard": {
+        "chilldrenResultsTitle": "Select the election results to view:",
         "createRealElection": "Create REAL election",
         "duplicateElection": "Duplicate election",
         "sendAuthCodes": "Send auth codes",
