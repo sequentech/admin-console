@@ -178,11 +178,46 @@
                 child_election: election.childrenElectionNames[obj.metadata.auth_event]
               })avAdmin.activityLog.action.authevent.tally_error_during_tally
             </div>
-            <div ng-if="obj.action_name === 'authevent:tally:success'" ng-i18next>
+            <div ng-if="obj.action_name === 'authevent:calculate-results:success'" ng-i18next>
               [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
                 event_id: obj.event_id,
                 child_election: election.childrenElectionNames[obj.metadata.auth_event]
-              })avAdmin.activityLog.action.authevent.tally_success
+              })avAdmin.activityLog.action.authevent.calculate_results_success
+            </div>
+            <div ng-if="obj.action_name === 'authevent:calculate-results:error'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.calculate_results_error
+            </div>
+            <div ng-if="obj.action_name === 'authevent:publish-results:success'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.publish_results_success
+            </div>
+            <div ng-if="obj.action_name === 'authevent:publish-results:error'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.publish_results_error
+            </div>
+            <div ng-if="obj.action_name === 'authevent:tally:started'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event],
+                metadata: stringify(obj.metadata)
+              })avAdmin.activityLog.action.authevent.tally_started
             </div>
             <div ng-if="obj.action_name === 'authevent:delete'" ng-i18next>
             [i18next:html](obj)avAdmin.activityLog.action.authevent.delete

@@ -33,39 +33,6 @@ angular.module('avAdmin')
     // we use it as something similar to a controller here
     function link(scope, element, attrs) 
     {
-      function calculateResults(el) 
-      {
-        if (
-          'tally_ok' !== el.status && 
-          'results_ok' !== el.status && 
-          'stopped' !== el.status
-        ) {
-          return;
-        }
-
-        scope.loading = true;
-        scope.prevStatus = 'tally_ok';
-        scope.waiting = true;
-        /* jshint ignore:start */
-        setTimeout(waitElectionChange, 5000);
-        /* jshint ignore:end */
-
-        var path = 'calculate-results';
-        var method = 'POST';
-        ElectionsApi
-          .command(el, path, method, scope.calculateResultsJson)
-          .then(function onSuccess(response) 
-          {
-            ElectionsApi.results(el);
-          })
-          .catch(
-            function(error) 
-            {
-              scope.loading = false; scope.error = error; 
-            }
-          );
-      }
-
       function waitElectionChange() 
       {
         ElectionsApi
@@ -84,8 +51,7 @@ angular.module('avAdmin')
                 'election-modified', 
                 {
                   old: scope.election,
-                  el: el,
-                  calculateResults: calculateResults
+                  el: el
                 }
               );
               scope.election = el;
@@ -520,19 +486,29 @@ angular.module('avAdmin')
               var command = scope.commands[5];
               command.payload = data;
               scope.calculateResultsJson = data;
-              var ignorecache = true;
-              ElectionsApi
-                .getElection(scope.id, ignorecache)
+
+              scope.loading = true;
+              scope.prevStatus = 'tally_ok';
+              scope.waiting = true;
+              /* jshint ignore:start */
+              setTimeout(waitElectionChange, 5000);
+              /* jshint ignore:end */
+
+              Authmethod
+                .changeAuthEvent(
+                  scope.election.id,
+                  'calculate-results',
+                  data
+                )
                 .then(
-                  function(el) 
+                  function onSuccess()
                   {
-                  if (
-                    'tally_ok' === el.status || 
-                    'results_ok' === el.status || 
-                      'stopped' === el.status
-                    ) {
-                    calculateResults(el);
-                  }
+                    ElectionsApi.results(scope.election);
+                  }, 
+                  function onError(response) 
+                  {
+                    scope.loading = false;
+                    scope.error = response.data;
                   }
                 );
             }
@@ -541,7 +517,30 @@ angular.module('avAdmin')
             path: 'publish-results',
             method: 'POST',
             confirmController: "ConfirmPublishResultsModal",
-            confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-publish-results-modal.html"
+            confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-publish-results-modal.html",
+            doAction: function ()
+            {
+              scope.loading = true;
+              scope.prevStatus = scope.election.status;
+              scope.waiting = true;
+              /* jshint ignore:start */
+              setTimeout(waitElectionChange, 5000);
+              /* jshint ignore:end */
+
+              Authmethod
+                .changeAuthEvent(
+                  scope.election.id,
+                  'publish-results'
+                )
+                .then(
+                  function onSuccess() {}, 
+                  function onError(response) 
+                  {
+                    scope.loading = false;
+                    scope.error = response.data;
+                  }
+                );
+            }
           }
         ];
 
@@ -592,7 +591,8 @@ angular.module('avAdmin')
               return [
                 'stopped', 
                 'tally_ok', 
-                'results_ok'
+                'results_ok',
+                'results_pub'
               ].indexOf(scope.election.status) !== -1;
             }
           },
