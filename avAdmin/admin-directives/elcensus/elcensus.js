@@ -66,7 +66,7 @@ angular.module('avAdmin')
           return _.map(
             metadata.children_event_id_list,
             function (electionId) {
-              return scope.election.childrenElectionNames[electionId];
+              return scope.election.childrenElectionNames[electionId] || electionId;
             }
           );
         }

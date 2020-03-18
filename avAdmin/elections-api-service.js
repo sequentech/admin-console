@@ -515,7 +515,7 @@ angular.module('avAdmin')
               return _.map(
                 children_event_id_list,
                 function (electionId) {
-                  return electionNames[electionId];
+                  return electionNames[electionId] || electionId;
                 }
               );
             }
