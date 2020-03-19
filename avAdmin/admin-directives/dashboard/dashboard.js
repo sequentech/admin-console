@@ -577,7 +577,22 @@ angular.module('avAdmin')
                 'stopped',
                 'doing_tally',
                 'tally_ok',
-                'results_ok'
+                'results_ok',
+                'results_pub'
+              ].indexOf(scope.election.status) !== -1;
+            }
+          },
+          {
+            i18nString: 'tally',
+            iconClass: 'fa fa-calculator',
+            actionFunc: function() { 
+              return doActionConfirm(4); // tally
+            },
+            enableFunc: function() { 
+              return [
+                'stopped',
+                'results_ok',
+                'results_pub'
               ].indexOf(scope.election.status) !== -1;
             }
           },
@@ -587,10 +602,25 @@ angular.module('avAdmin')
             actionFunc: function() { 
               return doActionConfirm(5); // calculate results
             },
-            enableFunc: function() { 
+            enableFunc: function() {
               return [
                 'stopped', 
                 'tally_ok', 
+                'results_ok',
+                'results_pub'
+              ].indexOf(scope.election.status) !== -1;
+            }
+          },
+          {
+            i18nString: 'publishResults',
+            iconClass: 'fa fa-calculator',
+            actionFunc: function() { 
+              return doActionConfirm(6); // publish results
+            },
+            enableFunc: function() { 
+              return [
+                'stopped',
+                'tally_ok',
                 'results_ok',
                 'results_pub'
               ].indexOf(scope.election.status) !== -1;

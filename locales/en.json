@@ -339,10 +339,12 @@
           "sendAuthCodes": "Send auth codes...",
           "archiveElection": "Archive election...",
           "unarchiveElection": "Unarchive election...",
+          "tally": "Launch tally...",
           "calculateResults": "Calculate results...",
           "editChildrenParent": "Edit Children and Parent elections..",
           "startElection": "Start election..",
-          "stopElection": "Stop election.."
+          "stopElection": "Stop election..",
+          "publishResults": "Publish results..."
         },
         "modals": {
           "createHeader": "Create election",
