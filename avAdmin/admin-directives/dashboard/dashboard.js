@@ -33,6 +33,7 @@ angular.module('avAdmin')
     // we use it as something similar to a controller here
     function link(scope, element, attrs) 
     {
+      scope.reloadTimeout = null;
       function waitElectionChange() 
       {
         ElectionsApi
@@ -41,7 +42,8 @@ angular.module('avAdmin')
           {
             if (el.status === scope.prevStatus && scope.waiting) 
             {
-              setTimeout(waitElectionChange, 5000);
+              clearTimeout(scope.reloadTimeout);
+              scope.reloadTimeout = setTimeout(waitElectionChange, 5000);
             } else {
               scope.waiting = false;
               scope.loading = false;
@@ -80,7 +82,9 @@ angular.module('avAdmin')
                     scope.loading = true;
                     scope.prevStatus = scope.election.status;
                     scope.waiting = true;
-                    setTimeout(waitElectionChange, 5000);
+
+                    clearTimeout(scope.reloadTimeout);
+                    scope.reloadTimeout = setTimeout(waitElectionChange, 5000);
                   }
                 }
               }
@@ -94,7 +98,8 @@ angular.module('avAdmin')
         scope.loading = true;
         scope.prevStatus = scope.election.status;
         scope.waiting = true;
-        setTimeout(waitElectionChange, 5000);
+        clearTimeout(scope.reloadTimeout);
+        scope.reloadTimeout = setTimeout(waitElectionChange, 5000);
       }
 
       function doAction(index, data) 
@@ -107,7 +112,8 @@ angular.module('avAdmin')
         scope.loading = true;
         scope.prevStatus = scope.election.status;
         scope.waiting = true;
-        setTimeout(waitElectionChange, 5000);
+        clearTimeout(scope.reloadTimeout);
+        scope.reloadTimeout = setTimeout(waitElectionChange, 5000);
 
         var c = scope.commands[index];
 
@@ -491,7 +497,9 @@ angular.module('avAdmin')
               scope.prevStatus = 'tally_ok';
               scope.waiting = true;
               /* jshint ignore:start */
-              setTimeout(waitElectionChange, 5000);
+
+              clearTimeout(scope.reloadTimeout);
+              scope.reloadTimeout = setTimeout(waitElectionChange, 5000);
               /* jshint ignore:end */
 
               Authmethod
@@ -524,7 +532,9 @@ angular.module('avAdmin')
               scope.prevStatus = scope.election.status;
               scope.waiting = true;
               /* jshint ignore:start */
-              setTimeout(waitElectionChange, 5000);
+
+              clearTimeout(scope.reloadTimeout);
+              scope.reloadTimeout = setTimeout(waitElectionChange, 5000);
               /* jshint ignore:end */
 
               Authmethod

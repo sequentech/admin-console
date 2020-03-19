@@ -300,7 +300,7 @@ angular.module('avAdmin')
           },
           enableFunc: function(ballotBox) {
             return (
-              ['stopped', 'tally_ok', 'results_ok'].indexOf(ElectionsApi.currentElection.status) !== -1 && (
+              ['stopped', 'tally_ok', 'results_ok', 'doing_tally', 'tally_error','results_pub'].indexOf(ElectionsApi.currentElection.status) !== -1 && (
                 (
                 ballotBox.num_tally_sheets > 0 &&
                 ElectionsApi.getCachedEditPerm(scope.electionId).indexOf('override-tally-sheets') !== -1
@@ -344,7 +344,7 @@ angular.module('avAdmin')
           },
           enableFunc: function(ballotBox) {
             return (
-              ['stopped', 'tally_ok'].indexOf(ElectionsApi.currentElection.status) !== -1 &&
+              ['stopped', 'tally_ok', 'results_ok', 'doing_tally', 'tally_error','results_pub'].indexOf(ElectionsApi.currentElection.status) !== -1 &&
               ballotBox.num_tally_sheets > 0 &&
               ElectionsApi.getCachedEditPerm(scope.electionId).indexOf('delete-tally-sheets') !== -1
             );
