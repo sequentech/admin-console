@@ -341,6 +341,8 @@ angular.module('avAdmin')
                   function onSuccess() 
                   {
                     scope.msg = "avAdmin.dashboard.modals.unpublishResults.success";
+                    clearTimeout(scope.reloadTimeout);
+                    scope.reloadTimeout = setTimeout(waitElectionChange, 5000);
                   }, 
                   function onError(response) { scope.error = response.data; }
                 )
