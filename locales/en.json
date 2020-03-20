@@ -344,6 +344,7 @@
           "archiveElection": "Archive election...",
           "unarchiveElection": "Unarchive election...",
           "tally": "Launch tally...",
+          "allowTally": "Allow to launch tally...",
           "calculateResults": "Calculate results...",
           "editChildrenParent": "Edit Children and Parent elections..",
           "startElection": "Start election..",
