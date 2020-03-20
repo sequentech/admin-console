@@ -659,7 +659,7 @@ angular.module('avAdmin')
             }
           },
           {
-            i18nString: 'tally',
+            i18nString: 'allowTally',
             iconClass: 'fa fa-bars',
             actionFunc: function() { 
               return scope.allowTally();  // allow-tally
