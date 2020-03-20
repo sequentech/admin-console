@@ -336,7 +336,7 @@ angular.module('avAdmin')
           .then(
             function confirmed() 
             {
-              ElectionsApi.unpublishResults(scope.election.id)
+              ElectionsApi.unpublishResults(scope.election)
                 .then(
                   function onSuccess() 
                   {
