@@ -344,7 +344,8 @@
           "editChildrenParent": "Edit Children and Parent elections..",
           "startElection": "Start election..",
           "stopElection": "Stop election..",
-          "publishResults": "Publish results..."
+          "publishResults": "Publish results...",
+          "unpublishResults": "Unpublish results..."
         },
         "modals": {
           "createHeader": "Create election",
