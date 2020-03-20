@@ -377,6 +377,11 @@ angular.module('avAdmin')
           return deferred.promise;
         };
 
+        electionsapi.unpublishResults = function(el) 
+        {
+          return electionsapi.command(el, 'unpublish-results', 'POST');
+        };
+
         electionsapi.command = function(el, command, method, data) 
         {
             var deferred = $q.defer();

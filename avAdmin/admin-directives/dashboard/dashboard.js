@@ -343,7 +343,10 @@ angular.module('avAdmin')
                     scope.msg = "avAdmin.dashboard.modals.unpublishResults.success";
                   }, 
                   function onError(response) { scope.error = response.data; }
-                );  
+                )
+                .catch(
+                  function onError(error) { scope.error = error; }
+                );
             }
           );
       }
