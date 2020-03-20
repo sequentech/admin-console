@@ -336,11 +336,44 @@ angular.module('avAdmin')
           .then(
             function confirmed() 
             {
-              ElectionsApi.unpublishResults(scope.election)
+              Authmethod.unpublishResults(scope.election.id)
                 .then(
                   function onSuccess() 
                   {
                     scope.msg = "avAdmin.dashboard.modals.unpublishResults.success";
+                    clearTimeout(scope.reloadTimeout);
+                    scope.reloadTimeout = setTimeout(waitElectionChange, 5000);
+                  }, 
+                  function onError(response) { scope.error = response.data; }
+                )
+                .catch(
+                  function onError(error) { scope.error = error; }
+                );
+            }
+          );
+      }
+
+      function allowTally() 
+      {
+        $modal
+          .open({
+            templateUrl: "avAdmin/admin-directives/dashboard/confirm-modal.html",
+            controller: "ConfirmModal",
+            size: 'lg',
+            resolve: {
+              dialogName: function () { return "allowTally"; },
+              data: function () { return ""; },
+            }
+          })
+          .result
+          .then(
+            function confirmed() 
+            {
+              Authmethod.allowTally(scope.election.id)
+                .then(
+                  function onSuccess() 
+                  {
+                    scope.msg = "avAdmin.dashboard.modals.allowTally.success";
                     clearTimeout(scope.reloadTimeout);
                     scope.reloadTimeout = setTimeout(waitElectionChange, 5000);
                   }, 
@@ -629,14 +662,20 @@ angular.module('avAdmin')
             i18nString: 'tally',
             iconClass: 'fa fa-bars',
             actionFunc: function() { 
+              return scope.allowTally();  // allow-tally
+            },
+            enableFunc: function() { 
+              return !scope.election.tallyAllowed;
+            }
+          },
+          {
+            i18nString: 'tally',
+            iconClass: 'fa fa-bars',
+            actionFunc: function() { 
               return doActionConfirm(4); // tally
             },
             enableFunc: function() { 
-              return [
-                'stopped',
-                'results_ok',
-                'results_pub'
-              ].indexOf(scope.election.status) !== -1;
+              return scope.election.tallyAllowed;
             }
           },
           {
@@ -769,6 +808,7 @@ angular.module('avAdmin')
         changeSocial: changeSocial,
         archiveElection: archiveElection,
         unpublishResults: unpublishResults,
+        allowTally: allowTally,
         editChildrenParent: editChildrenParent,
         showResults: showResults
       });

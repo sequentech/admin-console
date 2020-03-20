@@ -210,6 +210,38 @@
                 child_election: election.childrenElectionNames[obj.metadata.auth_event]
               })avAdmin.activityLog.action.authevent.publish_results_error
             </div>
+            <div ng-if="obj.action_name === 'authevent:unpublish-results:success'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.unpublish_results_success
+            </div>
+            <div ng-if="obj.action_name === 'authevent:unpublish-results:error'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.unpublish_results_error
+            </div>
+            <div ng-if="obj.action_name === 'authevent:allow-tally:success'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.allow_tally_success
+            </div>
+            <div ng-if="obj.action_name === 'authevent:allow-tally:error'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.allow_tally_error
+            </div>
             <div ng-if="obj.action_name === 'authevent:tally:success'" ng-i18next>
               [i18next:html]({
                 executer_username: obj.executer_username,
