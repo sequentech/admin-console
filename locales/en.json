@@ -438,6 +438,12 @@
             "body": "Edit in the textarea the parent_id and children_election_info in JSON.",
             "confirmButton": "Send updated data",
             "success": "Election children and parent info updated successfully"
+          },
+          "unpublishResults": {
+            "header": "Unpublish election results",
+            "body": "The electoral results will not show in this election public website.",
+            "confirmButton": "Confirm and unpublish electoral results",
+            "success": "Electoral results have been unpublished successfully"
           }
         }
     },

@@ -319,6 +319,34 @@ angular.module('avAdmin')
             }
           );
       }
+      
+      function unpublishResults() 
+      {
+        $modal
+          .open({
+            templateUrl: "avAdmin/admin-directives/dashboard/confirm-modal.html",
+            controller: "ConfirmModal",
+            size: 'lg',
+            resolve: {
+              dialogName: function () { return "unpublishResults"; },
+              data: function () { return ""; },
+            }
+          })
+          .result
+          .then(
+            function confirmed() 
+            {
+              ElectionsApi.unpublishResults(scope.election.id)
+                .then(
+                  function onSuccess() 
+                  {
+                    scope.msg = "avAdmin.dashboard.modals.unpublishResults.success";
+                  }, 
+                  function onError(response) { scope.error = response.data; }
+                );  
+            }
+          );
+      }
 
       function editChildrenParent(mode) 
       {
@@ -594,7 +622,7 @@ angular.module('avAdmin')
           },
           {
             i18nString: 'tally',
-            iconClass: 'fa fa-calculator',
+            iconClass: 'fa fa-bars',
             actionFunc: function() { 
               return doActionConfirm(4); // tally
             },
@@ -623,7 +651,7 @@ angular.module('avAdmin')
           },
           {
             i18nString: 'publishResults',
-            iconClass: 'fa fa-calculator',
+            iconClass: 'fa fa-bar-chart',
             actionFunc: function() { 
               return doActionConfirm(6); // publish results
             },
@@ -632,6 +660,16 @@ angular.module('avAdmin')
                 'stopped',
                 'tally_ok',
                 'results_ok',
+                'results_pub'
+              ].indexOf(scope.election.status) !== -1;
+            }
+          },
+          {
+            i18nString: 'unpublishResults',
+            iconClass: 'fa fa-compress',
+            actionFunc: function() { return scope.unpublishResults(); },
+            enableFunc: function() {
+              return [
                 'results_pub'
               ].indexOf(scope.election.status) !== -1;
             }
@@ -725,6 +763,7 @@ angular.module('avAdmin')
         duplicateElection: duplicateElection,
         changeSocial: changeSocial,
         archiveElection: archiveElection,
+        unpublishResults: unpublishResults,
         editChildrenParent: editChildrenParent,
         showResults: showResults
       });
