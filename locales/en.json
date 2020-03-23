@@ -33,6 +33,44 @@
       "title": "Profile",
       "save": "Save changes"
     },
+    "onboarding": {
+      "help_tour": {
+        "step0_help_title": "Help",
+        "step0_help_content": "If you need any further help, you can click here to get it. You can <strong>launch again the tour</strong> there too!",
+
+        "step1_chat_title": "Chat with us",
+        "step1_chat_content": "If you have any question, we'll be glad to answer you quickly through the chat."
+      },
+      "dashboard_tour": {
+        "step0_test_title": "Test election",
+        "step0_test_content": "You have created a test election. Test elections have limited census size and a real election can only be created out of a successfully tallied test election.",
+
+        "step1_real_title": "Real election",
+        "step1_real_content": "Once this election is tallied, you will be able to create a real election clicking here.",
+
+        "step2_status_title": "Election status",
+        "step2_status_content": "This section shows you the state of the election and a button to move election to the next status.",
+
+        "step3_start_title": "Start the election",
+        "step3_start_content": "Click this button to start the election and send an authentication email to all census."
+      },
+      "hello_tour": {
+        "step0_create_title": "Create an election",
+        "step0_create_content": "Start creating a test election clicking in the <strong>New Election</strong> button. <br><br>Or watch the intro video:<br><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/eTZ3TQw5G_c?rel=0&amp;showinfo=0\" frameborder=\"0\" allowfullscreen></iframe>",
+
+        "step1_change_title": "Change the title",
+        "step1_change_content": "Now you can edit all the details of the election, for example you could edit the election's title clicking title here.",
+
+        "step2_sidebar_title": "Sidebar",
+        "step2_sidebar_content": "You can personalize the election clicking through these sections.",
+
+        "step3_review_title": "Review election to create it",
+        "step3_review_content": "Once you are done configuring the election, click the <strong>Create Election</strong> section to review and then create the election.",
+
+        "step4_create2_title": "Create the election",
+        "step4_create2_content": "<strong>Click this button</strong> to create the election. <br><br>Note that the election won't be created until you do so, and for security reasons it won't be editable afterwards."
+      }
+    },
     "ballotBox": {
       "title": "Ballot Boxes",
       "intro": "List of ballot boxes and their tally sheets.",
@@ -166,44 +204,6 @@
           "create": "<i>__executer_username__ (__executer_id__)</i> <strong>uploaded</strong> a <a href=\"/admin/ballot-box/__event_id__?view_tally_sheet_id=__tally_sheet_id__&ballot_box_id=__ballot_box_id__\">tally sheet</a> for ballot box <a href=\"/admin/ballot-box/__event_id__?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>deleted</strong> a <a href=\"/admin/ballot-box/__event_id__?view_tally_sheet_from_action_id=__action_id__&ballot_box_name=__ballot_box_name__&ballot_box_id=__ballot_box_id__\">tally sheet</a> for ballot box <a href=\"/admin/ballot-box/__event_id__?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>"
         }
-      }
-    },
-    "onboarding": {
-      "help_tour": {
-        "step0_help_title": "Help",
-        "step0_help_content": "If you need any further help, you can click here to get it. You can <strong>launch again the tour</strong> there too!",
-
-        "step1_chat_title": "Chat with us",
-        "step1_chat_content": "If you have any question, we'll be glad to answer you quickly through the chat."
-      },
-      "dashboard_tour": {
-        "step0_test_title": "Test election",
-        "step0_test_content": "You have created a test election. Test elections have limited census size and a real election can only be created out of a successfully tallied test election.",
-
-        "step1_real_title": "Real election",
-        "step1_real_content": "Once this election is tallied, you will be able to create a real election clicking here.",
-
-        "step2_status_title": "Election status",
-        "step2_status_content": "This section shows you the state of the election and a button to move election to the next status.",
-
-        "step3_start_title": "Start the election",
-        "step3_start_content": "Click this button to start the election and send an authentication email to all census."
-      },
-      "hello_tour": {
-        "step0_create_title": "Create an election",
-        "step0_create_content": "Start creating a test election clicking in the <strong>New Election</strong> button. <br><br>Or watch the intro video:<br><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/eTZ3TQw5G_c?rel=0&amp;showinfo=0\" frameborder=\"0\" allowfullscreen></iframe>",
-
-        "step1_change_title": "Change the title",
-        "step1_change_content": "Now you can edit all the details of the election, for example you could edit the election's title clicking title here.",
-
-        "step2_sidebar_title": "Sidebar",
-        "step2_sidebar_content": "You can personalize the election clicking through these sections.",
-
-        "step3_review_title": "Review election to create it",
-        "step3_review_content": "Once you are done configuring the election, click the <strong>Create Election</strong> section to review and then create the election.",
-
-        "step4_create2_title": "Create the election",
-        "step4_create2_content": "<strong>Click this button</strong> to create the election. <br><br>Note that the election won't be created until you do so, and for security reasons it won't be editable afterwards."
       }
     },
     "show_points_policy": {
@@ -346,9 +346,9 @@
           "tally": "Launch tally...",
           "allowTally": "Allow to launch tally...",
           "calculateResults": "Calculate results...",
-          "editChildrenParent": "Edit Children and Parent elections..",
-          "startElection": "Start election..",
-          "stopElection": "Stop election..",
+          "editChildrenParent": "Edit Children and Parent elections...",
+          "startElection": "Start election...",
+          "stopElection": "Stop election...",
           "publishResults": "Publish results...",
           "unpublishResults": "Unpublish results..."
         },
@@ -388,9 +388,9 @@
           "confirmPublishResultsButton": "Confirm and PUBLISH election results",
           "changeSocial": {
             "header": "Edit social networks share buttons",
+            "confirmButton": "Confirm and SAVE social networks configuration",
             "title": "Social Network Buttons",
             "new": "New button",
-            "confirmButton": "Confirm and SAVE social networks configuration",
             "socialNetworkLabel": "Social Network",
             "buttonTextLabel": "Button text",
             "socialMessageLabel": "Share text",
@@ -408,7 +408,6 @@
             "body": "This dialog allows you to edit the calculate results json. Use this only if you know what you are doing.",
             "confirmEdit": "Finish edit"
           },
-
           "sendAuthCodes": {
             "editMessageStep": {
               "header": "Send authentication codes (Step __step__ of __total__)",
@@ -684,6 +683,7 @@
         "create": "Create the elections",
         "creating": "Creating the authentication for election __title__",
         "census": "Adding the census (id: __id__) __title__",
+        "ballot_boxes": "Adding ballot boxes (id: __id__) __title__",
         "reg": "Registering the election (id: __id__) __title__",
         "creatingEl": "Creating election (id: __id__) __title__",
         "logHeader": "Log",

@@ -71,6 +71,141 @@
         "step4_create2_content": "<strong>Haz clic en éste botón</strong> para crear la votación. <br><br>Ten en cuenta que la votación no se creará hasta que hagas clic en éste botón, y por razones de seguridad no se podrá editar posteriormente."
       }
     },
+    "ballotBox": {
+      "title": "Urnas",
+      "intro": "Lista de urnas y sus actas electorales.",
+      "manage": "Buscar y filtrar buscando por urna",
+      "filter": "Buscar aquí..",
+      "tableColumn": {
+        "idColumnHeader": "Id",
+        "nameColumnHeader": "Título",
+        "actionsColumnHeader": "Acciones",
+        "lastUpdateColumnHeader": "Última actualización",
+        "versionColumnHeader": "Número de versiones",
+        "usernameColumnHeader": "Nombre de usuario"
+      },
+      "modals": {
+          "createBallotBox": {
+            "header": "Crear urnas",
+            "body": "Agrega un nombre de urna por línea. No se creará ninguna si que ya exista.",
+            "holder": "Nombre de urna 1\nNombre de urna 2..",
+            "button": "Confirmar y CREAR urnas"
+          },
+          "deleteBallotBox": {
+            "header": "Confirmar ELIMINACIÓN de urna",
+            "body": "Por favor confirma que quieres eliminar la urna __name__ y todas las actas relacionadas escribiendo 'DELETE' debajo:",
+            "holder": "Escribe DELETE aquí para confirmar..",
+            "ok": "Confirmar y ELIMINAR urna"
+          },
+          "deleteTallySheet": {
+            "header": "Confirmar ELIMINACIÓN de acta electoral",
+            "body": "Por favor confirma que quieres eliminar el acta electoral con el id __id__ de la urna __name__ escribiendo 'DELETE' debajo:",
+            "holder": "Escribe DELETE aquí para confirmar..",
+            "ok": "Confirmar y ELIMINAR acta electoral"
+          },
+          "checkingBallotBox": {
+            "header": "Creando urnas",
+            "checkingExisting": "Comprobando si ya existe alguna de las urnas solicitadas..",
+            "hasExisting": "No se ha creado ninguna urna porque la(s) siguiente(s) ya existían: ",
+            "errorCheckingExisting": "Hubo un error comprobando si existían las siguientes urnas:",
+            "creatingBoxes": "Creando las urnas: ",
+            "errorCreatingBoxes": "Error creando algunas de las urnas: ",
+            "success": "Todas las urnas fueron creadas con éxito.",
+            "button": "Cerrar"
+          },
+          "writeTallySheet": {
+            "step0header": "Paso 1 de 3: Registrar acta electoral",
+            "step1header": "Paso 2 de 3: Revisar y enviar el acta electoral",
+            "step2header": "Paso 3 de 3: Acta electoral añadida con éxito",
+            "reviewStep": "Por favor revisa detalladamente el acta electoral antes de enviarla",
+            "ballotBoxLabel": "Nombre de urna:",
+            "registeredVotesLabel": "Número de electores registrados:",
+            "voteCountLabel": "Número de votos:",
+            "electionIdLabel": "Id de votación:",
+            "electionTitleLabel": "Título de votación:",
+            "observationsLabel": "Observaciones:",
+            "continue": "Continuar y revisar",
+            "blankVotesLabel": "Votos en blanco:",
+            "nullVotesLabel": "Votos nulos:",
+            "mismatchedNumbersError": "Los números no suman o son inválidos, por favor revísalos",
+            "mismatchTotalCount": "El número registrado de votos y el número de votos escrito difieren",
+            "send": "Confirmar y enviar acta electoral",
+            "backAndEdit": "Ir atrás y editar",
+            "success": "El acta electoral ha sido añadida con éxito",
+            "okClose": "Cerrar"
+          },
+          "viewTallySheet": {
+            "header": "Ver acta electoral",
+            "edit": "Editar y cambiar acta electoral",
+            "tallySheetIdLabel": "Id de acta electoral:"
+          }
+      },
+      "viewTallySheetAction": "Ver acta electoral",
+      "writeTallySheetAction": "Subir acta electoral..",
+      "deleteTallySheetAction": "Eliminar acta electoral..",
+      "deleteBallotBoxAction": "Eliminar urna.."
+    },
+    "activityLog": {
+      "title": "Registro de actividad",
+      "intro": "Lista de acciones ejecutadas en esta votación.",
+      "manage": "Buscar y filtrar el registro de actividad",
+      "filter": "Buscar aquí..",
+      "tableColumn": {
+        "idColumnHeader": "Id",
+        "executerIdColumnHeader": "Id de ejecutar",
+        "creationDateColumnHeader": "Fecha de creación",
+        "receiverIdColumnHeader": "Id de receptor",
+        "actionColumnHeader": "Descripción",
+        "commentColumnHeader": "Comentario"
+      },
+      "action": {
+        "user": {
+          "activate": "<i>__executer_username__ (__executer_id__)</i> <strong>activó</strong> el usuario <i>__receiver_username__ (__receiver_id__)</i>  en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "deactivate": "<i>__executer_username__ (__executer_id__)</i> <strong>desactivó</strong> el usuario <i>__receiver_username__ (__receiver_id__)</i> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "authenticate": "<i>__receiver_username__ (__receiver_id__)</i> <strong>se autenticó</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "register": "<i>__receiver_username__ (__receiver_id__)</i> <strong>se registró</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "successful-login": "<i>__executer_username__ (__executer_id__)</i> <strong>votó</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "send-auth": "<i>__executer_username__ (__executer_id__)</i> <strong>envió código de autenticación</strong> a <i>__receiver_username__ (__receiver_id__)</i> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "resend-authcode": "Se ejecutó una solicitud para <strong>enviar códigos de autenticación</strong> a <i>__receiver_username__ (__receiver_id__)</i>  en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+	        "added-to-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>añadió al censo</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> a <i>__receiver_username__(__receiver_id__)</i> __metadata__",
+          "deleted-from-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>eliminó del censo</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> a __metadata__"
+        },
+        "authevent": {
+          "create": "<i>__executer_username__ (__executer_id__)</i> <strong>creó</strong> la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "callback": "<i>__executer_username__ (__executer_id__)</i> <strong>recibió un callback</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "edit": "<i>__executer_username__ (__executer_id__)</i> <strong>editó</strong> la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "start": "<i>__executer_username__ (__executer_id__)</i> <strong>abrió el periodo de voto</strong> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "stop": "<i>__executer_username__ (__executer_id__)</i> <strong>cerró el periodo de voto</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "tally": "<i>__executer_username__ (__executer_id__)</i> <strong>solicitó el recuento</strong> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+          "tally_error": "<strong>error lanzando el recuento</strong> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+          "virtual_tally_error": "<strong>error lanzando el recuento virtual</strong> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> <i>__metadata__</i>",
+          "tally_error_no_votes": "<strong>el recuento no se ejecutó porque no hubo votos</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+          "calculate_results_success": "<i>__executer_username__ (__executer_id__)</i> <strong>calculó los resultados</strong> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "calculate_results_error": "<i>__executer_username__ (__executer_id__)</i> <strong>intentó calcular los resultados pero dio error</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "publish_results_success": "<i>__executer_username__ (__executer_id__)</i> <strong>publicó los resultados</strong> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "publish_results_error": "<i>__executer_username__ (__executer_id__)</i> <strong>intentó publicar los resultados pero dio error</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "unpublish_results_success": "<i>__executer_username__ (__executer_id__)</i> <strong>despublicó los resultados</strong> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "unpublish_results_error": "<i>__executer_username__ (__executer_id__)</i> <strong>intentó despublibcar los resultados pero dio error</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "allow_tally_success": "<i>__executer_username__ (__executer_id__)</i> <strong>permitió el recuento</strong> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "allow_tally_error": "<i>__executer_username__ (__executer_id__)</i> <strong>intentó permitir el recuento pero dio error</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "tally_started": "<strong>comenzó el recuento</strong> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+          "tally_error_during_tally": "<strong>error durante el recuento</strong> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "tally_success": "<strong>recuento finalizado con éxito</strong> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "virtual_tally_success": "<strong>recuento virtual finalizado con éxito</strong> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>eliminó</strong> la votación __event_id__",
+          "archive": "<i>__executer_username__ (__executer_id__)</i> <strong>archivó</strong> la votación __event_id__",
+          "unarchive": "<i>__executer_username__ (__executer_id__)</i> <strong>desarchivó</strong> la votación __event_id__"
+        },
+        "ballotBox": {
+          "create": "<i>__executer_username__ (__executer_id__)</i> <strong>creó</strong> la urna <a href=\"/admin/ballot-box/__event_id__?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>eliminó</strong> la urna <strong>__ballot_box_name__</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>"
+        },
+        "tallySheet": {
+          "create": "<i>__executer_username__ (__executer_id__)</i> <strong>subió</strong> el <a href=\"/admin/ballot-box/__event_id__?view_tally_sheet_id=__tally_sheet_id__&ballot_box_id=__ballot_box_id__\">acta electoral</a> a la urna <a href=\"/admin/ballot-box/__event_id__?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>eliminó</strong> el <a href=\"/admin/ballot-box/__event_id__?view_tally_sheet_from_action_id=__action_id__&ballot_box_name=__ballot_box_name__&ballot_box_id=__ballot_box_id__\">acta electoral</a> a la urna <a href=\"/admin/ballot-box/__event_id__?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>"
+        }
+      }
+    },
     "show_points_policy": {
       "label": "Mostrar puntos",
       "text": "Mostrar los puntos que la papeleta da a cada opción seleccionada"
@@ -169,6 +304,7 @@
         "dropFilesHere": "Drop CSV file here"
     },
     "dashboard": {
+        "chilldrenResultsTitle": "Selecciona los resultados electorales a visualizar:",
         "createRealElection": "Crear votación REAL",
         "duplicateElection": "Duplicar votación",
         "sendAuthCodes": "Enviar autenticación",
@@ -205,7 +341,14 @@
           "sendAuthCodes": "Enviar autenticación...",
           "archiveElection": "Archivar votación...",
           "unarchiveElection": "Desarchivar votación...",
-          "calculateResults": "Calcular resultados..."
+          "calculateResults": "Calcular resultados...",
+          "tally": "Lanzar recuento...",
+          "allowTally": "Permitir lanzar recuento...",
+          "editChildrenParent": "Editar votaciones padre e hijas...",
+          "startElection": "Abrir periodo de voto...",
+          "stopElection": "Terminar periodo de voto...",
+          "publishResults": "Publicar resultados...",
+          "unpublishResults": "Despublicar resultados..."
         },
         "modals": {
           "createHeader": "Crear votación",
@@ -230,7 +373,8 @@
             "allHeader": "Tally all cast ballots",
             "allDescription": "Even if a voter has been removed from the census or is marked as not active, if this voter has cast a ballot it will be counted.",
             "activeHeader": "Tally only cast ballots active in the current census",
-            "activeDescription": "<strong>Only choose this option if you know what you are doing</strong>. The ballots corresponding to people that are not included in the census, or those corresponding to inactive people in the census <strong>will be discarded and not counted</strong>."
+            "activeDescription": "<strong>Only choose this option if you know what you are doing</strong>. The ballots corresponding to people that are not included in the census, or those corresponding to inactive people in the census <strong>will be discarded and not counted</strong>.",
+            "chooseChildrenToTally": "Elige de qué votaciones hacer el recuento:"
           },
           "confirmTallyButton": "Confirm and TALLY the election",
           "tallyActiveHeader": "Tally only active voters",
@@ -291,6 +435,24 @@
             "body": "Esta acción desarchivar la votación. Fracasará si la votación no se encuentra actualmente en estado archivado. Desarchivar una votación hace que vuelva a aparecer en la lista de votaciones en la interfaz de administración. También se puede archivar nuevamente más tarde.",
             "confirmButton": "Desarchivar votación",
             "success": "Votación desarchivada con éxito"
+          },
+          "editChildrenParent": {
+            "header": "Editar información de padre e hijos de votación",
+            "body": "Editar en el recuadro de abajo los campos parent_id y children_election_info en formato JSON.",
+            "confirmButton": "Enviar datos actualizados",
+            "success": "Información de padre e hijos actualizada con éxito"
+          },
+          "unpublishResults": {
+            "header": "Despublicar resultados electorales",
+            "body": "Los resultados electorales no aparecerán en la página pública de esta votación.",
+            "confirmButton": "Confirmar y despublicar resultados electorales",
+            "success": "Los resultados electorales han sido despublciados con éxito"
+          },
+          "allowTally": {
+            "header": "Permitir lanzar el recuento",
+            "body": "Después de que se ejecute esta acción, cualquier administrador con permisos para lanzar el recuento podrá lanzarlo.",
+            "confirmButton": "Permitir lanzar el recuento",
+            "success": "Se permitió lanzar el recuento con éxito"
           }
         }
     },
@@ -387,6 +549,7 @@
 
           "addPersonHeader": "Añadir persona al censo",
           "addPersonBody": "Manualmente añade una sola persona al censo. Nótese que no se realiza validación alguna de los datos, así que es tu responsabilidad insertar datos correctos.",
+          "addPersonChildrenElections": "Selecciona en qué elecciones hijas puede votar esta persona:",
           "confirmAddPersonButton": "Confirmar y AÑADIR persona al censo",
 
           "removePeopleHeader": "Eliminar personas seleccionadas del censo",
@@ -423,10 +586,12 @@
         "voted": "votó",
         "notVoted": "no votó",
         "votedColumnHeader": "Votó?",
+        "childrenVotedColumnHeader": "Votó en",
         "activeColumnHeader": "Activo?",
 
         "censusadd": "Votante añadido al censo",
         "actionsDropdown": "Acciones",
+        "childrenElections": "Votaciones hija permitidas",
         "selectAllShownAction": "Selectionar a todas las personas visibles",
         "deselectAllShownAction": "Deselectionar a todas las personas visibles",
         "exportCensusAction": "Exportar todo el censo en CSV..",
@@ -593,6 +758,9 @@
       "urlModeDescription": "Cargar una URL que puedes especificar. Sólo se permiten URLS de tipo https.",
       "urlModePlaceholder": "https://example.com/foo/bar",
       "invalidUrl": "URL inválida. Ejemplo de URL válida: https://example.com/foo/bar"
+    },
+    "childrenElections": {
+      "main": "Votación principal"
     }
   }
 }
