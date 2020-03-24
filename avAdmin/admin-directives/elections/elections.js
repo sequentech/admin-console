@@ -96,7 +96,7 @@ angular.module('avAdmin')
 
                     // download children and add them after the index in the list
                     Authmethod
-                        .electionsIds(1, scope.list.type, childrenIds)
+                        .electionsIds(1, scope.list.type, childrenIds, childrenIds.length)
                         .then(
                             function(response) 
                             {
