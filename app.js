@@ -335,7 +335,7 @@ angular
         }
       };
 
-      amMoment.changeLocale($i18next.lng());
+      amMoment.changeLocale($i18next.options.lng);
 
       $rootScope.$on(
         '$stateChangeStart',
