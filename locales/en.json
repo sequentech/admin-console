@@ -17,6 +17,10 @@
   "results_pub": "results published",
   "doing_tally": "doing the tally",
   "tally_error": "tally error",
+  "alert": {
+    "error": "Error",
+    "success": "Success"
+  },
 
   "app": {
     "name": "Agora Voting"

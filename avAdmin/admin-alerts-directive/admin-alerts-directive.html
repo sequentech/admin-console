@@ -1,11 +1,11 @@
 <div class="alert alert-danger alert-dismissible" role="alert" ng-if="error">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>Error!</strong>
+  <strong ng-i18next="alert.error"></strong>
   <span ng-if="error.payload">{{ error.payload }}</span>
   <span ng-if="!error.payload">{{ error }}</span>
 </div>
 
 <div class="alert alert-success alert-dismissible" role="alert" ng-if="msg">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>Well done!</strong> <span ng-i18next="{{ msg }}"></span>
+  <strong ng-i18next="alert.success"></strong> <span ng-i18next="{{ msg }}"></span>
 </div>
