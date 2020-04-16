@@ -202,7 +202,10 @@ angular.module('avAdmin')
                 windowClass: "view-tally-sheet-modal",
                 resolve: {
                   tallySheet: function () { return response.data; },
-                  allowEdit: function () { return true; },
+                  allowEdit: function () { 
+                    // return edit tally sheet enableFunc
+                    return scope.row_commands[1].enableFunc(ballotBox); 
+                  }
                   ballotBox: function () { return ballotBox; },
                   electionId: function () { return ballotBox.event_id; },
                 }
@@ -468,7 +471,10 @@ angular.module('avAdmin')
               windowClass: "view-tally-sheet-modal",
               resolve: {
                 tallySheet: function () { return action.metadata; },
-                allowEdit: function () { return false; },
+                allowEdit: function () { 
+                  // return edit tally sheet enableFunc
+                  return scope.row_commands[1].enableFunc(ballotBox); 
+                },
                 ballotBox: function () {
                   return {
                     id: ballot_box_id,
