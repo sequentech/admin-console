@@ -205,7 +205,7 @@ angular.module('avAdmin')
                   allowEdit: function () { 
                     // return edit tally sheet enableFunc
                     return scope.row_commands[1].enableFunc(ballotBox); 
-                  }
+                  },
                   ballotBox: function () { return ballotBox; },
                   electionId: function () { return ballotBox.event_id; },
                 }
