@@ -418,7 +418,10 @@ angular.module('avAdmin')
                   windowClass: "view-tally-sheet-modal",
                   resolve: {
                     tallySheet: function () { return tallySheetResponse.data; },
-                    allowEdit: function () { return true; },
+                    allowEdit: function () { 
+                      // return edit tally sheet enableFunc
+                      return scope.row_commands[1].enableFunc(ballotBox); 
+                    },
                     ballotBox: function () { return ballotBox; },
                     electionId: function () { return ballotBox.event_id; },
                   }
