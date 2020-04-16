@@ -317,7 +317,8 @@ angular
       $rootScope, 
       ConfigService,
       amMoment,
-      $i18next
+      $i18next,
+      angularLoad
     ) {
       $rootScope.adminTitle = ConfigService.webTitle;
       $rootScope.safeApply = function(fn) 
@@ -335,7 +336,13 @@ angular
         }
       };
 
-      amMoment.changeLocale($i18next.options.lng);
+      // async load moment i18n
+      var lang = $i18next.options.lng;
+      angularLoad
+        .loadScript(ConfigService.base + '/locales/moment/' + lang + '.js')
+        .then(function () {
+          amMoment.changeLocale(lang);
+        });
 
       $rootScope.$on(
         '$stateChangeStart',

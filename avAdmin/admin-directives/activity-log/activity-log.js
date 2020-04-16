@@ -29,12 +29,6 @@ angular.module('avAdmin')
     {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
-      setTimeout(
-        function() {
-          amMoment.changeLocale($i18next.options.lng);
-        },
-        1000
-      );
       scope.electionId = attrs.electionId;
       scope.election = ElectionsApi.currentElection;
       scope.reloadingActivity = false;
