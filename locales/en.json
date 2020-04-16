@@ -362,6 +362,7 @@
           "calculateResultsHeader": "Calculate results",
           "calculateResultsBody": "The election has been tallied and the next step is to calculate the results. Although the election can only be tallied once, the election results can be calculated as many times as you need before publishing them.",
           "calculateResultsButton": "Confirm and CALCULATE results",
+          "calculateResultsSuccess": "Results calculation requested",
           "startHeader": "Start election",
           "startBody": "Please be aware that once you start the elections, voters will be able to vote until the election is stopped",
           "confirmStartButton": "Confirm and START the election",

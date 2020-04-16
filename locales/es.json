@@ -362,6 +362,7 @@
           "calculateResultsHeader": "Calcular resultados",
           "calculateResultsBody": "El recuento se ha realizado y el próximo paso es el cálculo de resultados. Aunque el recuento sólo se permite realizar una vez, el cálculo de resultados se puede realizar tantas veces como sea necesario antes de publicarlos.",
           "calculateResultsButton": "Confirmar y CALCULAR resultados",
+          "calculateResultsSuccess": "Solicitado realizar el recuento",
           "startHeader": "Comenzar votación",
           "startBody": "Por favor ten en cuenta que una vez que se comienza una votación, los votantes podrán votar hasta que no se para y así se termine el periodo de voto",
           "confirmStartButton": "Confirmar y COMENZAR la votación",

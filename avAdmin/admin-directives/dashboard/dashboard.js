@@ -582,6 +582,7 @@ angular.module('avAdmin')
                   function onSuccess()
                   {
                     ElectionsApi.results(scope.election);
+                    scope.msg = "avAdmin.dashboard.modals.calculateResultsSuccess";
                   }, 
                   function onError(response) 
                   {
