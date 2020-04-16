@@ -473,7 +473,11 @@ angular.module('avAdmin')
                 tallySheet: function () { return action.metadata; },
                 allowEdit: function () { 
                   // return edit tally sheet enableFunc
-                  return scope.row_commands[1].enableFunc(ballotBox); 
+                  return scope.row_commands[1].enableFunc({
+                    id: ballot_box_id,
+                    name: ballot_box_name,
+                    num_tally_sheets: 1
+                  }); 
                 },
                 ballotBox: function () {
                   return {
