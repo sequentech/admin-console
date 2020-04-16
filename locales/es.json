@@ -385,6 +385,7 @@
           "confirmTallyActiveButton": "Confirma y LANZA el recuento de __totalActive__ de __total__ electores",
           "publishResultsHeader": "Publicar resultados",
           "publishResultsBody": "Hasta el momento solo los administradores de la votación han tenido acceso directo a los resultados calculados de la votación. Cuando se publican los resultados, se ponen a disposición pública para que cualquiera pueda verlos.",
+          "launchTallySuccess": "Lanzado el recuento con éxito",
           "confirmPublishResultsButton": "Confirmar y PUBLICAR resultados",
           "changeSocial": {
             "header": "Editar botones de compartir redes sociales",

@@ -536,7 +536,11 @@ angular.module('avAdmin')
                     data.tallyElectionIds,
                     'do-not-force'
                   )
-                  .catch(
+                  .then(
+                    function onSuccess() 
+                    {
+                      scope.msg = "avAdmin.dashboard.modals.launchTallySuccess";
+                    },
                     function(error)
                     {
                       scope.loading = false;
