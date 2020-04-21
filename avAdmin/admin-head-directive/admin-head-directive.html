@@ -41,7 +41,12 @@
                </ul>
             </li>
 
-            <li class="signup" ng-if="!admin"><a href="{{ signupLink }}" ng-i18next="avAdmin.topbar.freesignup"></a></li>
+            <li 
+              class="signup" 
+              ng-if="!admin && allowAdminRegistration">
+              <a href="{{ signupLink }}" ng-i18next="avAdmin.topbar.freesignup">
+              </a>
+            </li>
             <li ng-if="!nologin"><a ui-sref="admin.login()" ng-i18next="avAdmin.topbar.login"></a></li>
 
             <li

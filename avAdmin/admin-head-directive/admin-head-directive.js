@@ -24,6 +24,7 @@ angular.module('avAdmin')
         var admin = $cookies["user" + postfix];
         scope.admin = admin;
         scope.organization = ConfigService.organization;
+        scope.allowAdminRegistration = ConfigService.allowAdminRegistration;
         scope.technology = ConfigService.technology;
         scope.nologin = ('nologin' in attrs) || scope.admin;
         scope.helpurl = ConfigService.helpUrl;
