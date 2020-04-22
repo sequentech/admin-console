@@ -46,7 +46,16 @@ angular.module('avAdmin')
       scope.nomore = false;
       scope.error = null;
       scope.page = 1;
-      scope.perms = {val: ElectionsApi.getCachedEditPerm(scope.election.id)};
+
+      scope.perms = {val: ""};
+      ElectionsApi
+        .getEditPerm(scope.election.id)
+        .then(
+          function (perm) {
+            scope.perms.val = perm;
+          }
+        );
+        
       scope.msg = null;
       scope.filterStr = "";
       scope.$filter = $filter;

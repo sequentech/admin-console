@@ -457,7 +457,15 @@ angular.module('avAdmin')
         if (!scope.id) {
           $state.go("admin.basic");
         }
-        scope.perms = {val: ElectionsApi.getCachedEditPerm(scope.id)};
+
+        scope.perms = {val: ""};
+        ElectionsApi
+          .getEditPerm(scope.id)
+          .then(
+            function (perm) {
+              scope.perms.val = perm;
+            }
+          );
         scope.publicURL = ConfigService.publicURL;
 
         scope.statuses = [
