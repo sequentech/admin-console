@@ -227,7 +227,10 @@ angular.module('avAdmin')
           enableFunc: function() {
             return (
               scope.numSelected(scope.shown()) > 0 &&
-
+              (
+                scope.perms.val.indexOf("census-delete") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              )
             );
           }
         },
@@ -236,7 +239,13 @@ angular.module('avAdmin')
           iconClass: 'fa fa-paper-plane-o',
           actionFunc: function() { return sendAuthCodesSelected(); },
           enableFunc: function() {
-            return scope.numSelected(scope.shown()) > 0;
+            return (
+              scope.numSelected(scope.shown()) > 0  &&
+              (
+                scope.perms.val.indexOf("send-auth") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              )
+            );
           }
         }
       ];
@@ -248,10 +257,10 @@ angular.module('avAdmin')
 
       scope.row_commands = [
         {
-	  text: $i18next("avAdmin.census.activateOneAction"),
+	        text: $i18next("avAdmin.census.activateOneAction"),
           iconClass: 'fa fa-user',
           actionFunc: function(voter) {
-	    selectVoter(voter);
+	          selectVoter(voter);
             $modal.open({
               templateUrl: "avAdmin/admin-directives/elcensus/confirm-activate-people-modal.html",
               controller: "ConfirmActivatePeopleModal",
@@ -265,13 +274,21 @@ angular.module('avAdmin')
               }
             }).result.then(scope.activateSelected);
           },
-          enableFunc: function() { return scope.election && scope.election.id; }
+          enableFunc: function() {
+            return (
+              scope.election &&
+              scope.election.id && (
+                scope.perms.val.indexOf("census-activation") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              )
+            );
+          }
         },
         {
-	  text: $i18next("avAdmin.census.deactivateOneAction"),
+	        text: $i18next("avAdmin.census.deactivateOneAction"),
           iconClass: 'fa fa-user-times',
           actionFunc: function(voter) {
-	    selectVoter(voter);
+            selectVoter(voter);
             $modal.open({
               templateUrl: "avAdmin/admin-directives/elcensus/confirm-deactivate-people-modal.html",
               controller: "ConfirmDeactivatePeopleModal",
@@ -285,13 +302,21 @@ angular.module('avAdmin')
               }
             }).result.then(scope.deactivateSelected);
           },
-          enableFunc: function() { return scope.election && scope.election.id; }
+          enableFunc: function() {
+            return (
+              scope.election &&
+              scope.election.id && (
+                scope.perms.val.indexOf("census-activation") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              )
+            );
+          }
         },
         {
-	  text: $i18next("avAdmin.census.removeCensusOneAction"),
+	        text: $i18next("avAdmin.census.removeCensusOneAction"),
           iconClass: 'fa fa-trash-o',
           actionFunc: function(voter) {
-	    selectVoter(voter);
+            selectVoter(voter);
             $modal.open({
               templateUrl: "avAdmin/admin-directives/elcensus/confirm-remove-people-modal.html",
               controller: "ConfirmRemovePeopleModal",
@@ -304,7 +329,12 @@ angular.module('avAdmin')
               }
             }).result.then(scope.removeSelected);
           },
-          enableFunc: function() { return true; }
+          enableFunc: function() {
+            return (
+              scope.perms.val.indexOf("census-delete") !== -1 ||
+              scope.perms.val.indexOf("edit") !== -1
+            );
+          }
         },
         {
 	        text: $i18next("avAdmin.census.sendAuthCodesOneAction"),
@@ -313,7 +343,12 @@ angular.module('avAdmin')
             selectVoter(voter);
             return sendAuthCodesSelected();
           },
-          enableFunc: function() { return true; }
+          enableFunc: function() {
+            return (
+              scope.perms.val.indexOf("send-auth") !== -1 ||
+              scope.perms.val.indexOf("edit") !== -1
+            );
+          }
         }
       ];
 
