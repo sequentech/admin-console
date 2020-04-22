@@ -122,13 +122,13 @@ angular.module('avAdmin').controller('AdminController',
     Plugins.hook('add-dashboard-election-states', plugins_data);
     states = states.concat(plugins_data.states);
 
-    scope.globalPerms = {val: ""};
+    $scope.globalPerms = {val: ""};
     // update global perms
     ElectionsApi
       .getEditPerm(null)
       .then(
         function (perm) {
-          scope.globalPerms.val = perm;
+          $scope.globalPerms.val = perm;
         }
       );
 
