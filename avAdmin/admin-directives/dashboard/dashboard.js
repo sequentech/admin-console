@@ -822,11 +822,8 @@ angular.module('avAdmin')
             actionFunc: function() { return scope.sendAuthCodes(); },
             enableFunc: function() {
               return (
-                'started' === scope.election.status &&
-                (
-                  scope.perms.val.indexOf("send-auth-all") !== -1 ||
-                  scope.perms.val.indexOf("edit") !== -1
-                )
+                scope.perms.val.indexOf("send-auth-all") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
               );
             }
           },

@@ -103,13 +103,23 @@ angular.module('avAdmin')
           i18nString: 'addPersonAction',
           iconClass: 'fa fa-plus',
           actionFunc: function() { return scope.addPersonModal(); },
-          enableFunc: function() { return true; }
+          enableFunc: function() {
+            return (
+              scope.perms.val.indexOf("census-add") !== -1 ||
+              scope.perms.val.indexOf("edit") !== -1
+            );
+          }
         },
         {
           i18nString: 'addCsvAction',
           iconClass: 'fa fa-plus',
           actionFunc: function() { return scope.addCsvModal(); },
-          enableFunc: function() { return true; }
+          enableFunc: function() {
+            return (
+              scope.perms.val.indexOf("census-add") !== -1 ||
+              scope.perms.val.indexOf("edit") !== -1
+            );
+          }
         },
         {
           i18nString: 'exportCensusAction',
@@ -119,7 +129,12 @@ angular.module('avAdmin')
             return (
               scope.election && scope.election.census &&
               scope.election.census.voters &&
-              scope.election.census.voters.length);
+              scope.election.census.voters.length &&
+              (
+                scope.perms.val.indexOf("view-census") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              )
+            );
           }
         },
         {
@@ -152,7 +167,15 @@ angular.module('avAdmin')
             }).result.then(scope.activateSelected);
           },
           enableFunc: function() {
-            return scope.election && scope.election.id && scope.numSelected(scope.shown()) > 0;
+            return (
+              scope.election &&
+              scope.election.id &&
+              scope.numSelected(scope.shown()) > 0 &&
+              (
+                scope.perms.val.indexOf("census-activation") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              )
+            );
           }
         },
         {
@@ -173,7 +196,15 @@ angular.module('avAdmin')
             }).result.then(scope.deactivateSelected);
           },
           enableFunc: function() {
-            return scope.election && scope.election.id && scope.numSelected(scope.shown()) > 0;
+            return (
+              scope.election &&
+              scope.election.id &&
+              scope.numSelected(scope.shown()) > 0 &&
+              (
+                scope.perms.val.indexOf("census-activation") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              )
+            );
           }
         },
         {
