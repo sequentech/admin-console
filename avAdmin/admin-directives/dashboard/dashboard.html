@@ -70,6 +70,7 @@
           <button 
             ng-click="doActionConfirm($index)" 
             class="actionbtn btn btn-success" 
+            ng-disabled=""
             ng-if="index == $index && nextaction" 
             ng-class="['election-status-action-' + index]">
             <div 
@@ -119,6 +120,7 @@
                 <strong>{{ election.auth.census|number }}</strong><br/>
                 <button
                   ng-click="sendAuthCodes()"
+                  ng-disabled="perms.val.indexIf('send-auth-all') === -1"
                   class="btn btn-success send-auth pull-left">
                     <i class="fa fa-sw fa-send"></i>
                     <span ng-i18next>
@@ -154,11 +156,19 @@
                 </dl>
             </div>
 
-            <button ng-click="doActionConfirm(index)" class="btn btn-block btn-lg btn-success" ng-if="nextaction" ng-i18next="{{ nextaction }}"></button>
+            <button
+              class="btn btn-block btn-lg btn-success" 
+              ng-if="nextaction" 
+              ng-disabled="!commands[index].enableFunc()"
+              ng-i18next="{{ nextaction }}"
+            >
+              ng-click="doActionConfirm(index)"
+            </button>
 
             <button
               ng-click="duplicateElection()"
               class="btn btn-block btn-lg btn-success"
+              ng-disabled="globalPerms.val.indexOf('create') === -1"
               ng-i18next>
               avAdmin.dashboard.duplicateElection
             </button>

@@ -45,16 +45,14 @@ angular.module('avAdmin')
           scope.admin = admin;
           scope.active = attrs.active;
           scope.isEditingDraft = DraftElection.isEditingDraft;
-          scope.perms = { allowCreate: false };
+          scope.globalPerms = { val: false };
 
           // update perms
           ElectionsApi
             .getEditPerm(null)
             .then(
               function (perm) {
-                scope.perms.allowCreate = (
-                  perm && perm.indexOf('create') !== -1
-                );
+                scope.globalPerms.val;
               }
             );
       }

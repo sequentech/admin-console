@@ -19,6 +19,10 @@ angular.module('avAdmin').controller('AdminController',
   function(Plugins, ConfigService, $scope, $i18next, $state, $stateParams, $timeout, $modal, ElectionsApi, DraftElection, $compile, NextButtonService, $q) {
     var id = $stateParams.id;
     $scope.electionId = id;
+
+    // get election perms, with a default of no perms
+    $scope.perms = {val: ""};
+
     $scope.state = $state.current.name;
     $scope.current = null;
     $scope.noplugin = true;
@@ -118,6 +122,16 @@ angular.module('avAdmin').controller('AdminController',
     Plugins.hook('add-dashboard-election-states', plugins_data);
     states = states.concat(plugins_data.states);
 
+    scope.globalPerms = {val: ""};
+    // update global perms
+    ElectionsApi
+      .getEditPerm(null)
+      .then(
+        function (perm) {
+          scope.globalPerms.val = perm;
+        }
+      );
+
     if (states.indexOf($scope.state) >= 0) {
         $scope.sidebarlinks = [];
         if (!!id) {
@@ -142,6 +156,8 @@ angular.module('avAdmin').controller('AdminController',
                           {name: 'ballotBox', icon: 'archive'}
                         );
                       }
+                      // update election perms
+                      $scope.perms.val = perm;
                     }
                   );
               }

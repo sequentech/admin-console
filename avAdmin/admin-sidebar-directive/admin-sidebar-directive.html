@@ -5,14 +5,14 @@
   <li role="presentation" class="sub1">
     <a
       ui-sref="admin.new()"
-      ng-if="perms.allowCreate">
+      ng-if="globalPerms.val.indexOf('create') !== -1">
       <i class="fa-fw fa fa-plus-circle">
       </i>
       <span ng-i18next="avAdmin.sidebar.newel">
       </span>
     </a>
     <a
-      ng-if="!!has_draft && !isEditingDraft() && perms.allowCreate" 
+      ng-if="!!has_draft && !isEditingDraft() && globalPerms.val.indexOf('create') !== -1" 
       ng-click="loadDraft()">
       <i class="fa-fw fa fa-pencil-square-o">
       </i>

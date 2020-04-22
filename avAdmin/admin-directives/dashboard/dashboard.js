@@ -34,6 +34,7 @@ angular.module('avAdmin')
     function link(scope, element, attrs) 
     {
       scope.reloadTimeout = null;
+
       function waitElectionChange() 
       {
         ElectionsApi
@@ -482,25 +483,49 @@ angular.module('avAdmin')
         scope.commands = [
           {
             path: 'register', 
-            method: 'GET'
+            method: 'GET',
+            enableFunc: function () {
+              return (
+                scope.perms.val.indexOf("register") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              );
+            }
           },
           {
             path: 'create',
             method: 'POST',
             confirmController: "ConfirmCreateModal",
-            confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-create-modal.html"
+            confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-create-modal.html",
+            enableFunc: function () {
+              return (
+                scope.perms.val.indexOf("create") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              );
+            }
           },
           {
             path: 'start',
             method: 'POST',
             confirmController: "ConfirmStartModal",
-            confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-start-modal.html"
+            confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-start-modal.html",
+            enableFunc: function () {
+              return (
+                scope.perms.val.indexOf("start") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              );
+            }
           },
           {
             path: 'stop',
             method: 'POST',
             confirmController: "ConfirmStopModal",
-            confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-stop-modal.html"
+            confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-stop-modal.html",
+            enableFunc: function () {
+              return (
+                scope.perms.val.indexOf("stop") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              );
+            }
           },
           {
             path: 'tally',
@@ -548,6 +573,12 @@ angular.module('avAdmin')
                     }
                   );
               }
+            },
+            enableFunc: function () {
+              return (
+                scope.perms.val.indexOf("tally") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              );
             }
           },
           {
@@ -590,6 +621,12 @@ angular.module('avAdmin')
                     scope.error = response.data;
                   }
                 );
+            },
+            enableFunc: function () {
+              return (
+                scope.perms.val.indexOf("calculate-results") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              );
             }
           },
           {
@@ -621,6 +658,12 @@ angular.module('avAdmin')
                     scope.error = response.data;
                   }
                 );
+            },
+            enableFunc: function () {
+              return (
+                scope.perms.val.indexOf("publish-results") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              );
             }
           }
         ];
@@ -630,7 +673,15 @@ angular.module('avAdmin')
             i18nString: 'changeSocial',
             iconClass: 'fa fa-comment-o',
             actionFunc: function() { return scope.changeSocial(); },
-            enableFunc: function() { return ConfigService.share_social.allow_edit; }
+            enableFunc: function() { 
+              return (
+                ConfigService.share_social.allow_edit &&
+                (
+                  scope.perms.val.indexOf("update-share") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
+              );
+            }
           },
           {
             i18nString: 'startElection',
@@ -639,11 +690,17 @@ angular.module('avAdmin')
               return doActionConfirm(2); // start
             },
             enableFunc: function() { 
-              return [
-                'created',
-                'stopped',
-                'started'
-              ].indexOf(scope.election.status) !== -1;
+              return (
+                [
+                  'created',
+                  'stopped',
+                  'started'
+                ].indexOf(scope.election.status) !== -1 &&
+                (
+                  scope.perms.val.indexOf("start") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
+              );
             }
           },
           {
@@ -653,14 +710,20 @@ angular.module('avAdmin')
               return doActionConfirm(3); // stop
             },
             enableFunc: function() { 
-              return [
-                'started',
-                'stopped',
-                'doing_tally',
-                'tally_ok',
-                'results_ok',
-                'results_pub'
-              ].indexOf(scope.election.status) !== -1;
+              return (
+                [
+                  'started',
+                  'stopped',
+                  'doing_tally',
+                  'tally_ok',
+                  'results_ok',
+                  'results_pub'
+                ].indexOf(scope.election.status) !== -1  &&
+                (
+                  scope.perms.val.indexOf("stop") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
+              );
             }
           },
           {
@@ -670,7 +733,13 @@ angular.module('avAdmin')
               return scope.allowTally();  // allow-tally
             },
             enableFunc: function() { 
-              return !scope.election.tallyAllowed;
+              return (
+                !scope.election.tallyAllowed  &&
+                (
+                  scope.perms.val.indexOf("allow-tally") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
+              );
             }
           },
           {
@@ -680,7 +749,13 @@ angular.module('avAdmin')
               return doActionConfirm(4); // tally
             },
             enableFunc: function() { 
-              return scope.election.tallyAllowed;
+              return (
+                scope.election.tallyAllowed  &&
+                (
+                  scope.perms.val.indexOf("tally") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
+              );
             }
           },
           {
@@ -690,12 +765,18 @@ angular.module('avAdmin')
               return doActionConfirm(5); // calculate results
             },
             enableFunc: function() {
-              return [
-                'stopped', 
-                'tally_ok', 
-                'results_ok',
-                'results_pub'
-              ].indexOf(scope.election.status) !== -1;
+              return (
+                  [
+                  'stopped', 
+                  'tally_ok', 
+                  'results_ok',
+                  'results_pub'
+                ].indexOf(scope.election.status) !== -1  &&
+                (
+                  scope.perms.val.indexOf("calculate-results") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
+              );
             }
           },
           {
@@ -705,12 +786,18 @@ angular.module('avAdmin')
               return doActionConfirm(6); // publish results
             },
             enableFunc: function() { 
-              return [
-                'stopped',
-                'tally_ok',
-                'results_ok',
-                'results_pub'
-              ].indexOf(scope.election.status) !== -1;
+              return (
+                [
+                  'stopped',
+                  'tally_ok',
+                  'results_ok',
+                  'results_pub'
+                ].indexOf(scope.election.status) !== -1  &&
+                (
+                  scope.perms.val.indexOf("publish-results") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
+              );
             }
           },
           {
@@ -718,35 +805,62 @@ angular.module('avAdmin')
             iconClass: 'fa fa-compress',
             actionFunc: function() { return scope.unpublishResults(); },
             enableFunc: function() {
-              return [
-                'results_pub'
-              ].indexOf(scope.election.status) !== -1;
+              return (
+                [
+                  'results_pub'
+                ].indexOf(scope.election.status) !== -1  &&
+                (
+                  scope.perms.val.indexOf("publish-results") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
+              );
             }
           },
           {
             i18nString: 'sendAuthCodes',
             iconClass: 'fa fa-paper-plane-o',
             actionFunc: function() { return scope.sendAuthCodes(); },
-            enableFunc: function() { return 'started' === scope.election.status; }
+            enableFunc: function() {
+              return (
+                'started' === scope.election.status &&
+                (
+                  scope.perms.val.indexOf("send-auth-all") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
+              );
+            }
           },
           {
             i18nString: 'archiveElection',
             iconClass: 'fa fa-archive',
             actionFunc: function() { return scope.archiveElection("archive"); },
-            enableFunc: function() { return true; }
+            enableFunc: function() {
+              return  (
+                scope.perms.val.indexOf("archive") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              );
+            }
           },
           {
             i18nString: 'unarchiveElection',
             iconClass: 'fa fa-folder-open-o',
             actionFunc: function() { return scope.archiveElection("unarchive"); },
-            enableFunc: function() { return true; }
+            enableFunc: function() {
+              return  (
+                scope.perms.val.indexOf("unarchive") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              );
+            }
           },
           {
             i18nString: 'editChildrenParent',
             iconClass: 'fa fa-code-fork',
             actionFunc: function() { return scope.editChildrenParent(); },
             enableFunc: function() { 
-              return ['registered', 'created'].indexOf(scope.election.status) !== -1; 
+              return (
+                ['registered', 'created'].indexOf(scope.election.status) !== -1 && 
+                scope.perms.val.indexOf("edit") !== -1
+              );
             }
           },
         ];
