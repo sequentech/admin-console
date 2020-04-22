@@ -70,7 +70,7 @@
           <button 
             ng-click="doActionConfirm($index)" 
             class="actionbtn btn btn-success" 
-            ng-disabled=""
+            ng-disabled="!commands[$index].enableFunc()"
             ng-if="index == $index && nextaction" 
             ng-class="['election-status-action-' + index]">
             <div 
@@ -85,6 +85,7 @@
           <button
             ng-click="doActionConfirm($index)"
             class="actionbtn btn btn-success"
+            ng-disabled="!commands[$index].enableFunc()"
             ng-if="statuses.indexOf('results_ok') === $index && index === 1 + $index"
           >
             <div 
@@ -161,8 +162,7 @@
               ng-if="nextaction" 
               ng-disabled="!commands[index].enableFunc()"
               ng-i18next="{{ nextaction }}"
-            >
-              ng-click="doActionConfirm(index)"
+              ng-click="doActionConfirm(index)">
             </button>
 
             <!-- DISABLED for now:
