@@ -45,7 +45,7 @@ angular.module('avAdmin')
           scope.admin = admin;
           scope.active = attrs.active;
           scope.isEditingDraft = DraftElection.isEditingDraft;
-          scope.globalPerms = { val: false };
+          scope.globalPerms = { val: '' };
 
           // update perms
           ElectionsApi
