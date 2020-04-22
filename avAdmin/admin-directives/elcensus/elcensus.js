@@ -46,6 +46,7 @@ angular.module('avAdmin')
       scope.nomore = false;
       scope.error = null;
       scope.page = 1;
+      scope.perms = {val: ElectionsApi.getCachedEditPerm(scope.electionId)};
       scope.msg = null;
       scope.filterStr = "";
       scope.$filter = $filter;
@@ -223,7 +224,12 @@ angular.module('avAdmin')
               }
             }).result.then(scope.removeSelected);
           },
-          enableFunc: function() { return scope.numSelected(scope.shown()) > 0; }
+          enableFunc: function() {
+            return (
+              scope.numSelected(scope.shown()) > 0 &&
+
+            );
+          }
         },
         {
           i18nString: 'sendAuthCodesAction',
