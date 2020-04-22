@@ -52,7 +52,7 @@ angular.module('avAdmin')
             .getEditPerm(null)
             .then(
               function (perm) {
-                scope.globalPerms.val;
+                scope.globalPerms.val = perm;
               }
             );
       }
