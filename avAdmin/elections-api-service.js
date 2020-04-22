@@ -256,6 +256,7 @@ angular.module('avAdmin')
             conf.status = election.state;
             conf.stats = {};
             conf.results = {};
+            conf.tallyAllowed = election.tallyAllowed;
             if (election.resultsConfig) {
               conf.resultsConfig = election.resultsConfig;
             }
