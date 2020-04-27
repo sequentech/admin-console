@@ -585,8 +585,11 @@ angular.module('avAdmin')
             },
             enableFunc: function () {
               return (
-                scope.perms.val.indexOf("tally") !== -1 ||
-                scope.perms.val.indexOf("edit") !== -1
+                scope.election.tallyAllowed &&
+                (
+                  scope.perms.val.indexOf("tally") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
               );
             }
           },
