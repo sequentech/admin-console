@@ -121,7 +121,7 @@
                 <strong>{{ election.auth.census|number }}</strong><br/>
                 <button
                   ng-click="sendAuthCodes()"
-                  ng-disabled="perms.val.indexOf('send-auth-all') === -1 || perms.val.indexOf('edit') === -1"
+                  ng-disabled="perms.val.indexOf('send-auth-all') === -1 && perms.val.indexOf('edit') === -1"
                   class="btn btn-success send-auth pull-left">
                     <i class="fa fa-sw fa-send"></i>
                     <span ng-i18next>
