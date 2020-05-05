@@ -131,7 +131,7 @@
             "mismatchTotalCount": "El número registrado de votos y el número de votos escrito difieren",
             "send": "Confirmar y enviar acta electoral",
             "backAndEdit": "Ir atrás y editar",
-            "success": "El acta electoral ha sido añadida con éxito",
+            "success": "El acta electoral ha sido añadida con éxito. Los resultados serán recalculados y se verán en la pestaña 'Panel de Control' del menú lateral. Esto puede tardar unos segundos, por favor espera. Puedes ver la lista de acciones realizadas en la pestaña 'Registro de actividad' en el menú lateral.",
             "okClose": "Cerrar"
           },
           "viewTallySheet": {
@@ -362,7 +362,7 @@
           "calculateResultsHeader": "Calcular resultados",
           "calculateResultsBody": "El recuento se ha realizado y el próximo paso es el cálculo de resultados. Aunque el recuento sólo se permite realizar una vez, el cálculo de resultados se puede realizar tantas veces como sea necesario antes de publicarlos.",
           "calculateResultsButton": "Confirmar y CALCULAR resultados",
-          "calculateResultsSuccess": "Solicitado realizar el recuento",
+          "calculateResultsSuccess": "Solicitado realizar el recuento. Puede tardar unos minutos, por favor espera. Para ver el estado del recuento, pincha en la pestaña 'Registro de actividad' en el menú lateral.",
           "startHeader": "Comenzar votación",
           "startBody": "Por favor ten en cuenta que una vez que se comienza una votación, los votantes podrán votar hasta que no se para y así se termine el periodo de voto",
           "confirmStartButton": "Confirmar y COMENZAR la votación",
@@ -386,7 +386,7 @@
           "confirmTallyActiveButton": "Confirma y LANZA el recuento de __totalActive__ de __total__ electores",
           "publishResultsHeader": "Publicar resultados",
           "publishResultsBody": "Hasta el momento solo los administradores de la votación han tenido acceso directo a los resultados calculados de la votación. Cuando se publican los resultados, se ponen a disposición pública para que cualquiera pueda verlos.",
-          "launchTallySuccess": "Lanzado el recuento con éxito",
+          "launchTallySuccess": "Lanzado el recuento con éxito. Puede tardar unos minutos, por favor espera. Para ver el estado del recuento, pincha en la pestaña 'Registro de actividad' en el menú lateral.",
           "confirmPublishResultsButton": "Confirmar y PUBLICAR resultados",
           "changeSocial": {
             "header": "Editar botones de compartir redes sociales",
