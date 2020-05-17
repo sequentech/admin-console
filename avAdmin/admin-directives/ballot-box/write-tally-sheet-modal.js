@@ -108,7 +108,9 @@ angular.module('avAdmin')
               checkNumber(question.blank_votes);
               checkNumber(question.null_votes);
               assert(
-                $scope.tallySheet.num_votes === (
+                (
+                  $scope.tallySheet.num_votes * question.max
+                ) >= (
                   question.blank_votes +
                   question.null_votes +
                   _.reduce(
