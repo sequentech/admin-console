@@ -434,7 +434,17 @@ angular.module('avAdmin')
 
       function setAutoreload(electionId)
       {
-        ElectionsApi.autoreloadStats(electionId);
+        ElectionsApi.autoreloadStats(
+          electionId,
+          function callback(el)
+          {
+            if (scope.resultsElection && scope.resultsElection.id === el.id) 
+            {
+              scope.resultsElection = el;
+            }
+            scope.election = el;
+          }
+        );
       }
 
       /**
