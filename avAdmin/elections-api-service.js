@@ -344,7 +344,7 @@ angular.module('avAdmin')
             return;
           }
 
-          electionsapi.getElection(electionId)
+          electionsapi.getElection(electionId, true)
             .then(asyncElectionAuth)
             .then(
               function (el) 
