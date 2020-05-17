@@ -432,25 +432,6 @@ angular.module('avAdmin')
           );
       }
 
-      /**
-       * Shows the election results of the given election. Called by the
-       * children elections directive when a children election is clicked.
-       * 
-       * @param {number} electionId election whose results should be shown.
-       */
-      function showResults(electionId)
-      {
-        ElectionsApi
-          .getElection(electionId)
-          .then(
-            function (election)
-            {
-              scope.resultsElection = election;
-              setAutoreload(electionId);
-            }
-          );
-      }
-
       function setAutoreload(electionId)
       {
         ElectionsApi.autoreloadStats(
@@ -472,6 +453,25 @@ angular.module('avAdmin')
             }
           }
         );
+      }
+
+      /**
+       * Shows the election results of the given election. Called by the
+       * children elections directive when a children election is clicked.
+       * 
+       * @param {number} electionId election whose results should be shown.
+       */
+      function showResults(electionId)
+      {
+        ElectionsApi
+          .getElection(electionId)
+          .then(
+            function (election)
+            {
+              scope.resultsElection = election;
+              setAutoreload(electionId);
+            }
+          );
       }
 
       // performs all the initialization
