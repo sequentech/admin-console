@@ -347,13 +347,21 @@ angular.module('avAdmin')
           electionsapi.getElection(electionId)
             .then(asyncElectionAuth)
             .then(electionsapi.results)
-            .finally(
-              function(el) 
+            .then(
+              function (el) 
               {
+                var deferred = $q.defer();
                 if (!!callback) 
                 {
                   callback(el);
+                  deferred.resolve();
                 }
+                return deferred.promise;
+              }
+            )
+            .finally(
+              function() 
+              {
                 electionsapi.autoreloadStatsTimer = setTimeout(
                   function() {
                     electionsapi.autoreloadStats(electionId, callback); 
