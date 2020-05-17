@@ -56,6 +56,7 @@ angular.module('avAdmin')
               blank_votes: 0,
               null_votes: 0,
               tally_type: question.tally_type,
+              max: question.max,
               answers: _.map(
                 question.answers,
                 function (answer)
