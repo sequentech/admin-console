@@ -346,7 +346,6 @@ angular.module('avAdmin')
 
           electionsapi.getElection(electionId)
             .then(asyncElectionAuth)
-            .then(electionsapi.results)
             .then(
               function (el) 
               {
@@ -354,11 +353,12 @@ angular.module('avAdmin')
                 if (!!callback) 
                 {
                   callback(el);
-                  deferred.resolve();
                 }
+                deferred.resolve(el);
                 return deferred.promise;
               }
-            )
+              )
+              .then(electionsapi.results)
             .finally(
               function() 
               {
