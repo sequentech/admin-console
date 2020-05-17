@@ -336,7 +336,7 @@ angular.module('avAdmin')
         };
 
         electionsapi.autoreloadStatsTimer = null;
-        electionsapi.autoreloadStats = function(electionId) 
+        electionsapi.autoreloadStats = function(electionId, callback) 
         {
           clearTimeout(electionsapi.autoreloadStatsTimer);
           if (!electionId) 
@@ -348,8 +348,12 @@ angular.module('avAdmin')
             .then(asyncElectionAuth)
             .then(electionsapi.results)
             .finally(
-              function() 
+              function(el) 
               {
+                if (!!callback) 
+                {
+                  callback(el);
+                }
                 electionsapi.autoreloadStatsTimer = setTimeout(
                   function() {
                     electionsapi.autoreloadStats(electionId); 
