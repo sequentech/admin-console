@@ -356,7 +356,7 @@ angular.module('avAdmin')
                 }
                 electionsapi.autoreloadStatsTimer = setTimeout(
                   function() {
-                    electionsapi.autoreloadStats(electionId); 
+                    electionsapi.autoreloadStats(electionId, callback); 
                   }, 
                   5000
                 );
