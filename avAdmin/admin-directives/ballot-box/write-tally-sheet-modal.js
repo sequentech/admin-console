@@ -111,9 +111,9 @@ angular.module('avAdmin')
               assert(
                 (
                   (
-                    $scope.tallySheet.num_votes
-                    - question.blank_votes
-                    - question.null_votes
+                    $scope.tallySheet.num_votes -
+                    question.blank_votes -
+                    question.null_votes
                   ) * (
                     question.max
                   )
