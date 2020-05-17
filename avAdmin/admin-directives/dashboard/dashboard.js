@@ -434,25 +434,7 @@ angular.module('avAdmin')
 
       function setAutoreload(electionId)
       {
-        ElectionsApi.autoreloadStats(
-          electionId,
-          function callback(el)
-          {
-            // update perms to see if now tally can be launched
-            if (
-              el.status === 'stopped' &&
-              scope.perms.val.indexOf("tally") === -1
-            ) {
-              ElectionsApi
-              .getEditPerm(scope.id)
-              .then(
-                function (perm) {
-                  scope.perms.val = perm;
-                }
-              );
-            }
-          }
-        );
+        ElectionsApi.autoreloadStats(electionId);
       }
 
       /**
