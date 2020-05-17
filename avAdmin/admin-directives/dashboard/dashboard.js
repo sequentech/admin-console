@@ -88,20 +88,6 @@ angular.module('avAdmin')
                     scope.reloadTimeout = setTimeout(waitElectionChange, 5000);
                   }
                 }
-
-                // update perms to see if now tally can be launched
-                if (
-                  el.status === 'stopped' &&
-                  scope.perms.val.indexOf("tally") === -1
-                ) {
-                  ElectionsApi
-                  .getEditPerm(scope.id)
-                  .then(
-                    function (perm) {
-                      scope.perms.val = perm;
-                    }
-                  );
-                }
               }
             }
           });
@@ -460,10 +446,34 @@ angular.module('avAdmin')
             function (election)
             {
               scope.resultsElection = election;
-              ElectionsApi.autoreloadStats(electionId);
+              setAutoreload(electionId);
             }
           );
       }
+
+      function setAutoreload(electionId)
+      {
+        ElectionsApi.autoreloadStats(
+          electionId,
+          function callback(el)
+          {
+            // update perms to see if now tally can be launched
+            if (
+              el.status === 'stopped' &&
+              scope.perms.val.indexOf("tally") === -1
+            ) {
+              ElectionsApi
+              .getEditPerm(scope.id)
+              .then(
+                function (perm) {
+                  scope.perms.val = perm;
+                }
+              );
+            }
+          }
+        );
+      }
+
       // performs all the initialization
       function init()
       {
@@ -938,7 +948,7 @@ angular.module('avAdmin')
               ElectionsApi.results(election);
             }
 
-            ElectionsApi.autoreloadStats(election.id);
+            setAutoreload(election.id);
           });
       }
 
