@@ -58,8 +58,8 @@ angular.module('avAdmin')
                 }
               );
               scope.election = el;
+              scope.intally = (el.status === 'doing_tally') || scope.launchedTally;
 
-              scope.intally = (el.status === 'doing_tally');
               if (scope.intally) 
               {
                 scope.index = scope.statuses.indexOf('stopped') + 1;
@@ -483,7 +483,8 @@ angular.module('avAdmin')
             }
           );
         scope.publicURL = ConfigService.publicURL;
-
+        scope.launchedTally = false;
+        
         scope.statuses = [
           'registered',
           'created',
@@ -563,6 +564,11 @@ angular.module('avAdmin')
             {
               // tally command
               var command = scope.commands[4];
+              scope.launchedTally = true;
+
+              scope.intally = (el.status === 'doing_tally') || scope.launchedTally;
+              scope.index = scope.statuses.indexOf('stopped') + 1;
+              scope.nextaction = false;
 
               if (data.mode === 'all') {
                 ElectionsApi.command(
@@ -573,6 +579,9 @@ angular.module('avAdmin')
                 ).catch(
                   function(error)
                   {
+                    if (scope.launchedTally) {
+                      scope.launchedTally = false;
+                    }
                     scope.loading = false;
                     scope.error = error;
                   }
@@ -593,6 +602,9 @@ angular.module('avAdmin')
                     },
                     function(error)
                     {
+                      if (scope.launchedTally) {
+                        scope.launchedTally = false;
+                      }
                       scope.loading = false;
                       scope.error = error;
                     }
