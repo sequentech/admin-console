@@ -484,8 +484,7 @@ angular.module('avAdmin')
               scope.perms.val = perm;
             }
           );
-        
-                scope.launchedTally = false; =         scope.launchedTally = false; && el.status === 'stopped'); ( scope.publicURL = ConfigService.publicURL;
+        scope.publicURL = ConfigService.publicURL;
         scope.launchedTally = false;
         
         scope.statuses = [
@@ -566,8 +565,7 @@ angular.module('avAdmin')
             doAction: function (data)
             {
               // tally command
-              
-                            scope.launchedTally = true; =               scope.launchedTally = true; && el.status (=== 'stopped');var command = scope.commands[4];
+              var command = scope.commands[4];
               scope.launchedTally = true;
               scope.intally = true;
               scope.index = scope.statuses.indexOf('stopped') + 1;
@@ -582,9 +580,7 @@ angular.module('avAdmin')
                 ).catch(
                   function(error)
                   {
-                                        if (scope.launchedTally) { =                     if (scope.launchedTally) { (&& el.status === 'stopped');
-                    if
-                                          scope.launchedTally = false; =                       scope.launchedTally = (false; && el.status === 'stopped'); (scope.launchedTally) {
+                    if (scope.launchedTally) {
                       scope.launchedTally = false;
                     }
                     scope.loading = false;
@@ -607,9 +603,7 @@ angular.module('avAdmin')
                     },
                     function(error)
                     {
-                                            if (scope.launchedTally) { =                       if (scope.launchedTally) ({ && el.status === 'stopped');
-                      if
-                                              scope.launchedTally = false; =                         scope.launchedTally = false; && (el.status === 'stopped'); (scope.launchedTally) {
+                      if (scope.launchedTally) {
                         scope.launchedTally = false;
                       }
                       scope.loading = false;
