@@ -58,6 +58,7 @@ angular.module('avAdmin')
                 }
               );
               scope.election = el;
+              scope.launchedTally = (scope.launchedTally && el.status === 'stopped');
               scope.intally = (el.status === 'doing_tally') || scope.launchedTally;
 
               if (scope.intally) 
@@ -67,7 +68,8 @@ angular.module('avAdmin')
                 scope.prevStatus = scope.election.status;
                 scope.waiting = true;
                 waitElectionChange();
-              } else 
+              } 
+              else 
               {
                 scope.index = scope.statuses.indexOf(el.status) + 1;
                 scope.nextaction = scope.nextactions[scope.index - 1];
@@ -482,7 +484,8 @@ angular.module('avAdmin')
               scope.perms.val = perm;
             }
           );
-        scope.publicURL = ConfigService.publicURL;
+        
+                scope.launchedTally = false; =         scope.launchedTally = false; && el.status === 'stopped'); ( scope.publicURL = ConfigService.publicURL;
         scope.launchedTally = false;
         
         scope.statuses = [
@@ -563,7 +566,8 @@ angular.module('avAdmin')
             doAction: function (data)
             {
               // tally command
-              var command = scope.commands[4];
+              
+                            scope.launchedTally = true; =               scope.launchedTally = true; && el.status (=== 'stopped');var command = scope.commands[4];
               scope.launchedTally = true;
               scope.intally = true;
               scope.index = scope.statuses.indexOf('stopped') + 1;
@@ -578,7 +582,9 @@ angular.module('avAdmin')
                 ).catch(
                   function(error)
                   {
-                    if (scope.launchedTally) {
+                                        if (scope.launchedTally) { =                     if (scope.launchedTally) { (&& el.status === 'stopped');
+                    if
+                                          scope.launchedTally = false; =                       scope.launchedTally = (false; && el.status === 'stopped'); (scope.launchedTally) {
                       scope.launchedTally = false;
                     }
                     scope.loading = false;
@@ -601,7 +607,9 @@ angular.module('avAdmin')
                     },
                     function(error)
                     {
-                      if (scope.launchedTally) {
+                                            if (scope.launchedTally) { =                       if (scope.launchedTally) ({ && el.status === 'stopped');
+                      if
+                                              scope.launchedTally = false; =                         scope.launchedTally = false; && (el.status === 'stopped'); (scope.launchedTally) {
                         scope.launchedTally = false;
                       }
                       scope.loading = false;
