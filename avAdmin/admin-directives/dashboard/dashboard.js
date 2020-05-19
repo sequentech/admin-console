@@ -565,8 +565,7 @@ angular.module('avAdmin')
               // tally command
               var command = scope.commands[4];
               scope.launchedTally = true;
-
-              scope.intally = (el.status === 'doing_tally') || scope.launchedTally;
+              scope.intally = true;
               scope.index = scope.statuses.indexOf('stopped') + 1;
               scope.nextaction = false;
 
