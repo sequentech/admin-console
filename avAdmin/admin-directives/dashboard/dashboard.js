@@ -444,7 +444,11 @@ angular.module('avAdmin')
             {
               scope.resultsElection = el;
             }
-            scope.election = el;
+            
+            if (scop.election.id === el.id)
+            {
+              scope.election = el;
+            }
           }
         );
       }
