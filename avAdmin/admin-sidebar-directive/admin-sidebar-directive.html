@@ -6,7 +6,6 @@
   <li role="presentation" class="sub1">
     <a
       ui-sref="admin.new()"
-      ng-disabled="true"
       ng-if="globalPerms.val.indexOf('create') !== -1">
       <i class="fa-fw fa fa-plus-circle">
       </i>
@@ -15,7 +14,6 @@
     </a>
     <a
       ng-if="!!has_draft && !isEditingDraft() && globalPerms.val.indexOf('create') !== -1" 
-      ng-disabled="true"
       ng-click="loadDraft()">
       <i class="fa-fw fa fa-pencil-square-o">
       </i>
@@ -23,10 +21,12 @@
       </span>
     </a>
   </li>
-  
+ 
+  <!--
   <li role="presentation" class="sub1" ng-class="{active:state=='admin.import'}">
     <a ui-sref="admin.import()"> <i class="fa-fw fa fa-upload"></i> <span ng-i18next="avAdmin.sidebar.import"></span></a>
   </li>
+  -->
 
   <ul class="nav nav-pills nav-stacked" ng-if="current">
     <li role="presentation" class="head">
