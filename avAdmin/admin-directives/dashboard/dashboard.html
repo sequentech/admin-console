@@ -37,29 +37,72 @@
 
     <!-- dashboard status bar -->
     <div class="statusbar row text-center">
-        <div class="col-custom-14 col-xs-2" ng-class="{true:'text-success', false:'text-muted'}[index > $index]" ng-repeat="status in statuses">
-            <div class="stick" ng-class="{'stickini': $first, 'stickend': $last}">
-                <i class="fa fa-cog fa-spin fa-sw fa-2x text-warning" ng-if="index == $index && intally"></i>
-                <i class="fa fa-sw fa-2x fa-check-circle" ng-if="index > $index"></i>
-                <i class="fa fa-sw fa-2x fa-circle" ng-if="index == $index && !intally"></i>
-                <i class="fa fa-sw fa-2x fa-circle" ng-if="index < $index"></i>
+      <div 
+        class="col-custom-14 col-xs-2" 
+        ng-class="{true:'text-success', false:'text-muted'}[index > $index]" 
+        ng-repeat="status in statuses">
+        <div 
+          class="stick" 
+          ng-class="{'stickini': $first, 'stickend': $last}">
+            <i 
+              class="fa fa-cog fa-spin fa-sw fa-2x text-warning" 
+              ng-if="index == $index && intally">
+            </i>
+            <i 
+              class="fa fa-sw fa-2x fa-check-circle" 
+              ng-if="index > $index">
+            </i>
+            <i 
+              class="fa fa-sw fa-2x fa-circle" 
+              ng-if="index == $index && !intally">
+            </i>
+            <i 
+              class="fa fa-sw fa-2x fa-circle" 
+              ng-if="index < $index">
+            </i>
+          </div>
+
+          <div 
+            class="small" 
+            ng-i18next ng-if="index != $index">
+            {{ status }}
+          </div>
+          <button 
+            ng-click="doActionConfirm($index)" 
+            class="actionbtn btn btn-success" 
+            ng-disabled="!commands[$index].enableFunc()"
+            ng-if="index == $index && nextaction" 
+            ng-class="['election-status-action-' + index]">
+            <div 
+              class="small {{ nextaction }}" 
+              ng-i18next>
+              {{ nextaction }}
             </div>
-            <div class="small" ng-i18next ng-if="index != $index">{{ status }}</div>
-            <button ng-click="doActionConfirm($index)" class="actionbtn btn btn-success" ng-if="index == $index && nextaction" ng-class="['election-status-action-' + index]">
-                <div class="small {{ nextaction }}" ng-i18next>{{ nextaction }}</div>
-                <strong ng-i18next>avAdmin.dashboard.donow</strong>
-            </button>
-            <button
-              ng-click="doActionConfirm($index)"
-              class="actionbtn btn btn-success"
-              ng-if="statuses.indexOf('results_ok') === $index && index === 1 + $index"
-            >
-                <div class="small" ng-i18next>avAdmin.dashboard.calculateAgain</div>
-            </button>
-            <button class="btn btn-warning" ng-if="index == $index && intally">
-                <div class="small" ng-i18next="avAdmin.dashboard.doingtally"></div>
-            </button>
-        </div>
+            <strong ng-i18next>
+              avAdmin.dashboard.donow
+            </strong>
+          </button>
+          <button
+            ng-click="doActionConfirm($index)"
+            class="actionbtn btn btn-success"
+            ng-disabled="!commands[$index].enableFunc()"
+            ng-if="statuses.indexOf('results_ok') === $index && index === 1 + $index"
+          >
+            <div 
+              class="small" 
+              ng-i18next>
+              avAdmin.dashboard.calculateAgain
+            </div>
+          </button>
+          <button 
+            class="btn btn-warning" 
+            ng-if="index == $index && intally">
+              <div 
+                class="small" 
+                ng-i18next="avAdmin.dashboard.doingtally">
+              </div>
+          </button>
+      </div>
     </div>
     <!-- endof dashboard status bar -->
 
@@ -78,6 +121,7 @@
                 <strong>{{ election.auth.census|number }}</strong><br/>
                 <button
                   ng-click="sendAuthCodes()"
+                  ng-disabled="perms.val.indexOf('send-auth-all') === -1 && perms.val.indexOf('edit') === -1"
                   class="btn btn-success send-auth pull-left">
                     <i class="fa fa-sw fa-send"></i>
                     <span ng-i18next>
@@ -113,11 +157,18 @@
                 </dl>
             </div>
 
-            <button ng-click="doActionConfirm(index)" class="btn btn-block btn-lg btn-success" ng-if="nextaction" ng-i18next="{{ nextaction }}"></button>
+            <button
+              class="btn btn-block btn-lg btn-success" 
+              ng-if="nextaction" 
+              ng-disabled="!commands[index].enableFunc()"
+              ng-i18next="{{ nextaction }}"
+              ng-click="doActionConfirm(index)">
+            </button>
 
             <button
               ng-click="duplicateElection()"
               class="btn btn-block btn-lg btn-success"
+              ng-disabled="true"
               ng-i18next>
               avAdmin.dashboard.duplicateElection
             </button>
@@ -163,11 +214,35 @@
             </div>
         </div>
     </div>
-    <!-- endof general -->
+    <!-- end of general -->
+
+    <!-- allows to choose which children election to show -->
+    <div class="row general">
+      <div class="col-md-12">
+        <div class="well">
+          <h3 
+            ng-if="!!election.children_election_info"
+            ng-i18next>
+            avAdmin.dashboard.chilldrenResultsTitle
+          </h3>
+          <div
+            ng-if="!!election.children_election_info"
+            av-children-elections
+            mode="toggle-and-callback"
+            callback="showResults(electionId)"
+            parent-election-id="{{election.id}}"
+            children-election-info="election.children_election_info"
+            >
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- results -->
-    <h2 ng-if="election.results.questions">
-      <span ng-i18next>avAdmin.dashboard.results</span>
+    <h2 ng-if="resultsElection.results.questions">
+      <span ng-i18next>
+        avAdmin.dashboard.results
+      </span>
 
       <div class="btn-group">
         <button
@@ -185,7 +260,7 @@
         <ul class="dropdown-menu download-data-dropdown" role="menu">
           <li>
             <a
-              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/ballots.csv"
+              ng-href="{{publicURL}}/{{resultsElection.id}}/{{resultsElection.results.results_dirname}}/ballots.csv"
               target="_blank"
               class="wrap">
               <span ng-i18next>
@@ -196,7 +271,7 @@
 
           <li>
             <a
-              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.csv"
+              ng-href="{{publicURL}}/{{resultsElection.id}}/{{resultsElection.results.results_dirname}}/{{resultsElection.id}}.results.csv"
               target="_blank"
               class="wrap">
               <span ng-i18next>
@@ -207,7 +282,7 @@
 
           <li>
             <a
-              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.json"
+              ng-href="{{publicURL}}/{{resultsElection.id}}/{{resultsElection.results.results_dirname}}/{{resultsElection.id}}.results.json"
               target="_blank"
               class="wrap">
               <span ng-i18next>
@@ -218,7 +293,7 @@
 
           <li>
             <a
-              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.pretty"
+              ng-href="{{publicURL}}/{{resultsElection.id}}/{{resultsElection.results.results_dirname}}/{{resultsElection.id}}.results.pretty"
               target="_blank"
               class="wrap">
               <span ng-i18next>
@@ -229,7 +304,7 @@
 
           <li>
             <a
-              ng-href="{{publicURL}}/{{election.id}}/{{election.results.results_dirname}}/{{election.id}}.results.pdf"
+              ng-href="{{publicURL}}/{{resultsElection.id}}/{{resultsElection.results.results_dirname}}/{{resultsElection.id}}.results.pdf"
               target="_blank"
               class="wrap">
               <span ng-i18next>
@@ -240,7 +315,7 @@
         </ul>
       </div>
     </h2>
-    <div class="well question-result" ng-repeat="q in election.results.questions">
+    <div class="well question-result" ng-repeat="q in resultsElection.results.questions">
         <div class="row">
             <div class="col-md-7">
                 <h2>{{ q.title }}</h2>
@@ -283,7 +358,9 @@
                 <td ng-bind-html="an.text"></td>
                 <td>{{ an.total_count|number }}</td>
                 <td>{{ percentVotes(an.total_count, q) }}</td>
-                <td ng-if="an.winner_position === 0 || an.winner_position">{{ an.winner_position + 1}}</td>
+                <td ng-if="an.winner_position === 0 || an.winner_position">
+                  {{ an.winner_position + 1}}
+                </td>
                 <td ng-if="!(an.winner_position === 0 || an.winner_position)">--</td>
             </tr>
         </table>

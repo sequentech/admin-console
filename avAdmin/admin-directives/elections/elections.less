@@ -16,6 +16,55 @@
 **/
 
 [av-admin-elections] {
+
+  .td-1 {
+    width: 8.33%;
+  }
+  
+  .td-2 {
+    width: 16.66%;
+  }
+  
+  .td-3 {
+    width: 25%;
+  }
+  
+  .td-4 {
+    width: 33.33%;
+  }
+  
+  .td-5 {
+    width: 41.66%;
+  }
+  
+  .td-6 {
+    width: 50%;
+  }
+
+  .td-7 {
+    width: 58.33%;
+  }
+
+  .td-8 {
+    width: 66.66%;
+  }
+
+  .td-9 {
+    width: 75%;
+  }
+
+  .td-10 {
+    width: 83.33%;
+  }
+
+  .td-11 {
+    width: 91.66%;
+  }
+
+  .td-12 {
+    width: 100%;
+  }
+
   .align-close {
     text-align: center;
     vertical-align: middle;
@@ -59,7 +108,18 @@
 
     .input-group.search {
       float: left;
+      margin-right: 10px;
+    }
+
+    .reload-list {
+      margin-left: 5px;
+      float: left;
+    }
+
+    .new-election {
+      margin-left: 5px;
       margin-right: 20px;
+      float: left;
     }
 
     .nav-pills>li.active>a {
@@ -75,10 +135,26 @@
           background-color: lighten(@gray-lighter, 4%);
           border-color: @av-primary;
           border-width: 5px;
+
+          a.child-dropdown:hover {
+            font-weight: bold;
+          }
+        }
+
+        table.children-list tbody tr, table.children-list tbody tr td {
+          transition: 0.3s linear all;
+        }
+
+        table.children-list tbody tr:hover, table.children-list tbody tr:hover td {
+          background-color: darken(@gray-lighter, 10%);
         }
 
         &:hover > td {
           background-color: darken(@gray-lighter, 10%);
+        }
+
+        &.child > td.main {
+          padding-left: 30px;
         }
       }
     }

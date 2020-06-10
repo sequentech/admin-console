@@ -33,20 +33,34 @@
 **/
   
 angular.module('avAdmin')
-  .directive('avAdminSidebar', ['$cookies', 'Authmethod', 'DraftElection', function($cookies, Authmethod, DraftElection) {
-    // we use it as something similar to a controller here
-    function link(scope, element, attrs) {
-        var autheventid = Authmethod.getAuthevent();
-        var postfix = "_authevent_" + autheventid;
-        var admin = $cookies["user" + postfix];
-        scope.admin = admin;
-        scope.active = attrs.active;
-        scope.isEditingDraft = DraftElection.isEditingDraft;
-    }
+  .directive(
+    'avAdminSidebar', 
+    function($cookies, Authmethod, DraftElection, ElectionsApi) 
+    {
+      // we use it as something similar to a controller here
+      function link(scope, element, attrs) {
+          var autheventid = Authmethod.getAuthevent();
+          var postfix = "_authevent_" + autheventid;
+          var admin = $cookies["user" + postfix];
+          scope.admin = admin;
+          scope.active = attrs.active;
+          scope.isEditingDraft = DraftElection.isEditingDraft;
+          scope.globalPerms = { val: '' };
 
-    return {
-      restrict: 'AE',
-      link: link,
-      templateUrl: 'avAdmin/admin-sidebar-directive/admin-sidebar-directive.html'
-    };
-  }]);
+          // update perms
+          ElectionsApi
+            .getEditPerm(null)
+            .then(
+              function (perm) {
+                scope.globalPerms.val = perm;
+              }
+            );
+      }
+
+      return {
+        restrict: 'AE',
+        link: link,
+        templateUrl: 'avAdmin/admin-sidebar-directive/admin-sidebar-directive.html'
+      };
+    }
+  );

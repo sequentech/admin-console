@@ -21,15 +21,37 @@ angular.module('avAdmin')
       $scope.election = election;
       $scope.newcensus = newcensus;
       $scope.helpurl = ConfigService.helpUrl;
+      $scope.children_election_info = angular.copy($scope.election.children_election_info);
+
       $scope.ok = function () {
         for (var i = 0; i < election.census.extra_fields.length; i++) {
           var field = election.census.extra_fields[i];
           if(!newcensus.hasOwnProperty(field.name)) {
-            if(('tlf' === field.name) ||
-               ('email' === field.name && field.type === 'email')) {
+            if(
+              ('tlf' === field.name) ||
+              ('email' === field.name && field.type === 'email')
+            ) {
               newcensus[field.name] = "";
             }
+          } else {
+            if (field.type === 'int') {
+              newcensus[field.name] = parseInt(newcensus[field.name], 10);
+            }
           }
+        }
+
+        if ($scope.children_election_info) {
+          _.each(
+            $scope.children_election_info.presentation.categories,
+            function (category) {
+              _.each(
+                category.events,
+                function (election) {
+                  newcensus[election.event_id] = election.data ? "true" : "false";
+                }
+              );
+            }
+          );
         }
         $modalInstance.close();
       };

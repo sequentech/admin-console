@@ -32,6 +32,18 @@
         <div avr-date-field label="ef.name | htmlToText" ng-model="newcensus[ef.name]"></div>
       </div>
     </div>
+    <div 
+      ng-if="election.children_election_info"
+      style="margin-top: 30px;" 
+      ng-i-18next>
+      avAdmin.census.modals.addPersonChildrenElections
+    </div>
+    <div
+      av-children-elections
+      ng-if="election.children_election_info"
+      mode="checkbox"
+      children-election-info="children_election_info">
+    </div>
   </form>
 </div>
 <div class="modal-footer">

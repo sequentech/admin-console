@@ -26,31 +26,42 @@
     </p>
 
     <label
-      for="census-dump-{{mode}}"
+      for="census-dump-{{mode.name}}"
       class="descriptive-radio"
       ng-repeat="mode in census_dump_modes"
-      ng-class="{'selected': binding.census_dump_mode === o}">
+      ng-class="{'selected': binding.census_dump_mode === mode.name, 'disabled': !mode.enabled}">
 
       <input
-        id="census-dump-{{mode}}"
+        id="census-dump-{{mode.name}}"
+        ng-disabled="!mode.enabled"
         type="radio"
         name="census-dump"
-        value="{{ mode }}"
+        value="{{ mode.name }}"
         ng-model="binding.census_dump_mode" />
 
       <span
         class="header"
-        ng-i18next="avAdmin.dashboard.modals.censusDumpMode.{{ mode }}Header">
+        ng-i18next="avAdmin.dashboard.modals.censusDumpMode.{{ mode.name }}Header">
       </span>
 
       <span
         class="description"
-        ng-i18next="[html]avAdmin.dashboard.modals.censusDumpMode.{{ mode }}Description">
+        ng-i18next="[html]avAdmin.dashboard.modals.censusDumpMode.{{ mode.name }}Description">
       </span>
 
-      <a href="{{helpurl}}" class="learn-more" target="_blank" ng-i18next>
-        avAdmin.learnMore
-      </a>
+      <div
+        ng-if="mode.name == 'active' && children_election_info"
+        class="active-mode-settings">
+        <br/>
+        <span class="description" ng-i18next>
+          avAdmin.dashboard.modals.censusDumpMode.chooseChildrenToTally
+        </span>
+        <div
+          av-children-elections
+          mode="checkbox"
+          children-election-info="children_election_info">
+        </div>
+      </div>
     </label>
   </div>
   <div class="row-fluid">

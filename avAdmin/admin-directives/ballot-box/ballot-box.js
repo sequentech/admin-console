@@ -174,7 +174,7 @@ angular.module('avAdmin')
           })
           .result.then(
             scope.reload,
-            function (error) {
+            function onError(error) {
               scope.reload();
             }
           );
@@ -189,7 +189,7 @@ angular.module('avAdmin')
           actionFunc: function(ballotBox)
           {
             Authmethod.getTallySheet(
-              scope.electionId,
+              ballotBox.event_id,
               ballotBox.id,
               null
             )
@@ -202,9 +202,12 @@ angular.module('avAdmin')
                 windowClass: "view-tally-sheet-modal",
                 resolve: {
                   tallySheet: function () { return response.data; },
-                  allowEdit: function () { return true; },
+                  allowEdit: function () { 
+                    // return edit tally sheet enableFunc
+                    return scope.row_commands[1].enableFunc(ballotBox); 
+                  },
                   ballotBox: function () { return ballotBox; },
-                  electionId: function () { return scope.electionId; },
+                  electionId: function () { return ballotBox.event_id; },
                 }
               })
               .result.then(
@@ -213,7 +216,7 @@ angular.module('avAdmin')
                     scope.row_commands[1].actionFunc(ballotBox);
                   }
                 },
-                function (error) {
+                function onError(error) {
                   scope.reload();
                 }
               );
@@ -233,52 +236,74 @@ angular.module('avAdmin')
           actionFunc: function(ballotBox)
           {
             Authmethod.getTallySheet(
-              scope.electionId,
+              ballotBox.event_id,
               ballotBox.id,
               null
             )
             .then(
               function onSuccess(response)
               {
-                $modal.open({
-                  templateUrl: "avAdmin/admin-directives/ballot-box/write-tally-sheet-modal.html",
-                  controller: "WriteTallySheetModal",
-                  windowClass: "write-tally-sheet-modal",
-                  resolve: {
-                    tallySheet: function () { return response.data; },
-                    ballotBox: function () { return ballotBox; }
-                  }
-                })
-                .result.then(
-                  scope.reload,
-                  function (error) {
-                    scope.reload();
-                  }
-                );
+                ElectionsApi
+                  .getElection(ballotBox.event_id)
+                  .then(
+                    function onSuccess(election) 
+                    {
+                      $modal.open({
+                        templateUrl: "avAdmin/admin-directives/ballot-box/write-tally-sheet-modal.html",
+                        controller: "WriteTallySheetModal",
+                        windowClass: "write-tally-sheet-modal",
+                        resolve: {
+                          tallySheet: function () { return response.data; },
+                          ballotBox: function () { return ballotBox; },
+                          election: function () { return election; }
+                        }
+                      })
+                      .result.then(
+                        scope.reload,
+                        function onError(error) {
+                          scope.reload();
+                        }
+                      );
+                    },
+                    function onError(error) {
+                      scope.reload();
+                    }
+                  );
               },
               function onError(response)
               {
-                $modal.open({
-                  templateUrl: "avAdmin/admin-directives/ballot-box/write-tally-sheet-modal.html",
-                  controller: "WriteTallySheetModal",
-                  windowClass: "write-tally-sheet-modal",
-                  resolve: {
-                    tallySheet: function () { return null; },
-                    ballotBox: function () { return ballotBox; }
-                  }
-                })
-                .result.then(
-                  scope.reload,
-                  function (error) {
-                    scope.reload();
-                  }
-                );
+                ElectionsApi
+                  .getElection(ballotBox.event_id)
+                  .then(
+                    function onSuccess(election) 
+                    {
+                      $modal.open({
+                        templateUrl: "avAdmin/admin-directives/ballot-box/write-tally-sheet-modal.html",
+                        controller: "WriteTallySheetModal",
+                        windowClass: "write-tally-sheet-modal",
+                        resolve: {
+                          tallySheet: function () { return null; },
+                          ballotBox: function () { return ballotBox; },
+                          election: function () { return election; }
+                        }
+                      })
+                      .result.then(
+                        scope.reload,
+                        function onError(error) {
+                          scope.reload();
+                        }
+                      );
+                    },
+                    function onError(error) {
+                      scope.reload();
+                    }
+                  );
               }
             );
           },
           enableFunc: function(ballotBox) {
             return (
-              ['stopped', 'tally_ok', 'results_ok'].indexOf(ElectionsApi.currentElection.status) !== -1 && (
+              ['stopped', 'tally_ok', 'results_ok', 'doing_tally', 'tally_error','results_pub'].indexOf(ElectionsApi.currentElection.status) !== -1 && (
                 (
                 ballotBox.num_tally_sheets > 0 &&
                 ElectionsApi.getCachedEditPerm(scope.electionId).indexOf('override-tally-sheets') !== -1
@@ -296,7 +321,7 @@ angular.module('avAdmin')
           actionFunc: function(ballotBox)
           {
              Authmethod.getTallySheet(
-              scope.electionId,
+              ballotBox.event_id,
               ballotBox.id,
               null
             )
@@ -309,12 +334,12 @@ angular.module('avAdmin')
                 resolve: {
                   ballotBox: function () { return ballotBox; },
                   tallySheetId: function () { return response.data.id; },
-                  electionId: function () { return scope.electionId; },
+                  electionId: function () { return ballotBox.event_id; },
                 }
               })
               .result.then(
                 scope.reload,
-                function (error) {
+                function onError(error) {
                   scope.reload();
                 }
               );
@@ -322,7 +347,7 @@ angular.module('avAdmin')
           },
           enableFunc: function(ballotBox) {
             return (
-              ['stopped', 'tally_ok'].indexOf(ElectionsApi.currentElection.status) !== -1 &&
+              ['stopped', 'tally_ok', 'results_ok', 'doing_tally', 'tally_error','results_pub'].indexOf(ElectionsApi.currentElection.status) !== -1 &&
               ballotBox.num_tally_sheets > 0 &&
               ElectionsApi.getCachedEditPerm(scope.electionId).indexOf('delete-tally-sheets') !== -1
             );
@@ -343,7 +368,7 @@ angular.module('avAdmin')
             })
             .result.then(
               scope.reload,
-              function (error) {
+              function onError(error) {
                 scope.reload();
               }
             );
@@ -383,7 +408,7 @@ angular.module('avAdmin')
             var ballotBox = response.data.object_list[0];
 
             Authmethod.getTallySheet(
-              scope.electionId,
+              ballotBox.event_id,
               ballotBox.id,
               $location.search().view_tally_sheet_id
             )
@@ -396,9 +421,12 @@ angular.module('avAdmin')
                   windowClass: "view-tally-sheet-modal",
                   resolve: {
                     tallySheet: function () { return tallySheetResponse.data; },
-                    allowEdit: function () { return true; },
+                    allowEdit: function () { 
+                      // return edit tally sheet enableFunc
+                      return scope.row_commands[1].enableFunc(ballotBox); 
+                    },
                     ballotBox: function () { return ballotBox; },
-                    electionId: function () { return scope.electionId; },
+                    electionId: function () { return ballotBox.event_id; },
                   }
                 })
                 .result.then(
@@ -407,7 +435,7 @@ angular.module('avAdmin')
                       scope.row_commands[1].actionFunc(ballotBox);
                     }
                   },
-                  function (error) {
+                  function onError(error) {
                     scope.reload();
                   }
                 );
@@ -443,7 +471,14 @@ angular.module('avAdmin')
               windowClass: "view-tally-sheet-modal",
               resolve: {
                 tallySheet: function () { return action.metadata; },
-                allowEdit: function () { return false; },
+                allowEdit: function () { 
+                  // return edit tally sheet enableFunc
+                  return scope.row_commands[1].enableFunc({
+                    id: ballot_box_id,
+                    name: ballot_box_name,
+                    num_tally_sheets: 1
+                  }); 
+                },
                 ballotBox: function () {
                   return {
                     id: ballot_box_id,

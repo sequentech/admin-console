@@ -33,6 +33,44 @@
       "title": "Profile",
       "save": "Save changes"
     },
+    "onboarding": {
+      "help_tour": {
+        "step0_help_title": "Help",
+        "step0_help_content": "If you need any further help, you can click here to get it. You can <strong>launch again the tour</strong> there too!",
+
+        "step1_chat_title": "Chat with us",
+        "step1_chat_content": "If you have any question, we'll be glad to answer you quickly through the chat."
+      },
+      "dashboard_tour": {
+        "step0_test_title": "Test election",
+        "step0_test_content": "You have created a test election. Test elections have limited census size and a real election can only be created out of a successfully tallied test election.",
+
+        "step1_real_title": "Real election",
+        "step1_real_content": "Once this election is tallied, you will be able to create a real election clicking here.",
+
+        "step2_status_title": "Election status",
+        "step2_status_content": "This section shows you the state of the election and a button to move election to the next status.",
+
+        "step3_start_title": "Start the election",
+        "step3_start_content": "Click this button to start the election and send an authentication email to all census."
+      },
+      "hello_tour": {
+        "step0_create_title": "Create an election",
+        "step0_create_content": "Start creating a test election clicking in the <strong>New Election</strong> button. <br><br>Or watch the intro video:<br><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/eTZ3TQw5G_c?rel=0&amp;showinfo=0\" frameborder=\"0\" allowfullscreen></iframe>",
+
+        "step1_change_title": "Change the title",
+        "step1_change_content": "Now you can edit all the details of the election, for example you could edit the election's title clicking title here.",
+
+        "step2_sidebar_title": "Sidebar",
+        "step2_sidebar_content": "You can personalize the election clicking through these sections.",
+
+        "step3_review_title": "Review election to create it",
+        "step3_review_content": "Once you are done configuring the election, click the <strong>Create Election</strong> section to review and then create the election.",
+
+        "step4_create2_title": "Create the election",
+        "step4_create2_content": "<strong>Click this button</strong> to create the election. <br><br>Note that the election won't be created until you do so, and for security reasons it won't be editable afterwards."
+      }
+    },
     "ballotBox": {
       "title": "Ballot Boxes",
       "intro": "List of ballot boxes and their tally sheets.",
@@ -126,7 +164,7 @@
           "deactivate": "<i>__executer_username__ (__executer_id__)</i> <strong>deactivated</strong> user <i>__receiver_username__ (__receiver_id__)</i> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "authenticate": "<i>__receiver_username__ (__receiver_id__)</i> <strong>authenticated</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "register": "<i>__receiver_username__ (__receiver_id__)</i> <strong>registered</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
-          "successful-login": "<i>__executer_username__ (__executer_id__)</i> <strong>voted</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "successful-login": "<i>__executer_username__ (__executer_id__)</i> <strong>voted</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
           "send-auth": "<i>__executer_username__ (__executer_id__)</i> <strong>sent authentication codes</strong> to <i>__receiver_username__ (__receiver_id__)</i>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "resend-authcode": "There was a request to <strong>send authentication codes</strong> to <i>__receiver_username__ (__receiver_id__)</i>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
 	        "added-to-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>added to census</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> to <i>__receiver_username__(__receiver_id__)</i> __metadata__",
@@ -136,8 +174,24 @@
           "create": "<i>__executer_username__ (__executer_id__)</i> <strong>created</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "callback": "<i>__executer_username__ (__executer_id__)</i> <strong>received callback</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "edit": "<i>__executer_username__ (__executer_id__)</i> <strong>edited</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
-          "start": "<i>__executer_username__ (__executer_id__)</i> <strong>started</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
-          "stop": "<i>__executer_username__ (__executer_id__)</i> <strong>stopped</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "start": "<i>__executer_username__ (__executer_id__)</i> <strong>started</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "stop": "<i>__executer_username__ (__executer_id__)</i> <strong>stopped</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "tally": "<i>__executer_username__ (__executer_id__)</i> <strong>requested to tally</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+          "tally_error": "<strong>error when launching tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+          "virtual_tally_error": "<strong>error when launching virtual tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> <i>__metadata__</i>",
+          "tally_error_no_votes": "<strong>tally not executed because there were no votes</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+          "calculate_results_success": "<i>__executer_username__ (__executer_id__)</i> <strong>calculated results</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "calculate_results_error": "<i>__executer_username__ (__executer_id__)</i> <strong>tried to calculate results with error</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "publish_results_success": "<i>__executer_username__ (__executer_id__)</i> <strong>published results</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "publish_results_error": "<i>__executer_username__ (__executer_id__)</i> <strong>tried to publish results with error</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "unpublish_results_success": "<i>__executer_username__ (__executer_id__)</i> <strong>unpublished results</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "unpublish_results_error": "<i>__executer_username__ (__executer_id__)</i> <strong>tried to unpublish results with error</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "allow_tally_success": "<i>__executer_username__ (__executer_id__)</i> <strong>allowed tally</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "allow_tally_error": "<i>__executer_username__ (__executer_id__)</i> <strong>tried to allow tally with error</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "tally_started": "<strong>started the tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+          "tally_error_during_tally": "<strong>error during tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "tally_success": "<strong>successful tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "virtual_tally_success": "<strong>successful virtual tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>deleted</strong> election __event_id__",
           "archive": "<i>__executer_username__ (__executer_id__)</i> <strong>archived</strong> election __event_id__",
           "unarchive": "<i>__executer_username__ (__executer_id__)</i> <strong>unarchived</strong> election __event_id__"
@@ -150,44 +204,6 @@
           "create": "<i>__executer_username__ (__executer_id__)</i> <strong>uploaded</strong> a <a href=\"/admin/ballot-box/__event_id__?view_tally_sheet_id=__tally_sheet_id__&ballot_box_id=__ballot_box_id__\">tally sheet</a> for ballot box <a href=\"/admin/ballot-box/__event_id__?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>deleted</strong> a <a href=\"/admin/ballot-box/__event_id__?view_tally_sheet_from_action_id=__action_id__&ballot_box_name=__ballot_box_name__&ballot_box_id=__ballot_box_id__\">tally sheet</a> for ballot box <a href=\"/admin/ballot-box/__event_id__?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>"
         }
-      }
-    },
-    "onboarding": {
-      "help_tour": {
-        "step0_help_title": "Help",
-        "step0_help_content": "If you need any further help, you can click here to get it. You can <strong>launch again the tour</strong> there too!",
-
-        "step1_chat_title": "Chat with us",
-        "step1_chat_content": "If you have any question, we'll be glad to answer you quickly through the chat."
-      },
-      "dashboard_tour": {
-        "step0_test_title": "Test election",
-        "step0_test_content": "You have created a test election. Test elections have limited census size and a real election can only be created out of a successfully tallied test election.",
-
-        "step1_real_title": "Real election",
-        "step1_real_content": "Once this election is tallied, you will be able to create a real election clicking here.",
-
-        "step2_status_title": "Election status",
-        "step2_status_content": "This section shows you the state of the election and a button to move election to the next status.",
-
-        "step3_start_title": "Start the election",
-        "step3_start_content": "Click this button to start the election and send an authentication email to all census."
-      },
-      "hello_tour": {
-        "step0_create_title": "Create an election",
-        "step0_create_content": "Start creating a test election clicking in the <strong>New Election</strong> button. <br><br>Or watch the intro video:<br><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/eTZ3TQw5G_c?rel=0&amp;showinfo=0\" frameborder=\"0\" allowfullscreen></iframe>",
-
-        "step1_change_title": "Change the title",
-        "step1_change_content": "Now you can edit all the details of the election, for example you could edit the election's title clicking title here.",
-
-        "step2_sidebar_title": "Sidebar",
-        "step2_sidebar_content": "You can personalize the election clicking through these sections.",
-
-        "step3_review_title": "Review election to create it",
-        "step3_review_content": "Once you are done configuring the election, click the <strong>Create Election</strong> section to review and then create the election.",
-
-        "step4_create2_title": "Create the election",
-        "step4_create2_content": "<strong>Click this button</strong> to create the election. <br><br>Note that the election won't be created until you do so, and for security reasons it won't be editable afterwards."
       }
     },
     "show_points_policy": {
@@ -290,6 +306,7 @@
         "dropFilesHere": "Drop CSV file here"
     },
     "dashboard": {
+        "chilldrenResultsTitle": "Select the election results to view:",
         "createRealElection": "Create REAL election",
         "duplicateElection": "Duplicate election",
         "sendAuthCodes": "Send auth codes",
@@ -326,7 +343,14 @@
           "sendAuthCodes": "Send auth codes...",
           "archiveElection": "Archive election...",
           "unarchiveElection": "Unarchive election...",
-          "calculateResults": "Calculate results..."
+          "tally": "Launch tally...",
+          "allowTally": "Allow to launch tally...",
+          "calculateResults": "Calculate results...",
+          "editChildrenParent": "Edit Children and Parent elections...",
+          "startElection": "Start election...",
+          "stopElection": "Stop election...",
+          "publishResults": "Publish results...",
+          "unpublishResults": "Unpublish results..."
         },
         "modals": {
           "createHeader": "Create election",
@@ -338,6 +362,7 @@
           "calculateResultsHeader": "Calculate results",
           "calculateResultsBody": "The election has been tallied and the next step is to calculate the results. Although the election can only be tallied once, the election results can be calculated as many times as you need before publishing them.",
           "calculateResultsButton": "Confirm and CALCULATE results",
+          "calculateResultsSuccess": "Results calculation requested",
           "startHeader": "Start election",
           "startBody": "Please be aware that once you start the elections, voters will be able to vote until the election is stopped",
           "confirmStartButton": "Confirm and START the election",
@@ -351,21 +376,23 @@
             "allHeader": "Tally all cast ballots",
             "allDescription": "Even if a voter has been removed from the census or is marked as not active, if this voter has cast a ballot it will be counted.",
             "activeHeader": "Tally only cast ballots active in the current census",
-            "activeDescription": "<strong>Only choose this option if you know what you are doing</strong>. The ballots corresponding to people that are not included in the census, or those corresponding to inactive people in the census <strong>will be discarded and not counted</strong>."
+            "activeDescription": "<strong>Only choose this option if you know what you are doing</strong>. The ballots corresponding to people that are not included in the census, or those corresponding to inactive people in the census <strong>will be discarded and not counted</strong>.",
+            "chooseChildrenToTally": "Choose what elections to tally:"
           },
           "confirmTallyButton": "Confirm and TALLY the election",
           "tallyActiveHeader": "Tally only active voters",
           "tallyActiveIntro": "We will start downloading all the voters to detect which are active and only tally those if you confirm you want to do so. <strong>This decision is final</strong>, the software does not allow to undo a tally or to do a second one with a different set of ballots. <br/><br/>To modify the list of active users, cancel this modal and edit the active status in the Census Data lateral menu. If you don't want to do the tally, just close this dialog.",
           "downloadingCensus": "Downloaded __downloaded__ of __total__ people in census",
           "confirmTallyActiveButton": "Confirm and TALLY __totalActive__ out of __total__ elegible voters",
+          "launchTallySuccess": "Tally launched successfully",
           "publishResultsHeader": "Publish election results",
           "publishResultsBody": "Currently only the election administrators have access to the calculated election results. When you publish the results, these will be made public for everyone to see.",
           "confirmPublishResultsButton": "Confirm and PUBLISH election results",
           "changeSocial": {
             "header": "Edit social networks share buttons",
+            "confirmButton": "Confirm and SAVE social networks configuration",
             "title": "Social Network Buttons",
             "new": "New button",
-            "confirmButton": "Confirm and SAVE social networks configuration",
             "socialNetworkLabel": "Social Network",
             "buttonTextLabel": "Button text",
             "socialMessageLabel": "Share text",
@@ -383,7 +410,6 @@
             "body": "This dialog allows you to edit the calculate results json. Use this only if you know what you are doing.",
             "confirmEdit": "Finish edit"
           },
-
           "sendAuthCodes": {
             "editMessageStep": {
               "header": "Send authentication codes (Step __step__ of __total__)",
@@ -413,6 +439,24 @@
             "body": "This action will unarchive the election. It will fail if the election is not currently in an archived state. UnArchiving an election makes it appear again in the election list in the admin interface. It can also be archived again later.",
             "confirmButton": "Unarchive election",
             "success": "Election unarchived successfully"
+          },
+          "editChildrenParent": {
+            "header": "Edit Children and Parent election info",
+            "body": "Edit in the textarea the parent_id and children_election_info in JSON.",
+            "confirmButton": "Send updated data",
+            "success": "Election children and parent info updated successfully"
+          },
+          "unpublishResults": {
+            "header": "Unpublish election results",
+            "body": "The electoral results will not show in this election public website.",
+            "confirmButton": "Confirm and unpublish electoral results",
+            "success": "Electoral results have been unpublished successfully"
+          },
+          "allowTally": {
+            "header": "Allow to do election tally",
+            "body": "After this action is executed, any administrator allowed to execute a tally will be able to do so.",
+            "confirmButton": "Allow to do election tally",
+            "success": "Allowed to do election tally"
           }
         }
     },
@@ -508,6 +552,7 @@
 
           "addPersonHeader": "Add Person to census",
           "addPersonBody": "Manually add a single person to the census. Note that no data validation is done, so it's up to you to insert valid data.",
+          "addPersonChildrenElections": "Select in which children elections can this person vote:",
           "confirmAddPersonButton": "Confirm and ADD person to census",
 
           "removePeopleHeader": "Remove selected people from census",
@@ -545,10 +590,12 @@
         "voted": "voted",
         "notVoted": "not voted",
         "votedColumnHeader": "Voted?",
+        "childrenVotedColumnHeader": "Voted in",
         "activeColumnHeader": "Active?",
 
         "censusadd": "Voters added to the census",
         "actionsDropdown": "Actions",
+        "childrenElections": "Allowed children elections",
         "selectAllShownAction": "Select all people shown",
         "deselectAllShownAction": "Deselect all people shown",
         "exportCensusAction": "Export all census to CSV..",
@@ -638,6 +685,7 @@
         "create": "Create the elections",
         "creating": "Creating the authentication for election __title__",
         "census": "Adding the census (id: __id__) __title__",
+        "ballot_boxes": "Adding ballot boxes (id: __id__) __title__",
         "reg": "Registering the election (id: __id__) __title__",
         "creatingEl": "Creating election (id: __id__) __title__",
         "logHeader": "Log",
@@ -723,6 +771,9 @@
       "urlModeDescription": "Load an URL that you can specify. Only https urls allowed.",
       "urlModePlaceholder": "https://example.com/foo/bar",
       "invalidUrl": "Invalid URL. Example of a valid URL: https://example.com/foo/bar"
+    },
+    "childrenElections": {
+      "main": "Main election"
     }
   }
 }

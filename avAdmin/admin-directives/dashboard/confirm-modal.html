@@ -13,9 +13,11 @@
       <span ng-i18next>
         avAdmin.dashboard.modals.{{dialogName}}.body
       </span>
-      <a href="{{helpurl}}" class="learn-more" target="_blank" ng-i18next>
-        avAdmin.learnMore
-      </a>
+      <textarea 
+        ng-if="textarea.data"
+        ng-model="textarea.data" 
+        style="width: 100%; min-height: 300px">
+      </textarea>
     </p>
   </div>
   <div class="modal-footer">

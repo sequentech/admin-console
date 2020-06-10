@@ -140,46 +140,76 @@ angular.module('avAdmin')
             return deferred.promise;
         }
 
+        function processElectionAuth(el, electionAuth) 
+        {
+          var deferred = $q.defer();
+          el.auth = {};
+          el.auth.authentication = electionAuth.auth_method;
+          el.auth.census = electionAuth.users;
+          el.raw = electionAuth;
+          if (el.auth.census && electionAuth.total_votes) {
+              el.votes = electionAuth.total_votes;
+              el.votes_percentage = ( electionAuth.total_votes * 100 ) / el.auth.census;
+          } else {
+              el.votes_percentage = 0;
+              el.votes = el.stats.total_votes || 0;
+          }
+
+          // updating census
+          el.census.auth_method = electionAuth.auth_method;
+          el.census.has_ballot_boxes = electionAuth.has_ballot_boxes;
+
+          el.children_election_info = electionAuth.children_election_info;
+          el.children_tally_status = electionAuth.children_tally_status;
+          el.parent_id = electionAuth.parent_id;
+          el.hide_default_login_lookup_field = electionAuth.hide_default_login_lookup_field;
+          el.allow_public_census_query = electionAuth.allow_public_census_query;
+
+          el.census.extra_fields = electionAuth.extra_fields;
+          el.census.admin_fields = electionAuth.admin_fields;
+          el.census.census = electionAuth.census;
+          if(!!electionAuth.num_successful_logins_allowed || 0 === electionAuth.num_successful_logins_allowed) {
+            el.num_successful_logins_allowed = electionAuth.num_successful_logins_allowed;
+          }
+
+          var newConf = electionAuth.auth_method_config.config;
+          // not updating msgs if are modified
+          if (el.census.config && el.census.config.msg) {
+              newConf.msg = el.census.config.msg;
+              newConf.subject = el.census.config.subject;
+          }
+          el.census.config = newConf;
+
+          // make it easy to get children election' names
+          el.childrenElectionNames = {};
+          if (el.children_election_info) {
+            _.each(
+              el.children_election_info.presentation.categories,
+              function (category) {
+                _.each(
+                  category.events,
+                  function (election) {
+                    el.childrenElectionNames[election.event_id] = election.title;
+                  }
+                );
+              }
+            );
+          }
+
+          deferred.resolve(el);
+        }
+
         function asyncElectionAuth(el) {
             var deferred = $q.defer();
 
             Authmethod.viewEvent(el.id)
                 .then(
-                  function onSuccess(response) {
-                    el.auth = {};
-                    el.auth.authentication = response.data.events.auth_method;
-                    el.auth.census = response.data.events.users;
-                    el.raw = response.data.events;
-                    if (el.auth.census) {
-                        el.votes = el.stats.votes;
-                        el.votes_percentage = ( el.stats.votes * 100 )/ el.auth.census;
-                    } else {
-                        el.votes_percentage = 0;
-                        el.votes = el.stats.votes || 0;
-                    }
-
-                    // updating census
-                    el.census.auth_method = response.data.events.auth_method;
-                    el.census.has_ballot_boxes = response.data.events.has_ballot_boxes;
-                    el.census.extra_fields = response.data.events.extra_fields;
-                    el.census.admin_fields = response.data.events.admin_fields;
-                    el.census.census = response.data.events.census;
-                    if(!!response.data.events.num_successful_logins_allowed || 0 === response.data.events.num_successful_logins_allowed) {
-                      el.num_successful_logins_allowed = response.data.events.num_successful_logins_allowed;
-                    }
-
-                    var newConf = response.data.events.auth_method_config.config;
-                    // not updating msgs if are modified
-                    if (el.census.config && el.census.config.msg) {
-                        newConf.msg = el.census.config.msg;
-                        newConf.subject = el.census.config.subject;
-                    }
-                    el.census.config = newConf;
-
+                  function onSuccess (response) {
+                    processElectionAuth(el, response.data.events);
                     deferred.resolve(el);
-                  },
-                  deferred.reject
-                );
+                  }
+                )
+                .catch(deferred.reject);
 
             return deferred.promise;
         }
@@ -188,16 +218,26 @@ angular.module('avAdmin')
             electionsapi.cache[id] = election;
         };
 
-        electionsapi.getElection = function(id, ignorecache) {
+        electionsapi.getElection = function(id, ignorecache, electionAuth) {
             var deferred = $q.defer();
 
             var cached = electionsapi.cache[id];
             if (ignorecache || !cached) {
-                asyncElection(id)
-                  .then(electionsapi.stats)
-                  .then(asyncElectionAuth)
-                  .then(deferred.resolve)
-                  .catch(deferred.reject);
+                if (!electionAuth) {
+                  asyncElection(id)
+                    .then(asyncElectionAuth)
+                    .then(deferred.resolve)
+                    .catch(deferred.reject);
+                } else {
+                  asyncElection(id)
+                    .then(
+                      function (el) {
+                        processElectionAuth(el, electionAuth);
+                        deferred.resolve(el);
+                      }
+                    )
+                    .catch(deferred.reject);
+                }
             } else {
                 deferred.resolve(cached);
             }
@@ -216,6 +256,7 @@ angular.module('avAdmin')
             conf.status = election.state;
             conf.stats = {};
             conf.results = {};
+            conf.tallyAllowed = election.tallyAllowed;
             if (election.resultsConfig) {
               conf.resultsConfig = election.resultsConfig;
             }
@@ -260,7 +301,7 @@ angular.module('avAdmin')
             var cached = electionsapi.permcache[id];
             if (!cached) {
                 Authmethod.getPerm(
-                    "edit|create|register|update|update-share|view|delete|send-auth|send-auth-all|view-results|view-stats|view-voters|view-census|start|stop|tally|calculate-results|publish-results|census-add|census-delete|census-activation|add-ballot-boxes|list-ballot-boxes|delete-ballot-boxes|add-tally-sheets|override-tally-sheets|list-tally-sheets|delete-tally-sheets",
+                    "edit|create|register|update|update-share|view|delete|send-auth|send-auth-all|view-results|view-stats|view-voters|view-census|start|stop|allow-tally|tally|calculate-results|publish-results|census-add|census-delete|census-activation|add-ballot-boxes|list-ballot-boxes|delete-ballot-boxes|add-tally-sheets|override-tally-sheets|list-tally-sheets|delete-tally-sheets|archive|unarchive",
                     "AuthEvent",
                     id
                 )
@@ -276,47 +317,90 @@ angular.module('avAdmin')
             return deferred.promise;
         };
 
-        electionsapi.stats = function(el) {
-            var deferred = $q.defer();
+        electionsapi.voteStats = function(election) 
+        {
+          var deferred = $q.defer();
 
-            electionsapi.command(el, 'stats', 'GET')
-                .then(function(d) {
-                        el.stats = d.data.payload;
-                        deferred.resolve(el);
-                      })
-                 .catch(deferred.reject);
+          Authmethod
+            .voteStats(election.id)
+            .then(
+                function(response) 
+                {
+                election.stats = response.data;
+                deferred.resolve(election);
+              }
+            )
+            .catch(deferred.reject);
 
             return deferred.promise;
         };
 
         electionsapi.autoreloadStatsTimer = null;
-        electionsapi.autoreloadStats = function(el) {
-            clearTimeout(electionsapi.autoreloadStatsTimer);
-            if (!el) {
-                return;
-            }
+        electionsapi.autoreloadStats = function(electionId, callback) 
+        {
+          clearTimeout(electionsapi.autoreloadStatsTimer);
+          if (!electionId) 
+          {
+            return;
+          }
 
-            electionsapi.stats(el)
-                .then(asyncElectionAuth)
-                .finally(function() {
-                    electionsapi.autoreloadStatsTimer = setTimeout(function() { electionsapi.autoreloadStats(el); }, 5000);
-                });
+          electionsapi.getElection(electionId, true)
+            .then(
+              function (el) 
+              {
+                var deferred = $q.defer();
+                if (!!callback) 
+                {
+                  callback(el);
+                }
+                deferred.resolve(el);
+                return deferred.promise;
+              }
+              )
+              .then(electionsapi.results)
+            .finally(
+              function() 
+              {
+                electionsapi.autoreloadStatsTimer = setTimeout(
+                  function() {
+                    electionsapi.autoreloadStats(electionId, callback); 
+                  }, 
+                  5000
+                );
+              }
+            );
         };
 
-        electionsapi.results = function(el) {
-            var deferred = $q.defer();
+        electionsapi.results = function(el) 
+        {
+          var deferred = $q.defer();
 
-            electionsapi.command(el, 'results', 'GET')
-                .then(function(d) {
-                        el.results = angular.fromJson(d.data.payload);
-                        deferred.resolve(el);
-                      })
-                 .catch(deferred.reject);
+          electionsapi
+            .command(el, 'results', 'GET')
+            .then(
+              function(response)
+              {
+                el.results = angular.fromJson(response.data.payload);
+                deferred.resolve(el);
+              }
+            )
+            .catch(deferred.reject);
 
-            return deferred.promise;
+          return deferred.promise;
         };
 
-        electionsapi.command = function(el, command, method, data) {
+        electionsapi.unpublishResults = function(el) 
+        {
+          return electionsapi.command(el, 'unpublish-results', 'POST');
+        };
+
+        electionsapi.allowTally = function(el) 
+        {
+          return electionsapi.command(el, 'allow-tally', 'POST');
+        };
+
+        electionsapi.command = function(el, command, method, data) 
+        {
             var deferred = $q.defer();
             var m = {};
             var d = data || {};
@@ -418,62 +502,82 @@ angular.module('avAdmin')
             return q;
         };
 
-        electionsapi.getCensus = function(el, page, size, filterStr, filterOptions) {
-            var deferred = $q.defer();
+        electionsapi.getCensus = function(election, page, size, filterStr, filterOptions) {
+          var deferred = $q.defer();
 
-            if (size === 'max') {
-              size = 500;
-            } else if (angular.isNumber(size) && size > 0 && size < 500) {
-              size = parseInt(size);
-            } else {
-              size = 10;
-            }
+          if (size === 'max') {
+            size = 500;
+          } else if (angular.isNumber(size) && size > 0 && size < 500) {
+            size = parseInt(size);
+          } else {
+            size = 10;
+          }
 
-            function getAuthCensus(d) {
-              var voters = d.data.payload;
-              var deferred = $q.defer();
-              var params = {};
+          var electionNames = {};
 
-              if (!angular.isNumber(page)) {
-                page = 1;
-              }
-              params.page = page;
-              params.size = size;
-              _.extend(params, filterOptions);
-              if (filterStr && filterStr.length > 0) {
-                params.filter = filterStr;
-              }
-
-              Authmethod.getCensus(el.id, params)
-                .then(
-                  function onSuccess(response) {
-                    _.each(response.data.object_list, function(user) {
-                      user.vote = false;
-                      if (voters.indexOf(user.username) >= 0) {
-                        user.vote = true;
-                      }
-                    });
-                    if (!angular.isArray(el.census.voters)) {
-                      el.census.voters = [];
-                    }
-                    _.each(response.data.object_list, function (obj) {
-                      obj.selected = false;
-                      el.census.voters.push(obj);
-                    });
-                    el.data = response.data;
-                    deferred.resolve(el);
-                  },
-                  deferred.reject
+          // if there's a parent election, add those fields at the end of the example
+          if (election.children_election_info) {
+            _.each(
+              election.children_election_info.presentation.categories,
+              function (category) {
+                _.each(
+                  category.events,
+                  function (election) {
+                    electionNames[election.event_id] = election.title;
+                  }
                 );
-                return deferred.promise;
+              }
+            );
+          }
+    
+          function childrenElectionNames(children_event_id_list) {
+            if (!children_event_id_list) {
+              return [];
+            } else {
+              return _.map(
+                children_event_id_list,
+                function (electionId) {
+                  return electionNames[electionId] || electionId;
+                }
+              );
             }
+          }
 
-            electionsapi.command(el, 'voters', 'GET')
-                .then(getAuthCensus)
-                .then(deferred.resolve)
-                .catch(deferred.reject);
+          var params = {};
 
-            return deferred.promise;
+          if (!angular.isNumber(page)) {
+            page = 1;
+          }
+          params.page = page;
+          params.size = size;
+          _.extend(params, filterOptions);
+          if (filterStr && filterStr.length > 0) {
+            params.filter = filterStr;
+          }
+
+          Authmethod.getCensus(election.id, params)
+            .then(
+              function onSuccess(response) 
+              {
+                if (!angular.isArray(election.census.voters)) {
+                  election.census.voters = [];
+                }
+                _.each(response.data.object_list, function (user) {
+                  user.selected = false;
+                  if (user.metadata.children_event_id_list) {
+                    user.childrenElectionNames = childrenElectionNames(user.metadata.children_event_id_list);
+                  }
+                  if (user.voted_children_elections) {
+                    user.votedChildrenElectionNames = childrenElectionNames(user.voted_children_elections);
+                  }
+                  election.census.voters.push(user);
+                });
+                election.data = response.data;
+                deferred.resolve(election);
+              },
+              deferred.reject
+            );
+          return deferred.promise;
         };
 
         electionsapi.updateShare = function(election, share) {

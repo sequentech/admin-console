@@ -20,7 +20,9 @@
         aria-hidden="true">
       </span>
       <span ng-i18next>avAdmin.ballotBox.manage</span>
-      <button class="btn btn-default" ng-click="reload()"><i class="fa fa-refresh"></i></button>
+      <button class="btn btn-default" ng-click="reload()">
+        <i class="fa fa-refresh"></i>
+      </button>
       <button
         class="btn btn-default"
         ng-if="canCreateBallotBox"
@@ -145,27 +147,10 @@
       </tbody>
     </table>
 
-    <div ng-if="showSuccessAction">
-      <button
-        ng-click="goNext(admin.successAction())"
-        ng-if="!election.id"
-        class="btn btn-block btn-success"
-        ng-i18next>
-        next
-      </button>
-      <button
-        ng-click="goNext({id:election.id})"
-        ng-if="!!election.id"
-        class="btn btn-block btn-success"
-        ng-i18next>
-        next
-      </button>
-    </div>
-
     <div ng-if="!showSuccessAction">
       <button
         ng-click="goNext(admin.create())"
-        ng-if="!election.id"
+        ng-if="!electionId"
         class="btn btn-block btn-success"
         ng-i18next>
         next

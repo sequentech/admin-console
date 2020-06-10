@@ -16,7 +16,10 @@
 **/
 
 angular.module('avAdmin').controller('AdminSignUpController',
-  function($scope, $stateParams, $filter, ConfigService, $i18next) {
+  function($scope, ConfigService, $window) {
     $scope.event_id = ConfigService.freeAuthId;
+    if (!ConfigService.allowAdminRegistration) {
+      $window.location.href = ConfigService.defaulRoute;
+    }
   }
 );

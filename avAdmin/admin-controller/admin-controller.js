@@ -19,6 +19,10 @@ angular.module('avAdmin').controller('AdminController',
   function(Plugins, ConfigService, $scope, $i18next, $state, $stateParams, $timeout, $modal, ElectionsApi, DraftElection, $compile, NextButtonService, $q) {
     var id = $stateParams.id;
     $scope.electionId = id;
+
+    // get election perms, with a default of no perms
+    $scope.perms = {val: ""};
+
     $scope.state = $state.current.name;
     $scope.current = null;
     $scope.noplugin = true;
@@ -112,27 +116,74 @@ angular.module('avAdmin').controller('AdminController',
         }
     }
 
-    var states =[ 'admin.dashboard', 'admin.basic', 'admin.questions', 'admin.censusConfig', 'admin.census', 'admin.auth', 'admin.tally', 'admin.successAction', 'admin.adminFields', 'admin.create', 'admin.activityLog', 'admin.ballotBox'];
+    var states = [
+      'admin.dashboard',
+      'admin.basic',
+      'admin.questions',
+      'admin.censusConfig',
+      'admin.census',
+      'admin.auth', 
+      'admin.tally', 
+      'admin.successAction', 
+      'admin.adminFields', 
+      'admin.create', 
+      'admin.activityLog', 
+      'admin.ballotBox'
+    ];
 
     var plugins_data = {states: [] };
     Plugins.hook('add-dashboard-election-states', plugins_data);
     states = states.concat(plugins_data.states);
 
+    $scope.globalPerms = {val: ""};
+    // update global perms
+    ElectionsApi
+      .getEditPerm(null)
+      .then(
+        function (perm) {
+          $scope.globalPerms.val = perm;
+        }
+      );
+
     if (states.indexOf($scope.state) >= 0) {
         $scope.sidebarlinks = [];
-        if (!!id) {
-            $scope.sidebarlinks = $scope.sidebarlinks.concat([
-                {name: 'activityLog', icon: 'pie-chart'}
-            ]);
-
-            ElectionsApi.getElection(id).then(
+        if (!!id)
+        {
+            ElectionsApi
+            .getElection(id)
+            .then(
               function(el)
               {
-                if (el.census.has_ballot_boxes &&
-                    ElectionsApi.getCachedEditPerm(id).indexOf('list-ballot-boxes') !== -1)
-                {
-                    $scope.sidebarlinks.splice(1, 0, {name: 'ballotBox', icon: 'archive'});
-                }
+                ElectionsApi
+                  .getEditPerm(id)
+                  .then(
+                    function (perm) {
+                      if (
+                        el.census.has_ballot_boxes &&
+                        perm.indexOf('list-ballot-boxes') !== -1
+                      ) {
+                        $scope.sidebarlinks.splice(
+                          1, 
+                          0, 
+                          {name: 'ballotBox', icon: 'archive'}
+                        );
+                      }
+
+                      if (
+                        perm.indexOf('event-view-activity') !== -1 ||
+                        perm.indexOf('view') !== -1 || 
+                        perm.indexOf('edit') !== -1
+                      ) {
+                        $scope.sidebarlinks = $scope.sidebarlinks.concat([
+                          {name: 'activityLog', icon: 'pie-chart'}
+                        ]);
+                      }
+        
+
+                      // update election perms
+                      $scope.perms.val = perm;
+                    }
+                  );
               }
             );
         }
@@ -146,10 +197,13 @@ angular.module('avAdmin').controller('AdminController',
             {name: 'adminFields', icon: 'user'},
             //{name: 'tally', icon: 'pie-chart'},
         ]);
+
         // if showSuccessAction is true,
         // show the SuccessAction tab in the admin gui
         if (true === ConfigService.showSuccessAction) {
-           $scope.sidebarlinks = $scope.sidebarlinks.concat([{name: 'successAction', icon: 'star-o'}]);
+          $scope.sidebarlinks = $scope.sidebarlinks.concat(
+            [{name: 'successAction', icon: 'star-o'}]
+          );
         }
 
         if (!id) {

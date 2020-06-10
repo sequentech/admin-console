@@ -25,7 +25,8 @@ angular.module('avAdmin')
       ElectionsApi,
       ballotBox,
       Authmethod,
-      tallySheet
+      tallySheet,
+      election
     ) {
       $scope.step = 0;
       $scope.sending = false;
@@ -39,15 +40,15 @@ angular.module('avAdmin')
       };
 
       $scope.tallySheet = !!tallySheet && tallySheet.data || {
-        id: ElectionsApi.currentElection.id,
-        title: ElectionsApi.currentElection.title,
+        id: election.id,
+        title: election.title,
 
         registeredVotes: 0,
         observations: "",
         num_votes: 0,
 
         questions: _.map(
-          ElectionsApi.currentElection.questions,
+          election.questions,
           function (question)
           {
             return {
@@ -55,6 +56,7 @@ angular.module('avAdmin')
               blank_votes: 0,
               null_votes: 0,
               tally_type: question.tally_type,
+              max: question.max,
               answers: _.map(
                 question.answers,
                 function (answer)
@@ -107,18 +109,22 @@ angular.module('avAdmin')
               checkNumber(question.blank_votes);
               checkNumber(question.null_votes);
               assert(
-                $scope.tallySheet.num_votes === (
-                  question.blank_votes +
-                  question.null_votes +
-                  _.reduce(
-                    question.answers,
-                    function (sum, answer)
-                    {
-                      checkNumber(answer.num_votes);
-                      return sum + answer.num_votes;
-                    },
-                    0
+                (
+                  (
+                    $scope.tallySheet.num_votes -
+                    question.blank_votes -
+                    question.null_votes
+                  ) * (
+                    question.max
                   )
+                ) >= _.reduce(
+                  question.answers,
+                  function (sum, answer)
+                  {
+                    checkNumber(answer.num_votes);
+                    return sum + answer.num_votes;
+                  },
+                  0
                 )
               );
             }
@@ -137,7 +143,7 @@ angular.module('avAdmin')
 
         Authmethod
           .postTallySheet(
-            ElectionsApi.currentElection.id,
+            election.id,
             ballotBox.id,
             $scope.tallySheet
           )

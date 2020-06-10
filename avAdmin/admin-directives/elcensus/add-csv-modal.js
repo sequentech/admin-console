@@ -16,22 +16,40 @@
 **/
 
 angular.module('avAdmin')
-  .controller('AddCsvModal',
-    function($scope, $modalInstance, election, ConfigService, Plugins) {
+  .controller(
+    'AddCsvModal',
+    function($scope, $modalInstance, election, ConfigService, Plugins) 
+    {
       $scope.election = election;
       $scope.textarea = "";
       $scope.helpurl = ConfigService.helpUrl;
       $scope.ok = function () {
         $modalInstance.close($("#csv-textarea").val());
       };
+
+      // if there's a parent election, add those fields at the end of the example
+      if ($scope.election.children_election_info) 
+      {
+        $scope.childrenElections = _.map(
+          $scope.election.children_election_info.natural_order,
+          function (election_id) { 
+            return $scope.election.childrenElectionNames[election_id]; 
+          }
+        );
+      } else {
+        $scope.childrenElections = [];
+      }
+
       var exhtml = {html: [], scope: {}};
       Plugins.hook(
        'census-add-csv-modal',
-       { exhtml: exhtml });
+       { exhtml: exhtml }
+      );
       $scope.exhtml = exhtml.html;
       $scope = _.extend($scope, exhtml.scope);
 
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
       };
-    });
+    }
+  );

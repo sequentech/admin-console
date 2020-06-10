@@ -8,40 +8,80 @@
         avAdmin.sidebar.elections
     </h2>
 
-    <table role="table" class="table electionlist" infinite-scroll="loadMoreElections()" infinite-scroll-distance="0">
+    <table 
+      role="table"
+      class="table electionlist"
+      infinite-scroll="loadMoreElections()"
+      infinite-scroll-distance="0">
         <!-- header row -->
         <thead>
           <tr>
             <th colspan="2">
               <div class="input-group search">
-                <input type="text" class="form-control" ng-model="q" placeholder="{{'avAdmin.elections.filter' | i18next}}">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  ng-model="q" 
+                  placeholder="{{'avAdmin.elections.filter' | i18next}}" />
                 <span class="input-group-btn">
-                  <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                  <button 
+                    class="btn btn-default" 
+                    type="button">
+                    <i class="fa fa-search"></i>
+                  </button>
                 </span>
               </div>
+              
+              <button 
+                class="btn btn-default reload-list" 
+                ng-click="reloadList()">
+                <i class="fa fa-refresh"></i>
+              </button>
+              
+              <button
+                class="btn btn-default new-election"
+                ng-disabled="true"
+                ui-sref="admin.new()">
+                <i class="fa fa-plus"></i>
+              </button>
+
               <ul class="nav nav-pills">
-                <li role="presentation" ng-class="{'active': list.type === 'all'}">
-                  <a ng-click="setListType('all')" ng-i18next>avAdmin.elections.list.all</a>
+                <li 
+                  role="presentation" 
+                  ng-class="{'active': list.type === 'all'}">
+                  <a ng-click="setListType('all')" ng-i18next>
+                    avAdmin.elections.list.all
+                  </a>
                 </li>
-                <li role="presentation" ng-class="{'active': list.type === 'archived'}">
-                  <a ng-click="setListType('archived')" ng-i18next>avAdmin.elections.list.archived</a>
+                <li 
+                  role="presentation" 
+                  ng-class="{'active': list.type === 'archived'}">
+                  <a ng-click="setListType('archived')" ng-i18next>
+                    avAdmin.elections.list.archived
+                  </a>
                 </li>
               </ul>
             </th>
-            <th class="text-center" ng-i18next> avAdmin.elections.status </th>
-            <th class="text-center" ng-i18next> avAdmin.elections.participation </th>
+            <th class="text-center" ng-i18next> 
+              avAdmin.elections.status
+            </th>
+            <th class="text-center" ng-i18next>
+              avAdmin.elections.participation
+            </th>
           </tr>
         </thead>
 
         <tbody>
         
           <tr ng-if="!!has_draft">
-            <td>
+            <td class="td-1">
               <a ng-click="loadDraft()" class="padded">
-                  <span class="label label-draft" ng-i18next>avAdmin.elections.draft</span>
+                  <span class="label label-draft" ng-i18next>
+                    avAdmin.elections.draft
+                  </span>
               </a>
             </td>
-            <td>
+            <td class="td-7">
               <a ng-click="loadDraft()">
                 <strong>{{ draft.title }}</strong>
                 <div
@@ -49,33 +89,89 @@
                 </div>
               </a>
             </td>
-            <td class="text-center">
+            <td class="text-center td-2">
             </td>
-            <td class="text-center align-close">
-              <button type="button" class="close close-center" ng-click="eraseDraft()">×</button>
+            <td class="text-center align-close td-2">
+              <button 
+                type="button" 
+                class="close close-center" 
+                ng-click="eraseDraft()">×</button>
             </td>
           </tr>
 
           <tr ng-repeat="election in elections | filter:q | orderBy:'-id'">
-            <td>
-              <a ui-sref="admin.dashboard({id: election.id})" class="padded">
+            <td class="td-1">
+              <a
+                ng-if="!election.children_election_info"
+                ui-sref="admin.dashboard({id: election.id})"
+                class="padded">
+                {{ election.id }}
+              </a>
+              <a
+                ng-if="!!election.children_election_info"
+                ng-click="toggleShowChildren(election)"
+                class="padded child-dropdown">
+                <span 
+                  ng-class="{'glyphicon-menu-right': !election.showingChildren, 'glyphicon-menu-down': !!election.showingChildren}"
+                  class="glyphicon"
+                  aria-hidden="true">
+                </span>
                 {{ election.id }}
               </a>
             </td>
-            <td>
+            <td class="main td-7">
               <a ui-sref="admin.dashboard({id: election.id})">
                 <strong>{{ election.title }}</strong>
                 <div
                   ng-bind-html="election.description | htmlToText | truncate:150">
                 </div>
               </a>
+              <!-- children elections-->
+              <table 
+              role="table" 
+              ng-if="election.showingChildren"
+              class="table children-list">
+                <tbody>
+                  <tr 
+                  ng-repeat="childElection in election.childrenElections  | filter:q | orderBy:'-id'">
+                    <td class="text-center td-2">
+                      <a ui-sref="admin.dashboard({id: childElection.id})">
+                      {{ childElection.id }}
+                      </a>
+                    </td>
+                    <td class="td-6">
+                      <a ui-sref="admin.dashboard({id: childElection.id})">
+                        <strong>{{ childElection.title }}</strong>
+                        <div
+                          ng-bind-html="childElection.description | htmlToText | truncate:150">
+                        </div>
+                      </a>
+                    </td>
+                    <td class="text-center td-2">
+                      <a ui-sref="admin.dashboard({id: childElection.id})">
+                      {{ childElection.status|i18next }}
+                      </a>
+                    </td>
+                    <td class="text-center td-2">
+                      <a ui-sref="admin.dashboard({id: childElection.id})">
+                        <strong>{{ childElection.votes }}</strong>
+                        <div clasS="italic">
+                          ({{ childElection.votes_percentage|number:0 }}%)
+                        </div>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </td>
-            <td class="text-center">
-              <a ui-sref="admin.dashboard({id: election.id})" class="padded text-av-secondary">
+            <td class="text-center td-2">
+              <a 
+                ui-sref="admin.dashboard({id: election.id})" 
+                class="padded text-av-secondary">
                 {{ election.status|i18next }}
               </a>
             </td>
-            <td class="text-center">
+            <td class="text-center td-2">
               <a ui-sref="admin.dashboard({id: election.id})">
                 <strong>{{ election.votes }}</strong>
                 <br/>
@@ -87,7 +183,19 @@
           </tr>
         </tbody>
     </table>
-    <div ng-if="loading" class="text-center bg-primary" ng-i18next>loading</div>
-    <div ng-if="nomore" class="text-center bg-success" ng-i18next>nomore</div>
-    <div ng-if="error" class="text-center bg-danger">{{ error }}</div>
+    <div
+      ng-if="loading"
+      class="text-center bg-primary" ng-i18next>
+      loading
+    </div>
+    <div
+      ng-if="nomore"
+      class="text-center bg-success" ng-i18next>
+      nomore
+    </div>
+    <div
+      ng-if="error"
+      class="text-center bg-danger">
+      {{ error }}
+    </div>
 </div>
