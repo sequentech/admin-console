@@ -116,7 +116,8 @@ angular.module('avAdmin')
           enableFunc: function() {
             return (
               scope.perms.val.indexOf("census-add") !== -1 ||
-              scope.perms.val.indexOf("edit") !== -1
+              scope.perms.val.indexOf("edit") !== -1 ||
+              scope.election.id === undefined
             );
           }
         },
@@ -127,7 +128,8 @@ angular.module('avAdmin')
           enableFunc: function() {
             return (
               scope.perms.val.indexOf("census-add") !== -1 ||
-              scope.perms.val.indexOf("edit") !== -1
+              scope.perms.val.indexOf("edit") !== -1 ||
+              scope.election.id === undefined
             );
           }
         },
