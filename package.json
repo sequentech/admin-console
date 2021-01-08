@@ -17,7 +17,7 @@
     "grunt-contrib-copy": "~0.5",
     "grunt-contrib-cssmin": "3.0.0",
     "grunt-contrib-htmlmin": "~0.1",
-    "grunt-contrib-jshint": "^2.1.0",
+    "grunt-contrib-jshint": "^3.0.0",
     "grunt-contrib-less": "^2.0.0",
     "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-watch": "^1.1.0",
@@ -42,6 +42,10 @@
     "yarn": "^1.22.0"
   },
   "dependencies": {
-    "agora-gui-common": "https://github.com/agoravoting/agora-gui-common.git#dep-updates"
+    "agora-gui-common": "https://github.com/agoravoting/agora-gui-common.git#update-security-deps"
+  },
+  "resolutions": {
+    "**/cheerio": "0.12.3",
+    "**/cheerio-select": "0.0.3"
   }
 }
