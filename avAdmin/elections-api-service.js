@@ -39,13 +39,13 @@ angular.module('avAdmin')
         function getSavedElectionKey() {
           var autheventid = Authmethod.getAuthevent();
           var postfix = "_authevent_" + autheventid;
-          if (!$cookies["savedElectionKey" + postfix]) {
+          if (!$cookies.get("savedElectionKey" + postfix)) {
             /* jshint ignore:start */
-            $cookies["savedElectionKey" + postfix] = "savedElectionKey_" + sjcl.codec.base64.fromBits(sjcl.random.randomWords(8, 0));
+            $cookies.put("savedElectionKey" + postfix, "savedElectionKey_" + sjcl.codec.base64.fromBits(sjcl.random.randomWords(8, 0)));
             /* jshint ignore:end */
           }
 
-          return $cookies["savedElectionKey" + postfix];
+          return $cookies.get("savedElectionKey" + postfix);
         }
 
         /**

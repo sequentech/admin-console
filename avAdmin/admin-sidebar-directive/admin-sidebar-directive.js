@@ -41,7 +41,7 @@ angular.module('avAdmin')
       function link(scope, element, attrs) {
           var autheventid = Authmethod.getAuthevent();
           var postfix = "_authevent_" + autheventid;
-          var admin = $cookies["user" + postfix];
+          var admin = $cookies.get("user" + postfix);
           scope.admin = admin;
           scope.active = attrs.active;
           scope.isEditingDraft = DraftElection.isEditingDraft;
