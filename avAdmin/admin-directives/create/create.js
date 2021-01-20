@@ -849,6 +849,11 @@ angular.module('avAdmin')
                 children_election_info: el.children_election_info
             };
 
+            // Set election id if existing in election configuration
+            if (el.id) {
+              d.id = el.id;
+            }
+
             d.admin_fields = _.filter(el.census.admin_fields, function(af) {
               return true;
             });
@@ -926,6 +931,9 @@ angular.module('avAdmin')
               }
               if (typeof el.resultsConfig === 'object') {
                 el.resultsConfig = JSON.stringify(el.resultsConfig);
+              }
+              if (typeof el.ballotBoxesResultsConfig === 'object') {
+                el.ballotBoxesResultsConfig = JSON.stringify(el.ballotBoxesResultsConfig);
               }
             _.each(el.questions, function (q) {
               _.each(q.answers, function (answer) {
