@@ -983,11 +983,45 @@ angular.module('avAdmin')
             });
         }
 
-        function addElection(i) {
+        function addCreateElection(electionIndex) 
+        {
           var deferred = $q.defer();
-          if (i === scope.elections.length) {
-            var el = scope.elections[i - 1];
+          if (
+            !scope.createElectionBool || 
+            electionIndex === scope.elections.length
+          ) {
+            var el = scope.elections[electionIndex - 1];
             $state.go("admin.dashboard", {id: el.id});
+            return;
+          }
+
+          var promise = deferred.promise;
+          promise = promise
+            .then(createElection)
+            .then(function(election) {
+              console.log("waiting for election " + election.title);
+              waitForCreated(election.id, function () {
+                DraftElection.eraseDraft();
+                addCreateElection(electionIndex + 1);
+              });
+            })
+            .catch(function(error) {
+              scope.creating = false;
+              scope.creating_text = '';
+              logError(angular.toJson(error));
+            });
+          deferred.resolve(scope.elections[electionIndex]);
+        }
+
+        function addElection(electionIndex) 
+        {
+          var deferred = $q.defer();
+
+          // After creating the auth events, adding the census, and registering
+          // all the elections in agora_elections, we proceed to create them
+          // if required
+          if (electionIndex === scope.elections.length) {
+            addCreateElection(0);
             return;
           }
 
@@ -996,20 +1030,15 @@ angular.module('avAdmin')
             .then(createAuthEvent)
             .then(addCensus)
             .then(registerElection)
-            .then(createElection)
-            .then(function(el) {
-                console.log("waiting for election " + el.title);
-                waitForCreated(el.id, function () {
-                  DraftElection.eraseDraft();
-                  addElection(i+1);
-                });
-              })
-              .catch(function(error) {
-                scope.creating = false;
-                scope.creating_text = '';
-                logError(angular.toJson(error));
-              });
-          deferred.resolve(scope.elections[i]);
+            .then(function(election) {
+              addElection(electionIndex + 1);
+            })
+            .catch(function(error) {
+              scope.creating = false;
+              scope.creating_text = '';
+              logError(angular.toJson(error));
+            });
+          deferred.resolve(scope.elections[electionIndex]);
         }
 
         scope.editJson = function()
