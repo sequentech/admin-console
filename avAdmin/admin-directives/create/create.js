@@ -991,7 +991,7 @@ angular.module('avAdmin')
             electionIndex === scope.elections.length
           ) {
             var el = scope.elections[electionIndex - 1];
-            $state.go("admin.dashboard", {id: el.id});
+            $state.go("admin.dashboard", {id: electionIndex});
             return;
           }
 
