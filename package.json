@@ -39,7 +39,7 @@
     "yarn": "^1.22.0"
   },
   "dependencies": {
-    "agora-gui-common": "https://github.com/agoravoting/agora-gui-common.git#update-security-deps"
+    "agora-gui-common": "https://github.com/agoravoting/agora-gui-common.git#master"
   },
   "resolutions": {
     "**/ws": "7.2.1",
