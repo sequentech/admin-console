@@ -990,8 +990,9 @@ angular.module('avAdmin')
             !scope.createElectionBool || 
             electionIndex === scope.elections.length
           ) {
-            var el = scope.elections[electionIndex - 1];
-            $state.go("admin.dashboard", {id: electionIndex});
+            var el = scope.elections[0];
+            scope.creating = false;
+            $state.go("admin.dashboard", {id: el.id});
             return;
           }
 
