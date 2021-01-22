@@ -849,6 +849,11 @@ angular.module('avAdmin')
                 children_election_info: el.children_election_info
             };
 
+            // Set election id if existing in election configuration
+            if (el.id) {
+              d.id = el.id;
+            }
+
             d.admin_fields = _.filter(el.census.admin_fields, function(af) {
               return true;
             });
@@ -927,6 +932,9 @@ angular.module('avAdmin')
               if (typeof el.resultsConfig === 'object') {
                 el.resultsConfig = JSON.stringify(el.resultsConfig);
               }
+              if (typeof el.ballotBoxesResultsConfig === 'object') {
+                el.ballotBoxesResultsConfig = JSON.stringify(el.ballotBoxesResultsConfig);
+              }
             _.each(el.questions, function (q) {
               _.each(q.answers, function (answer) {
                 answer.urls = _.filter(answer.urls, function(url) { return $.trim(url.url).length > 0;});
@@ -975,11 +983,46 @@ angular.module('avAdmin')
             });
         }
 
-        function addElection(i) {
+        function addCreateElection(electionIndex) 
+        {
           var deferred = $q.defer();
-          if (i === scope.elections.length) {
-            var el = scope.elections[i - 1];
+          if (
+            !scope.createElectionBool || 
+            electionIndex === scope.elections.length
+          ) {
+            var el = scope.elections[0];
+            scope.creating = false;
             $state.go("admin.dashboard", {id: el.id});
+            return;
+          }
+
+          var promise = deferred.promise;
+          promise = promise
+            .then(createElection)
+            .then(function(election) {
+              console.log("waiting for election " + election.title);
+              waitForCreated(election.id, function () {
+                DraftElection.eraseDraft();
+                addCreateElection(electionIndex + 1);
+              });
+            })
+            .catch(function(error) {
+              scope.creating = false;
+              scope.creating_text = '';
+              logError(angular.toJson(error));
+            });
+          deferred.resolve(scope.elections[electionIndex]);
+        }
+
+        function addElection(electionIndex) 
+        {
+          var deferred = $q.defer();
+
+          // After creating the auth events, adding the census, and registering
+          // all the elections in agora_elections, we proceed to create them
+          // if required
+          if (electionIndex === scope.elections.length) {
+            addCreateElection(0);
             return;
           }
 
@@ -988,20 +1031,15 @@ angular.module('avAdmin')
             .then(createAuthEvent)
             .then(addCensus)
             .then(registerElection)
-            .then(createElection)
-            .then(function(el) {
-                console.log("waiting for election " + el.title);
-                waitForCreated(el.id, function () {
-                  DraftElection.eraseDraft();
-                  addElection(i+1);
-                });
-              })
-              .catch(function(error) {
-                scope.creating = false;
-                scope.creating_text = '';
-                logError(angular.toJson(error));
-              });
-          deferred.resolve(scope.elections[i]);
+            .then(function(election) {
+              addElection(electionIndex + 1);
+            })
+            .catch(function(error) {
+              scope.creating = false;
+              scope.creating_text = '';
+              logError(angular.toJson(error));
+            });
+          deferred.resolve(scope.elections[electionIndex]);
         }
 
         scope.editJson = function()

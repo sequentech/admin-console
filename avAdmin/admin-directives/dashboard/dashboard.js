@@ -107,11 +107,6 @@ angular.module('avAdmin')
 
       function doAction(index, data) 
       {
-        if (scope.intally) 
-        {
-          return;
-        }
-
         scope.loading = true;
         scope.prevStatus = scope.election.status;
         scope.waiting = true;
@@ -165,10 +160,6 @@ angular.module('avAdmin')
 
       function doActionConfirm(index) 
       {
-        if (scope.intally) 
-        {
-          return;
-        }
         var command = scope.commands[index];
 
         // This hook allows plugins to interrupt this function. This interruption
