@@ -36,7 +36,7 @@ angular.module('avAdmin')
         maxShortStringLength: 300,
 
         // maximum size in characters of long strings like question description
-        maxLongStringLength: 3000
+        maxLongStringLength: 3000,
       };
     }
   );

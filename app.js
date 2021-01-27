@@ -297,12 +297,12 @@ angular
       var adminId = ConfigService.freeAuthId + '';
       var postfix = "_authevent_" + adminId;
 
-      if ($cookies["auth" + postfix])
+      if ($cookies.get("auth" + postfix))
       {
           Authmethod
             .setAuth(
-              $cookies["auth" + postfix],
-              $cookies["isAdmin" + postfix],
+              $cookies.get("auth" + postfix),
+              $cookies.get("isAdmin" + postfix),
               adminId
             );
       }
