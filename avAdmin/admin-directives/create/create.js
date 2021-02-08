@@ -983,13 +983,11 @@ angular.module('avAdmin')
             });
         }
 
-        function addCreateElection(electionIndex) 
+        function addCensusAndCreatePublicKeys(electionIndex) 
         {
           var deferred = $q.defer();
-          if (
-            !scope.createElectionBool || 
-            electionIndex === scope.elections.length
-          ) {
+          if (electionIndex === scope.elections.length) 
+          {
             var el = scope.elections[0];
             scope.creating = false;
             $state.go("admin.dashboard", {id: el.id});
@@ -998,12 +996,13 @@ angular.module('avAdmin')
 
           var promise = deferred.promise;
           promise = promise
+            .then(addCensus)
             .then(createElection)
             .then(function(election) {
               console.log("waiting for election " + election.title);
               waitForCreated(election.id, function () {
                 DraftElection.eraseDraft();
-                addCreateElection(electionIndex + 1);
+                addCensusAndCreatePublicKeys(electionIndex + 1);
               });
             })
             .catch(function(error) {
@@ -1018,18 +1017,17 @@ angular.module('avAdmin')
         {
           var deferred = $q.defer();
 
-          // After creating the auth events, adding the census, and registering
-          // all the elections in agora_elections, we proceed to create them
-          // if required
+          // After creating the auth events, and registering all the elections 
+          // in agora_elections, we proceed to add census and create the 
+          // election public keys
           if (electionIndex === scope.elections.length) {
-            addCreateElection(0);
+            addCensusAndCreatePublicKeys(0);
             return;
           }
 
           var promise = deferred.promise;
           promise = promise
             .then(createAuthEvent)
-            .then(addCensus)
             .then(registerElection)
             .then(function(election) {
               addElection(electionIndex + 1);
