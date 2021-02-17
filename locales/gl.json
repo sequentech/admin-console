@@ -93,6 +93,7 @@
     "results": {
       "downloadData": "Descargar datos",
       "downloadBallotsCsv": "Descargar votos como hoja de cálculo (formato CSV)",
+      "downloadBallotsJson": "Descargar votos (formato JSON)",
       "downloadResultsCsv": "Descargar Resultados del Escrutinio (formato CSV)",
       "downloadResultsJson": "Descargar Resultados del Escrutinio (formato JSON)",
       "downloadResultsPretty": "Descargar Resultados del Escrutinio (formato de texto)",

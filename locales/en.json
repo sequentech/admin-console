@@ -227,6 +227,7 @@
     "results": {
       "downloadData": "Download data",
       "downloadBallotsCsv": "Download Ballots Spreadsheet (CSV format)",
+      "downloadBallotsJson": "Download Ballots (JSON format)",
       "downloadResultsCsv": "Download Election Results (CSV format)",
       "downloadResultsJson": "Download Election Results (JSON format)",
       "downloadResultsPretty": "Download Election Results (Text format)",
