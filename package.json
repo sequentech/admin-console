@@ -9,6 +9,7 @@
   "devDependencies": {
     "@lodder/grunt-postcss": "^3.0.0",
     "angular-local-storage": "^0.7.1",
+    "angular-mocks": "~1.8.0",
     "autoprefixer": "^10.2.3",
     "bootstrap": "3.4.1",
     "debug": "^3.1.0",
