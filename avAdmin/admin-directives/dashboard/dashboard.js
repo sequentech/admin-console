@@ -48,7 +48,7 @@ angular.module('avAdmin')
               electionStatus.tally_status === 'started'
             );
           }
-        )
+        );
         // try to find if any of the relevant elections has "pending" status. If
         // true, then it's certainly "in-tally". If not, we revert to reviewing
         // if the status = "doing_tally", and else we set intally to false
