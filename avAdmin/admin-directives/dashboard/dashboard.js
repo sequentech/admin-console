@@ -35,12 +35,33 @@ angular.module('avAdmin')
     {
       scope.reloadTimeout = null;
 
+      function updateDoingTallyFlag(el) 
+      {
+
+        var tallyStatusList = el.children_tally_status;
+        tallyStatusList.push({id: el.id, tally_status: el.tally_status});
+        var hasPendingTally = _.find(
+          tallyStatusList,
+          function (electionStatus) {
+            return (
+              electionStatus.tally_status === 'pending' || 
+              electionStatus.tally_status === 'started'
+            );
+          }
+        );
+        // try to find if any of the relevant elections has "pending" status. If
+        // true, then it's certainly "in-tally". If not, we revert to reviewing
+        // if the status = "doing_tally", and else we set intally to false
+        scope.intally = (hasPendingTally || el.status === 'doing_tally');
+      }
+
       function waitElectionChange() 
       {
         ElectionsApi
           .getElection(scope.id, /*ignorecache = */ true)
           .then(function(el) 
           {
+            updateDoingTallyFlag(el);
             if (el.status === scope.prevStatus && scope.waiting) 
             {
               clearTimeout(scope.reloadTimeout);
@@ -58,8 +79,6 @@ angular.module('avAdmin')
                 }
               );
               scope.election = el;
-              scope.launchedTally = (scope.launchedTally && el.status === 'stopped');
-              scope.intally = (el.status === 'doing_tally') || scope.launchedTally;
 
               if (scope.intally) 
               {
@@ -589,7 +608,7 @@ angular.module('avAdmin')
                   .launchTally(
                     scope.election.id,
                     data.tallyElectionIds,
-                    'do-not-force'
+                    'force-all'
                   )
                   .then(
                     function onSuccess() 
@@ -932,11 +951,13 @@ angular.module('avAdmin')
             } 
             scope.commands[4].payload = angular.copy(scope.election);
 
-            scope.intally = (election.status === 'doing_tally');
+            updateDoingTallyFlag(election);
             if (scope.intally) 
             {
               scope.index = scope.statuses.indexOf('stopped') + 1;
               scope.nextaction = false;
+              scope.waiting = true;
+              waitElectionChange();
             } else 
             {
               scope.index = scope.statuses.indexOf(election.status) + 1;
