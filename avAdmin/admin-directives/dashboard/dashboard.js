@@ -589,7 +589,7 @@ angular.module('avAdmin')
                   .launchTally(
                     scope.election.id,
                     data.tallyElectionIds,
-                    'do-not-force'
+                    'force-all'
                   )
                   .then(
                     function onSuccess() 
