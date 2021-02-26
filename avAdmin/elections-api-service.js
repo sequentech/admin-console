@@ -161,6 +161,7 @@ angular.module('avAdmin')
 
           el.children_election_info = electionAuth.children_election_info;
           el.children_tally_status = electionAuth.children_tally_status;
+          el.tally_status = electionAuth.tally_status;
           el.parent_id = electionAuth.parent_id;
           el.hide_default_login_lookup_field = electionAuth.hide_default_login_lookup_field;
           el.allow_public_census_query = electionAuth.allow_public_census_query;

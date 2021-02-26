@@ -38,7 +38,7 @@ angular.module('avAdmin')
       function updateDoingTallyFlag(el) 
       {
 
-        var tallyStatusList = el.children_election_status;
+        var tallyStatusList = el.children_tally_status;
         tallyStatusList.push({id: el.id, tally_status: el.tally_status});
         var hasPendingTally = _.find(
           tallyStatusList,
@@ -956,6 +956,8 @@ angular.module('avAdmin')
             {
               scope.index = scope.statuses.indexOf('stopped') + 1;
               scope.nextaction = false;
+              scope.waiting = true;
+              waitElectionChange();
             } else 
             {
               scope.index = scope.statuses.indexOf(election.status) + 1;
