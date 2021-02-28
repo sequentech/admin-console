@@ -53,8 +53,15 @@ angular.module('avAdmin')
         // true, then it's certainly "in-tally". If not, we revert to reviewing
         // if the status = "doing_tally", and else we set intally to false
         scope.intally = (hasPendingTally || el.status === 'doing_tally');
-        if (!scope.intally && !scope.nextaction) {
-          scope.nextaction = true;
+
+        // if intally was set to false and we are in the tally status, then
+        // setup correctly the nextaction button to allow again tallying
+        if (
+          scope.index === scope.statuses.indexOf('stopped') + 1 &&
+          !scope.intally && 
+          !scope.nextaction
+        ) {
+          scope.nextaction = 'avAdmin.dashboard.tally';
         }
       }
 
