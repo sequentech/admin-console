@@ -26,7 +26,7 @@
     "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
     "shareLink": "Tweet this election!",
     "votingSystem": "Voting System",
-    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda": "DesBorda"}
+    "votings": {"plurality-at-large": "Plurality at large", "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)", "borda": "Borda Count (traditional)", "pairwise-beta": "Pairwise (beta-distribution)", "desborda": "DesBorda", "cumulative": "Cumulative voting"}
   },
   "avAdmin": {
     "profile": {
@@ -212,6 +212,12 @@
     },
     "setting": {
       "helpTooltip": "Click to expand/collapse help text about this setting"
+    },
+    "cumulative": {
+      "number_of_checkboxes": {
+        "title": "Number of checkboxes",
+        "text": "Number of checkboxes to show for each answer"
+      }
     },
     "shuffling_policy": {
       "categories_label": "Ramdomize categories",
@@ -513,7 +519,8 @@
           "accordion": "Normal",
           "circles": "Images with details",
           "conditional-accordion": "Conditional accordion",
-          "simultaneous-questions": "Simultaneous questions"
+          "simultaneous-questions": "Simultaneous questions",
+          "cumulative-tally-help": "The tally method cummulative is only supported for simultaneous questions"
         },
         "option": {
           "textFieldLabel": "Text",

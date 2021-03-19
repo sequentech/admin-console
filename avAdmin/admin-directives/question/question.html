@@ -294,16 +294,89 @@
                     <p class="text-muted" ng-i18next>
                         avAdmin.questions.layout.placeholder
                     </p>
+                    <p ng-if="q.tally_type === 'cumulative'" class="text-info" ng-i18next>
+                        avAdmin.questions.layout.cumulative-tally-help
+                    </p>
+
                     <div class="radio" ng-repeat="o in layouts">
                         <label>
                             <input
                               type="radio"
                               name="layout"
-                              ng-disabled="!electionEditable()"
+                              ng-disabled="!electionEditable() || !layoutSelectable(o)"
                               value="{{ o }}"
                               ng-model="q.layout"/>
-                            <span ng-i18next="avAdmin.questions.layout.{{ o }}"></span>
+                            <span
+                                ng-class="{'text-muted': !layoutSelectable(o)}"
+                                ng-i18next="avAdmin.questions.layout.{{ o }}">
+                            </span>
                         </label>
+                    </div>
+            </div>
+
+            <!-- cumulative_number_of_checkboxes extra options -->
+            <div
+              ng-if="q.tally_type === 'cumulative'"
+              av-abstract-setting
+              collapsable="true"
+              expanded="false"
+              short-value="{{ q.extra_options.cumulative_number_of_checkboxes }}"
+              title="avAdmin.cumulative.number_of_checkboxes.title"
+              for="number-of-checkboxes"
+              description=""
+              help-path="election/question-shuffle-categories/">
+
+                    <p class="text-muted" ng-i18next> avAdmin.cumulative.number_of_checkboxes.text </p>
+                    <div class="input-group col-xs-2">
+                      <span class="input-group-btn">
+                        <button
+                          class="btn btn-default"
+                          type="button"
+                          ng-disabled="!electionEditable()"
+                          ng-click="incCumulativeCheck(-1)">
+                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                        </button>
+                      </span>
+                      <div
+                        av-int-field
+                        int-data="q.extra_options.cumulative_number_of_checkboxes">
+                      </div>
+                      <input
+                        type="text"
+                        id="max"
+                        name="max"
+                        av-number-input
+                        min=0
+                        step=1
+                        class="form-control"
+                        ng-disabled="!electionEditable()"
+                        ui-keypress="{
+                          37: 'incCumulativeCheck(-1)',
+                          38: 'incCumulativeCheck(1)',
+                          39: 'incCumulativeCheck(1)',
+                          40: 'incCumulativeCheck(-1)'
+                        }"
+                        ui-validate="{ min: '$value >= 1'}"
+                        ui-validate-watch="'q.extra_options.cumulative_number_of_checkboxes'"
+                        ng-model="q.extra_options.cumulative_number_of_checkboxes"
+                        required/>
+                      <span class="input-group-btn">
+                        <button
+                          class="btn btn-default"
+                          type="button"
+                          ng-disabled="!electionEditable()"
+                          ng-click="incCumulativeCheck(1)">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </button>
+                      </span>
+                    </div>
+                    <div class="col-xs-10 input-error">
+                      <span
+                        class="error text-brand-danger"
+                        ng-show="!!qform{{$index}}.max.$error.min"
+                        ng-i18next>
+                        [i18next]avAdmin.questions.max.minError
+                      </span>
                     </div>
             </div>
 

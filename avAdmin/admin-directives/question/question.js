@@ -85,7 +85,28 @@ angular.module('avAdmin')
            scope.q.min = 0;
            scope.q.max = 62;
         }
+
+        if ("cumulative" === newValue) {
+          // Cumulative is only available on simultaneous-questions layaout
+          scope.q.layout = "simultaneous-questions";
+        }
       });
+
+      scope.layoutSelectable = function(l) {
+        // Cumulative is only available on simultaneous-questions layaout
+        if (scope.q.tally_type === "cumulative") {
+          var checks = scope.q.extra_options.cumulative_number_of_checkboxes;
+          scope.q.extra_options.cumulative_number_of_checkboxes = checks || 1;
+
+          return l === "simultaneous-questions";
+        }
+
+        return true;
+      };
+
+      scope.incCumulativeCheck = function(n) {
+        scope.q.extra_options.cumulative_number_of_checkboxes += n;
+      };
 
       scope.$watch("internal.shuffle_opts_policy", function (newValue, oldValue) {
         if ('shuffle-all' === newValue) {
