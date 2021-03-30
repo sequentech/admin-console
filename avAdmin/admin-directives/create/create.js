@@ -360,6 +360,27 @@ angular.module('avAdmin')
                     max: ElectionLimits.maxNumAnswers,
                     postfix: "-answers"
                   },
+
+                  {
+                    check: "lambda",
+                    key: "answers",
+                    validator: function (answers) 
+                    {
+                      var answerIds = _.uniq(
+                        _.pluck(answers, 'id')
+                      );
+                      answerIds.sort();
+                      var mappedAnswerIds = _.map(
+                        answers,
+                        function (answer, index) { return index; }
+                      );
+                      return (
+                        JSON.stringify(answerIds) === JSON.stringify(mappedAnswerIds)
+                      );
+                    },
+                    postfix: "-invalid-answer-ids"
+                  },
+
                   {
                     check: "int-size",
                     key: "min",
