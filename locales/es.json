@@ -694,10 +694,12 @@
           "election-lambda-max-email-title": "Votación '__eltitle__': el título de email tiene una longitud de __len__ caracteres, sobrepasando el máximo de __max__",
           "election-lambda-min-sms-msg": "Votación '__eltitle__': el mensaje de sms tiene una longitud de __len__ caracteres, pero debe tener al menos __min__",
           "election-lambda-max-sms-msg": "Votación '__eltitle__': el mensaje de sms tiene una longitud de __len__ caracteres, sobrepasando el máximo de __max__",
+          "election-lambda-checkable-lists-invalid-layout": "Votación '__eltitle__': Hay una pregunta con enable_checkable_lists y un layout de pregunta inválido",
+          "election-lambda-checkable-lists-categories-mismatch": "Votación '__eltitle__': Hay una pregunta con enable_checkable_lists pero no hay respuesta para cada categoría",
           "election-array-length-min-questions": "Votación '__eltitle__': debe haber al menos __min__ preguntas, pero solo hay  __num__",
           "election-array-length-max-questions": "Votación '__eltitle__': debe haber como mucho __max__ preguntas, pero hay __num__",
           "election-question-is-array-answers": "Votación '__eltitle__': la lista de candidaturas no es un array",
-
+          "election-question-lambda-invalid-answer-ids": "Votación '__eltitle__', pregunta '__qtitle__': Los answer id no son válidos, verifique que comiencen con 0 y que no falte ningún número entre ellos.",
           "election-array-length-max-description": "Votación '__eltitle__': la descripción tiene una longitud de __num__ caracteres, sobrepasando el máximo de __max__ caracteres",
           "election-is-string-description": "Votación '__eltitle__': la descripción no es una cadena de texto",
           "election-array-length-max-title": "Votación '__eltitle__': el título tiene una longitud de __num__ caracteres, sobrepasando el máximo de __max__ caracteres",

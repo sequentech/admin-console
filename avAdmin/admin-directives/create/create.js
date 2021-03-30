@@ -80,6 +80,119 @@ angular.module('avAdmin')
                 max: ElectionLimits.maxNumQuestions,
                 postfix: "-questions"
               },
+
+              // verify that when enable_checkable_lists is set, it's using a
+              // valid layout
+              {
+                check: "lambda",
+                key: "questions",
+                validator: function (questions) 
+                {
+                  return _.every(
+                    questions,
+                    function (question)
+                    {
+                      if (
+                        question && 
+                        question.extra_options && 
+                        question.extra_options.enable_checkable_lists &&
+                        question.layout !== 'simultaneous-questions'
+                      ) {
+                        return false;
+                      } else {
+                        return true;
+                      }
+                    }
+                  );
+                },
+                postfix: "-checkable-lists-invalid-layout"
+              },
+
+              // verify that when enable_checkable_lists is set, there's a list
+              // answer for each category in the question.
+              {
+                check: "lambda",
+                key: "questions",
+                validator: function (questions) 
+                {
+                  return _.every(
+                    questions,
+                    function (question)
+                    {
+                      // The grunt uglifier seems to mess up with variable
+                      // names so we just try to create a copy of the questions
+                      // to see if that solves it.
+                      var questionC = angular.copy(question);
+                      if (
+                        questionC && 
+                        questionC.extra_options && 
+                        questionC.extra_options.enable_checkable_lists
+                      ) {
+                        // getting category names from answers
+                        var answerCategoryNames = _.unique(
+                          _.pluck(
+                            _.filter(
+                              questionC.answers,
+                              function (answer)
+                              {
+                                return (
+                                  !!answer.category && 
+                                  answer.category.length > 0 &&
+                                  _.every(
+                                    answer.urls,
+                                    function (url)
+                                    {
+                                      return (
+                                        url.url !== 'true' ||
+                                        url.title !== 'isCategoryList'
+                                      );
+                                    }
+                                  )
+                                );
+                              }
+                            ),
+                            'category'
+                          )
+                        );
+                        // getting category answers
+                        var categoryNames = _.unique(
+                          _.pluck(
+                            _.filter(
+                              questionC.answers,
+                              function (answer)
+                              {
+                                return _.some(
+                                  answer.urls,
+                                  function (url)
+                                  {
+                                    return (
+                                      url.url === 'true' &&
+                                      url.title === 'isCategoryList'
+                                    );
+                                  }
+                                );
+                              }
+                            ),
+                            'text'
+                          )
+                        );
+                        answerCategoryNames.sort();
+                        categoryNames.sort();
+
+                        return (
+                          JSON.stringify(categoryNames) ===JSON.stringify(answerCategoryNames)
+                        );
+                      } 
+                      else 
+                      {
+                        return true;
+                      }
+                    }
+                  );
+                },
+                postfix: "-checkable-lists-categories-mismatch"
+              },
+
               {
                 check: "array-length",
                 key: "description",
@@ -247,6 +360,24 @@ angular.module('avAdmin')
                     max: ElectionLimits.maxNumAnswers,
                     postfix: "-answers"
                   },
+
+                  {
+                    check: "lambda",
+                    key: "answers",
+                    validator: function (answers) 
+                    {
+                      var answerIds = _.pluck(answers, 'id');
+                      var mappedAnswerIds = _.map(
+                        answers,
+                        function (answer, index) { return index; }
+                      );
+                      return (
+                        JSON.stringify(answerIds) === JSON.stringify(mappedAnswerIds)
+                      );
+                    },
+                    postfix: "-invalid-answer-ids"
+                  },
+
                   {
                     check: "int-size",
                     key: "min",
@@ -801,7 +932,8 @@ angular.module('avAdmin')
                       }
                     ]
                   },
-                ]},
+                ]
+              },
             ]
           }
         ];
