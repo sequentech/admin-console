@@ -161,7 +161,7 @@ angular.module('avAdmin')
                               questionC.answers,
                               function (answer)
                               {
-                                return _.every(
+                                return _.some(
                                   answer.urls,
                                   function (url)
                                   {
