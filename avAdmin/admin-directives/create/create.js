@@ -80,6 +80,88 @@ angular.module('avAdmin')
                 max: ElectionLimits.maxNumQuestions,
                 postfix: "-questions"
               },
+
+              // verify that when enable_checkable_lists is set, there's a list
+              // answer for each category in the question.
+              {
+                check: "lambda",
+                key: "questions",
+                validator: function (questions) 
+                {
+                  return _.every(
+                    questions,
+                    function (question)
+                    {
+                      if (
+                        question && 
+                        question.extra_options && 
+                        question.extra_options.enable_checkable_lists
+                      ) {
+                        // getting category names from answers
+                        var answerCategoryNames = _.unique(
+                          _.pluck(
+                            _.filter(
+                              question.answers,
+                              function (answer)
+                              {
+                                return (
+                                  !!answer.category && 
+                                  answer.category.length > 0 &&
+                                  _.every(
+                                    answer.urls,
+                                    function (url)
+                                    {
+                                      return (
+                                        url.url !== 'true' ||
+                                        url.title !== 'isCategoryList'
+                                      );
+                                    }
+                                  )
+                                );
+                              }
+                            ),
+                            'category'
+                          )
+                        );
+                        // getting category answers
+                        var categoryNames = _.unique(
+                          _.pluck(
+                            _.filter(
+                              question.answers,
+                              function (answer)
+                              {
+                                return _.every(
+                                  answer.urls,
+                                  function (url)
+                                  {
+                                    return (
+                                      url.url === 'true' &&
+                                      url.title === 'isCategoryList'
+                                    );
+                                  }
+                                );
+                              }
+                            ),
+                            'text'
+                          )
+                        );
+                        answerCategoryNames.sort();
+                        categoryNames.sort();
+
+                        return (
+                          JSON.stringify(categoryNames) ===JSON.stringify(answerCategoryNames)
+                        );
+                      } 
+                      else 
+                      {
+                        return true;
+                      }
+                    }
+                  );
+                },
+                postfix: "-admin-fields-int-type-value"
+              },
+
               {
                 check: "array-length",
                 key: "description",
@@ -801,7 +883,8 @@ angular.module('avAdmin')
                       }
                     ]
                   },
-                ]},
+                ]
+              },
             ]
           }
         ];
