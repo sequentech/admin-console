@@ -366,10 +366,7 @@ angular.module('avAdmin')
                     key: "answers",
                     validator: function (answers) 
                     {
-                      var answerIds = _.uniq(
-                        _.pluck(answers, 'id')
-                      );
-                      answerIds.sort();
+                      var answerIds = _.pluck(answers, 'id');
                       var mappedAnswerIds = _.map(
                         answers,
                         function (answer, index) { return index; }
