@@ -119,16 +119,20 @@ angular.module('avAdmin')
                     questions,
                     function (question)
                     {
+                      // The grunt uglifier seems to mess up with variable
+                      // names so we just try to create a copy of the questions
+                      // to see if that solves it.
+                      var questionC = angular.copy(question);
                       if (
-                        question && 
-                        question.extra_options && 
-                        question.extra_options.enable_checkable_lists
+                        questionC && 
+                        questionC.extra_options && 
+                        questionC.extra_options.enable_checkable_lists
                       ) {
                         // getting category names from answers
                         var answerCategoryNames = _.unique(
                           _.pluck(
                             _.filter(
-                              question.answers,
+                              questionC.answers,
                               function (answer)
                               {
                                 return (
@@ -154,7 +158,7 @@ angular.module('avAdmin')
                         var categoryNames = _.unique(
                           _.pluck(
                             _.filter(
-                              question.answers,
+                              questionC.answers,
                               function (answer)
                               {
                                 return _.every(
