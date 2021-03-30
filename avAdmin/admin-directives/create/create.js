@@ -81,6 +81,33 @@ angular.module('avAdmin')
                 postfix: "-questions"
               },
 
+              // verify that when enable_checkable_lists is set, it's using a
+              // valid layout
+              {
+                check: "lambda",
+                key: "questions",
+                validator: function (questions) 
+                {
+                  return _.every(
+                    questions,
+                    function (question)
+                    {
+                      if (
+                        question && 
+                        question.extra_options && 
+                        question.extra_options.enable_checkable_lists &&
+                        question.layout !== 'simultaneous-questions'
+                      ) {
+                        return false;
+                      } else {
+                        return true;
+                      }
+                    }
+                  );
+                },
+                postfix: "-checkable-lists-invalid-layout"
+              },
+
               // verify that when enable_checkable_lists is set, there's a list
               // answer for each category in the question.
               {
@@ -159,7 +186,7 @@ angular.module('avAdmin')
                     }
                   );
                 },
-                postfix: "-admin-fields-int-type-value"
+                postfix: "-checkable-lists-categories-mismatch"
               },
 
               {

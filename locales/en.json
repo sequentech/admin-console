@@ -704,6 +704,8 @@
           "election-lambda-max-email-title": "Election '__eltitle__': email title length is __len__ characters, exceeding the maximum of __max__",
           "election-lambda-min-sms-msg": "Election '__eltitle__': sms message length is __len__ characters, but it has to be at least __min__ characters long",
           "election-lambda-max-sms-msg": "Election '__eltitle__': sms message length is __len__ characters, exceeding the maximum of __max__",
+          "election-lambda-checkable-lists-invalid-layout": "Election '__eltitle__': There's a question with enable_checkable_lists and an invalid question layout",
+          "election-lambda-checkable-lists-categories-mismatch": "Election '__eltitle__': There's a question with enable_checkable_lists but there's no answer for each category",
           "election-array-length-min-questions": "Election '__eltitle__': there must be at least __min__ questions but there are only __num__",
           "election-array-length-max-questions": "Election '__eltitle__': there must be at most __max__ questions but there are __num__",
           "election-array-length-max-description": "Election '__eltitle__': description length is __num__, exceeding the maximum of __max__",
