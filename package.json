@@ -47,9 +47,11 @@
     "yarn": "^1.22.0"
   },
   "dependencies": {
-    "agora-gui-common": "https://github.com/agoravoting/agora-gui-common.git#master"
+    "agora-gui-common": "https://github.com/agoravoting/agora-gui-common.git#sec-up"
   },
   "resolutions": {
+    "**/underscore": "1.12.1",
+    "**/xmlhttprequest-ssl": "1.6.2",
     "**/socket.io": "2.4.0",
     "**/ws": "7.2.1",
     "**/lodash": "^4.17.19",
