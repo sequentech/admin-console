@@ -70,9 +70,9 @@ agent-base@^4.3.0:
   dependencies:
     es6-promisify "^5.0.0"
 
-"agora-gui-common@https://github.com/agoravoting/agora-gui-common.git#sec-up":
+"agora-gui-common@https://github.com/agoravoting/agora-gui-common.git#master":
   version "20.2.0"
-  resolved "https://github.com/agoravoting/agora-gui-common.git#4bb9ea4d0c302a87a79b63d080b8195c268b94b0"
+  resolved "https://github.com/agoravoting/agora-gui-common.git#112e86801430df161400e5b749c08772f31e7812"
   dependencies:
     browser-update "^3.3.28"
     karma-ng-html2js-preprocessor "^1.0.0"
