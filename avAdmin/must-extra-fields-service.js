@@ -107,6 +107,17 @@ angular.module('avAdmin')
           "max": 255,
           "required_on_authentication": true
         }];
+      } else if (el.census.auth_method === 'smart-link') {
+        names = ['user_id'];
+        must = [{
+          "must": true,
+          "name": "user_id",
+          "type": "text",
+          "required": true,
+          "min": 1,
+          "max": 255,
+          "required_on_authentication": true
+        }];
       }
 
       // the authmethod doesn't have a required field so we do nothing here
