@@ -41,7 +41,7 @@ angular.module('avAdmin')
        */
       function hasUrl(urls, title, url)
       {
-        const u = _.find(
+        var u = _.find(
           urls,
           function(urlObject)
           {
@@ -468,7 +468,7 @@ angular.module('avAdmin')
                           validator: function (answer) 
                           {
                             return (
-                              hasUrl(answer.urls, 'isWriteIn', 'true')) ||
+                              hasUrl(answer.urls, 'isWriteIn', 'true') || 
                               answer.text.length > 0
                             );
                           },
