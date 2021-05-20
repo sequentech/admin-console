@@ -35,6 +35,23 @@ angular.module('avAdmin')
       CsvLoad,
       MustExtraFieldsService)
     {
+      /**
+       * @returns true if the url with the specific title and url appears in the
+       * urls list.
+       */
+      function hasUrl(urls, title, url)
+      {
+        const u = _.find(
+          urls,
+          function(urlObject)
+          {
+            return urlObject.title === title && urlObject.url === url;
+          }
+        );
+
+        return !!u;
+      }
+
       // we use it as something similar to a controller here
       function link(scope, element, attrs)
       {
@@ -377,7 +394,6 @@ angular.module('avAdmin')
                     },
                     postfix: "-invalid-answer-ids"
                   },
-
                   {
                     check: "int-size",
                     key: "min",
@@ -448,10 +464,14 @@ angular.module('avAdmin')
                           postfix: "-details"
                         },
                         {
-                          check: "array-length",
-                          key: "text",
-                          min: 1,
-                          max: ElectionLimits.maxLongStringLength,
+                          check: "lambda",
+                          validator: function (answer) 
+                          {
+                            return (
+                              hasUrl(answer.urls, 'isWriteIn', 'true')) ||
+                              answer.text.length > 0
+                            );
+                          },
                           postfix: "-text"
                         },
                         {
