@@ -313,6 +313,7 @@
         "dropFilesHere": "Drop CSV file here"
     },
     "dashboard": {
+        "writeInResults": "(Write-in)",
         "chilldrenResultsTitle": "Select the election results to view:",
         "createRealElection": "Create REAL election",
         "duplicateElection": "Duplicate election",
