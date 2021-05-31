@@ -46,7 +46,7 @@ angular.module('avAdmin')
         );
 
         return !!u;
-      }
+      };
 
       function updateDoingTallyFlag(el) 
       {
