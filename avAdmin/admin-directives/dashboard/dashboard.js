@@ -37,7 +37,7 @@ angular.module('avAdmin')
 
       scope.isWriteInResult = function(answer)
       {
-        const u = _.find(
+        var u = _.find(
           answer.urls,
           function(urlObject)
           {
