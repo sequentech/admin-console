@@ -35,6 +35,19 @@ angular.module('avAdmin')
     {
       scope.reloadTimeout = null;
 
+      scope.isWriteInResult = function(answer)
+      {
+        var u = _.find(
+          answer.urls,
+          function(urlObject)
+          {
+            return urlObject.title === 'isWriteInResult' && urlObject.url === 'true';
+          }
+        );
+
+        return !!u;
+      };
+
       function updateDoingTallyFlag(el) 
       {
 
