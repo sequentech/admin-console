@@ -35,7 +35,7 @@
 angular.module('avAdmin')
   .directive(
     'avAdminSidebar', 
-    function($cookies, Authmethod, DraftElection, ElectionsApi) 
+    function($cookies, Authmethod, DraftElection, ElectionsApi, $window) 
     {
       // we use it as something similar to a controller here
       function link(scope, element, attrs) {
@@ -44,6 +44,7 @@ angular.module('avAdmin')
           var admin = $cookies.get("user" + postfix);
           scope.admin = admin;
           scope.active = attrs.active;
+          scope.showImport = !!$window.showOpenFilePicker;
           scope.isEditingDraft = DraftElection.isEditingDraft;
           scope.globalPerms = { val: '' };
 
