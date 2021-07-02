@@ -472,6 +472,11 @@ angular.module('avAdmin')
                               answer.text.length > 0
                             );
                           },
+                          appendOnErrorLambda: function (answer) {
+                           return {
+                            aid: answer.id
+                           };
+                          },
                           postfix: "-text"
                         },
                         {
