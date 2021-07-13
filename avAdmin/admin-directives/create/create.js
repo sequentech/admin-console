@@ -234,7 +234,7 @@ angular.module('avAdmin')
                 key: "census",
                 validator: function (census) {
                   var authAction = census.config['authentication-action'];
-                  if (authAction.mode !== 'go-to-url') {
+                  if (!authAction || authAction.mode !== 'go-to-url') {
                     return true;
                   }
 
