@@ -18,14 +18,14 @@
 angular.module('avAdmin')
   .factory('MustExtraFieldsService', function() {
     return function (el) {
-      var ef = el.census.extra_fields;
+      var extra_fields = el.census.extra_fields;
 
-      var names = ['email'];
-      var must = null;
+      var mustFieldNames = ['email'];
+      var mustFields = null;
 
       if (_.contains(['email', 'email-otp'], el.census.auth_method)) {
-        names = ['email'];
-        must = [{
+        mustFieldNames = ['email'];
+        mustFields = [{
           "must": true,
           "name": "email",
           "type": "email",
@@ -35,8 +35,8 @@ angular.module('avAdmin')
           "required_on_authentication": true
         }];
       } else if (_.contains(['sms', 'sms-otp'], el.census.auth_method)) {
-        names = ['tlf'];
-        must = [{
+        mustFieldNames = ['tlf'];
+        mustFields = [{
           "must": true,
           "name": "tlf",
           "type": "tlf",
@@ -46,8 +46,8 @@ angular.module('avAdmin')
           "required_on_authentication": true
         }];
       } else if (el.census.auth_method === 'dnie') {
-        names = ['dni'];
-        must = [{
+        mustFieldNames = ['dni'];
+        mustFields = [{
           "must": true,
           "name": "dni",
           "type": "text",
@@ -57,8 +57,8 @@ angular.module('avAdmin')
           "required_on_authentication": true
         }];
       } else if (el.census.auth_method === 'user-and-password') {
-        names = ['username', 'password'];
-        must = [{
+        mustFieldNames = ['username', 'password'];
+        mustFields = [{
           "must": true,
           "name": "username",
           "type": "text",
@@ -77,8 +77,8 @@ angular.module('avAdmin')
           "required_on_authentication": true
         }];
       } else if (el.census.auth_method === 'email-and-password') {
-        names = ['email', 'password'];
-        must = [{
+        mustFieldNames = ['email', 'password'];
+        mustFields = [{
           "must": true,
           "name": "email",
           "type": "email",
@@ -97,8 +97,8 @@ angular.module('avAdmin')
           "required_on_authentication": true
         }];
       } else if (el.census.auth_method === 'openid-connect') {
-        names = ['sub'];
-        must = [{
+        mustFieldNames = ['sub'];
+        mustFields = [{
           "must": true,
           "name": "sub",
           "type": "text",
@@ -108,8 +108,8 @@ angular.module('avAdmin')
           "required_on_authentication": true
         }];
       } else if (el.census.auth_method === 'smart-link') {
-        names = ['user_id'];
-        must = [{
+        mustFieldNames = ['user_id'];
+        mustFields = [{
           "must": true,
           "name": "user_id",
           "type": "text",
@@ -120,36 +120,53 @@ angular.module('avAdmin')
         }];
       }
 
-      // the authmethod doesn't have a required field so we do nothing here
-      if (must === null) {
+      // the authmethod doesn't have any required field so we do nothing here
+      if (mustFields === null) {
         return;
       }
 
-      var found = false;
-      ef.forEach(function(e) {
-        if (_.find(names, function(n) { return e.name === n; })) {
-          found = true;
-          e.must = true;
-          if ('email' === e.name) {
-            e.type = 'email';
-          } else if ('tlf' === e.name) {
-            e.type = 'tlf';
-          } else if ('dni' === e.name) {
-            e.type = 'text';
-          } else if ('username' === e.name) {
-            e.type = 'text';
-          } else if ('password' === e.name) {
-            e.type = 'password';
-          } else if ('sub' === e.name) {
-            e.type = 'text';
+      var foundNames = [];
+      extra_fields.forEach(
+        function(extra_field)
+        {
+          if (_.find(
+            mustFieldNames, 
+            function(fieldName) { return extra_field.name === fieldName; })
+          ) {
+            foundNames.push(extra_field.name);
+            extra_field.must = true;
+            if ('email' === extra_field.name) {
+              extra_field.type = 'email';
+            } else if ('tlf' === extra_field.name) {
+              extra_field.type = 'tlf';
+            } else if ('dni' === extra_field.name) {
+              extra_field.type = 'text';
+            } else if ('username' === extra_field.name) {
+              extra_field.type = 'text';
+            } else if ('password' === extra_field.name) {
+              extra_field.type = 'password';
+            } else if ('sub' === extra_field.name) {
+              extra_field.type = 'text';
+            }
+          } else {
+            extra_field.must = false;
           }
-        } else {
-          e.must = false;
         }
-      });
+      );
 
-      if (!found) {
-        _.each(must, function(m) { ef.push(m); });
+      // if any field is not found, add it
+      if (foundNames.length !== mustFieldNames.length)
+      {
+        _.each(
+          mustFields,
+          function(mustField) {
+            // if not found, add it
+            if (!_.contains(foundNames, mustField.name))
+            {
+              extra_fields.push(mustField);
+            }
+          }
+        );
       }
     };
   });

@@ -1037,7 +1037,7 @@ angular.module('avAdmin')
                   ef.max = parseInt(ef.max);
                 }
               }
-              return !must;
+              return true;
             });
 
             Authmethod.createEvent(d)
