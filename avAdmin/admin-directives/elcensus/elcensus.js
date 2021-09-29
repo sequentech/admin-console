@@ -95,6 +95,10 @@ angular.module('avAdmin')
             i.selected = selectStatus;
           });
       }
+
+      function printAuthCodeSelected (voter) {
+        console.log("TODO");
+      }
       
       function sendAuthCodesSelected() {
         var selectedList = scope.selected(scope.shown());
