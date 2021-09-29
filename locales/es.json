@@ -587,6 +587,7 @@
         "deactivateOneAction": "Desactivar",
         "removeCensusOneAction": "Eliminar",
         "sendAuthCodesOneAction": "Enviar código de autenticación",
+        "printAuthCodesOneAction": "Imprimir código de autenticación",
 
         "voted": "votó",
         "notVoted": "no votó",

@@ -360,6 +360,19 @@ angular.module('avAdmin')
               scope.perms.val.indexOf("edit") !== -1
             );
           }
+        },
+        {
+	        text: $i18next("avAdmin.census.printAuthCodesOneAction"),
+          iconClass: 'fa fa-file-pdf-o',
+          actionFunc: function(voter) {
+            return printAuthCodeSelected(voter);
+          },
+          enableFunc: function() {
+            return (
+              scope.perms.val.indexOf("print-codes") !== -1 ||
+              scope.perms.val.indexOf("edit") !== -1
+            );
+          }
         }
       ];
 

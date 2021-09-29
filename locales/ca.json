@@ -348,7 +348,13 @@
         "nonEditableField": "(Requerido por método de autenticación)",
         "massive1": "Fichero CSV, usa punto y coma para separar lo campos",
         "massive2": "un votante por línea, mantén el orden de los campos",
-        "export": "Exportar"
+        "export": "Exportar",
+
+        "activateOneAction": "Activar",
+        "deactivateOneAction": "Desactivar",
+        "removeCensusOneAction": "Eliminar",
+        "sendAuthCodesOneAction": "Envia codis d'autenticació",
+        "printAuthCodesOneAction": "Imprimeix codis d'autenticació"
     },
     "auth": {
         "intro": "La autenticación se usa para asegurar que un elector es quien dice ser. Aquí tienes que llegar a un compromiso entre seguridad, usabilidad y coste",

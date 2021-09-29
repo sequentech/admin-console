@@ -595,6 +595,7 @@
         "deactivateOneAction": "Deactivate",
         "removeCensusOneAction": "Remove",
         "sendAuthCodesOneAction": "Send auth codes",
+        "printAuthCodesOneAction": "Print auth codes",
 
         "voted": "voted",
         "notVoted": "not voted",
