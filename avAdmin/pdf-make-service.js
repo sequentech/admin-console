@@ -19,7 +19,7 @@
  * Convenience service that returns access to the qrcode library
  */
 
-angular.module('avBooth')
+angular.module('avAdmin')
   .service('PdfMakeService', function() {
     /* jshint ignore:start */
     return pdfMake;
