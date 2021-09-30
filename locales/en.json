@@ -467,9 +467,9 @@
             "success": "Allowed to do election tally"
           },
           "generatePDFAuthCodes": {
-            "header": "Generate PDF voter authentication codes",
-            "body": "Generate PDF authentication codes for the selected voter. Even if the voter has not filled the fill-in fields, he will be able to vote using these codes and the link in the PDF.",
-            "confirmButton": "GENERATE PDF voter authentication codes"
+            "header": "Generate PDF voter authentication code",
+            "body": "Generate PDF authentication code for the selected voter. Even if the voter has not filled the fill-in fields, he will be able to vote using these code and the link in the PDF.",
+            "confirmButton": "GENERATE PDF voter authentication code"
           }
         }
     },
@@ -594,14 +594,14 @@
         "removedCensusSuccessfully": "Removed selected people from census successfully",
         "activatedCensusSuccessfully": "Activated selected people in census successfully",
         "deactivatedCensusSuccessfully": "Deactivated selected people in census successfully",
-        "generatePDFAuthCodesSuccess": "Generated PDF authentication codes for a voter successfully.",
+        "generatePDFAuthCodesSuccess": "Generated PDF authentication code for a voter successfully.",
         "sentCodesSuccessfully": "Sent authentication codes successfully",
 
         "activateOneAction": "Activate",
         "deactivateOneAction": "Deactivate",
         "removeCensusOneAction": "Remove",
         "sendAuthCodesOneAction": "Send auth codes",
-        "generatePDFAuthCodesAction": "Generate PDF authentication codes",
+        "generatePDFAuthCodesAction": "Generate PDF authentication code",
         "generatePDFAuthCodes": {
           "header": "Your authentication credentials are:",
           "username": "Username:", 

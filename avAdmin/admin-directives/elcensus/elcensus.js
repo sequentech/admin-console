@@ -304,8 +304,21 @@ angular.module('avAdmin')
               ]
             },
             {
-              text: $i18next('avAdmin.census.generatePDFAuthCodes.qrCode'),
-              style: 'p'
+              columns: [
+                {
+                  text: '',
+                  width: '*'
+                },
+                {
+                  text: $i18next('avAdmin.census.generatePDFAuthCodes.qrCode'),
+                  style: 'p',
+                  width: 'auto'
+                },
+                {
+                  text: '',
+                  width: '*'
+                }
+              ]
             },
             {
               columns: [

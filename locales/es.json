@@ -458,6 +458,11 @@
             "body": "Después de que se ejecute esta acción, cualquier administrador con permisos para lanzar el recuento podrá lanzarlo.",
             "confirmButton": "Permitir lanzar el recuento",
             "success": "Se permitió lanzar el recuento con éxito"
+          },
+          "generatePDFAuthCodes": {
+            "header": "Generar PDF con código de autenticación del votante",
+            "body": "Generar un código de autenticación en PDF para el votante seleccionado. Incluso si el votante no ha rellenado los campos para completar, podrá votar usando este código y el enlace del PDF.",
+            "confirmButton": "GENERAR PDF con código de autenticación"
           }
         }
     },
@@ -581,13 +586,23 @@
         "emptyCensus": "El censo está actualmente vacío. Puedes añadir personas a través del botón de Acciones.",
         "removedCensusSuccessfully": "Se eliminaron a las personas seleccionadas correctamente",
         "deactivatedCensusSuccessfully": "Se desactivaron las personas seleccionadas correctamente",
+        "generatePDFAuthCodesSuccess": "PDF con código de autenticación para un votante generado correctamente.",
         "sentCodesSuccessfully": "Enviados los códigos de autenticación correctamente",
 
         "activateOneAction": "Activar",
         "deactivateOneAction": "Desactivar",
         "removeCensusOneAction": "Eliminar",
         "sendAuthCodesOneAction": "Enviar código de autenticación",
-        "printAuthCodesOneAction": "Imprimir código de autenticación",
+        "generatePDFAuthCodesAction": "Generar PDF con código de autenticación",
+        "generatePDFAuthCodes": {
+          "header": "Sus credenciales de autenticación son:",
+          "username": "Nombre de usuario:", 
+          "userId": "Id de usuario:",
+          "authCode": "Código de autenticación:",
+          "codeCreated": "Fecha de creación del código:",
+          "authLink": "Enlace de autenticación:",
+          "qrCode": "Código QR para el enlace de autenticación:"
+        },
 
         "voted": "votó",
         "notVoted": "no votó",

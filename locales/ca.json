@@ -262,6 +262,11 @@
 
               "unknownError": "Los mensajes no fueron enviados ni cobrados. Un error no catalogado ocurrió mientras se enviaban los mensajes. Si el problema persiste, por favor contacta con nosotros enviando un email __email__ o llamándonos al __tlf__."
             }
+          },
+          "generatePDFAuthCodes": {
+            "header": "Generar PDF amb codi d'autenticació de l'votant",
+            "body": "Generar un codi d'autenticació en PDF per al votant seleccionat. Fins i tot si el votant no ha emplenat els camps per completar, podrà votar usant aquest codi i l'enllaç de el PDF.",
+            "confirmButton": "GENERAR PDF amb codi d'autenticació"
           }
         }
     },
@@ -353,8 +358,18 @@
         "activateOneAction": "Activar",
         "deactivateOneAction": "Desactivar",
         "removeCensusOneAction": "Eliminar",
-        "sendAuthCodesOneAction": "Envia codis d'autenticació",
-        "printAuthCodesOneAction": "Imprimeix codis d'autenticació"
+        "sendAuthCodesOneAction": "Envia codi d'autenticació",
+        "generatePDFAuthCodesAction": "Generar PDF amb codi d'autenticació",
+        "generatePDFAuthCodesSuccess": "PDF amb codi d'autenticació per a un votant generat correctament.",
+        "generatePDFAuthCodes": {
+          "header": "Les seves credencials d'autenticació són:",
+          "username": "Nom d'usuari:", 
+          "userId": "Id d'usuari:",
+          "authCode": "Codi d'autenticació:",
+          "codeCreated": "Data de creació de el codi:",
+          "authLink": "Enllaç d'autenticació:",
+          "qrCode": "Codi QR pel enllaç d'autenticació:"
+        }
     },
     "auth": {
         "intro": "La autenticación se usa para asegurar que un elector es quien dice ser. Aquí tienes que llegar a un compromiso entre seguridad, usabilidad y coste",
