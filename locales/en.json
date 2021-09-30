@@ -465,6 +465,11 @@
             "body": "After this action is executed, any administrator allowed to execute a tally will be able to do so.",
             "confirmButton": "Allow to do election tally",
             "success": "Allowed to do election tally"
+          },
+          "generatePDFAuthCodes": {
+            "header": "Generate PDF voter authentication codes",
+            "body": "Generate PDF authentication codes for the selected voter. Even if the voter has not filled the fill-in fields, he will be able to vote using these codes and the link in the PDF.",
+            "confirmButton": "GENERATE PDF voter authentication codes"
           }
         }
     },
@@ -589,13 +594,23 @@
         "removedCensusSuccessfully": "Removed selected people from census successfully",
         "activatedCensusSuccessfully": "Activated selected people in census successfully",
         "deactivatedCensusSuccessfully": "Deactivated selected people in census successfully",
+        "generatePDFAuthCodesSuccess": "Generated PDF authentication codes for a voter successfully.",
         "sentCodesSuccessfully": "Sent authentication codes successfully",
 
         "activateOneAction": "Activate",
         "deactivateOneAction": "Deactivate",
         "removeCensusOneAction": "Remove",
         "sendAuthCodesOneAction": "Send auth codes",
-        "printAuthCodesOneAction": "Print auth codes",
+        "generatePDFAuthCodesAction": "Generate PDF authentication codes",
+        "generatePDFAuthCodes": {
+          "header": "Your authentication credentials are:",
+          "username": "Username:", 
+          "userId": "User Id:",
+          "authCode": "Authentication Code:",
+          "codeCreated": "Code creation time:",
+          "authLink": "Authentication Link:",
+          "qrCode": "QR Code for Authentication Link:"
+        },
 
         "voted": "voted",
         "notVoted": "not voted",
