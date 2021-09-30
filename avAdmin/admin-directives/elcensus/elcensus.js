@@ -21,7 +21,7 @@ angular.module('avAdmin')
     function(
       $i18next,
       $window,
-      $state,
+      $http,
       ElectionsApi,
       PdfMakeService,
       Authmethod,
@@ -98,11 +98,10 @@ angular.module('avAdmin')
           });
       }
 
-      function addEmptyImage(images, name, callback) 
+      function addEmptyImage(images, name) 
       {
         // empty 1px image
         images[name] = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6fwYAAtMBznRijrsAAAAASUVORK5CYII=';
-        callback(images);
       }
 
       function isEmptyImage(images, name) 
@@ -115,64 +114,58 @@ angular.module('avAdmin')
         return images[name] !== undefined && !images[name].startsWith('data:image');
       }
 
-      function addImageBlob(images, name, callback, blob) {
+      function addImageBlob(images, name, blob) {
           // blob data to URL
           var reader = new FileReader();
           reader.onload = function(event) {
             images[name] = event.target.result;
-            callback(images);
           };
           reader.readAsDataURL(blob);
       }
 
-      function addSvgImage(images, name, callback, blob) {
+      function addSvgImage(images, name, blob) {
           // blob data to text
           var reader = new FileReader();
           reader.onload = function(event) {
             images[name] = event.target.result;
-            callback(images);
           };
           reader.readAsText(blob);
       }
 
       function getPdfImages() 
       {
-        if (
-          scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_url ||
-          scope.election.logo_url ||
-          ConfigService.organization.orgBigLogo
-        ) {
-          $http({
-            method: 'GET',
-            url: (
-              scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_url || 
-              scope.election.logo_url || 
-              ConfigService.organization.orgBigLogo
-            ),
-            headers: {
-              'Content-Type': 'image/png'
-            },
-            responseType: 'blob' 
-          }).then(
-            function onSuccess(response) {
-              // this seems like a svg, add it as such
-              if (!response.data || !response.data.type.startsWith('image/'))
-              {
-                addEmptyImage(images, 'logo', download);
-              } else if (response.data.type.startsWith('image/svg')) 
-              {
-                addSvgImage(images, 'logo', download, response.data);
-              } else {
-                addImageBlob(images, 'logo', download, response.data);
-              }
-            },
-            function onError() {
-              addEmptyImage(images, 'logo', download);
+        var images = {};
+        $http({
+          method: 'GET',
+          url: (
+            (
+              scope.election.presentation.extra_options && 
+              scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_url
+            ) || 
+            scope.election.logo_url || 
+            ConfigService.organization.orgBigLogo
+          ),
+          headers: {
+            'Content-Type': 'image/png'
+          },
+          responseType: 'blob' 
+        }).then(
+          function onSuccess(response) {
+            // this seems like a svg, add it as such
+            if (!response.data || !response.data.type.startsWith('image/'))
+            {
+              addEmptyImage(images, 'logo');
+            } else if (response.data.type.startsWith('image/svg')) 
+            {
+              addSvgImage(images, 'logo', response.data);
+            } else {
+              addImageBlob(images, 'logo', response.data);
             }
-          );
-        } else {
-          addEmptyImage(images, 'logo', download);
-        }
+          },
+          function onError() {
+            addEmptyImage(images, 'logo');
+          }
+        );
         return images;
       }
 
@@ -193,6 +186,20 @@ angular.module('avAdmin')
           'auth_codes_' + scope.election.id + '_' + voter.username + '.pdf'
         );
       }
+
+      function getTitleSubtitleColumn() 
+      {
+        return [
+          {
+            text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_header || ConfigService.organization.orgName,
+            style: 'h1'
+          },
+          {
+            text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_subheader || ConfigService.organization.orgSubtitle || "",
+            style: 'h2'
+          },
+        ];
+      }
             
       function generateAuthCodePdf(voter, codeInfo) {
         var authenticationUrl =  getAuthenticationUrl(voter);
@@ -202,10 +209,10 @@ angular.module('avAdmin')
             title: scope.pdf.fileName,
           },
           content: [
-            isEmptyImage(images, 'logo') ? getTitleSubtitleColumn() : {
+            isEmptyImage(scope.pdf.images, 'logo') ? getTitleSubtitleColumn() : {
               columns: [
-                isSvgImage(images, 'logo') ? {
-                  svg: images['logo'],
+                isSvgImage(scope.pdf.images, 'logo') ? {
+                  svg: scope.pdf.images['logo'],
                   fit: [200, 200]
                 } : {
                   image: 'logo',
@@ -385,11 +392,15 @@ angular.module('avAdmin')
             {
               /*Authmethod.obtainVoterAuthCode(scope.election.id, voter.id)
                 .then(
-                  function onSuccess(data) 
+                  function onSuccess(codeInfo) 
                   {*/
                     scope.msg = "avAdmin.census.generatePDFAuthCodesSuccess";
                     scope.error = "";
-                    generateAuthCodePdf(voter, data.code);
+                    var codeInfo = {
+                      code: "2564-8877",
+                      created: new Date()
+                    };
+                    generateAuthCodePdf(voter, codeInfo);
                   /*}, 
                   function onError(response) {
                     scope.msg = "";
