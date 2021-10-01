@@ -165,6 +165,7 @@
           "authenticate": "<i>__receiver_username__ (__receiver_id__)</i> <strong>se autenticó</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "register": "<i>__receiver_username__ (__receiver_id__)</i> <strong>se registró</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "successful-login": "<i>__executer_username__ (__executer_id__)</i> <strong>votó</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "generate-auth-code": "<i>__executer_username__ (__executer_id__)</i> <strong>generó código de autenticación</strong> para __receiver_username__ (__receiver_id__)</i> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "send-auth": "<i>__executer_username__ (__executer_id__)</i> <strong>envió código de autenticación</strong> a <i>__receiver_username__ (__receiver_id__)</i> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "resend-authcode": "Se ejecutó una solicitud para <strong>enviar códigos de autenticación</strong> a <i>__receiver_username__ (__receiver_id__)</i>  en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
 	        "added-to-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>añadió al censo</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> a <i>__receiver_username__(__receiver_id__)</i> __metadata__",
@@ -458,6 +459,11 @@
             "body": "Después de que se ejecute esta acción, cualquier administrador con permisos para lanzar el recuento podrá lanzarlo.",
             "confirmButton": "Permitir lanzar el recuento",
             "success": "Se permitió lanzar el recuento con éxito"
+          },
+          "generatePDFAuthCodes": {
+            "header": "Generar PDF con código de autenticación del votante",
+            "body": "Generar un código de autenticación en PDF para el votante seleccionado. Incluso si el votante no ha rellenado los campos para completar, podrá votar usando este código y el enlace del PDF.",
+            "confirmButton": "GENERAR PDF con código de autenticación"
           }
         }
     },
@@ -581,12 +587,23 @@
         "emptyCensus": "El censo está actualmente vacío. Puedes añadir personas a través del botón de Acciones.",
         "removedCensusSuccessfully": "Se eliminaron a las personas seleccionadas correctamente",
         "deactivatedCensusSuccessfully": "Se desactivaron las personas seleccionadas correctamente",
+        "generatePDFAuthCodesSuccess": "PDF con código de autenticación para un votante generado correctamente.",
         "sentCodesSuccessfully": "Enviados los códigos de autenticación correctamente",
 
         "activateOneAction": "Activar",
         "deactivateOneAction": "Desactivar",
         "removeCensusOneAction": "Eliminar",
         "sendAuthCodesOneAction": "Enviar código de autenticación",
+        "generatePDFAuthCodesAction": "Generar PDF con código de autenticación",
+        "generatePDFAuthCodes": {
+          "header": "Sus credenciales de autenticación son:",
+          "username": "Nombre de usuario:", 
+          "userId": "Id de usuario:",
+          "authCode": "Código de autenticación:",
+          "codeCreated": "Fecha de creación del código:",
+          "authLink": "Enlace de autenticación:",
+          "qrCode": "Código QR para el enlace de autenticación:"
+        },
 
         "voted": "votó",
         "notVoted": "no votó",

@@ -53,7 +53,8 @@
     "yarn": "^1.22.0"
   },
   "dependencies": {
-    "agora-gui-common": "https://github.com/agoravoting/agora-gui-common.git#master"
+    "agora-gui-common": "https://github.com/agoravoting/agora-gui-common.git#master",
+    "pdfmake": "^0.1.65"
   },
   "resolutions": {
     "**/underscore": "1.12.1",

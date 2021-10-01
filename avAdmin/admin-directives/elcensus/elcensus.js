@@ -21,9 +21,11 @@ angular.module('avAdmin')
     function(
       $i18next,
       $window,
-      $state,
+      $http,
       ElectionsApi,
+      PdfMakeService,
       Authmethod,
+      moment,
       Plugins,
       SendMsg,
       $modal,
@@ -95,6 +97,336 @@ angular.module('avAdmin')
             i.selected = selectStatus;
           });
       }
+
+      function addEmptyImage(images, name) 
+      {
+        // empty 1px image
+        images[name] = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6fwYAAtMBznRijrsAAAAASUVORK5CYII=';
+      }
+
+      function isEmptyImage(images, name) 
+      {
+        return images[name] === 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6fwYAAtMBznRijrsAAAAASUVORK5CYII=';
+      }
+
+      function isSvgImage(images, name)
+      {
+        return images[name] !== undefined && !images[name].startsWith('data:image');
+      }
+
+      function addImageBlob(images, name, blob) {
+          // blob data to URL
+          var reader = new FileReader();
+          reader.onload = function(event) {
+            images[name] = event.target.result;
+          };
+          reader.readAsDataURL(blob);
+      }
+
+      function addSvgImage(images, name, blob) {
+          // blob data to text
+          var reader = new FileReader();
+          reader.onload = function(event) {
+            images[name] = event.target.result;
+          };
+          reader.readAsText(blob);
+      }
+
+      function getPdfImages() 
+      {
+        var images = {};
+        $http({
+          method: 'GET',
+          url: (
+            (
+              scope.election.presentation.extra_options && 
+              scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_url
+            ) || 
+            scope.election.logo_url || 
+            ConfigService.organization.orgBigLogo
+          ),
+          headers: {
+            'Content-Type': 'image/png'
+          },
+          responseType: 'blob' 
+        }).then(
+          function onSuccess(response) {
+            // this seems like a svg, add it as such
+            if (!response.data || !response.data.type.startsWith('image/'))
+            {
+              addEmptyImage(images, 'logo');
+            } else if (response.data.type.startsWith('image/svg')) 
+            {
+              addSvgImage(images, 'logo', response.data);
+            } else {
+              addImageBlob(images, 'logo', response.data);
+            }
+          },
+          function onError() {
+            addEmptyImage(images, 'logo');
+          }
+        );
+        return images;
+      }
+
+      function getAuthenticationUrl(voter) {
+        return (
+          window.location.protocol + 
+          '//' + 
+          window.location.host + 
+          '/election/' + 
+          scope.election.id + 
+          '/public/login-with-code/' + 
+          voter.username
+        );
+      }
+
+      function getPdfFilename(voter) {
+        return (
+          'auth_codes_' + scope.election.id + '_' + voter.username + '.pdf'
+        );
+      }
+
+      function getTitleSubtitleColumn() 
+      {
+        return [
+          {
+            text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_header || ConfigService.organization.orgName,
+            style: 'h1'
+          },
+          {
+            text: scope.election.presentation.extra_options && scope.election.presentation.extra_options.success_screen__ballot_ticket__logo_subheader || ConfigService.organization.orgSubtitle || "",
+            style: 'h2'
+          },
+        ];
+      }
+
+      function formatCode(code)
+      {
+        return _.map(
+          _.range(0, code.length, 4),
+          function (i) {
+            return code.substr(i, 4);
+          }
+        ).join('-');
+      }
+            
+      function generateAuthCodePdf(voter, codeInfo) {
+        var authenticationUrl =  getAuthenticationUrl(voter);
+        scope.pdf.fileName = getPdfFilename(voter);
+        var docDefinition = {
+          info: {
+            title: scope.pdf.fileName,
+          },
+          content: [
+            isEmptyImage(scope.pdf.images, 'logo') ? getTitleSubtitleColumn() : {
+              columns: [
+                isSvgImage(scope.pdf.images, 'logo') ? {
+                  svg: scope.pdf.images['logo'],
+                  fit: [200, 200]
+                } : {
+                  image: 'logo',
+                  fit: [200, 200]
+                },
+                getTitleSubtitleColumn()
+              ]
+            },
+            {
+              text: $i18next('avAdmin.census.generatePDFAuthCodes.header'),
+              style: 'h3'
+            },
+            {
+              columns: [
+                {
+                  text: $i18next('avAdmin.census.generatePDFAuthCodes.username'),
+                  style: 'cell',
+                  width: '40%'
+                },
+                {
+                  text: voter.username,
+                  style: 'cell',
+                  width: '*'
+                }
+              ]
+            },
+            {
+              columns: [
+                {
+                  text: $i18next('avAdmin.census.generatePDFAuthCodes.userId'),
+                  style: 'cell',
+                  width: '40%'
+                },
+                {
+                  text: voter.id,
+                  style: 'cell',
+                  width: '*'
+                }
+              ]
+            },
+            {
+              columns: [
+                {
+                  text: $i18next('avAdmin.census.generatePDFAuthCodes.authCode'),
+                  style: 'cell',
+                  width: '40%'
+                },
+                {
+                  text: codeInfo.code,
+                  style: 'cell',
+                  width: '*'
+                }
+              ]
+            },
+            {
+              columns: [
+                {
+                  text: $i18next('avAdmin.census.generatePDFAuthCodes.codeCreated'),
+                  style: 'cell',
+                  width: '40%'
+                },
+                {
+                  text: moment(codeInfo.created)
+                        .format('YYYY-MM-DD HH:mm:ss'),
+                  style: 'cell',
+                  width: '*'
+                }
+              ]
+            },
+            {
+              columns: [
+                {
+                  text: $i18next('avAdmin.census.generatePDFAuthCodes.authLink'),
+                  width: '40%',
+                  style: 'cell'
+                },
+                {
+                  text: authenticationUrl,
+                  link: authenticationUrl,
+                  width: '*',
+                  style: 'link'
+                }
+              ]
+            },
+            {
+              columns: [
+                {
+                  text: '',
+                  width: '*'
+                },
+                {
+                  text: $i18next('avAdmin.census.generatePDFAuthCodes.qrCode'),
+                  style: 'p',
+                  width: 'auto'
+                },
+                {
+                  text: '',
+                  width: '*'
+                }
+              ]
+            },
+            {
+              columns: [
+                {
+                  text: '',
+                  width: '*'
+                },
+                {
+                  qr: authenticationUrl,
+                  fit: 180
+                },
+                {
+                  text: '',
+                  width: '*'
+                }
+              ]
+            }
+          ],
+          images: scope.pdf.images,
+          styles: {
+            h1: {
+              fontSize: 18,
+              bold: true,
+              margin: [0, 0, 0, 10]
+            },
+            h2: {
+              fontSize: 16,
+              bold: false,
+              margin: [0, 10, 0, 5]
+            },
+            h3: {
+              fontSize: 16,
+              bold: true,
+              margin: [0, 20, 0, 10]
+            },
+            h4: {
+              fontSize: 14,
+              bold: true,
+              margin: [0, 10, 0, 10]
+            },
+            cell: {
+              fontSize: 12,
+              bold: false,
+              margin: 7
+            },
+            link: {
+              fontSize: 12,
+              bold: true,
+              decoration: 'underline',
+              color: '#0000ff',
+              margin: 7
+            },
+            p: {
+              fontSize: 14,
+              bold: false,
+              margin: 15
+            },
+            demo: {
+              fontSize: 16,
+              bold: true,
+              background: '#f0ad4e',
+              margin: 15
+            }
+          }
+        };
+        scope.pdf.value = PdfMakeService.createPdf(docDefinition);
+        scope.pdf.value.download(scope.pdf.fileName);
+      }
+
+      function generatePDFAuthCodes (voter) {
+        $modal
+          .open({
+            templateUrl: "avAdmin/admin-directives/dashboard/confirm-modal.html",
+            controller: "ConfirmModal",
+            size: 'lg',
+            resolve: {
+              dialogName: function () { return "generatePDFAuthCodes"; },
+              data: function () { return ""; },
+            }
+          })
+          .result
+          .then(
+            function confirmed() 
+            {
+              Authmethod.obtainVoterAuthCode(scope.election.id, voter.username)
+                .then(
+                  function onSuccess(response) 
+                  {
+                    scope.msg = "avAdmin.census.generatePDFAuthCodesSuccess";
+                    scope.error = "";
+                    var codeInfo = {
+                      code: formatCode(response.data.code),
+                      created: response.data.created
+                    };
+                    generateAuthCodePdf(voter, codeInfo);
+                  }, 
+                  function onError(response) {
+                    scope.msg = "";
+                    scope.error = response.data;
+                  }
+                );
+            }
+          );
+      }
       
       function sendAuthCodesSelected() {
         var selectedList = scope.selected(scope.shown());
@@ -108,6 +440,7 @@ angular.module('avAdmin')
         return false;
       }
 
+      scope.pdf = {value: null, fileName: '', images: getPdfImages()};
       scope.commands = [
         {
           i18nString: 'addPersonAction',
@@ -357,6 +690,19 @@ angular.module('avAdmin')
           enableFunc: function() {
             return (
               scope.perms.val.indexOf("send-auth") !== -1 ||
+              scope.perms.val.indexOf("edit") !== -1
+            );
+          }
+        },
+        {
+	        text: $i18next("avAdmin.census.generatePDFAuthCodesAction"),
+          iconClass: 'fa fa-file-pdf-o',
+          actionFunc: function(voter) {
+            return generatePDFAuthCodes(voter);
+          },
+          enableFunc: function() {
+            return (
+              scope.perms.val.indexOf("print-codes") !== -1 ||
               scope.perms.val.indexOf("edit") !== -1
             );
           }
