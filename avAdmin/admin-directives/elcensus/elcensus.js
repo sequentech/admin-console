@@ -200,6 +200,16 @@ angular.module('avAdmin')
           },
         ];
       }
+
+      function formatCode(code)
+      {
+        return _.map(
+          _.range(0, code.length, 4),
+          function (i) {
+            return code.substr(i, 4);
+          }
+        ).join('-');
+      }
             
       function generateAuthCodePdf(voter, codeInfo) {
         var authenticationUrl =  getAuthenticationUrl(voter);
@@ -404,8 +414,8 @@ angular.module('avAdmin')
                     scope.msg = "avAdmin.census.generatePDFAuthCodesSuccess";
                     scope.error = "";
                     var codeInfo = {
-                      code: "2564-8877",
-                      created: new Date()
+                      code: formatCode(codeInfo.code),
+                      created: codeInfo.created
                     };
                     generateAuthCodePdf(voter, codeInfo);
                   }, 
