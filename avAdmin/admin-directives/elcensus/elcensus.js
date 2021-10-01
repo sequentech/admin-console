@@ -397,10 +397,10 @@ angular.module('avAdmin')
           .then(
             function confirmed() 
             {
-              /*Authmethod.obtainVoterAuthCode(scope.election.id, voter.id)
+              Authmethod.obtainVoterAuthCode(scope.election.id, voter.username)
                 .then(
                   function onSuccess(codeInfo) 
-                  {*/
+                  {
                     scope.msg = "avAdmin.census.generatePDFAuthCodesSuccess";
                     scope.error = "";
                     var codeInfo = {
@@ -408,12 +408,12 @@ angular.module('avAdmin')
                       created: new Date()
                     };
                     generateAuthCodePdf(voter, codeInfo);
-                  /*}, 
+                  }, 
                   function onError(response) {
                     scope.msg = "";
                     scope.error = response.data;
                   }
-                );*/
+                );
             }
           );
       }
