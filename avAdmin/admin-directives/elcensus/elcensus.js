@@ -413,11 +413,11 @@ angular.module('avAdmin')
                   {
                     scope.msg = "avAdmin.census.generatePDFAuthCodesSuccess";
                     scope.error = "";
-                    var codeInfo = {
+                    var formattedCodeInfo = {
                       code: formatCode(codeInfo.code),
                       created: codeInfo.created
                     };
-                    generateAuthCodePdf(voter, codeInfo);
+                    generateAuthCodePdf(voter, formattedCodeInfo);
                   }, 
                   function onError(response) {
                     scope.msg = "";
