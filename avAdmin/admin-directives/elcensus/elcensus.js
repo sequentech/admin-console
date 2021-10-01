@@ -409,15 +409,15 @@ angular.module('avAdmin')
             {
               Authmethod.obtainVoterAuthCode(scope.election.id, voter.username)
                 .then(
-                  function onSuccess(codeInfo) 
+                  function onSuccess(response) 
                   {
                     scope.msg = "avAdmin.census.generatePDFAuthCodesSuccess";
                     scope.error = "";
-                    var formattedCodeInfo = {
-                      code: formatCode(codeInfo.code),
-                      created: codeInfo.created
+                    var codeInfo = {
+                      code: formatCode(response.data.code),
+                      created: response.data.created
                     };
-                    generateAuthCodePdf(voter, formattedCodeInfo);
+                    generateAuthCodePdf(voter, codeInfo);
                   }, 
                   function onError(response) {
                     scope.msg = "";
