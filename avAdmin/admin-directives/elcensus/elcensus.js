@@ -222,13 +222,7 @@ angular.module('avAdmin')
               ]
             },
             {
-              text: (
-                scope.election.presentation.extra_options && 
-                (
-                  scope.election.presentation.extra_options.success_screen__ballot_ticket__h3 || 
-                  $i18next('avAdmin.census.generatePDFAuthCodes.header')
-                )
-              ),
+              text: $i18next('avAdmin.census.generatePDFAuthCodes.header'),
               style: 'h3'
             },
             {
