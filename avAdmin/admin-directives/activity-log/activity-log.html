@@ -268,7 +268,15 @@
             <div ng-if="obj.action_name === 'user:deactivate'" ng-i18next>
             [i18next:html](obj)avAdmin.activityLog.action.user.deactivate
             </div>
-
+            <div ng-if="obj.action_name === 'user:generate-auth-code'" ng-i18next>
+            [i18next:html]({
+              executer_username: obj.executer_username,
+              executer_id: obj.executer_id,
+              receiver_username: obj.receiver_username,
+              receiver_id: obj.receiver_id,
+              event_id: obj.event_id,
+            })avAdmin.activityLog.action.user.generate-auth-code
+            </div>
             <div ng-if="obj.action_name === 'user:successful-login'" ng-i18next>
             [i18next:html]({
               executer_username: obj.executer_username,
