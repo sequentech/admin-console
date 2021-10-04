@@ -17,10 +17,19 @@
 
 angular.module('avAdmin')
   .controller('ConfirmRemovePeopleModal',
-    function($scope, $modalInstance, election, numSelectedShown, ConfigService) {
+    function(
+      $scope,
+      $modalInstance, 
+      election,
+      comment,
+      numSelectedShown, 
+      ConfigService
+    ) {
       $scope.election = election;
       $scope.numSelectedShown = numSelectedShown;
+      $scope.comment = comment;
       $scope.helpurl = ConfigService.helpUrl;
+
       $scope.ok = function () {
         $modalInstance.close();
       };
