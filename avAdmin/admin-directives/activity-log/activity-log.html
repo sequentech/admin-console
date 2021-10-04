@@ -311,6 +311,14 @@
                 metadata: stringify(obj.metadata)
             })avAdmin.activityLog.action.user.deleted-from-census
             </div>
+            <div ng-if="obj.action_name === 'user:deleted-voted-from-census'" ng-i18next>
+              [i18next:html]({
+                  executer_username: obj.executer_username,
+                  executer_id: obj.executer_id,
+                  event_id: obj.event_id,
+                  metadata: stringify(obj.metadata)
+              })avAdmin.activityLog.action.user.deleted-voted-from-census
+            </div>
             <div ng-if="obj.action_name === 'user:authenticate'" ng-i18next>
             [i18next:html](obj)avAdmin.activityLog.action.user.authenticate
             </div>

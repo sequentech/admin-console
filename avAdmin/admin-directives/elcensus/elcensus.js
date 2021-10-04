@@ -562,6 +562,7 @@ angular.module('avAdmin')
               size: 'lg',
               resolve: {
                 election: function () { return scope.election; },
+                comment: function () { return scope.comment; },
                 numSelectedShown: function() {
                   return scope.numSelected(scope.shown());
                 }
@@ -572,7 +573,16 @@ angular.module('avAdmin')
             return (
               scope.numSelected(scope.shown()) > 0 &&
               (
-                scope.perms.val.indexOf("census-delete") !== -1 ||
+                scope.perms.val.indexOf("census-delete") !== -1 &&
+                (
+                  scope.numSelected(
+                    scope.shown(),
+                    function (voter) {
+                      return voter.voted_children_elections.length > 0;
+                    }
+                  ) === 0 ||
+                  scope.perms.val.indexOf("census-delete-voted") !== -1
+                ) || 
                 scope.perms.val.indexOf("edit") !== -1
               )
             );
@@ -667,15 +677,22 @@ angular.module('avAdmin')
               size: 'lg',
               resolve: {
                 election: function () { return scope.election; },
+                comment: function () { return scope.comment; },
                 numSelectedShown: function() {
                   return scope.numSelected(scope.shown());
                 }
               }
             }).result.then(scope.removeSelected);
           },
-          enableFunc: function() {
+          enableFunc: function(voter) {
             return (
-              scope.perms.val.indexOf("census-delete") !== -1 ||
+              (
+                scope.perms.val.indexOf("census-delete") !== -1 &&
+                (
+                  voter.voted_children_elections.length === 0 ||
+                  scope.perms.val.indexOf("census-delete-voted") !== -1
+                )
+              ) ||
               scope.perms.val.indexOf("edit") !== -1
             );
           }
@@ -838,8 +855,9 @@ angular.module('avAdmin')
           });
         } else {
           var user_ids = _.pluck(selectedList, "id");
+          var comment = (this.comment) ? this.comment : undefined;
           Authmethod
-            .removeUsersIds(scope.election.id, scope.election, user_ids)
+            .removeUsersIds(scope.election.id, scope.election, user_ids, comment)
             .then(
               function(response) {
                 scope.loading = false;
@@ -1068,10 +1086,10 @@ angular.module('avAdmin')
         sendAuthCodesSelected: sendAuthCodesSelected,
         newElection: newElection,
         childrenElectionNames: childrenElectionNames,
-        numSelected: function (l) {
-          return scope.selected(l).length;
+        numSelected: function (l, filter) {
+          return scope.selected(l, filter).length;
         },
-        selected: function (l) {
+        selected: function (l, filter) {
           if (l === undefined) {
             if (scope.election && scope.election.census && scope.election.census.voters) {
               l = scope.election.census.voters;
@@ -1080,7 +1098,7 @@ angular.module('avAdmin')
             }
           }
           return _.filter(l, function (v) {
-            return v.selected === true;
+            return v.selected === true && (!filter || filter(v));
           });
         },
         shown: function(d) {

@@ -179,7 +179,7 @@
               <ul class="dropdown-menu" role="menu">
                 <li
                   ng-repeat="command in row_commands"
-                  ng-class="{'disabled': !command.enableFunc()}"
+                  ng-class="{'disabled': !command.enableFunc([c])}"
                 >
                   <a ng-click="command.actionFunc(c)">
                     <i 
