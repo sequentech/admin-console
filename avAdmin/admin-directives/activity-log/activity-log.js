@@ -24,12 +24,11 @@ angular.module('avAdmin')
       ConfigService,
       NextButtonService,
       $timeout,
-      amMoment,
-      $i18next)
-    {
+      $stateParams
+    ) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
-      scope.electionId = attrs.electionId;
+      scope.electionId = attrs.electionId || ElectionsApi.currentElection && ElectionsApi.currentElection.id;
       scope.election = ElectionsApi.currentElection;
       scope.reloadingActivity = false;
       scope.loading = false;
@@ -40,7 +39,7 @@ angular.module('avAdmin')
       scope.msg = null;
       scope.resizeSensor = null;
       scope.helpurl = ConfigService.helpUrl;
-      scope.filterStr = "";
+      scope.filterStr = $stateParams.q || "";
       scope.filterTimeout = null;
       scope.filterOptions = {};
       scope.stringify = JSON.stringify;

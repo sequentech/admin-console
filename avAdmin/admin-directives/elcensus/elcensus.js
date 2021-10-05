@@ -32,6 +32,7 @@ angular.module('avAdmin')
       MustExtraFieldsService,
       $filter,
       $stateParams,
+      $state,
       $timeout,
       ConfigService,
       CsvLoad,
@@ -610,6 +611,23 @@ angular.module('avAdmin')
       }
 
       scope.row_commands = [
+        {
+	        text: $i18next("avAdmin.census.viewActivityOneAction"),
+          iconClass: 'fa fa-pie-chart',
+          actionFunc: function(voter) {
+            // go to activity-log for this voter
+            $state.go('admin.activityLog', {q: voter.username});
+          },
+          enableFunc: function() {
+            return (
+              scope.election &&
+              scope.election.id && (
+                scope.perms.val.indexOf("event-view-activity") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              )
+            );
+          }
+        },
         {
 	        text: $i18next("avAdmin.census.activateOneAction"),
           iconClass: 'fa fa-user',
