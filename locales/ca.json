@@ -355,6 +355,7 @@
         "massive2": "un votante por línea, mantén el orden de los campos",
         "export": "Exportar",
 
+        "viewActivityOneAction": "Ver registro de actividad",
         "activateOneAction": "Activar",
         "deactivateOneAction": "Desactivar",
         "removeCensusOneAction": "Eliminar",

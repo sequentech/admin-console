@@ -591,6 +591,7 @@
         "generatePDFAuthCodesSuccess": "PDF con código de autenticación para un votante generado correctamente.",
         "sentCodesSuccessfully": "Enviados los códigos de autenticación correctamente",
 
+        "viewActivityOneAction": "Ver registro de actividad",
         "activateOneAction": "Activar",
         "deactivateOneAction": "Desactivar",
         "removeCensusOneAction": "Eliminar",

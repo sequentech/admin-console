@@ -189,6 +189,9 @@ angular
         .state('admin.activityLog', {
           url: '/activity/:id',
           templateUrl: 'avAdmin/admin-controller/admin-controller.html',
+          params: {
+            q: null
+          },
           controller: 'AdminController'
         })
         .state('admin.tally', {

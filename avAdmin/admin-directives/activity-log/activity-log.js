@@ -24,9 +24,8 @@ angular.module('avAdmin')
       ConfigService,
       NextButtonService,
       $timeout,
-      amMoment,
-      $i18next)
-    {
+      $stateParams
+    ) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
       scope.electionId = attrs.electionId;
@@ -40,7 +39,7 @@ angular.module('avAdmin')
       scope.msg = null;
       scope.resizeSensor = null;
       scope.helpurl = ConfigService.helpUrl;
-      scope.filterStr = "";
+      scope.filterStr = $stateParams.q || "";
       scope.filterTimeout = null;
       scope.filterOptions = {};
       scope.stringify = JSON.stringify;
