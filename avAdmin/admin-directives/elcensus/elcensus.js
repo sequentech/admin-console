@@ -579,7 +579,7 @@ angular.module('avAdmin')
                   scope.numSelected(
                     scope.shown(),
                     function (voter) {
-                      return voter[0].voted_children_elections.length > 0;
+                      return voter.voted_children_elections.length > 0;
                     }
                   ) === 0 ||
                   scope.perms.val.indexOf("census-delete-voted") !== -1
@@ -702,12 +702,12 @@ angular.module('avAdmin')
               }
             }).result.then(scope.removeSelected);
           },
-          enableFunc: function(voter) {
+          enableFunc: function(voters) {
             return (
               (
                 scope.perms.val.indexOf("census-delete") !== -1 &&
                 (
-                  voter.voted_children_elections.length === 0 ||
+                  voters[0].voted_children_elections.length === 0 ||
                   scope.perms.val.indexOf("census-delete-voted") !== -1
                 )
               ) ||
