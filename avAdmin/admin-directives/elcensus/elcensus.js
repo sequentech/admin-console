@@ -737,7 +737,7 @@ angular.module('avAdmin')
           },
           enableFunc: function() {
             return (
-              scope.perms.val.indexOf("print-codes") !== -1 ||
+              scope.perms.val.indexOf("generate-auth-code") !== -1 ||
               scope.perms.val.indexOf("edit") !== -1
             );
           }
