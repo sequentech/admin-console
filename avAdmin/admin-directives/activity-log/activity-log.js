@@ -28,7 +28,7 @@ angular.module('avAdmin')
     ) {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) {
-      scope.electionId = attrs.electionId;
+      scope.electionId = attrs.electionId || ElectionsApi.currentElection && ElectionsApi.currentElection.id;
       scope.election = ElectionsApi.currentElection;
       scope.reloadingActivity = false;
       scope.loading = false;
