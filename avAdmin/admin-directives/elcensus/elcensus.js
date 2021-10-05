@@ -579,7 +579,7 @@ angular.module('avAdmin')
                   scope.numSelected(
                     scope.shown(),
                     function (voter) {
-                      return voter.voted_children_elections.length > 0;
+                      return voter[0].voted_children_elections.length > 0;
                     }
                   ) === 0 ||
                   scope.perms.val.indexOf("census-delete-voted") !== -1
