@@ -616,7 +616,10 @@ angular.module('avAdmin')
           iconClass: 'fa fa-pie-chart',
           actionFunc: function(voter) {
             // go to activity-log for this voter
-            $state.go('admin.activityLog', {q: voter.username});
+            $state.go(
+              'admin.activityLog',
+              {id: scope.election.id, q: voter.username}
+            );
           },
           enableFunc: function() {
             return (
