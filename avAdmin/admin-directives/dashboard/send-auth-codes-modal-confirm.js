@@ -160,7 +160,7 @@ angular.module('avAdmin')
         var re1 = /__URL__/;
         var re3 = /__URL2__/;
         var re2 = /__CODE__/;
-        var msg = election.census.config.msg;
+        var msg = election.censusConfigForModal.msg;
 
         return ((msg.match(re1) && msg.match(re2)) || msg.match(re3));
       }

@@ -1,6 +1,6 @@
 /**
  * This file is part of agora-gui-admin.
- * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+ * Copyright (C) 2015-2021  Agora Voting SL <agora@agoravoting.com>
 
  * agora-gui-admin is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -18,8 +18,9 @@
 /**
  * Service to manage the send authentication codes modal steps.
  */
-angular.module('avAdmin')
-  .factory('SendMsg', function($q, $modal, Authmethod, Plugins, ElectionsApi)
+angular
+  .module('avAdmin')
+  .factory('SendMsg', function($q, $modal, Authmethod, Plugins)
   {
     // These is the base data of this service
     var service = {
@@ -87,6 +88,12 @@ angular.module('avAdmin')
     {
         service.skipEditDialogFlag = false;
         service.election = el;
+        if (!service.election.censusConfigModal)
+        {
+          service.election.censusConfigForModal = angular.copy(
+            election.census.config
+          );
+        }
         service.slug_list = get_slugs(el);
     };
 
