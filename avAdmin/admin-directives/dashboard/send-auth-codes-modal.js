@@ -33,6 +33,7 @@ angular
       $scope.selected_auth_method = { ref: SendMsg.selected_auth_method };
       $scope.user_ids = user_ids;
       $scope.steps = SendMsg.steps;
+      $scope.censusConfig = SendMsg.censusConfig;
       $scope.helpurl = ConfigService.helpUrl;
       var slug_text = "";
       for (var i = 0; i < SendMsg.slug_list.length; i++) {

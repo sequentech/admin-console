@@ -88,9 +88,9 @@ angular
     {
         service.skipEditDialogFlag = false;
         service.election = el;
-        if (!el.censusConfigModal)
+        if (!service.censusConfig)
         {
-          service.election.censusConfigForModal = angular.copy(
+          service.censusConfig = angular.copy(
             el.census.config
           );
         }
@@ -262,9 +262,11 @@ angular
         {el: service.election, ids: service.user_ids}))
       {
           // send asynchronously the authentication codes
+          var electionCopy = angular.copy(service.election);
+          electionCopy.census.config = service.censusConfig;
           Authmethod.sendAuthCodes(
-            service.election.id,
-            service.election,
+            electionCopy.id,
+            electionCopy,
             service.user_ids,
             service.selected_auth_method,
             service.extra
