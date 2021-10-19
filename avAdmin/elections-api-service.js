@@ -169,17 +169,13 @@ angular.module('avAdmin')
           el.census.extra_fields = electionAuth.extra_fields;
           el.census.admin_fields = electionAuth.admin_fields;
           el.census.census = electionAuth.census;
-          if(!!electionAuth.num_successful_logins_allowed || 0 === electionAuth.num_successful_logins_allowed) {
+          if(
+            !!electionAuth.num_successful_logins_allowed || 
+            0 === electionAuth.num_successful_logins_allowed
+          ) {
             el.num_successful_logins_allowed = electionAuth.num_successful_logins_allowed;
           }
-
-          var newConf = electionAuth.auth_method_config.config;
-          // not updating msgs if are modified
-          if (el.census.config && el.census.config.msg) {
-              newConf.msg = el.census.config.msg;
-              newConf.subject = el.census.config.subject;
-          }
-          el.census.config = newConf;
+          el.census.config = electionAuth.auth_method_config.config;
 
           // make it easy to get children election' names
           el.childrenElectionNames = {};
