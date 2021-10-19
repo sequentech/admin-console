@@ -88,10 +88,10 @@ angular
     {
         service.skipEditDialogFlag = false;
         service.election = el;
-        if (!service.election.censusConfigModal)
+        if (!el.censusConfigModal)
         {
           service.election.censusConfigForModal = angular.copy(
-            election.census.config
+            el.census.config
           );
         }
         service.slug_list = get_slugs(el);
