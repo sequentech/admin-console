@@ -32,7 +32,9 @@ angular.module('avAdmin')
               ('email' === field.name && field.type === 'email')
             ) {
               newcensus[field.name] = "";
-            }
+            } else if (field.type === 'date') {
+              newcensus[field.name] = field.value;
+            } 
           } else {
             if (field.type === 'int') {
               newcensus[field.name] = parseInt(newcensus[field.name], 10);
