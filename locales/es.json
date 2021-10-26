@@ -150,6 +150,7 @@
       "intro": "Lista de acciones ejecutadas en esta votación.",
       "manage": "Buscar y filtrar el registro de actividad",
       "filter": "Buscar aquí..",
+      "filteredEmptyResults": "Sin resultados para este filtro.",
       "tableColumn": {
         "idColumnHeader": "Id",
         "executerIdColumnHeader": "Id de ejecutar",

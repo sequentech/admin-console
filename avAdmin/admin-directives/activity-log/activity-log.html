@@ -378,6 +378,11 @@
         </tr>
       </tbody>
       <tbody>
+        <tr ng-if="!loading && !reloadingActivity && filterStr.length > 0 && activity.length === 0">
+          <td class="wide text-muted" colspan="6" ng-i18next>
+            avAdmin.activityLog.filteredEmptyResults
+          </td>
+        </tr>
         <tr ng-if="loading">
           <td
             class="wide text-muted"
