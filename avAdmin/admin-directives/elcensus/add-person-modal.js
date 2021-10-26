@@ -36,6 +36,8 @@ angular.module('avAdmin')
           } else {
             if (field.type === 'int') {
               newcensus[field.name] = parseInt(newcensus[field.name], 10);
+            } else if (field.type === 'date') {
+              newcensus[field.name] = field.value;
             }
           }
         }
