@@ -150,6 +150,7 @@
       "intro": "List of actions executed in the election.",
       "manage": "Search and filter the activity log",
       "filter": "Search here..",
+      "filteredEmptyResults": "No results for this filter.",
       "tableColumn": {
         "idColumnHeader": "Id",
         "executerIdColumnHeader": "Executer Id",
