@@ -20,16 +20,17 @@
   <form class="form">
     <div
       class="form-group"
-      ng-repeat="ef in election.census.extra_fields">
+      ng-repeat="field in election.census.extra_fields">
       <input
         type="text"
         class="form-control"
-        ng-if="!ef.autofill && ef.type !== 'date'"
-        placeholder="{{ef.name | htmlToText}}"
-        ng-model="newcensus[ef.name]"/>
+        ng-if="!field.autofill && field.type !== 'date'"
+        placeholder="{{field.name | htmlToText}}"
+        ng-model="newcensus[field.name]"/>
 
-      <div ng-if="ef.type==='date' && !ef.autofill">
-        <div avr-date-field label="ef.name | htmlToText" ng-model="newcensus[ef.name]"></div>
+      <div ng-if="field.type==='date' && !field.autofill">
+        <div avr-date-field label="field.name | htmlToText" ng-model="newcensus[field.name]">
+        </div>
       </div>
     </div>
     <div 
