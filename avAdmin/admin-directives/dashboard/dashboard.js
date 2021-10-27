@@ -475,6 +475,14 @@ angular.module('avAdmin')
           {
             if (scope.resultsElection && scope.resultsElection.id === el.id) 
             {
+              // save the previous results, which will be updated later..
+              var results = scope.resultsElection.results;
+              if (
+                angular.toJson(scope.resultsElection.results) !== "{}" &&
+                angular.toJson(el.results) === '{}'
+              ) {
+                el.results = results;
+              }
               scope.resultsElection = el;
             }
             
