@@ -243,11 +243,12 @@
         avAdmin.dashboard.results
       </span>
 
-      <div class="btn-group">
+      <div class="btn-group" ng-class="{'open': !openDownloadButton}">
         <button
           type="button"
           class="btn btn-xs btn-primary dropdown-toggle"
           data-toggle="dropdown"
+          ng-click="toggleDownloadButton()"
           aria-haspopup="true"
           aria-expanded="false">
           <span ng-i18next>

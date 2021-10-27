@@ -508,6 +508,7 @@ angular.module('avAdmin')
       // performs all the initialization
       function init()
       {
+        scope.openDownloadButton = false;
         scope.id = $stateParams.id;
         if (!scope.id) {
           $state.go("admin.basic");
@@ -996,6 +997,11 @@ angular.module('avAdmin')
           });
       }
 
+      function toggleDownloadButton()
+      {
+        scope.openDownloadButton = !scope.openDownloadButton;
+      }
+
       angular.extend(scope, {
         doAction: doAction,
         doActionConfirm: doActionConfirm,
@@ -1006,7 +1012,8 @@ angular.module('avAdmin')
         unpublishResults: unpublishResults,
         allowTally: allowTally,
         editChildrenParent: editChildrenParent,
-        showResults: showResults
+        showResults: showResults,
+        toggleDownloadButton: toggleDownloadButton
       });
 
       // initialize
