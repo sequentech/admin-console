@@ -58,3 +58,11 @@
 .nav, .pagination, .carousel a { cursor: pointer; }
 /* pointer on ng-click */
 [ng-click], [data-ng-click], [x-ng-click] { cursor: pointer; }
+
+/*
+ * supposedly helps to avoid flickering, see
+ * https://docs.angularjs.org/api/ng/directive/ngCloak
+ */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
