@@ -475,6 +475,14 @@ angular.module('avAdmin')
           {
             if (scope.resultsElection && scope.resultsElection.id === el.id) 
             {
+              // save the previous results, which will be updated later..
+              var results = scope.resultsElection.results;
+              if (
+                angular.toJson(scope.resultsElection.results) !== "{}" &&
+                angular.toJson(el.results) === '{}'
+              ) {
+                el.results = results;
+              }
               scope.resultsElection = el;
             }
             
@@ -508,6 +516,7 @@ angular.module('avAdmin')
       // performs all the initialization
       function init()
       {
+        scope.openDownloadButton = false;
         scope.id = $stateParams.id;
         if (!scope.id) {
           $state.go("admin.basic");
@@ -996,6 +1005,11 @@ angular.module('avAdmin')
           });
       }
 
+      function toggleDownloadButton()
+      {
+        scope.openDownloadButton = !scope.openDownloadButton;
+      }
+
       angular.extend(scope, {
         doAction: doAction,
         doActionConfirm: doActionConfirm,
@@ -1006,7 +1020,8 @@ angular.module('avAdmin')
         unpublishResults: unpublishResults,
         allowTally: allowTally,
         editChildrenParent: editChildrenParent,
-        showResults: showResults
+        showResults: showResults,
+        toggleDownloadButton: toggleDownloadButton
       });
 
       // initialize
