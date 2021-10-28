@@ -297,7 +297,7 @@
         "createRealElection": "Create REAL election",
         "sendAuthCodes": "Enviar autenticación",
         "donow": "pulsa para hacer ahora",
-        "votes": "Votos",
+        "duplicateElection": "Duplicar votació",
         "census": "Censo",
         "questions": "Preguntas",
         "answers": "Respuestas",
@@ -445,7 +445,7 @@
         "reg": { "label": "Registro", "placeholder": "¿Cómo se genera el censo?" },
         "census": {"open": "Registro abierto", "close": "Registro cerrado"},
         "fields": {"label": "Campos extra", "placeholder": "Campos extra del votante"},
-        "censusadd": "Voters added to the census",
+
         "modals": {
           "comment": "Observaciones",
           "csvLoadingHeader": "Uploading CSV to census",
@@ -472,12 +472,26 @@
           "exportAllCensusBody": "Desde aquí puedes descargar la totalidad del censo en un fichero con formato de hoja de cálculo CSV (Comma Separated Values), de manera que puedes abrirlo y procesarlo autónomamente. Dependiendo del tamaño del censo, el proceso de descarga de todo el censo puede tomar un rato. Una vez ha terminado, se te mostrará la posibilidad de descargar el como un fichero. Si tienes algún filtro activo, este filtro también será aplicado al fichero CSV.",
           "confirmexportAllCensusButton": "Confirmar y descargar el censo con un total de __total__ personas"
         },
+
+        "voted": "va votar",
+        "notVoted": "no va votar",
+        "votedColumnHeader": "Va votar?",
+        "childrenVotedColumnHeader": "Va votar a",
+        "activeColumnHeader": "Actiu?",
+
         "actionsDropdown": "Accions",
-        "exportCensusAction": "Exportar todo el censo en CSV..",
-        "removeCensusAction": "Eliminar los __num__ seleccionados..",
-        "sendAuthCodesAction": "Enviar códigos de autenticación a los __num__ seleccionados..",
+
+        "censusadd": "Voters added to the census",
+        "childrenElections": "Allowed children elections",
+        "selectAllShownAction": "Select all people shown",
+        "deselectAllShownAction": "Deselect all people shown",
+        "exportCensusAction": "Exportar tot el cens a CSV..",
+        "removeCensusAction": "Eliminar els __num__ seleccionats..",
+        "sendAuthCodesAction": "Enviar codis d'autenticació als __num__ seleccionats..",
         "idColumnHeader": "Id",
-        "selectedColumnHeader": "Select",
+        "creationDateHeader": "Data de creació",
+        "selectedColumnHeader": "Seleccionar",
+
         "emailOption": "email",
         "passwordOption": "password",
         "codeOption": "code",
