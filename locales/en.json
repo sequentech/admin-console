@@ -171,7 +171,8 @@
           "resend-authcode": "There was a request to <strong>send authentication codes</strong> to <i>__receiver_username__ (__receiver_id__)</i>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
 	        "added-to-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>added to census</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> to <i>__receiver_username__(__receiver_id__)</i> __metadata__",
           "deleted-from-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>deleted from census</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> the user __metadata__",
-          "deleted-voted-from-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>deleted from census</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> the user __metadata__ (<b>who had voted</b>)"
+          "deleted-voted-from-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>deleted from census</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> the user __metadata__ (<b>who had voted</b>)",
+          "reset-voter":  "<i>__executer_username__ (__executer_id__)</i> <strong>reset voter</strong> <i>__receiver_username__ (__receiver_id__)</i> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>. Voter data changed from __before__  to __after__"
         },
         "authevent": {
           "create": "<i>__executer_username__ (__executer_id__)</i> <strong>created</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
