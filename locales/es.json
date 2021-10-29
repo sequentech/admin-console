@@ -466,6 +466,11 @@
             "header": "Generar PDF con código de autenticación del votante",
             "body": "Generar un código de autenticación en PDF para el votante seleccionado. Incluso si el votante no ha rellenado los campos para completar, podrá votar usando este código y el enlace del PDF.",
             "confirmButton": "GENERAR PDF con código de autenticación"
+          },
+          "resetVoterToPreRegistration": {
+            "header": "Resetear votante al estado de pre-registro",
+            "body": "Resetear votante al estado de pre-registro. Esto implica que cualquier campo que fuera rellenado por el votante durante su registro será borrado/reseteado, pero los datos del votante que eran parte del censo de pre-registro no serán alterados. Puede añadir debajo un comentario explicando porqué ejecuta esta acción sobre este votante:",
+            "confirmButton": "RESETEAR VOTANTE al estado de pre-registro"
           }
         }
     },
@@ -590,6 +595,7 @@
         "removedCensusSuccessfully": "Se eliminaron a las personas seleccionadas correctamente",
         "deactivatedCensusSuccessfully": "Se desactivaron las personas seleccionadas correctamente",
         "generatePDFAuthCodesSuccess": "PDF con código de autenticación para un votante generado correctamente.",
+        "resetVoterToPreRegistrationSuccess": "Reseteado el votante al estado de pre-registro correctamente.",
         "sentCodesSuccessfully": "Enviados los códigos de autenticación correctamente",
 
         "viewActivityOneAction": "Ver registro de actividad",
@@ -598,6 +604,7 @@
         "removeCensusOneAction": "Eliminar",
         "sendAuthCodesOneAction": "Enviar código de autenticación",
         "generatePDFAuthCodesAction": "Generar PDF con código de autenticación",
+        "resetVoterToPreRegistration": "Resetear votante al estado de pre-registro",
         "generatePDFAuthCodes": {
           "header": "Sus credenciales de autenticación son:",
           "username": "Nombre de usuario:", 

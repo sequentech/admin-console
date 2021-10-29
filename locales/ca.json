@@ -406,6 +406,11 @@
             "header": "Generar PDF amb codi d'autenticació de l'votant",
             "body": "Generar un codi d'autenticació en PDF per al votant seleccionat. Fins i tot si el votant no ha emplenat els camps per completar, podrà votar usant aquest codi i l'enllaç de el PDF.",
             "confirmButton": "GENERAR PDF amb codi d'autenticació"
+          },
+          "resetVoterToPreRegistration": {
+            "header": "Resetear votante al estado de pre-registro",
+            "body": "Resetear votante al estado de pre-registro. Esto implica que cualquier campo que fuera rellenado por el votante durante su registro será borrado/reseteado, pero los datos del votante que eran parte del censo de pre-registro no serán alterados. Puede añadir debajo un comentario explicando porqué ejecuta esta acción sobre este votante:",
+            "confirmButton": "RESETEAR VOTANTE al estado de pre-registro"
           }
         }
     },
@@ -521,6 +526,8 @@
         "sendAuthCodesOneAction": "Envia codi d'autenticació",
         "generatePDFAuthCodesAction": "Generar PDF amb codi d'autenticació",
         "generatePDFAuthCodesSuccess": "PDF amb codi d'autenticació per a un votant generat correctament.",
+        "resetVoterToPreRegistrationSuccess": "Reseteado el votante al estado de pre-registro correctamente.",
+        "resetVoterToPreRegistration": "Resetear votante al estado de pre-registro",
         "generatePDFAuthCodes": {
           "header": "Les seves credencials d'autenticació són:",
           "username": "Nom d'usuari:", 

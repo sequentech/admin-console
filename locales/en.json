@@ -473,6 +473,11 @@
             "header": "Generate PDF voter authentication code",
             "body": "Generate PDF authentication code for the selected voter. Even if the voter has not filled the fill-in fields, he will be able to vote using these code and the link in the PDF.",
             "confirmButton": "GENERATE PDF voter authentication code"
+          },
+          "resetVoterToPreRegistration": {
+            "header": "Reset voter to pre-registration state",
+            "body": "Reset the voter to pre-registration state. This means that any field that was filled in by the voter during registration will be reset, but the data that was part of the census during pre-registration will not change. You can add below a comment explaining why you are executing this action to this voter:",
+            "confirmButton": "RESET VOTER to pre-registration state"
           }
         }
     },
@@ -598,6 +603,7 @@
         "activatedCensusSuccessfully": "Activated selected people in census successfully",
         "deactivatedCensusSuccessfully": "Deactivated selected people in census successfully",
         "generatePDFAuthCodesSuccess": "Generated PDF authentication code for a voter successfully.",
+        "resetVoterToPreRegistrationSuccess": "Reset voter to pre-registration state succesfully.",
         "sentCodesSuccessfully": "Sent authentication codes successfully",
 
         "viewActivityOneAction": "View activity log",
@@ -606,6 +612,7 @@
         "removeCensusOneAction": "Remove",
         "sendAuthCodesOneAction": "Send auth codes",
         "generatePDFAuthCodesAction": "Generate PDF authentication code",
+        "resetVoterToPreRegistration": "Reset voter to pre-registration state",
         "generatePDFAuthCodes": {
           "header": "Your authentication credentials are:",
           "username": "Username:", 
