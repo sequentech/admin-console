@@ -610,6 +610,43 @@ angular.module('avAdmin')
         voter.selected = true;
       }
 
+      function resetVoterToPreRegistration(voter) {
+        $modal
+          .open({
+            templateUrl: "avAdmin/admin-directives/dashboard/confirm-modal.html",
+            controller: "ConfirmModal",
+            size: 'lg',
+            resolve: {
+              dialogName: function () { return "resetVoterToPreRegistration"; },
+              data: function () { return " "; },
+            }
+          })
+          .result
+          .then(
+            function confirmed(comment) 
+            {
+              Authmethod
+                .resetVotersToPreRegistration(
+                  scope.election.id,
+                  [voter.id],
+                  comment
+                )
+                .then(
+                  function onSuccess(_response) 
+                  {
+                    scope.msg = "avAdmin.census.resetVoterToPreRegistrationSuccess";
+                    scope.error = "";
+                    scope.reloadCensus();
+                  },
+                  function onError(response) {
+                    scope.msg = "";
+                    scope.error = response.data;
+                  }
+                );
+            }
+          );
+      }
+
       scope.row_commands = [
         {
 	        text: $i18next("avAdmin.census.viewActivityOneAction"),
@@ -742,6 +779,22 @@ angular.module('avAdmin')
             return (
               scope.perms.val.indexOf("generate-auth-code") !== -1 ||
               scope.perms.val.indexOf("edit") !== -1
+            );
+          }
+        },
+        {
+          text: $i18next("avAdmin.census.resetVoterToPreRegistration"),
+          iconClass: 'fa fa-file-pdf-o',
+          actionFunc: function(voter) {
+            return resetVoterToPreRegistration(voter);
+          },
+          enableFunc: function(voters) {
+            return (
+              (
+                scope.perms.val.indexOf("reset-voter") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              ) &&
+              voters[0].voted_children_elections.length === 0
             );
           }
         }

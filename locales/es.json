@@ -171,7 +171,8 @@
           "resend-authcode": "Se ejecutó una solicitud para <strong>enviar códigos de autenticación</strong> a <i>__receiver_username__ (__receiver_id__)</i>  en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
 	        "added-to-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>añadió al censo</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> a <i>__receiver_username__(__receiver_id__)</i> __metadata__",
           "deleted-from-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>eliminó del censo</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> al usuario __metadata__",
-          "deleted-voted-from-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>eliminó del censo</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> al usuario __metadata__ (que <b>había votado</b>)"
+          "deleted-voted-from-census":  "<i>__executer_username__ (__executer_id__)</i> <strong>eliminó del censo</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> al usuario __metadata__ (que <b>había votado</b>)",
+          "reset-voter":  "<i>__executer_username__ (__executer_id__)</i> <strong>reseteó al votante</strong> <i>__receiver_username__ (__receiver_id__)</i> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>. Los datos del votante cambiaron de  __before__  a __after__"
         },
         "authevent": {
           "create": "<i>__executer_username__ (__executer_id__)</i> <strong>creó</strong> la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
@@ -466,6 +467,11 @@
             "header": "Generar PDF con código de autenticación del votante",
             "body": "Generar un código de autenticación en PDF para el votante seleccionado. Incluso si el votante no ha rellenado los campos para completar, podrá votar usando este código y el enlace del PDF.",
             "confirmButton": "GENERAR PDF con código de autenticación"
+          },
+          "resetVoterToPreRegistration": {
+            "header": "Resetear votante al estado de pre-registro",
+            "body": "Resetear votante al estado de pre-registro. Esto implica que cualquier campo que fuera rellenado por el votante durante su registro será borrado/reseteado, pero los datos del votante que eran parte del censo de pre-registro no serán alterados. Puede añadir debajo un comentario explicando porqué ejecuta esta acción sobre este votante:",
+            "confirmButton": "RESETEAR VOTANTE al estado de pre-registro"
           }
         }
     },
@@ -590,6 +596,7 @@
         "removedCensusSuccessfully": "Se eliminaron a las personas seleccionadas correctamente",
         "deactivatedCensusSuccessfully": "Se desactivaron las personas seleccionadas correctamente",
         "generatePDFAuthCodesSuccess": "PDF con código de autenticación para un votante generado correctamente.",
+        "resetVoterToPreRegistrationSuccess": "Reseteado el votante al estado de pre-registro correctamente.",
         "sentCodesSuccessfully": "Enviados los códigos de autenticación correctamente",
 
         "viewActivityOneAction": "Ver registro de actividad",
@@ -598,6 +605,7 @@
         "removeCensusOneAction": "Eliminar",
         "sendAuthCodesOneAction": "Enviar código de autenticación",
         "generatePDFAuthCodesAction": "Generar PDF con código de autenticación",
+        "resetVoterToPreRegistration": "Resetear votante al estado de pre-registro",
         "generatePDFAuthCodes": {
           "header": "Sus credenciales de autenticación son:",
           "username": "Nombre de usuario:", 

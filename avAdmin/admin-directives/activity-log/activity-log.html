@@ -319,6 +319,17 @@
                   metadata: stringify(obj.metadata)
               })avAdmin.activityLog.action.user.deleted-voted-from-census
             </div>
+            <div ng-if="obj.action_name === 'user:reset-voter'" ng-i18next>
+              [i18next:html]({
+                  executer_username: obj.executer_username,
+                  executer_id: obj.executer_id,
+                  receiver_username: obj.receiver_username,
+                  receiver_id: obj.receiver_id,
+                  event_id: obj.event_id,
+                  before: stringify(obj.metadata.trimmed_user_before),
+                  after: stringify(obj.metadata.trimmed_user_after),
+              })avAdmin.activityLog.action.user.reset-voter
+            </div>
             <div ng-if="obj.action_name === 'user:authenticate'" ng-i18next>
             [i18next:html](obj)avAdmin.activityLog.action.user.authenticate
             </div>
