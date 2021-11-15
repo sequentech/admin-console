@@ -217,7 +217,7 @@
         <tr ng-if="!loading && filteredVoters().length === 0 && election.census.voters.length > 0">
           <td
             class="wide text-muted"
-            colspan="{{election.census.extra_fields.length + 5}}"
+            colspan="{{election.census.extra_fields.length + 6}}"
             ng-i18next>
             avAdmin.census.filteredEmptyResults
           </td>
@@ -225,7 +225,7 @@
         <tr ng-if="!loading && election.census.voters.length === 0">
           <td
             class="wide text-muted"
-            colspan="{{election.census.extra_fields.length + 5}}"
+            colspan="{{election.census.extra_fields.length + 6}}"
             ng-i18next>
             avAdmin.census.emptyCensus
           </td>
@@ -233,7 +233,7 @@
         <tr ng-if="loading">
           <td
             class="wide text-muted"
-            colspan="{{election.census.extra_fields.length + 5}}">
+            colspan="{{election.census.extra_fields.length + 6}}">
             <i class="fa fa-cog fa-spin fa-sw"></i>
             <span ng-i18next>loading</span>
           </td>
