@@ -879,6 +879,11 @@ angular.module('avAdmin')
         var cs = el.census.voters;
         var csExport = _.map(cs, function (i) {
           var ret = angular.copy(i.metadata);
+          if (i.has_activity) {
+            ret.has_activity = "true";
+          } else {
+            ret.has_activity = "false";
+          }
           if (!el.children_election_info) {
             if (i.voted_children_elections.length === 0) {
               ret.vote = "false";

@@ -621,6 +621,7 @@
         "votedColumnHeader": "Votó?",
         "childrenVotedColumnHeader": "Votó en",
         "activeColumnHeader": "Activo?",
+        "hasActivityColumnHeader": "¿Ejecutó acciones?",
 
         "censusadd": "Votante añadido al censo",
         "actionsDropdown": "Acciones",
@@ -705,8 +706,8 @@
       "filter": "Filtro:",
       "minDate": "Desde:",
       "maxDate": "Hasta:",
-      "noFilter": "No",
-      "noSort": "No",
+      "noFilter": "-",
+      "noSort": "-",
       "sortAsc": "Asc",
       "sortDesc": "Desc",
       "min": "min",

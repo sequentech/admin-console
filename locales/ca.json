@@ -484,6 +484,7 @@
         "votedColumnHeader": "Va votar?",
         "childrenVotedColumnHeader": "Va votar a",
         "activeColumnHeader": "Actiu?",
+        "hasActivityColumnHeader": "Va executar accions?",
 
         "actionsDropdown": "Accions",
 
