@@ -629,6 +629,7 @@
         "votedColumnHeader": "Voted?",
         "childrenVotedColumnHeader": "Voted in",
         "activeColumnHeader": "Active?",
+        "hasActivityColumnHeader": "Executed actions?",
 
         "censusadd": "Voters added to the census",
         "actionsDropdown": "Actions",
