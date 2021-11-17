@@ -920,7 +920,9 @@ angular.module('avAdmin')
           controller: "ExportAllCensusModal",
           size: 'lg',
           resolve: {
-            election: function () { return scope.election; }
+            election: function () { return scope.election; },
+            filterStr: function () { return scope.filterStr; },
+            filterOptions: function () { return scope.filterOptions; }
           }
         }).result.then(exportCensus);
       }
