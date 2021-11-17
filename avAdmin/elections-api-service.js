@@ -546,7 +546,7 @@ angular.module('avAdmin')
             page = 1;
           }
           params.page = page;
-          params.size = size;
+          params.n = size;
           _.extend(params, filterOptions);
           if (filterStr && filterStr.length > 0) {
             params.filter = filterStr;
