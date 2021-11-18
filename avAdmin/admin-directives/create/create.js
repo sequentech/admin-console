@@ -422,11 +422,27 @@ angular.module('avAdmin')
                     postfix: "-title"
                   },
                   {
-                    check: "int-size",
-                    key: "max",
-                    min: "$value.min",
-                    max: "$value.answers.length",
+                    check: "lambda",
+                    validator: function (question) 
+                    {
+                      return (
+                        Number.isInteger(question.max) &&
+                        question.max >= question.min &&
+                        (
+                          question.max <= (
+                            question.answers.length * (
+                              (
+                                question.extra_options &&
+                                question.extra_options.cumulative_number_of_checkboxes
+                              ) ?
+                              question.extra_options.cumulative_number_of_checkboxes : 1
+                            )
+                          )
+                        )
+                      );
+                    },
                     postfix: "-max"
+
                   },
                   {
                     check: "int-size",
