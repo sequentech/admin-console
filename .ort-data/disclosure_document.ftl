@@ -50,12 +50,36 @@ If not present, the text is displayed normally.
 :revdate: ${now?date?iso_local}
 :revnumber: 1.0.0
 
+== Issue Summary
 
+[#-- List all issues and their status --]
+[#if tabularScanRecord.issueSummary.rows?size > 0]
+
+[#assign
+issueErrors = tabularScanRecord
+    .issueSummary
+    .errorCount
+]
+
+[#assign
+issueWarns = tabularScanRecord
+    .issueSummary
+    .warningCount
+]
+
+[#assign
+issueHint = tabularScanRecord
+    .issueSummary
+    .hintCount
+]
+${issueErrors} errors, ${issueWarns} warnings, ${issueHint} hints to resolve
+[#else]
+0 errors, 0 warnings, 0 hints to resolve[/#if]
+
+== Projects Licenses
 [#if projects?has_content]
 [#--Merge the licenses and copyrights of all projects into a single list. The default LicenseView.ALL is used because--]
 [#--projects cannot have a concluded license (compare with the handling of packages below). --]
-
-== Projects Licenses
 
 [#list projects as project]
 
@@ -74,9 +98,13 @@ If not present, the text is displayed normally.
 [#else]
 ** No copyright found.
 [/#list]
-
+** No licenses found.
 [/#list]
+[#else]
+No projects found.
 [/#list]
+[#else]
+No projects found.
 [/#if]
 <<<
 
@@ -124,31 +152,6 @@ No rule violations found.
 [/#if]
 |====
 [/#list]
-
-[/#if]
-
-[#-- List all issues and their status --]
-[#if tabularScanRecord.issueSummary.rows?size > 0]
-== Issue Summary
-
-[#assign
-issueErrors = tabularScanRecord
-    .issueSummary
-    .errorCount
-]
-
-[#assign
-issueWarns = tabularScanRecord
-    .issueSummary
-    .warningCount
-]
-
-[#assign
-issueHint = tabularScanRecord
-    .issueSummary
-    .hintCount
-]
-${issueErrors} errors, ${issueWarns} warnings, ${issueHint} hints to resolve
 
 [/#if]
 
