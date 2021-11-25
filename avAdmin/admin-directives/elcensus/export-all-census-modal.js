@@ -75,15 +75,18 @@ angular.module('avAdmin')
           .catch(function(data) {
             $scope.error = data;
             $scope.downloading = false;
+            $scope.nomore = true;
           });
       };
 
       $scope.ok = function () {
         $scope.error = false;
+        $scope.nomore = false;
         $scope.loadMoreCensus();
       };
 
       $scope.cancel = function () {
+        $scope.nomore = true;
         $modalInstance.dismiss('cancel');
       };
     });
