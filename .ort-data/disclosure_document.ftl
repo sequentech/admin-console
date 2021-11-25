@@ -95,18 +95,10 @@ ${issueErrors} errors, ${issueWarns} warnings, ${issueHint} hints to resolve
 [#assign copyrights = resolvedLicense.getCopyrights(true)]
 [#list copyrights as copyright]
 ** +${copyright}+
-[#else]
-** No copyright found.
 [/#list]
-** No licenses found.
 [/#list]
-[#else]
-No projects found.
 [/#list]
-[#else]
-No projects found.
 [/#if]
-<<<
 
 [#-- List all rule violations and their status --]
 == Rule Violation Summary
@@ -182,8 +174,6 @@ License File: <<${ModelExtensions.toPurl(package.id)} ${licenseFile.path}, ${lic
 [#assign copyrights = licenseFile.getCopyrights()]
 [#list copyrights as copyright]
 ** +${copyright}+
-[#else]
-** No copyright found.
 [/#list]
 
 [/#list]
@@ -219,14 +209,11 @@ The following licenses and copyrights were found in the source code of this pack
 [#assign copyrights = resolvedLicense.getCopyrights(true)]
 [#list copyrights as copyright]
 ** +${copyright}+
-[#else]
-** No copyright found.
 [/#list]
 
 [/#list]
 [/#if]
 [/#list]
-<<<
 
 [#assign
 packagesWithLicenseFiles = 
@@ -300,6 +287,4 @@ ${exceptionText}
 
 [/#if]
 [/#if]
-++++
-<<<
 [/#list]
