@@ -1,6 +1,6 @@
 /**
  * This file is part of agora-gui-admin.
- * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+ * Copyright (C) 2015-2021  Agora Voting SL <agora@agoravoting.com>
 
  * agora-gui-admin is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -15,10 +15,22 @@
  * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-angular.module('avAdmin')
-  .directive('avAdminHead', function(Authmethod, $state, $window, $cookies, $i18next, $modal, OnboardingTourService, ConfigService, AdminProfile, $sce) {
-    // we use it as something similar to a controller here
-    function link(scope, element, attrs) {
+angular
+  .module('avAdmin')
+  .directive(
+    'avAdminHead', 
+    function(
+      Authmethod,
+      $state, 
+      $cookies,
+      OnboardingTourService,
+      ConfigService,
+      AdminProfile, 
+      $sce
+    ) {
+      // we use it as something similar to a controller here
+      function link(scope, element, attrs)
+      {
         var autheventid = Authmethod.getAuthevent();
         var postfix = "_authevent_" + autheventid;
         var admin = $cookies.get("user" + postfix);
@@ -30,33 +42,43 @@ angular.module('avAdmin')
         scope.helpurl = ConfigService.helpUrl;
         scope.signupLink = ConfigService.signupLink;
         scope.OnboardingTourService = OnboardingTourService;
-        scope.helpList = _.map(ConfigService.helpList, function (item, index) {
-          return $sce.trustAsHtml(item);
-        });
+        scope.helpList = _.map(
+          ConfigService.helpList, 
+          function (item, index) {
+            return $sce.trustAsHtml(item);
+          }
+        );
+        scope.showVersionsModal = ShowVersionsModalService;
+        scope.configService = ConfigService;
 
-        scope.showFeatures = function () {
-          if ("admin.login" === $state.current.name ||
-              "admin.login_email" === $state.current.name ||
-              "admin.signup" === $state.current.name) {
+        scope.showFeatures = function () 
+        {
+          if (
+            "admin.login" === $state.current.name ||
+            "admin.login_email" === $state.current.name ||
+            "admin.signup" === $state.current.name
+          ) {
             return false;
           }
           return true;
         };
 
         scope.loginrequired = ('loginrequired' in attrs);
-        if (scope.loginrequired && !scope.admin) {
-            $state.go("admin.logout");
+        if (scope.loginrequired && !scope.admin) 
+        {
+          $state.go("admin.logout");
         }
 
         scope.openProfileEditorModal = AdminProfile.openProfileModal;
         scope.openProfileEditorModal(true);
-    }
+      }
 
-    return {
-      restrict: 'AE',
-      scope: {
-      },
-      link: link,
-      templateUrl: 'avAdmin/admin-head-directive/admin-head-directive.html'
-    };
-  });
+      return {
+        restrict: 'AE',
+        scope: {
+        },
+        link: link,
+        templateUrl: 'avAdmin/admin-head-directive/admin-head-directive.html'
+      };
+    }
+  );
