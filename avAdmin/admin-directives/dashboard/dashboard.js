@@ -327,8 +327,8 @@ angular.module('avAdmin')
       {
         $modal
           .open({
-            templateUrl: "avAdmin/admin-directives/dashboard/confirm-modal.html",
-            controller: "ConfirmModal",
+            templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
+            controller: "AdminConfirmModal",
             size: 'lg',
             resolve: {
               dialogName: function () { return mode; },
@@ -360,8 +360,8 @@ angular.module('avAdmin')
       {
         $modal
           .open({
-            templateUrl: "avAdmin/admin-directives/dashboard/confirm-modal.html",
-            controller: "ConfirmModal",
+            templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
+            controller: "AdminConfirmModal",
             size: 'lg',
             resolve: {
               dialogName: function () { return "unpublishResults"; },
@@ -393,8 +393,8 @@ angular.module('avAdmin')
       {
         $modal
           .open({
-            templateUrl: "avAdmin/admin-directives/dashboard/confirm-modal.html",
-            controller: "ConfirmModal",
+            templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
+            controller: "AdminConfirmModal",
             size: 'lg',
             resolve: {
               dialogName: function () { return "allowTally"; },
@@ -426,8 +426,8 @@ angular.module('avAdmin')
       {
         $modal
           .open({
-            templateUrl: "avAdmin/admin-directives/dashboard/confirm-modal.html",
-            controller: "ConfirmModal",
+            templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
+            controller: "AdminConfirmModal",
             size: 'lg',
             resolve: {
               dialogName: function () { return 'editChildrenParent'; },

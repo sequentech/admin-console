@@ -396,8 +396,8 @@ angular.module('avAdmin')
       function generatePDFAuthCodes (voter) {
         $modal
           .open({
-            templateUrl: "avAdmin/admin-directives/dashboard/confirm-modal.html",
-            controller: "ConfirmModal",
+            templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
+            controller: "AdminConfirmModal",
             size: 'lg',
             resolve: {
               dialogName: function () { return "generatePDFAuthCodes"; },
@@ -613,8 +613,8 @@ angular.module('avAdmin')
       function resetVoterToPreRegistration(voter) {
         $modal
           .open({
-            templateUrl: "avAdmin/admin-directives/dashboard/confirm-modal.html",
-            controller: "ConfirmModal",
+            templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
+            controller: "AdminConfirmModal",
             size: 'lg',
             resolve: {
               dialogName: function () { return "resetVoterToPreRegistration"; },

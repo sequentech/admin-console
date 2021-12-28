@@ -14,6 +14,16 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
+            <li ng-if="!!configService.mainVersion">
+              <a
+                target="_top"
+                tabindex="0"
+                class="config-version"
+                ng-click="showVersionsModal()"
+                ng-i18next="[i18next]({version: configService.mainVersion})avCommon.showVersion"
+              >
+              </a>
+            </li>
             <li ng-if="!admin && !!showFeatures()">
               <a
                 href="{{ technology.overview }}"
