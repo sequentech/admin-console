@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin')
-  .controller('ConfirmModal',
+  .controller('AdminConfirmModal',
     function($scope, $modalInstance, ConfigService, dialogName, data) {
       $scope.helpurl = ConfigService.helpUrl;
       $scope.dialogName = dialogName;
