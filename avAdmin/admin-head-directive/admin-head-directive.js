@@ -24,6 +24,7 @@ angular
       $state, 
       $cookies,
       OnboardingTourService,
+      ShowVersionsModalService,
       ConfigService,
       AdminProfile, 
       $sce
