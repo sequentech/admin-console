@@ -479,6 +479,16 @@
             "header": "Reset voter to pre-registration state",
             "body": "Reset the voter to pre-registration state. This means that any field that was filled in by the voter during registration will be reset, but the data that was part of the census during pre-registration will not change. You can add below a comment explaining why you are executing this action to this voter:",
             "confirmButton": "RESET VOTER to pre-registration state"
+          },
+          "suspend": {
+            "header": "Suspend election voting period",
+            "body": "Suspending an election pauses temporarily the voting period, preventing voters from casting a vote. However, after that you can resume the voting period and this can happen multiple times.",
+            "confirmButton": "SUSPEND the election voting period"
+          },
+          "resume": {
+            "header": "Resume election voting period",
+            "body": "Resuming the election when it has previously been suspend temporarily will allow again voters casting a vote.",
+            "confirmButton": "RESUME the election voting period"
           }
         }
     },

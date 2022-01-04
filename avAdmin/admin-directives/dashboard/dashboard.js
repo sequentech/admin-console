@@ -355,7 +355,65 @@ angular.module('avAdmin')
             }
           );
       }
-      
+
+      function suspendElection() 
+      {
+        $modal
+          .open({
+            templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
+            controller: "AdminConfirmModal",
+            size: 'lg',
+            resolve: {
+              dialogName: function () { return "suspend"; },
+              data: function () { return ""; },
+            }
+          })
+          .result
+          .then(
+            function confirmed() 
+            {
+              Authmethod
+                .suspend(scope.election.id)
+                .then(
+                  function onSuccess() 
+                  {
+                    scope.msg = "avAdmin.dashboard.modals.suspend.success";
+                  }, 
+                  function onError(response) { scope.error = response.data; }
+                );
+            }
+          );
+      }
+
+      function resumeElection() 
+      {
+        $modal
+          .open({
+            templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
+            controller: "AdminConfirmModal",
+            size: 'lg',
+            resolve: {
+              dialogName: function () { return "resume"; },
+              data: function () { return ""; },
+            }
+          })
+          .result
+          .then(
+            function confirmed() 
+            {
+              Authmethod
+                .suspend(scope.election.id)
+                .then(
+                  function onSuccess() 
+                  {
+                    scope.msg = "avAdmin.dashboard.modals.resume.success";
+                  }, 
+                  function onError(response) { scope.error = response.data; }
+                );
+            }
+          );
+      }
+
       function unpublishResults() 
       {
         $modal
@@ -791,6 +849,64 @@ angular.module('avAdmin')
             }
           },
           {
+            i18nString: 'startElection',
+            iconClass: 'fa fa-play',
+            actionFunc: function() { 
+              return doActionConfirm(2); // start
+            },
+            enableFunc: function() { 
+              return (
+                [
+                  'created',
+                  'stopped',
+                  'started',
+                  'resumed'
+                ].indexOf(scope.election.status) !== -1 &&
+                (
+                  scope.perms.val.indexOf("start") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
+              );
+            }
+          },
+          {
+            i18nString: 'suspendElection',
+            iconClass: 'fa fa-pause',
+            actionFunc: function() { 
+              return scope.suspendElection();
+            },
+            enableFunc: function() { 
+              return (
+                [
+                  'resumed',
+                  'started'
+                ].indexOf(scope.election.status) !== -1 &&
+                (
+                  scope.perms.val.indexOf("suspend") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
+              );
+            }
+          },
+          {
+            i18nString: 'resumeElection',
+            iconClass: 'fa fa-redo',
+            actionFunc: function() { 
+              return scope.resumeElection();
+            },
+            enableFunc: function() { 
+              return (
+                [
+                  'paused'
+                ].indexOf(scope.election.status) !== -1 &&
+                (
+                  scope.perms.val.indexOf("resume") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
+              );
+            }
+          },
+          {
             i18nString: 'stopElection',
             iconClass: 'fa fa-stop',
             actionFunc: function() { 
@@ -800,6 +916,7 @@ angular.module('avAdmin')
               return (
                 [
                   'started',
+                  'resumed',
                   'stopped',
                   'doing_tally',
                   'tally_ok',
@@ -1015,6 +1132,8 @@ angular.module('avAdmin')
         doActionConfirm: doActionConfirm,
         sendAuthCodes: sendAuthCodes,
         duplicateElection: duplicateElection,
+        suspendElection: suspendElection,
+        resumeElection: resumeElection,
         changeSocial: changeSocial,
         archiveElection: archiveElection,
         unpublishResults: unpublishResults,
