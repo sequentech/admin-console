@@ -890,7 +890,7 @@ angular.module('avAdmin')
           },
           {
             i18nString: 'resumeElection',
-            iconClass: 'fa fa-redo',
+            iconClass: 'fa fa-repeat',
             actionFunc: function() { 
               return scope.resumeElection();
             },
