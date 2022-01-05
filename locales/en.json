@@ -17,6 +17,8 @@
   "results_pub": "results published",
   "doing_tally": "doing the tally",
   "tally_error": "tally error",
+  "resumed": "Resumed",
+  "suspended": "Suspended",
 
   "app": {
     "name": "Agora Voting"
