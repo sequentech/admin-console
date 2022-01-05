@@ -849,27 +849,6 @@ angular.module('avAdmin')
             }
           },
           {
-            i18nString: 'startElection',
-            iconClass: 'fa fa-play',
-            actionFunc: function() { 
-              return doActionConfirm(2); // start
-            },
-            enableFunc: function() { 
-              return (
-                [
-                  'created',
-                  'stopped',
-                  'started',
-                  'resumed'
-                ].indexOf(scope.election.status) !== -1 &&
-                (
-                  scope.perms.val.indexOf("start") !== -1 ||
-                  scope.perms.val.indexOf("edit") !== -1
-                )
-              );
-            }
-          },
-          {
             i18nString: 'suspendElection',
             iconClass: 'fa fa-pause',
             actionFunc: function() { 
