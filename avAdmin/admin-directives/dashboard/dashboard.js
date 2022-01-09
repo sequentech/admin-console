@@ -402,7 +402,7 @@ angular.module('avAdmin')
             function confirmed() 
             {
               Authmethod
-                .suspend(scope.election.id)
+                .resume(scope.election.id)
                 .then(
                   function onSuccess() 
                   {

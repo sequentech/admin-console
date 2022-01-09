@@ -489,12 +489,14 @@
           "suspend": {
             "header": "Suspend election voting period",
             "body": "Suspending an election pauses temporarily the voting period, preventing voters from casting a vote. However, after that you can resume the voting period and this can happen multiple times.",
-            "confirmButton": "SUSPEND the election voting period"
+            "confirmButton": "SUSPEND the election voting period",
+            "success": "Election voting period suspended successfully."
           },
           "resume": {
             "header": "Resume election voting period",
             "body": "Resuming the election when it has previously been suspend temporarily will allow again voters casting a vote.",
-            "confirmButton": "RESUME the election voting period"
+            "confirmButton": "RESUME the election voting period",
+            "success": "Election voting period resumed successfully."
           }
         }
     },
