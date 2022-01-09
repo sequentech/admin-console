@@ -65,7 +65,7 @@
           <div 
             class="small" 
             ng-i18next ng-if="index != $index">
-            {{ status }}
+            {{ status.name }}
           </div>
           <button 
             ng-click="doActionConfirm($index)" 
@@ -86,7 +86,7 @@
             ng-click="doActionConfirm($index)"
             class="actionbtn btn btn-success"
             ng-disabled="!commands[$index].enableFunc()"
-            ng-if="statuses.indexOf('results_ok') === $index && index === 1 + $index"
+            ng-if="getStatusIndex('results_ok') === $index && index === 1 + $index"
           >
             <div 
               class="small" 
