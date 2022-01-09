@@ -128,6 +128,26 @@
                 child_election: election.childrenElectionNames[obj.metadata.auth_event]
               })avAdmin.activityLog.action.authevent.stop
             </div>
+            <div ng-if="obj.action_name === 'authevent:suspend'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                receiver_username: obj.receiver_username,
+                receiver_id: obj.receiver_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.suspend
+            </div>
+            <div ng-if="obj.action_name === 'authevent:resume'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                receiver_username: obj.receiver_username,
+                receiver_id: obj.receiver_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.resume
+            </div>
             <div ng-if="obj.action_name === 'authevent:tally'" ng-i18next>
               [i18next:html]({
                 executer_username: obj.executer_username,
