@@ -908,7 +908,7 @@ angular.module('avAdmin')
             enableFunc: function() { 
               return (
                 [
-                  'paused'
+                  'suspended'
                 ].indexOf(scope.election.status) !== -1 &&
                 (
                   scope.perms.val.indexOf("resume") !== -1 ||
