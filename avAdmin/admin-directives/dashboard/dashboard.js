@@ -70,7 +70,7 @@ angular.module('avAdmin')
         // if intally was set to false and we are in the tally status, then
         // setup correctly the nextaction button to allow again tallying
         if (
-          scope.index === scope.statuses.indexOf('stopped') + 1 &&
+          scope.index === scope.getStatusIndex('stopped') + 1 &&
           !scope.intally && 
           !scope.nextaction
         ) {
@@ -105,7 +105,7 @@ angular.module('avAdmin')
 
               if (scope.intally) 
               {
-                scope.index = scope.statuses.indexOf('stopped') + 1;
+                scope.index = scope.getStatusIndex('stopped') + 1;
                 scope.nextaction = false;
                 scope.prevStatus = scope.election.status;
                 scope.waiting = true;
@@ -113,7 +113,7 @@ angular.module('avAdmin')
               } 
               else 
               {
-                scope.index = scope.statuses.indexOf(el.status) + 1;
+                scope.index = scope.getStatusIndex(el.status) + 1;
                 scope.nextaction = scope.nextactions[scope.index - 1];
 
                 if (
@@ -592,14 +592,46 @@ angular.module('avAdmin')
         scope.launchedTally = false;
         
         scope.statuses = [
-          'registered',
-          'created',
-          'started',
-          'stopped',
-          'tally_ok',
-          'results_ok',
-          'results_pub'
+          {
+            name: 'registered',
+            statusList: ['registered']
+          },
+          {
+            name: 'created',
+            statusList: ['created']
+          },
+          {
+            name: 'started',
+            statusList: ['started', 'resumed', 'suspended']
+          },
+          {
+            name: 'stopped',
+            statusList: ['stopped']
+          },
+          {
+            name: 'tally_ok',
+            statusList: ['tally_ok']
+          },
+          {
+            name: 'results_ok',
+            statusList: ['results_ok']
+          },
+          {
+            name: 'results_pub',
+            statusList: ['results_pub']
+          }
         ];
+
+        scope.getStatusIndex = function(status) {
+          for (var index = 0; index < scope.statuses.length; index++)
+          {
+            var currentStatus = scope.statuses[index];
+            if (_.contains(currentStatus.statusList, status)) {
+              return index;
+            }
+          }
+          return -1;
+        };
 
         scope.nextactions = [
           'avAdmin.dashboard.create',
@@ -672,7 +704,7 @@ angular.module('avAdmin')
               var command = scope.commands[4];
               scope.launchedTally = true;
               scope.intally = true;
-              scope.index = scope.statuses.indexOf('stopped') + 1;
+              scope.index = scope.getStatusIndex('stopped') + 1;
               scope.nextaction = false;
 
               if (data.mode === 'all') {
@@ -1082,13 +1114,13 @@ angular.module('avAdmin')
             updateDoingTallyFlag(election);
             if (scope.intally) 
             {
-              scope.index = scope.statuses.indexOf('stopped') + 1;
+              scope.index = scope.getStatusIndex('stopped') + 1;
               scope.nextaction = false;
               scope.waiting = true;
               waitElectionChange();
             } else 
             {
-              scope.index = scope.statuses.indexOf(election.status) + 1;
+              scope.index = scope.getStatusIndex(election.status) + 1;
               scope.nextaction = scope.nextactions[scope.index - 1];
             }
 
