@@ -1,6 +1,6 @@
 /**
  * This file is part of agora-gui-admin.
- * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+ * Copyright (C) 2022 Sequent Tech Inc <legal@sequentech.io>
 
  * agora-gui-admin is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -16,18 +16,16 @@
 **/
 
 /* jshint ignore:start */
-describe("dynamic-directive tests", function () {
-
-  beforeEach(function () {
-    var html = '<textarea id="testTextArea" ng-model="testModel" ng-init="testModel = \'whatever\'"></textarea>';
-    browser.get('/#/unit-test-e2e?html=' + encodeURIComponent(html));
-  });
-
-  it("dynamic directive should work with content with angular directives", function () {
-    expect($('#testTextArea').isPresent()).toBe(true);
-    expect($('#testTextArea').getAttribute("ng-model")).toBe("testModel");
-    expect($('#testTextArea').getAttribute("value")).toBe("whatever");
-  });
-
-});
+exports.config = {
+  seleniumAddress: 'http://localhost:4444/wd/hub',
+  framework: 'jasmine',
+  capabilities: {
+    browserName: 'chrome',
+    chromeOptions: {
+      args: [ "--headless", "--disable-gpu", "--window-size=800,600" ]
+    }
+  },
+  specs: [],
+  baseUrl: ''
+}
 /* jshint ignore:end */

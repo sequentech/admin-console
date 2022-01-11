@@ -26,26 +26,41 @@ var AV_CONFIG_VERSION = 'master';
 //this method is used to create a set of inclusive patterns for all subdirectories
 //skipping node_modules, dist, and any .dirs
 //This enables users to create any directory structure they desire.
-var createFolderGlobs = function(fileTypePatterns) {
-  fileTypePatterns = Array.isArray(fileTypePatterns) ? fileTypePatterns : [fileTypePatterns];
-  var ignore = ['node_modules','dist','temp', 'env'];
+var createFolderGlobs = function(fileTypePatterns)
+{
+  fileTypePatterns = Array.isArray(fileTypePatterns) ?
+    fileTypePatterns :
+    [fileTypePatterns];
+  var ignore = [
+    'node_modules',
+    'dist',
+    'temp', 
+    'env'
+  ];
   var fs = require('fs');
-  return fs.readdirSync(process.cwd())
-          .map(function(file){
-            if (ignore.indexOf(file) !== -1 ||
-                file.indexOf('.') === 0 ||
-                !fs.lstatSync(file).isDirectory()) {
-              return null;
-            } else {
-              return fileTypePatterns.map(function(pattern) {
+  return fs
+    .readdirSync(process.cwd())
+    .map(
+      function(file)
+      {
+        if (
+          ignore.indexOf(file) !== -1 ||
+          file.indexOf('.') === 0 ||
+          !fs.lstatSync(file).isDirectory()
+        ) {
+          return null;
+        } else {
+          return fileTypePatterns
+            .map(
+              function(pattern) {
                 return file + '/**/' + pattern;
-              });
-            }
-          })
-          .filter(function(patterns){
-            return patterns;
-          })
-          .concat(fileTypePatterns);
+              }
+            );
+        }
+      }
+    )
+    .filter(function(patterns) { return patterns; })
+    .concat(fileTypePatterns);
 };
 
 module.exports = function (grunt) {
@@ -471,22 +486,25 @@ module.exports = function (grunt) {
     },
     protractor: {
       options: {
-        configFile: "node_modules/protractor/referenceConf.js", // Default config file
-        keepAlive: true, // If false, the grunt process stops when the test fails.
-        noColor: false, // If true, protractor will not use colors in its output.
-        args: {
-        // Arguments passed to the command
-      }
-    },
-    //your_target: {   // Grunt requires at least one target to run so you can simply put 'all: {}' here too.
+        // protractor config file
+        configFile: "test/e2e.conf.js",
+        // If false, the grunt process stops when the test fails
+        keepAlive: false,
+        // If true, protractor will not use colors in its output
+        noColor: false,
+        args: {}
+      },
       all: {
-      options: {
-        configFile: "e2e.conf.js", // Target-specific config file
-        args: {} // Target-specific arguments
-      }
-    },
-  },
-
+        options: {
+          // Target-specific config file
+          configFile: "test/e2e.conf.js",
+          // Target-specific arguments
+          specs: [
+            createFolderGlobs('*-webspec.js')
+          ]
+        }
+      },
+    }
   });
 
   /*
