@@ -498,10 +498,6 @@ module.exports = function (grunt) {
         options: {
           // Target-specific config file
           configFile: "test/e2e.conf.js",
-          // Target-specific arguments
-          specs: [
-            createFolderGlobs('*-webspec.js')
-          ]
         }
       },
     }

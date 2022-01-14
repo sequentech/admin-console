@@ -54,7 +54,8 @@
   },
   "dependencies": {
     "agora-gui-common": "https://github.com/agoravoting/agora-gui-common.git#master",
-    "pdfmake": "^0.1.65"
+    "pdfmake": "^0.1.65",
+    "jasmine-spec-reporter": "^7.0.0"
   },
   "resolutions": {
     "**/protractor": "7.0.0",

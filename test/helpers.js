@@ -16,32 +16,14 @@
 **/
 
 /* jshint ignore:start */
-exports.config = {
-  seleniumAddress: 'http://localhost:4444/wd/hub',
-  framework: 'jasmine',
-  capabilities: {
-    browserName: 'chrome',
-    chromeOptions: {
-      args: [ "--headless", "--disable-gpu", "--window-size=800,600" ]
-    }
-  },
-  specs: [
-    '../avAdmin/**/*-webspec.js'
-  ],
-  jasmineNodeOpts: {
-    // remove ugly protractor dot reporter
-    print: function () {},
-    defaultTimeoutInterval: 10000,
-    includeStackTrace : true
-  },
-  getPageTimeout: 30000,
-  allScriptsTimeout: 20000,
-  onPrepare: function () {
-    var SpecReporter = require('jasmine-spec-reporter').SpecReporter;
-    jasmine
-      .getEnv()
-      .addReporter(new SpecReporter());
-  },
-  baseUrl: 'https://dev.sequentech.io'
-}
+module.exports = {
+  getAvConfig: async function() {
+    return await browser
+      .executeAsyncScript(
+        function(callback) {
+          callback(window.avConfigData);
+        }
+      );
+  }
+};
 /* jshint ignore:end */

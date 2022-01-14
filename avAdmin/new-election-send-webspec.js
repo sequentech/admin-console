@@ -15,17 +15,20 @@
  * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+var helpers = require('../test/helpers');
+
 /* jshint ignore:start */
-describe("NewElectionSend tests", function() {
-  beforeEach(function () {
-    browser.get('/admin/new/');
+describe("Admin Login tests", function() {
+  beforeEach(async function () {
+    await browser.get('/admin/login/');
   });
 
   it(
-    "should load the admin auth site",
-    function () {
-      var config = require('avConfig.js');
-      expect(browser.getTitle()).toEqual(config.avConfigData.webTitle);
+    "Admin Login site should load with avConfig defined page title",
+    async function () {
+      var avConfig = await helpers.getAvConfig();
+      expect(await browser.getTitle())
+        .toEqual(avConfig.webTitle);
     }
   );
 
