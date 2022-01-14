@@ -42,6 +42,6 @@ exports.config = {
       .getEnv()
       .addReporter(new SpecReporter());
   },
-  baseUrl: 'https://dev.sequentech.io'
+  baseUrl: ''
 }
 /* jshint ignore:end */
