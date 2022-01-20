@@ -23,7 +23,8 @@ exports.config = {
     browserName: 'chrome',
     chromeOptions: {
       args: [ "--headless", "--disable-gpu", "--window-size=800,600" ]
-    }
+    },
+    acceptInsecureCerts : true
   },
   specs: [
     '../avAdmin/**/*-webspec.js'
@@ -42,6 +43,6 @@ exports.config = {
       .getEnv()
       .addReporter(new SpecReporter());
   },
-  baseUrl: ''
+  baseUrl: 'https://stable.sequentech.io'
 }
 /* jshint ignore:end */
