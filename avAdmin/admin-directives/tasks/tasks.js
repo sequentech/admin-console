@@ -32,7 +32,7 @@ angular
       return {
         restrict: 'AE',
         link: link,
-        templateUrl: 'avAdmin/tasks/tasks.html'
+        templateUrl: 'avAdmin/admin-directives/tasks/tasks.html'
       };
     }
   );
