@@ -280,6 +280,7 @@
         "successAction": "Success Action",
         "auth": "Authentication",
         "tally": "Tally",
+        "tasks": "Tasks",
         "create": "Create Election",
         "myAccount": "My account",
         "billinfo": "Billing information",
@@ -701,6 +702,17 @@
         "image": "View image",
         "imageModalTitle": "View image",
         "imageModalClose": "Close"
+    },
+    "tasks": {
+      "intro": "Launch background tasks, for example a deployment self-test task.",
+      "manage": "Manage tasks",
+      "actionsDropdown": "Actions",
+      "table": {
+        "id": "Id",
+        "name": "",
+        "status": "",
+        "empty": "You have not launched any task yet. You can click in 'Actions' dropdown menu to launch a self-test task."
+      }
     },
     "auth": {
         "intro": "Authentication is the means used to ensure that an elector is who he sais he is. Here you need to find a balance between security, usability and cost",

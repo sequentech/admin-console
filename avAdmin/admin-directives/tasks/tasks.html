@@ -1,0 +1,95 @@
+<div>
+  <h2 ng-i18next>avAdmin.sidebar.tasks</h2>
+
+  <p class="text-muted">
+    <span ng-i18next>avAdmin.tasks.intro</span>
+  </p>
+
+  <div av-admin-alerts></div>
+
+  <div class="affix-placeholder"></div>
+  <h4
+    class="header-block"
+    av-affix-top-offset="50"
+    affix-placeholder=".affix-placeholder"
+  >
+    <span
+      class="glyphicon glyphicon-chevron-right"
+      aria-hidden="true"
+    ></span>
+    <span ng-i18next>avAdmin.tasks.manage</span>
+
+    <button
+      class="btn btn-default"
+      ng-click="reload()"
+    >
+      <i class="fa fa-refresh"></i>
+    </button>
+
+    <div class="btn-group pull-right">
+      <button
+        type="button"
+        class="btn btn-success dropdown-toggle"
+        data-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <span ng-i18next>avAdmin.tasks.actionsDropdown</span>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li
+          ng-repeat="command in commands"
+          ng-class="{'disabled': !command.enableFunc()}"
+        >
+          <a ng-click="command.actionFunc()">
+            <i class="{{command.iconClass}}"></i>
+            <span ng-i18next>
+              avAdmin.tasks.{{command.i18nString}}
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </h4>
+  <table
+      class="table data-table"
+      infinite-scroll="loadMore()"
+      infinite-scroll-distance="0">
+      <thead>
+        <tr>
+          <th class="small-col text-right">
+            <span ng-i18next>avAdmin.tasks.table.id</span>
+          </th>
+          <th class="text-right">
+            <span ng-i18next>avAdmin.tasks.table.name</span>
+          </th>
+          <th class="small-col text-right">
+            <span ng-i18next>avAdmin.tasks.table.status</span>
+          </th>
+          <th class="text-right" ng-i18next>
+            <span ng-i18next>avAdmin.tasks.table.actionsDropdown</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="!loading && data.length === 0">
+          <td
+            class="wide text-muted"
+            colspan="4"
+            ng-i18next
+          >
+            avAdmin.tasks.table.empty
+          </td>
+        </tr>
+        <tr ng-if="loading">
+          <td
+            class="wide text-muted"
+            colspan="4"
+          >
+            <i class="fa fa-cog fa-spin fa-sw"></i>
+            <span ng-i18next>loading</span>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+</div>

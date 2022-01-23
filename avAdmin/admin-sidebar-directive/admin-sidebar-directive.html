@@ -2,6 +2,14 @@
   <li 
     role="presentation" 
     class="head" 
+    ng-class="{active:state=='admin.tasks'}"
+  >
+    <a ui-sref="admin.tasks()" ng-i18next="avAdmin.sidebar.tasks">
+    </a> 
+  </li>
+  <li 
+    role="presentation" 
+    class="head" 
     ng-class="{active:state=='admin.elections'}"
   >
     <a ui-sref="admin.elections()" ng-i18next="avAdmin.sidebar.elections">
