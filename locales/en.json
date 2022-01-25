@@ -712,6 +712,12 @@
         "name": "",
         "status": "",
         "empty": "You have not launched any task yet. You can click in 'Actions' dropdown menu to launch a self-test task."
+      },
+      "commands": {
+        "launchSelfTestTask": {
+          "actionName": "Launch self-test task..",
+          "successMessage": "Self-test task launched successfully."
+        }
       }
     },
     "auth": {

@@ -634,7 +634,7 @@ angular.module('avAdmin')
                 .then(
                   function onSuccess(_response) 
                   {
-                    scope.msg = "avAdmin.census.resetVoterToPreRegistrationSuccess";
+                    scope.msg = "avAdmin.tasks.resetVoterToPreRegistrationSuccess";
                     scope.error = "";
                     scope.reloadCensus();
                   },

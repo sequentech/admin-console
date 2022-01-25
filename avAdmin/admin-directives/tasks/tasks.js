@@ -22,11 +22,41 @@ angular
     function(Authmethod, ElectionsApi, $modal, ConfigService)
     {
       function link(scope, element, attrs) {
-        scope.commands = [];
+        scope.commands = [
+          {
+            i18nString: 'launchSelfTestTask',
+            iconClass: 'fa fa-check-square-o',
+            actionFunc: function() {
+              return scope.launchSelfTestTask();
+            },
+            enableFunc: function() {
+              return Authmethod.isAdmin();
+            }
+          }
+        ];
+        scope.rowCommands = [];
+        scope.data = [];
         scope.loading = false;
         scope.reload = function () {
         };
         scope.loadMore = function () {
+        };
+        scope.launchSelfTestTask = function () {
+          Authmethod
+            .launchSelfTestTask()
+            .then(
+              function onSuccess(_response) 
+              {
+                scope.msg = "avAdmin.tasks.commands.launchSelfTestTask.successMessage";
+                scope.error = "";
+                scope.reload();
+              },
+              function onError(response) {
+                scope.msg = "";
+                scope.error = response.data;
+                scope.reload();
+              }
+            );
         };
       }
       return {
