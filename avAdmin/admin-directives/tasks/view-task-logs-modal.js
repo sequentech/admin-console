@@ -70,7 +70,7 @@ angular
             return;
           }
           angular.element(document)
-            .find('.modal-body.view-task-logs-modal .logs .end-marker')
+            .find('.modal-body.view-task-logs-modal .logs .end-marker')[0]
             .scrollIntoView({behavior: 'smooth', block: 'end'});
         }
       );
