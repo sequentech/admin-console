@@ -69,9 +69,14 @@ angular
           {
             return;
           }
-          angular.element(document)
-            .find('.modal-body.view-task-logs-modal .logs .end-marker')[0]
-            .scrollIntoView({behavior: 'smooth', block: 'end'});
+          $timeout(
+            function ()
+            {
+              $('.modal-body.view-task-logs-modal .console .end-marker')[0]
+                .scrollIntoView({behavior: 'smooth', block: 'end'});
+            },
+            100
+          );
         }
       );
 
