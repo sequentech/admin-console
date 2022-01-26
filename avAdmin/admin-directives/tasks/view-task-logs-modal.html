@@ -15,7 +15,12 @@
 <div class="modal-body view-task-logs-modal">
   <div av-admin-alerts></div>
   <div accordion>
-    <div accordion-group class="metadata-group" is-open="!collapsed.metadata">
+    <div
+      accordion-group
+      class="metadata-group"
+      is-open="!collapsed.metadata"
+      close-others="false"
+    >
       <div
         accordion-heading
         ng-click="collapsed.metadata = !collapsed.metadata"
