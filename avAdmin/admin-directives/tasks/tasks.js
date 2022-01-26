@@ -197,7 +197,7 @@ angular
           $modal
             .open({
               templateUrl: "avAdmin/admin-directives/tasks/view-tasks-logs-modal.html",
-              controller: "ViewTasksLogsModal",
+              controller: "ViewTaskLogsModal",
               size: 'lg',
               resolve: {
                 task: function () { return task; }
