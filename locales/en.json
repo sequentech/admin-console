@@ -733,7 +733,10 @@
           "actionName": "Cancel task.."
         },
         "viewTaskLogs": {
-          "actionName": "View task logs"
+          "actionName": "View task logs",
+          "metadata": "Metadata",
+          "console": "Console",
+          "close": "Close"
         }
       }
     },

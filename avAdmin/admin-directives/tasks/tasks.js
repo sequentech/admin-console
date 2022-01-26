@@ -132,11 +132,12 @@ angular
                 Authmethod
                   .launchSelfTestTask()
                   .then(
-                    function onSuccess(_response)
+                    function onSuccess(response)
                     {
                       scope.msg = "avAdmin.tasks.commands.launchSelfTestTask.successMessage";
                       scope.error = "";
                       scope.reload();
+                      scope.viewTaskLogs(response.data.task);
                     },
                     function onError(response)
                     {
@@ -191,8 +192,17 @@ angular
         /**
          * Shows the task logs in a modal window
          */
-        scope.viewTaskLogs = function () {
-          console.log("TODO");
+        scope.viewTaskLogs = function (task)
+        {
+          $modal
+            .open({
+              templateUrl: "avAdmin/admin-directives/tasks/view-tasks-logs-modal.html",
+              controller: "ViewTasksLogsModal",
+              size: 'lg',
+              resolve: {
+                task: function () { return task; }
+              }
+            });
         };
       }
       return {

@@ -1,0 +1,71 @@
+<div class="modal-header dialog-header-warning view-task-logs-modal">
+  <h4 class="modal-title">
+    <span class="glyphicon glyphicon-warning-sign">
+    </span>
+    <span class="title" ng-i18next>
+      avAdmin.tasks.viewTasLogs.header
+    </span>
+    <button
+      type="button"
+      class="close pull-right"
+      ng-click="close()"
+    >×</button>
+  </h4>
+</div>
+<div class="modal-body view-task-logs-modal">
+  <div av-admin-alerts></div>
+  <div accordion>
+    <div accordion-group class="metadata-group">
+      <div
+        accordion-heading
+        ng-click="collapsed.metadata = !collapsed.metadata"
+      >
+        <span
+          class="glyphicon"
+          ng-class="{
+            'glyphicon-chevron-down': collapsed.metadata,
+            'glyphicon-chevron-right': !collapsed.metadata}
+          "
+        ></span>
+        <span ng-i18next>
+          avAdmin.tasks.viewTasLogs.metadata
+        </span>
+      </div>
+      <table class="table">
+        <tbody>
+          <tr ng-repeat="(metadataKey, metadataValue) in task.metadata">
+            <td class="metadata-key">{{metadataKey}}</td>
+            <td class="metadata-value">{{metadataValue}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div accordion-group class="console-group">
+      <div
+        accordion-heading
+        ng-click="collapsed.console = !collapsed.console"
+      >
+        <span
+          class="glyphicon"
+          ng-class="{
+            'glyphicon-chevron-down': collapsed.console,
+            'glyphicon-chevron-right': !collapsed.console
+          }"
+        ></span>
+        <span ng-i18next>
+          avAdmin.tasks.viewTasLogs.console
+        </span>
+      </div>
+      <div class="console" ng-bind-html="logs"></div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer view-task-logs-modal">
+  <button
+    class="btn btn-success"
+    ng-click="close()"
+    ng-i18next
+  >
+    avAdmin.tasks.viewTasLogs.close
+  </button>
+</div>
