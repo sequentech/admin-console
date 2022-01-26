@@ -128,7 +128,7 @@ angular
        */
       $scope.init = function ()
       {
-        AnsiUpService.ansi_to_html(
+        $scope.logs = AnsiUpService.ansi_to_html(
           $scope.task.output.stdout
         );
         $scope.runAutoscroll();  

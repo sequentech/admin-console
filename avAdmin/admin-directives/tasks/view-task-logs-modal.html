@@ -14,12 +14,14 @@
 </div>
 <div class="modal-body view-task-logs-modal">
   <div av-admin-alerts></div>
-  <div accordion>
+  <div
+    accordion
+    close-others="false"
+  >
     <div
       accordion-group
       class="metadata-group"
       is-open="!collapsed.metadata"
-      close-others="false"
     >
       <div
         accordion-heading
