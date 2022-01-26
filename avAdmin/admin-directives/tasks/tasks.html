@@ -142,12 +142,11 @@
                 ng-class="{'disabled': !command.enableFunc(item)}"
               >
                 <a ng-click="command.actionFunc(item)">
-                  <i
-                    class="{{command.iconClass}}"
-                    tooltip="{{command.name}}"
-                  >
+                  <i class="{{command.iconClass}}">
                   </i>
-                  <span>{{command.name}}</span>
+                  <span ng-i18next>
+                    avAdmin.tasks.commands.{{command.i18nString}}.actionName
+                  </span>
                 </a>
               </li>
             </ul>

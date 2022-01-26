@@ -19,7 +19,7 @@ angular
   .module('avAdmin')
   .directive(
     'avAdminTasks',
-    function(Authmethod, $modal, $i18next)
+    function(Authmethod, $modal)
     {
       function link(scope, _element, _attrs) {
         scope.commands = [
@@ -36,7 +36,7 @@ angular
         ];
         scope.rowCommands = [
           {
-            name: $i18next('avAdmin.tasks.commands.cancelTask.name'),
+            i18nString: 'cancelTask',
             iconClass: "fa fa-close",
             enableFunc: function (task) {
               return _.contains(
@@ -49,7 +49,7 @@ angular
             }
           },
           {
-            name: $i18next('avAdmin.tasks.commands.viewLogs.name'),
+            i18nString: 'viewTaskLogs',
             iconClass: "fa fa-eye",
             enableFunc: function (_task) {
               return true;

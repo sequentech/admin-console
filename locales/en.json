@@ -728,6 +728,12 @@
         "launchSelfTestTask": {
           "actionName": "Launch self-test task..",
           "successMessage": "Self-test task launched successfully."
+        },
+        "cancelTask": {
+          "actionName": "Cancel task.."
+        },
+        "viewTaskLogs": {
+          "actionName": "View task logs"
         }
       }
     },
