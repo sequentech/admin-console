@@ -103,7 +103,7 @@ angular
             if ($scope.task.output && $scope.task.output.stdout)
             {
               $scope.logs = AnsiUpService.ansi_to_html(
-                $scope.task.output.stdout
+                $scope.task.output.stdout.replaceAll('\n', '<br/>')
               );
             }
             $scope.error = null;
@@ -129,7 +129,7 @@ angular
       $scope.init = function ()
       {
         $scope.logs = AnsiUpService.ansi_to_html(
-          $scope.task.output.stdout
+          $scope.task.output.stdout.replaceAll('\n', '<br/>')
         );
         $scope.runAutoscroll();  
       };
