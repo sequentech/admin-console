@@ -57,7 +57,12 @@ angular
               {
                 scope.loading = false;
                 scope.page += 1;
-                scope.data.concat(request.data.tasks);
+                _.each(
+                  request.data.tasks,
+                  function (task) {
+                    scope.data.push(task);
+                  }
+                );
 
                 if (request.data.end_index === request.data.total_count) {
                   scope.nomore = true;
