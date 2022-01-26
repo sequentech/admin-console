@@ -56,7 +56,13 @@
           avAdmin.tasks.viewTasLogs.console
         </span>
       </div>
-      <div class="console" ng-bind-html="logs"></div>
+      <div class="console">
+        <div
+          class="console-logs"
+          ng-bind-html="logs"
+        ></div>
+        <div class="end-marker"></div>
+      </div>
     </div>
   </div>
 </div>

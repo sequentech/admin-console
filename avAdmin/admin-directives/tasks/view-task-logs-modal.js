@@ -21,7 +21,6 @@ angular
     'ViewTaskLogsModal',
     function(
       $scope,
-      $element,
       $modalInstance,
       $timeout,
       Authmethod,
@@ -70,8 +69,8 @@ angular
           {
             return;
           }
-          $element
-            .find('.logs .end-marker')
+          angular.element(document)
+            .find('.modal-body.view-task-logs-modal .logs .end-marker')
             .scrollIntoView({behavior: 'smooth', block: 'end'});
         }
       );
