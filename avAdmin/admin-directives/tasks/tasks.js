@@ -19,9 +19,9 @@ angular
   .module('avAdmin')
   .directive(
     'avAdminTasks',
-    function(Authmethod, $modal)
+    function(Authmethod, $modal, $i18next)
     {
-      function link(scope, element, attrs) {
+      function link(scope, _element, _attrs) {
         scope.commands = [
           {
             i18nString: 'launchSelfTestTask',
@@ -34,7 +34,31 @@ angular
             }
           }
         ];
-        scope.rowCommands = [];
+        scope.rowCommands = [
+          {
+            name: $i18next('avAdmin.tasks.commands.cancelTask.name'),
+            iconClass: "fa fa-close",
+            enableFunc: function (task) {
+              return _.contains(
+                ['created', 'pending', 'running'],
+                task.status
+              );
+            },
+            actionFunc: function (task) {
+              scope.cancelTask(task);
+            }
+          },
+          {
+            name: $i18next('avAdmin.tasks.commands.viewLogs.name'),
+            iconClass: "fa fa-eye",
+            enableFunc: function (_task) {
+              return true;
+            },
+            actionFunc: function (task) {
+              scope.viewTaskLogs(task);
+            }
+          },
+        ];
         scope.data = [];
         scope.loading = false;
         scope.nomore = false;
@@ -92,37 +116,83 @@ angular
          */
         scope.launchSelfTestTask = function () {
           $modal
-          .open({
-            templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
-            controller: "AdminConfirmModal",
-            size: 'lg',
-            resolve: {
-              dialogName: function () { return "launchSelfTestTask"; },
-              data: function () { return ""; },
-            }
-          })
-          .result
-          .then(
-            function confirmed()
-            {
-              Authmethod
-                .launchSelfTestTask()
-                .then(
-                  function onSuccess(_response)
-                  {
-                    scope.msg = "avAdmin.tasks.commands.launchSelfTestTask.successMessage";
-                    scope.error = "";
-                    scope.reload();
-                  },
-                  function onError(response)
-                  {
-                    scope.msg = "";
-                    scope.error = response.data;
-                    scope.reload();
-                  }
-                );
-            }
-          );
+            .open({
+              templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
+              controller: "AdminConfirmModal",
+              size: 'lg',
+              resolve: {
+                dialogName: function () { return "launchSelfTestTask"; },
+                data: function () { return ""; },
+              }
+            })
+            .result
+            .then(
+              function confirmed()
+              {
+                Authmethod
+                  .launchSelfTestTask()
+                  .then(
+                    function onSuccess(_response)
+                    {
+                      scope.msg = "avAdmin.tasks.commands.launchSelfTestTask.successMessage";
+                      scope.error = "";
+                      scope.reload();
+                    },
+                    function onError(response)
+                    {
+                      scope.msg = "";
+                      scope.error = response.data;
+                      scope.reload();
+                    }
+                  );
+              }
+            );
+        };
+
+        /**
+         * Cancels a created/pending/running task
+         * @param {*} task
+         */
+        scope.cancelTask = function (task) {
+          $modal
+            .open({
+              templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
+              controller: "AdminConfirmModal",
+              size: 'lg',
+              resolve: {
+                dialogName: function () { return "cancelTask"; },
+                data: function () { return ""; },
+              }
+            })
+            .result
+            .then(
+              function confirmed()
+              {
+                Authmethod
+                  .cancelTask(task.id)
+                  .then(
+                    function onSuccess(_response)
+                    {
+                      scope.msg = "avAdmin.tasks.commands.cancelTask.successMessage";
+                      scope.error = "";
+                      scope.reload();
+                    },
+                    function onError(response)
+                    {
+                      scope.msg = "";
+                      scope.error = response.data;
+                      scope.reload();
+                    }
+                  );
+              }
+            );
+        };
+
+        /**
+         * Shows the task logs in a modal window
+         */
+        scope.viewTaskLogs = function () {
+          console.log("TODO");
         };
       }
       return {

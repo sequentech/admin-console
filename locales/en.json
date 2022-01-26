@@ -412,6 +412,11 @@
             "body": "This action will launch in the background the self-test task. This can take time, but you can see the advance.",
             "confirmButton": "Launch self-test task"
           },
+          "cancelTask": {
+            "header": "Cancel task",
+            "body": "This action will cancel the execution of the request task.",
+            "confirmButton": "CANCEL task"
+          },
           "changeSocial": {
             "header": "Edit social networks share buttons",
             "confirmButton": "Confirm and SAVE social networks configuration",
