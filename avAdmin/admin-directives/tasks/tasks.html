@@ -66,6 +66,9 @@
           <span ng-i18next>avAdmin.tasks.table.name</span>
         </th>
         <th class="small-col text-right">
+          <span ng-i18next>avAdmin.tasks.table.lastUpdate</span>
+        </th>
+        <th class="small-col text-right">
           <span ng-i18next>avAdmin.tasks.table.status</span>
         </th>
         <th class="small-col text-right">
@@ -109,10 +112,20 @@
         <td class="text-right col-name">
           {{ item.name }}
         </td>
+        <td class="text-right col-name">
+          <span
+            ng-if="item.metadata.last_update"
+            am-time-ago="item.metadata.last_update"
+            tooltip="{{item.metadata.last_update | amDateFormat:'LLLL'}}"
+            tooltip-placement="right"
+            popover-trigger="mouseenter">
+          </span>
+          <span ng-if="!item.metadata.last_update">-</span>
+        </td>
         <td class="small-col text-right col-status">
           {{ item.status }}
         </td>
-        <td class="small-col text-right">
+        <td class="small-col col-actions text-right">
           <div class="btn-group pull-right">
             <button
               type="button"
