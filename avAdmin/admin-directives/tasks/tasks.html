@@ -59,19 +59,19 @@
   >
     <thead>
       <tr>
-        <th class="small-col text-right">
+        <th class="small-col text-right id">
           <span ng-i18next>avAdmin.tasks.table.id</span>
         </th>
-        <th class="text-right">
+        <th class="text-right name">
           <span ng-i18next>avAdmin.tasks.table.name</span>
         </th>
-        <th class="small-col text-right">
+        <th class="small-col text-right last-update">
           <span ng-i18next>avAdmin.tasks.table.lastUpdate</span>
         </th>
-        <th class="small-col text-right">
+        <th class="small-col text-right status">
           <span ng-i18next>avAdmin.tasks.table.status</span>
         </th>
-        <th class="small-col text-right">
+        <th class="small-col text-right actions">
           <span ng-i18next>avAdmin.tasks.actionsDropdown</span>
         </th>
       </tr>
@@ -106,13 +106,13 @@
     <!-- else, list tasks -->
     <tbody ng-if="!loading && data.length > 0">
       <tr ng-repeat="item in data">
-        <td class="small-col text-right col-id">
+        <td class="small-col text-right id">
           {{ item.id }}
         </td>
-        <td class="text-right col-name">
+        <td class="text-right name">
           {{ item.name }}
         </td>
-        <td class="text-right col-name">
+        <td class="text-right last-update">
           <span
             ng-if="item.metadata.last_update"
             am-time-ago="item.metadata.last_update"
@@ -122,10 +122,10 @@
           </span>
           <span ng-if="!item.metadata.last_update">-</span>
         </td>
-        <td class="small-col text-right col-status">
+        <td class="small-col text-right status">
           {{ item.status }}
         </td>
-        <td class="small-col col-actions text-right">
+        <td class="small-col actions text-right">
           <div class="btn-group pull-right">
             <button
               type="button"

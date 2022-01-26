@@ -715,6 +715,7 @@
       "table": {
         "id": "Id",
         "name": "Name",
+        "lastUpdate": "Last update",
         "status": "Status",
         "empty": "You have not launched any task yet.<br><br>You can click in <strong>'Actions'</strong> dropdown menu to launch a <strong>Self-test task</strong>."
       },
