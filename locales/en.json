@@ -407,6 +407,11 @@
           "publishResultsHeader": "Publish election results",
           "publishResultsBody": "Currently only the election administrators have access to the calculated election results. When you publish the results, these will be made public for everyone to see.",
           "confirmPublishResultsButton": "Confirm and PUBLISH election results",
+          "launchSelfTestTask": {
+            "header": "Launch self-test task",
+            "body": "This action will launch in the background the self-test task. This can take time, but you can see the advance.",
+            "confirmButton": "Launch self-test task"
+          },
           "changeSocial": {
             "header": "Edit social networks share buttons",
             "confirmButton": "Confirm and SAVE social networks configuration",
@@ -709,8 +714,8 @@
       "actionsDropdown": "Actions",
       "table": {
         "id": "Id",
-        "name": "",
-        "status": "",
+        "name": "Name",
+        "status": "Status",
         "empty": "You have not launched any task yet. You can click in 'Actions' dropdown menu to launch a self-test task."
       },
       "commands": {

@@ -19,7 +19,7 @@ angular
   .module('avAdmin')
   .directive(
     'avAdminTasks',
-    function(Authmethod, ElectionsApi, $modal, ConfigService)
+    function(Authmethod, $modal)
     {
       function link(scope, element, attrs) {
         scope.commands = [
@@ -37,26 +37,87 @@ angular
         scope.rowCommands = [];
         scope.data = [];
         scope.loading = false;
-        scope.reload = function () {
-        };
-        scope.loadMore = function () {
-        };
-        scope.launchSelfTestTask = function () {
+        scope.nomore = false;
+        scope.error = null;
+        scope.page = 1;
+
+        /**
+         * Load more elements in infinite scrolling mode
+         */
+        scope.loadMore = function() {
+          if (scope.loading || scope.nomore) {
+            return;
+          }
+          scope.loading = true;
+
           Authmethod
-            .launchSelfTestTask()
+            .getTasks({page: scope.page, n: 20})
             .then(
-              function onSuccess(_response) 
+              function(request)
               {
-                scope.msg = "avAdmin.tasks.commands.launchSelfTestTask.successMessage";
-                scope.error = "";
-                scope.reload();
-              },
-              function onError(response) {
-                scope.msg = "";
-                scope.error = response.data;
-                scope.reload();
+                scope.loading = false;
+                scope.page += 1;
+                scope.data.concat(request.data.tasks);
+
+                if (request.data.end_index === request.data.total_count) {
+                  scope.nomore = true;
+                }
+              }
+            )
+            .catch(
+              function(request) {
+                scope.error = request;
+                scope.loading = false;
               }
             );
+        };
+
+        /**
+         * Reload the data
+         */
+        scope.reload = function() {
+          scope.nomore = false;
+          scope.page = 1;
+          scope.data.splice(0, scope.data.length);
+          scope.loadMore();
+        };
+
+        /**
+         * Launches the self-test after a confirmation modal
+         */
+        scope.launchSelfTestTask = function () {
+          $modal
+          .open({
+            templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
+            controller: "AdminConfirmModal",
+            size: 'lg',
+            resolve: {
+              dialogName: function () { return "launchSelfTestTask"; },
+              data: function () { return ""; },
+            }
+          })
+          .result
+          .then(
+            function confirmed()
+            {
+              Authmethod
+                .launchSelfTestTask()
+                .then(
+                  function onSuccess(_response)
+                  {
+                    scope.msg = "avAdmin.tasks.commands.launchSelfTestTask.successMessage";
+                    scope.error = "";
+                    scope.reload();
+                  },
+                  function onError(response)
+                  {
+                    scope.msg = "";
+                    scope.error = response.data;
+                    scope.reload();
+                  }
+                );
+            }
+          );
         };
       }
       return {
