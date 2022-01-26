@@ -716,7 +716,7 @@
         "id": "Id",
         "name": "Name",
         "status": "Status",
-        "empty": "You have not launched any task yet. You can click in 'Actions' dropdown menu to launch a self-test task."
+        "empty": "You have not launched any task yet.<br><br>You can click in <strong>'Actions'</strong> dropdown menu to launch a <strong>Self-test task</strong>."
       },
       "commands": {
         "launchSelfTestTask": {
