@@ -59,26 +59,34 @@ angular
       );
 
       /**
-       * implements autoscrolling
+       * implements autoscrolling when logs change.
        */
       $scope.$watch(
         'logs',
         function ()
         {
-          if (!$scope.autoscroll)
-          {
-            return;
-          }
-          $timeout(
-            function ()
-            {
-              $('.modal-body.view-task-logs-modal .console .end-marker')[0]
-                .scrollIntoView({behavior: 'smooth', block: 'end'});
-            },
-            100
-          );
+          $scope.runAutoscroll();
         }
       );
+
+      /**
+       * Implements autoscrolling.
+       */
+      $scope.runAutoscroll = function ()
+      {
+        if (!$scope.autoscroll)
+        {
+          return;
+        }
+        $timeout(
+          function ()
+          {
+            $('.modal-body.view-task-logs-modal .console .end-marker')[0]
+              .scrollIntoView({behavior: 'smooth', block: 'end'});
+          },
+          100
+        );
+      };
 
       /**
        * Requests the task from the API and updates it in the modal view.
@@ -114,5 +122,17 @@ angular
       {
         $modalInstance.close();
       };
+
+      /**
+       * Performs initialization.
+       */
+      $scope.init = function ()
+      {
+        AnsiUpService.ansi_to_html(
+          $scope.task.output.stdout
+        );
+        $scope.runAutoscroll();  
+      };
+      $scope.init();
     }
   );
