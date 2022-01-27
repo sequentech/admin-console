@@ -40,18 +40,30 @@ angular
       /**
        * update task every 5 seconds if it's being created/pending/running.
        */
-      $scope.taskUpdateTimeout = $timeout(
-        function () {
-          if (!_.contains(
-            ['created', 'pending', 'running', 'cancelling'],
-            task.status
-          )) {
-            if ($scope.taskUpdateTimeout) {
-              $timeout.cancel($scope.taskUpdateTimeout);
-            }
-          } else {
-            $scope.updateTask();
+      $scope.taskUpdateFunc = function () 
+      {
+        if (!_.contains(
+          ['created', 'pending', 'running', 'cancelling'],
+          task.status
+        )) {
+          if ($scope.taskUpdateTimeout) {
+            $timeout.cancel($scope.taskUpdateTimeout);
           }
+        } else {
+          $scope.taskUpdateTimeout = $timeout(
+            function ()
+            {
+              $scope.taskUpdateFunc();
+            },
+            3000
+          );
+          $scope.updateTask();
+        }
+      };
+      $scope.taskUpdateTimeout = $timeout(
+        function ()
+        {
+          $scope.taskUpdateFunc();
         },
         3000
       );
