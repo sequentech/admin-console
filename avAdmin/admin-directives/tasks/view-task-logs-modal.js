@@ -141,8 +141,23 @@ angular
           http: 0,
           https: 1
         };
-        $scope.logs = consoleTextToHtml($scope.task.output.stdout);
-        $scope.runAutoscroll();  
+        if ($scope.task.output && $scope.task.output.stdout)
+        {
+          $scope.logs = consoleTextToHtml($scope.task.output.stdout);
+        } else {
+          $scope.logs = "";
+        }
+        $scope.runAutoscroll();
+
+        // scroll into the bottom of the modal on start
+        $timeout(
+          function ()
+          {
+            $('.modal-body.view-task-logs-modal .autoscroll-span')[0]
+              .scrollIntoView({behavior: 'smooth', block: 'end'});
+          },
+          100
+        );
       };
       $scope.init();
     }

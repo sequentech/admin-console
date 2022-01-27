@@ -39,6 +39,18 @@
       </div>
       <table class="table">
         <tbody>
+          <tr>
+            <td ng-i18next>avAdmin.tasks.table.id</td>
+            <td>{{task.id}}</td>
+          </tr>
+          <tr>
+            <td ng-i18next>avAdmin.tasks.table.name</td>
+            <td>{{task.name}}</td>
+          </tr>
+          <tr>
+            <td ng-i18next>avAdmin.tasks.table.status</td>
+            <td>{{task.status}}</td>
+          </tr>
           <tr ng-repeat="(metadataKey, metadataValue) in task.metadata">
             <td class="metadata-key">{{metadataKey}}</td>
             <td class="metadata-value">{{metadataValue}}</td>
@@ -65,18 +77,30 @@
         <div
           class="console-logs"
           ng-bind-html="logs"
+          ng-if="logs.length > 0"
         ></div>
+        <div
+          class="console-logs empty"
+          ng-bind-html="logs"
+          ng-if="logs.length == 0"
+          ng-i18next
+        >avAdmin.tasks.commands.viewTaskLogs.emptyLogs</div>
         <div class="end-marker"></div>
+      </div>
+      <form>
+        <div class="checkbox">
+          <label>
+            <input
+              type="checkbox"
+              ng-model="autoscroll"
+            />
+            <span
+              ng-i18next="avAdmin.tasks.commands.viewTaskLogs.autoscrollLabel"
+            ></span>
+          </label>
+        </div>
+      </form>
       </div>
     </div>
   </div>
-</div>
-<div class="modal-footer view-task-logs-modal">
-  <button
-    class="btn btn-success"
-    ng-click="close()"
-    ng-i18next
-  >
-    avAdmin.tasks.commands.viewTaskLogs.close
-  </button>
 </div>

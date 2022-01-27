@@ -737,7 +737,9 @@
           "header": "View task logs and metadata",
           "metadata": "Metadata",
           "console": "Console",
-          "close": "Close"
+          "close": "Close",
+          "emptyLogs": "[Output log empty]",
+          "autoscrollLabel": "Autoscroll to bottom console output"
         }
       }
     },
