@@ -177,6 +177,7 @@ angular
                       scope.msg = "avAdmin.tasks.commands.cancelTask.successMessage";
                       scope.error = "";
                       scope.reload();
+                      scope.viewTaskLogs();
                     },
                     function onError(response)
                     {
