@@ -38,6 +38,32 @@ angular
       }
 
       /**
+       * Parse metadata to ensure it's shown correctly
+       */
+      $scope.parseMetadata = function()
+      {
+        if (!$scope.task.metadata || !angular.isObject($scope.task.metadata))
+        {
+          return;
+        }
+        $scope.task.metadata = _.mapObject(
+          $scope.task.metadata,
+          function (key, value)
+          {
+            if (
+              value === undefined ||
+              value === null ||
+              angular.isNumber(value)
+            ) {
+              return "" + key;
+            } else {
+              return value;
+            }
+          }
+        );
+      };
+
+      /**
        * update task every 5 seconds if it's being created/pending/running.
        */
       $scope.taskUpdateFunc = function () 
@@ -99,6 +125,7 @@ angular
           function success(request)
           {
             Object.assign($scope.task, request.data.tasks[0]);
+            $scope.parseMetadata();
             $scope.updateLogs();
             $scope.error = null;
           },
@@ -157,6 +184,7 @@ angular
         $scope.initRun = true;
         $scope.taskId = task.id;
         $scope.task = task;
+        $scope.parseMetadata();
         $scope.error = null;
         $scope.msg = null;
         $scope.autoscroll = {value: true};
