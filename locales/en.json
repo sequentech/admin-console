@@ -280,6 +280,7 @@
         "successAction": "Success Action",
         "auth": "Authentication",
         "tally": "Tally",
+        "tasks": "Tasks",
         "create": "Create Election",
         "myAccount": "My account",
         "billinfo": "Billing information",
@@ -406,6 +407,16 @@
           "publishResultsHeader": "Publish election results",
           "publishResultsBody": "Currently only the election administrators have access to the calculated election results. When you publish the results, these will be made public for everyone to see.",
           "confirmPublishResultsButton": "Confirm and PUBLISH election results",
+          "launchSelfTestTask": {
+            "header": "Launch self-test task",
+            "body": "This action will launch in the background the self-test task. This can take time, but you can see the advance.",
+            "confirmButton": "Launch self-test task"
+          },
+          "cancelTask": {
+            "header": "Cancel task",
+            "body": "This action will cancel the execution of the request task.",
+            "confirmButton": "CANCEL task"
+          },
           "changeSocial": {
             "header": "Edit social networks share buttons",
             "confirmButton": "Confirm and SAVE social networks configuration",
@@ -701,6 +712,38 @@
         "image": "View image",
         "imageModalTitle": "View image",
         "imageModalClose": "Close"
+    },
+    "tasks": {
+      "intro": "Launch background tasks, for example a deployment self-test task.",
+      "manage": "Manage tasks",
+      "actionsDropdown": "Actions",
+      "table": {
+        "id": "Id",
+        "name": "Name",
+        "lastUpdate": "Last update",
+        "status": "Status",
+        "empty": "You have not launched any task yet.<br><br>You can click in <strong>'Actions'</strong> dropdown menu to launch a <strong>Self-test task</strong>."
+      },
+      "commands": {
+        "launchSelfTestTask": {
+          "actionName": "Launch self-test task..",
+          "successMessage": "Self-test task launched successfully."
+        },
+        "cancelTask": {
+          "actionName": "Cancel task..",
+          "successMessage": "Task cancelling requested."
+        },
+        "viewTaskLogs": {
+          "actionName": "View task logs and metadata",
+          "header": "View task logs and metadata",
+          "metadata": "Metadata",
+          "console": "Console",
+          "close": "Close",
+          "emptyLogs": "[Output log empty]",
+          "autoscrollLabel": "Autoscroll to bottom console output",
+          "errorLogsHeader": "Errors:"
+        }
+      }
     },
     "auth": {
         "intro": "Authentication is the means used to ensure that an elector is who he sais he is. Here you need to find a balance between security, usability and cost",

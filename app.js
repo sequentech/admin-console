@@ -141,6 +141,11 @@ angular
           templateUrl: 'avAdmin/admin-controller/admin-controller.html',
           controller: 'AdminController'
         })
+        .state('admin.tasks', {
+          url: '/tasks',
+          templateUrl: 'avAdmin/admin-controller/admin-controller.html',
+          controller: 'AdminController'
+        })
         .state('admin.elections', {
           url: '/elections',
           templateUrl: 'avAdmin/admin-controller/admin-controller.html',

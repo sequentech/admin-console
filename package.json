@@ -1,6 +1,6 @@
 {
   "name": "agora-gui-admin",
-  "version" : "master",
+  "version": "master",
   "license": "AGPL-3.0-only",
   "author": {
     "name": "Agora Voting SL and others",
@@ -54,19 +54,21 @@
   },
   "dependencies": {
     "agora-gui-common": "https://github.com/agoravoting/agora-gui-common.git#master",
+    "ansi_up": "^5.1.0",
+    "jasmine-spec-reporter": "^7.0.0",
     "pdfmake": "^0.1.65"
   },
   "resolutions": {
+    "**/protractor": "7.0.0",
     "**/underscore": "1.12.1",
     "**/xmlhttprequest-ssl": "1.6.2",
     "**/socket.io": "2.4.0",
-    "**/ws": "7.2.1",
+    "**/ws": "7.4.6",
     "**/lodash": "^4.17.19",
     "**/minimist": "1.2.5",
     "**/yargs-parser": "13.1.2",
     "**/cheerio": "0.12.3",
     "**/cheerio-select": "0.0.3",
-    "**/ws": "7.4.6",
     "**/ansi-regex": "5.0.1",
     "**/nth-check": "2.0.1"
   }

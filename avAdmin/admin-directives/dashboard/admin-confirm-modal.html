@@ -11,7 +11,7 @@
   <div class="modal-body">
     <p>
       <span ng-i18next>
-        avAdmin.dashboard.modals.{{dialogName}}.body
+        [html]avAdmin.dashboard.modals.{{dialogName}}.body
       </span>
       <textarea 
         ng-if="textarea.data"

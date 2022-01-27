@@ -15,13 +15,24 @@
  * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-/* jshint ignore:start */
-describe("NewElectionSend tests", function() {
+var helpers = require('../test/helpers');
 
-  beforeEach(function () {
-    browser.get('/#/admin/new');
+/* jshint ignore:start */
+describe("Admin Login tests", function() {
+  beforeEach(async function () {
+    await browser.get('/admin/login/');
   });
 
+  it(
+    "Admin Login site should load with avConfig defined page title",
+    async function () {
+      var avConfig = await helpers.getAvConfig();
+      expect(await browser.getTitle())
+        .toEqual(avConfig.webTitle);
+    }
+  );
+
+  /*
   it("should open form for add new question", function() {
     var el = element(by.id('newq'));
     expect(element(by.id('nq')).isDisplayed()).toBe(false);
@@ -108,6 +119,7 @@ describe("NewElectionSend tests", function() {
     element(by.css('.glyphicon-save')).click();
     expect(element(by.repeater('e in election.errors')).isPresent()).toBe(false);
   });
+  */
 
 });
 /* jshint ignore:end */

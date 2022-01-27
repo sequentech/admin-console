@@ -43,6 +43,7 @@ angular.module('avAdmin')
           var postfix = "_authevent_" + autheventid;
           var admin = $cookies.get("user" + postfix);
           scope.admin = admin;
+          scope.isAdmin = $cookies.get("isAdmin" + postfix);
           scope.active = attrs.active;
           scope.showImport = !!$window.showOpenFilePicker;
           scope.isEditingDraft = DraftElection.isEditingDraft;

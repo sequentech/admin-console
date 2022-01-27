@@ -1,6 +1,6 @@
 /**
  * This file is part of agora-gui-admin.
- * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+ * Copyright (C) 2022 Sequent Tech Inc <legal@sequentech.io>
 
  * agora-gui-admin is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -18,17 +18,36 @@
 /* jshint ignore:start */
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  frameworks: ['jasmine'],
+  framework: 'jasmine',
+  capabilities: {
+    browserName: 'chrome',
+    chromeOptions: {
+      args: [
+        "--headless",
+        "--disable-gpu",
+        "--window-size=800,600",
+        "--color"
+      ]
+    },
+    acceptInsecureCerts : true
+  },
   specs: [
-    'avAdmin/new-election-send-webspec.js',
-    'avUi/affix-bottom-directive-webspec.js',
-    'avUi/affix-top-directive-webspec.js',
-    'avUi/collapsing-directive-webspec.js',
-    'test/dynamic-directive-webspec.js'
+    '../avAdmin/**/*-webspec.js'
   ],
   jasmineNodeOpts: {
-    defaultTimeoutInterval: 30000
+    // remove ugly protractor dot reporter
+    print: function () {},
+    defaultTimeoutInterval: 10000,
+    includeStackTrace : true
   },
-  baseUrl: 'http://localhost:9001'
+  getPageTimeout: 30000,
+  allScriptsTimeout: 20000,
+  onPrepare: function () {
+    var SpecReporter = require('jasmine-spec-reporter').SpecReporter;
+    jasmine
+      .getEnv()
+      .addReporter(new SpecReporter());
+  },
+  baseUrl: 'https://stable.sequentech.io'
 }
 /* jshint ignore:end */

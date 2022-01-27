@@ -1,0 +1,141 @@
+<div class="modal-header dialog-header-warning view-task-logs-modal">
+  <h4 class="modal-title">
+    <span class="glyphicon glyphicon-warning-sign">
+    </span>
+    <span class="title" ng-i18next>
+      avAdmin.tasks.commands.viewTaskLogs.header
+    </span>
+    <button
+      type="button"
+      class="close pull-right"
+      ng-click="close()"
+    >×</button>
+  </h4>
+</div>
+<div class="modal-body view-task-logs-modal">
+  <div
+    accordion
+    close-others="false"
+  >
+    <div
+      accordion-group
+      class="metadata-group"
+      is-open="isOpen.metadata"
+    >
+      <div
+        accordion-heading
+      >
+        <span
+          class="glyphicon"
+          ng-class="{
+            'glyphicon-chevron-down': isOpen.metadata,
+            'glyphicon-chevron-right': !isOpen.metadata
+          }"
+        ></span>
+        <span ng-i18next>
+          avAdmin.tasks.commands.viewTaskLogs.metadata
+        </span>
+        <div
+          class="pull-right label"
+          ng-class="{
+            'label-info': (
+              task.status === 'created' ||
+              task.status === 'pending'
+            ),
+            'label-warning': (
+              task.status === 'cancelling' ||
+              task.status === 'running'
+            ),
+            'label-danger': (
+              task.status === 'cancelled' ||
+              task.status === 'timedout' ||
+              task.status === 'error'
+            ),
+            'label-success': task.status === 'success'
+          }"
+        >
+          <strong ng-i18next>avAdmin.tasks.table.status</strong>:
+          <span>{{task.status}}</span>
+        </div>
+      </div>
+      <table class="table table-condensed table-hover">
+        <tbody>
+          <tr class="first">
+            <td class="metadata-key" ng-i18next>avAdmin.tasks.table.id</td>
+            <td class="metadata-value">{{task.id}}</td>
+          </tr>
+          <tr>
+            <td class="metadata-key" ng-i18next>avAdmin.tasks.table.name</td>
+            <td class="metadata-value">{{task.name}}</td>
+          </tr>
+          <tr>
+            <td class="metadata-key" ng-i18next>avAdmin.tasks.table.status</td>
+            <td class="metadata-value">{{task.status}}</td>
+          </tr>
+          <tr ng-repeat="(metadataKey, metadataValue) in task.metadata">
+            <td class="metadata-key">{{metadataKey}}</td>
+            <td class="metadata-value">{{metadataValue}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div accordion-group class="console-group" is-open="isOpen.console">
+      <div
+        accordion-heading
+      >
+        <span
+          class="glyphicon"
+          ng-class="{
+            'glyphicon-chevron-down': isOpen.console,
+            'glyphicon-chevron-right': !isOpen.console
+          }"
+        ></span>
+        <span ng-i18next>
+          avAdmin.tasks.commands.viewTaskLogs.console
+        </span>
+      </div>
+      <div class="console tomorrow-night-eighties-ansi-theme">
+        <div
+          class="console-logs"
+          ng-bind-html="logs"
+          ng-if="!!logs && logs.length > 0"
+        ></div>
+        <div
+          class="console-logs empty"
+          ng-if="!logs || logs.length === 0"
+          ng-i18next
+        >avAdmin.tasks.commands.viewTaskLogs.emptyLogs</div>
+        <div
+          class="error-logs-wrapper"
+          ng-if="errorLogs"
+        >
+        <h4 class="error-logs-header" ng-i18next>
+          avAdmin.tasks.commands.viewTaskLogs.errorLogsHeader
+        </h4>
+        <div
+          class="console-errors"
+          ng-if="errorLogs"
+          ng-bind-html="errorLogs"
+        ></div>
+        </div>
+        <div class="end-marker"></div>
+      </div>
+      <form class="autoscroll-form">
+        <div class="autoscroll checkbox">
+          <label>
+            <input
+              ng-disabled="!taskUpdateTimeout"
+              type="checkbox"
+              ng-model="autoscroll.value"
+            />
+            <span
+              class="autoscroll-span"
+              ng-i18next="avAdmin.tasks.commands.viewTaskLogs.autoscrollLabel"
+            ></span>
+          </label>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>

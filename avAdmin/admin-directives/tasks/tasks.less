@@ -1,6 +1,6 @@
 /**
  * This file is part of agora-gui-admin.
- * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+ * Copyright (C) 2022 Sequent Tech Inc <legal@sequentech.io>
 
  * agora-gui-admin is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -15,16 +15,36 @@
  * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-angular.module('avTest')
-  .directive('dynamic', function ($compile) {
-    return {
-      restrict: 'A',
-      replace: true,
-      link: function (scope, ele, attrs) {
-        scope.$watch(attrs.dynamic, function(html) {
-          ele.html(html);
-          $compile(ele.contents())(scope);
-        });
+[av-admin-tasks] {
+  .header-block > .btn-group.pull-right {
+    margin-top: 0;
+  }
+  .data-table {
+    tbody.loading, tbody.empty {
+      td {
+        text-align: center;
+        padding: 40px 20px;
       }
-    };
-  });
+    }
+
+    tbody {
+      tr {
+        transition: all 0.5s ease;
+
+        .actions {
+          .btn-group {
+            opacity: 0;
+          }
+        }
+
+        &:hover {
+          background-color: #f4f4f4;
+
+          .actions .btn-group {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
