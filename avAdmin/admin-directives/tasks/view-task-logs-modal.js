@@ -130,7 +130,7 @@ angular
         $scope.msg = null;
         $scope.autoscroll = true;
         $scope.isOpen = {
-          metadata: true,
+          metadata: false,
           console: true
         };
         $scope.taskUpdateTimeout = null;
