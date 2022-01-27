@@ -36,7 +36,23 @@
         <span ng-i18next>
           avAdmin.tasks.commands.viewTaskLogs.metadata
         </span>
-        <div class="pull-right badge">
+        <div
+          class="pull-right label"
+          ng-class="{
+            'label-info': (
+              task.status === 'created' ||
+              task.status === 'pending'
+            ),
+            'label-warning': task.status === 'running',
+            'label-danger': (
+              task.status === 'cancelling' ||
+              task.status === 'cancelled' ||
+              task.status === 'timedout' ||
+              task.status === 'error'
+            ),
+            'label-success': task.status === 'success'
+          }"
+        >
           <strong ng-i18next>avAdmin.tasks.table.status</strong>:
           <span>{{task.status}}</span>
         </div>
