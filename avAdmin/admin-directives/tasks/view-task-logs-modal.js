@@ -143,13 +143,19 @@ angular
           http: 0,
           https: 1
         };
+        var oldLogs = $scope.logs;
         if ($scope.task.output && $scope.task.output.stdout)
         {
           $scope.logs = consoleTextToHtml($scope.task.output.stdout);
-        } else {
+        }
+        else
+        {
           $scope.logs = "";
         }
-        $scope.runAutoscroll();
+        if (oldLogs !== $scope.logs)
+        {
+          $scope.runAutoscroll();
+        }
 
         // scroll into the bottom of the modal on start
         $timeout(
