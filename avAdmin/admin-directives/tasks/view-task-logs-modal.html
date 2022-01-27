@@ -29,8 +29,8 @@
         <span
           class="glyphicon"
           ng-class="{
-            'glyphicon-chevron-down': isOpen,
-            'glyphicon-chevron-right': !isOpen}
+            'glyphicon-chevron-down': !!collapsed.metadata,
+            'glyphicon-chevron-right': !collapsed.metadata}
           "
         ></span>
         <span ng-i18next>
@@ -53,8 +53,8 @@
         <span
           class="glyphicon"
           ng-class="{
-            'glyphicon-chevron-down': isOpen,
-            'glyphicon-chevron-right': !isOpen
+            'glyphicon-chevron-down': !!collapsed.console,
+            'glyphicon-chevron-right': !collapsed.console
           }"
         ></span>
         <span ng-i18next>
