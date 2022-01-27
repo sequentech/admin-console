@@ -127,19 +127,19 @@
           class="label"
           ng-class="{
             'label-info': (
-              task.status === 'created' ||
-              task.status === 'pending'
+              item.status === 'created' ||
+              item.status === 'pending'
             ),
             'label-warning': (
-              task.status === 'cancelling' ||
-              task.status === 'running'
+              item.status === 'cancelling' ||
+              item.status === 'running'
             ),
             'label-danger': (
-              task.status === 'cancelled' ||
-              task.status === 'timedout' ||
-              task.status === 'error'
+              item.status === 'cancelled' ||
+              item.status === 'timedout' ||
+              item.status === 'error'
             ),
-            'label-success': task.status === 'success'
+            'label-success': item.status === 'success'
           }"
         >{{ item.status }}</div>
         </td>
