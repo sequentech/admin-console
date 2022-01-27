@@ -106,6 +106,19 @@
           ng-if="!logs || logs.length === 0"
           ng-i18next
         >avAdmin.tasks.commands.viewTaskLogs.emptyLogs</div>
+        <div
+          class="error-logs-wrapper"
+          ng-if="errorLogs"
+        >
+        <h4 ng-class>
+          avAdmin.tasks.commands.viewTaskLogs.errorLogsHeader
+        </h4>
+        <div
+          class="console-errors"
+          ng-if="errorLogs"
+          ng-bind-html="errorLogs"
+        ></div>
+        </div>
         <div class="end-marker"></div>
       </div>
       <form class="autoscroll-form">

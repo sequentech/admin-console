@@ -740,7 +740,8 @@
           "console": "Console",
           "close": "Close",
           "emptyLogs": "[Output log empty]",
-          "autoscrollLabel": "Autoscroll to bottom console output"
+          "autoscrollLabel": "Autoscroll to bottom console output",
+          "errorLogsHeader": "Errors:"
         }
       }
     },

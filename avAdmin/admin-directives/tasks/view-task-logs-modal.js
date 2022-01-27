@@ -99,11 +99,7 @@ angular
           function success(request)
           {
             Object.assign($scope.task, request.data.tasks[0]);
-            if ($scope.task.output && $scope.task.output.stdout)
-            {
-              $scope.logs = consoleTextToHtml($scope.task.output.stdout);
-              $scope.runAutoscroll();
-            }
+            $scope.updateLogs();
             $scope.error = null;
           },
           function error(request)
@@ -122,10 +118,43 @@ angular
       };
 
       /**
+       * Triggers an update of logs, error logs, and trigger autoscrolling in
+       * case it's activated.
+       */
+      $scope.updateLogs = function ()
+      {
+        var oldLogs = $scope.logs;
+        var oldErrorLogs = $scope.errorLogs;
+        if ($scope.task.output && $scope.task.output.stdout)
+        {
+          $scope.logs = consoleTextToHtml($scope.task.output.stdout);
+        }
+        else
+        {
+          $scope.logs = "";
+        }
+        if ($scope.task.output && $scope.task.output.error)
+        {
+          $scope.error = consoleTextToHtml($scope.task.output.error);
+        }
+
+        if (oldLogs !== $scope.logs || oldErrorLogs !== $scope.errorLogs)
+        {
+          $scope.runAutoscroll();
+        }
+      };
+
+      /**
        * Performs initialization.
        */
       $scope.init = function ()
       {
+        // ensure to run init only once
+        if ($scope.initRun)
+        {
+          return;
+        }
+        $scope.initRun = true;
         $scope.taskId = task.id;
         $scope.task = task;
         $scope.error = null;
@@ -137,25 +166,14 @@ angular
         };
         $scope.taskUpdateTimeout = null;
         $scope.logs = '';
+        $scope.errorLogs = '';
         $scope.ansiUp = new AnsiUpService();
         $scope.ansiUp.use_classes = true;
         $scope.url_whitelist = {
           http: 0,
           https: 1
         };
-        var oldLogs = $scope.logs;
-        if ($scope.task.output && $scope.task.output.stdout)
-        {
-          $scope.logs = consoleTextToHtml($scope.task.output.stdout);
-        }
-        else
-        {
-          $scope.logs = "";
-        }
-        if (oldLogs !== $scope.logs)
-        {
-          $scope.runAutoscroll();
-        }
+        $scope.updateLogs();
 
         // scroll into the bottom of the modal on start
         $timeout(
@@ -167,6 +185,8 @@ angular
           300
         );
       };
+
+      // Execute init function
       $scope.init();
     }
   );
