@@ -53,18 +53,7 @@ angular
             $scope.updateTask();
           }
         },
-        5000
-      );
-
-      /**
-       * implements autoscrolling when logs change.
-       */
-      $scope.$watch(
-        'logs',
-        function ()
-        {
-          $scope.runAutoscroll();
-        }
+        3000
       );
 
       /**
@@ -80,8 +69,7 @@ angular
           function ()
           {
             $('.modal-body.view-task-logs-modal .console .end-marker')[0]
-              .scrollIntoView({behavior: 'smooth', block: 'end'});
-            $scope.runAutoscroll();
+              .scrollIntoView({block: 'start'});
           },
           100
         );
@@ -102,6 +90,7 @@ angular
             if ($scope.task.output && $scope.task.output.stdout)
             {
               $scope.logs = consoleTextToHtml($scope.task.output.stdout);
+              $scope.runAutoscroll();
             }
             $scope.error = null;
           },
