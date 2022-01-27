@@ -25,13 +25,12 @@
     >
       <div
         accordion-heading
-        ng-click="collapsed.metadata = !collapsed.metadata"
       >
         <span
           class="glyphicon"
           ng-class="{
-            'glyphicon-chevron-down': collapsed.metadata,
-            'glyphicon-chevron-right': !collapsed.metadata}
+            'glyphicon-chevron-down': isOpen,
+            'glyphicon-chevron-right': !isOpen}
           "
         ></span>
         <span ng-i18next>
@@ -50,13 +49,12 @@
     <div accordion-group class="console-group" is-open="!collapsed.console">
       <div
         accordion-heading
-        ng-click="collapsed.console = !collapsed.console"
       >
         <span
           class="glyphicon"
           ng-class="{
-            'glyphicon-chevron-down': collapsed.console,
-            'glyphicon-chevron-right': !collapsed.console
+            'glyphicon-chevron-down': isOpen,
+            'glyphicon-chevron-right': !isOpen
           }"
         ></span>
         <span ng-i18next>
