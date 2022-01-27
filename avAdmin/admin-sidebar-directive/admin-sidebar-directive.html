@@ -3,6 +3,7 @@
     role="presentation" 
     class="head" 
     ng-class="{active:state=='admin.tasks'}"
+    ng-if="isAdmin"
   >
     <a ui-sref="admin.tasks()" ng-i18next="avAdmin.sidebar.tasks">
     </a> 
