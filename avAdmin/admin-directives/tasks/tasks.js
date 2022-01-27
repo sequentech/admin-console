@@ -202,7 +202,16 @@ angular
               resolve: {
                 task: function () { return task; }
               }
-            });
+            })
+            .result
+            .then(
+              function confirmed()
+              {
+                scope.msg = "";
+                scope.error = "";
+                scope.reload();
+              }
+            );
         };
       }
       return {
