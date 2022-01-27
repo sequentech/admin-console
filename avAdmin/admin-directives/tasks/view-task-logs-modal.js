@@ -154,9 +154,9 @@ angular
           function ()
           {
             $('.modal-body.view-task-logs-modal .autoscroll-span')[0]
-              .scrollIntoView({behavior: 'smooth', block: 'end'});
+              .scrollIntoView({behavior: 'smooth', block: 'start'});
           },
-          100
+          300
         );
       };
       $scope.init();
