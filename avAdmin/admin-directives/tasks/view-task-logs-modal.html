@@ -74,7 +74,14 @@
           </tr>
           <tr ng-repeat="(metadataKey, metadataValue) in task.metadata">
             <td class="metadata-key">{{metadataKey}}</td>
-            <td class="metadata-value">{{String(metadataValue)}}</td>
+            <td
+              ng-if="metadataValue"
+              class="metadata-value"
+            >{{metadataValue}}</td>
+            <td
+              ng-if="!metadataValue"
+              class="metadata-value"
+            >-</td>
           </tr>
         </tbody>
       </table>
