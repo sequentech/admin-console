@@ -27,17 +27,15 @@ angular
       AnsiUpService,
       task
     ) {
-      $scope.taskId = task.id;
-      $scope.task = task;
-      $scope.error = null;
-      $scope.msg = null;
-      $scope.autoscroll = true;
-      $scope.collapsed = {
-        metadata: false,
-        console: false
-      };
-      $scope.taskUpdateTimeout = null;
-      $scope.logs = '';
+      /**
+       * Formats console text into HTML using AnsiUp library
+       */
+      function consoleTextToHtml(consoleText)
+      {
+        return $scope.ansiUp.ansi_to_html(
+          consoleText
+        ).replaceAll('\n', '<br/>');
+      }
 
       /**
        * update task every 5 seconds if it's being created/pending/running.
@@ -102,9 +100,7 @@ angular
             Object.assign($scope.task, request.data.tasks[0]);
             if ($scope.task.output && $scope.task.output.stdout)
             {
-              $scope.logs = AnsiUpService.ansi_to_html(
-                $scope.task.output.stdout
-              ).replaceAll('\n', '<br/>');
+              $scope.logs = consoleTextToHtml($scope.task.output.stdout);
             }
             $scope.error = null;
           },
@@ -128,9 +124,24 @@ angular
        */
       $scope.init = function ()
       {
-        $scope.logs = AnsiUpService.ansi_to_html(
-          $scope.task.output.stdout
-        ).replaceAll('\n', '<br/>');
+        $scope.taskId = task.id;
+        $scope.task = task;
+        $scope.error = null;
+        $scope.msg = null;
+        $scope.autoscroll = true;
+        $scope.collapsed = {
+          metadata: false,
+          console: false
+        };
+        $scope.taskUpdateTimeout = null;
+        $scope.logs = '';
+        $scope.ansiUp = new AnsiUpService();
+        $scope.ansiUp.use_classes = true;
+        $scope.url_whitelist = {
+          http: 0,
+          https: 1
+        };
+        $scope.logs = consoleTextToHtml($scope.task.output.stdout);
         $scope.runAutoscroll();  
       };
       $scope.init();

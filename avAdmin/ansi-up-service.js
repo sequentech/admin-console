@@ -26,7 +26,7 @@ angular
     function()
     {
       /* jshint ignore:start */
-      return new AnsiUp;
+      return AnsiUp;
       /* jshint ignore:end */
     }
   );
