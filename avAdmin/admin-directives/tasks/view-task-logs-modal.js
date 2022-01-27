@@ -93,7 +93,7 @@ angular
       {
         $scope.error = null;
         Authmethod
-        .getTask(task)
+        .getTask($scope.task.id)
         .then(
           function success(request)
           {

@@ -77,12 +77,11 @@
         <div
           class="console-logs"
           ng-bind-html="logs"
-          ng-if="logs.length > 0"
+          ng-if="!!logs && logs.length > 0"
         ></div>
         <div
           class="console-logs empty"
-          ng-bind-html="logs"
-          ng-if="logs.length == 0"
+          ng-if="!logs || logs.length === 0"
           ng-i18next
         >avAdmin.tasks.commands.viewTaskLogs.emptyLogs</div>
         <div class="end-marker"></div>
