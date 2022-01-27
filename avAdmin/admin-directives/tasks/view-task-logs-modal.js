@@ -43,7 +43,7 @@ angular
       $scope.taskUpdateTimeout = $timeout(
         function () {
           if (!_.contains(
-            ['created', 'pending', 'running'],
+            ['created', 'pending', 'running', 'cancelling'],
             task.status
           )) {
             if ($scope.taskUpdateTimeout) {

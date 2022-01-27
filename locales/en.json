@@ -730,7 +730,8 @@
           "successMessage": "Self-test task launched successfully."
         },
         "cancelTask": {
-          "actionName": "Cancel task.."
+          "actionName": "Cancel task..",
+          "successMessage": "Task cancelling requested."
         },
         "viewTaskLogs": {
           "actionName": "View task logs and metadata",

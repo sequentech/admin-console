@@ -43,9 +43,11 @@
               task.status === 'created' ||
               task.status === 'pending'
             ),
-            'label-warning': task.status === 'running',
-            'label-danger': (
+            'label-warning': (
               task.status === 'cancelling' ||
+              task.status === 'running'
+            ),
+            'label-danger': (
               task.status === 'cancelled' ||
               task.status === 'timedout' ||
               task.status === 'error'
