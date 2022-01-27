@@ -48,14 +48,14 @@ angular
         }
         $scope.task.metadata = _.mapObject(
           $scope.task.metadata,
-          function (key, value)
+          function (value, _key)
           {
             if (
               value === undefined ||
               value === null ||
               angular.isNumber(value)
             ) {
-              return "" + key;
+              return "" + value;
             } else {
               return value;
             }
