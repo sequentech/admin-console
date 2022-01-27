@@ -172,12 +172,12 @@ angular
                 Authmethod
                   .cancelTask(task.id)
                   .then(
-                    function onSuccess(_response)
+                    function onSuccess(response)
                     {
                       scope.msg = "avAdmin.tasks.commands.cancelTask.successMessage";
                       scope.error = "";
                       scope.reload();
-                      scope.viewTaskLogs(task);
+                      scope.viewTaskLogs(response.data.task);
                     },
                     function onError(response)
                     {
