@@ -81,6 +81,7 @@ angular
           {
             $('.modal-body.view-task-logs-modal .console .end-marker')[0]
               .scrollIntoView({behavior: 'smooth', block: 'end'});
+            $scope.runAutoscroll();
           },
           100
         );
