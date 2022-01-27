@@ -123,7 +123,25 @@
           <span ng-if="!item.metadata.last_update">-</span>
         </td>
         <td class="small-col text-right status">
-          {{ item.status }}
+          <div
+          class="label"
+          ng-class="{
+            'label-info': (
+              task.status === 'created' ||
+              task.status === 'pending'
+            ),
+            'label-warning': (
+              task.status === 'cancelling' ||
+              task.status === 'running'
+            ),
+            'label-danger': (
+              task.status === 'cancelled' ||
+              task.status === 'timedout' ||
+              task.status === 'error'
+            ),
+            'label-success': task.status === 'success'
+          }"
+        >{{ item.status }}</div>
         </td>
         <td class="small-col actions text-right">
           <div class="btn-group pull-right">
