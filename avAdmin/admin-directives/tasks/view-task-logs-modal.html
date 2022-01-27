@@ -40,16 +40,16 @@
       <table class="table">
         <tbody>
           <tr>
-            <td ng-i18next>avAdmin.tasks.table.id</td>
-            <td>{{task.id}}</td>
+            <td class="metadata-key" ng-i18next>avAdmin.tasks.table.id</td>
+            <td class="metadata-value">{{task.id}}</td>
           </tr>
           <tr>
-            <td ng-i18next>avAdmin.tasks.table.name</td>
-            <td>{{task.name}}</td>
+            <td class="metadata-key" ng-i18next>avAdmin.tasks.table.name</td>
+            <td class="metadata-value">{{task.name}}</td>
           </tr>
           <tr>
-            <td ng-i18next>avAdmin.tasks.table.status</td>
-            <td>{{task.status}}</td>
+            <td class="metadata-key" ng-i18next>avAdmin.tasks.table.status</td>
+            <td class="metadata-value">{{task.status}}</td>
           </tr>
           <tr ng-repeat="(metadataKey, metadataValue) in task.metadata">
             <td class="metadata-key">{{metadataKey}}</td>
