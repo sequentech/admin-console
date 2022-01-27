@@ -13,7 +13,6 @@
   </h4>
 </div>
 <div class="modal-body view-task-logs-modal">
-  <div av-admin-alerts></div>
   <div
     accordion
     close-others="false"
@@ -75,7 +74,7 @@
           </tr>
           <tr ng-repeat="(metadataKey, metadataValue) in task.metadata">
             <td class="metadata-key">{{metadataKey}}</td>
-            <td class="metadata-value">{{metadataValue}}</td>
+            <td class="metadata-value">{{String(metadataValue)}}</td>
           </tr>
         </tbody>
       </table>

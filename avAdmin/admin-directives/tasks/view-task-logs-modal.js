@@ -127,7 +127,7 @@ angular
         var oldErrorLogs = $scope.errorLogs;
         if ($scope.task.output && $scope.task.output.stdout)
         {
-          $scope.logs = consoleTextToHtml($scope.task.output.stdout);
+          $scope.logs = consoleTextToHtml(String($scope.task.output.stdout));
         }
         else
         {
@@ -135,7 +135,7 @@ angular
         }
         if ($scope.task.output && $scope.task.output.error)
         {
-          $scope.error = consoleTextToHtml($scope.task.output.error);
+          $scope.errorLogs = consoleTextToHtml(String($scope.task.output.error));
         }
 
         if (oldLogs !== $scope.logs || oldErrorLogs !== $scope.errorLogs)
