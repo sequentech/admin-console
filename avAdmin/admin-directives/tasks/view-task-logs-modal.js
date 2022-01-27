@@ -73,7 +73,7 @@ angular
        */
       $scope.runAutoscroll = function ()
       {
-        if (!$scope.autoscroll)
+        if (!$scope.autoscroll.value)
         {
           return;
         }
@@ -130,7 +130,7 @@ angular
         $scope.task = task;
         $scope.error = null;
         $scope.msg = null;
-        $scope.autoscroll = true;
+        $scope.autoscroll = {value: true};
         $scope.isOpen = {
           metadata: false,
           console: true
