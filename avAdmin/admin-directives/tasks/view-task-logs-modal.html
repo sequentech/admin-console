@@ -21,7 +21,7 @@
     <div
       accordion-group
       class="metadata-group"
-      is-open="!collapsed.metadata"
+      is-open="isOpen.metadata"
     >
       <div
         accordion-heading
@@ -29,9 +29,9 @@
         <span
           class="glyphicon"
           ng-class="{
-            'glyphicon-chevron-down': !!collapsed.metadata,
-            'glyphicon-chevron-right': !collapsed.metadata}
-          "
+            'glyphicon-chevron-down': isOpen.metadata,
+            'glyphicon-chevron-right': !isOpen.metadata
+          }"
         ></span>
         <span ng-i18next>
           avAdmin.tasks.commands.viewTaskLogs.metadata
@@ -46,15 +46,15 @@
         </tbody>
       </table>
     </div>
-    <div accordion-group class="console-group" is-open="!collapsed.console">
+    <div accordion-group class="console-group" is-open="isOpen.console">
       <div
         accordion-heading
       >
         <span
           class="glyphicon"
           ng-class="{
-            'glyphicon-chevron-down': !!collapsed.console,
-            'glyphicon-chevron-right': !collapsed.console
+            'glyphicon-chevron-down': isOpen.console,
+            'glyphicon-chevron-right': !isOpen.console
           }"
         ></span>
         <span ng-i18next>

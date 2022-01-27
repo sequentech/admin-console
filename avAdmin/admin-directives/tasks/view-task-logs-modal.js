@@ -129,9 +129,9 @@ angular
         $scope.error = null;
         $scope.msg = null;
         $scope.autoscroll = true;
-        $scope.collapsed = {
-          metadata: false,
-          console: false
+        $scope.isOpen = {
+          metadata: true,
+          console: true
         };
         $scope.taskUpdateTimeout = null;
         $scope.logs = '';
