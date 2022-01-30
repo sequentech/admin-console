@@ -17,13 +17,54 @@
 
 /* jshint ignore:start */
 module.exports = {
-  getAvConfig: async function() {
+  /**
+   * @returns the Config object
+   */
+  getAvConfig: async function()
+  {
     return await browser
       .executeAsyncScript(
-        function(callback) {
+        function(callback)
+        {
           callback(window.avConfigData);
         }
       );
+  },
+
+  /**
+   * Assumes username + password is the admin authentication method.
+   */
+  adminLogin: function ()
+  {
+    var usernameEl = element(by.css('[av-login] form input#input1'));
+    var passwordEl = element(
+      by.css('[av-login] form input[type=\"password\"]')
+    );
+    var submitEl = element(by.css('[av-login] form button[type=\"submit\"'));
+
+    /**
+     * Gets the login page and logins the admin user. 
+     */
+    this.login = async function()
+    {
+      var EC = protractor.ExpectedConditions;
+
+      // enter the login page and write username and password
+      await browser.get('/admin/login/');
+      await usernameEl.sendKeys(browser.params.login.username);
+      await passwordEl.sendKeys(browser.params.login.password);
+
+      // submit should be enabled -> then submit
+      expect(submitEl.getAttribute('disable')).toBeUndefined();
+      await submitEl.click();
+
+      // wait for login to work
+      browser.wait(
+        EC.urlIs('/admin/elections'),
+        browser.params.timeout.ECstandards,
+        "Login didn't redirect to /admin/elections"
+      );
+    };
   }
 };
 /* jshint ignore:end */

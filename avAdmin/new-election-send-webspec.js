@@ -1,6 +1,6 @@
 /**
  * This file is part of agora-gui-admin.
- * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+ * Copyright (C) 2022 Sequent Tech Inc <legal@sequentech.io>
 
  * agora-gui-admin is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,7 +20,8 @@ var helpers = require('../test/helpers');
 /* jshint ignore:start */
 describe("Admin Login tests", function() {
   beforeEach(async function () {
-    await browser.get('/admin/login/');
+    var adminLogin = new helpers.adminLogin();
+    await adminLogin.login();
   });
 
   it(
