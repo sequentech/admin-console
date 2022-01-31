@@ -41,6 +41,7 @@ module.exports = {
       by.css('[av-login] form input[type=\"password\"]')
     );
     var submitEl = element(by.css('[av-login] form button[type=\"submit\"'));
+    var adminUserEl = element(by.css('[av-admin-head] .profile-dropdown'));
 
     /**
      * Gets the login page and logins the admin user. 
@@ -55,15 +56,20 @@ module.exports = {
       await passwordEl.sendKeys(browser.params.login.password);
 
       // submit should be enabled -> then submit
-      expect(submitEl.getAttribute('disable')).toBeUndefined();
+      expect(submitEl.getAttribute('disable')).toBeNull();
       await submitEl.click();
 
-      // wait for login to work
+      // wait for login to work and redirect to /admin/elections
       browser.wait(
         EC.urlIs('/admin/elections'),
         browser.params.timeout.ECstandards,
         "Login didn't redirect to /admin/elections"
       );
+
+      // check that it's logged in with the correct username shown in the top
+      // navbar
+      expect(await adminUserEl.getText())
+        .toContain(browser.params.login.username);
     };
   }
 };

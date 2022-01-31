@@ -32,7 +32,8 @@ exports.config = {
     acceptInsecureCerts : true
   },
   specs: [
-    '../avAdmin/**/*-webspec.js'
+    '../avAdmin/**/*-webspec.js',
+    './**/*-webspec.js'
   ],
   jasmineNodeOpts: {
     // remove ugly protractor dot reporter
