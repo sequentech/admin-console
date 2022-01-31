@@ -206,7 +206,7 @@ describe(
         updateElectionConfig(simpleElection, avConfig);
 
         // create the election
-        CreateElectionPage.createElectionEditJson(simpleElection);
+        await CreateElectionPage.createElectionEditJson(simpleElection);
       }
     );
 });
