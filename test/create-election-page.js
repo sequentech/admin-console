@@ -15,8 +15,6 @@
  * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-const { Button } = require("bootstrap");
-
 /* jshint ignore:start */
 var CreateElectionPage = function ()
 {
@@ -70,7 +68,7 @@ var CreateElectionPage = function ()
 
     // Procceed to create the election
     var createButtonEl = element(
-      by.css('[av-admin-create] .form-group Button.btn.btn-block.btn-success')
+      by.css('[av-admin-create] .form-group button.btn.btn-block.btn-success')
     );
     expect(createButtonEl.isPresent()).toBe(true);
     expect(createButtonEl.getAttribute('disabled')).toBe(null);
