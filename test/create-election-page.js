@@ -28,7 +28,10 @@ var CreateElectionPage = function ()
    */
   this.createElectionEditJson = async function (electionData)
   {
+    var EC = protractor.ExpectedConditions;
+
     // go to create the election
+    console.log("entering /admin/new/");
     await browser.get('/admin/new/');
     browser.wait(
       EC.urlIs('/admin/basic/'),
@@ -41,18 +44,27 @@ var CreateElectionPage = function ()
       by.css('[av-admin-sidebar] [href="/admin/create/"]')
     );
     expect(createEl.isPresent()).toBe(true);
+    console.log("clicking /admin/create/");
     await createEl.click();
+    browser.wait(
+      EC.urlIs('/admin/create/'),
+      browser.params.timeout.ECstandards,
+      "/admin/basic/ didn't redirect to /admin/create/ as expected"
+    );
+    console.log("entered /admin/create/");
 
     // click on edit json to change it to our test-election json
     var editJsonEl = element(
       by.css('[av-admin-create] .fa-pencil')
     );
     expect(editJsonEl.isPresent()).toBe(true);
+    console.log("entering edit json modal");
     await editJsonEl.click();
 
     // change textarea with election json 
     var electionJsonEl = element(by.model('electionJson.model'));
     expect(electionJsonEl.isPresent()).toBe(true);
+    console.log("editing json election");
     await electionJsonEl.clear().sendKeys(electionData);
 
     // save the new json
@@ -60,6 +72,7 @@ var CreateElectionPage = function ()
       by.css('[modal-window] .modal-footer button.btn-success')
     );
     expect(saveEl.isPresent()).toBe(true);
+    console.log("saving election json election");
     await saveEl.click();
 
     // Expect no errors in the json
@@ -72,6 +85,7 @@ var CreateElectionPage = function ()
     );
     expect(createButtonEl.isPresent()).toBe(true);
     expect(createButtonEl.getAttribute('disabled')).toBe(null);
+    console.log("clicking create election button");
     await createButtonEl.click();
 
     // Wait for either an error to appear or the redirect to the created 
@@ -82,6 +96,7 @@ var CreateElectionPage = function ()
         by.css('[av-admin-create] [av-scroll-to-bottom] p.text-brand-danger')
       )
     );
+    console.log("waiting for election to be created and redirect to dashboard");
     browser.wait(
       EC.or(dashboardUrl, creationError),
       browser.params.timeout.CreateElections,
@@ -95,8 +110,12 @@ var CreateElectionPage = function ()
       .toContain('/admin/dashboard/', 'Election creation error');
 
     // Success! Return the current election id
+    console.log("waiting for election to be created and redirect to dashboard");
     var splitUrl = currentUrl.split('/admin/dashboard/');
-    return Number.parseInt(splitUrl[splitUrl.length - 1]);
+    var electionId = Number.parseInt(splitUrl[splitUrl.length - 1]);
+    console.log("returning election id = " + electionId);
+
+    return electionId;
   };
 };
 module.exports = new CreateElectionPage();
