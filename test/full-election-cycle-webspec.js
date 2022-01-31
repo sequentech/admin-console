@@ -178,16 +178,13 @@ describe(
      */
     function updateElectionConfig(elections, avConfig)
     {
-      _.each(
-        elections,
-        function (election)
-        {
-          election.director = avConfig.director;
-          election.authorities = avConfig.authorities;
-          election.resultsConfig.version = avConfig.mainVersion;
-        }
-      );
-      return updatedElections;
+      for (var i = 0; i < elections.length; i++)
+      {
+        var election = elections[i];
+        election.director = avConfig.director;
+        election.authorities = avConfig.authorities;
+        election.resultsConfig.version = avConfig.mainVersion;
+      }
     }
 
     /**
