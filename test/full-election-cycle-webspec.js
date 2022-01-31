@@ -175,17 +175,15 @@ describe(
      * configuration:
      *  - election authorities
      *  - results config version
-     * @returns the updated elections
      */
     function updateElectionConfig(elections, avConfig)
     {
-      var updatedElections = angular.copy(elections);
       _.each(
-        updatedElections,
+        elections,
         function (election)
         {
           election.director = avConfig.director;
-          election.authorities = angular.copy(avConfig.authorities);
+          election.authorities = avConfig.authorities;
           election.resultsConfig.version = avConfig.mainVersion;
         }
       );
@@ -208,7 +206,7 @@ describe(
       async function ()
       {
         var avConfig = await helpers.getAvConfig();
-        var electionConfig = updateElectionConfig(simpleElection, avConfig);
+        updateElectionConfig(simpleElection, avConfig);
 
         // create the election
         CreateElectionPage.createElectionEditJson(electionConfig);

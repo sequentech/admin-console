@@ -54,7 +54,7 @@ var CreateElectionPage = function ()
     var electionJsonEl = element(by.model('electionJson.model'));
     expect(electionJsonEl.isPresent()).toBe(true);
     await electionJsonEl.clear().sendKeys(electionData);
-    
+
     // save the new json
     var saveEl = element(
       by.css('[modal-window] .modal-footer button.btn-success')
@@ -87,10 +87,14 @@ var CreateElectionPage = function ()
       browser.params.timeout.CreateElections,
       "Election creation timedout with no visible error"
     );
+
+    // We reached here because either we were redirected to the dashboard or
+    // there was an election creation error. Check that it's the first case.
     var currentUrl = await browser.getCurrentUrl();
     expect(currentUrl)
       .toContain('/admin/dashboard/', 'Election creation error');
 
+    // Success! Return the current election id
     var splitUrl = currentUrl.split('/admin/dashboard/');
     return Number.parseInt(splitUrl[splitUrl.length - 1]);
   };
