@@ -33,7 +33,7 @@ angular.module('avAdmin')
       $filter,
       $stateParams,
       $state,
-      $timeout,
+      $interval,
       ConfigService,
       CsvLoad,
       NextButtonService)
@@ -1116,8 +1116,8 @@ angular.module('avAdmin')
       }
 
       function reloadCensusDebounce() {
-        $timeout.cancel(scope.filterTimeout);
-        scope.filterTimeout = $timeout(function() {
+        $interval.cancel(scope.filterTimeout);
+        scope.filterTimeout = $interval(function() {
           scope.reloadCensus();
         }, 500);
       }

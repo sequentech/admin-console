@@ -18,8 +18,14 @@
 angular.module('avAdmin')
   .directive(
     'avAdminElections',
-    function(Authmethod, ElectionsApi, DraftElection, AdminProfile, OnboardingTourService, $state, Plugins, $modal, $timeout, $window)
-    {
+    function(
+        Authmethod,
+        ElectionsApi,
+        AdminProfile,
+        OnboardingTourService,
+        Plugins,
+        $window
+    ) {
         // we use it as something similar to a controller here
         function link(scope, element, attrs) {
             scope.page = 1;

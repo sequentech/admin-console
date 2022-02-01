@@ -26,7 +26,7 @@ angular.module('avAdmin')
         ElectionsApi,
         $i18next,
         $http,
-        $timeout,
+        $interval,
         $modal,
         $state,
         $stateParams,
@@ -85,7 +85,7 @@ angular.module('avAdmin')
           if (!draft_election.isEditingDraft()) {
             election = undefined;
             if (!_.isUndefined(promise)) {
-              $timeout.cancel(promise);
+              $interval.cancel(promise);
             }
             return;
           }
@@ -104,14 +104,14 @@ angular.module('avAdmin')
                 console.log("error uploading draft: " + response.data);
               }
             );
-          promise = $timeout(draft_election.updateDraft, 60000);
+          promise = $interval(draft_election.updateDraft, 60000);
         };
 
         draft_election.eraseDraft = function () {
           var deferred = $q.defer();
           election = undefined;
           if (!_.isUndefined(promise)) {
-            $timeout.cancel(promise);
+            $interval.cancel(promise);
           }
           Authmethod
             .uploadUserDraft({})

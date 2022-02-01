@@ -22,7 +22,7 @@ angular
     function(
       $scope,
       $modalInstance,
-      $timeout,
+      $interval,
       Authmethod,
       AnsiUpService,
       task
@@ -73,10 +73,10 @@ angular
           task.status
         )) {
           if ($scope.taskUpdateTimeout) {
-            $timeout.cancel($scope.taskUpdateTimeout);
+            $interval.cancel($scope.taskUpdateTimeout);
           }
         } else {
-          $scope.taskUpdateTimeout = $timeout(
+          $scope.taskUpdateTimeout = $interval(
             function ()
             {
               $scope.taskUpdateFunc();
@@ -86,7 +86,7 @@ angular
           $scope.updateTask();
         }
       };
-      $scope.taskUpdateTimeout = $timeout(
+      $scope.taskUpdateTimeout = $interval(
         function ()
         {
           $scope.taskUpdateFunc();
@@ -103,7 +103,7 @@ angular
         {
           return;
         }
-        $timeout(
+        $interval(
           function ()
           {
             $('.modal-body.view-task-logs-modal .console .end-marker')[0]
@@ -204,7 +204,7 @@ angular
         $scope.updateLogs();
 
         // scroll into the bottom of the modal on start
-        $timeout(
+        $interval(
           function ()
           {
             $('.modal-body.view-task-logs-modal .autoscroll-span')[0]

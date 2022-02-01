@@ -20,7 +20,7 @@ angular.module('avAdmin')
     'CsvLoad',
     function (
       $q,
-      $timeout,
+      $interval,
       ConfigService,
       Plugins,
       Authmethod)
@@ -190,7 +190,7 @@ angular.module('avAdmin')
             if (_.isFunction(csvLoadService.scope.processBatchPlugin)) {
               csvLoadService.scope.processBatchPlugin(processed)
                 .then(function (ret) {
-                  $timeout(function () {
+                  $interval(function () {
                     csvLoadService.scope.percent = ret.percent;
                     csvLoadService.scope.exportListIndex = ret.exportListIndex;
                     
@@ -205,7 +205,7 @@ angular.module('avAdmin')
                   });
                 });
             } else {
-              $timeout(function () {
+              $interval(function () {
                 csvLoadService.scope.percent = processed.percent;
                 csvLoadService.scope.exportListIndex = processed.exportListIndex;
 
