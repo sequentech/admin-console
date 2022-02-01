@@ -23,7 +23,7 @@ angular.module('avAdmin')
     function(
       ConfigService,
       $location,
-      $timeout,
+      $interval,
       $scope,
       $modalInstance,
       $i18next,
@@ -192,7 +192,7 @@ angular.module('avAdmin')
       });
 
       // use a click to an element with a specific class to close the dialog
-      $timeout(function() {
+      $interval(function() {
         $(".av-plugin-modal-close").click(function()
         {
           var data = $(this).data("response");

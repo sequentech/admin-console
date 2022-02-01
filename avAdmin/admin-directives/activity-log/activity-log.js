@@ -23,7 +23,7 @@ angular.module('avAdmin')
       ElectionsApi,
       ConfigService,
       NextButtonService,
-      $timeout,
+      $interval,
       $stateParams
     ) {
     // we use it as something similar to a controller here
@@ -108,8 +108,8 @@ angular.module('avAdmin')
 
       // debounced reloading
       function reloadActivityDebounce() {
-        $timeout.cancel(scope.filterTimeout);
-        scope.filterTimeout = $timeout(function() {
+        $interval.cancel(scope.filterTimeout);
+        scope.filterTimeout = $interval(function() {
           scope.reloadActivity();
         }, 500);
       }

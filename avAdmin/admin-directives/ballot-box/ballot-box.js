@@ -22,7 +22,7 @@ angular.module('avAdmin')
       Authmethod,
       ConfigService,
       NextButtonService,
-      $timeout,
+      $interval,
       $i18next,
       $modal,
       $location,
@@ -105,8 +105,8 @@ angular.module('avAdmin')
 
       // debounced reloading
       function reloadDebounce() {
-        $timeout.cancel(scope.filterTimeout);
-        scope.filterTimeout = $timeout(function() {
+        $interval.cancel(scope.filterTimeout);
+        scope.filterTimeout = $interval(function() {
           scope.reload();
         }, 500);
       }

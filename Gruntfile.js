@@ -492,7 +492,12 @@ module.exports = function (grunt) {
         keepAlive: false,
         // If true, protractor will not use colors in its output
         noColor: false,
-        args: {}
+        args: (
+          (
+            process.env.PROTRACTOR_ARGS &&
+            JSON.parse(process.env.PROTRACTOR_ARGS)
+          ) || {}
+        )
       },
       all: {
         options: {

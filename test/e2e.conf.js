@@ -32,7 +32,8 @@ exports.config = {
     acceptInsecureCerts : true
   },
   specs: [
-    '../avAdmin/**/*-webspec.js'
+    '../avAdmin/**/*-webspec.js',
+    './**/*-webspec.js'
   ],
   jasmineNodeOpts: {
     // remove ugly protractor dot reporter
@@ -42,7 +43,13 @@ exports.config = {
   },
   getPageTimeout: 30000,
   allScriptsTimeout: 20000,
-  onPrepare: function () {
+
+  // Use native async/await
+  // More info: https://www.protractortest.org/#/async-await
+  SELENIUM_PROMISE_MANAGER: false,
+
+  onPrepare: function ()
+  {
     var SpecReporter = require('jasmine-spec-reporter').SpecReporter;
     jasmine
       .getEnv()

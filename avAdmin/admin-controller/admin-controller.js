@@ -29,7 +29,7 @@ angular
       $scope, 
       $state, 
       $stateParams, 
-      $timeout, 
+      $interval, 
       $q,
       $window,
       $modal
@@ -336,7 +336,7 @@ angular
       $scope.has_draft = false;
 
       function updateDraft(el) {
-      $timeout(function () {
+      $interval(function () {
         $scope.draft = el;
         $scope.has_draft = ("{}" !== JSON.stringify(el));
       });
