@@ -59,6 +59,8 @@
     "pdfmake": "^0.1.65"
   },
   "resolutions": {
+    "**/shelljs": ">=0.8.5",
+    "**/json-schema": ">=0.4.0",
     "**/protractor": "7.0.0",
     "**/underscore": "1.12.1",
     "**/xmlhttprequest-ssl": "1.6.2",
