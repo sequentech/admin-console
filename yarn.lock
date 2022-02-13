@@ -89,9 +89,9 @@ agent-base@^4.3.0:
   dependencies:
     es6-promisify "^5.0.0"
 
-"agora-gui-common@https://github.com/agoravoting/agora-gui-common.git#master":
-  version "4.0.0"
-  resolved "https://github.com/agoravoting/agora-gui-common.git#da8cfa60afbe5e867036d093cfe21cb4d033a19a"
+"agora-gui-common@https://github.com/agoravoting/agora-gui-common.git#5.0.8":
+  version "5.0.8"
+  resolved "https://github.com/agoravoting/agora-gui-common.git#3858336898686fa1db72f69f291007ef064fd5ac"
   dependencies:
     browser-update "^3.3.28"
     karma-ng-html2js-preprocessor "^1.0.0"
@@ -1549,9 +1549,9 @@ flatted@^2.0.0:
   integrity sha512-r5wGx7YeOwNWNlCA0wQ86zKyDLMQr+/RB8xy74M4hTphfmjlijTSSXGuH8rnvKZnfT9i+75zmd8jcKdMR4O6jA==
 
 follow-redirects@^1.0.0:
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.0.tgz#f5d260f95c5f8c105894491feee5dc8993b402fe"
-  integrity sha512-0vRwd7RKQBTt+mgu87mtYeofLFZpTas2S9zY+jIeuLJMNvudIgF52nr19q40HOwH5RrhWIPuj9puybzSJiRrVg==
+  version "1.14.8"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.8.tgz#016996fb9a11a100566398b1c6839337d7bfa8fc"
+  integrity sha512-1x0S9UVJHsQprFcEC/qnNzBLcIxsjAV905f/UkQxbclCsoTWlacCNOpQa/anodLl2uaEKFhfWOvM2Qg77+15zA==
 
 font-awesome@~4.3:
   version "4.3.0"
