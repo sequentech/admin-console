@@ -1018,7 +1018,7 @@ angular.module('avAdmin')
                 num_successful_logins_allowed: el.num_successful_logins_allowed,
                 allow_public_census_query: el.allow_public_census_query,
                 hide_default_login_lookup_field: el.hide_default_login_lookup_field,
-                parent_id: el.parent_id,
+                parent_id: null,
                 children_election_info: null
             };
 
@@ -1108,7 +1108,13 @@ angular.module('avAdmin')
             )
           );
           Authmethod
-            .editChildrenParent(el.children_election_info, el.id)
+            .editChildrenParent(
+              {
+                parent_id: el.parent_id,
+                children_election_info: el.children_election_info
+              },
+              el.id
+            )
             .then(
               function(_data)
               {
