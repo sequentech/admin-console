@@ -1018,8 +1018,8 @@ angular.module('avAdmin')
                 num_successful_logins_allowed: el.num_successful_logins_allowed,
                 allow_public_census_query: el.allow_public_census_query,
                 hide_default_login_lookup_field: el.hide_default_login_lookup_field,
-                parent_id: el.parent_id,
-                children_election_info: el.children_election_info
+                parent_id: null,
+                children_election_info: null
             };
 
             // Set election id if existing in election configuration
@@ -1096,6 +1096,35 @@ angular.module('avAdmin')
             return deferred.promise;
         }
 
+        function setChildrenElectionInfo(el)
+        {
+          console.log("setting children election info for election " + el.title);
+          var deferred = $q.defer();
+
+          logInfo(
+            $i18next(
+              'avAdmin.create.setChildrenElectionInfo',
+              {title: el.title, id: el.id}
+            )
+          );
+          Authmethod
+            .editChildrenParent(
+              {
+                parent_id: el.parent_id,
+                children_election_info: el.children_election_info
+              },
+              el.id
+            )
+            .then(
+              function(_data)
+              {
+                deferred.resolve(el);
+              }
+            )
+            .catch(deferred.reject);
+          return deferred.promise;
+        }
+
         function registerElection(el) {
             console.log("registering election " + el.title);
 
@@ -1156,7 +1185,7 @@ angular.module('avAdmin')
             });
         }
 
-        function addCensusAndCreatePublicKeys(electionIndex) 
+        function secondElectionsStage(electionIndex) 
         {
           var deferred = $q.defer();
           if (electionIndex === scope.elections.length) 
@@ -1169,13 +1198,14 @@ angular.module('avAdmin')
 
           var promise = deferred.promise;
           promise = promise
+            .then(setChildrenElectionInfo)
             .then(addCensus)
             .then(createElection)
             .then(function(election) {
               console.log("waiting for election " + election.title);
               waitForCreated(election.id, function () {
                 DraftElection.eraseDraft();
-                addCensusAndCreatePublicKeys(electionIndex + 1);
+                secondElectionsStage(electionIndex + 1);
               });
             })
             .catch(function(error) {
@@ -1190,11 +1220,13 @@ angular.module('avAdmin')
         {
           var deferred = $q.defer();
 
-          // After creating the auth events, and registering all the elections 
-          // in agora_elections, we proceed to add census and create the 
-          // election public keys
+          // After creating the auth events and registering all the elections 
+          // in agora_elections, we proceed to:
+          // - set children election info
+          // - add census
+          // - create election public keys
           if (electionIndex === scope.elections.length) {
-            addCensusAndCreatePublicKeys(0);
+            secondElectionsStage(0);
             return;
           }
 
