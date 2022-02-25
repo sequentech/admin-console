@@ -1125,6 +1125,50 @@ angular.module('avAdmin')
           return deferred.promise;
         }
 
+        function addBallotBoxes(el)
+        {
+          // if the election has no ballot box, continue
+          var deferred = $q.defer();
+          if (!el.ballot_boxes || el.ballot_boxes.length === 0)
+          {
+            setTimeout(function() {deferred.resolve(el); }, 0);
+            return deferred.promise;
+          }
+          console.log("adding ballot boxes for election " + el.title);
+
+          logInfo(
+            $i18next(
+              'avAdmin.create.addBallotBoxes',
+              {title: el.title, id: el.id}
+            )
+          );
+
+          var numResolved = 0;
+          _.each(
+            el.ballot_boxes,
+            function (ballot_box_name)
+            {
+              Authmethod
+                .createBallotBox(
+                  el.id,
+                  ballot_box_name
+                )
+                .then(
+                  function(_data)
+                  {
+                    numResolved += 1;
+                    if (numResolved === el.ballot_boxes.length)
+                    {
+                      deferred.resolve(el);
+                    }
+                  }
+                )
+                .catch(deferred.reject);
+            }
+          );
+          return deferred.promise;
+        }
+
         function registerElection(el) {
             console.log("registering election " + el.title);
 
@@ -1199,6 +1243,7 @@ angular.module('avAdmin')
           var promise = deferred.promise;
           promise = promise
             .then(setChildrenElectionInfo)
+            .then(addBallotBoxes)
             .then(addCensus)
             .then(createElection)
             .then(function(election) {
