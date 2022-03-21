@@ -254,7 +254,10 @@ angular
                       function (perm) {
                         if (
                           el.census.has_ballot_boxes &&
-                          perm.indexOf('list-ballot-boxes') !== -1
+                          (
+                            perm.indexOf('list-ballot-boxes') !== -1 ||
+                            perm.indexOf('edit') !== -1
+                          )
                         ) {
                           $scope.sidebarlinks.splice(
                             1, 
