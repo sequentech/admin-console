@@ -19,7 +19,7 @@
   "tally_error": "erro no reconto",
 
   "app": {
-    "name": "Agora Voting"
+    "name": "Sequent Tech"
   },
   "avCommon": {
     "cancel": "Cancel",
@@ -159,7 +159,7 @@
         "createRealElection": "Create REAL election",
         "duplicateElection": "Duplicar votación",
         "sendAuthCodes": "Enviar autenticación",
-        "donow": "pulsa para facer agora",
+        "donow": "pulsa para facer sequent",
         "votes": "Votos",
         "census": "Censo",
         "questions": "Preguntas",
@@ -179,7 +179,7 @@
         "results": "Resultados",
         "blankvotes": "Votos en branco",
         "nullvotes": "Votos nulos",
-        "optionvotes": "Votos a candidaturas",
+        "optiosequent": "Votos a candidaturas",
         "option": "Candidatura",
         "votes": "Votos",
         "winner": "Posición gañadora",

@@ -1,24 +1,24 @@
 /**
- * This file is part of agora-gui-admin.
- * Copyright (C) 2015-2020 Agora Voting SL <agora@agoravoting.com>
+ * This file is part of admin-console.
+ * Copyright (C) 2015-2020 Sequent Tech Inc <legal@sequentech.io>
 
- * agora-gui-admin is free software: you can redistribute it and/or modify
+ * admin-console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License.
 
- * agora-gui-admin  is distributed in the hope that it will be useful,
+ * admin-console  is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
 
  * You should have received a copy of the GNU Affero General Public License
- * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
+ * along with admin-console.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-window.avConfigData.base = '/admin';
+window.SequentConfigData.base = '/admin';
 
 angular.module(
-  'agora-gui-admin',
+  'admin-console',
   ['ui.bootstrap',
   'ui.utils',
   'ui.router',
@@ -29,8 +29,8 @@ angular.module(
   'ngSanitize',
   'infinite-scroll',
   'angularMoment',
-  'avConfig',
-  'avPluginsConfig',
+  'SequentConfig',
+  'SequentPluginsConfig',
   'jm.i18next',
   'avUi',
   'avRegistration',
@@ -42,7 +42,7 @@ angular.module(
   'angular-date-picker-polyfill',
   'ng-autofocus',
   'LocalStorageModule',
-  'agora-gui-common'
+  'common-ui'
 ]);
 
 /**
@@ -77,7 +77,7 @@ angular
  * Configure sceDelegateProvider
  */
 angular
-  .module('agora-gui-admin')
+  .module('admin-console')
   .config(
     function($sceDelegateProvider, ConfigServiceProvider)
     {
@@ -90,7 +90,7 @@ angular
  * Configure the available URLs
  */
 angular
-  .module('agora-gui-admin')
+  .module('admin-console')
   .config(
     function(
       $stateProvider,
@@ -249,7 +249,7 @@ angular
  * Caching http response error to deauthenticate
  */
 angular
-  .module('agora-gui-admin')
+  .module('admin-console')
   .config(
     function($httpProvider)
     {
@@ -285,11 +285,11 @@ angular
  * Configure storage service prefix
  */
 angular
-  .module('agora-gui-admin')
+  .module('admin-console')
   .config(
     function(localStorageServiceProvider)
     {
-      localStorageServiceProvider.setPrefix('agora-gui-admin');
+      localStorageServiceProvider.setPrefix('admin-console');
     }
   );
 
@@ -298,7 +298,7 @@ angular
  * If the cookie is there we make the autologin
  */
 angular
-  .module('agora-gui-admin')
+  .module('admin-console')
   .run(
     function($cookies, $http, Authmethod, ConfigService)
     {
@@ -318,7 +318,7 @@ angular
   );
 
 angular
-  .module('agora-gui-admin')
+  .module('admin-console')
   .run(
     function(
       $http, 
@@ -380,7 +380,7 @@ angular
  * This directive allows us to pass a function in on an enter key to do what we want.
  */
 angular
-.module('agora-gui-admin')
+.module('admin-console')
 .directive(
   'ngEnter',
   function ()
@@ -414,7 +414,7 @@ angular
  * @Param end, default is "..."
  * @return string
  */
-angular.module('agora-gui-admin').filter('truncate', function () {
+angular.module('admin-console').filter('truncate', function () {
         return function (text, length, end) {
             if (isNaN(length)) {
                 length = 10;

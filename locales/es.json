@@ -19,7 +19,7 @@
   "tally_error": "error en el recuento",
 
   "app": {
-    "name": "Agora Voting"
+    "name": "Sequent Tech"
   },
   "avCommon": {
     "cancel": "Cancelar",
@@ -334,7 +334,7 @@
         "results": "Resultados",
         "blankvotes": "Votos en blanco",
         "nullvotes": "Votos nulos",
-        "optionvotes": "Votos a candidaturas",
+        "optiosequent": "Votos a candidaturas",
         "option": "Candidatura",
         "votes": "Votos",
         "winner": "Posición ganadora",
