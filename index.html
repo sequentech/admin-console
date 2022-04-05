@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="ng-app" ng-app="agora-gui-admin">
+<html id="ng-app" ng-app="admin-console">
   <head>
     <title>{{ adminTitle }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -16,8 +16,8 @@
   <script src="/ie8-bind-workaround.js"></script>
 
   <!-- JS from Node Components -->
-  <script src="node_modules/agora-gui-common/dist/libnocompat-vmaster.js" class="libnocompat"></script>
-  <script src="node_modules/agora-gui-common/dist/libCommon-vmaster.js" class="lib"></script>
+  <script src="node_modules/common-ui/dist/libnocompat-vmaster.js" class="libnocompat"></script>
+  <script src="node_modules/common-ui/dist/libCommon-vmaster.js" class="lib"></script>
   <script src="node_modules/angular-local-storage/dist/angular-local-storage.js" class="lib"></script>
   <script src="node_modules/pdfmake/build/pdfmake.js" class="lib"></script>
   <script src="node_modules/pdfmake/build/vfs_fonts.js" class="lib"></script>
@@ -31,16 +31,16 @@
   <!-- Add New Vendor Component JS Above -->
 
   <!-- Plugins configuration file JS -->
-  <script src="/avConfig.js"></script>
+  <script src="/SequentConfig.js"></script>
 
   <!-- Configuration file JS -->
-  <script src="/avPluginsConfig.js"></script>
+  <script src="/SequentPluginsConfig.js"></script>
 
   <!-- Themes JS -->
-  <script src="node_modules/agora-gui-common/dist/avTheme-vmaster.js"></script>
+  <script src="node_modules/common-ui/dist/SequentTheme-vmaster.js"></script>
 
   <!-- avCommon -->
-  <script src="node_modules/agora-gui-common/dist/appCommon-vmaster.js" class="app"></script>
+  <script src="node_modules/common-ui/dist/appCommon-vmaster.js" class="app"></script>
 
   <script src="app.js" class="app"></script>
 

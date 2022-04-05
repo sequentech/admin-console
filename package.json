@@ -1,11 +1,11 @@
 {
-  "name": "agora-gui-admin",
+  "name": "admin-console",
   "version": "master",
   "license": "AGPL-3.0-only",
   "author": {
-    "name": "Agora Voting SL and others",
-    "email": "legal@nvotes.com",
-    "url": "https://nvotes.com"
+    "name": "Sequent Tech Inc and others",
+    "email": "legal@sequentech.io",
+    "url": "https://sequentech.io"
   },
   "browsers": [
     "ie >= 8",
@@ -53,7 +53,7 @@
     "yarn": "^1.22.0"
   },
   "dependencies": {
-    "agora-gui-common": "https://github.com/agoravoting/agora-gui-common.git#master",
+    "common-ui": "https://github.com/sequentech/common-ui.git#master",
     "ansi_up": "^5.1.0",
     "jasmine-spec-reporter": "^7.0.0",
     "pdfmake": "^0.1.65"

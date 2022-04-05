@@ -1,7 +1,7 @@
 /**
  * Requires the user to edit some admin fields
  */
-angular.module('agora-gui-admin')
+angular.module('admin-console')
   .directive(
     'avAdminFields',
     function(

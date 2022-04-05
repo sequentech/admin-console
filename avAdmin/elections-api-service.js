@@ -1,18 +1,18 @@
 /**
- * This file is part of agora-gui-admin.
- * Copyright (C) 2015-2016  Agora Voting SL <agora@agoravoting.com>
+ * This file is part of admin-console.
+ * Copyright (C) 2015-2016  Sequent Tech Inc <legal@sequentech.io>
 
- * agora-gui-admin is free software: you can redistribute it and/or modify
+ * admin-console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License.
 
- * agora-gui-admin  is distributed in the hope that it will be useful,
+ * admin-console  is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
 
  * You should have received a copy of the GNU Affero General Public License
- * along with agora-gui-admin.  If not, see <http://www.gnu.org/licenses/>.
+ * along with admin-console.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
 angular.module('avAdmin')
@@ -254,8 +254,8 @@ angular.module('avAdmin')
             conf.stats = {};
             conf.results = {};
             conf.tallyAllowed = election.tallyAllowed;
-            if (election.resultsConfig) {
-              conf.resultsConfig = election.resultsConfig;
+            if (election.tallyPipesConfig) {
+              conf.tallyPipesConfig = election.tallyPipesConfig;
             }
 
             conf.votes = 0;
@@ -466,14 +466,14 @@ angular.module('avAdmin')
                   },
                   {
                     "category": "",
-                    "details": "An option can contain a description. You can add simple html like <strong>bold</strong> or <a href=\"https://nvotes.com\">links to websites</a>. You can also set an image url below, but be sure it's HTTPS or else it won't load.\n\n<br><br>You need to use two br element for new paragraphs.",
+                    "details": "An option can contain a description. You can add simple html like <strong>bold</strong> or <a href=\"https://sequentech.io\">links to websites</a>. You can also set an image url below, but be sure it's HTTPS or else it won't load.\n\n<br><br>You need to use two br element for new paragraphs.",
                     "id": 1,
                     "sort_order": 1,
                     "text": "Example option 2",
                     "urls": [
                       {
                         "title": "URL",
-                        "url": "https://nvotes.com"
+                        "url": "https://sequentech.io"
                       },
                       {
                         "title": "Image URL",
@@ -482,7 +482,7 @@ angular.module('avAdmin')
                     ]
                   }
                 ],
-                "description": "This is the description of this question. You can have multiple questions. You can add simple html like <strong>bold</strong> or <a href=\"https://nvotes.com\">links to websites</a>.\n\n<br><br>You need to use two br element for new paragraphs.",
+                "description": "This is the description of this question. You can have multiple questions. You can add simple html like <strong>bold</strong> or <a href=\"https://sequentech.io\">links to websites</a>.\n\n<br><br>You need to use two br element for new paragraphs.",
                 "layout": "accordion",
                 "max": 1,
                 "min": 1,

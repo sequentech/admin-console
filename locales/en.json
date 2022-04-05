@@ -21,7 +21,7 @@
   "suspended": "Suspended",
 
   "app": {
-    "name": "Agora Voting"
+    "name": "Sequent Tech"
   },
   "avCommon": {
     "cancel": "Cancel",
@@ -346,7 +346,7 @@
         "results": "Results",
         "blankvotes": "Blank votes",
         "nullvotes": "Null votes",
-        "optionvotes": "Votes to options",
+        "optiosequent": "Votes to options",
         "option": "Candidature",
         "votes": "Votes",
         "winner": "Winner position",
