@@ -215,6 +215,11 @@ angular.module('avAdmin')
             electionsapi.cache[id] = election;
         };
 
+        electionsapi.clearElectionCache = function () {
+          electionsapi.cache = {};
+          electionsapi.permcache = {};
+        };
+
         electionsapi.getElection = function(id, ignorecache, electionAuth) {
             var deferred = $q.defer();
 
