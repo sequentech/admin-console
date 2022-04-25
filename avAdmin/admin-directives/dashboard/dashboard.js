@@ -165,6 +165,7 @@ angular.module('avAdmin')
 
         if (c.path === 'start') 
         {
+          ElectionsApi.clearElectionCache();
           Authmethod
             .changeAuthEvent(scope.election.id, 'started')
             .then(
@@ -177,6 +178,7 @@ angular.module('avAdmin')
             );
         } else if (c.path === 'stop') 
         {
+          ElectionsApi.clearElectionCache();
           Authmethod
             .changeAuthEvent(scope.election.id, 'stopped')
             .then(
@@ -189,6 +191,7 @@ angular.module('avAdmin')
             );
         } else 
         {
+          ElectionsApi.clearElectionCache();
           ElectionsApi
             .command(scope.election, c.path, c.method, c.data)
             .catch(
