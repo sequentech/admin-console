@@ -701,9 +701,10 @@ commander@^2.19.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
 
-"common-ui@https://github.com/sequentech/common-ui.git#6.0.0-beta.1":
-  version "6.0.0-beta.1"
-  resolved "https://github.com/sequentech/common-ui.git#b8fa819bb75141c8fa06b9eaf05aa3d33ffeb544"
+"common-ui@https://github.com/sequentech/common-ui.git#master":
+  version "6.0.0"
+  uid e5e09e50f2ce4089a11af75244339e2fee11fddc
+  resolved "https://github.com/sequentech/common-ui.git#e5e09e50f2ce4089a11af75244339e2fee11fddc"
   dependencies:
     browser-update "^3.3.28"
     karma-ng-html2js-preprocessor "^1.0.0"
@@ -1717,7 +1718,7 @@ grunt-browser-output@1.0.3:
     hooker "~0.2.3"
     ws "~0.4.31"
 
-grunt-cli@~1.4.2:
+grunt-cli@~1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/grunt-cli/-/grunt-cli-1.4.3.tgz#22c9f1a3d2780bf9b0d206e832e40f8f499175ff"
   integrity sha512-9Dtx/AhVeB4LYzsViCjUQkd0Kw0McN2gYpdmGYKtE2a5Yt7v1Q+HYZVWhqXc/kGnxlMtqKDxSwotiGeFmkrCoQ==
@@ -1901,17 +1902,17 @@ grunt-protractor-runner@^5.0.0:
     split "~1.0.0"
     through2 "~2.0.0"
 
-grunt@^1.0.4:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/grunt/-/grunt-1.4.1.tgz#7d1e17db1f9c8108777f7273d6b9359755576f50"
-  integrity sha512-ZXIYXTsAVrA7sM+jZxjQdrBOAg7DyMUplOMhTaspMRExei+fD0BTwdWXnn0W5SXqhb/Q/nlkzXclSi3IH55PIA==
+grunt@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/grunt/-/grunt-1.5.2.tgz#46b014e28d17c85baac19d5e891bb3f04923c098"
+  integrity sha512-XCtfaIu72OyDqK24MjWiGC9SwlkuhkS1mrULr1xzuJ2XqAFhP3ZAchZGHJeSCY6mkaOXU4F7SbmmCF7xIVoC9w==
   dependencies:
     dateformat "~3.0.3"
     eventemitter2 "~0.4.13"
     exit "~0.1.2"
     findup-sync "~0.3.0"
     glob "~7.1.6"
-    grunt-cli "~1.4.2"
+    grunt-cli "~1.4.3"
     grunt-known-options "~2.0.0"
     grunt-legacy-log "~3.0.0"
     grunt-legacy-util "~2.0.1"
