@@ -426,7 +426,6 @@ module.exports = function (grunt) {
           'dist/lib-vmaster.min.js': 'temp/lib.js',
           'dist/libnocompat-vmaster.min.js': 'temp/libnocompat.js',
           'dist/libcompat-vmaster.min.js': 'temp/libcompat.js',
-          'dist/avWidgets.min.js': 'avWidgets.js',
 
           "dist/locales/moment/en.js": "node_modules/moment/locale/en-gb.js",
           "dist/locales/moment/es.js": "node_modules/moment/locale/es.js",
@@ -460,7 +459,6 @@ module.exports = function (grunt) {
           'SequentConfig.js',
           'SequentPluginsConfig.js',
           'SequentThemes.js',
-          'avWidgets.js',
           '<%= dom_munger.data.appjs %>',
           '<%= ngtemplates.main.dest %>',
           '<%= ngtemplates.common.dest %>',
@@ -559,7 +557,6 @@ module.exports = function (grunt) {
         files.push('SequentConfig.js');
         files.push('SequentPluginsConfig.js');
         files.push('SequentThemes.js');
-        files.push('avWidgets.js');
         files.concat(grunt.config('dom_munger.data.appjs'));
         files.concat(grunt.config('ngtemplates.main.dest'));
         files.push(spec);
