@@ -4,8 +4,8 @@
   }
 
   .sidebar {
-      background-color: lighten(@av-primary, 5%);
-      color: @av-primary;
+      background-color: lighten(@av-secondary, 5%);
+      color: @av-secondary;
       padding-bottom: 20px;
   }
 
@@ -13,20 +13,20 @@
 
   .sidebar .sub1 a {
       padding-left: 30px;
-      color: @av-secondary;
+      color: @av-primary;
   }
 
   .sidebar .head a {
       font-weight: bold;
-      color: @av-secondary;
+      color: @av-primary;
       .active {
-          background-color: @av-secondary-contrast;
-          color: @av-primary;
+          background-color: @av-primary-contrast;
+          color: @av-secondary;
       }
   }
 
   .sidebar li.active a:hover {
-    background-color: @av-secondary-contrast !important;
+    background-color: @av-primary-contrast !important;
   }
 
   .sidebar li a:focus,
@@ -34,8 +34,8 @@
   .sidebar li.active a:focus,
   .sidebar .head a:hover,
   .sidebar .sub1 a:hover {
-      background-color: @av-primary-contrast;
-      color: @av-primary;
+      background-color: @av-secondary-contrast;
+      color: @av-secondary;
       border-radius: 0px;
   }
 }
