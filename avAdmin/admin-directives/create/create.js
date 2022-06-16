@@ -26,6 +26,7 @@ angular.module('avAdmin')
       ElectionsApi,
       $state,
       $stateParams,
+      $sanitize,
       $i18next,
       $filter,
       $modal,
@@ -69,11 +70,11 @@ angular.module('avAdmin')
         }
 
         function logInfo(text) {
-          scope.log += "<p>" + text + "</p>";
+          scope.log += "<p>" + $sanitize(text) + "</p>";
         }
 
         function logError(text) {
-          scope.log += "<p class=\"text-brand-danger\">" + text + "</p>";
+          scope.log += "<p class=\"text-brand-danger\">" + $sanitize(text) + "</p>";
         }
         function validateEmail(email) {
           var re = /^[^\s@]+@[^\s@.]+\.[^\s@.]+$/;
@@ -1078,7 +1079,7 @@ angular.module('avAdmin')
               election: el,
               error: function (errorMsg) {
                   scope.errors.push({
-                    data: {message: errorMsg},
+                    data: {message: $sanitize($sanitize)(errorMsg)},
                     key: "election-census-createel-unknown"
                   });
                 },
@@ -1316,7 +1317,7 @@ angular.module('avAdmin')
                   data: scope.elections,
                   onError: function (errorKey, errorData) {
                     scope.errors.push({
-                      data: errorData,
+                      data: $sanitize(errorData),
                       key: errorKey
                     });
                   }
