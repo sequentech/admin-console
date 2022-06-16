@@ -84,7 +84,7 @@
               <a ng-click="loadDraft()">
                 <strong>{{ draft.title }}</strong>
                 <div
-                  ng-bind-html="draft.description | htmlToText | truncate:150">
+                  ng-bind="draft.description | htmlToText | truncate:150">
                 </div>
               </a>
             </td>
@@ -122,7 +122,7 @@
               <a ui-sref="admin.dashboard({id: election.id})">
                 <strong>{{ election.title }}</strong>
                 <div
-                  ng-bind-html="election.description | htmlToText | truncate:150">
+                  ng-bind="election.description | htmlToText | truncate:150">
                 </div>
               </a>
               <!-- children elections-->
@@ -142,7 +142,7 @@
                       <a ui-sref="admin.dashboard({id: childElection.id})">
                         <strong>{{ childElection.title }}</strong>
                         <div
-                          ng-bind-html="childElection.description | htmlToText | truncate:150">
+                          ng-bind="childElection.description | htmlToText | truncate:150">
                         </div>
                       </a>
                     </td>
