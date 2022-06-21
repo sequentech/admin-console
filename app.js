@@ -251,7 +251,7 @@ angular
 angular
   .module('admin-console')
   .config(
-    function($httpProvider, $location, Authmethod)
+    function($httpProvider, $location, $cookies, Authmethod)
     {
       $httpProvider
         .interceptors
