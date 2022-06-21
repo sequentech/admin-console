@@ -364,7 +364,9 @@ angular
             var authevent = Authmethod.getAuthevent();
             var postfix = "_authevent_" + authevent;
             var loginLocation = $location.url();
-            console.log(`url location ${loginLocation}`)
+            if (!["/admin/login", "/admin/logout"].includes(loginLocation)) {
+              $cookies.put("redirect" + postfix, loginLocation);
+            }
           }
           $("#angular-preloading").show();
         });
