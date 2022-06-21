@@ -250,8 +250,8 @@ angular
  */
 angular
   .module('admin-console')
-  .config(
-    function($httpProvider, $cookies, Authmethod)
+  .run(
+    function($httpProvider, $location, $cookies, Authmethod)
     {
       $httpProvider
         .interceptors
@@ -271,7 +271,7 @@ angular
                 {
                   var authevent = Authmethod.getAuthevent();
                   var postfix = "_authevent_" + authevent;
-                  var loginLocation = $(window).location.pathname;
+                  var loginLocation = $location.url();
                   if (!loginLocation.endsWith("/logout")) {
                     $cookies.put("redirect" + postfix, loginLocation);
                   }
