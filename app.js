@@ -248,38 +248,38 @@ angular
 /**
  * Catching http response error to deauthenticate
  */
- angular
- .module('admin-console')
- .config(
-   function($httpProvider)
-   {
-     $httpProvider
-       .interceptors
-       .push(
-         function($q, $injector)
-         {
-           return {
-             'responseError': function(rejection)
-             {
-               if (
-                 rejection.data &&
-                 rejection.data.error_codename &&
-                 _.contains(
-                   ['expired_hmac_key', 'empty_hmac', 'invalid_hmac_userid'],
-                   rejection.data.error_codename)
-                 )
-               {
-                 $httpProvider.defaults.headers.common.Authorization = '';
-                 $injector.get('$state').go("admin.logout");
-               }
+angular
+  .module('admin-console')
+  .config(
+    function($httpProvider)
+    {
+      $httpProvider
+        .interceptors
+        .push(
+          function($q, $injector)
+          {
+            return {
+              'responseError': function(rejection)
+              {
+                if (
+                  rejection.data &&
+                  rejection.data.error_codename &&
+                  _.contains(
+                    ['expired_hmac_key', 'empty_hmac', 'invalid_hmac_userid'],
+                    rejection.data.error_codename)
+                  )
+                {
+                  $httpProvider.defaults.headers.common.Authorization = '';
+                  $injector.get('$state').go("admin.logout");
+                }
 
-               return $q.reject(rejection);
-             }
-           };
-         }
-       );
-   }
- );
+                return $q.reject(rejection);
+              }
+            };
+          }
+        );
+    }
+  );
 
 /**
  * Configure storage service prefix
@@ -326,10 +326,10 @@ angular
       ConfigService,
       amMoment,
       $i18next,
-      angularLoad,
+      angularLoad/*,
       Authmethod,
       $location,
-      $cookies
+      $cookies*/
     ) {
       $rootScope.adminTitle = ConfigService.webTitle;
       $rootScope.safeApply = function(fn) 
@@ -360,14 +360,14 @@ angular
         function(event, toState, toParams, fromState, fromParams)
         {
           console.log("change start from " + fromState.name + " to " + toState.name);
-          if (toState.name === "admin.logout") {
+          /*if (toState.name === "admin.logout") {
             var authevent = Authmethod.getAuthevent();
             var postfix = "_authevent_" + authevent;
             var loginLocation = $location.url();
             if (!["/admin/login", "/admin/logout"].includes(loginLocation)) {
               $cookies.put("redirect" + postfix, loginLocation);
             }
-          }
+          }*/
           $("#angular-preloading").show();
         });
 
