@@ -246,7 +246,7 @@ angular
   );
 
 /**
- * Caching http response error to deauthenticate
+ * Catching http response error to deauthenticate
  */
 angular
   .module('admin-console')
@@ -269,12 +269,6 @@ angular
                     rejection.data.error_codename)
                   )
                 {
-                  var authevent = $injector.get('Authmethod').getAuthevent();
-                  var postfix = "_authevent_" + authevent;
-                  var loginLocation = $injector.get('$location').url();
-                  if (!["/admin/login", "/admin/logout"].includes(loginLocation)) {
-                    $injector.get('$cookies').put("redirect" + postfix, loginLocation);
-                  }
                   $httpProvider.defaults.headers.common.Authorization = '';
                   $injector.get('$state').go("admin.logout");
                 }
@@ -332,7 +326,10 @@ angular
       ConfigService,
       amMoment,
       $i18next,
-      angularLoad
+      angularLoad,
+      Authmethod,
+      $location,
+      $cookies
     ) {
       $rootScope.adminTitle = ConfigService.webTitle;
       $rootScope.safeApply = function(fn) 
@@ -363,6 +360,12 @@ angular
         function(event, toState, toParams, fromState, fromParams)
         {
           console.log("change start from " + fromState.name + " to " + toState.name);
+          if (toState.name === "admin.logout") {
+            var authevent = Authmethod.getAuthevent();
+            var postfix = "_authevent_" + authevent;
+            var loginLocation = $location.url();
+            console.log(`url location ${loginLocation}`)
+          }
           $("#angular-preloading").show();
         });
 
