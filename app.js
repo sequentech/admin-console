@@ -248,38 +248,38 @@ angular
 /**
  * Catching http response error to deauthenticate
  */
-angular
-  .module('admin-console')
-  .config(
-    function($httpProvider)
-    {
-      $httpProvider
-        .interceptors
-        .push(
-          function($q, $injector)
-          {
-            return {
-              'responseError': function(rejection)
-              {
-                if (
-                  rejection.data &&
-                  rejection.data.error_codename &&
-                  _.contains(
-                    ['expired_hmac_key', 'empty_hmac', 'invalid_hmac_userid'],
-                    rejection.data.error_codename)
-                  )
-                {
-                  $httpProvider.defaults.headers.common.Authorization = '';
-                  $injector.get('$state').go("admin.logout");
-                }
+ angular
+ .module('admin-console')
+ .config(
+   function($httpProvider)
+   {
+     $httpProvider
+       .interceptors
+       .push(
+         function($q, $injector)
+         {
+           return {
+             'responseError': function(rejection)
+             {
+               if (
+                 rejection.data &&
+                 rejection.data.error_codename &&
+                 _.contains(
+                   ['expired_hmac_key', 'empty_hmac', 'invalid_hmac_userid'],
+                   rejection.data.error_codename)
+                 )
+               {
+                 $httpProvider.defaults.headers.common.Authorization = '';
+                 $injector.get('$state').go("admin.logout");
+               }
 
-                return $q.reject(rejection);
-              }
-            };
-          }
-        );
-    }
-  );
+               return $q.reject(rejection);
+             }
+           };
+         }
+       );
+   }
+ );
 
 /**
  * Configure storage service prefix
