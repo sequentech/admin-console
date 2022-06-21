@@ -326,10 +326,10 @@ angular
       ConfigService,
       amMoment,
       $i18next,
-      angularLoad/*,
+      angularLoad,
       Authmethod,
       $location,
-      $cookies*/
+      $cookies
     ) {
       $rootScope.adminTitle = ConfigService.webTitle;
       $rootScope.safeApply = function(fn) 
@@ -360,14 +360,14 @@ angular
         function(event, toState, toParams, fromState, fromParams)
         {
           console.log("change start from " + fromState.name + " to " + toState.name);
-          /*if (toState.name === "admin.logout") {
+          if (toState.name === "admin.logout") {
             var authevent = Authmethod.getAuthevent();
             var postfix = "_authevent_" + authevent;
             var loginLocation = $location.url();
             if (!["/admin/login", "/admin/logout"].includes(loginLocation)) {
               $cookies.put("redirect" + postfix, loginLocation);
             }
-          }*/
+          }
           $("#angular-preloading").show();
         });
 
