@@ -251,7 +251,7 @@ angular
 angular
   .module('admin-console')
   .config(
-    function($httpProvider)
+    function($httpProvider, $location, Authmethod)
     {
       $httpProvider
         .interceptors
@@ -269,6 +269,12 @@ angular
                     rejection.data.error_codename)
                   )
                 {
+                  var authevent = Authmethod.getAuthevent();
+                  var postfix = "_authevent_" + authevent;
+                  var loginLocation = $location.url();
+                  if (!loginLocation.endsWith("/logout")) {
+                    $cookies.put("redirect" + postfix, loginLocation);
+                  }
                   $httpProvider.defaults.headers.common.Authorization = '';
                   $injector.get('$state').go("admin.logout");
                 }
