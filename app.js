@@ -272,7 +272,7 @@ angular
                   var authevent = $injector.get('Authmethod').getAuthevent();
                   var postfix = "_authevent_" + authevent;
                   var loginLocation = $injector.get('$location').url();
-                  if (!loginLocation.endsWith("/logout")) {
+                  if (!["/admin/login", "/admin/login"].includes(loginLocation)) {
                     $injector.get('$cookies').put("redirect" + postfix, loginLocation);
                   }
                   $httpProvider.defaults.headers.common.Authorization = '';
