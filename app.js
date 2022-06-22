@@ -246,7 +246,7 @@ angular
   );
 
 /**
- * Caching http response error to deauthenticate
+ * Catching http response error to deauthenticate
  */
 angular
   .module('admin-console')
@@ -326,7 +326,8 @@ angular
       ConfigService,
       amMoment,
       $i18next,
-      angularLoad
+      angularLoad,
+      $location
     ) {
       $rootScope.adminTitle = ConfigService.webTitle;
       $rootScope.safeApply = function(fn) 
@@ -357,6 +358,12 @@ angular
         function(event, toState, toParams, fromState, fromParams)
         {
           console.log("change start from " + fromState.name + " to " + toState.name);
+          if (toState.name === "admin.logout") {
+            var loginLocation = $location.url();
+            if (!["/admin/login", "/admin/logout"].includes(loginLocation)) {
+              sessionStorage.setItem("redirect", loginLocation);
+            }
+          }
           $("#angular-preloading").show();
         });
 
