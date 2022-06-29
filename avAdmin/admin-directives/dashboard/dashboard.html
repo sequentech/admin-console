@@ -158,7 +158,7 @@
             </div>
 
             <button
-              class="btn btn-block btn-lg btn-success" 
+              class="btn btn-block btn-lg btn-success-action" 
               ng-if="nextaction" 
               ng-disabled="!commands[index].enableFunc()"
               ng-i18next="{{ nextaction }}"
@@ -167,7 +167,7 @@
 
             <button
               ng-click="duplicateElection()"
-              class="btn btn-block btn-lg btn-success"
+              class="btn btn-block btn-lg btn-success-action"
               ng-i18next>
               avAdmin.dashboard.duplicateElection
             </button>
