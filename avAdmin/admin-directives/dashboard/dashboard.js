@@ -841,8 +841,10 @@ angular.module('avAdmin')
             },
             enableFunc: function () {
               return (
-                scope.perms.val.indexOf("publish-results") !== -1 ||
-                scope.perms.val.indexOf("edit") !== -1
+                scope.election.publicCandidates && (
+                  scope.perms.val.indexOf("publish-results") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1 
+                )
               );
             }
           }

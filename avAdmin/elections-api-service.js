@@ -247,8 +247,27 @@ angular.module('avAdmin')
             return deferred.promise;
         };
 
-        electionsapi.election = function(id) {
-            return $http.get(backendUrl + 'election/'+id);
+        electionsapi.election = function(id)
+        {
+            var deferred = $q.defer();
+
+            electionsapi
+                .getEditPerm(id)
+                .then(
+                  function(perm)
+                  {
+                    $http
+                      .get(
+                        backendUrl + 'election/' + id,
+                        {headers: {'Authorization': perm}}
+                      )
+                      .then(
+                        deferred.resolve,
+                        deferred.reject
+                      );
+                  }
+                );
+            return deferred.promise;
         };
 
         electionsapi.parseElection = function(d) {
@@ -303,7 +322,7 @@ angular.module('avAdmin')
             var cached = electionsapi.permcache[id];
             if (!cached) {
                 Authmethod.getPerm(
-                    "edit|create|register|update|update-share|view|delete|send-auth|send-auth-all|view-results|view-stats|view-voters|view-census|start|stop|allow-tally|tally|calculate-results|publish-results|census-add|census-delete|census-delete-voted|census-activation|add-ballot-boxes|list-ballot-boxes|delete-ballot-boxes|add-tally-sheets|override-tally-sheets|list-tally-sheets|delete-tally-sheets|archive|unarchive|event-view-activity|event-receiver-view-activity|generate-auth-code|reset-voter|suspend|resume",
+                    "edit|create|register|update|update-share|view|delete|send-auth|send-auth-all|view-results|view-stats|view-voters|view-census|start|stop|allow-tally|tally|calculate-results|publish-results|census-add|census-delete|census-delete-voted|census-activation|add-ballot-boxes|list-ballot-boxes|delete-ballot-boxes|add-tally-sheets|override-tally-sheets|list-tally-sheets|delete-tally-sheets|archive|unarchive|event-view-activity|event-receiver-view-activity|generate-auth-code|reset-voter|suspend|resume|set-public-candidates",
                     "AuthEvent",
                     id
                 )
