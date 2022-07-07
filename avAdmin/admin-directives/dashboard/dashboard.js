@@ -381,7 +381,7 @@ angular.module('avAdmin')
             function confirmed()
             {
               ElectionsApi
-                .setPublicCandidates(scope.election.id, makePublic)
+                .setPublicCandidates(scope.election, makePublic)
                 .then(
                   function onSuccess()
                   {
