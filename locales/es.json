@@ -445,6 +445,18 @@
             "confirmButton": "Desarchivar votación",
             "success": "Votación desarchivada con éxito"
           },
+          "makeCandidatesPublic": {
+            "header": "Confirmar hacer candidatos públicos",
+            "body": "Esta acción hará que las opciones candidatas de la votación sean públicas, de manera que todo el mundo pueda verlas. Puedes revertir esta acción más tarde.",
+            "confirmButton": "Hacer candidatos públicos",
+            "success": "Candidatos publicados con éxito"
+          },
+          "makeCandidatesPrivate": {
+            "header": "Confirmar hacer candidatos privados",
+            "body": "Esta acción hará que las opciones candidatas de la votación sean privadas, de manera que sólo los votantes autenticados puedan verlos. Puedes revertir esta acción más tarde.",
+            "confirmButton": "Hacer candidatos privados",
+            "success": "Candidatos hechos privados con éxito"
+          },
           "editChildrenParent": {
             "header": "Editar información de padre e hijos de votación",
             "body": "Editar en el recuadro de abajo los campos parent_id y children_election_info en formato JSON.",

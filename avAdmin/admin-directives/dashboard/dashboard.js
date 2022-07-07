@@ -359,6 +359,43 @@ angular.module('avAdmin')
           );
       }
 
+      function setPublicCandidates(makePublic)
+      {
+        var modalName = {
+          true: "makeCandidatesPublic",
+          false: "makeCandidatesPrivate"
+        }[makePublic];
+
+        $modal
+          .open({
+            templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
+            controller: "AdminConfirmModal",
+            size: 'lg',
+            resolve: {
+              dialogName: function () { return modalName; },
+              data: function () { return ""; },
+            }
+          })
+          .result
+          .then(
+            function confirmed()
+            {
+              ElectionsApi
+                .setPublicCandidates(scope.election.id, makePublic)
+                .then(
+                  function onSuccess()
+                  {
+                    scope.msg = "avAdmin.dashboard.modals." + modalName + ".success";
+                  },
+                  function onError(response)
+                  {
+                    scope.error = response.data;
+                  }
+                );
+            }
+          );
+      }
+
       function suspendElection() 
       {
         $modal
@@ -1070,6 +1107,28 @@ angular.module('avAdmin')
             }
           },
           {
+            i18nString: 'makeCandidatesPublic',
+            iconClass: 'fa fa-lock-open',
+            actionFunc: function() { return scope.setPublicCandidates(true); },
+            enableFunc: function() {
+              return  (
+                scope.perms.val.indexOf("set-public-candidates") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              );
+            }
+          },
+          {
+            i18nString: 'makeCandidatesPrivate',
+            iconClass: 'fa fa-lock',
+            actionFunc: function() { return scope.setPublicCandidates(false); },
+            enableFunc: function() {
+              return  (
+                scope.perms.val.indexOf("set-public-candidates") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              );
+            }
+          },
+          {
             i18nString: 'editChildrenParent',
             iconClass: 'fa fa-code-fork',
             actionFunc: function() { return scope.editChildrenParent(); },
@@ -1152,6 +1211,7 @@ angular.module('avAdmin')
         resumeElection: resumeElection,
         changeSocial: changeSocial,
         archiveElection: archiveElection,
+        setPublicCandidates: setPublicCandidates,
         unpublishResults: unpublishResults,
         allowTally: allowTally,
         editChildrenParent: editChildrenParent,

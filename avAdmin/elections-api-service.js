@@ -420,6 +420,18 @@ angular.module('avAdmin')
           return electionsapi.command(el, 'allow-tally', 'POST');
         };
 
+        electionsapi.setPublicCandidates = function(election, makePublic)
+        {
+          return electionsapi.command(
+            election,
+            'set-public-candidates',
+            'POST',
+            {
+              publicCandidates: makePublic
+            }
+          );
+        };
+
         electionsapi.command = function(el, command, method, data) 
         {
             var deferred = $q.defer();

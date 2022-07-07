@@ -469,6 +469,18 @@
             "confirmButton": "Unarchive election",
             "success": "Election unarchived successfully"
           },
+          "makeCandidatesPublic": {
+            "header": "Confirm make candidates public",
+            "body": "This action will make the candidate options of the election public for everyone to see. You can revert this action later.",
+            "confirmButton": "Make candidates public",
+            "success": "Election candidates made public successfully"
+          },
+          "makeCandidatesPrivate": {
+            "header": "Confirm make candidates private",
+            "body": "This action will make the candidate options of the election private, so that only authenticated voters can see them. You can revert this action later.",
+            "confirmButton": "Make candidates private",
+            "success": "Election candidates made private successfully"
+          },
           "editChildrenParent": {
             "header": "Edit Children and Parent election info",
             "body": "Edit in the textarea the parent_id and children_election_info in JSON.",
