@@ -355,7 +355,9 @@
           "startElection": "Abrir periodo de voto...",
           "stopElection": "Terminar periodo de voto...",
           "publishResults": "Publicar resultados...",
-          "unpublishResults": "Despublicar resultados..."
+          "unpublishResults": "Despublicar resultados...",
+          "makeCandidatesPublic": "Hacer los candidatos públicos...",
+          "makeCandidatesPrivate": "Hacer los candidatos privados..."
         },
         "modals": {
           "createHeader": "Crear votación",

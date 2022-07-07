@@ -369,7 +369,9 @@
           "publishResults": "Publish results...",
           "unpublishResults": "Unpublish results...",
           "suspendElection": "Suspend election...",
-          "resumeElection": "Resume election.."
+          "resumeElection": "Resume election..",
+          "makeCandidatesPublic": "Make candidates public...",
+          "makeCandidatesPrivate": "Make candidates private..."
         },
         "modals": {
           "createHeader": "Create election",
