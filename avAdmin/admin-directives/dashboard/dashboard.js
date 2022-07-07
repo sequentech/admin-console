@@ -1108,7 +1108,7 @@ angular.module('avAdmin')
           },
           {
             i18nString: 'makeCandidatesPublic',
-            iconClass: 'fa fa-lock-open',
+            iconClass: 'fa fa-user',
             actionFunc: function() { return scope.setPublicCandidates(true); },
             enableFunc: function() {
               return  (
