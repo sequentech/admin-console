@@ -380,8 +380,8 @@ angular.module('avAdmin')
           .then(
             function confirmed()
             {
-              ElectionsApi
-                .setPublicCandidates(scope.election, makePublic)
+              Authmethod
+                .setPublicCandidates(scope.election.id, makePublic)
                 .then(
                   function onSuccess()
                   {
