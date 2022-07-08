@@ -196,6 +196,8 @@
           "tally_error_during_tally": "<strong>error durante el recuento</strong> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
           "tally_success": "<strong>recuento finalizado con éxito</strong> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
           "virtual_tally_success": "<strong>recuento virtual finalizado con éxito</strong> de la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "set_public_candidates_success": "<i>__executer_username__ (__executer_id__)</i> <strong>puso public-candidates</strong> a __make_public__ en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "set_public_candidates_error": "<i>__executer_username__ (__executer_id__)</i> <strong>intentó poner public-candidates</strong> a __make_public__ <strong>con error</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
           "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>eliminó</strong> la votación __event_id__",
           "archive": "<i>__executer_username__ (__executer_id__)</i> <strong>archivó</strong> la votación __event_id__",
           "unarchive": "<i>__executer_username__ (__executer_id__)</i> <strong>desarchivó</strong> la votación __event_id__"
@@ -355,7 +357,9 @@
           "startElection": "Abrir periodo de voto...",
           "stopElection": "Terminar periodo de voto...",
           "publishResults": "Publicar resultados...",
-          "unpublishResults": "Despublicar resultados..."
+          "unpublishResults": "Despublicar resultados...",
+          "makeCandidatesPublic": "Hacer los candidatos públicos...",
+          "makeCandidatesPrivate": "Hacer los candidatos privados..."
         },
         "modals": {
           "createHeader": "Crear votación",
@@ -444,6 +448,18 @@
             "body": "Esta acción desarchivar la votación. Fracasará si la votación no se encuentra actualmente en estado archivado. Desarchivar una votación hace que vuelva a aparecer en la lista de votaciones en la interfaz de administración. También se puede archivar nuevamente más tarde.",
             "confirmButton": "Desarchivar votación",
             "success": "Votación desarchivada con éxito"
+          },
+          "makeCandidatesPublic": {
+            "header": "Confirmar hacer candidatos públicos",
+            "body": "Esta acción hará que las opciones candidatas de la votación sean públicas, de manera que todo el mundo pueda verlas. Puedes revertir esta acción más tarde.",
+            "confirmButton": "Hacer candidatos públicos",
+            "success": "Candidatos publicados con éxito"
+          },
+          "makeCandidatesPrivate": {
+            "header": "Confirmar hacer candidatos privados",
+            "body": "Esta acción hará que las opciones candidatas de la votación sean privadas, de manera que sólo los votantes autenticados puedan verlos. Puedes revertir esta acción más tarde.",
+            "confirmButton": "Hacer candidatos privados",
+            "success": "Candidatos hechos privados con éxito"
           },
           "editChildrenParent": {
             "header": "Editar información de padre e hijos de votación",

@@ -280,6 +280,26 @@
             <div ng-if="obj.action_name === 'authevent:unarchive'" ng-i18next>
             [i18next:html](obj)avAdmin.activityLog.action.authevent.unarchive
             </div>
+            <div ng-if="obj.action_name === 'authevent:set-public-candidates:success'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                make_public: obj.metadata.make_public,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event],
+                metadata: stringify(obj.metadata)
+              })avAdmin.activityLog.action.authevent.set_public_candidates_success
+            </div>
+            <div ng-if="obj.action_name === 'authevent:set-public-candidates:error'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                make_public: obj.metadata.make_public,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event],
+                metadata: stringify(obj.metadata)
+              })avAdmin.activityLog.action.authevent.set_public_candidates_error
+            </div>
 
 
             <div ng-if="obj.action_name === 'user:activate'" ng-i18next>
