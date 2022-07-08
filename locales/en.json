@@ -200,6 +200,8 @@
           "tally_error_during_tally": "<strong>error during tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
           "tally_success": "<strong>successful tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
           "virtual_tally_success": "<strong>successful virtual tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "set_public_candidates_success": "<i>__executer_username__ (__executer_id__)</i> <strong>set public-candidates</strong> to __make_public__ for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "set_public_candidates_error": "<i>__executer_username__ (__executer_id__)</i> <strong>tried to set public-candidates</strong> to __make_public__ <strong>with error</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
           "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>deleted</strong> election __event_id__",
           "archive": "<i>__executer_username__ (__executer_id__)</i> <strong>archived</strong> election __event_id__",
           "unarchive": "<i>__executer_username__ (__executer_id__)</i> <strong>unarchived</strong> election __event_id__"
@@ -369,7 +371,9 @@
           "publishResults": "Publish results...",
           "unpublishResults": "Unpublish results...",
           "suspendElection": "Suspend election...",
-          "resumeElection": "Resume election.."
+          "resumeElection": "Resume election..",
+          "makeCandidatesPublic": "Make candidates public...",
+          "makeCandidatesPrivate": "Make candidates private..."
         },
         "modals": {
           "createHeader": "Create election",
@@ -468,6 +472,18 @@
             "body": "This action will unarchive the election. It will fail if the election is not currently in an archived state. UnArchiving an election makes it appear again in the election list in the admin interface. It can also be archived again later.",
             "confirmButton": "Unarchive election",
             "success": "Election unarchived successfully"
+          },
+          "makeCandidatesPublic": {
+            "header": "Confirm make candidates public",
+            "body": "This action will make the candidate options of the election public for everyone to see. You can revert this action later.",
+            "confirmButton": "Make candidates public",
+            "success": "Election candidates made public successfully"
+          },
+          "makeCandidatesPrivate": {
+            "header": "Confirm make candidates private",
+            "body": "This action will make the candidate options of the election private, so that only authenticated voters can see them. You can revert this action later.",
+            "confirmButton": "Make candidates private",
+            "success": "Election candidates made private successfully"
           },
           "editChildrenParent": {
             "header": "Edit Children and Parent election info",
