@@ -110,6 +110,21 @@
                   >
                   </textarea>
               </div>
+              <div class="col-xs-9">
+                  <p class="text-muted" ng-i18next> avAdmin.auth.htmlemailtemp </p>
+                  <p
+                    class="text-muted"
+                    ng-if="slug_text.length > 0"
+                    ng-i18next
+                  >
+                    [i18next]({slug_list:slug_text})avAdmin.auth.slugKeys
+                  </p>
+                  <textarea
+                    class="form-control"
+                    ng-model="censusConfig.html_message"
+                  >
+                  </textarea>
+              </div>
           </div>
       </div>
     </div>
