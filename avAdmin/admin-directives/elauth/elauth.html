@@ -64,6 +64,7 @@
         </div>
         <div
           av-abstract-setting
+          ng-if="allowHtmlEmails"
           short-value="{{ election.census.config.html_message }}"
           title="avAdmin.auth.htmlemail"
           for="email-html"
