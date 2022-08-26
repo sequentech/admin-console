@@ -58,6 +58,11 @@ var SequentConfigData = {
   // Allowed values: true|false
   allowAdminRegistration: false,
 
+  // For admins:
+  // Allow sending custom html in the email messages sent from the admin console.
+  // Allowed values: true|false
+  allowHtmlEmails: false,
+
   // show the documentation links after successfully casting a vote
   // allowed values: true| false
   showDocOnVoteCast: false,

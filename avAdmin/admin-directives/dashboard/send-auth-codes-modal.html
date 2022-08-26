@@ -111,10 +111,11 @@
                   </textarea>
               </div>
               <label
+                ng-if="allowHtmlEmails"
                 class="col-xs-3 control-label text-right padding-top-input"
                 ng-i18next="avAdmin.auth.htmlemail">
               </label>
-              <div class="col-xs-9">
+              <div class="col-xs-9" ng-if="allowHtmlEmails">
                   <p class="text-muted" ng-i18next> avAdmin.auth.htmlemailtemp </p>
                   <p
                     class="text-muted"
