@@ -30,6 +30,7 @@ angular
         function link(scope, element, attrs) 
         {
           scope.election = ElectionsApi.currentElection;
+          scope.allowHtmlEmails = ConfigService.allowHtmlEmails;
           scope.auth = ConfigService.auth_methods;
           scope.electionEditable = function() {
             return !scope.election.id || scope.election.status === "registered";

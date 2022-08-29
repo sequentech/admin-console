@@ -778,8 +778,10 @@
         "smstemp": "Template used in the SMS to send to the user. Use __CODE__ to insert the SMS code and __URL__ for the authentication url, or __URL2__ to insert a link that includes the code",
         "smsdef": "This is your vote code: __CODE__",
         "email": "Email message",
+        "htmlemail": "HTML Email message",
         "emailsub": "Email subject",
         "emailtemp": "Template used in the Email link to send to the user. Use __CODE__ to insert the login code and __URL__ to insert the election link, or _URL2__ to insert a link that includes the code",
+        "htmlemailtemp": "HTML Template used in the Email link to send to the user. Use __CODE__ to insert the login code and __URL__ to insert the election link, or _URL2__ to insert a link that includes the code",
         "emailsubdef": "Vote now with __name__",
         "emaildef": "Vote in __URL__ with code __CODE__",
         "slugKeys": "Use the following keys to insert the users' extra fields into the message: __slug_list__"
