@@ -43,6 +43,7 @@ angular.module('avAdmin')
       $scope.loading = false;
       $scope.numVoters = (!!SendMsg.user_ids) ? SendMsg.user_ids.length : $scope.election.auth.census;
       $scope.helpurl = ConfigService.helpUrl;
+      $scope.allowHtmlEmails = ConfigService.allowHtmlEmails;
 
       $scope = _.extend($scope, exhtml.scope);
       $scope.exhtml = exhtml.html;

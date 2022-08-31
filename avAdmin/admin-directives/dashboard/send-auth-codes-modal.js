@@ -35,6 +35,7 @@ angular
       $scope.steps = SendMsg.steps;
       $scope.censusConfig = SendMsg.censusConfig;
       $scope.helpurl = ConfigService.helpUrl;
+      $scope.allowHtmlEmails = ConfigService.allowHtmlEmails;
       var slug_text = "";
       for (var i = 0; i < SendMsg.slug_list.length; i++) {
         slug_text += (0 !== i? ", " : "" ) + "__" + SendMsg.slug_list[i] + "__";
