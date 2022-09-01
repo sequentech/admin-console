@@ -61,7 +61,7 @@ angular
       $scope.slug_text = slug_text;
       $scope.ok = function () {
         SendMsg.selected_auth_method = $scope.selected_auth_method.ref;
-        SendMsg.filter = showFilter? $scope.filter : undefined;
+        SendMsg.filter = $scope.showFilter()? $scope.filter : undefined;
         $modalInstance.close($scope.user_ids);
       };
 
