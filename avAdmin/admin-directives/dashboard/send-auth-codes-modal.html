@@ -93,6 +93,24 @@
           <div class="form-group">
               <label
                 class="col-xs-3 control-label text-right padding-top-input"
+                ng-i18next="avAdmin.modals.sendAuthCodes.filterTitle"
+                ng-if="showFilter()">
+              </label>
+              <div class="col-xs-9" ng-if="showFilter()">
+                <p class="text-muted" ng-i18next> avAdmin.modals.sendAuthCodes.filterDescription</p>
+                <div class="radio" ng-repeat="filterOption in filterOptions">
+                    <label>
+                        <input
+                          type="radio"
+                          name="voting"
+                          value="{{ filterOption.value }}"
+                          ng-model="filter"/>
+                        <span ng-i18next="avCommon.modals.sendAuthCodes.filterOptions.{{ filterOption.label }}"></span>
+                    </label>
+                </div>
+              </div>
+              <label
+                class="col-xs-3 control-label text-right padding-top-input"
                 ng-i18next="avAdmin.auth.email">
               </label>
               <div class="col-xs-9">

@@ -138,6 +138,15 @@
             "header": "Ver acta electoral",
             "edit": "Editar y cambiar acta electoral",
             "tallySheetIdLabel": "Id de acta electoral:"
+          },
+          "sendAuthCodes": {
+            "filterTitle": "Filtrar",
+            "filterDescription": "Envíe este correo electrónico a parte del censo, ya sea a los que ya votaron o a los que aún no votaron.",
+            "filterOptions": {
+              "none": "Enviar a todos",
+              "voted": "Enviar a los que han votado",
+              "not_voted": "Enviar a los que todavía no han votado"
+            }
           }
       },
       "viewTallySheetAction": "Ver acta electoral",

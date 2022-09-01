@@ -36,6 +36,24 @@ angular
       $scope.censusConfig = SendMsg.censusConfig;
       $scope.helpurl = ConfigService.helpUrl;
       $scope.allowHtmlEmails = ConfigService.allowHtmlEmails;
+      $scope.showFilter = function () {
+        return !user_ids && $scope.selected_auth_method.ref === 'email';
+      };
+      $scope.filterOptions = [
+        {
+          label: 'none',
+          value: null,
+        },
+        {
+          label: 'voted',
+          value: 'voted',
+        },
+        {
+          label: 'not_voted',
+          value: 'not_voted',
+        },
+      ];
+      $scope.filter = null;
       var slug_text = "";
       for (var i = 0; i < SendMsg.slug_list.length; i++) {
         slug_text += (0 !== i? ", " : "" ) + "__" + SendMsg.slug_list[i] + "__";
@@ -43,6 +61,7 @@ angular
       $scope.slug_text = slug_text;
       $scope.ok = function () {
         SendMsg.selected_auth_method = $scope.selected_auth_method.ref;
+        SendMsg.filter = showFilter? $scope.filter : undefined;
         $modalInstance.close($scope.user_ids);
       };
 
