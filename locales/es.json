@@ -424,7 +424,14 @@
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
               "helpInfo": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
               "sendButton": "Revisar mensaje antes de enviar códigos de autenticación a TODO el censo",
-              "sendSelectedButton": "Revisar mensaje antes de enviar códigos de autenticación a los usuarios SELECCIONADOS"
+              "sendSelectedButton": "Revisar mensaje antes de enviar códigos de autenticación a los usuarios SELECCIONADOS",
+              "filterTitle": "Filtrar",
+              "filterDescription": "Envíe este correo electrónico a parte del censo, ya sea a los que ya votaron o a los que aún no votaron.",
+              "filterOptions": {
+                "none": "Enviar a todos",
+                "voted": "Enviar a los que han votado",
+                "not_voted": "Enviar a los que todavía no han votado"
+              }
             },
             "confirmStep": {
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
@@ -488,15 +495,6 @@
             "header": "Resetear votante al estado de pre-registro",
             "body": "Resetear votante al estado de pre-registro. Esto implica que cualquier campo que fuera rellenado por el votante durante su registro será borrado/reseteado, pero los datos del votante que eran parte del censo de pre-registro no serán alterados. Puede añadir debajo un comentario explicando porqué ejecuta esta acción sobre este votante:",
             "confirmButton": "RESETEAR VOTANTE al estado de pre-registro"
-          },
-          "sendAuthCodesModal": {
-            "filterTitle": "Filtrar",
-            "filterDescription": "Envíe este correo electrónico a parte del censo, ya sea a los que ya votaron o a los que aún no votaron.",
-            "filterOptions": {
-              "none": "Enviar a todos",
-              "voted": "Enviar a los que han votado",
-              "not_voted": "Enviar a los que todavía no han votado"
-            }
           }
         }
     },
