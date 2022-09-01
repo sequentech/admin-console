@@ -443,7 +443,7 @@
             "body": "This dialog allows you to edit the calculate results json. Use this only if you know what you are doing.",
             "confirmEdit": "Finish edit"
           },
-          "sendAuthCodes": {
+          "sendAuthCodesModal": {
             "editMessageStep": {
               "header": "Send authentication codes (Step __step__ of __total__)",
               "helpInfo": "This action will send a message to all the registered electors in the census. Note that sending many messages can be considered as SPAM, so proceed with caution. Also, please review the message that will be sent before proceeding.",
