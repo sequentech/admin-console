@@ -102,9 +102,9 @@
                     <label>
                         <input
                           type="radio"
-                          name="voting"
+                          name="filter-option-{{ filterOption.label }}"
                           value="{{ filterOption.value }}"
-                          ng-model="filter"/>
+                          ng-model="filter.ref"/>
                         <span ng-i18next="avAdmin.dashboard.modals.sendAuthCodes.editMessageStep.filterOptions.{{ filterOption.label }}"></span>
                     </label>
                 </div>

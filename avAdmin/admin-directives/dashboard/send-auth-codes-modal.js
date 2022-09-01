@@ -53,7 +53,7 @@ angular
           value: 'not_voted',
         },
       ];
-      $scope.filter = null;
+      $scope.filter = { ref: null };
       var slug_text = "";
       for (var i = 0; i < SendMsg.slug_list.length; i++) {
         slug_text += (0 !== i? ", " : "" ) + "__" + SendMsg.slug_list[i] + "__";
@@ -61,7 +61,7 @@ angular
       $scope.slug_text = slug_text;
       $scope.ok = function () {
         SendMsg.selected_auth_method = $scope.selected_auth_method.ref;
-        SendMsg.filter = $scope.showFilter()? $scope.filter : undefined;
+        SendMsg.filter = $scope.showFilter()? $scope.filter.ref : undefined;
         $modalInstance.close($scope.user_ids);
       };
 
