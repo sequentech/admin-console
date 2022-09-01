@@ -36,9 +36,7 @@ angular
       $scope.censusConfig = SendMsg.censusConfig;
       $scope.helpurl = ConfigService.helpUrl;
       $scope.allowHtmlEmails = ConfigService.allowHtmlEmails;
-      $scope.showFilter = function () {
-        return !user_ids && $scope.selected_auth_method.ref === 'email';
-      };
+      $scope.showFilter = !user_ids;
       $scope.filterOptions = [
         {
           label: 'none',
@@ -61,7 +59,7 @@ angular
       $scope.slug_text = slug_text;
       $scope.ok = function () {
         SendMsg.selected_auth_method = $scope.selected_auth_method.ref;
-        SendMsg.filter = $scope.showFilter()? ($scope.filter.ref || null) : undefined;
+        SendMsg.filter = $scope.showFilter? ($scope.filter.ref || null) : undefined;
         $modalInstance.close($scope.user_ids);
       };
 
