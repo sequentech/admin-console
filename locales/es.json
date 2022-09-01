@@ -138,15 +138,6 @@
             "header": "Ver acta electoral",
             "edit": "Editar y cambiar acta electoral",
             "tallySheetIdLabel": "Id de acta electoral:"
-          },
-          "sendAuthCodes": {
-            "filterTitle": "Filtrar",
-            "filterDescription": "Envíe este correo electrónico a parte del censo, ya sea a los que ya votaron o a los que aún no votaron.",
-            "filterOptions": {
-              "none": "Enviar a todos",
-              "voted": "Enviar a los que han votado",
-              "not_voted": "Enviar a los que todavía no han votado"
-            }
           }
       },
       "viewTallySheetAction": "Ver acta electoral",
@@ -497,6 +488,15 @@
             "header": "Resetear votante al estado de pre-registro",
             "body": "Resetear votante al estado de pre-registro. Esto implica que cualquier campo que fuera rellenado por el votante durante su registro será borrado/reseteado, pero los datos del votante que eran parte del censo de pre-registro no serán alterados. Puede añadir debajo un comentario explicando porqué ejecuta esta acción sobre este votante:",
             "confirmButton": "RESETEAR VOTANTE al estado de pre-registro"
+          },
+          "sendAuthCodes": {
+            "filterTitle": "Filtrar",
+            "filterDescription": "Envíe este correo electrónico a parte del censo, ya sea a los que ya votaron o a los que aún no votaron.",
+            "filterOptions": {
+              "none": "Enviar a todos",
+              "voted": "Enviar a los que han votado",
+              "not_voted": "Enviar a los que todavía no han votado"
+            }
           }
         }
     },
