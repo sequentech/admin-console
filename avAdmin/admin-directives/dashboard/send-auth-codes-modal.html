@@ -93,24 +93,6 @@
           <div class="form-group">
               <label
                 class="col-xs-3 control-label text-right padding-top-input"
-                ng-i18next="avAdmin.dashboard.modals.sendAuthCodes.editMessageStep.filterTitle"
-                ng-if="showFilter()">
-              </label>
-              <div class="col-xs-9" ng-if="showFilter()">
-                <p class="text-muted" ng-i18next>avAdmin.dashboard.modals.sendAuthCodes.editMessageStep.filterDescription</p>
-                <div class="radio" ng-repeat="filterOption in filterOptions">
-                    <label>
-                        <input
-                          type="radio"
-                          name="filter-option-{{ filterOption.label }}"
-                          value="{{ filterOption.value }}"
-                          ng-model="filter.ref"/>
-                        <span ng-i18next="avAdmin.dashboard.modals.sendAuthCodes.editMessageStep.filterOptions.{{ filterOption.label }}"></span>
-                    </label>
-                </div>
-              </div>
-              <label
-                class="col-xs-3 control-label text-right padding-top-input"
                 ng-i18next="avAdmin.auth.email">
               </label>
               <div class="col-xs-9">
@@ -147,6 +129,24 @@
                     ng-model="censusConfig.html_message"
                   >
                   </textarea>
+              </div>
+              <label
+                class="col-xs-3 control-label text-right padding-top-input"
+                ng-i18next="avAdmin.dashboard.modals.sendAuthCodes.editMessageStep.filterTitle"
+                ng-if="showFilter()">
+              </label>
+              <div class="col-xs-9" ng-if="showFilter()">
+                <p class="text-muted" ng-i18next>avAdmin.dashboard.modals.sendAuthCodes.editMessageStep.filterDescription</p>
+                <div class="radio" ng-repeat="filterOption in filterOptions">
+                    <label>
+                        <input
+                          type="radio"
+                          name="filter-option-{{ filterOption.label }}"
+                          value="{{ filterOption.value }}"
+                          ng-model="filter.ref"/>
+                        <span ng-i18next="avAdmin.dashboard.modals.sendAuthCodes.editMessageStep.filterOptions.{{ filterOption.label }}"></span>
+                    </label>
+                </div>
               </div>
           </div>
       </div>

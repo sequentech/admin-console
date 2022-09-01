@@ -44,6 +44,10 @@ angular.module('avAdmin')
       $scope.numVoters = (!!SendMsg.user_ids) ? SendMsg.user_ids.length : $scope.election.auth.census;
       $scope.helpurl = ConfigService.helpUrl;
       $scope.allowHtmlEmails = ConfigService.allowHtmlEmails;
+      $scope.showFilter = function () {
+        return !user_ids && $scope.selected_auth_method === 'email';
+      };
+      $scope.filterLabel = SendMsg.filter || 'none';
 
       $scope = _.extend($scope, exhtml.scope);
       $scope.exhtml = exhtml.html;
