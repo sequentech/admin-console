@@ -46,7 +46,7 @@ angular.module('avAdmin')
             return $scope.election.auth.census;
           }
         }
-      };
+      }
       $scope.election = election;
       $scope.selected_auth_method = selected_auth_method;
       $scope.user_ids = user_ids;
