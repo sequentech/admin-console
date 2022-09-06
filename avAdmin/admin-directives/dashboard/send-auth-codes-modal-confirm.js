@@ -34,6 +34,19 @@ angular.module('avAdmin')
       selected_auth_method,
       exhtml)
     {
+      function calculateNumberOfRecipients() {
+        if (!!SendMsg.user_ids) {
+          return SendMsg.user_ids.length;
+        } else {
+          if ('voted' === SendMsg.filter) {
+            return $scope.election.votes;
+          } else if ('not_voted' === SendMsg.filter) {
+            return $scope.election.auth.census - $scope.election.votes;
+          } else {
+            return $scope.election.auth.census;
+          }
+        }
+      };
       $scope.election = election;
       $scope.selected_auth_method = selected_auth_method;
       $scope.user_ids = user_ids;
@@ -41,7 +54,7 @@ angular.module('avAdmin')
       $scope.steps = SendMsg.steps;
       $scope.censusConfig = SendMsg.censusConfig;
       $scope.loading = false;
-      $scope.numVoters = (!!SendMsg.user_ids) ? SendMsg.user_ids.length : $scope.election.auth.census;
+      $scope.numVoters = calculateNumberOfRecipients();
       $scope.helpurl = ConfigService.helpUrl;
       $scope.allowHtmlEmails = ConfigService.allowHtmlEmails;
       $scope.showFilter = !user_ids;
