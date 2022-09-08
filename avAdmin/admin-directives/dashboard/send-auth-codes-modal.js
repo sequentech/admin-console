@@ -35,6 +35,23 @@ angular
       $scope.steps = SendMsg.steps;
       $scope.censusConfig = SendMsg.censusConfig;
       $scope.helpurl = ConfigService.helpUrl;
+      $scope.allowHtmlEmails = ConfigService.allowHtmlEmails;
+      $scope.showFilter = !user_ids;
+      $scope.filterOptions = [
+        {
+          label: 'none',
+          value: '',
+        },
+        {
+          label: 'voted',
+          value: 'voted',
+        },
+        {
+          label: 'not_voted',
+          value: 'not_voted',
+        },
+      ];
+      $scope.filter = { ref: '' };
       var slug_text = "";
       for (var i = 0; i < SendMsg.slug_list.length; i++) {
         slug_text += (0 !== i? ", " : "" ) + "__" + SendMsg.slug_list[i] + "__";
@@ -42,6 +59,7 @@ angular
       $scope.slug_text = slug_text;
       $scope.ok = function () {
         SendMsg.selected_auth_method = $scope.selected_auth_method.ref;
+        SendMsg.filter = $scope.showFilter? ($scope.filter.ref || null) : undefined;
         $modalInstance.close($scope.user_ids);
       };
 

@@ -448,7 +448,14 @@
               "header": "Send authentication codes (Step __step__ of __total__)",
               "helpInfo": "This action will send a message to all the registered electors in the census. Note that sending many messages can be considered as SPAM, so proceed with caution. Also, please review the message that will be sent before proceeding.",
               "sendButton": "Review message before sending authentication codes to ALL census",
-              "sendSelectedButton": "Review message before sending authentication codes to SELECTED users"
+              "sendSelectedButton": "Review message before sending authentication codes to SELECTED users",
+              "filterTitle": "Filter",
+              "filterDescription": "Send this email to part of the census, either those that have already voted or those that haven't voted yet.",
+              "filterOptions": {
+                "none": "Sent to everyone",
+                "voted": "Send to those that have voted",
+                "not_voted": "Send to those that haven't voted yet"
+              }
             },
             "confirmStep": {
               "header": "Send authentication codes (Step __step__ of __total__)",

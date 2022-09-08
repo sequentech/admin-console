@@ -390,7 +390,14 @@
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
               "helpInfo": "Esta votación enviará un mensaje a todos los electores registrados en el censo. Nótese que enviar muchos mensajes puede considerarse SPAM, así que procede con precaución. Además, por favor comprueba primero el texto del mensaje que vas a enviar.",
               "sendButton": "Revisar mensaje antes de enviar códigos de autenticación a TODO el censo",
-              "sendSelectedButton": "Revisar mensaje antes de enviar códigos de autenticación a los usuarios SELECCIONADOS"
+              "sendSelectedButton": "Revisar mensaje antes de enviar códigos de autenticación a los usuarios SELECCIONADOS",
+              "filterTitle": "Filtrar",
+              "filterDescription": "Envieu aquest correu electrònic a part del cens, ja sigui als que ja van votar o als que encara no van votar.",
+              "filterOptions": {
+                "none": "Enviar a tots",
+                "voted": "Enviar als que han votat",
+                "not_voted": "Enviar als que encara no han votat"
+              }
             },
             "confirmStep": {
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",

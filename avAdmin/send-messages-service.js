@@ -269,7 +269,8 @@ angular
             electionCopy,
             service.user_ids,
             service.selected_auth_method,
-            service.extra
+            service.extra,
+            service.filter
           ).then(
             function onSuccess(response)
             {
