@@ -97,6 +97,7 @@
         </div>
       </div>
     </div>
+    <div class="clearfix" ng-if="allowHtmlEmails"></div>
     <div class="form-group" ng-if="allowHtmlEmails">
       <label
         class="col-xs-3 control-label text-right padding-top-sm"
@@ -111,6 +112,25 @@
       </div>
     </div>
   </div>
+
+  <!-- filter config -->
+  <div ng-if="showFilter" class="preview">
+    <div class="clearfix"></div>
+    <div class="form-group" >
+      <label
+        class="col-xs-3 control-label text-right padding-top-sm"
+        ng-i18next="avAdmin.dashboard.modals.sendAuthCodes.editMessageStep.filterTitle">
+      </label>
+      <div class="col-xs-9">
+        <div
+          ng-click="editAuthCodes()"
+          class="preview-data preview-body"
+          ng-i18next="avAdmin.dashboard.modals.sendAuthCodes.editMessageStep.filterOptions.{{ filterLabel }}">
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="clearfix"></div>
 </div>
 
