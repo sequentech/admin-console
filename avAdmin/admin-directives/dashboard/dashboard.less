@@ -115,7 +115,7 @@
   }
 
   .text-muted .stick {
-      background-image: url("/admin/img/stick-gray.png");
+      /*background-image: url("/admin/img/stick-gray.png");*/
   }
 
   .download-data-dropdown {
@@ -126,16 +126,16 @@
     color: @av-secondary-contrast;
   }
 
-  .stickend,
-  .stickini {
-      background-size: 50% 8px;
+  .stickend > .stick-back,
+  .stickini > .stick-back {
+    width: 50%;
   }
 
-  .stickini {
-      background-position: center right;
+  .stickini > .stick-back {
+      left: 0;
   }
-  .stickend {
-      background-position: center left;
+  .stickend > .stick-back {
+      right: 0;
   }
 
   .stick i {
