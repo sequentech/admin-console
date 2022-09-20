@@ -82,10 +82,16 @@
 
   /** statusbar **/
   .stick {
-      background-image: url("/admin/img/stick-green.png");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 100% 8px;
+      position: relative;
+  }
+
+  .stick-back {
+    position: absolute;
+    background-color: #00a489;
+    height: 8px;
+    width: 100%;
+    margin-top: -4px;
+    top: 50%;
   }
 
   .change-social-window > .modal-dialog {
@@ -104,8 +110,8 @@
     color: lighten(@gray-light, 10%);
   }
 
-  .text-muted .stick {
-      background-image: url("/admin/img/stick-gray.png");
+  .text-muted .stick > .stick-back {
+      background-color: #e6e6e6;
   }
 
   .download-data-dropdown {
@@ -116,16 +122,16 @@
     color: @av-secondary-contrast;
   }
 
-  .stickend,
-  .stickini {
-      background-size: 50% 8px;
+  .stickend > .stick-back,
+  .stickini > .stick-back {
+    width: 50%;
   }
 
-  .stickini {
-      background-position: center right;
+  .stickini > .stick-back {
+    right: 0;
   }
-  .stickend {
-      background-position: center left;
+  .stickend > .stick-back {
+    left: 0;
   }
 
   .stick i {
