@@ -82,10 +82,20 @@
 
   /** statusbar **/
   .stick {
-      background-image: url("/admin/img/stick-green.png");
+      position: relative;
+      /*background-image: url("/admin/img/stick-green.png");
       background-repeat: no-repeat;
       background-position: center;
-      background-size: 100% 8px;
+      background-size: 100% 8px;*/
+  }
+
+  .stick-back {
+    position: absolute;
+    background-color: #00a489;
+    height: 8px;
+    width: 100%;
+    margin-top: -4px;
+    top: 50%;
   }
 
   .change-social-window > .modal-dialog {
