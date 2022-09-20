@@ -1,6 +1,6 @@
 {
   "name": "admin-console",
-  "version" : "7.0.0-beta.1",
+  "version" : "7.1.x",
   "license": "AGPL-3.0-only",
   "author": {
     "name": "Sequent Tech Inc and others",
