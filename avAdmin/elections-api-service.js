@@ -309,6 +309,9 @@ angular.module('avAdmin')
 
             // caching election
             electionsapi.cache[conf.id] = conf;
+
+            // trustee keys state
+            conf.trusteeKeysState = election.trusteeKeysState;
             return conf;
         };
 
