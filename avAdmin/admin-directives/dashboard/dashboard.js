@@ -565,6 +565,42 @@ angular.module('avAdmin')
           );
       }
 
+      function launchKeyDistributionCeremony() {
+        $modal
+          .open({
+            templateUrl: "avAdmin/admin-directives/dashboard/key-distribution-ceremony-modal.html",
+            controller: "KeyDistributionCeremonyModal",
+            size: 'lg',
+            resolve: {
+              dialogName: function () { return 'launchKeyDistributionCeremony'; },
+              data: function() 
+              {
+                return JSON.stringify({
+                  election: scope.election,
+                });
+              }
+            }
+          });
+      }
+
+      function launchOpeningCeremony() {
+        $modal
+          .open({
+            templateUrl: "avAdmin/admin-directives/dashboard/opening-ceremony-modal.html",
+            controller: "OpeningCeremonyModal",
+            size: 'lg',
+            resolve: {
+              dialogName: function () { return 'launchOpeningCeremony'; },
+              data: function() 
+              {
+                return JSON.stringify({
+                  election: scope.election,
+                });
+              }
+            }
+          });
+      }
+
       function setAutoreload(electionId)
       {
         ElectionsApi.autoreloadStats(
@@ -1139,6 +1175,28 @@ angular.module('avAdmin')
               );
             }
           },
+          {
+            i18nString: 'launchKeyDistributionCeremony',
+            iconClass: 'fa fa-code-fork',
+            actionFunc: function() { return scope.launchKeyDistributionCeremony(); },
+            enableFunc: function() { 
+              return (
+                ['registered', 'created'].indexOf(scope.election.status) !== -1 && 
+                scope.perms.val.indexOf("edit") !== -1
+              );
+            }
+          },
+          {
+            i18nString: 'launchOpeningCeremony',
+            iconClass: 'fa fa-code-fork',
+            actionFunc: function() { return scope.launchOpeningCeremony(); },
+            enableFunc: function() { 
+              return (
+                ['stopped'].indexOf(scope.election.status) !== -1 && 
+                scope.perms.val.indexOf("edit") !== -1
+              );
+            }
+          },
         ];
 
         scope.statuses = scope.statuses;
@@ -1216,7 +1274,9 @@ angular.module('avAdmin')
         allowTally: allowTally,
         editChildrenParent: editChildrenParent,
         showResults: showResults,
-        toggleDownloadButton: toggleDownloadButton
+        toggleDownloadButton: toggleDownloadButton,
+        launchKeyDistributionCeremony: launchKeyDistributionCeremony,
+        launchOpeningCeremony: launchOpeningCeremony
       });
 
       // initialize

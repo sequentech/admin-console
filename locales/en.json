@@ -373,7 +373,9 @@
           "suspendElection": "Suspend election...",
           "resumeElection": "Resume election..",
           "makeCandidatesPublic": "Make candidates public...",
-          "makeCandidatesPrivate": "Make candidates private..."
+          "makeCandidatesPrivate": "Make candidates private...",
+          "launchKeyDistributionCeremony": "Launch key distribution ceremony",
+          "launchOpeningCeremony": "Launch opening ceremony"
         },
         "modals": {
           "createHeader": "Create election",
