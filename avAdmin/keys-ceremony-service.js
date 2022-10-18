@@ -28,6 +28,15 @@ angular
     // to be sent
     election: null,
 
+    trusteesLogin: {
+      /*
+       * "trustee_id" : {
+       *   "username": "username",
+       *   "password": "password"
+       * }
+       */
+    },
+
     steps: [],
   };
 
@@ -57,7 +66,7 @@ angular
     }).result;
   }
 
-  function launchTrusteeLoginModal() {
+  function launchTrusteeLoginModal(trusteeId) {
     return $modal
     .open({
       templateUrl: "avAdmin/admin-directives/dashboard/login-trustee-ceremony-modal.html",
@@ -69,6 +78,7 @@ angular
         {
           return {
             election: service.election,
+            trusteeId: trusteeId,
           };
         }
       }
@@ -149,13 +159,14 @@ angular
       var methodsArray = authorities.map(function (trustee) {
         return launchTrusteeLoginModal(trustee.id)
           .then(function (res) {
-            return launchDownloadShareModal();
+            service.trusteesLogin[trustee.id] = res;
+            return launchDownloadShareModal(trustee.id);
           })
           .then(function (res) {
-            return launchCheckShareModal();
+            return launchCheckShareModal(trustee.id);
           })
           .then(function (res) {
-            return launchDeleteShareModal();
+            return launchDeleteShareModal(trustee.id);
           });
       });
 

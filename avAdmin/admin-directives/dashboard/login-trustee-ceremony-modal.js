@@ -18,7 +18,7 @@
 angular.module('avAdmin')
   .controller('LoginTrusteeCeremonyModal',
     function($scope, $modalInstance, ConfigService, dialogName, data) {
-      $scope.dialogName = dialogName;
+      $scope.trusteeId = data.trusteeId;
 
       $scope.login = {
         username: undefined,

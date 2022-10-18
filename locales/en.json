@@ -450,6 +450,10 @@
               "header": "Keys Distribution Ceremony",
               "bodyMessage": "This is a text explaining the keys distribution ceremony",
               "confirmButton": "Start"
+            },
+            "loginTrustee": {
+              "header": "Log into trustee __trustee_id__",
+              "loginButton": "Login"
             }
           },
           "sendAuthCodes": {
