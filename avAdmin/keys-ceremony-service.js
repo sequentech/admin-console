@@ -39,13 +39,8 @@ angular
     service.election = el;
   };
 
-  service.launchKeyDistributionCeremony = function (election) {
-    service.setElection(election);
-    service.ceremony = 'keys-distribution';
-    var authorities = election.auths;
-    var trutee_keys_state = election.trusteeKeysState;
-
-    $modal
+  function launchKeyDistributionInitialModal() {
+    return $modal
     .open({
       templateUrl: "avAdmin/admin-directives/dashboard/key-distribution-ceremony-modal.html",
       controller: "KeyDistributionCeremonyModal",
@@ -59,7 +54,76 @@ angular
           };
         }
       }
-    });
+    }).result;
+  }
+
+  function launchTrusteeLoginModal() {
+    return $modal
+    .open({
+      templateUrl: "avAdmin/admin-directives/dashboard/login-trustee-ceremony-modal.html",
+      controller: "LoginTrusteeCeremonyModal",
+      size: 'lg',
+      resolve: {
+        dialogName: function () { return 'loginTrusteeCeremony'; },
+        data: function() 
+        {
+          return {
+            election: service.election,
+          };
+        }
+      }
+    }).result;
+  }
+
+  function launchDownloadShareModal() {
+    return $modal
+    .open({
+      templateUrl: "avAdmin/admin-directives/dashboard/download-share-ceremony-modal.html",
+      controller: "DownloadShareCeremonyModal",
+      size: 'lg',
+      resolve: {
+        dialogName: function () { return 'downloadShareCeremony'; },
+        data: function() 
+        {
+          return {
+            election: service.election,
+          };
+        }
+      }
+    }).result;
+  }
+
+  function launchDeleteShareModal() {
+    return $modal
+    .open({
+      templateUrl: "avAdmin/admin-directives/dashboard/delete-share-ceremony-modal.html",
+      controller: "DeleteShareCeremonyModal",
+      size: 'lg',
+      resolve: {
+        dialogName: function () { return 'deleteShareCeremony'; },
+        data: function() 
+        {
+          return {
+            election: service.election,
+          };
+        }
+      }
+    }).result;
+  }
+
+  service.launchKeyDistributionCeremony = async function (election) {
+    service.setElection(election);
+    service.ceremony = 'keys-distribution';
+    var authorities = election.auths.filter(trustee =>
+      -1 === election.trusteeKeysState.find(el => el.id === trustee && el.state === "deleted")
+    );
+
+    await launchKeyDistributionInitialModal();
+    for (var authority of authorities) {
+      const loginResult = await launchTrusteeLoginModal();
+      await launchDownloadShareModal();
+      await launchDeleteShareModal();
+    }
   };
 
   service.launchOpeningCeremony = function (election) {
