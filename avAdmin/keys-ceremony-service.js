@@ -156,17 +156,17 @@ angular
 
     return launchKeyDistributionInitialModal()
     .then(function (result) {
-      var methodsArray = authorities.map(function (trustee) {
-        return launchTrusteeLoginModal(trustee.id)
+      var methodsArray = authorities.map(function (trusteeId) {
+        return launchTrusteeLoginModal(trusteeId)
           .then(function (res) {
-            service.trusteesLogin[trustee.id] = res;
-            return launchDownloadShareModal(trustee.id);
+            service.trusteesLogin[trusteeId] = res;
+            return launchDownloadShareModal(trusteeId);
           })
           .then(function (res) {
-            return launchCheckShareModal(trustee.id);
+            return launchCheckShareModal(trusteeId);
           })
           .then(function (res) {
-            return launchDeleteShareModal(trustee.id);
+            return launchDeleteShareModal(trusteeId);
           });
       });
 
