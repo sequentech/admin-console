@@ -50,6 +50,10 @@
         </div>
     </div>
 </div>
+<!-- Show errors if any -->
+<div class="text-danger padding-bottom-sm" ng-if="error">
+  {{error}}
+</div>
 
 <div class="modal-footer login-trustee-ceremony-modal">
     <button class="btn btn-success" ng-click="ok()" ng-i18next>

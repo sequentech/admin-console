@@ -17,8 +17,10 @@
 
 angular.module('avAdmin')
   .controller('LoginTrusteeCeremonyModal',
-    function($scope, $modalInstance, ConfigService, dialogName, data) {
+    function($scope, $modalInstance, ElectionsApi, data) {
       $scope.trusteeId = data.trusteeId;
+      $scope.election = data.election;
+      $scope.error = undefined;
 
       $scope.login = {
         username: undefined,
@@ -26,7 +28,26 @@ angular.module('avAdmin')
       };
 
       $scope.ok = function () {
-        $modalInstance.close($scope.login);
+        ElectionsApi.command(
+          $scope.election,
+          "private-keys/download-share",
+          "POST",
+          {
+            username: $scope.login.username,
+            password: $scope.login.password,
+            authority_id: $scope.trusteeId
+          }
+        ).then(
+          function (result)
+          {
+            $modalInstance.close($scope.login);
+          }
+        ).catch(
+          function(error)
+          {
+            $scope.error = error;
+          }
+        );
       };
 
       $scope.cancel = function () {
