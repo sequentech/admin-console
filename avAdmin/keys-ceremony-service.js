@@ -157,7 +157,8 @@ angular
     return launchKeyDistributionInitialModal()
     .then(function (result) {
       var methodsArray = authorities.map(function (trusteeId) {
-        return launchTrusteeLoginModal(trusteeId)
+        return function () {
+          return launchTrusteeLoginModal(trusteeId)
           .then(function (res) {
             service.trusteesLogin[trusteeId] = res;
             return launchDownloadShareModal(trusteeId);
@@ -168,6 +169,7 @@ angular
           .then(function (res) {
             return launchDeleteShareModal(trusteeId);
           });
+        }
       });
 
       return methodsArray.reduce(function (prev, cur) { return prev.then(cur); }, PromiseResolve());

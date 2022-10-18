@@ -1154,6 +1154,7 @@ angular.module('avAdmin')
             actionFunc: function() { return scope.launchKeyDistributionCeremony(); },
             enableFunc: function() { 
               return (
+                !!scope.election && !!scope.election.presentation &&
                 !!scope.election.presentation.election_board_ceremony &&
                 ['registered', 'created'].indexOf(scope.election.status) !== -1 && 
                 scope.perms.val.indexOf("edit") !== -1
@@ -1166,6 +1167,7 @@ angular.module('avAdmin')
             actionFunc: function() { return scope.launchOpeningCeremony(); },
             enableFunc: function() { 
               return (
+                !!scope.election && !!scope.election.presentation &&
                 !!scope.election.presentation.election_board_ceremony &&
                 ['stopped'].indexOf(scope.election.status) !== -1 && 
                 scope.perms.val.indexOf("edit") !== -1
