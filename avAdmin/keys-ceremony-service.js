@@ -130,16 +130,18 @@ angular
   }
 
   function PromiseResolve(value) {
-    return new Promise(function(resolve) {
-      resolve(value);
-    });
+    var deferred = $q.defer();
+    var promise = deferred.promise;
+    deferred.resolve(value);
+
+    return promise;
   }
 
   service.launchKeyDistributionCeremony = function (election) {
     service.setElection(election);
     service.ceremony = 'keys-distribution';
     var authorities = election.auths.filter(function (trustee) {
-      return -1 === election.trusteeKeysState.find(function (el){ return el.id === trustee && el.state === "deleted"; });
+      return undefined === election.trusteeKeysState.find(function (el){ return el.id === trustee && el.state === "deleted"; });
     });
 
     return launchKeyDistributionInitialModal()

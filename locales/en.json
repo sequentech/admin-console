@@ -445,6 +445,13 @@
             "body": "This dialog allows you to edit the calculate results json. Use this only if you know what you are doing.",
             "confirmEdit": "Finish edit"
           },
+          "keysCeremonies": {
+            "keysDistributionIntro": {
+              "header": "Keys Distribution Ceremony",
+              "bodyMessage": "This is a text explaining the keys distribution ceremony",
+              "confirmButton": "Start"
+            }
+          },
           "sendAuthCodes": {
             "editMessageStep": {
               "header": "Send authentication codes (Step __step__ of __total__)",

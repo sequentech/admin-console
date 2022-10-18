@@ -1,7 +1,21 @@
 <div class="modal-header dialog-header-warning key-distribution-ceremony-modal">
-    Header
+    <span ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.keysDistributionIntro.header
+    </span>
 </div>
 
 <div class="modal-body">
-    Test
+    <p>
+      <span ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.keysDistributionIntro.bodyMessage
+      </span>
+    </p>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-success" ng-click="ok()" ng-i18next>
+        <span>
+            avAdmin.dashboard.modals.keysCeremonies.keysDistributionIntro.confirmButton
+        </span>
+    </button>
 </div>

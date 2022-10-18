@@ -18,15 +18,8 @@
 angular.module('avAdmin')
   .controller('KeyDistributionCeremonyModal',
     function($scope, $modalInstance, ConfigService, dialogName, data) {
-      $scope.helpurl = ConfigService.helpUrl;
-      $scope.dialogName = dialogName;
-
-      $scope.textarea = {
-        data: data
-      };
-
       $scope.ok = function () {
-        $modalInstance.close($scope.textarea.data);
+        $modalInstance.close();
       };
 
       $scope.cancel = function () {
