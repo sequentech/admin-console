@@ -55,7 +55,7 @@ angular
         }
       }
     }).result;
-  };
+  }
 
   function launchTrusteeLoginModal() {
     return $modal
@@ -73,7 +73,7 @@ angular
         }
       }
     }).result;
-  };
+  }
 
   function launchDownloadShareModal() {
     return $modal
@@ -91,7 +91,7 @@ angular
         }
       }
     }).result;
-  };
+  }
 
   function launchCheckShareModal() {
     return $modal
@@ -109,7 +109,7 @@ angular
         }
       }
     }).result;
-  };
+  }
 
   function launchDeleteShareModal() {
     return $modal
@@ -127,14 +127,14 @@ angular
         }
       }
     }).result;
-  };
+  }
 
   service.launchKeyDistributionCeremony = function (election) {
     service.setElection(election);
     service.ceremony = 'keys-distribution';
-    var authorities = election.auths.filter(trustee =>
-      -1 === election.trusteeKeysState.find(el => el.id === trustee && el.state === "deleted")
-    );
+    var authorities = election.auths.filter(function (trustee) {
+      return -1 === election.trusteeKeysState.find(function (el){ return el.id === trustee && el.state === "deleted"; });
+    });
 
     return launchKeyDistributionInitialModal()
     .then(function (result) {
@@ -177,4 +177,4 @@ angular
   };
 
   return service;
-};
+});
