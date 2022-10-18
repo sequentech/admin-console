@@ -169,7 +169,7 @@ angular
           .then(function (res) {
             return launchDeleteShareModal(trusteeId);
           });
-        }
+        };
       });
 
       return methodsArray.reduce(function (prev, cur) { return prev.then(cur); }, PromiseResolve());
