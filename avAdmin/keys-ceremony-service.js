@@ -55,7 +55,7 @@ angular
         }
       }
     }).result;
-  }
+  };
 
   function launchTrusteeLoginModal() {
     return $modal
@@ -73,7 +73,7 @@ angular
         }
       }
     }).result;
-  }
+  };
 
   function launchDownloadShareModal() {
     return $modal
@@ -91,7 +91,25 @@ angular
         }
       }
     }).result;
-  }
+  };
+
+  function launchCheckShareModal() {
+    return $modal
+    .open({
+      templateUrl: "avAdmin/admin-directives/dashboard/check-share-ceremony-modal.html",
+      controller: "CheckShareCeremonyModal",
+      size: 'lg',
+      resolve: {
+        dialogName: function () { return 'checkShareCeremony'; },
+        data: function() 
+        {
+          return {
+            election: service.election,
+          };
+        }
+      }
+    }).result;
+  };
 
   function launchDeleteShareModal() {
     return $modal
@@ -109,21 +127,32 @@ angular
         }
       }
     }).result;
-  }
+  };
 
-  service.launchKeyDistributionCeremony = async function (election) {
+  service.launchKeyDistributionCeremony = function (election) {
     service.setElection(election);
     service.ceremony = 'keys-distribution';
     var authorities = election.auths.filter(trustee =>
       -1 === election.trusteeKeysState.find(el => el.id === trustee && el.state === "deleted")
     );
 
-    await launchKeyDistributionInitialModal();
-    for (var authority of authorities) {
-      const loginResult = await launchTrusteeLoginModal();
-      await launchDownloadShareModal();
-      await launchDeleteShareModal();
-    }
+    return launchKeyDistributionInitialModal()
+    .then(function (result) {
+      var methodsArray = authorities.map(function (trustee) {
+        return launchTrusteeLoginModal(trustee.id)
+          .then(function (res) {
+            return launchDownloadShareModal();
+          })
+          .then(function (res) {
+            return launchCheckShareModal();
+          })
+          .then(function (res) {
+            return launchDeleteShareModal();
+          });
+      });
+
+      return methodsArray.reduce((prev, cur) => prev.then(cur), Promise.resolve());
+    });
   };
 
   service.launchOpeningCeremony = function (election) {
