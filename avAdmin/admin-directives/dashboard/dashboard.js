@@ -28,7 +28,8 @@ angular.module('avAdmin')
        $modal,
        PercentVotesService,
        ConfigService,
-       SendMsg)
+       SendMsg,
+       KeysCeremony)
     {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) 
@@ -566,39 +567,11 @@ angular.module('avAdmin')
       }
 
       function launchKeyDistributionCeremony() {
-        $modal
-          .open({
-            templateUrl: "avAdmin/admin-directives/dashboard/key-distribution-ceremony-modal.html",
-            controller: "KeyDistributionCeremonyModal",
-            size: 'lg',
-            resolve: {
-              dialogName: function () { return 'launchKeyDistributionCeremony'; },
-              data: function() 
-              {
-                return {
-                  election: scope.election,
-                };
-              }
-            }
-          });
+        KeysCeremony.launchKeyDistributionCeremony(scope.election);
       }
 
       function launchOpeningCeremony() {
-        $modal
-          .open({
-            templateUrl: "avAdmin/admin-directives/dashboard/opening-ceremony-modal.html",
-            controller: "OpeningCeremonyModal",
-            size: 'lg',
-            resolve: {
-              dialogName: function () { return 'launchOpeningCeremony'; },
-              data: function() 
-              {
-                return {
-                  election: scope.election,
-                };
-              }
-            }
-          });
+        KeysCeremony.launchOpeningCeremony(scope.election);
       }
 
       function setAutoreload(electionId)
