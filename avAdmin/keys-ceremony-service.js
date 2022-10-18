@@ -129,6 +129,12 @@ angular
     }).result;
   }
 
+  function PromiseResolve(value) {
+    return new Promise(function(resolve) {
+      resolve(value);
+    });
+  }
+
   service.launchKeyDistributionCeremony = function (election) {
     service.setElection(election);
     service.ceremony = 'keys-distribution';
@@ -151,7 +157,7 @@ angular
           });
       });
 
-      return methodsArray.reduce((prev, cur) => prev.then(cur), Promise.resolve());
+      return methodsArray.reduce(function (prev, cur) { return prev.then(cur); }, PromiseResolve());
     });
   };
 

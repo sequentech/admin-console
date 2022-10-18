@@ -23,7 +23,7 @@ angular.module('avAdmin')
       $scope.login = {
         username: undefined,
         password: undefined,
-      }
+      };
 
       $scope.ok = function () {
         $modalInstance.close($scope.login);
