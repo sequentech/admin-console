@@ -64,7 +64,7 @@
   window.addEventListener('message', requestAuthorization, false);
 
   // convert links into widgets
-  processLinks("sequent-voting-booth", function (link) {
+  processLinks("agoravoting-voting-booth", function (link) {
     var funcName = link.getAttribute("data-authorization-funcname");
     window.avRequestAuthorizationFuncName = funcName;
   });
