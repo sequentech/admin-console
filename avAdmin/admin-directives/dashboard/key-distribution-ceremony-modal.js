@@ -18,6 +18,8 @@
 angular.module('avAdmin')
   .controller('KeyDistributionCeremonyModal',
     function($scope, $modalInstance, data) {
+      $scope.numSteps = data.numSteps;
+
       $scope.ok = function () {
         $modalInstance.close();
       };

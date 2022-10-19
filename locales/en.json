@@ -447,13 +447,19 @@
           },
           "keysCeremonies": {
             "keysDistributionIntro": {
-              "header": "Keys Distribution Ceremony",
-              "bodyMessage": "This is a text explaining the keys distribution ceremony",
+              "header": "Keys Distribution Ceremony (Step 1 of __total__)",
+              "bodyMessage": "In this ceremony each trustee will download their part of the private keys for the electoral process. Each trustee will follow the following steps: \n - ",
               "confirmButton": "Start"
             },
             "loginTrustee": {
-              "header": "Log into trustee __trustee_id__",
+              "header": "Log into trustee __trustee_id__ (Step __step__ of __total__)",
               "loginButton": "Login"
+            },
+            "downloadShare": {
+              "header": "Download private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+              "bodyMessage": "Download the share of the private keys for the elections. Please download it at least into two different devices.",
+              "downloadButton": "Download private key",
+              "nextButton": "Next step"
             }
           },
           "sendAuthCodes": {

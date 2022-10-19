@@ -21,6 +21,8 @@ angular.module('avAdmin')
       $scope.trusteeId = data.trusteeId;
       $scope.election = data.election;
       $scope.error = undefined;
+      $scope.numSteps = data.numSteps;
+      $scope.currentStep = data.currentStep;
 
       $scope.login = {
         username: undefined,

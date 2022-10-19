@@ -21,6 +21,8 @@ angular.module('avAdmin')
       $scope.trusteeId = data.trusteeId;
       $scope.username = data.username;
       $scope.password = data.password;
+      $scope.numSteps = data.numSteps;
+      $scope.currentStep = data.currentStep;
 
       $scope.download = function () {
         ElectionsApi.downloadPrivateKeyShare(

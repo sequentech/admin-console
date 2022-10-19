@@ -48,7 +48,7 @@ angular
     service.election = el;
   };
 
-  function launchKeyDistributionInitialModal() {
+  function launchKeyDistributionInitialModal(numSteps) {
     return $modal
     .open({
       templateUrl: "avAdmin/admin-directives/dashboard/key-distribution-ceremony-modal.html",
@@ -60,13 +60,14 @@ angular
         {
           return {
             election: service.election,
+            numSteps: numSteps,
           };
         }
       }
     }).result;
   }
 
-  function launchTrusteeLoginModal(trusteeId) {
+  function launchTrusteeLoginModal(trusteeId, numSteps, currentStep) {
     return $modal
     .open({
       templateUrl: "avAdmin/admin-directives/dashboard/login-trustee-ceremony-modal.html",
@@ -78,14 +79,16 @@ angular
         {
           return {
             election: service.election,
-            trusteeId: trusteeId
+            trusteeId: trusteeId,
+            numSteps: numSteps,
+            currentStep: currentStep
           };
         }
       }
     }).result;
   }
 
-  function launchDownloadShareModal(trusteeId) {
+  function launchDownloadShareModal(trusteeId, numSteps, currentStep) {
     return $modal
     .open({
       templateUrl: "avAdmin/admin-directives/dashboard/download-share-ceremony-modal.html",
@@ -99,14 +102,16 @@ angular
             election: service.election,
             trusteeId: trusteeId,
             username: service.trusteesLogin[trusteeId].username,
-            password: service.trusteesLogin[trusteeId].password
+            password: service.trusteesLogin[trusteeId].password,
+            numSteps: numSteps,
+            currentStep: currentStep
           };
         }
       }
     }).result;
   }
 
-  function launchCheckShareModal(trusteeId) {
+  function launchCheckShareModal(trusteeId, numSteps, currentStep) {
     return $modal
     .open({
       templateUrl: "avAdmin/admin-directives/dashboard/check-share-ceremony-modal.html",
@@ -120,14 +125,16 @@ angular
             election: service.election,
             trusteeId: trusteeId,
             username: service.trusteesLogin[trusteeId].username,
-            password: service.trusteesLogin[trusteeId].password
+            password: service.trusteesLogin[trusteeId].password,
+            numSteps: numSteps,
+            currentStep: currentStep
           };
         }
       }
     }).result;
   }
 
-  function launchDeleteShareModal(trusteeId) {
+  function launchDeleteShareModal(trusteeId, numSteps, currentStep) {
     return $modal
     .open({
       templateUrl: "avAdmin/admin-directives/dashboard/delete-share-ceremony-modal.html",
@@ -141,7 +148,9 @@ angular
             election: service.election,
             trusteeId: trusteeId,
             username: service.trusteesLogin[trusteeId].username,
-            password: service.trusteesLogin[trusteeId].password
+            password: service.trusteesLogin[trusteeId].password,
+            numSteps: numSteps,
+            currentStep: currentStep
           };
         }
       }
@@ -183,21 +192,23 @@ angular
     var authorities = election.auths.filter(function (trustee) {
       return undefined === election.trusteeKeysState.find(function (el){ return el.id === trustee && el.state === "deleted"; });
     });
+    var numSteps = 1 + 4 * authorities.length;
 
-    return launchKeyDistributionInitialModal()
+    return launchKeyDistributionInitialModal(numSteps)
     .then(function (result) {
-      var methodsArray = authorities.map(function (trusteeId) {
+
+      var methodsArray = authorities.map(function (trusteeId, index) {
         return function () {
-          return launchTrusteeLoginModal(trusteeId)
+          return launchTrusteeLoginModal(trusteeId, numSteps, 2 + 4 * index)
           .then(function (res) {
             service.trusteesLogin[trusteeId] = res;
-            return launchDownloadShareModal(trusteeId);
+            return launchDownloadShareModal(trusteeId, numSteps, 3 + 4 * index);
           })
           .then(function (res) {
-            return launchCheckShareModal(trusteeId);
+            return launchCheckShareModal(trusteeId, numSteps, 4 + 4 * index);
           })
           .then(function (res) {
-            return launchDeleteShareModal(trusteeId);
+            return launchDeleteShareModal(trusteeId, numSteps, 4 + 4 * index);
           });
         };
       });
