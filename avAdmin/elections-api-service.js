@@ -637,5 +637,18 @@ angular.module('avAdmin')
           return deferred.promise;
         };
 
+        electionsapi.downloadPrivateKeyShare = function (election, trusteeId, username, password) {
+          return electionsapi.command(
+            election,
+            "private-keys/download-share",
+            "POST",
+            {
+              username: username,
+              password: password,
+              authority_id: trusteeId
+            }
+          );
+        };
+
         return electionsapi;
     });

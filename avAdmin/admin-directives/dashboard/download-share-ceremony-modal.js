@@ -17,16 +17,29 @@
 
 angular.module('avAdmin')
   .controller('DownloadShareCeremonyModal',
-    function($scope, $modalInstance, ConfigService, dialogName, data) {
-      $scope.helpurl = ConfigService.helpUrl;
-      $scope.dialogName = dialogName;
+    function($scope, $modalInstance, ElectionsApi, data) {
+      $scope.trusteeId = data.trusteeId;
+      $scope.username = data.username;
+      $scope.password = data.password;
 
-      $scope.textarea = {
-        data: data
+      $scope.download = function () {
+        ElectionsApi.downloadPrivateKeyShare(
+          $scope.election, $scope.trusteeId, $scope.username, $scope.password
+        ).then(
+          function (result)
+          {
+            // ???
+          }
+        ).catch(
+          function(error)
+          {
+            $scope.error = error.statusText;
+          }
+        );
       };
 
       $scope.ok = function () {
-        $modalInstance.close($scope.textarea.data);
+        $modalInstance.close();
       };
 
       $scope.cancel = function () {

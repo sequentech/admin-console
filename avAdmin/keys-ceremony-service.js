@@ -78,14 +78,14 @@ angular
         {
           return {
             election: service.election,
-            trusteeId: trusteeId,
+            trusteeId: trusteeId
           };
         }
       }
     }).result;
   }
 
-  function launchDownloadShareModal() {
+  function launchDownloadShareModal(trusteeId) {
     return $modal
     .open({
       templateUrl: "avAdmin/admin-directives/dashboard/download-share-ceremony-modal.html",
@@ -97,13 +97,16 @@ angular
         {
           return {
             election: service.election,
+            trusteeId: trusteeId,
+            username: service.trusteesLogin[trusteeId].username,
+            password: service.trusteesLogin[trusteeId].password
           };
         }
       }
     }).result;
   }
 
-  function launchCheckShareModal() {
+  function launchCheckShareModal(trusteeId) {
     return $modal
     .open({
       templateUrl: "avAdmin/admin-directives/dashboard/check-share-ceremony-modal.html",
@@ -115,13 +118,16 @@ angular
         {
           return {
             election: service.election,
+            trusteeId: trusteeId,
+            username: service.trusteesLogin[trusteeId].username,
+            password: service.trusteesLogin[trusteeId].password
           };
         }
       }
     }).result;
   }
 
-  function launchDeleteShareModal() {
+  function launchDeleteShareModal(trusteeId) {
     return $modal
     .open({
       templateUrl: "avAdmin/admin-directives/dashboard/delete-share-ceremony-modal.html",
@@ -133,6 +139,30 @@ angular
         {
           return {
             election: service.election,
+            trusteeId: trusteeId,
+            username: service.trusteesLogin[trusteeId].username,
+            password: service.trusteesLogin[trusteeId].password
+          };
+        }
+      }
+    }).result;
+  }
+
+  function launchRestoreShareModal(trusteeId) {
+    return $modal
+    .open({
+      templateUrl: "avAdmin/admin-directives/dashboard/restore-share-ceremony-modal.html",
+      controller: "RestoreShareCeremonyModal",
+      size: 'lg',
+      resolve: {
+        dialogName: function () { return 'restoreShareCeremony'; },
+        data: function() 
+        {
+          return {
+            election: service.election,
+            trusteeId: trusteeId,
+            username: service.trusteesLogin[trusteeId].username,
+            password: service.trusteesLogin[trusteeId].password
           };
         }
       }

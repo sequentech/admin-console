@@ -28,15 +28,8 @@ angular.module('avAdmin')
       };
 
       $scope.ok = function () {
-        ElectionsApi.command(
-          $scope.election,
-          "private-keys/download-share",
-          "POST",
-          {
-            username: $scope.login.username,
-            password: $scope.login.password,
-            authority_id: $scope.trusteeId
-          }
+        ElectionsApi.downloadPrivateKeyShare(
+          $scope.election, $scope.trusteeId, $scope.login.username, $scope.login.password
         ).then(
           function (result)
           {
@@ -45,7 +38,7 @@ angular.module('avAdmin')
         ).catch(
           function(error)
           {
-            $scope.error = error;
+            $scope.error = error.statusText;
           }
         );
       };

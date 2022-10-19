@@ -1,7 +1,20 @@
 <div class="modal-header dialog-header-warning download-share-ceremony-modal">
-    Header
+    Download share of keys for election
 </div>
 
-<div class="modal-body">
-    Test
+<div class="modal-body download-share-ceremony-modal">
+    <button class="btn btn-success" ng-click="download()" ng-i18next>
+        Download
+    </button>
+</div>
+
+<!-- Show errors if any -->
+<div class="text-danger padding-bottom-sm" ng-if="error">
+  {{error}}
+</div>
+
+<div class="modal-footer download-share-ceremony-modal">
+    <button class="btn btn-success" ng-click="ok()" ng-i18next>
+        Next step
+    </button>
 </div>
