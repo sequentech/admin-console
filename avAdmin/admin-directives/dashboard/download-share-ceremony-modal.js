@@ -17,12 +17,13 @@
 
 angular.module('avAdmin')
   .controller('DownloadShareCeremonyModal',
-    function($scope, $modalInstance, ElectionsApi, data) {
+    function($scope, $modalInstance, $window, ElectionsApi, data) {
       $scope.trusteeId = data.trusteeId;
       $scope.username = data.username;
       $scope.password = data.password;
       $scope.numSteps = data.numSteps;
       $scope.currentStep = data.currentStep;
+      $scope.election = data.election;
 
       $scope.download = function () {
         ElectionsApi.downloadPrivateKeyShare(
@@ -30,7 +31,9 @@ angular.module('avAdmin')
         ).then(
           function (result)
           {
-            // ???
+            var data = _.isObject(result.data)? JSON.stringify(result.data): result.data;
+            var blob = new $window.Blob([data], {type: "text/plain"});
+            $window.saveAs(blob, "election-" + $scope.election.id + "-trustee-"  + $scope.trusteeId  + "-keys" + ".txt");
           }
         ).catch(
           function(error)
