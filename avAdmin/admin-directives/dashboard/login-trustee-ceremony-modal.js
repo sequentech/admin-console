@@ -40,6 +40,7 @@ angular.module('avAdmin')
           "min": 3,
           "name": "password",
           "required": true,
+          "no_help": true,
           "required_on_authentication": true,
           "type": "password",
           "unique": true,
@@ -47,8 +48,8 @@ angular.module('avAdmin')
       ];
 
       function getFieldValue(name) {
-        var field = $scope.login_fields.find(function (field) { return field["name"] === name; });
-        return field && field["value"];
+        var field = $scope.login_fields.find(function (field) { return field.name === name; });
+        return field && field.value;
       }
 
       $scope.login = function () {
