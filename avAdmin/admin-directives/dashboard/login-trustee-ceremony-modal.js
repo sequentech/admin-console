@@ -23,15 +23,39 @@ angular.module('avAdmin')
       $scope.error = undefined;
       $scope.numSteps = data.numSteps;
       $scope.currentStep = data.currentStep;
+      $scope.login_fields = [
+        {
+          "disabled": false,
+          "max": 200,
+          "min": 3,
+          "name": "username",
+          "required": true,
+          "required_on_authentication": true,
+          "type": "text",
+          "unique": true,
+        },
+        {
+          "disabled": false,
+          "max": 200,
+          "min": 3,
+          "name": "password",
+          "required": true,
+          "required_on_authentication": true,
+          "type": "password",
+          "unique": true,
+        }
+      ];
 
-      $scope.login = {
-        username: undefined,
-        password: undefined,
-      };
+      function getFieldValue(name) {
+        var field = $scope.login_fields.find(function (field) { return field["name"] === name; });
+        return field && field["value"];
+      }
 
       $scope.login = function () {
+        var username = getFieldValue("username");
+        var password = getFieldValue("password");
         ElectionsApi.downloadPrivateKeyShare(
-          $scope.election, $scope.trusteeId, $scope.login.username, $scope.login.password
+          $scope.election, $scope.trusteeId, username, password
         ).then(
           function (result)
           {
