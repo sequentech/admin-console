@@ -13,15 +13,15 @@
     <button class="btn btn-success" ng-click="download()" ng-i18next>
         avAdmin.dashboard.modals.keysCeremonies.downloadShare.downloadButton
     </button>
-</div>
 
-<div class="text-warning padding-bottom-sm" ng-if="timesDownloaded.length === 1">
-    avAdmin.dashboard.modals.keysCeremonies.downloadShare.downloadMoreTimes
-</div>
+    <div class="text-warning padding-bottom-sm" ng-if="timesDownloaded.length === 1">
+        avAdmin.dashboard.modals.keysCeremonies.downloadShare.downloadMoreTimes
+    </div>
 
-<!-- Show errors if any -->
-<div class="text-danger padding-bottom-sm" ng-if="error">
-  {{error}}
+    <!-- Show errors if any -->
+    <div class="text-danger padding-bottom-sm" ng-if="error">
+      {{error}}
+    </div>
 </div>
 
 <div class="modal-footer download-share-ceremony-modal">

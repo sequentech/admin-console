@@ -11,11 +11,11 @@
       index="{{$index+1}}"
       ng-if="field.steps === undefined || field.steps.indexOf(currentFormStep) !== -1">
     </div>
-</div>
 
-<!-- Show errors if any -->
-<div class="text-danger padding-bottom-sm" ng-if="error">
-  {{error}}
+    <!-- Show errors if any -->
+    <div class="text-danger padding-bottom-sm" ng-if="error">
+      {{error}}
+    </div>
 </div>
 
 <div class="modal-footer login-trustee-ceremony-modal">
