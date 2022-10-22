@@ -60,7 +60,10 @@ angular.module('avAdmin')
         ).then(
           function (result)
           {
-            $modalInstance.close($scope.login);
+            $modalInstance.close({
+              username: username,
+              password: password
+            });
           }
         ).catch(
           function(error)
