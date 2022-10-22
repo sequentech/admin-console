@@ -29,7 +29,7 @@ angular.module('avAdmin')
         password: undefined,
       };
 
-      $scope.ok = function () {
+      $scope.login = function () {
         ElectionsApi.downloadPrivateKeyShare(
           $scope.election, $scope.trusteeId, $scope.login.username, $scope.login.password
         ).then(

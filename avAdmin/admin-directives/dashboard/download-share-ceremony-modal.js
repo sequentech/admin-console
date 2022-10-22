@@ -24,6 +24,7 @@ angular.module('avAdmin')
       $scope.numSteps = data.numSteps;
       $scope.currentStep = data.currentStep;
       $scope.election = data.election;
+      $scope.timesDownloaded = 0;
 
       $scope.download = function () {
         ElectionsApi.downloadPrivateKeyShare(
@@ -34,6 +35,7 @@ angular.module('avAdmin')
             var data = _.isObject(result.data)? JSON.stringify(result.data): result.data;
             var blob = new $window.Blob([data], {type: "text/plain"});
             $window.saveAs(blob, "election-" + $scope.election.id + "-trustee-"  + $scope.trusteeId  + "-keys" + ".txt");
+            $scope.timesDownloaded += 1;
           }
         ).catch(
           function(error)
@@ -43,7 +45,7 @@ angular.module('avAdmin')
         );
       };
 
-      $scope.ok = function () {
+      $scope.next = function () {
         $modalInstance.close();
       };
 
