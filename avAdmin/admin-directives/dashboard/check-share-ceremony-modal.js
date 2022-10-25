@@ -25,9 +25,39 @@ angular.module('avAdmin')
       $scope.currentStep = data.currentStep;
       $scope.election = data.election;
 
-      var fileInput = document.getElementById("fileToUpload");
+      function getBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = error => reject(error);
+        });
+      }
+
+      $scope.handleFile = function () {
+        var fileInput = document.getElementById("fileToUpload");
+        var file = fileInput.files[0];
+        getBase64(file)
+        .then(function (fileBase64) {
+          ElectionsApi.checkPrivateKeyShare(
+            $scope.election, $scope.trusteeId, $scope.username, $scope.password, fileBase64
+          ).then(
+            function (result)
+            {
+              // clear file input after using it
+              fileInput.value = null;
+            }
+          ).catch(
+            function (error)
+            {
+              $scope.error = error.statusText;
+            }
+          );
+        })
+      };
 
       $scope.selectFile = function () {
+        var fileInput = document.getElementById("fileToUpload");
         fileInput.click();
       };
 
