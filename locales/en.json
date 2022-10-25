@@ -459,7 +459,7 @@
               "header": "Download private key share for trustee __trustee_id__ (Step __step__ of __total__)",
               "bodyMessage": "Download the share of the private keys for the elections. Please download it at least into two different devices.",
               "downloadButton": "Download private key",
-              "downloadMoreTimes": "Please download the private key one more time",
+              "downloadMoreTimes": "Please make at least two copies of the private keys.",
               "nextButton": "Next step"
             }
           },

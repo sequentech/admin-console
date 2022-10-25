@@ -17,16 +17,10 @@
 
 angular.module('avAdmin')
   .controller('CheckShareModal',
-    function($scope, $modalInstance, ConfigService, dialogName, data) {
-      $scope.helpurl = ConfigService.helpUrl;
-      $scope.dialogName = dialogName;
-
-      $scope.textarea = {
-        data: data
-      };
+    function($scope, $modalInstance, $window, ElectionsApi, data) {
 
       $scope.ok = function () {
-        $modalInstance.close($scope.textarea.data);
+        $modalInstance.close();
       };
 
       $scope.cancel = function () {
