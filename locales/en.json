@@ -463,8 +463,11 @@
               "nextButton": "Next step"
             },
             "checkShare": {
+              "bodyMessage": "Upload the file with the private keys to check its contents:",
               "header": "Check private key share for trustee __trustee_id__ (Step __step__ of __total__)",
               "selectFileButton": "Select private keys file",
+              "verificationSuccess": "SUCCESS! Private keys verified.",
+              "verificationFailure": "FAILURE! Private key verification failure.",
               "nextButton": "Next step"
             }
           },
