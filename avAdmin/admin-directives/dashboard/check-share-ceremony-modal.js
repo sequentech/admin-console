@@ -27,7 +27,7 @@ angular.module('avAdmin')
 
       function getBase64(file) {
         var deferred = $q.defer();
-        const reader = new FileReader();
+        var reader = new FileReader();
         reader.readAsDataURL(file);
 
         reader.onload = function () {
@@ -59,7 +59,7 @@ angular.module('avAdmin')
               $scope.error = error.statusText;
             }
           );
-        })
+        });
       };
 
       $scope.selectFile = function () {
