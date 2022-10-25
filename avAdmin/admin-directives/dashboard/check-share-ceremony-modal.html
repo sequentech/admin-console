@@ -1,7 +1,20 @@
 <div class="modal-header dialog-header-warning check-share-ceremony-modal">
-    Header
+    <span class="title" ng-i18next>
+        [i18next]({trustee_id: trusteeId, step: currentStep, total: numSteps})avAdmin.dashboard.modals.keysCeremonies.checkShare.header
+    </span>
 </div>
 
-<div class="modal-body">
-    Test
+<div class="modal-body check-share-ceremony-modal">
+    <div class="file-drop-container" id="dropzone">
+        <input type="file" ng-model id="fileToUpload"/>
+        <button class="btn btn-success" ng-click="selectFile()" ng-i18next>
+            avAdmin.dashboard.modals.keysCeremonies.checkShare.selectFileButton
+        </button>
+    </div>
+</div>
+
+<div class="modal-footer download-share-ceremony-modal">
+    <button class="btn btn-success" ng-click="next()" ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.checkShare.nextButton
+    </button>
 </div>

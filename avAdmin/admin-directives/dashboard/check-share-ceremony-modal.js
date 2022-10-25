@@ -16,8 +16,20 @@
 **/
 
 angular.module('avAdmin')
-  .controller('CheckShareModal',
+  .controller('CheckShareCeremonyModal',
     function($scope, $modalInstance, $window, ElectionsApi, data) {
+      $scope.trusteeId = data.trusteeId;
+      $scope.username = data.username;
+      $scope.password = data.password;
+      $scope.numSteps = data.numSteps;
+      $scope.currentStep = data.currentStep;
+      $scope.election = data.election;
+
+      var fileInput = document.getElementById("fileToUpload");
+
+      $scope.selectFile = function () {
+        fileInput.click();
+      };
 
       $scope.ok = function () {
         $modalInstance.close();

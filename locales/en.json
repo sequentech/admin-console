@@ -461,6 +461,11 @@
               "downloadButton": "Download private key",
               "downloadMoreTimes": "Please make at least two copies of the private keys.",
               "nextButton": "Next step"
+            },
+            "checkShare": {
+              "header": "Check private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+              "selectFileButton": "Select private keys file",
+              "nextButton": "Next step"
             }
           },
           "sendAuthCodes": {
