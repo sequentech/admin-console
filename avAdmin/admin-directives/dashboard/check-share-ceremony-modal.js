@@ -17,7 +17,7 @@
 
 angular.module('avAdmin')
   .controller('CheckShareCeremonyModal',
-    function($scope, $modalInstance, $window, ElectionsApi, data) {
+    function($scope, $modalInstance, $q, ElectionsApi, data) {
       $scope.trusteeId = data.trusteeId;
       $scope.username = data.username;
       $scope.password = data.password;
@@ -26,12 +26,18 @@ angular.module('avAdmin')
       $scope.election = data.election;
 
       function getBase64(file) {
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = () => resolve(reader.result);
-          reader.onerror = error => reject(error);
-        });
+        var deferred = $q.defer();
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onload = function () {
+          deferred.resolve(reader.result);
+        };
+        reader.onerror = function (error) {
+          deferred.reject(error);
+        };
+
+        return deferred.promise;
       }
 
       $scope.handleFile = function () {
