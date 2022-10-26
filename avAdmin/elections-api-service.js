@@ -664,5 +664,19 @@ angular.module('avAdmin')
           );
         };
 
+        electionsapi.deletePrivateKeyShare = function (election, trusteeId, username, password, privateKeyBase64) {
+          return electionsapi.command(
+            election,
+            "private-keys/delete-share",
+            "POST",
+            {
+              username: username,
+              password: password,
+              authority_id: trusteeId,
+              private_key_base64: privateKeyBase64
+            }
+          );
+        };
+
         return electionsapi;
     });

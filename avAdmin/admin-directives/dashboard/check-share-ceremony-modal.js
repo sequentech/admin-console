@@ -17,7 +17,7 @@
 
 angular.module('avAdmin')
   .controller('CheckShareCeremonyModal',
-    function($scope, $modalInstance, $q, ElectionsApi, Base64Codec, data) {
+    function($scope, $modalInstance, ElectionsApi, Base64Codec, data) {
       $scope.trusteeId = data.trusteeId;
       $scope.username = data.username;
       $scope.password = data.password;

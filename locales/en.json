@@ -469,6 +469,12 @@
               "verificationSuccess": "SUCCESS! Private keys verified.",
               "verificationFailure": "FAILURE! Private key verification failure.",
               "nextButton": "Next step"
+            },
+            "deleteShare": {
+              "bodyMessage": "Delete the share of the private keys for this authority.",
+              "header": "Delete private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+              "deleteShareButton": "Delete private keys",
+              "operationSuccess": "Private keys share successfully deleted"
             }
           },
           "sendAuthCodes": {

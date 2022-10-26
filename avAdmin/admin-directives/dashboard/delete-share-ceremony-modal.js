@@ -17,16 +17,40 @@
 
 angular.module('avAdmin')
   .controller('DeleteShareCeremonyModal',
-    function($scope, $modalInstance, ConfigService, dialogName, data) {
-      $scope.helpurl = ConfigService.helpUrl;
-      $scope.dialogName = dialogName;
+    function($scope, $modalInstance, ElectionsApi, Base64Codec, data) {
+      $scope.trusteeId = data.trusteeId;
+      $scope.username = data.username;
+      $scope.password = data.password;
+      $scope.numSteps = data.numSteps;
+      $scope.currentStep = data.currentStep;
+      $scope.election = data.election;
+      $scope.privateKeyShareFile = data.privateKeyShareFile;
 
-      $scope.textarea = {
-        data: data
+      $scope.deleteShare = function () {
+        Base64Codec.fileToBase64($scope.privateKeyShareFile)
+        .then(function (fileBase64) {
+          ElectionsApi.deletePrivateKeyShare(
+            $scope.election, $scope.trusteeId, $scope.username, $scope.password, fileBase64
+          ).then(
+            function (result)
+            {
+              if (200 === result.status && _.isObject(result.data) && !!result.data.payload) {
+                $scope.showSuccess = true;
+              } else {
+                $scope.error = error.statusText;
+              }
+            }
+          ).catch(
+            function (error)
+            {
+              $scope.error = error.statusText;
+            }
+          );
+        });
       };
 
-      $scope.ok = function () {
-        $modalInstance.close($scope.textarea.data);
+      $scope.next = function () {
+        $modalInstance.close();
       };
 
       $scope.cancel = function () {
