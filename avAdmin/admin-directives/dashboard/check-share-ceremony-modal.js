@@ -17,7 +17,7 @@
 
 angular.module('avAdmin')
   .controller('CheckShareCeremonyModal',
-    function($scope, $modalInstance, $q, $timeout, ElectionsApi, data) {
+    function($scope, $modalInstance, $q, ElectionsApi, data) {
       $scope.trusteeId = data.trusteeId;
       $scope.username = data.username;
       $scope.password = data.password;
@@ -27,7 +27,6 @@ angular.module('avAdmin')
       $scope.verified = false;
       $scope.showSuccess = false;
       $scope.showFailure = false;
-      $scope.timeoutPromise = null;
 
       function getBase64(file) {
         var deferred = $q.defer();
@@ -50,9 +49,6 @@ angular.module('avAdmin')
       }
 
       $scope.handleFile = function () {
-        if ($scope.timeoutPromise) {
-          $timeout.cancel($scope.timeoutPromise);
-        }
         $scope.verified = false;
         resetErrorMessages();
         var fileInput = document.getElementById("fileToUpload");
@@ -69,14 +65,12 @@ angular.module('avAdmin')
               fileInput.value = null;
               $scope.showSuccess = true;
               $scope.verified = true;
-              $scope.timeoutPromise = $timeout(resetErrorMessages, 1500);
             }
           ).catch(
             function (error)
             {
               $scope.error = error.statusText;
               $scope.showFailure = true;
-              $scope.timeoutPromise = $timeout(resetErrorMessages, 1500);
             }
           );
         });
