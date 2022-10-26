@@ -28,13 +28,13 @@ angular.module('avAdmin')
 
       function convertBase64ToBlob(base64File, mimeType) {
         // Decode Base64 string
-        const decodedData = window.atob(base64File);
+        var decodedData = window.atob(base64File);
 
         // Create UNIT8ARRAY of size same as row data length
-        const uInt8Array = new Uint8Array(decodedData.length);
+        var uInt8Array = new Uint8Array(decodedData.length);
 
         // Insert all character code into uInt8Array
-        for (let i = 0; i < decodedData.length; ++i) {
+        for (var i = 0; i < decodedData.length; ++i) {
           uInt8Array[i] = decodedData.charCodeAt(i);
         }
 
