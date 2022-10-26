@@ -34,7 +34,8 @@ angular.module('avAdmin')
         reader.readAsDataURL(file);
 
         reader.onload = function () {
-          var parts = reader.result.split(","); // example "data:application/x-gzip;base64,{{ base64 encoded }}"
+          // example "data:application/x-gzip;base64,{{ base64 encoded }}"
+          var parts = reader.result.split(",");
           deferred.resolve(parts[1]);
         };
         reader.onerror = function (error) {
@@ -82,7 +83,7 @@ angular.module('avAdmin')
         fileInput.click();
       };
 
-      $scope.ok = function () {
+      $scope.next = function () {
         $modalInstance.close();
       };
 
