@@ -17,7 +17,7 @@
 
 angular.module('avAdmin')
   .controller('CheckShareCeremonyModal',
-    function($scope, $modalInstance, $q, ElectionsApi, data) {
+    function($scope, $modalInstance, $q, ElectionsApi, Base64Codec, data) {
       $scope.trusteeId = data.trusteeId;
       $scope.username = data.username;
       $scope.password = data.password;
@@ -27,23 +27,6 @@ angular.module('avAdmin')
       $scope.verified = false;
       $scope.showSuccess = false;
       $scope.showFailure = false;
-
-      function fileToBase64(file) {
-        var deferred = $q.defer();
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-
-        reader.onload = function () {
-          // example "data:application/x-gzip;base64,{{ base64 encoded }}"
-          var parts = reader.result.split(",");
-          deferred.resolve(parts[1]);
-        };
-        reader.onerror = function (error) {
-          deferred.reject(error);
-        };
-
-        return deferred.promise;
-      }
 
       function resetErrorMessages() {
         $scope.showSuccess = false;
@@ -56,7 +39,7 @@ angular.module('avAdmin')
         var fileInput = document.getElementById("fileToUpload");
         var file = fileInput.files[0];
 
-        fileToBase64(file)
+        Base64Codec.fileToBase64(file)
         .then(function (fileBase64) {
           ElectionsApi.checkPrivateKeyShare(
             $scope.election, $scope.trusteeId, $scope.username, $scope.password, fileBase64

@@ -20,7 +20,7 @@
  */
 angular
 .module('avAdmin')
-.factory('KeysCeremony', function($q, $modal, Authmethod, Plugins)
+.factory('KeysCeremony', function($q, $modal)
 {
   var service = {
     ceremony: null,

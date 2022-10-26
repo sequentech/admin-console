@@ -17,7 +17,7 @@
 
 angular.module('avAdmin')
   .controller('DownloadShareCeremonyModal',
-    function($scope, $modalInstance, $window, ElectionsApi, data) {
+    function($scope, $modalInstance, $window, ElectionsApi, Base64Codec, data) {
       $scope.trusteeId = data.trusteeId;
       $scope.username = data.username;
       $scope.password = data.password;
@@ -26,22 +26,6 @@ angular.module('avAdmin')
       $scope.election = data.election;
       $scope.timesDownloaded = 0;
 
-      function convertBase64ToBlob(base64File, mimeType) {
-        // Decode Base64 string
-        var decodedData = window.atob(base64File);
-
-        // Create UNIT8ARRAY of size same as row data length
-        var uInt8Array = new Uint8Array(decodedData.length);
-
-        // Insert all character code into uInt8Array
-        for (var i = 0; i < decodedData.length; ++i) {
-          uInt8Array[i] = decodedData.charCodeAt(i);
-        }
-
-        // Return BLOB image after conversion
-        return new Blob([uInt8Array], { type: mimeType });
-      }
-
       $scope.download = function () {
         ElectionsApi.downloadPrivateKeyShare(
           $scope.election, $scope.trusteeId, $scope.username, $scope.password
@@ -49,7 +33,7 @@ angular.module('avAdmin')
           function (result)
           {
             var dataBase64 = _.isObject(result.data)? JSON.stringify(result.data): result.data;
-            var blob = convertBase64ToBlob(dataBase64, "application/gzip");
+            var blob = Base64Codec.base64ToBlob(dataBase64, "application/gzip");
             $window.saveAs(blob, "election-" + $scope.election.id + "-trustee-"  + $scope.trusteeId  + "-keys" + ".tar.gz");
             $scope.timesDownloaded += 1;
           }
