@@ -28,7 +28,7 @@ angular.module('avAdmin')
       $scope.showSuccess = false;
       $scope.showFailure = false;
 
-      function getBase64(file) {
+      function fileToBase64(file) {
         var deferred = $q.defer();
         var reader = new FileReader();
         reader.readAsDataURL(file);
@@ -54,7 +54,7 @@ angular.module('avAdmin')
         var fileInput = document.getElementById("fileToUpload");
         var file = fileInput.files[0];
 
-        getBase64(file)
+        fileToBase64(file)
         .then(function (fileBase64) {
           ElectionsApi.checkPrivateKeyShare(
             $scope.election, $scope.trusteeId, $scope.username, $scope.password, fileBase64

@@ -26,15 +26,31 @@ angular.module('avAdmin')
       $scope.election = data.election;
       $scope.timesDownloaded = 0;
 
+      function convertBase64ToBlob(base64File, mimeType) {
+        // Decode Base64 string
+        const decodedData = window.atob(base64File);
+
+        // Create UNIT8ARRAY of size same as row data length
+        const uInt8Array = new Uint8Array(decodedData.length);
+
+        // Insert all character code into uInt8Array
+        for (let i = 0; i < decodedData.length; ++i) {
+          uInt8Array[i] = decodedData.charCodeAt(i);
+        }
+
+        // Return BLOB image after conversion
+        return new Blob([uInt8Array], { type: mimeType });
+      }
+
       $scope.download = function () {
         ElectionsApi.downloadPrivateKeyShare(
           $scope.election, $scope.trusteeId, $scope.username, $scope.password
         ).then(
           function (result)
           {
-            var data = _.isObject(result.data)? JSON.stringify(result.data): result.data;
-            var blob = new $window.Blob([data], {type: "text/plain"});
-            $window.saveAs(blob, "election-" + $scope.election.id + "-trustee-"  + $scope.trusteeId  + "-keys" + ".txt");
+            var dataBase64 = _.isObject(result.data)? JSON.stringify(result.data): result.data;
+            var blob = convertBase64ToBlob(dataBase64, "application/gzip");
+            $window.saveAs(blob, "election-" + $scope.election.id + "-trustee-"  + $scope.trusteeId  + "-keys" + ".tar.gz");
             $scope.timesDownloaded += 1;
           }
         ).catch(
