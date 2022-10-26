@@ -25,8 +25,9 @@ angular.module('avAdmin')
       $scope.currentStep = data.currentStep;
       $scope.election = data.election;
       $scope.privateKeyShareFile = data.privateKeyShareFile;
+      $scope.showSuccess = false;
 
-      $scope.deleteShare = function () {
+      $scope.deletePrivateKeyShare = function () {
         Base64Codec.fileToBase64($scope.privateKeyShareFile)
         .then(function (fileBase64) {
           ElectionsApi.deletePrivateKeyShare(

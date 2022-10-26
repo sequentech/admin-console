@@ -150,7 +150,8 @@ angular
             username: service.trusteesLogin[trusteeId].username,
             password: service.trusteesLogin[trusteeId].password,
             numSteps: numSteps,
-            currentStep: currentStep
+            currentStep: currentStep,
+            privateKeyShareFile: service.trusteesPrivateKeyShareFile[trusteeId]
           };
         }
       }
@@ -208,6 +209,7 @@ angular
             return launchCheckShareModal(trusteeId, numSteps, 4 + 4 * index);
           })
           .then(function (res) {
+            service.trusteesPrivateKeyShareFile[trusteeId] = res;
             return launchDeleteShareModal(trusteeId, numSteps, 4 + 4 * index);
           });
         };

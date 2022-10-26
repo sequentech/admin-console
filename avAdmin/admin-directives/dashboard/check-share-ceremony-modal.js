@@ -27,6 +27,7 @@ angular.module('avAdmin')
       $scope.verified = false;
       $scope.showSuccess = false;
       $scope.showFailure = false;
+      $scope.verifiedFile = null;
 
       function resetErrorMessages() {
         $scope.showSuccess = false;
@@ -35,6 +36,8 @@ angular.module('avAdmin')
 
       $scope.handleFile = function () {
         $scope.verified = false;
+        $scope.verifiedFile = null;
+
         resetErrorMessages();
         var fileInput = document.getElementById("fileToUpload");
         var file = fileInput.files[0];
@@ -46,14 +49,15 @@ angular.module('avAdmin')
           ).then(
             function (result)
             {
-              // clear file input after using it
-              fileInput.value = null;
               if (200 === result.status && _.isObject(result.data) && !!result.data.payload) {
                 $scope.showSuccess = true;
                 $scope.verified = true;
+                $scope.verifiedFile = file;
               } else {
                 $scope.showFailure = true;
               }
+              // clear file input after using it
+              fileInput.value = null;
             }
           ).catch(
             function (error)
@@ -70,7 +74,7 @@ angular.module('avAdmin')
       };
 
       $scope.next = function () {
-        $modalInstance.close();
+        $modalInstance.close($scope.verifiedFile);
       };
 
       $scope.cancel = function () {
