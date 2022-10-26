@@ -30,10 +30,15 @@ angular
 
     trusteesLogin: {
       /*
-       * "trustee_id" : {
+       * "trustee_id": {
        *   "username": "username",
        *   "password": "password"
        * }
+       */
+    },
+    trusteesPrivateKeyShareFile: {
+      /*
+       * "trustee_id": File,
        */
     },
 
