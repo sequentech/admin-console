@@ -34,7 +34,8 @@ angular.module('avAdmin')
         reader.readAsDataURL(file);
 
         reader.onload = function () {
-          deferred.resolve(reader.result);
+          var parts = reader.result.split(","); // example "data:application/x-gzip;base64,{{ base64 encoded }}"
+          deferred.resolve(parts[1]);
         };
         reader.onerror = function (error) {
           deferred.reject(error);
