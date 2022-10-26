@@ -117,7 +117,6 @@ angular.module('avAdmin')
         if (hasSavedElection()) {
             try {
                 var el = getSavedElection();
-                console.log(getSavedElection());
                 electionsapi.setCurrent(el);
             } catch (e) {
                 localSaveElection(electionsapi.currentElection);
