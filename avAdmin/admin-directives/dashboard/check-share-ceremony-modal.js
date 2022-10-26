@@ -48,14 +48,17 @@ angular.module('avAdmin')
             {
               // clear file input after using it
               fileInput.value = null;
-              $scope.showSuccess = true;
-              $scope.verified = true;
+              if (200 === result.status && _.isObject(result.data) && !!result.data.payload) {
+                $scope.showSuccess = true;
+                $scope.verified = true;
+              } else {
+                $scope.showFailure = true;
+              }
             }
           ).catch(
             function (error)
             {
               $scope.error = error.statusText;
-              $scope.showFailure = true;
             }
           );
         });
