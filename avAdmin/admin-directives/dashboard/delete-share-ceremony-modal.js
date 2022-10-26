@@ -38,7 +38,7 @@ angular.module('avAdmin')
               if (200 === result.status && _.isObject(result.data) && !!result.data.payload) {
                 $scope.showSuccess = true;
               } else {
-                $scope.error = error.statusText;
+                $scope.error = result.statusText;
               }
             }
           ).catch(
