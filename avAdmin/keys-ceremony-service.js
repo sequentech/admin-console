@@ -116,6 +116,27 @@ angular
     }).result;
   }
 
+  function launchSecureShareModal(trusteeId, numSteps, currentStep) {
+    return $modal
+    .open({
+      templateUrl: "avAdmin/admin-directives/dashboard/secure-share-ceremony-modal.html",
+      controller: "SecureShareCeremonyModal",
+      size: 'lg',
+      resolve: {
+        dialogName: function () { return 'secureShareCeremony'; },
+        data: function() 
+        {
+          return {
+            election: service.election,
+            trusteeId: trusteeId,
+            numSteps: numSteps,
+            currentStep: currentStep
+          };
+        }
+      }
+    }).result;
+  }
+
   function launchCheckShareModal(trusteeId, numSteps, currentStep) {
     return $modal
     .open({
@@ -198,24 +219,27 @@ angular
     var authorities = election.auths.filter(function (trustee) {
       return undefined === election.trusteeKeysState.find(function (el){ return el.id === trustee && el.state === "deleted"; });
     });
-    var numSteps = 1 + 4 * authorities.length;
+    var numSteps = 1 + 5 * authorities.length;
 
     return launchKeyDistributionInitialModal(numSteps)
     .then(function (result) {
 
       var methodsArray = authorities.map(function (trusteeId, index) {
         return function () {
-          return launchTrusteeLoginModal(trusteeId, numSteps, 2 + 4 * index)
+          return launchTrusteeLoginModal(trusteeId, numSteps, 2 + 5 * index)
           .then(function (res) {
             service.trusteesLogin[trusteeId] = res;
-            return launchDownloadShareModal(trusteeId, numSteps, 3 + 4 * index);
+            return launchDownloadShareModal(trusteeId, numSteps, 3 + 5 * index);
           })
           .then(function (res) {
-            return launchCheckShareModal(trusteeId, numSteps, 4 + 4 * index);
+            return launchSecureShareModal(trusteeId, numSteps, 4 + 5 * index);
+          })
+          .then(function (res) {
+            return launchCheckShareModal(trusteeId, numSteps, 5 + 5 * index);
           })
           .then(function (res) {
             service.trusteesPrivateKeyShareFile[trusteeId] = res;
-            return launchDeleteShareModal(trusteeId, numSteps, 4 + 4 * index);
+            return launchDeleteShareModal(trusteeId, numSteps, 6 + 5 * index);
           });
         };
       });
