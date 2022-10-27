@@ -1156,7 +1156,7 @@ angular.module('avAdmin')
               return (
                 !!scope.election && !!scope.election.presentation &&
                 !!scope.election.presentation.election_board_ceremony &&
-                ['registered', 'created'].indexOf(scope.election.status) !== -1 && 
+                ['created'].indexOf(scope.election.status) !== -1 && 
                 scope.perms.val.indexOf("edit") !== -1
               );
             }
