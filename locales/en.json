@@ -462,6 +462,11 @@
               "downloadMoreTimes": "Please make at least two copies of the private keys.",
               "nextButton": "Next step"
             },
+            "secureShare": {
+              "header": "Secure private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+              "bodyMessage": "Download the share of the private keys for the elections. Please download it at least into two different devices.",
+              "nextButton": "Next step"
+            },
             "checkShare": {
               "bodyMessage": "Upload the file with the private keys to check its contents:",
               "header": "Check private key share for trustee __trustee_id__ (Step __step__ of __total__)",
