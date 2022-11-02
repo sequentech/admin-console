@@ -14,22 +14,26 @@
     <p>
       <ul class="contains-task-list">
         <li
-          class="task-list-item"
-          ng-i18next="avAdmin.dashboard.modals.keysCeremonies.secureShare.firstCheckbox">
+          class="task-list-item">
           <input
             type="checkbox"
             class="task-list-item-checkbox"
             id="first-checkbox"
             ng-model="checks.first" />
+            <label for="first-checkbox" ng-i18next>
+              avAdmin.dashboard.modals.keysCeremonies.secureShare.secondCheckbox
+            </label>
         </li>
         <li
-          class="task-list-item"
-          ng-i18next="avAdmin.dashboard.modals.keysCeremonies.secureShare.secondCheckbox">
+          class="task-list-item">          
           <input
             type="checkbox"
             class="task-list-item-checkbox"
             id="second-checkbox"
             ng-model="checks.second" />
+          <label for="second-checkbox" ng-i18next>
+            avAdmin.dashboard.modals.keysCeremonies.secureShare.secondCheckbox
+          </label>
         </li>
       </ul>
     </p>
