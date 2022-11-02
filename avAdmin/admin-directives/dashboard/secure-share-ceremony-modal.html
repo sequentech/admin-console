@@ -31,23 +31,20 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="form-group">
+    <div class="row checkboxes">
         <label
-          class="control-label col-sm-4 text-right">
+          class="control-label">
           <input
             type="checkbox"
             class="form-control"
             id="second-checkbox"
             ng-model="checks.second" />
         </label>
-        <div class="col-sm-8">
           <label
             ng-i18next="avAdmin.dashboard.modals.keysCeremonies.secureShare.secondCheckbox"
-            class="text-left"
+            class="text-label"
             for="second-checkbox">
           </label>
-        </div>
       </div>
     </div>
 </div>
@@ -56,7 +53,7 @@
     <button class="btn btn-success" ng-click="back()" ng-i18next>
         avAdmin.dashboard.modals.keysCeremonies.secureShare.backButton
     </button>
-    <button class="btn btn-success" ng-click="next()" ng-disable="!checks.first || !checks.second" ng-i18next>
+    <button class="btn btn-success" ng-click="next()" ng-disabled="!checks.first || !checks.second" ng-i18next>
         avAdmin.dashboard.modals.keysCeremonies.secureShare.nextButton
     </button>
 </div>

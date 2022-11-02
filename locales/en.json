@@ -448,7 +448,7 @@
           "keysCeremonies": {
             "keysDistributionIntro": {
               "header": "Keys Distribution Ceremony (Step 1 of __total__)",
-              "bodyMessage": "In this ceremony each trustee will download their part of the private keys for the electoral process. Each trustee will follow the following steps: <br /> - Login <br /> - Download private keys <br /> - Check private keys <br /> - Delete private keys",
+              "bodyMessage": "In this ceremony each trustee will download their part of the private keys for the electoral process. Each trustee will follow the following steps: <ul> <li>Login</li> <li>Download private keys</li> <li>Check private keys</li> <li>Delete private keys</li></ul>",
               "confirmButton": "Start"
             },
             "loginTrustee": {
