@@ -259,13 +259,17 @@ angular
       case 'secure-share':
         return launchSecureShareModal(step.trusteeId, numSteps, index + 1)
           .then(function (res) {
-            return launchSteps(index + 1);
+            return launchSteps('back' === res? index - 1: index + 1);
           });
       case 'check-share':
         return launchCheckShareModal(step.trusteeId, numSteps, index + 1)
           .then(function (res) {
-            service.trusteesPrivateKeyShareFile[step.trusteeId] = res;
-            return launchSteps(index + 1);
+            if ('back' === res) {
+              return launchSteps(index - 2);
+            } else {
+              service.trusteesPrivateKeyShareFile[step.trusteeId] = res;
+              return launchSteps(index + 1);
+            }
           });
       case 'delete-share':
         return launchDeleteShareModal(step.trusteeId, numSteps, index + 1)

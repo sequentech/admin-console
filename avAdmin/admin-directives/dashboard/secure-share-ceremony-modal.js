@@ -22,6 +22,10 @@ angular.module('avAdmin')
         $scope.numSteps = data.numSteps;
         $scope.currentStep = data.currentStep;
         $scope.election = data.election;
+        $scope.checks = {
+          first: false,
+          second: false
+        };
 
       $scope.next = function () {
         $modalInstance.close();

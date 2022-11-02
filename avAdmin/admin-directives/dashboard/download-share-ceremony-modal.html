@@ -14,10 +14,6 @@
         avAdmin.dashboard.modals.keysCeremonies.downloadShare.downloadButton
     </button>
 
-    <div class="text-warning padding-bottom-sm" ng-if="1 === timesDownloaded" ng-i18next>
-        avAdmin.dashboard.modals.keysCeremonies.downloadShare.downloadMoreTimes
-    </div>
-
     <!-- Show errors if any -->
     <div class="text-danger padding-bottom-sm" ng-if="error">
       {{error}}
@@ -25,7 +21,7 @@
 </div>
 
 <div class="modal-footer download-share-ceremony-modal">
-    <button class="btn btn-success" ng-click="next()" ng-disabled="timesDownloaded < 2" ng-i18next>
+    <button class="btn btn-success" ng-click="next()" ng-disabled="timesDownloaded < 1" ng-i18next>
         avAdmin.dashboard.modals.keysCeremonies.downloadShare.nextButton
     </button>
 </div>

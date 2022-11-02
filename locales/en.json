@@ -459,14 +459,15 @@
               "header": "Download private key share for trustee __trustee_id__ (Step __step__ of __total__)",
               "bodyMessage": "Download the share of the private keys for the elections. Please download it at least into two different devices.",
               "downloadButton": "Download private key",
-              "downloadMoreTimes": "Please make at least two copies of the private keys.",
               "nextButton": "Next step"
             },
             "secureShare": {
               "header": "Secure private key share for trustee __trustee_id__ (Step __step__ of __total__)",
-              "bodyMessage": "Download the share of the private keys for the elections. Please download it at least into two different devices.",
+              "bodyMessage": "Please move the private key to at least two different pendrives for security reasons.",
               "nextButton": "Next step",
-              "backButton": "Back to download keys"
+              "backButton": "Back to download keys",
+              "firstCheckbox": "First copy secured",
+              "secondCheckbox": "Second copy secured"
             },
             "checkShare": {
               "bodyMessage": "Upload the file with the private keys to check its contents:",
