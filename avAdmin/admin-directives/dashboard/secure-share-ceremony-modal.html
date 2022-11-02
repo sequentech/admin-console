@@ -11,42 +11,28 @@
       </span>
     </p>
 
-    <div class="row">
-      <div class="form-group">
-        <label
-          class="control-label col-sm-4 text-right">
+    <p>
+      <ul class="contains-task-list">
+        <li
+          class="task-list-item"
+          ng-i18next="avAdmin.dashboard.modals.keysCeremonies.secureShare.firstCheckbox">
           <input
             type="checkbox"
-            class="form-control"
+            class="task-list-item-checkbox"
             id="first-checkbox"
             ng-model="checks.first" />
-        </label>
-        <div class="col-sm-8">
-          <label
-            ng-i18next="avAdmin.dashboard.modals.keysCeremonies.secureShare.firstCheckbox"
-            class="text-left"
-            for="first-checkbox">
-          </label>
-        </div>
-      </div>
-    </div>
-
-    <div class="row checkboxes">
-        <label
-          class="control-label">
+        </li>
+        <li
+          class="task-list-item"
+          ng-i18next="avAdmin.dashboard.modals.keysCeremonies.secureShare.secondCheckbox">
           <input
             type="checkbox"
-            class="form-control"
+            class="task-list-item-checkbox"
             id="second-checkbox"
             ng-model="checks.second" />
-        </label>
-          <label
-            ng-i18next="avAdmin.dashboard.modals.keysCeremonies.secureShare.secondCheckbox"
-            class="text-label"
-            for="second-checkbox">
-          </label>
-      </div>
-    </div>
+        </li>
+      </ul>
+    </p>
 </div>
 
 <div class="modal-footer secure-share-ceremony-modal">
