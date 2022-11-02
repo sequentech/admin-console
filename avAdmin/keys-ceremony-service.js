@@ -42,6 +42,26 @@ angular
        */
     },
 
+    /** step methods:
+     *   - key-distribution
+     *   - login
+     *   - download-share
+     *   - secure-share
+     *   - check-share
+     *   - delete-share
+     *   - restore-share
+     */ 
+
+    /**
+     * steps format:
+     * steps = [
+     *  {
+     *    stepMethod: 'key-distribution',
+     *    trusteeId: null,
+     *  }
+     * ]
+     */
+
     steps: [],
   };
 
@@ -216,37 +236,104 @@ angular
   service.launchKeyDistributionCeremony = function (election) {
     service.setElection(election);
     service.ceremony = 'keys-distribution';
+
+    /** step methods:
+     *   - key-distribution
+     *   - login
+     *   - download-share
+     *   - secure-share
+     *   - check-share
+     *   - delete-share
+     *   - restore-share
+     */ 
+
+
+    service.steps = [
+      {
+        stepMethod: 'key-distribution',
+        trusteeId: null,
+      }
+    ]
     var authorities = election.auths.filter(function (trustee) {
       return undefined === election.trusteeKeysState.find(function (el){ return el.id === trustee && el.state === "deleted"; });
     });
-    var numSteps = 1 + 5 * authorities.length;
 
-    return launchKeyDistributionInitialModal(numSteps)
-    .then(function (result) {
+    var authSteps = authorities.map(trusteeId => [
+      {
+        stepMethod: 'login',
+        trusteeId: trusteeId,
+      },
+      {
+        stepMethod: 'download-share',
+        trusteeId: trusteeId,
+      },
+      {
+        stepMethod: 'secure-share',
+        trusteeId: trusteeId,
+      },
+      {
+        stepMethod: 'check-share',
+        trusteeId: trusteeId,
+      },
+      {
+        stepMethod: 'delete-share',
+        trusteeId: trusteeId,
+      },
+    ]).flat();
 
-      var methodsArray = authorities.map(function (trusteeId, index) {
-        return function () {
-          return launchTrusteeLoginModal(trusteeId, numSteps, 2 + 5 * index)
+    service.steps = service.steps.concat(authSteps);
+
+    return launchSteps(0);
+  };
+
+  function launchSteps(index) {
+    var step = service.steps[index];
+    var numSteps = service.steps.length;
+    
+    if (!step) {
+      return PromiseResolve();
+    }
+
+    switch (step.stepMethod) {
+      case 'key-distribution':
+        return launchKeyDistributionInitialModal(numSteps)
+          .then(function(_result) { return launchSteps(index + 1); });
+      case 'login':
+        return launchTrusteeLoginModal(step.trusteeId, numSteps, index + 1)
           .then(function (res) {
             service.trusteesLogin[trusteeId] = res;
-            return launchDownloadShareModal(trusteeId, numSteps, 3 + 5 * index);
-          })
+            return launchSteps(index + 1);
+          });
+      case 'download-share':
+        return launchDownloadShareModal(step.trusteeId, numSteps, index + 1)
           .then(function (res) {
-            return launchSecureShareModal(trusteeId, numSteps, 4 + 5 * index);
-          })
+            return launchSteps(index + 1);
+          });
+      case 'secure-share':
+        return launchSecureShareModal(step.trusteeId, numSteps, index + 1)
           .then(function (res) {
-            return launchCheckShareModal(trusteeId, numSteps, 5 + 5 * index);
-          })
+            return launchSteps(index + 1);
+          });
+      case 'check-share':
+        return launchCheckShareModal(step.trusteeId, numSteps, index + 1)
           .then(function (res) {
             service.trusteesPrivateKeyShareFile[trusteeId] = res;
-            return launchDeleteShareModal(trusteeId, numSteps, 6 + 5 * index);
+            return launchSteps(index + 1);
           });
-        };
-      });
-
-      return methodsArray.reduce(function (prev, cur) { return prev.then(cur); }, PromiseResolve());
-    });
-  };
+      case 'delete-share':
+        return launchDeleteShareModal(step.trusteeId, numSteps, index + 1)
+          .then(function (res) {
+            return launchSteps(index + 1);
+          });
+      case 'restore-share':
+        return launchRestoreShareModal(step.trusteeId, numSteps, index + 1)
+          .then(function (res) {
+            return launchSteps(index + 1);
+          });
+      default:
+        return PromiseResolve();
+    }
+  }
 
   service.launchOpeningCeremony = function (election) {
     service.setElection(election);

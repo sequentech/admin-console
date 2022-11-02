@@ -27,6 +27,10 @@ angular.module('avAdmin')
         $modalInstance.close();
       };
 
+      $scope.back = function () {
+        $modalInstance.close('back');
+      };
+
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
       };

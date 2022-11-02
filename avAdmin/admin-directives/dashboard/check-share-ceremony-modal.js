@@ -73,6 +73,10 @@ angular.module('avAdmin')
         fileInput.click();
       };
 
+      $scope.back = function () {
+        $modalInstance.close('back');
+      };
+
       $scope.next = function () {
         $modalInstance.close($scope.verifiedFile);
       };
