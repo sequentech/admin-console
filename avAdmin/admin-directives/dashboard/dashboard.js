@@ -396,6 +396,43 @@ angular.module('avAdmin')
           );
       }
 
+      function setOtlPeriod(insideOtlPeriod)
+      {
+        var modalName = {
+          true: "enableOtlPeriod",
+          false: "disableOtlPeriod"
+        }[insideOtlPeriod];
+
+        $modal
+          .open({
+            templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
+            controller: "AdminConfirmModal",
+            size: 'lg',
+            resolve: {
+              dialogName: function () { return modalName; },
+              data: function () { return ""; },
+            }
+          })
+          .result
+          .then(
+            function confirmed()
+            {
+              Authmethod
+                .setInsideOtlPeriod(scope.election.id, insideOtlPeriod)
+                .then(
+                  function onSuccess()
+                  {
+                    scope.msg = "avAdmin.dashboard.modals." + modalName + ".success";
+                  },
+                  function onError(response)
+                  {
+                    scope.error = response.data;
+                  }
+                );
+            }
+          );
+      }
+
       function suspendElection() 
       {
         $modal
@@ -1125,6 +1162,32 @@ angular.module('avAdmin')
               return  (
                 scope.perms.val.indexOf("set-public-candidates") !== -1 ||
                 scope.perms.val.indexOf("edit") !== -1
+              );
+            }
+          },
+          {
+            i18nString: 'enableOtlPeriod',
+            iconClass: 'fa fa-user',
+            actionFunc: function() { return scope.setInsideOtlPeriod(true); },
+            enableFunc: function() {
+              return  (
+                scope.election.support_otl_enabled && (
+                  scope.perms.val.indexOf("set-authenticate-otl-period") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
+              );
+            }
+          },
+          {
+            i18nString: 'disableOtlPeriod',
+            iconClass: 'fa fa-lock',
+            actionFunc: function() { return scope.setInsideOtlPeriod(false); },
+            enableFunc: function() {
+              return  (
+                scope.election.support_otl_enabled && (
+                  scope.perms.val.indexOf("set-authenticate-otl-period") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
               );
             }
           },
