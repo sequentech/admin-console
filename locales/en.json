@@ -451,6 +451,11 @@
               "bodyMessage": "In this ceremony each trustee will download their part of the private keys for the electoral process. Each trustee will follow the following steps: <ul> <li>Login</li> <li>Download private keys</li> <li>Check private keys</li> <li>Delete private keys</li></ul>",
               "confirmButton": "Start"
             },
+            "openingIntro": {
+              "header": "Opening Ceremony (Step 1 of __total__)",
+              "bodyMessage": "In this ceremony each trustee will restore their part of the private keys for the electoral process. Each trustee will follow the following steps: <ul> <li>Login</li> <li>Check private keys</li> <li>Restore private keys</li> </ul>",
+              "confirmButton": "Start"
+            },
             "loginTrustee": {
               "header": "Log into trustee __trustee_id__ (Step __step__ of __total__)",
               "loginButton": "Login"

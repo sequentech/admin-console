@@ -17,16 +17,11 @@
 
 angular.module('avAdmin')
   .controller('OpeningCeremonyModal',
-    function($scope, $modalInstance, ConfigService, dialogName, data) {
-      $scope.helpurl = ConfigService.helpUrl;
-      $scope.dialogName = dialogName;
-
-      $scope.textarea = {
-        data: data
-      };
+    function($scope, $modalInstance, data) {
+      $scope.numSteps = data.numSteps;
 
       $scope.ok = function () {
-        $modalInstance.close($scope.textarea.data);
+        $modalInstance.close();
       };
 
       $scope.cancel = function () {

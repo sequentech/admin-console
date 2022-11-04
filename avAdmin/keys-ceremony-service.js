@@ -92,6 +92,25 @@ angular
     }).result;
   }
 
+  function launchOpeningCeremonyModal(numSteps) {
+    return $modal
+    .open({
+      templateUrl: "avAdmin/admin-directives/dashboard/opening-ceremony-modal.html",
+      controller: "OpeningCeremonyModal",
+      size: 'lg',
+      resolve: {
+        dialogName: function () { return 'launchOpeningCeremony'; },
+        data: function() 
+        {
+          return {
+            election: service.election,
+            numSteps: numSteps,
+          };
+        }
+      }
+    });
+  }
+
   function launchTrusteeLoginModal(trusteeId, numSteps, currentStep) {
     return $modal
     .open({
@@ -245,6 +264,9 @@ angular
       case 'key-distribution':
         return launchKeyDistributionInitialModal(numSteps)
           .then(function(_result) { return launchSteps(index + 1); });
+      case 'opening':
+        return launchOpeningModal(numSteps)
+          .then(function(_result) { return launchSteps(index + 1); });
       case 'login':
         return launchTrusteeLoginModal(step.trusteeId, numSteps, index + 1)
           .then(function (res) {
@@ -290,17 +312,6 @@ angular
     service.setElection(election);
     service.ceremony = 'keys-distribution';
 
-    /** step methods:
-     *   - key-distribution
-     *   - login
-     *   - download-share
-     *   - secure-share
-     *   - check-share
-     *   - delete-share
-     *   - restore-share
-     */ 
-
-
     service.steps = [
       {
         stepMethod: 'key-distribution',
@@ -342,25 +353,42 @@ angular
     return launchSteps(0);
   };
 
+
   service.launchOpeningCeremony = function (election) {
     service.setElection(election);
     service.ceremony = 'opening';
 
-    $modal
-    .open({
-      templateUrl: "avAdmin/admin-directives/dashboard/opening-ceremony-modal.html",
-      controller: "OpeningCeremonyModal",
-      size: 'lg',
-      resolve: {
-        dialogName: function () { return 'launchOpeningCeremony'; },
-        data: function() 
-        {
-          return {
-            election: service.election,
-          };
-        }
+    service.steps = [
+      {
+        stepMethod: 'opening',
+        trusteeId: null,
       }
+    ];
+
+    var authorities = election.auths.filter(function (trustee) {
+      return undefined !== election.trusteeKeysState.find(function (el){ return el.id === trustee && el.state === "deleted"; });
     });
+
+    var authSteps = authorities.map(function (trusteeId) {
+      return [
+        {
+          stepMethod: 'login',
+          trusteeId: trusteeId,
+        },
+        {
+          stepMethod: 'check-share',
+          trusteeId: trusteeId,
+        },
+        {
+          stepMethod: 'restore-share',
+          trusteeId: trusteeId,
+        },
+      ];
+    }).flat();
+
+    service.steps = service.steps.concat(authSteps);
+
+    return launchSteps(0);
   };
 
   return service;
