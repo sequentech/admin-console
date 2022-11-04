@@ -17,16 +17,41 @@
 
 angular.module('avAdmin')
   .controller('RestoreShareCeremonyModal',
-    function($scope, $modalInstance, ConfigService, dialogName, data) {
-      $scope.helpurl = ConfigService.helpUrl;
-      $scope.dialogName = dialogName;
+    function($scope, $modalInstance, ElectionsApi, Base64Codec, data) {
+      $scope.trusteeId = data.trusteeId;
+      $scope.username = data.username;
+      $scope.password = data.password;
+      $scope.numSteps = data.numSteps;
+      $scope.currentStep = data.currentStep;
+      $scope.election = data.election;
+      $scope.privateKeyShareFile = data.privateKeyShareFile;
+      $scope.showSuccess = false;
 
-      $scope.textarea = {
-        data: data
+      $scope.restorePrivateKeyShare = function () {
+        Base64Codec.fileToBase64($scope.privateKeyShareFile)
+        .then(function (fileBase64) {
+          ElectionsApi.restorePrivateKeyShare(
+            $scope.election, $scope.trusteeId, $scope.username, $scope.password, fileBase64
+          ).then(
+            function (result)
+            {
+              if (200 === result.status) {
+                $scope.showSuccess = true;
+              } else {
+                $scope.error = result.statusText;
+              }
+            }
+          ).catch(
+            function (error)
+            {
+              $scope.error = error.statusText;
+            }
+          );
+        });
       };
 
-      $scope.ok = function () {
-        $modalInstance.close($scope.textarea.data);
+      $scope.next = function () {
+        $modalInstance.close();
       };
 
       $scope.cancel = function () {

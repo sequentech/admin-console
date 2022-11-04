@@ -237,7 +237,10 @@ angular
             election: service.election,
             trusteeId: trusteeId,
             username: service.trusteesLogin[trusteeId].username,
-            password: service.trusteesLogin[trusteeId].password
+            password: service.trusteesLogin[trusteeId].password,
+            numSteps: numSteps,
+            currentStep: currentStep,
+            privateKeyShareFile: service.trusteesPrivateKeyShareFile[trusteeId]
           };
         }
       }

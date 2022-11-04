@@ -489,6 +489,13 @@
               "deleteShareButton": "Delete private keys",
               "operationSuccess": "Private keys share successfully deleted",
               "nextButton": "Next step"
+            },
+            "restoreShare": {
+              "bodyMessage": "Restore the share of the private keys for this authority.",
+              "header": "Restore private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+              "deleteShareButton": "Restore private keys",
+              "operationSuccess": "Private keys share successfully restored",
+              "nextButton": "Next step"
             }
           },
           "sendAuthCodes": {
