@@ -26,7 +26,13 @@ angular.module('avAdmin')
       $scope.election = data.election;
       $scope.timesDownloaded = 0;
 
+      function resetErrorMessages() {
+        $scope.error = undefined;
+      }
+
       $scope.download = function () {
+        resetErrorMessages();
+
         ElectionsApi.downloadPrivateKeyShare(
           $scope.election, $scope.trusteeId, $scope.username, $scope.password
         ).then(

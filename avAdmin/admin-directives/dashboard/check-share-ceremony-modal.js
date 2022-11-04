@@ -28,10 +28,12 @@ angular.module('avAdmin')
       $scope.showSuccess = false;
       $scope.showFailure = false;
       $scope.verifiedFile = null;
+      $scope.error = undefined;
 
       function resetErrorMessages() {
         $scope.showSuccess = false;
         $scope.showFailure = false;
+        $scope.error = undefined;
       }
 
       $scope.handleFile = function () {

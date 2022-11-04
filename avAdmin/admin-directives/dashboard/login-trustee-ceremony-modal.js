@@ -47,12 +47,18 @@ angular.module('avAdmin')
         }
       ];
 
+      function resetErrorMessages() {
+        $scope.error = undefined;
+      }
+
       function getFieldValue(name) {
         var field = $scope.login_fields.find(function (field) { return field.name === name; });
         return field && field.value;
       }
 
       $scope.login = function () {
+        resetErrorMessages();
+
         var username = getFieldValue("username");
         var password = getFieldValue("password");
         ElectionsApi.loginTrusteePrivateKeyShare(

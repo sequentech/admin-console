@@ -27,7 +27,14 @@ angular.module('avAdmin')
       $scope.privateKeyShareFile = data.privateKeyShareFile;
       $scope.showSuccess = false;
 
+      function resetErrorMessages() {
+        $scope.showSuccess = false;
+        $scope.error = undefined;
+      }
+
       $scope.restorePrivateKeyShare = function () {
+        resetErrorMessages();
+
         Base64Codec.fileToBase64($scope.privateKeyShareFile)
         .then(function (fileBase64) {
           ElectionsApi.restorePrivateKeyShare(
