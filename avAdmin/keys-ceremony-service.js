@@ -92,7 +92,7 @@ angular
     }).result;
   }
 
-  function launchOpeningCeremonyModal(numSteps) {
+  function launchOpeningInitialgModal(numSteps) {
     return $modal
     .open({
       templateUrl: "avAdmin/admin-directives/dashboard/opening-ceremony-modal.html",
@@ -265,7 +265,7 @@ angular
         return launchKeyDistributionInitialModal(numSteps)
           .then(function(_result) { return launchSteps(index + 1); });
       case 'opening':
-        return launchOpeningModal(numSteps)
+        return launchOpeningInitialgModal(numSteps)
           .then(function(_result) { return launchSteps(index + 1); });
       case 'login':
         return launchTrusteeLoginModal(step.trusteeId, numSteps, index + 1)
