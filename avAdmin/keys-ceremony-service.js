@@ -108,7 +108,7 @@ angular
           };
         }
       }
-    });
+    }).result;
   }
 
   function launchTrusteeLoginModal(trusteeId, numSteps, currentStep) {

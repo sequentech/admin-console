@@ -55,7 +55,7 @@ angular.module('avAdmin')
       $scope.login = function () {
         var username = getFieldValue("username");
         var password = getFieldValue("password");
-        ElectionsApi.downloadPrivateKeyShare(
+        ElectionsApi.loginTrusteePrivateKeyShare(
           $scope.election, $scope.trusteeId, username, password
         ).then(
           function (result)

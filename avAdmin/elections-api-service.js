@@ -636,6 +636,19 @@ angular.module('avAdmin')
           return deferred.promise;
         };
 
+        electionsapi.loginTrusteePrivateKeyShare = function (election, trusteeId, username, password) {
+          return electionsapi.command(
+            election,
+            "private-keys/login-trustee",
+            "POST",
+            {
+              username: username,
+              password: password,
+              authority_id: trusteeId
+            }
+          );
+        };
+
         electionsapi.downloadPrivateKeyShare = function (election, trusteeId, username, password) {
           return electionsapi.command(
             election,
