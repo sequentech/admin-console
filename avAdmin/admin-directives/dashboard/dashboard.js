@@ -1168,7 +1168,7 @@ angular.module('avAdmin')
           {
             i18nString: 'enableOtlPeriod',
             iconClass: 'fa fa-play',
-            actionFunc: function() { return scope.setInsideOtlPeriod(true); },
+            actionFunc: function() { return scope.setOtlPeriod(true); },
             enableFunc: function() {
               return  (
                 scope.election.census &&
@@ -1183,7 +1183,7 @@ angular.module('avAdmin')
           {
             i18nString: 'disableOtlPeriod',
             iconClass: 'fa fa-pause',
-            actionFunc: function() { return scope.setInsideOtlPeriod(false); },
+            actionFunc: function() { return scope.setOtlPeriod(false); },
             enableFunc: function() {
               return  (
                 scope.election.census &&
