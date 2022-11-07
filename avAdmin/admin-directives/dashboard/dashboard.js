@@ -730,7 +730,7 @@ angular.module('avAdmin')
                   !scope.election.presentation.election_board_ceremony ||
                   (
                     !!scope.election.trusteeKeysState &&
-                    !scope.election.trusteeKeysState.every(function (e) { return e.state === 'deleted'; })
+                    scope.election.trusteeKeysState.every(function (e) { return e.state === 'deleted'; })
                   )
                 )
               );
@@ -816,7 +816,7 @@ angular.module('avAdmin')
                   !scope.election.presentation.election_board_ceremony ||
                   (
                     !!scope.election.trusteeKeysState &&
-                    !scope.election.trusteeKeysState.every(function (e) { return e.state === 'restored'; })
+                    scope.election.trusteeKeysState.every(function (e) { return e.state === 'restored'; })
                   )
                 )
               );
