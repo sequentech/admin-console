@@ -464,7 +464,8 @@
               "header": "Download private key share for trustee __trustee_id__ (Step __step__ of __total__)",
               "bodyMessage": "Download the share of the private keys for the elections. Please download it at least into two different devices.",
               "downloadButton": "Download private key",
-              "nextButton": "Next step"
+              "nextButton": "Next step",
+              "operationSuccess": "Private keys successfully downloaded."
             },
             "secureShare": {
               "header": "Secure private key share for trustee __trustee_id__ (Step __step__ of __total__)",
@@ -482,7 +483,6 @@
               "verificationFailure": "FAILURE! Private key verification failure.",
               "nextButton": "Next step",
               "keysDistributionBackButton": "Back to download keys",
-              "openingBackButton": "Back to upload keys"
             },
             "deleteShare": {
               "bodyMessage": "Delete the share of the private keys for this authority.",

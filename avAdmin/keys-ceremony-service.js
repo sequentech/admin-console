@@ -291,9 +291,8 @@ angular
       case 'check-share':
         return launchCheckShareModal(step.trusteeId, numSteps, index + 1, service.ceremony)
           .then(function (res) {
-            if ('back' === res) {
-              var nextStep = 'opening' === service.ceremony? index - 1 : index - 2;
-              return launchSteps(nextStep);
+            if ('back' === res && 'keys-distribution' === service.ceremony) {
+              return launchSteps(index - 2);
             } else {
               service.trusteesPrivateKeyShareFile[step.trusteeId] = res;
               return launchSteps(index + 1);

@@ -14,6 +14,10 @@
         avAdmin.dashboard.modals.keysCeremonies.downloadShare.downloadButton
     </button>
 
+    <div class="download-success" ng-if="showSuccess" ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.downloadShare.operationSuccess
+    </div>
+
     <!-- Show errors if any -->
     <div class="text-danger padding-bottom-sm" ng-if="error">
       {{error}}

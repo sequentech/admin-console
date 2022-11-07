@@ -25,8 +25,10 @@ angular.module('avAdmin')
       $scope.currentStep = data.currentStep;
       $scope.election = data.election;
       $scope.timesDownloaded = 0;
+      $scope.showSuccess = false;
 
       function resetErrorMessages() {
+        $scope.showSuccess = false;
         $scope.error = undefined;
       }
 
@@ -42,6 +44,7 @@ angular.module('avAdmin')
             var blob = Base64Codec.base64ToBlob(dataBase64, "application/gzip");
             $window.saveAs(blob, "election-" + $scope.election.id + "-trustee-"  + $scope.trusteeId  + "-keys" + ".tar.gz");
             $scope.timesDownloaded += 1;
+            $scope.showSuccess = true;
           }
         ).catch(
           function(error)

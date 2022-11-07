@@ -421,6 +421,60 @@
             "body": "Este diálogo te permite editar el json de calcular resultados. Sólo use esto si sabe qué está haciendo.",
             "confirmEdit": "Finalizar edición"
           },
+          "keysCeremonies": {
+            "keysDistributionIntro": {
+              "header": "Ceremonia de entrega de llaves (Paso 1 de __total__)",
+              "bodyMessage": "En esta ceremonia cada autoridad descargará su parte de las claves privadas del proceso electoral. Cada administrador seguirá los siguientes pasos: <ul> <li>Iniciar sesión</li> <li>Descargar claves privadas</li> <li>Comprobar claves privadas</li> <li>Eliminar claves privadas</li>< /ul>",
+              "confirmButton": "Comenzar"
+            },
+            "openingIntro": {
+              "header": "Ceremonia de apertura (Paso 1 de __total__)",
+              "bodyMessage": "En esta ceremonia cada autoridad restituirá su parte de las claves privadas para el proceso electoral. Cada autoridad seguirá los siguientes pasos: <ul> <li>Iniciar sesión</li> <li>Consultar claves privadas</li> <li >Restaurar claves privadas</li> </ul>",
+              "confirmButton": "Comenzar"
+            },
+            "loginTrustee": {
+              "header": "Iniciar sesión para autoridad __trustee_id__ (Paso __step__ de __total__)",
+              "loginButton": "Iniciar sesión"
+            },
+            "downloadShare": {
+              "header": "Descargar clave privada compartida para autoridad __trustee_id__ (Paso __step__ de __total__)",
+              "bodyMessage": "Descargue la parte de las claves privadas para las elecciones. Descárguelo al menos en dos dispositivos diferentes.",
+              "downloadButton": "Descargar clave privada",
+              "nextButton": "Siguiente paso",
+              "operationSuccess": "Claves privadas descargadas con éxito."
+            },
+            "secureShare": {
+              "header": "Proteger parte de la clave privada para la autoridad __trustee_id__ (Paso __step__ de __total__)",
+              "bodyMessage": "Por favor, mueva la clave privada a al menos dos pendrives diferentes por razones de seguridad.",
+              "nextButton": "Siguiente paso",
+              "backButton": "Volver a descargar claves",
+              "firstCheckbox": "Primera copia guardada",
+              "secondCheckbox": "Segunda copia guardada"
+            },
+            "checkShare": {
+              "bodyMessage": "Upload the file with the private keys to check its contents:",
+              "header": "Check private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+              "selectFileButton": "Select private keys file",
+              "verificationSuccess": "SUCCESS! Private keys verified.",
+              "verificationFailure": "FAILURE! Private key verification failure.",
+              "nextButton": "Next step",
+              "keysDistributionBackButton": "Back to download keys",
+            },
+            "deleteShare": {
+              "bodyMessage": "Delete the share of the private keys for this authority.",
+              "header": "Delete private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+              "deleteShareButton": "Delete private keys",
+              "operationSuccess": "Private keys share successfully deleted",
+              "nextButton": "Next step"
+            },
+            "restoreShare": {
+              "bodyMessage": "Restore the share of the private keys for this authority.",
+              "header": "Restore private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+              "deleteShareButton": "Restore private keys",
+              "operationSuccess": "Private keys share successfully restored",
+              "nextButton": "Next step"
+            }
+          },
           "sendAuthCodes": {
             "editMessageStep": {
               "header": "Enviar códigos de autenticación (Paso __step__ de __total__)",
