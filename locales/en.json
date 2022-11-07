@@ -375,7 +375,9 @@
           "suspendElection": "Suspend election...",
           "resumeElection": "Resume election..",
           "makeCandidatesPublic": "Make candidates public...",
-          "makeCandidatesPrivate": "Make candidates private..."
+          "makeCandidatesPrivate": "Make candidates private...",
+          "enableOtlPeriod": "Enable Otl period...",
+          "disableOtlPeriod": "Disable Otl period..."
         },
         "modals": {
           "createHeader": "Create election",
