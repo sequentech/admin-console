@@ -724,8 +724,8 @@ angular.module('avAdmin')
             enableFunc: function () {
               return (
                 (scope.perms.val.indexOf("start") !== -1 ||
-                scope.perms.val.indexOf("edit") !== -1)
-                && (
+                scope.perms.val.indexOf("edit") !== -1) &&
+                (
                   !scope.election.presentation ||
                   !scope.election.presentation.election_board_ceremony ||
                   (
