@@ -690,5 +690,19 @@ angular.module('avAdmin')
           );
         };
 
+        electionsapi.restorePrivateKeyShare = function (election, trusteeId, username, password, privateKeyBase64) {
+          return electionsapi.command(
+            election,
+            "private-keys/restore-share",
+            "POST",
+            {
+              username: username,
+              password: password,
+              authority_id: trusteeId,
+              private_key_base64: privateKeyBase64
+            }
+          );
+        };
+
         return electionsapi;
     });

@@ -223,7 +223,7 @@ angular
     }).result;
   }
 
-  function launchRestoreShareModal(trusteeId) {
+  function launchRestoreShareModal(trusteeId, numSteps, currentStep) {
     return $modal
     .open({
       templateUrl: "avAdmin/admin-directives/dashboard/restore-share-ceremony-modal.html",
