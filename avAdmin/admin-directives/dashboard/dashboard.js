@@ -1171,7 +1171,7 @@ angular.module('avAdmin')
             actionFunc: function() { return scope.setInsideOtlPeriod(true); },
             enableFunc: function() {
               return  (
-                scope.election.census.support_otl_enabled && (
+                scope.election.support_otl_enabled && (
                   scope.perms.val.indexOf("set-authenticate-otl-period") !== -1 ||
                   scope.perms.val.indexOf("edit") !== -1
                 )
@@ -1184,7 +1184,7 @@ angular.module('avAdmin')
             actionFunc: function() { return scope.setInsideOtlPeriod(false); },
             enableFunc: function() {
               return  (
-                scope.election.census.support_otl_enabled && (
+                scope.election.support_otl_enabled && (
                   scope.perms.val.indexOf("set-authenticate-otl-period") !== -1 ||
                   scope.perms.val.indexOf("edit") !== -1
                 )
