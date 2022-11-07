@@ -1275,6 +1275,7 @@ angular.module('avAdmin')
         changeSocial: changeSocial,
         archiveElection: archiveElection,
         setPublicCandidates: setPublicCandidates,
+        setOtlPeriod: setOtlPeriod,
         unpublishResults: unpublishResults,
         allowTally: allowTally,
         editChildrenParent: editChildrenParent,
