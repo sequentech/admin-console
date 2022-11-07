@@ -1167,11 +1167,11 @@ angular.module('avAdmin')
           },
           {
             i18nString: 'enableOtlPeriod',
-            iconClass: 'fa fa-user',
+            iconClass: 'fa fa-play',
             actionFunc: function() { return scope.setInsideOtlPeriod(true); },
             enableFunc: function() {
               return  (
-                scope.election.support_otl_enabled && (
+                scope.election.census.support_otl_enabled && (
                   scope.perms.val.indexOf("set-authenticate-otl-period") !== -1 ||
                   scope.perms.val.indexOf("edit") !== -1
                 )
@@ -1180,11 +1180,11 @@ angular.module('avAdmin')
           },
           {
             i18nString: 'disableOtlPeriod',
-            iconClass: 'fa fa-lock',
+            iconClass: 'fa fa-pause',
             actionFunc: function() { return scope.setInsideOtlPeriod(false); },
             enableFunc: function() {
               return  (
-                scope.election.support_otl_enabled && (
+                scope.election.census.support_otl_enabled && (
                   scope.perms.val.indexOf("set-authenticate-otl-period") !== -1 ||
                   scope.perms.val.indexOf("edit") !== -1
                 )
