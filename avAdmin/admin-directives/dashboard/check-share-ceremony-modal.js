@@ -24,6 +24,7 @@ angular.module('avAdmin')
       $scope.numSteps = data.numSteps;
       $scope.currentStep = data.currentStep;
       $scope.election = data.election;
+      $scope.ceremony = data.ceremony;
       $scope.verified = false;
       $scope.showSuccess = false;
       $scope.showFailure = false;

@@ -23,6 +23,7 @@ angular
 .factory('KeysCeremony', function($q, $modal)
 {
   var service = {
+    // keys-distribution or opening
     ceremony: null,
     // reference to the election in which authentication messages are going
     // to be sent
@@ -176,7 +177,7 @@ angular
     }).result;
   }
 
-  function launchCheckShareModal(trusteeId, numSteps, currentStep) {
+  function launchCheckShareModal(trusteeId, numSteps, currentStep, ceremony) {
     return $modal
     .open({
       templateUrl: "avAdmin/admin-directives/dashboard/check-share-ceremony-modal.html",
@@ -192,6 +193,7 @@ angular
             username: service.trusteesLogin[trusteeId].username,
             password: service.trusteesLogin[trusteeId].password,
             numSteps: numSteps,
+            ceremony: ceremony,
             currentStep: currentStep
           };
         }
@@ -287,10 +289,11 @@ angular
             return launchSteps('back' === res? index - 1: index + 1);
           });
       case 'check-share':
-        return launchCheckShareModal(step.trusteeId, numSteps, index + 1)
+        return launchCheckShareModal(step.trusteeId, numSteps, index + 1, service.ceremony)
           .then(function (res) {
             if ('back' === res) {
-              return launchSteps(index - 2);
+              var step = 'opening' === service.ceremony? index - 1 : index - 2;
+              return launchSteps(step);
             } else {
               service.trusteesPrivateKeyShareFile[step.trusteeId] = res;
               return launchSteps(index + 1);

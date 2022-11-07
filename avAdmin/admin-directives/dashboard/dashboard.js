@@ -723,8 +723,16 @@ angular.module('avAdmin')
             confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-start-modal.html",
             enableFunc: function () {
               return (
-                scope.perms.val.indexOf("start") !== -1 ||
-                scope.perms.val.indexOf("edit") !== -1
+                (scope.perms.val.indexOf("start") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1)
+                && (
+                  !scope.election.presentation ||
+                  !scope.election.presentation.election_board_ceremony ||
+                  (
+                    !!scope.election.trusteeKeysState &&
+                    !scope.election.trusteeKeysState.every(function (e) { return e.state === 'deleted'; })
+                  )
+                )
               );
             }
           },
@@ -803,6 +811,13 @@ angular.module('avAdmin')
                 (
                   scope.perms.val.indexOf("tally") !== -1 ||
                   scope.perms.val.indexOf("edit") !== -1
+                ) && (
+                  !scope.election.presentation ||
+                  !scope.election.presentation.election_board_ceremony ||
+                  (
+                    !!scope.election.trusteeKeysState &&
+                    !scope.election.trusteeKeysState.every(function (e) { return e.state === 'restored'; })
+                  )
                 )
               );
             }
@@ -1157,7 +1172,9 @@ angular.module('avAdmin')
                 !!scope.election && !!scope.election.presentation &&
                 !!scope.election.presentation.election_board_ceremony &&
                 ['created'].indexOf(scope.election.status) !== -1 && 
-                scope.perms.val.indexOf("edit") !== -1
+                scope.perms.val.indexOf("edit") !== -1 &&
+                !!scope.election.trusteeKeysState &&
+                !!scope.election.trusteeKeysState.find(function (e) { return ['initial', 'downloaded'].includes(e.state); }) 
               );
             }
           },
@@ -1170,7 +1187,9 @@ angular.module('avAdmin')
                 !!scope.election && !!scope.election.presentation &&
                 !!scope.election.presentation.election_board_ceremony &&
                 ['stopped'].indexOf(scope.election.status) !== -1 && 
-                scope.perms.val.indexOf("edit") !== -1
+                scope.perms.val.indexOf("edit") !== -1 &&
+                !!scope.election.trusteeKeysState &&
+                !!scope.election.trusteeKeysState.find(function (e) { return e.state === 'deleted'; }) 
               );
             }
           },
