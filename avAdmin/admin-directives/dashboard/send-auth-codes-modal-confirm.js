@@ -154,13 +154,16 @@ angular.module('avAdmin')
           identity = "/+34666666666";
         }
         var url = "https://" + $location.host() + "/election/" + election.id + "/public/login" + identity;
+        var otl_url = "https://" + $location.host() + "/election/" + election.id + "/public/otl/13f5-456e-56f";
         var url2 = url + "/AABB1234";
         msg = msg.replace("__URL__", url);
         msg = msg.replace("__URL2__", url2);
+        msg = msg.replace("__OTL__", otl_url);
         msg = msg.replace("__CODE__", "AABB1234");
         var keys = {
           "__URL__": url,
           "__URL2__": url2,
+          "__OTL__": otl_url,
           "__CODE__": "AABB1234"
         };
         for (var i = 0; i < SendMsg.slug_list.length; i++) {
@@ -174,12 +177,17 @@ angular.module('avAdmin')
        */
       function isMsgComplete()
       {
-        var re1 = /__URL__/;
-        var re3 = /__URL2__/;
-        var re2 = /__CODE__/;
+        var re_url = /__URL__/;
+        var re_code = /__CODE__/;
+        var re_url2 = /__URL2__/;
+        var re_otl = /__OTL__/;
         var msg = $scope.censusConfig.msg;
 
-        return ((msg.match(re1) && msg.match(re2)) || msg.match(re3));
+        return (
+          (msg.match(re_url) && msg.match(re_code)) ||
+          msg.match(re_url2) ||
+          (msg.match(re_url) && msg.match(re_otl))
+        );
       }
 
       // set the default value of the flag that specifies that the user is sure
