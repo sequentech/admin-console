@@ -428,12 +428,14 @@
           "enableOtlPeriod": {
             "header": "Enable OTL period",
             "body": "This action will allow voters to obtain their authentication code using the One Time Link (OTL) they received.",
-            "confirmButton": "ENABLE the OTL period"
+            "confirmButton": "ENABLE the OTL period",
+            "success": "OTL period was successfully enabled."
           },
           "disableOtlPeriod": {
             "header": "Disable OTL period",
             "body": "This action will disallow voters to obtain their authentication code using the One Time Link (OTL) they received, because the OTL will not allowing them through the process while the OTL is disabled.",
-            "confirmButton": "DISABLE the OTL period"
+            "confirmButton": "DISABLE the OTL period",
+            "success": "OTL period was successfully disabled."
           },
           "changeSocial": {
             "header": "Edit social networks share buttons",
