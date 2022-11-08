@@ -424,7 +424,7 @@
           "keysCeremonies": {
             "keysDistributionIntro": {
               "header": "Ceremonia de entrega de llaves (Paso 1 de __total__)",
-              "bodyMessage": "En esta ceremonia cada autoridad descargará su parte de las claves privadas del proceso electoral. Cada administrador seguirá los siguientes pasos: <ul> <li>Iniciar sesión</li> <li>Descargar claves privadas</li> <li>Comprobar claves privadas</li> <li>Eliminar claves privadas</li>< /ul>",
+              "bodyMessage": "En esta ceremonia cada autoridad descargará su parte de las claves privadas del proceso electoral. Cada administrador seguirá los siguientes pasos: <ul> <li>Iniciar sesión</li> <li>Descargar claves privadas</li> <li>Comprobar claves privadas</li> <li>Eliminar claves privadas</li></ul>",
               "confirmButton": "Comenzar"
             },
             "openingIntro": {
