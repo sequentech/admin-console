@@ -9,18 +9,18 @@
         avAdmin.dashboard.modals.keysCeremonies.checkShare.bodyMessage
     </p>
     <div class="file-drop-container" id="dropzone">
+        <div>
+            <button class="btn btn-success" ng-click="selectFile()" ng-i18next>
+                avAdmin.dashboard.modals.keysCeremonies.checkShare.selectFileButton
+            </button>
+            <p ng-i18next>avAdmin.dashboard.modals.keysCeremonies.checkShare.orDropFileText</p>
+        </div>
         <input
             class="hidden-input"
             type="file"
             id="fileToUpload"
             onchange="angular.element(this).scope().handleFile(this)"
         />
-        <div>
-            <button class="btn btn-success" ng-click="selectFile()" ng-i18next>
-                avAdmin.dashboard.modals.keysCeremonies.checkShare.selectFileButton
-            </button>
-            <p>avAdmin.dashboard.modals.keysCeremonies.checkShare.orDropFileText</p>
-        </div>
     </div>
 
     <div class="verification-success" ng-if="showSuccess" ng-i18next>
