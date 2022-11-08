@@ -158,6 +158,8 @@ angular.module('avAdmin')
           // updating census
           el.census.auth_method = electionAuth.auth_method;
           el.census.has_ballot_boxes = electionAuth.has_ballot_boxes;
+          el.census.support_otl_enabled = electionAuth.support_otl_enabled;
+          el.census.inside_authenticate_otl_period = electionAuth.inside_authenticate_otl_period;
 
           el.children_election_info = electionAuth.children_election_info;
           el.children_tally_status = electionAuth.children_tally_status;
@@ -322,7 +324,7 @@ angular.module('avAdmin')
             var cached = electionsapi.permcache[id];
             if (!cached) {
                 Authmethod.getPerm(
-                    "edit|create|register|update|update-share|view|delete|send-auth|send-auth-all|view-results|view-stats|view-voters|view-census|start|stop|allow-tally|tally|calculate-results|publish-results|census-add|census-delete|census-delete-voted|census-activation|add-ballot-boxes|list-ballot-boxes|delete-ballot-boxes|add-tally-sheets|override-tally-sheets|list-tally-sheets|delete-tally-sheets|archive|unarchive|event-view-activity|event-receiver-view-activity|generate-auth-code|reset-voter|suspend|resume|set-public-candidates",
+                    "edit|create|register|update|update-share|view|delete|send-auth|send-auth-all|view-results|view-stats|view-voters|view-census|start|stop|allow-tally|tally|calculate-results|publish-results|census-add|census-delete|census-delete-voted|census-activation|add-ballot-boxes|list-ballot-boxes|delete-ballot-boxes|add-tally-sheets|override-tally-sheets|list-tally-sheets|delete-tally-sheets|archive|unarchive|event-view-activity|event-receiver-view-activity|generate-auth-code|reset-voter|suspend|resume|set-public-candidates|set-authenticate-otl-period",
                     "AuthEvent",
                     id
                 )
