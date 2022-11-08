@@ -425,6 +425,16 @@
             "body": "This action will cancel the execution of the request task.",
             "confirmButton": "CANCEL task"
           },
+          "enableOtlPeriod": {
+            "header": "Enable OTL period",
+            "body": "This action will allow voters to obtain their authentication code using the One Time Link (OTL) they received.",
+            "confirmButton": "CANCEL enabling the OTL period"
+          },
+          "disableOtlPeriod": {
+            "header": "Disable OTL period",
+            "body": "This action will disallow voters to obtain their authentication code using the One Time Link (OTL) they received, because the OTL will not allowing them through the process while the OTL is disabled.",
+            "confirmButton": "CANCEL disabling the OTL period"
+          },
           "changeSocial": {
             "header": "Edit social networks share buttons",
             "confirmButton": "Confirm and SAVE social networks configuration",
