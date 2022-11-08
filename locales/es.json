@@ -434,7 +434,8 @@
             },
             "loginTrustee": {
               "header": "Iniciar sesión para autoridad __trustee_id__ (Paso __step__ de __total__)",
-              "loginButton": "Iniciar sesión"
+              "loginButton": "Iniciar sesión",
+              "bodyMessage": "Para continuar, debe iniciar sesión con las credenciales de la autoridad."
             },
             "downloadShare": {
               "header": "Descargar clave privada compartida para autoridad __trustee_id__ (Paso __step__ de __total__)",
@@ -455,6 +456,7 @@
               "bodyMessage": "Sube el archivo con las claves privadas para comprobar su contenido:",
               "header": "Comprobar clave privada para la autoridad __trustee_id__ (Paso __step__ de __total__)",
               "selectFileButton": "Seleccionar archivo con la clave privada",
+              "orDropFileText": "O arrastre el archivo aquí",
               "verificationSuccess": "ÉXITO! Claves privadas verificadas.",
               "verificationFailure": "ERROR! Verificación fallida de las claves privadas.",
               "nextButton": "Siguiente paso",
@@ -465,14 +467,22 @@
               "header": "Eliminar parte de la clave privada para la autoridad __trustee_id__ (Paso __step__ de __total__)",
               "deleteShareButton": "Eliminar clave privada",
               "operationSuccess": "Parte de clave privada eliminada con éxito",
-              "nextButton": "Siguiente paso"
+              "nextButton": "Siguiente paso",
+              "finishButton": "Finalizar"
             },
             "restoreShare": {
               "bodyMessage": "Restaurar la parte de las claves privadas para esta autoridad.",
               "header": "Restaurar la parte de las claves privadas para esta autoridad __trustee_id__ (Paso __step__ de __total__)",
               "deleteShareButton": "Restaurar claves privadas",
               "operationSuccess": "Parte de las claves privadas restaurada con éxito",
-              "nextButton": "Siguiente paso"
+              "nextButton": "Siguiente paso",
+              "finishButton": "Finalizar"
+            },
+            "finishCeremony": {
+              "header": "Ceremonia completada con éxito (Paso __total__ de __total__)",
+              "keysDistributionBodyMessage": "La ceremonia de distribución de claves ha finalizado y todas las claves privadas han sido eliminadas de los servidores de las autoridades.",
+              "openingBodyMessage": "La ceremonia de distribución de claves ha finalizado y todas las claves privadas han sido restauradas en los servidores de las autoridades.",
+              "closeButton": "Close"
             }
           },
           "sendAuthCodes": {

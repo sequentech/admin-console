@@ -23,7 +23,10 @@
 </div>
 
 <div class="modal-footer delete-share-ceremony-modal">
-    <button class="btn btn-success" ng-click="next()" ng-disabled="!showSuccess" ng-i18next>
+    <button class="btn btn-success" ng-click="next()" ng-disabled="!showSuccess" ng-if="currentStep !== numSteps - 1" ng-i18next>
         avAdmin.dashboard.modals.keysCeremonies.deleteShare.nextButton
+    </button>
+    <button class="btn btn-success" ng-click="next()" ng-disabled="!showSuccess" ng-if="currentStep === numSteps - 1" ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.deleteShare.finishButton
     </button>
 </div>

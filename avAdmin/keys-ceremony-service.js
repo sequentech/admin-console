@@ -249,6 +249,26 @@ angular
     }).result;
   }
 
+  function launchFinishShareModal(numSteps, ceremony) {
+    return $modal
+    .open({
+      templateUrl: "avAdmin/admin-directives/dashboard/finish-ceremony-modal.html",
+      controller: "FinishCeremonyModal",
+      size: 'lg',
+      resolve: {
+        dialogName: function () { return 'finishCeremony'; },
+        data: function() 
+        {
+          return {
+            election: service.election,
+            numSteps: numSteps,
+            ceremony: ceremony,
+          };
+        }
+      }
+    }).result;
+  }
+
   function PromiseResolve(value) {
     var deferred = $q.defer();
     var promise = deferred.promise;
@@ -308,6 +328,11 @@ angular
           .then(function (res) {
             return launchSteps(index + 1);
           });
+      case 'finish-ceremony':
+        return launchRestoreShareModal(numSteps, service.ceremony)
+          .then(function (res) {
+            return launchSteps(index + 1);
+          });
       default:
         return PromiseResolve();
     }
@@ -355,6 +380,12 @@ angular
 
     service.steps = service.steps.concat(authSteps);
 
+    service.steps.push(
+      {
+        stepMethod: 'finish-ceremony',
+      }
+    );
+
     return launchSteps(0);
   };
 
@@ -392,6 +423,12 @@ angular
     }).flat();
 
     service.steps = service.steps.concat(authSteps);
+
+    service.steps.push(
+      {
+        stepMethod: 'finish-ceremony',
+      }
+    );
 
     return launchSteps(0);
   };

@@ -23,7 +23,10 @@
 </div>
 
 <div class="modal-footer restore-share-ceremony-modal">
-    <button class="btn btn-success" ng-click="next()" ng-disabled="!showSuccess" ng-i18next>
+    <button class="btn btn-success" ng-click="next()" ng-disabled="!showSuccess" ng-if="currentStep !== numSteps - 1" ng-i18next>
         avAdmin.dashboard.modals.keysCeremonies.restoreShare.nextButton
+    </button>
+    <button class="btn btn-success" ng-click="next()" ng-disabled="!showSuccess" ng-if="currentStep === numSteps - 1" ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.restoreShare.finishButton
     </button>
 </div>

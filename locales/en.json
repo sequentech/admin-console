@@ -458,7 +458,8 @@
             },
             "loginTrustee": {
               "header": "Log into trustee __trustee_id__ (Step __step__ of __total__)",
-              "loginButton": "Login"
+              "loginButton": "Login",
+              "bodyMessage": "In order to proceed you need to login with the trustee credentials."
             },
             "downloadShare": {
               "header": "Download private key share for trustee __trustee_id__ (Step __step__ of __total__)",
@@ -490,14 +491,22 @@
               "header": "Delete private key share for trustee __trustee_id__ (Step __step__ of __total__)",
               "deleteShareButton": "Delete private keys",
               "operationSuccess": "Private keys share successfully deleted",
-              "nextButton": "Next step"
+              "nextButton": "Next step",
+              "finishButton": "Finish"
             },
             "restoreShare": {
               "bodyMessage": "Restore the share of the private keys for this authority.",
               "header": "Restore private key share for trustee __trustee_id__ (Step __step__ of __total__)",
               "deleteShareButton": "Restore private keys",
               "operationSuccess": "Private keys share successfully restored",
-              "nextButton": "Next step"
+              "nextButton": "Next step",
+              "finishButton": "Finish"
+            },
+            "finishCeremony": {
+              "header": "Ceremony sucessfully completed (Step __total__ of __total__)",
+              "keysDistributionBodyMessage": "The keys distribution ceremony has finished and all private keys have been removed from the trustee servers.",
+              "openingBodyMessage": "The opening ceremony has finished and all private keys have been restored to the trustee servers.",
+              "closeButton": "Close"
             }
           },
           "sendAuthCodes": {
