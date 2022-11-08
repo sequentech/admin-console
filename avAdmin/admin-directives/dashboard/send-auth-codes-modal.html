@@ -111,18 +111,15 @@
                   </textarea>
               </div>
           </div>
-      </div>
-
-      <div ng-if="showForceCreateOtp()">
-        <div class="clearfix"></div>
-        <div class="checkbox text-right">
-          <label>
-            <input type="checkbox" ng-model="forceCreateOtp.ref">
-            <span ng-i18next>
-              avAdmin.dashboard.modals.sendAuthCodes.editMessageStep.forceCreateOtp
-            </span>
-          </label>
-        </div>
+          <div class="clearfix" ng-if="showForceCreateOtp()"></div>
+          <div class="form-group checkbox text-right" ng-if="showForceCreateOtp()">
+            <label>
+              <input type="checkbox" ng-model="forceCreateOtp.ref">
+              <span ng-i18next>
+                avAdmin.dashboard.modals.sendAuthCodes.editMessageStep.forceCreateOtp
+              </span>
+            </label>
+          </div>
       </div>
 
       <div ng-if="showFilter">
