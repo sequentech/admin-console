@@ -70,6 +70,7 @@ angular
       $scope.ok = function () {
         SendMsg.selected_auth_method = $scope.selected_auth_method.ref;
         SendMsg.filter = $scope.showFilter? ($scope.filter.ref || null) : undefined;
+        SendMsg.force_create_otl = $scope.showForceCreateOtp() ? ($scope.forceCreateOtp.ref || null) : undefined;
         $modalInstance.close($scope.user_ids);
       };
 
