@@ -15,9 +15,12 @@
             id="fileToUpload"
             onchange="angular.element(this).scope().handleFile(this)"
         />
-        <button class="btn btn-success" ng-click="selectFile()" ng-i18next>
-            avAdmin.dashboard.modals.keysCeremonies.checkShare.selectFileButton
-        </button>
+        <div>
+            <button class="btn btn-success" ng-click="selectFile()" ng-i18next>
+                avAdmin.dashboard.modals.keysCeremonies.checkShare.selectFileButton
+            </button>
+            <p>avAdmin.dashboard.modals.keysCeremonies.checkShare.orDropFileText</p>
+        </div>
     </div>
 
     <div class="verification-success" ng-if="showSuccess" ng-i18next>

@@ -1019,6 +1019,13 @@ angular.module('avAdmin')
                 (
                   scope.perms.val.indexOf("allow-tally") !== -1 ||
                   scope.perms.val.indexOf("edit") !== -1
+                ) && (
+                  !scope.election.presentation ||
+                  !scope.election.presentation.election_board_ceremony ||
+                  (
+                    !!scope.election.trusteeKeysState &&
+                    scope.election.trusteeKeysState.every(function (e) { return e.state === 'restored'; })
+                  )
                 )
               );
             }

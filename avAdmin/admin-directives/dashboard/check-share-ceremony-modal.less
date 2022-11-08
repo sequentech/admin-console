@@ -20,17 +20,36 @@
     flex-direction: column;
 
     .file-drop-container {
+        position: relative;
         display: flex;
         flex-direction: column;
         width: 100%;
-        min-height: 50px;
+        min-height: 100px;
         padding: 12px;
         border: 2px gray solid;
         border-style: dashed;
     }
 
+    .file-drop-container div {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
     .hidden-input {
-        display: none;
+        cursor: pointer;
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
     }
 
     .verification-success {
