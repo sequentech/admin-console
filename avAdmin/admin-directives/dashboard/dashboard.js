@@ -1173,7 +1173,8 @@ angular.module('avAdmin')
               return  (
                 scope.election.census &&
                 _.isObject(scope.election.census) &&
-                scope.election.census.support_otl_enabled && (
+                scope.election.census.support_otl_enabled &&
+                !scope.election.census.inside_authenticate_otl_period && (
                   scope.perms.val.indexOf("set-authenticate-otl-period") !== -1 ||
                   scope.perms.val.indexOf("edit") !== -1
                 )
@@ -1188,7 +1189,8 @@ angular.module('avAdmin')
               return  (
                 scope.election.census &&
                 _.isObject(scope.election.census) &&
-                scope.election.census.support_otl_enabled && (
+                scope.election.census.support_otl_enabled &&
+                scope.election.census.inside_authenticate_otl_period && (
                   scope.perms.val.indexOf("set-authenticate-otl-period") !== -1 ||
                   scope.perms.val.indexOf("edit") !== -1
                 )

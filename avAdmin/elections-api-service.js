@@ -159,6 +159,7 @@ angular.module('avAdmin')
           el.census.auth_method = electionAuth.auth_method;
           el.census.has_ballot_boxes = electionAuth.has_ballot_boxes;
           el.census.support_otl_enabled = electionAuth.support_otl_enabled;
+          el.census.inside_authenticate_otl_period = electionAuth.inside_authenticate_otl_period;
 
           el.children_election_info = electionAuth.children_election_info;
           el.children_tally_status = electionAuth.children_tally_status;
