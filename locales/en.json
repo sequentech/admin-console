@@ -482,7 +482,7 @@
               "verificationSuccess": "SUCCESS! Private keys verified.",
               "verificationFailure": "FAILURE! Private key verification failure.",
               "nextButton": "Next step",
-              "keysDistributionBackButton": "Back to download keys",
+              "keysDistributionBackButton": "Back to download keys"
             },
             "deleteShare": {
               "bodyMessage": "Delete the share of the private keys for this authority.",

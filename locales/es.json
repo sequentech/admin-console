@@ -452,27 +452,27 @@
               "secondCheckbox": "Segunda copia guardada"
             },
             "checkShare": {
-              "bodyMessage": "Upload the file with the private keys to check its contents:",
-              "header": "Check private key share for trustee __trustee_id__ (Step __step__ of __total__)",
-              "selectFileButton": "Select private keys file",
-              "verificationSuccess": "SUCCESS! Private keys verified.",
-              "verificationFailure": "FAILURE! Private key verification failure.",
-              "nextButton": "Next step",
-              "keysDistributionBackButton": "Back to download keys",
+              "bodyMessage": "Sube el archivo con las claves privadas para comprobar su contenido:",
+              "header": "Comprobar clave privada para la autoridad __trustee_id__ (Paso __step__ de __total__)",
+              "selectFileButton": "Seleccionar archivo con la clave privada",
+              "verificationSuccess": "ÉXITO! Claves privadas verificadas.",
+              "verificationFailure": "ERROR! Verificación fallida de las claves privadas.",
+              "nextButton": "Siguiente paso",
+              "keysDistributionBackButton": "Volver a descargar claves"
             },
             "deleteShare": {
-              "bodyMessage": "Delete the share of the private keys for this authority.",
-              "header": "Delete private key share for trustee __trustee_id__ (Step __step__ of __total__)",
-              "deleteShareButton": "Delete private keys",
-              "operationSuccess": "Private keys share successfully deleted",
-              "nextButton": "Next step"
+              "bodyMessage": "Eliminar la parte de las claves privadas para esta autoridad.",
+              "header": "Eliminar parte de la clave privada para la autoridad __trustee_id__ (Paso __step__ de __total__)",
+              "deleteShareButton": "Eliminar clave privada",
+              "operationSuccess": "Parte de clave privada eliminada con éxito",
+              "nextButton": "Siguiente paso"
             },
             "restoreShare": {
-              "bodyMessage": "Restore the share of the private keys for this authority.",
-              "header": "Restore private key share for trustee __trustee_id__ (Step __step__ of __total__)",
-              "deleteShareButton": "Restore private keys",
-              "operationSuccess": "Private keys share successfully restored",
-              "nextButton": "Next step"
+              "bodyMessage": "Restaurar la parte de las claves privadas para esta autoridad.",
+              "header": "Restaurar la parte de las claves privadas para esta autoridad __trustee_id__ (Paso __step__ de __total__)",
+              "deleteShareButton": "Restaurar claves privadas",
+              "operationSuccess": "Parte de las claves privadas restaurada con éxito",
+              "nextButton": "Siguiente paso"
             }
           },
           "sendAuthCodes": {
