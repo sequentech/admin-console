@@ -249,7 +249,7 @@ angular
     }).result;
   }
 
-  function launchFinishShareModal(numSteps, ceremony) {
+  function launchFinishCeremonyModal(numSteps, ceremony) {
     return $modal
     .open({
       templateUrl: "avAdmin/admin-directives/dashboard/finish-ceremony-modal.html",
@@ -329,7 +329,7 @@ angular
             return launchSteps(index + 1);
           });
       case 'finish-ceremony':
-        return launchRestoreShareModal(numSteps, service.ceremony)
+        return launchFinishCeremonyModal(numSteps, service.ceremony)
           .then(function (res) {
             return launchSteps(index + 1);
           });
