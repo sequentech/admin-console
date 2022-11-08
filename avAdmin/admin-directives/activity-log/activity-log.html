@@ -172,7 +172,7 @@
                 executer_id: obj.executer_id,
                 event_id: obj.event_id,
                 child_election: election.childrenElectionNames[obj.metadata.auth_event],
-                authenticate_otl_period: obj.metadata.authenticate_otl_period
+                metadata: stringify(obj.metadata)
               })avAdmin.activityLog.action.authevent.set_authenticate_otl_period
             </div>
             <div ng-if="obj.action_name === 'authevent:virtual-tally:success'" ng-i18next>
