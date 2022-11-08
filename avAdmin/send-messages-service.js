@@ -45,7 +45,9 @@ angular
         election: null,
 
         // Extra data: this can be used by some plugins for send other datas
-        extra: null
+        extra: null,
+
+        force_create_otl: null 
     };
 
     /**
@@ -270,7 +272,8 @@ angular
             service.user_ids,
             service.selected_auth_method,
             service.extra,
-            service.filter
+            service.filter,
+            service.force_create_otl
           ).then(
             function onSuccess(response)
             {
