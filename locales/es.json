@@ -166,7 +166,7 @@
           "authenticate": "<i>__receiver_username__ (__receiver_id__)</i> <strong>se autenticó</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "register": "<i>__receiver_username__ (__receiver_id__)</i> <strong>se registró</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "successful-login": "<i>__executer_username__ (__executer_id__)</i> <strong>votó</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
-          "authenticate-otl": "<i>__executer_username__ (__executer_id__)</i> realizó la <strong>autenticación OTL</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "authenticate-otl": "<i>__executer_username__ (__executer_id__)</i> realizó la <strong>autenticación OTL</strong> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "generate-auth-code": "<i>__executer_username__ (__executer_id__)</i> <strong>generó código de autenticación</strong> para __receiver_username__ (__receiver_id__)</i> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "send-auth": "<i>__executer_username__ (__executer_id__)</i> <strong>envió código de autenticación</strong> a <i>__receiver_username__ (__receiver_id__)</i> en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
           "resend-authcode": "Se ejecutó una solicitud para <strong>enviar códigos de autenticación</strong> a <i>__receiver_username__ (__receiver_id__)</i>  en la votación <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
