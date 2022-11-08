@@ -465,6 +465,7 @@
               "sendSelectedButton": "Review message before sending authentication codes to SELECTED users",
               "filterTitle": "Filter",
               "filterDescription": "Send this email to part of the census, either those that have already voted or those that haven't voted yet.",
+              "forceCreateOtp": "Force to create and send a new One Time Link (OTL) for each receiver of the message, invalidating previous OTLs.",
               "filterOptions": {
                 "none": "Sent to everyone",
                 "voted": "Send to those that have voted",
