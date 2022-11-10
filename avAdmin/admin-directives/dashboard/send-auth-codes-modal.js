@@ -52,14 +52,25 @@ angular
         },
       ];
       $scope.filter = { ref: '' };
+      $scope.forceCreateOtp = { ref: '' };
       var slug_text = "";
       for (var i = 0; i < SendMsg.slug_list.length; i++) {
         slug_text += (0 !== i? ", " : "" ) + "__" + SendMsg.slug_list[i] + "__";
       }
       $scope.slug_text = slug_text;
+
+      $scope.showForceCreateOtp = function () {
+        return (
+          $scope.election.census &&
+          _.isObject($scope.election.census) &&
+          $scope.election.census.support_otl_enabled
+        );
+      };
+
       $scope.ok = function () {
         SendMsg.selected_auth_method = $scope.selected_auth_method.ref;
         SendMsg.filter = $scope.showFilter? ($scope.filter.ref || null) : undefined;
+        SendMsg.force_create_otl = $scope.showForceCreateOtp() ? ($scope.forceCreateOtp.ref || null) : undefined;
         $modalInstance.close($scope.user_ids);
       };
 

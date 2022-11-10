@@ -397,6 +397,43 @@ angular.module('avAdmin')
           );
       }
 
+      function setOtlPeriod(insideOtlPeriod)
+      {
+        var modalName = {
+          true: "enableOtlPeriod",
+          false: "disableOtlPeriod"
+        }[insideOtlPeriod];
+
+        $modal
+          .open({
+            templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
+            controller: "AdminConfirmModal",
+            size: 'lg',
+            resolve: {
+              dialogName: function () { return modalName; },
+              data: function () { return ""; },
+            }
+          })
+          .result
+          .then(
+            function confirmed()
+            {
+              Authmethod
+                .setInsideOtlPeriod(scope.election.id, insideOtlPeriod)
+                .then(
+                  function onSuccess()
+                  {
+                    scope.msg = "avAdmin.dashboard.modals." + modalName + ".success";
+                  },
+                  function onError(response)
+                  {
+                    scope.error = response.data;
+                  }
+                );
+            }
+          );
+      }
+
       function suspendElection() 
       {
         $modal
@@ -1160,6 +1197,38 @@ angular.module('avAdmin')
             }
           },
           {
+            i18nString: 'enableOtlPeriod',
+            iconClass: 'fa fa-play',
+            actionFunc: function() { return scope.setOtlPeriod(true); },
+            enableFunc: function() {
+              return  (
+                scope.election.census &&
+                _.isObject(scope.election.census) &&
+                scope.election.census.support_otl_enabled &&
+                !scope.election.census.inside_authenticate_otl_period && (
+                  scope.perms.val.indexOf("set-authenticate-otl-period") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
+              );
+            }
+          },
+          {
+            i18nString: 'disableOtlPeriod',
+            iconClass: 'fa fa-pause',
+            actionFunc: function() { return scope.setOtlPeriod(false); },
+            enableFunc: function() {
+              return  (
+                scope.election.census &&
+                _.isObject(scope.election.census) &&
+                scope.election.census.support_otl_enabled &&
+                scope.election.census.inside_authenticate_otl_period && (
+                  scope.perms.val.indexOf("set-authenticate-otl-period") !== -1 ||
+                  scope.perms.val.indexOf("edit") !== -1
+                )
+              );
+            }
+          },
+          {
             i18nString: 'editChildrenParent',
             iconClass: 'fa fa-code-fork',
             actionFunc: function() { return scope.editChildrenParent(); },
@@ -1273,6 +1342,7 @@ angular.module('avAdmin')
         changeSocial: changeSocial,
         archiveElection: archiveElection,
         setPublicCandidates: setPublicCandidates,
+        setOtlPeriod: setOtlPeriod,
         unpublishResults: unpublishResults,
         allowTally: allowTally,
         editChildrenParent: editChildrenParent,
