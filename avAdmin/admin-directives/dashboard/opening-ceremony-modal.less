@@ -1,6 +1,6 @@
 /**
  * This file is part of admin-console.
- * Copyright (C) 2022 Sequent Tech Inc <legal@sequentech.io>
+ * Copyright (C) 2022  Sequent Tech Inc <legal@sequentech.io>
 
  * admin-console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -15,17 +15,13 @@
  * along with admin-console.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-angular.module('avAdmin')
-  .controller('FinishCeremonyModal',
-    function($scope, $modalInstance, data) {
-      $scope.ceremony = data.ceremony;
-      $scope.numSteps = data.numSteps;
+[modal-window] .opening-ceremony-modal.modal-body {
+    li {
+        list-style: inside;
+    }
 
-      $scope.close = function () {
-        $modalInstance.close();
-      };
-
-      $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-      };
-    });
+    ul {
+        margin-top: 4px;
+        padding-left: 0;
+    }
+}
