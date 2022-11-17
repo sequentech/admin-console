@@ -376,6 +376,8 @@
           "resumeElection": "Resume election..",
           "makeCandidatesPublic": "Make candidates public...",
           "makeCandidatesPrivate": "Make candidates private...",
+          "launchKeyDistributionCeremony": "Launch keys distribution ceremony",
+          "launchOpeningCeremony": "Launch opening ceremony",
           "enableOtlPeriod": "Enable Otl period...",
           "disableOtlPeriod": "Disable Otl period..."
         },
@@ -458,6 +460,70 @@
             "title": "Edit Calculate Results Json",
             "body": "This dialog allows you to edit the calculate results json. Use this only if you know what you are doing.",
             "confirmEdit": "Finish edit"
+          },
+          "keysCeremonies": {
+            "keysDistributionIntro": {
+              "header": "Keys Distribution Ceremony (Step 1 of __total__)",
+              "bodyMessage": "In this ceremony each trustee will download their part of the private keys for the electoral process. Each trustee will follow the following steps: <ul> <li>Login</li> <li>Download private keys</li> <li>Check private keys</li> <li>Delete private keys</li></ul>",
+              "confirmButton": "Start"
+            },
+            "openingIntro": {
+              "header": "Opening Ceremony (Step 1 of __total__)",
+              "bodyMessage": "In this ceremony each trustee will restore their part of the private keys for the electoral process. Each trustee will follow the following steps: <ul> <li>Login</li> <li>Check private keys</li> <li>Restore private keys</li> </ul>",
+              "confirmButton": "Start"
+            },
+            "loginTrustee": {
+              "header": "Log into trustee __trustee_id__ (Step __step__ of __total__)",
+              "loginButton": "Login",
+              "bodyMessage": "In order to proceed you need to login with the trustee credentials."
+            },
+            "downloadShare": {
+              "header": "Download private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+              "bodyMessage": "Download the share of the private keys for the elections. Please download it at least into two different devices.",
+              "downloadButton": "Download private key",
+              "nextButton": "Next step",
+              "operationSuccess": "Private keys successfully downloaded."
+            },
+            "secureShare": {
+              "header": "Secure private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+              "bodyMessage": "Please move the private key to at least two different pendrives for security reasons.",
+              "nextButton": "Next step",
+              "backButton": "Back to download keys",
+              "firstCheckbox": "First copy secured",
+              "secondCheckbox": "Second copy secured"
+            },
+            "checkShare": {
+              "bodyMessage": "Upload the file with the private keys to check its contents:",
+              "header": "Check private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+              "selectFileButton": "Select private keys file",
+              "orDropFileText": "Or drop file here",
+              "verificationSuccess": "SUCCESS! Private keys verified.",
+              "verificationFailure": "FAILURE! Private key verification failure.",
+              "nextButton": "Next step",
+              "keysDistributionBackButton": "Back to download keys"
+            },
+            "deleteShare": {
+              "bodyMessage": "Delete the share of the private keys for this authority.",
+              "header": "Delete private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+              "deleteShareButton": "Delete private keys",
+              "operationSuccess": "Private keys share successfully deleted",
+              "nextButton": "Next step",
+              "finishButton": "Finish"
+            },
+            "restoreShare": {
+              "bodyMessage": "Restore the share of the private keys for this authority.",
+              "header": "Restore private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+              "deleteShareButton": "Restore private keys",
+              "operationSuccess": "Private keys share successfully restored",
+              "nextButton": "Next step",
+              "finishButton": "Finish"
+            },
+            "finishCeremony": {
+              "header": "Ceremony sucessfully completed (Step __total__ of __total__)",
+              "keysDistributionBodyMessage": "The keys distribution ceremony has finished and all private keys have been removed from the trustee servers.",
+              "openingBodyMessage": "The opening ceremony has finished and all private keys have been restored to the trustee servers.",
+              "closeButton": "Close"
+            }
           },
           "sendAuthCodes": {
             "editMessageStep": {

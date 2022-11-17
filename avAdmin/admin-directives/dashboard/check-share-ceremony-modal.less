@@ -1,0 +1,69 @@
+/**
+ * This file is part of admin-console.
+ * Copyright (C) 2022  Sequent Tech Inc <legal@sequentech.io>
+
+ * admin-console is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License.
+
+ * admin-console  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with admin-console.  If not, see <http://www.gnu.org/licenses/>.
+**/
+
+[modal-window] .check-share-ceremony-modal.modal-body {
+    display: flex;
+    flex-direction: column;
+
+    .file-drop-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-height: 160px;
+        padding: 12px;
+        border: 2px gray solid;
+        border-style: dashed;
+    }
+
+    .file-drop-container div {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    .hidden-input {
+        cursor: pointer;
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .verification-success {
+        color: @av-secondary-contrast;
+        font-weight: bold;
+        padding-top: 10px;
+        text-align: center;
+    }
+
+    .verification-failure {
+        color: @av-error-color;
+        font-weight: bold;
+        padding-top: 10px;
+        text-align: center;
+    }
+}

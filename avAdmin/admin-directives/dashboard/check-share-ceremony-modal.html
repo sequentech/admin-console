@@ -1,0 +1,47 @@
+<div class="modal-header dialog-header-warning check-share-ceremony-modal">
+    <span class="title" ng-i18next>
+        [i18next]({trustee_id: trusteeId, step: currentStep, total: numSteps})avAdmin.dashboard.modals.keysCeremonies.checkShare.header
+    </span>
+</div>
+
+<div class="modal-body check-share-ceremony-modal">
+    <p ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.checkShare.bodyMessage
+    </p>
+    <div class="file-drop-container" id="dropzone">
+        <div>
+            <button class="btn btn-success" ng-click="selectFile()" ng-i18next>
+                avAdmin.dashboard.modals.keysCeremonies.checkShare.selectFileButton
+            </button>
+            <p ng-i18next>avAdmin.dashboard.modals.keysCeremonies.checkShare.orDropFileText</p>
+        </div>
+        <input
+            class="hidden-input"
+            type="file"
+            id="fileToUpload"
+            onchange="angular.element(this).scope().handleFile(this)"
+        />
+    </div>
+
+    <div class="verification-success" ng-if="showSuccess" ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.checkShare.verificationSuccess
+    </div>
+
+    <div class="verification-failure" ng-if="showFailure" ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.checkShare.verificationFailure
+    </div>
+
+    <!-- Show errors if any -->
+    <div class="text-danger padding-bottom-sm" ng-if="error">
+      {{error}}
+    </div>
+</div>
+
+<div class="modal-footer check-share-ceremony-modal">
+    <button class="btn btn-success" ng-click="back()" ng-if="'keys-distribution' === ceremony" ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.checkShare.keysDistributionBackButton
+    </button>
+    <button class="btn btn-success" ng-click="next()" ng-disabled="!verified" ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.checkShare.nextButton
+    </button>
+</div>

@@ -1,0 +1,32 @@
+<div class="modal-header dialog-header-warning delete-share-ceremony-modal">
+    <span class="title" ng-i18next>
+        [i18next]({trustee_id: trusteeId, step: currentStep, total: numSteps})avAdmin.dashboard.modals.keysCeremonies.deleteShare.header
+    </span>
+</div>
+
+<div class="modal-body delete-share-ceremony-modal">
+    <p ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.deleteShare.bodyMessage
+    </p>
+    <button class="btn btn-success" ng-click="deletePrivateKeyShare()" ng-disabled="showSuccess" ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.deleteShare.deleteShareButton
+    </button>
+
+    <div class="delete-success" ng-if="showSuccess" ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.deleteShare.operationSuccess
+    </div>
+
+    <!-- Show errors if any -->
+    <div class="text-danger padding-bottom-sm" ng-if="error">
+      {{error}}
+    </div>
+</div>
+
+<div class="modal-footer delete-share-ceremony-modal">
+    <button class="btn btn-success" ng-click="next()" ng-disabled="!showSuccess" ng-if="currentStep !== numSteps - 1" ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.deleteShare.nextButton
+    </button>
+    <button class="btn btn-success" ng-click="next()" ng-disabled="!showSuccess" ng-if="currentStep === numSteps - 1" ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.deleteShare.finishButton
+    </button>
+</div>

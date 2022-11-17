@@ -28,7 +28,8 @@ angular.module('avAdmin')
        $modal,
        PercentVotesService,
        ConfigService,
-       SendMsg)
+       SendMsg,
+       KeysCeremony)
     {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) 
@@ -602,6 +603,14 @@ angular.module('avAdmin')
           );
       }
 
+      function launchKeyDistributionCeremony() {
+        KeysCeremony.launchKeyDistributionCeremony(scope.election);
+      }
+
+      function launchOpeningCeremony() {
+        KeysCeremony.launchOpeningCeremony(scope.election);
+      }
+
       function setAutoreload(electionId)
       {
         ElectionsApi.autoreloadStats(
@@ -751,8 +760,16 @@ angular.module('avAdmin')
             confirmTemplateUrl: "avAdmin/admin-directives/dashboard/confirm-start-modal.html",
             enableFunc: function () {
               return (
-                scope.perms.val.indexOf("start") !== -1 ||
-                scope.perms.val.indexOf("edit") !== -1
+                (scope.perms.val.indexOf("start") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1) &&
+                (
+                  !scope.election.presentation ||
+                  !scope.election.presentation.election_board_ceremony ||
+                  (
+                    !!scope.election.trusteeKeysState &&
+                    scope.election.trusteeKeysState.every(function (e) { return e.state === 'deleted'; })
+                  )
+                )
               );
             }
           },
@@ -831,6 +848,13 @@ angular.module('avAdmin')
                 (
                   scope.perms.val.indexOf("tally") !== -1 ||
                   scope.perms.val.indexOf("edit") !== -1
+                ) && (
+                  !scope.election.presentation ||
+                  !scope.election.presentation.election_board_ceremony ||
+                  (
+                    !!scope.election.trusteeKeysState &&
+                    scope.election.trusteeKeysState.every(function (e) { return e.state === 'restored'; })
+                  )
                 )
               );
             }
@@ -1032,6 +1056,13 @@ angular.module('avAdmin')
                 (
                   scope.perms.val.indexOf("allow-tally") !== -1 ||
                   scope.perms.val.indexOf("edit") !== -1
+                ) && (
+                  !scope.election.presentation ||
+                  !scope.election.presentation.election_board_ceremony ||
+                  (
+                    !!scope.election.trusteeKeysState &&
+                    scope.election.trusteeKeysState.every(function (e) { return e.state === 'restored'; })
+                  )
                 )
               );
             }
@@ -1208,6 +1239,36 @@ angular.module('avAdmin')
               );
             }
           },
+          {
+            i18nString: 'launchKeyDistributionCeremony',
+            iconClass: 'fa fa-code-fork',
+            actionFunc: function() { return scope.launchKeyDistributionCeremony(); },
+            enableFunc: function() { 
+              return (
+                !!scope.election && !!scope.election.presentation &&
+                !!scope.election.presentation.election_board_ceremony &&
+                ['created'].indexOf(scope.election.status) !== -1 && 
+                scope.perms.val.indexOf("edit") !== -1 &&
+                !!scope.election.trusteeKeysState &&
+                !!scope.election.trusteeKeysState.find(function (e) { return ['initial', 'downloaded'].includes(e.state); }) 
+              );
+            }
+          },
+          {
+            i18nString: 'launchOpeningCeremony',
+            iconClass: 'fa fa-code-fork',
+            actionFunc: function() { return scope.launchOpeningCeremony(); },
+            enableFunc: function() { 
+              return (
+                !!scope.election && !!scope.election.presentation &&
+                !!scope.election.presentation.election_board_ceremony &&
+                ['stopped'].indexOf(scope.election.status) !== -1 && 
+                scope.perms.val.indexOf("edit") !== -1 &&
+                !!scope.election.trusteeKeysState &&
+                !!scope.election.trusteeKeysState.find(function (e) { return e.state === 'deleted'; }) 
+              );
+            }
+          },
         ];
 
         scope.statuses = scope.statuses;
@@ -1286,7 +1347,9 @@ angular.module('avAdmin')
         allowTally: allowTally,
         editChildrenParent: editChildrenParent,
         showResults: showResults,
-        toggleDownloadButton: toggleDownloadButton
+        toggleDownloadButton: toggleDownloadButton,
+        launchKeyDistributionCeremony: launchKeyDistributionCeremony,
+        launchOpeningCeremony: launchOpeningCeremony
       });
 
       // initialize
