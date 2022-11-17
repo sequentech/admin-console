@@ -117,7 +117,6 @@ angular.module('avAdmin')
         if (hasSavedElection()) {
             try {
                 var el = getSavedElection();
-                console.log(getSavedElection());
                 electionsapi.setCurrent(el);
             } catch (e) {
                 localSaveElection(electionsapi.currentElection);
@@ -311,6 +310,9 @@ angular.module('avAdmin')
 
             // caching election
             electionsapi.cache[conf.id] = conf;
+
+            // trustee keys state
+            conf.trusteeKeysState = election.trusteeKeysState;
             return conf;
         };
 
@@ -634,6 +636,74 @@ angular.module('avAdmin')
             .catch(deferred.reject);
 
           return deferred.promise;
+        };
+
+        electionsapi.loginTrusteePrivateKeyShare = function (election, trusteeId, username, password) {
+          return electionsapi.command(
+            election,
+            "private-keys/login-trustee",
+            "POST",
+            {
+              username: username,
+              password: password,
+              authority_id: trusteeId
+            }
+          );
+        };
+
+        electionsapi.downloadPrivateKeyShare = function (election, trusteeId, username, password) {
+          return electionsapi.command(
+            election,
+            "private-keys/download-share",
+            "POST",
+            {
+              username: username,
+              password: password,
+              authority_id: trusteeId
+            }
+          );
+        };
+
+        electionsapi.checkPrivateKeyShare = function (election, trusteeId, username, password, privateKeyBase64) {
+          return electionsapi.command(
+            election,
+            "private-keys/check-share",
+            "POST",
+            {
+              username: username,
+              password: password,
+              authority_id: trusteeId,
+              private_key_base64: privateKeyBase64
+            }
+          );
+        };
+
+        electionsapi.deletePrivateKeyShare = function (election, trusteeId, username, password, privateKeyBase64) {
+          return electionsapi.command(
+            election,
+            "private-keys/delete-share",
+            "POST",
+            {
+              username: username,
+              password: password,
+              authority_id: trusteeId,
+              private_key_base64: privateKeyBase64
+            }
+          );
+        };
+
+        electionsapi.restorePrivateKeyShare = function (election, trusteeId, username, password, privateKeyBase64) {
+          return electionsapi.command(
+            election,
+            "private-keys/restore-share",
+            "POST",
+            {
+              username: username,
+              password: password,
+              authority_id: trusteeId,
+              private_key_base64: privateKeyBase64
+            }
+          );
         };
 
         return electionsapi;

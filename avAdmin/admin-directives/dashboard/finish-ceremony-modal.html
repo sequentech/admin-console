@@ -1,0 +1,20 @@
+<div class="modal-header dialog-header-warning finish-ceremony-modal">
+    <span class="title" ng-i18next>
+        [i18next]({trustee_id: trusteeId, total: numSteps})avAdmin.dashboard.modals.keysCeremonies.finishCeremony.header
+    </span>
+</div>
+
+<div class="modal-body finish-ceremony-modal">
+    <p ng-i18next ng-if="'keys-distribution' === ceremony">
+        avAdmin.dashboard.modals.keysCeremonies.finishCeremony.keysDistributionBodyMessage
+    </p>
+    <p ng-i18next ng-if="'opening' === ceremony">
+        avAdmin.dashboard.modals.keysCeremonies.finishCeremony.openingBodyMessage
+    </p>
+</div>
+
+<div class="modal-footer finish-ceremony-modal">
+    <button class="btn btn-success" ng-click="close()" ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.finishCeremony.closeButton
+    </button>
+</div>
