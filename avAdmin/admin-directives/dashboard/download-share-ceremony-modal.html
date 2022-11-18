@@ -1,0 +1,31 @@
+<div class="modal-header dialog-header-warning download-share-ceremony-modal">
+    <span class="title" ng-i18next>
+        [i18next]({trustee_id: trusteeId, step: currentStep, total: numSteps})avAdmin.dashboard.modals.keysCeremonies.downloadShare.header
+    </span>
+</div>
+
+<div class="modal-body download-share-ceremony-modal">
+    <p>
+      <span ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.downloadShare.bodyMessage
+      </span>
+    </p>
+    <button class="btn btn-success" ng-click="download()" ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.downloadShare.downloadButton
+    </button>
+
+    <div class="download-success" ng-if="showSuccess" ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.downloadShare.operationSuccess
+    </div>
+
+    <!-- Show errors if any -->
+    <div class="text-danger padding-bottom-sm" ng-if="error">
+      {{error}}
+    </div>
+</div>
+
+<div class="modal-footer download-share-ceremony-modal">
+    <button class="btn btn-success" ng-click="next()" ng-disabled="timesDownloaded < 1" ng-i18next>
+        avAdmin.dashboard.modals.keysCeremonies.downloadShare.nextButton
+    </button>
+</div>

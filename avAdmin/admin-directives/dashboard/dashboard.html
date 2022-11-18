@@ -24,7 +24,7 @@
         <li
           ng-repeat="action in actions"
           ng-class="{'disabled': !action.enableFunc()}">
-          <a ng-click="action.actionFunc()">
+          <a ng-click="action.enableFunc() && action.actionFunc()">
             <i class="{{action.iconClass}}"></i>
             <span ng-i18next>
               [i18next]avAdmin.dashboard.actions.{{action.i18nString}}
