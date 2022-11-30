@@ -3,7 +3,6 @@
       <div class="dropdown pull-left">
         <h2>
           <span ng-i18next>[i18next]({'num': elections.length})avAdmin.create.summary</span>
-          <i class="fa fa-pencil" ng-click="editJson()" ng-if="allowEditElectionJson"></i>
         </h2>
       </div>
       <div class="dropdown pull-right actions-div">
@@ -13,7 +12,7 @@
           data-toggle="dropdown"
           aria-expanded="false"
         >
-          <span ng-i18next>avAdmin.dashboard.create.actions.actionsLabel</span>
+          <span ng-i18next>avAdmin.create.actions.actionsLabel</span>
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
@@ -23,7 +22,7 @@
             <a ng-click="action.enableFunc() && action.actionFunc()">
               <i class="{{action.iconClass}}"></i>
               <span ng-i18next>
-                [i18next]avAdmin.dashboard.create.actions.{{action.i18nString}}
+                [i18next]avAdmin.create.actions.{{action.i18nString}}
               </span>
             </a>
           </li>
