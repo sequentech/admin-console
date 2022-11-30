@@ -900,6 +900,11 @@
         "reg": "Registering the election (id: __id__) __title__",
         "creatingEl": "Creating election (id: __id__) __title__",
         "logHeader": "Log",
+        "actions": {
+          "actionsLabel": "Actions",
+          "editJson": "Edit JSON",
+          "livePreview": "Live Preview"
+        },
         "editElectionJsonModal": {
           "title": "Edit Election Json",
           "body": "This dialog allows you to edit the election json. Use this only if you know what you are doing.",

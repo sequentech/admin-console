@@ -62,6 +62,25 @@ angular.module('avAdmin')
         scope.createElectionBool = true;
         scope.allowEditElectionJson = ConfigService.allowEditElectionJson;
 
+        scope.actions = [
+          {
+            i18nString: 'editJson',
+            iconClass: 'fa fa-pencil',
+            actionFunc: function() { return scope.editJson(); },
+            enableFunc: function() {
+              return ConfigService.allowEditElectionJson;
+            }
+          },
+          {
+            i18nString: 'livePreview',
+            iconClass: 'fa fa-eye',
+            actionFunc: function() { return true; },
+            enableFunc: function() {
+              return true;
+            }
+          },
+        ];
+
         if (ElectionsApi.currentElections.length === 0 && !!ElectionsApi.currentElection) {
           scope.elections = [ElectionsApi.currentElection];
         } else {

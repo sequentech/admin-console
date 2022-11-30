@@ -816,6 +816,11 @@
         "reg": "Registrando la votación (id: __id__) __title__",
         "creatingEl": "Creando la votación (id: __id__) __title__",
         "logHeader": "Log",
+        "actions": {
+          "actionsLabel": "Acciones",
+          "editJson": "Editar JSON",
+          "livePreview": "Previsualización en vivo"
+        },
         "errors": {
           "election-is-array-questions": "Votación '__eltitle__': la lista de pregunta no es un array",
           "election-lambda-success-action-url-mode": "Votación '__eltitle__': url de redirección en 'Acción de éxito' inválida",
