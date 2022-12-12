@@ -74,7 +74,7 @@ angular.module('avAdmin')
           {
             i18nString: 'livePreview',
             iconClass: 'fa fa-eye',
-            actionFunc: function() { return true; },
+            actionFunc: function() { return scope.openPreview();; },
             enableFunc: function() {
               return true;
             }
@@ -1309,6 +1309,17 @@ angular.module('avAdmin')
               logError(angular.toJson(error));
             });
           deferred.resolve(scope.elections[electionIndex]);
+        }
+
+        scope.openPreview = function()
+        {
+          let electionId = 123456789;
+          var electionJson = angular.toJson(scope.elections, true);
+          electionJson.id = electionId;
+          const previewElectionData = encodeURIComponent(JSON.stringify(electionJson));
+          const url = `${window.location.origin}/booth/${electionId}/preview-vote?preview-election=${previewElectionData}`
+          window.open(url, '_blank');
+          return true;
         }
 
         scope.editJson = function()
