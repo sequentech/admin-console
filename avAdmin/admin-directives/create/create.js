@@ -74,7 +74,7 @@ angular.module('avAdmin')
           {
             i18nString: 'livePreview',
             iconClass: 'fa fa-eye',
-            actionFunc: function() { return scope.openPreview();; },
+            actionFunc: function() { return scope.openPreview(); },
             enableFunc: function() {
               return true;
             }
@@ -1311,16 +1311,94 @@ angular.module('avAdmin')
           deferred.resolve(scope.elections[electionIndex]);
         }
 
+        function mapToBallotBox(election, electionId) {
+          return {
+            id: electionId,
+            configuration:{
+               id: electionId,
+               layout: election.layout,
+               director: election.director,
+               authorities: election.authorities,
+               title: election.title,
+               description: election.election,
+               questions: election.questions,
+               presentation: election.presentation,
+               extra_data: JSON.stringify(election.extra_data),
+               tallyPipesConfig: JSON.stringify(election.tallyPipesConfig),
+               ballotBoxesResultsConfig: "",
+               virtual:false,
+               tally_allowed:false,
+               publicCandidates:true,
+               virtualSubelections:[],
+               logo_url: ""
+            },
+            state:"started",
+            // always use the same public keys
+            pks: JSON.stringify(election.questions.map(function (q) {
+              return {
+                q: '24792774508736884642868649594982829646677044143456685966902090450389126928108831401260556520412635107010557472033959413182721740344201744439332485685961403243832055703485006331622597516714353334475003356107214415133930521931501335636267863542365051534250347372371067531454567272385185891163945756520887249904654258635354225185183883072436706698802915430665330310171817147030511296815138402638418197652072758525915640803066679883309656829521003317945389314422254112846989412579196000319352105328237736727287933765675623872956765501985588170384171812463052893055840132089533980513123557770728491280124996262883108653723',
+                p: '49585549017473769285737299189965659293354088286913371933804180900778253856217662802521113040825270214021114944067918826365443480688403488878664971371922806487664111406970012663245195033428706668950006712214428830267861043863002671272535727084730103068500694744742135062909134544770371782327891513041774499809308517270708450370367766144873413397605830861330660620343634294061022593630276805276836395304145517051831281606133359766619313659042006635890778628844508225693978825158392000638704210656475473454575867531351247745913531003971176340768343624926105786111680264179067961026247115541456982560249992525766217307447',
+                y: '25233303610624276354982811986201834016697399044876854448496917180808794460600684041443897755355520203095802059616029587815193698920031231714345315925211168639624595654625128533802897292140868582328656520616332091010467955507834092620045939069623671407818190171090021825044623127204061232697474129851550188729946673890631720197446903235998242798036758238763406311552128366413931805575611209227161344639186615808279023879377699069225460149170905910146022296229949546176735955646970920639173343909852697354526383408023054713403757933275765703706664300550788437833505997522376371433614613665995482912523477014539823187236',
+                g: '27257469383433468307851821232336029008797963446516266868278476598991619799718416119050669032044861635977216445034054414149795443466616532657735624478207460577590891079795564114912418442396707864995938563067755479563850474870766067031326511471051504594777928264027177308453446787478587442663554203039337902473879502917292403539820877956251471612701203572143972352943753791062696757791667318486190154610777475721752749567975013100844032853600120195534259802017090281900264646220781224136443700521419393245058421718455034330177739612895494553069450438317893406027741045575821283411891535713793639123109933196544017309147'
+              }
+            })),
+            tallyPipesConfig: JSON.stringify(election.tallyPipesConfig),
+            ballotBoxesResultsConfig: "",
+            virtual:false,
+            tallyAllowed:false,
+            publicCandidates:true,
+            logo_url:"",
+            trusteeKeysState:[]
+            }
+          }
+        }
+
+        function mapToAuthapi(election, electionId) {
+          return {
+            id: electionId,
+            auth_method: election.authmethod,
+            census: election.census.census,
+            users: 0,
+            has_ballot_boxes: election.has_ballot_boxes,
+            tally_status: "notstarted",
+            allow_public_census_query:false,
+            created: "2022-12-05T15:22:34.862203%2B00:00",
+            based_in: null,
+            num_successful_logins_allowed: election.num_successful_logins_allowed,
+            hide_default_login_lookup_field:false,
+            parent_id:null,
+            children_election_info:null,
+            auth_method_config:{
+               config:{
+                  allow_user_resend: election.config.allow_user_resend
+               }
+            },
+            openid_connect_providers:[
+               
+            ],
+            support_otl_enabled:false,
+            inside_authenticate_otl_period:false,
+            extra_fields: election.extra_fields,
+            admin_fields: election.admin_fields
+          }
+        }
+
         scope.openPreview = function()
         {
-          let electionId = 123456789;
-          var electionJson = angular.toJson(scope.elections, true);
+          var electionId = 123456789;
+          var electionJson = angular.toJson(
+            {
+              ballot_box: mapToBallotBox(scope.elections[0], electionId),
+              authapi: mapToAuthapi(scope.elections[0], electionId)
+            },
+            true
+          );
           electionJson.id = electionId;
-          const previewElectionData = encodeURIComponent(JSON.stringify(electionJson));
-          const url = `${window.location.origin}/booth/${electionId}/preview-vote?preview-election=${previewElectionData}`
+          var previewElectionData = encodeURIComponent(JSON.stringify(electionJson));
+          var url = window.location.origin +"/booth/" + electionId + "/preview-vote?preview-election=" + previewElectionData;
           window.open(url, '_blank');
           return true;
-        }
+        };
 
         scope.editJson = function()
         {
