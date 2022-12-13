@@ -1360,11 +1360,11 @@ angular.module('avAdmin')
             users: 0,
             has_ballot_boxes: election.has_ballot_boxes,
             tally_status: "notstarted",
-            allow_public_census_query:false,
+            allow_public_census_query: false,
             created: "2022-12-05T15:22:34.862203%2B00:00",
             based_in: null,
             num_successful_logins_allowed: election.num_successful_logins_allowed,
-            hide_default_login_lookup_field:false,
+            hide_default_login_lookup_field: false,
             parent_id: null,
             children_election_info: null,
             auth_method_config:{
@@ -1385,13 +1385,10 @@ angular.module('avAdmin')
         scope.openPreview = function()
         {
           var electionId = 123456789;
-          var electionJson = angular.toJson(
-            {
-              ballot_box: mapToBallotBox(scope.elections[0], electionId),
-              authapi: mapToAuthapi(scope.elections[0], electionId)
-            },
-            true
-          );
+          var electionJson = {
+            ballot_box: mapToBallotBox(scope.elections[0], electionId),
+            authapi: mapToAuthapi(scope.elections[0], electionId)
+          };
           electionJson.id = electionId;
           var previewElectionData = encodeURIComponent(JSON.stringify(electionJson));
           var url = window.location.origin +"/booth/" + electionId + "/preview-vote?preview-election=" + previewElectionData;
