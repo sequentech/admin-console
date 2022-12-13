@@ -33,6 +33,7 @@ angular.module('avAdmin')
       ConfigService,
       ElectionLimits,
       CheckerService,
+      ElectionCreationService,
       CsvLoad,
       MustExtraFieldsService)
     {
@@ -1018,64 +1019,7 @@ angular.module('avAdmin')
             // Creating the authentication
             logInfo($i18next('avAdmin.create.creating', {title: el.title}));
 
-            // sanitize some unneeded values that might still be there. This
-            // needs to be done because how we use ng-model
-            if (el.census.config.subject && !_.contains(['email', 'email-otp'], el.census.auth_method)) {
-              delete el.census.config.subject;
-            }
-            var authAction = el.census.config['authentication-action'];
-            if (authAction.mode === 'vote') {
-              authAction["mode-config"] = null;
-            }
-
-            var d = {
-                auth_method: el.census.auth_method,
-                has_ballot_boxes: el.census.has_ballot_boxes,
-                support_otl_enabled: el.census.support_otl_enabled || false,
-                census: el.census.census,
-                auth_method_config: el.census.config,
-                extra_fields: [],
-                admin_fields: [],
-                num_successful_logins_allowed: el.num_successful_logins_allowed,
-                allow_public_census_query: el.allow_public_census_query,
-                hide_default_login_lookup_field: el.hide_default_login_lookup_field,
-                parent_id: null,
-                children_election_info: null
-            };
-
-            // Set election id if existing in election configuration
-            if (el.id) {
-              d.id = el.id;
-            }
-
-            d.admin_fields = _.filter(el.census.admin_fields, function(af) {
-              return true;
-            });
-
-            d.extra_fields = _.filter(el.census.extra_fields, function(ef) {
-              var must = ef.must;
-              delete ef.disabled;
-              delete ef.must;
-
-              // only add regex if it's filled and it's a text field
-              if (!angular.isUndefined(ef.regex) &&
-                (!_.contains(['int', 'text'], ef.type) || $.trim(ef.regex).length === 0)) {
-                delete ef.regex;
-              }
-
-              if (_.contains(['bool', 'captcha'], ef.type)) {
-                delete ef.min;
-                delete ef.max;
-              } else {
-                if (!!ef.min) {
-                  ef.min = parseInt(ef.min);
-                }
-                if (!!ef.max) {
-                  ef.max = parseInt(ef.max);
-                }
-              }
-              return true;
-            });
+            var d = ElectionCreationService().createAuthEvent(el);
 
             Authmethod.createEvent(d)
                 .then(
@@ -1192,26 +1136,13 @@ angular.module('avAdmin')
 
         function registerElection(el) {
             console.log("registering election " + el.title);
+            var d = ElectionCreationService().createAuthEvent(el);
 
-              if (typeof el.extra_data === 'object') {
-                  el.extra_data = JSON.stringify(el.extra_data);
-              }
-              if (typeof el.tallyPipesConfig === 'object') {
-                el.tallyPipesConfig = JSON.stringify(el.tallyPipesConfig);
-              }
-              if (typeof el.ballotBoxesResultsConfig === 'object') {
-                el.ballotBoxesResultsConfig = JSON.stringify(el.ballotBoxesResultsConfig);
-              }
-            _.each(el.questions, function (q) {
-              _.each(q.answers, function (answer) {
-                answer.urls = _.filter(answer.urls, function(url) { return $.trim(url.url).length > 0;});
-              });
-            });
             var deferred = $q.defer();
             // Registering the election
-            logInfo($i18next('avAdmin.create.reg', {title: el.title, id: el.id}));
-            ElectionsApi.command(el, '', 'POST', el)
-                .then(function(data) { deferred.resolve(el); })
+            logInfo($i18next('avAdmin.create.reg', {title: d.title, id: d.id}));
+            ElectionsApi.command(d, '', 'POST', d)
+                .then(function(data) { deferred.resolve(d); })
                 .catch(deferred.reject);
             return deferred.promise;
         }
