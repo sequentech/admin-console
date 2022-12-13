@@ -33,7 +33,7 @@ angular.module('avAdmin')
       ConfigService,
       ElectionLimits,
       CheckerService,
-      ElectionCreationService,
+      ElectionCreation,
       CsvLoad,
       MustExtraFieldsService)
     {
@@ -1019,7 +1019,7 @@ angular.module('avAdmin')
             // Creating the authentication
             logInfo($i18next('avAdmin.create.creating', {title: el.title}));
 
-            var d = ElectionCreationService().createAuthEvent(el);
+            var d = ElectionCreation.createAuthEvent(el);
 
             Authmethod.createEvent(d)
                 .then(
@@ -1136,7 +1136,7 @@ angular.module('avAdmin')
 
         function registerElection(el) {
             console.log("registering election " + el.title);
-            var d = ElectionCreationService().createAuthEvent(el);
+            var d = ElectionCreation.createAuthEvent(el);
 
             var deferred = $q.defer();
             // Registering the election
