@@ -1,6 +1,6 @@
 /**
  * This file is part of common-ui.
- * Copyright (C) 2015-2016  Sequent Tech Inc <legal@sequentech.io>
+ * Copyright (C) 2022  Sequent Tech Inc <legal@sequentech.io>
 
  * common-ui is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -16,7 +16,7 @@
 **/
 
 
-angular.module('avUi')
+angular.module('avAdmin')
     .factory('ElectionCreator', function() {
         var service = {
         };
