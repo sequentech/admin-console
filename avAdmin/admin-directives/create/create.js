@@ -1326,10 +1326,10 @@ angular.module('avAdmin')
                extra_data: JSON.stringify(election.extra_data),
                tallyPipesConfig: JSON.stringify(election.tallyPipesConfig),
                ballotBoxesResultsConfig: "",
-               virtual:false,
-               tally_allowed:false,
-               publicCandidates:true,
-               virtualSubelections:[],
+               virtual: false,
+               tally_allowed: false,
+               publicCandidates: true,
+               virtualSubelections: [],
                logo_url: ""
             },
             state:"started",
@@ -1344,10 +1344,10 @@ angular.module('avAdmin')
             })),
             tallyPipesConfig: JSON.stringify(election.tallyPipesConfig),
             ballotBoxesResultsConfig: "",
-            virtual:false,
-            tallyAllowed:false,
+            virtual: false,
+            tallyAllowed: false,
             publicCandidates:true,
-            logo_url:"",
+            logo_url: "",
             trusteeKeysState:[]
           };
         }
@@ -1365,18 +1365,18 @@ angular.module('avAdmin')
             based_in: null,
             num_successful_logins_allowed: election.num_successful_logins_allowed,
             hide_default_login_lookup_field:false,
-            parent_id:null,
-            children_election_info:null,
+            parent_id: null,
+            children_election_info: null,
             auth_method_config:{
                config:{
-                  allow_user_resend: election.config.allow_user_resend
+                  allow_user_resend: election.census.config.allow_user_resend
                }
             },
             openid_connect_providers:[
                
             ],
-            support_otl_enabled:false,
-            inside_authenticate_otl_period:false,
+            support_otl_enabled: false,
+            inside_authenticate_otl_period: false,
             extra_fields: election.extra_fields,
             admin_fields: election.admin_fields
           };
