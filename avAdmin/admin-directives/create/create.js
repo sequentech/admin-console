@@ -33,6 +33,7 @@ angular.module('avAdmin')
       ConfigService,
       ElectionLimits,
       CheckerService,
+      ElectionCreator,
       ElectionCreation,
       CsvLoad,
       MustExtraFieldsService)
@@ -1019,7 +1020,7 @@ angular.module('avAdmin')
             // Creating the authentication
             logInfo($i18next('avAdmin.create.creating', {title: el.title}));
 
-            var d = ElectionCreation.generateAuthEvent(el);
+            var d = ElectionCreator.generateAuthEvent(el);
 
             Authmethod.createEvent(d)
                 .then(
