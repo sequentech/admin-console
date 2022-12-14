@@ -81,7 +81,7 @@ angular.module('avAdmin')
               return true;
             });
 
-            return el;
+            return d;
         };
 
         service.generatingElection = function (el) {
