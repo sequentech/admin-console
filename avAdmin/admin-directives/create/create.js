@@ -1020,7 +1020,7 @@ angular.module('avAdmin')
             // Creating the authentication
             logInfo($i18next('avAdmin.create.creating', {title: el.title}));
 
-            var d = ElectionCreator.generatingAuthEvent(el);
+            var d = ElectionCreator.generatingAuthevent(el);
 
             Authmethod.createEvent(d)
                 .then(
