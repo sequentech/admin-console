@@ -1245,6 +1245,12 @@ angular.module('avAdmin')
         scope.openPreview = function()
         {
           var electionId = 123456789;
+          if (scope.elections.lengh === 1) {
+            electionId = scope.elections[0].id || electionId;
+          } else {
+            var foundElection = scope.elections.find(function (element) { return true === element.virtual; });
+            electionId = foundElection && foundElection.id || electionId;
+          }
           var previewElectionData = encodeURIComponent(JSON.stringify(scope.elections));
           var url = window.location.origin +"/booth/" + electionId + "/preview-vote?preview-election=" + previewElectionData;
           window.open(url, '_blank');
