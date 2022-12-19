@@ -1297,7 +1297,7 @@ angular.module('avAdmin')
                   data: scope.elections,
                   onError: function (errorKey, errorData) {
                     scope.errors.push({
-                      data: $sanitize(errorData),
+                      data: errorData,
                       key: errorKey
                     });
                   }
