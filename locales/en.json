@@ -911,6 +911,7 @@
           "confirmEdit": "Finish edit"
         },
         "errors": {
+          "live-preview-parent-children": "Missing election IDs for a parent-children election",
           "election-is-array-questions": "Election '__eltitle__': list of questions is not an array",
           "election-lambda-success-action-url-mode": "Election '__eltitle__': invalid success action url",
           "election-lambda-min-email-msg": "Election '__eltitle__': email message length is __len__ characters, but it has to be at least __min__ characters long",

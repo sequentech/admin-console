@@ -106,6 +106,20 @@ angular.module('avAdmin')
          */
         var checks = [
           {
+            check: "lambda",
+            validator: function (elections) 
+            {
+              if (elections.length <= 1) {
+                return true;
+              }
+
+              return elections.every(function (election) {
+                return _.isNumber(election.id);
+              });
+            },
+            prefix: "live-preview-parent-children"
+          },
+          {
             check: "array-group-chain",
             prefix: "election-",
             append: {key: "eltitle", value: "$value.title"},
