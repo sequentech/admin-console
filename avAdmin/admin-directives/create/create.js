@@ -117,7 +117,7 @@ angular.module('avAdmin')
                 return _.isNumber(election.id);
               });
             },
-            prefix: "live-preview-parent-children"
+            postfix: "-live-preview-parent-children"
           },
           {
             check: "array-group-chain",
