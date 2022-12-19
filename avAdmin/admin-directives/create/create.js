@@ -1251,8 +1251,8 @@ angular.module('avAdmin')
             var foundElection = scope.elections.find(function (element) { return true === element.virtual; });
             electionId = foundElection && foundElection.id || electionId;
           }
-          var previewElectionData = encodeURIComponent(JSON.stringify(scope.elections));
-          var url = window.location.origin +"/booth/" + electionId + "/preview-vote?preview-election=" + previewElectionData;
+          sessionStorage.setItem(electionId, scope.elections);
+          var url = window.location.origin +"/booth/" + electionId + "/preview-vote";
           window.open(url, '_blank');
           return true;
         };
