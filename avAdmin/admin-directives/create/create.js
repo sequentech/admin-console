@@ -77,7 +77,7 @@ angular.module('avAdmin')
             iconClass: 'fa fa-eye',
             actionFunc: function() { return scope.openPreview(); },
             enableFunc: function() {
-              return true;
+              return !!scope.errors;
             }
           },
         ];
