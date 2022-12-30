@@ -1296,10 +1296,6 @@ angular.module('avAdmin')
                       }
                     }
 
-                    function mapElectionId(e) {
-                      return newIdsMap[e] || e;
-                    }
-
                     // replace election ids with new ids
                     for (var index = 0; index < elections.length; index++) {
                       var election = elections[index];
@@ -1316,7 +1312,9 @@ angular.module('avAdmin')
                       // replace ids in the children elections structure
                       if (election.children_election_info &&
                           election.children_election_info.natural_order) {
-                        election.children_election_info.natural_order = election.children_election_info.natural_order.map(mapElectionId);
+                        election.children_election_info.natural_order = election.children_election_info.natural_order.map(function (myMap, e) {
+                          return myMap[e] || e;
+                        }).bind(null, newIdsMap);
                       }
                       if (election.children_election_info &&
                         election.children_election_info.presentation &&
@@ -1324,11 +1322,11 @@ angular.module('avAdmin')
                           election.children_election_info.presentation.categories = 
                           election.children_election_info.presentation.categories.map(function (category) {
                             if (category.events) {
-                              category.events = category.events.map(function (event) {
+                              category.events = category.events.map(function (myMap, event) {
                                 if (event.event_id) {
-                                  event.event_id = mapElectionId(event.event_id);
+                                  event.event_id = myMap[event.event_id] || event.event_id;
                                 }
-                              });
+                              }).bind(null, newIdsMap);
                             }
                             return category;
                           });
