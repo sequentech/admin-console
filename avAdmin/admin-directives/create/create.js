@@ -1263,76 +1263,6 @@ angular.module('avAdmin')
           deferred.resolve(scope.elections[electionIndex]);
         }
 
-        function addElection(electionIndex) 
-        {
-          var deferred = $q.defer();
-
-          // After creating the auth events and registering all the elections 
-          // in ballot_box, we proceed to:
-          // - set children election info
-          // - add census
-          // - create election public keys
-          if (electionIndex === scope.elections.length) {
-            secondElectionsStage(0);
-            return;
-          }
-
-          var promise = deferred.promise;
-          promise = promise
-            .then(createAuthEvent)
-            .then(registerElection)
-            .then(function(election) {
-              addElection(electionIndex + 1);
-            })
-            .catch(function(error) {
-              scope.creating = false;
-              scope.creating_text = '';
-              logError(angular.toJson(error));
-            });
-          deferred.resolve(scope.elections[electionIndex]);
-        }
-
-        scope.editJson = function()
-        {
-          if(!ConfigService.allowEditElectionJson) {
-            return;
-          }
-          // show the initial edit dialog
-          $modal
-            .open({
-              templateUrl: "avAdmin/admin-directives/create/edit-election-json-modal.html",
-              controller: "EditElectionJsonModal",
-              size: 'lg',
-              resolve: {
-                electionJson: function () { return angular.toJson(scope.elections, true); }
-              }
-            })
-            .result.then(
-              function (data)
-              {
-                var elections = angular.fromJson(data.electionJson);
-                return fillInElectionIds(elections);
-              }
-            ).then(
-              function (data)
-              {
-                scope.elections = data;
-
-                scope.errors = [];
-                CheckerService({
-                  checks: checks,
-                  data: scope.elections,
-                  onError: function (errorKey, errorData) {
-                    scope.errors.push({
-                      data: $sanitize(errorData),
-                      key: errorKey
-                    });
-                  }
-                });
-              }
-            );
-        };
-
         /**
          * If the elections are using negative numbers, find the existing election
          * with the highest election id and replace the negative numbers with
@@ -1411,6 +1341,76 @@ angular.module('avAdmin')
           }
           return promise;
         }
+
+        function addElection(electionIndex) 
+        {
+          var deferred = $q.defer();
+
+          // After creating the auth events and registering all the elections 
+          // in ballot_box, we proceed to:
+          // - set children election info
+          // - add census
+          // - create election public keys
+          if (electionIndex === scope.elections.length) {
+            secondElectionsStage(0);
+            return;
+          }
+
+          var promise = deferred.promise;
+          promise = promise
+            .then(createAuthEvent)
+            .then(registerElection)
+            .then(function(election) {
+              addElection(electionIndex + 1);
+            })
+            .catch(function(error) {
+              scope.creating = false;
+              scope.creating_text = '';
+              logError(angular.toJson(error));
+            });
+          deferred.resolve(scope.elections[electionIndex]);
+        }
+
+        scope.editJson = function()
+        {
+          if(!ConfigService.allowEditElectionJson) {
+            return;
+          }
+          // show the initial edit dialog
+          $modal
+            .open({
+              templateUrl: "avAdmin/admin-directives/create/edit-election-json-modal.html",
+              controller: "EditElectionJsonModal",
+              size: 'lg',
+              resolve: {
+                electionJson: function () { return angular.toJson(scope.elections, true); }
+              }
+            })
+            .result.then(
+              function (data)
+              {
+                var elections = angular.fromJson(data.electionJson);
+                return fillInElectionIds(elections);
+              }
+            ).then(
+              function (data)
+              {
+                scope.elections = data;
+
+                scope.errors = [];
+                CheckerService({
+                  checks: checks,
+                  data: scope.elections,
+                  onError: function (errorKey, errorData) {
+                    scope.errors.push({
+                      data: $sanitize(errorData),
+                      key: errorKey
+                    });
+                  }
+                });
+              }
+            );
+        };
 
         function createElections() {
             var deferred = $q.defer();
