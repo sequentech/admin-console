@@ -1304,6 +1304,11 @@ angular.module('avAdmin')
                       // replace the election id
                       election.id = newIdsMap[election.id];
 
+                      // replace the parent id
+                      if (election.parent_id) {
+                        election.parent_id = newIdsMap[election.parent_id] || election.parent_id;
+                      }
+
                       // replace ids for virtualSubelections
                       if (election.virtualSubelections) {
                         election.virtualSubelections = election.virtualSubelections.map(function (e) {
