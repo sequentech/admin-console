@@ -1310,7 +1310,13 @@ angular.module('avAdmin')
             .result.then(
               function (data)
               {
-                scope.elections = angular.fromJson(data.electionJson);
+                var elections = angular.fromJson(data.electionJson);
+                return fillInElectionIds(elections);
+              }
+            ).then(
+              function (data)
+              {
+                scope.elections = data;
 
                 scope.errors = [];
                 CheckerService({
@@ -1326,6 +1332,85 @@ angular.module('avAdmin')
               }
             );
         };
+
+        /**
+         * If the elections are using negative numbers, find the existing election
+         * with the highest election id and replace the negative numbers with
+         * higher election ids.
+         */
+        function fillInElectionIds(elections) {
+          var deferred = $q.defer();
+          var promise = deferred.promise;
+
+          // check if there are negative election ids
+          var hasNegativeIds = undefined !== elections.find(function (el) {
+            return _.isNumber(el.id) && el.id <= 0;
+          });
+
+          if (data.length > 1 || hasNegativeIds) {
+
+            // Find highest election id
+            Authmethod.highestEvent()
+                .then(
+                  function onSuccess(response) {
+                    var highestId = response.data.highest_id;
+                    var newIdsMap = {};
+
+                    // map negative ids to new election ids
+                    for (var eid = 0; eid < elections.length; eid++) {
+                      var election = elections[eid];
+                      if (_.isNumber(election.id) && election.id > 0) {
+                        newIdsMap[election.id] = election.id;
+                      } else {
+                        newIdsMap[election.id] = highestId + eid + 1;
+                      }
+                    }
+
+                    // replace election ids with new ids
+                    for (var eid = 0; eid < elections.length; eid++) {
+                      var election = elections[eid];
+                      // replace the election id
+                      election.id = newIdsMap[election.id];
+
+                      // replace ids for virtualSubelections
+                      if (election.virtualSubelections) {
+                        election.virtualSubelections = election.virtualSubelections.map(function (e) {
+                          return newIdsMap[e] || e;
+                        });
+                      }
+
+                      // replace ids in the children elections structure
+                      if (election.children_election_info &&
+                          election.children_election_info.natural_order) {
+                        election.children_election_info.natural_order = election.children_election_info.natural_order.map(function (e) {
+                          return newIdsMap[e] || e;
+                        });
+                      }
+                      if (election.children_election_info &&
+                        election.children_election_info.presentation &&
+                        election.children_election_info.presentation.categories) {
+                          election.children_election_info.presentation.categories = 
+                          election.children_election_info.presentation.categories.map(function (category) {
+                            if (category.events) {
+                              category.events = category.events.map(function (event) {
+                                if (event.event_id) {
+                                  event.event_id = newIdsMap[event.event_id] || event.event_id;
+                                }
+                              });
+                            }
+                            return category;
+                          });
+                      }
+                    }
+                    deferred.resolve(elections);
+                  },
+                  deferred.reject
+                );
+          } else {
+            deferred.resolve(elections);
+          }
+          return promise;
+        }
 
         function createElections() {
             var deferred = $q.defer();
