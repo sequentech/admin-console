@@ -1296,6 +1296,10 @@ angular.module('avAdmin')
                       }
                     }
 
+                    function mapElectionId(e) {
+                      return newIdsMap[e] || e;
+                    }
+
                     // replace election ids with new ids
                     for (var index = 0; index < elections.length; index++) {
                       var election = elections[index];
@@ -1312,9 +1316,7 @@ angular.module('avAdmin')
                       // replace ids in the children elections structure
                       if (election.children_election_info &&
                           election.children_election_info.natural_order) {
-                        election.children_election_info.natural_order = election.children_election_info.natural_order.map(function (e) {
-                          return newIdsMap[e] || e;
-                        });
+                        election.children_election_info.natural_order = election.children_election_info.natural_order.map(mapElectionId);
                       }
                       if (election.children_election_info &&
                         election.children_election_info.presentation &&
@@ -1324,7 +1326,7 @@ angular.module('avAdmin')
                             if (category.events) {
                               category.events = category.events.map(function (event) {
                                 if (event.event_id) {
-                                  event.event_id = newIdsMap[event.event_id] || event.event_id;
+                                  event.event_id = mapElectionId(event.event_id);
                                 }
                               });
                             }
