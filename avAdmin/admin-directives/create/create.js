@@ -1277,7 +1277,7 @@ angular.module('avAdmin')
             return _.isNumber(el.id) && el.id <= 0;
           });
 
-          if (data.length > 1 || hasNegativeIds) {
+          if (elections.length > 1 || hasNegativeIds) {
 
             // Find highest election id
             Authmethod.highestEvent()
@@ -1287,18 +1287,18 @@ angular.module('avAdmin')
                     var newIdsMap = {};
 
                     // map negative ids to new election ids
-                    for (var eid = 0; eid < elections.length; eid++) {
-                      var election = elections[eid];
-                      if (_.isNumber(election.id) && election.id > 0) {
-                        newIdsMap[election.id] = election.id;
+                    for (var idx = 0; idx < elections.length; idx++) {
+                      var electionId = elections[idx].id;
+                      if (_.isNumber(electionId) && electionId > 0) {
+                        newIdsMap[electionId] = electionId;
                       } else {
-                        newIdsMap[election.id] = highestId + eid + 1;
+                        newIdsMap[electionId] = highestId + idx + 1;
                       }
                     }
 
                     // replace election ids with new ids
-                    for (var eid = 0; eid < elections.length; eid++) {
-                      var election = elections[eid];
+                    for (var index = 0; index < elections.length; index++) {
+                      var election = elections[index];
                       // replace the election id
                       election.id = newIdsMap[election.id];
 
