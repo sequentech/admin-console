@@ -1277,6 +1277,8 @@ angular.module('avAdmin')
             return _.isNumber(el.id) && el.id <= 0;
           });
 
+          /* jshint ignore:start */
+
           if (elections.length > 1 || hasNegativeIds) {
 
             // Find highest election id
@@ -1312,9 +1314,9 @@ angular.module('avAdmin')
                       // replace ids in the children elections structure
                       if (election.children_election_info &&
                           election.children_election_info.natural_order) {
-                        election.children_election_info.natural_order = election.children_election_info.natural_order.map(function (myMap, e) {
-                          return myMap[e] || e;
-                        }).bind(null, newIdsMap);
+                        election.children_election_info.natural_order = election.children_election_info.natural_order.map(function (e) {
+                          return newIdsMap[e] || e;
+                        });
                       }
                       if (election.children_election_info &&
                         election.children_election_info.presentation &&
@@ -1322,11 +1324,11 @@ angular.module('avAdmin')
                           election.children_election_info.presentation.categories = 
                           election.children_election_info.presentation.categories.map(function (category) {
                             if (category.events) {
-                              category.events = category.events.map(function (myMap, event) {
+                              category.events = category.events.map(function (event) {
                                 if (event.event_id) {
-                                  event.event_id = myMap[event.event_id] || event.event_id;
+                                  event.event_id = newIdsMap[event.event_id] || event.event_id;
                                 }
-                              }).bind(null, newIdsMap);
+                              });
                             }
                             return category;
                           });
@@ -1339,6 +1341,7 @@ angular.module('avAdmin')
           } else {
             deferred.resolve(elections);
           }
+          /* jshint ignore:end */
           return promise;
         }
 
