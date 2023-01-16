@@ -56,6 +56,16 @@ angular.module('avAdmin')
         return field && field.value;
       }
 
+      function getErrorText(error) {
+        if (error.statusText) {
+          return error.statusText;
+        }
+        if (error.status === 401) {
+          return "Unauthorized";
+        }
+        return error.status + "";
+      }
+
       $scope.login = function () {
         resetErrorMessages();
 
@@ -74,7 +84,7 @@ angular.module('avAdmin')
         ).catch(
           function(error)
           {
-            $scope.error = error.statusText;
+            $scope.error = getErrorText(error);
           }
         );
       };
