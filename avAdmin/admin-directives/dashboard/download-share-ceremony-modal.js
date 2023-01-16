@@ -49,7 +49,7 @@ angular.module('avAdmin')
         ).catch(
           function(error)
           {
-            $scope.error = error.statusText;
+            $scope.error = error.statusText || error.status;
           }
         );
       };
