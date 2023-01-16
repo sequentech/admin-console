@@ -45,7 +45,7 @@ angular.module('avAdmin')
               if (200 === result.status) {
                 $scope.showSuccess = true;
               } else {
-                $scope.error = result.statusText || error.status;
+                $scope.error = result.statusText || result.status;
               }
             }
           ).catch(
