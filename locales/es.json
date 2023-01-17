@@ -816,7 +816,13 @@
         "reg": "Registrando la votación (id: __id__) __title__",
         "creatingEl": "Creando la votación (id: __id__) __title__",
         "logHeader": "Log",
+        "actions": {
+          "actionsLabel": "Acciones",
+          "editJson": "Editar JSON",
+          "livePreview": "Previsualización en vivo"
+        },
         "errors": {
+          "lambda-live-preview-parent-children": "Faltan ID de la votación para una votación padre-hijos",
           "election-is-array-questions": "Votación '__eltitle__': la lista de pregunta no es un array",
           "election-lambda-success-action-url-mode": "Votación '__eltitle__': url de redirección en 'Acción de éxito' inválida",
           "election-lambda-min-email-msg": "Votación '__eltitle__': el mensaje de email tiene una longitud de __len__ caracteres, pero debe tener al menos __min__",
