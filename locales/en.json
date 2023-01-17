@@ -898,12 +898,18 @@
         "reg": "Registering the election (id: __id__) __title__",
         "creatingEl": "Creating election (id: __id__) __title__",
         "logHeader": "Log",
+        "actions": {
+          "actionsLabel": "Actions",
+          "editJson": "Edit JSON",
+          "livePreview": "Live Preview"
+        },
         "editElectionJsonModal": {
           "title": "Edit Election Json",
           "body": "This dialog allows you to edit the election json. Use this only if you know what you are doing.",
           "confirmEdit": "Finish edit"
         },
         "errors": {
+          "lambda-live-preview-parent-children": "Missing election IDs for a parent-children election",
           "election-is-array-questions": "Election '__eltitle__': list of questions is not an array",
           "election-lambda-success-action-url-mode": "Election '__eltitle__': invalid success action url",
           "election-lambda-min-email-msg": "Election '__eltitle__': email message length is __len__ characters, but it has to be at least __min__ characters long",
