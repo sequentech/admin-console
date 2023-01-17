@@ -1,8 +1,34 @@
 <div>
-    <h2>
-      <span ng-i18next>[i18next]({'num': elections.length})avAdmin.create.summary</span>
-      <i class="fa fa-pencil" ng-click="editJson()" ng-if="allowEditElectionJson"></i>
-    </h2>
+    <div class="container-fluid">
+      <div class="dropdown pull-left">
+        <h2>
+          <span ng-i18next>[i18next]({'num': elections.length})avAdmin.create.summary</span>
+        </h2>
+      </div>
+      <div class="dropdown pull-right actions-div">
+        <button
+          class="btn btn-success actionbtn ng-scope btn-primary dropdown-toggle"
+          type="button"
+          data-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <span ng-i18next>avAdmin.create.actions.actionsLabel</span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li
+            ng-repeat="action in actions"
+            ng-class="{'disabled': !action.enableFunc()}">
+            <a ng-click="action.enableFunc() && action.actionFunc()">
+              <i class="{{action.iconClass}}"></i>
+              <span ng-i18next>
+                [i18next]avAdmin.create.actions.{{action.i18nString}}
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <div ng-repeat="election in elections">
       <h3 ng-i18next>[i18next]({'title': election.title, 'index': $index+1})avAdmin.basic.title.labelH3</h3>
