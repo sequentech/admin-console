@@ -1333,6 +1333,7 @@ angular.module('avAdmin')
                                 if (event.event_id) {
                                   event.event_id = newIdsMap[event.event_id] || event.event_id;
                                 }
+                                return event;
                               });
                             }
                             return category;
