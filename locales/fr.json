@@ -1,0 +1,1015 @@
+{
+    "continue": "Continuer",
+    "ok": "Ok",
+    "yes": "oui",
+    "no": "pas de",
+    "eg": "eg.",
+    "next": "Suivant",
+    "done": "Termin\u00e9",
+    "loading": "Chargement...",
+    "nomore": "Plus d'\u00e9l\u00e9ments",
+    "registered": "enregistr\u00e9",
+    "created": "cr\u00e9\u00e9",
+    "started": "a commenc\u00e9",
+    "stopped": "arr\u00eat\u00e9",
+    "tally_ok": "le d\u00e9compte est fait",
+    "results_ok": "r\u00e9sultats obtenus",
+    "results_pub": "r\u00e9sultats publi\u00e9s",
+    "doing_tally": "faire le d\u00e9compte",
+    "tally_error": "erreur de pointage",
+    "resumed": "Reprise de",
+    "suspended": "Suspendu",
+    "app": {
+        "name": "Sequent Tech"
+    },
+    "avCommon": {
+        "cancel": "Annuler",
+        "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+        "shareLink": "\u00a1Tweet cette \u00e9lection !",
+        "votingSystem": "Syst\u00e8me de vote",
+        "votings": {
+            "plurality-at-large": "Pluralit\u00e9 au sens large",
+            "borda-nauru": "Le comte Borda de Nauru ou Borda Dowdall (1/n)",
+            "borda": "Comte de Borda (traditionnel)",
+            "pairwise-beta": "Par paires (distribution b\u00eata)",
+            "desborda": "DesBorda",
+            "cumulative": "Cumulatif"
+        }
+    },
+    "avAdmin": {
+        "profile": {
+            "title": "Profil",
+            "save": "Sauvegarder les changements"
+        },
+        "onboarding": {
+            "help_tour": {
+                "step0_help_title": "Aide",
+                "step0_help_content": "Si vous avez besoin d'une aide suppl\u00e9mentaire, vous pouvez cliquer ici pour l'obtenir. Vous pouvez <strong>lancer \u00e0 nouveau la tourn\u00e9e</strong> l\u00e0 aussi !",
+                "step1_chat_title": "Chattez avec nous",
+                "step1_chat_content": "Si vous avez des questions, nous nous ferons un plaisir de vous r\u00e9pondre rapidement par le biais du chat."
+            },
+            "dashboard_tour": {
+                "step0_test_title": "\u00c9lection test",
+                "step0_test_content": "Vous avez cr\u00e9\u00e9 une \u00e9lection test. Les \u00e9lections test ont une taille de recensement limit\u00e9e et une \u00e9lection r\u00e9elle ne peut \u00eatre cr\u00e9\u00e9e qu'\u00e0 partir d'une \u00e9lection test dont le d\u00e9compte a \u00e9t\u00e9 effectu\u00e9 avec succ\u00e8s.",
+                "step1_real_title": "V\u00e9ritable \u00e9lection",
+                "step1_real_content": "Une fois cette \u00e9lection comptabilis\u00e9e, vous pourrez cr\u00e9er une v\u00e9ritable \u00e9lection en cliquant ici.",
+                "step2_status_title": "Statut \u00e9lectoral",
+                "step2_status_content": "Cette section vous montre l'\u00e9tat de l'\u00e9lection et un bouton pour faire passer l'\u00e9lection \u00e0 l'\u00e9tat suivant.",
+                "step3_start_title": "Commencez l'\u00e9lection",
+                "step3_start_content": "Cliquez sur ce bouton pour lancer l'\u00e9lection et envoyer un e-mail d'authentification \u00e0 tous les recensements."
+            },
+            "hello_tour": {
+                "step0_create_title": "Cr\u00e9er une \u00e9lection",
+                "step0_create_content": "Commencez \u00e0 cr\u00e9er une \u00e9lection de test en cliquant sur le bouton <strong>Nouvelle \u00e9lection</strong>. <br><br>Ou regardez la vid\u00e9o d'introduction:<br><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/eTZ3TQw5G_c?rel=0&amp;showinfo=0\" frameborder=\"0\" allowfullscreen></iframe>",
+                "step1_change_title": "Modifier le titre",
+                "step1_change_content": "Vous pouvez maintenant modifier tous les d\u00e9tails de l'\u00e9lection, par exemple vous pouvez modifier le titre de l'\u00e9lection en cliquant sur titre ici.",
+                "step2_sidebar_title": "Barre lat\u00e9rale",
+                "step2_sidebar_content": "Vous pouvez personnaliser l'\u00e9lection en cliquant sur ces sections.",
+                "step3_review_title": "Revoir l'\u00e9lection pour la cr\u00e9er",
+                "step3_review_content": "Une fois que vous avez termin\u00e9 de configurer l'\u00e9lection, cliquez sur la section <strong>Cr\u00e9er l'\u00e9lection</strong> pour revoir puis cr\u00e9er l'\u00e9lection.",
+                "step4_create2_title": "Cr\u00e9er l'\u00e9lection",
+                "step4_create2_content": "<strong>Cliquez sur ce bouton</strong> pour cr\u00e9er l'\u00e9lection. <br><br>Notez que l'\u00e9lection ne sera pas cr\u00e9\u00e9e tant que vous ne l'aurez pas fait, et pour des raisons de s\u00e9curit\u00e9, elle ne sera pas modifiable par la suite."
+            }
+        },
+        "ballotBox": {
+            "title": "Urnes de vote",
+            "intro": "Liste des urnes et de leurs feuilles de pointage.",
+            "manage": "Rechercher et filtrer les urnes",
+            "filter": "Cherchez ici..",
+            "tableColumn": {
+                "idColumnHeader": "Id",
+                "nameColumnHeader": "Titre",
+                "actionsColumnHeader": "Actions",
+                "lastUpdateColumnHeader": "Derni\u00e8re mise \u00e0 jour",
+                "versionColumnHeader": "Nombre de versions",
+                "usernameColumnHeader": "Nom d'utilisateur"
+            },
+            "modals": {
+                "createBallotBox": {
+                    "header": "Cr\u00e9er des urnes",
+                    "body": "Ajoutez un nom d'urne par ligne. Il n'en cr\u00e9era pas si l'un d'eux existe d\u00e9j\u00e0.",
+                    "holder": "Nom de l'urne 1\nNom de l'urne 2..",
+                    "button": "Confirmer et CREER les urnes"
+                },
+                "deleteBallotBox": {
+                    "header": "Confirmer pour SUPPRIMER l'urne",
+                    "body": "Pour confirmer que vous souhaitez supprimer l'urne __name__ et toutes les feuilles de pointage qui s'y rapportent, \u00e9crivez 'DELETE' ci-dessous :",
+                    "holder": "\u00c9crivez SUPPRIMER ici pour confirmer..",
+                    "ok": "Confirmer et SUPPRIMER l'urne"
+                },
+                "deleteTallySheet": {
+                    "header": "Confirmer pour SUPPRIMER la feuille de pointage",
+                    "body": "Veuillez confirmer que vous voulez supprimer la feuille de pointage avec l'id __id__ pour l'urne __name__, \u00e9crivez 'DELETE' ci-dessous :",
+                    "holder": "\u00c9crivez SUPPRIMER ici pour confirmer..",
+                    "ok": "Confirmer et SUPPRIMER la feuille de pointage"
+                },
+                "checkingBallotBox": {
+                    "header": "Cr\u00e9ation d'urnes",
+                    "checkingExisting": "V\u00e9rifier si une urne demand\u00e9e existe d\u00e9j\u00e0..",
+                    "hasExisting": "Aucune urne n'a \u00e9t\u00e9 cr\u00e9\u00e9e, car les suivantes existent d\u00e9j\u00e0 : ",
+                    "errorCheckingExisting": "Une erreur s'est produite lors de la v\u00e9rification des urnes existantes :",
+                    "creatingBoxes": "Cr\u00e9ation des urnes : ",
+                    "errorCreatingBoxes": "Erreur lors de la cr\u00e9ation de certaines urnes : ",
+                    "success": "Toutes les urnes ont \u00e9t\u00e9 cr\u00e9\u00e9es avec succ\u00e8s.",
+                    "button": "Fermer"
+                },
+                "writeTallySheet": {
+                    "step0header": "\u00c9tape 1 sur 3 : Enregistrement de la feuille de pointage",
+                    "step1header": "\u00c9tape 2 sur 3 : R\u00e9viser et envoyer la feuille de pointage",
+                    "step2header": "\u00c9tape 3 sur 3 : Ajout r\u00e9ussi de la feuille de pointage",
+                    "reviewStep": "Veuillez examiner attentivement la feuille de pointage avant de l'envoyer",
+                    "ballotBoxLabel": "Nom de l'urne :",
+                    "registeredVotesLabel": "Nombre d'\u00e9lecteurs inscrits :",
+                    "voteCountLabel": "Nombre de votes :",
+                    "electionIdLabel": "Identifiant de l'\u00e9lection :",
+                    "electionTitleLabel": "Titre de l'\u00e9lection :",
+                    "observationsLabel": "Observaciones :",
+                    "continue": "Continuer et revoir",
+                    "blankVotesLabel": "Votes blancs :",
+                    "nullVotesLabel": "Votes nuls :",
+                    "mismatchedNumbersError": "Les chiffres ne s'additionnent pas ou sont invalides, veuillez les revoir",
+                    "mismatchTotalCount": "Le nombre de votes enregistr\u00e9s et le nombre de votes saisis diff\u00e8rent",
+                    "send": "Confirmer et envoyer la feuille de pointage",
+                    "backAndEdit": "Revenir en arri\u00e8re et modifier",
+                    "success": "F\u00e9licitations, vous avez r\u00e9ussi \u00e0 ajouter la feuille de pointage !",
+                    "okClose": "Fermer"
+                },
+                "viewTallySheet": {
+                    "header": "Afficher la feuille de pointage",
+                    "edit": "Editer et modifier la feuille de pointage",
+                    "tallySheetIdLabel": "Identifiant de la feuille de pointage :"
+                }
+            },
+            "viewTallySheetAction": "Afficher la feuille de pointage",
+            "writeTallySheetAction": "\u00c9crire la feuille de pointage..",
+            "deleteTallySheetAction": "Supprimer la feuille de pointage..",
+            "deleteBallotBoxAction": "Supprimer l'urne.."
+        },
+        "activityLog": {
+            "title": "Journal d'activit\u00e9",
+            "intro": "Liste des actions ex\u00e9cut\u00e9es dans l'\u00e9lection.",
+            "manage": "Rechercher et filtrer le journal d'activit\u00e9",
+            "filter": "Cherchez ici..",
+            "filteredEmptyResults": "Aucun r\u00e9sultat pour ce filtre.",
+            "tableColumn": {
+                "idColumnHeader": "Id",
+                "executerIdColumnHeader": "Id de l'ex\u00e9cuteur",
+                "creationDateColumnHeader": "Cr\u00e9\u00e9 \u00e0",
+                "receiverIdColumnHeader": "Id du r\u00e9cepteur",
+                "actionColumnHeader": "Description",
+                "commentColumnHeader": "Commentaire"
+            },
+            "action": {
+                "user": {
+                    "activate": "<i>__executer_username__ (__executer_id__)</i> <strong>activ\u00e9</strong> l'utilisateur <i>__receiver_username__ (__receiver_id__)</i> dans l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+                    "deactivate": "<i>__executer_username__ (__executer_id__)</i> <strong>d\u00e9sactiv\u00e9</strong> l'utilisateur <i>__receiver_username__ (__receiver_id__)</i> dans l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+                    "authenticate": "<i>__receiver_username__ (__receiver_id__)</i> <strong>authentifi\u00e9</strong> dans l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+                    "register": "<i>__receiver_username__ (__receiver_id__)</i> <strong>enregistr\u00e9</strong> dans l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+                    "successful-login": "<i>__executer_username__ (__executer_id__)</i> <strong>vot\u00e9</strong> dans l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "authenticate-otl": "<i>__executer_username__ (__executer_id__)</i> a effectu\u00e9 l'authentification <strong>OTL</strong> dans l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+                    "generate-auth-code": "<i>__executer_username__ (__executer_id__)</i> <strong>code d'authentification g\u00e9n\u00e9r\u00e9</strong> pour __receiver_username__ (__receiver_id__)</i> dans l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+                    "send-auth": "<i>__executer_username__ (__executer_id__)</i> <strong>envoyer les codes d'authentification</strong> \u00e0 <i>__receiver_username__ (__receiver_id__)</i> dans l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+                    "resend-authcode": "Il y a eu une demande pour <strong>envoyer des codes d'authentification</strong> \u00e0 <i>__receiver_username__ (__receiver_id__)</i> dans l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+                    "added-to-census": "<i>__executer_username__ (__executer_id__)</i> <strong>additionn\u00e9 au recensement</strong> dans l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> \u00e0 <i>__receiver_username__(__receiver_id__)</i> __metadata__",
+                    "deleted-from-census": "<i>__executer_username__ (__executer_id__)</i> <strong>supprim\u00e9 du recensement</strong> dans l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> l'utilisateur __metadata__",
+                    "deleted-voted-from-census": "<i>__executer_username__ (__executer_id__)</i> <strong>supprim\u00e9 du recensement</strong> dans l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> l'utilisateur __metadata__ (<b>qui a vot\u00e9</b>)",
+                    "reset-voter": "<i>__executer_username__ (__executer_id__)</i> <strong>remettre \u00e0 z\u00e9ro l'\u00e9lecteur</strong> <i>__receiver_username__ (__receiver_id__)</i> dans l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>. Les donn\u00e9es de l'\u00e9lecteur ont chang\u00e9 de __avant__ \u00e0 __apr\u00e8s__"
+                },
+                "authevent": {
+                    "create": "<i>__executer_username__ (__executer_id__)</i> <strong>cr\u00e9\u00e9</strong> \u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+                    "callback": "<i>__executer_username__ (__executer_id__)</i> <strong>received callback</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+                    "edit": "<i>__executer_username__ (__executer_id__)</i> <strong>\u00e9dit\u00e9</strong> \u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+                    "start": "<i>__executer_username__ (__executer_id__)</i> <strong>started</strong> \u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "stop": "<i>__executer_username__ (__executer_id__)</i> <strong>stopped</strong> \u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "suspend": "<i>__executer_username__ (__executer_id__)</i> <strong>suspendu</strong> \u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "resume": "<i>__executer_username__ (__executer_id__)</i> <strong>reprise</strong> de l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "tally": "<i>__executer_username__ (__executer_id__)</i> <strong>requested to tally</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+                    "tally_error": "<strong>erreur lors du lancement du d\u00e9compte</strong> de l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+                    "virtual_tally_error": "<strong>erreur lors du lancement du d\u00e9compte virtuel</strong> de l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> <i>__m\u00e9tadonn\u00e9es__</i>",
+                    "tally_error_no_votes": "<strong>tally not executed because there were no votes</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+                    "calculate_results_success": "<i>__executer_username__ (__executer_id__)</i> <strong>r\u00e9sultats calcul\u00e9s</strong> pour l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "calculate_results_error": "<i>__executer_username__ (__executer_id__)</i> <strong>tried to calculate results with error</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "publish_results_success": "<i>__executer_username__ (__executer_id__)</i> <strong>r\u00e9sultats publi\u00e9s</strong> pour l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "publish_results_error": "<i>__executer_username__ (__executer_id__)</i> <strong>tried to publish results with error</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "unpublish_results_success": "<i>__executer_username__ (__executer_id__)</i> <strong>r\u00e9sultats non publi\u00e9s</strong> pour l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "unpublish_results_error": "<i>__executer_username__ (__executer_id__)</i> <strong>tried to unpublish results with error</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "allow_tally_success": "<i>__executer_username__ (__executer_id__)</i> <strong>tally</strong> autoris\u00e9 pour l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "allow_tally_error": "<i>__executer_username__ (__executer_id__)</i> <strong>tried to allow tally with error</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "tally_started": "<strong>D\u00e9marr\u00e9 le d\u00e9compte</strong> de l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+                    "set_authenticate_otl_period": "<i>__executer_username__ (__executer_id__)</i> <strong>d\u00e9finir la p\u00e9riode d'authentification OTL</strong> de l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+                    "tally_error_during_tally": "<strong>erreur pendant le d\u00e9compte</strong> de l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "tally_success": "<strong>Traitement r\u00e9ussi</strong> de l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "virtual_tally_success": "<strong>Traitement virtuel r\u00e9ussi</strong> de l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+                    "set_public_candidates_success": "<i>__executer_username__ (__executer_id__)</i> <strong>set public-candidates</strong> to __make_public__ for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "set_public_candidates_error": "<i>__executer_username__ (__executer_id__)</i> <strong>tried to set public-candidates</strong> to __make_public__ <strong>with error</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+                    "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>deleted</strong> \u00e9lection __event_id__",
+                    "archive": "<i>__executer_username__ (__executer_id__)</i> <strong>archiv\u00e9</strong> \u00e9lection __event_id__",
+                    "unarchive": "<i>__executer_username__ (__executer_id__)</i> <strong>unarchived</strong> \u00e9lection __event_id__"
+                },
+                "ballotBox": {
+                    "create": "<i>__executer_username__ (__executer_id__)</i> <strong>cr\u00e9\u00e9</strong> l'urne <a href=\"/admin/ballot-box/__event_id__?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> dans l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+                    "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>supprim\u00e9</strong> l'urne <strong>__ballot_box_name__</strong> dans l'\u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>"
+                },
+                "tallySheet": {
+                    "create": "<i>__executer_username__ (__executer_id__)</i> <strong>uploaded</strong> a <a href=\"/admin/ballot-box/__event_id__?view_tally_sheet_id=__tally_sheet_id__&ballot_box_id=__ballot_box_id__\">tally sheet</a> for ballot box <a href=\"/admin/ballot-box/__event_id__ ?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> en \u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+                    "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>supprim\u00e9</strong> un <a href=\"/admin/ballot-box/__event_id__ ?view_tally_sheet_from_action_id=__action_id__&ballot_box_name=__ballot_box_name__&ballot_box_id=__ballot_box_id__\">tally sheet</a> pour l'urne <a href=\"/admin/ballot-box/__event_id__ ?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> en \u00e9lection <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>"
+                }
+            }
+        },
+        "show_points_policy": {
+            "label": "Montrer les points",
+            "text": "Montrez les points que le bulletin de vote accorde \u00e0 chaque option s\u00e9lectionn\u00e9e"
+        },
+        "setting": {
+            "helpTooltip": "Cliquez pour d\u00e9velopper/coller le texte d'aide sur ce param\u00e8tre"
+        },
+        "cumulative": {
+            "number_of_checkboxes": {
+                "title": "Nombre de cases \u00e0 cocher",
+                "text": "Nombre de cases \u00e0 cocher \u00e0 afficher pour chaque r\u00e9ponse"
+            }
+        },
+        "shuffling_policy": {
+            "categories_label": "Ramdomiser les cat\u00e9gories",
+            "categories_label_text": "V\u00e9rifier pour randomiser",
+            "options_label": "Randomiser les options",
+            "list_label": "Liste des cat\u00e9gories \u00e0 randomiser",
+            "list_muted": "Ajoutez ici les cat\u00e9gories pour m\u00e9langer leurs options",
+            "list_placeholder": "Ajoutez le nom des cat\u00e9gories, s\u00e9par\u00e9es par une virgule",
+            "dont-shuffle": "Ne m\u00e9langez pas les options. Tous les \u00e9lecteurs verront les options dans le m\u00eame ordre dans l'isoloir",
+            "shuffle-all": "M\u00e9langez toutes les options. Chaque \u00e9lecteur verra les options de cette question dans un ordre diff\u00e9rent dans l'isoloir. S'il y a diff\u00e9rentes cat\u00e9gories, elles seront \u00e9galement al\u00e9atoires.",
+            "shuffle-some": "M\u00e9langez les options d'une liste s\u00e9lectionn\u00e9e de cat\u00e9gories."
+        },
+        "results": {
+            "downloadData": "T\u00e9l\u00e9charger les donn\u00e9es",
+            "downloadBallotsCsv": "T\u00e9l\u00e9charger la feuille de calcul des bulletins de vote (format CSV)",
+            "downloadBallotsJson": "T\u00e9l\u00e9charger les bulletins de vote (format JSON)",
+            "downloadResultsCsv": "T\u00e9l\u00e9charger les r\u00e9sultats des \u00e9lections (format CSV)",
+            "downloadResultsJson": "T\u00e9l\u00e9charger les r\u00e9sultats des \u00e9lections (format JSON)",
+            "downloadResultsPretty": "T\u00e9l\u00e9charger les r\u00e9sultats des \u00e9lections (format texte)",
+            "downloadResultsPDF": "T\u00e9l\u00e9charger les r\u00e9sultats des \u00e9lections (format PDF)"
+        },
+        "topbar": {
+            "home": "Accueil",
+            "features": "Caract\u00e9ristiques",
+            "help": "Aide",
+            "freesignup": "Inscription gratuite",
+            "login": "Entrez",
+            "logout": "d\u00e9connexion"
+        },
+        "learnMore": "En savoir plus..",
+        "adminFields": {
+            "title": "Champs administratifs",
+            "intro": "Champs administratifs",
+            "maxError": "__valeur__ est sup\u00e9rieure \u00e0 __max__",
+            "minError": "__valeur__ est inf\u00e9rieure \u00e0 __min__",
+            "textError": "erreur sur le texte __value__",
+            "emailError": "erreur sur l'email __value__",
+            "numberError": "__valeur__ doit \u00eatre un nombre",
+            "requiredError": "Valeur manquante dans un champ obligatoire"
+        },
+        "sidebar": {
+            "elections": "\u00c9lections",
+            "newel": "Nouvelle \u00e9lection",
+            "import": "Importation",
+            "currentel": "\u00c9lection actuelle",
+            "dashboard": "Tableau de bord",
+            "activityLog": "Journal d'activit\u00e9",
+            "basic": "D\u00e9tails de base",
+            "questions": "Questions",
+            "censusConfig": "Configuration du recensement",
+            "census": "Donn\u00e9es de recensement",
+            "successAction": "Success Action",
+            "auth": "Authentification",
+            "tally": "Tally",
+            "tasks": "T\u00e2ches",
+            "create": "Cr\u00e9er une \u00e9lection",
+            "myAccount": "Mon compte",
+            "billinfo": "Informations sur la facturation",
+            "billhistory": "Historique de facturation",
+            "ballotBox": "Urnes de vote",
+            "buy": "Acheter des cr\u00e9dits",
+            "adminFields": "Champs administratifs"
+        },
+        "elections": {
+            "filter": "Filtre...",
+            "list": {
+                "all": "Actif",
+                "archived": "Archiv\u00e9"
+            },
+            "test": "test",
+            "draft": "\u00e9bauche",
+            "real": "r\u00e9el",
+            "status": "Statut",
+            "participation": "Participation",
+            "useDraftModal": {
+                "title": "Voulez-vous charger le projet d'\u00e9lection ?",
+                "body": "Cette action chargera le projet d'\u00e9lection avec le titre '__title__'. Cette action chargera ce projet et les modifications ult\u00e9rieures de sa configuration r\u00e9\u00e9criront le projet enregistr\u00e9. Souhaitez-vous poursuivre ?"
+            },
+            "eraseDraftModal": {
+                "title": "Voulez-vous effacer le projet d'\u00e9lection ?",
+                "body": "Cette action effacera le projet d'\u00e9lection avec le titre '__title__'. Cette action ne peut pas \u00eatre annul\u00e9e. Souhaitez-vous poursuivre ?"
+            }
+        },
+        "action": {
+            "create": "cr\u00e9er",
+            "start": "commencer",
+            "stop": "arr\u00eater",
+            "tally": "tally",
+            "publish": "publier"
+        },
+        "import": {
+            "desc": "L'importation d'une \u00e9lection depuis un csv vous permet de g\u00e9rer et d'automatiser la cr\u00e9ation des d\u00e9tails des \u00e9lections depuis une source externe. <a href=\"https://docs.google.com/spreadsheets/d/1WTzswqiuRllZIm90A-SBQ0kbVYDQI1jZvKcvL8ruMIY/edit?usp=sharing\" target=\"_blank\">Lire plus sur le format CSV des \u00e9lections ici</a>. Si vous souhaitez cr\u00e9er plusieurs \u00e9lections \u00e0 la fois, vous pouvez utiliser l'API ou nous contacter.",
+            "file": "S\u00e9lectionnez le fichier",
+            "dropFilesHere": "D\u00e9posez le fichier CSV ici"
+        },
+        "dashboard": {
+            "writeInResults": "(\u00c9criture)",
+            "chilldrenResultsTitle": "S\u00e9lectionnez les r\u00e9sultats de l'\u00e9lection \u00e0 afficher :",
+            "createRealElection": "Cr\u00e9er une \u00e9lection r\u00e9elle",
+            "duplicateElection": "\u00c9lection en double",
+            "sendAuthCodes": "Envoyer les codes d'authentification",
+            "donow": "cliquez pour faire maintenant",
+            "census": "Recensement",
+            "questions": "Questions",
+            "answers": "R\u00e9ponses",
+            "status": "Statut",
+            "authentication": "Authentification",
+            "electionid": "Identit\u00e9 \u00e9lectorale",
+            "authorities": "Autorit\u00e9s",
+            "create": "Cr\u00e9ez",
+            "start": "Commencer \u00e0 voter",
+            "stop": "Arr\u00eatez de voter",
+            "tally": "Tally",
+            "calculate": "Calculer les r\u00e9sultats",
+            "publish": "Publier les r\u00e9sultats",
+            "calculateAgain": "Calculer \u00e0 nouveau les r\u00e9sultats",
+            "doingtally": "Faire le d\u00e9compte",
+            "results": "R\u00e9sultats",
+            "blankvotes": "Votes blancs",
+            "nullvotes": "Votes nuls",
+            "optiosequent": "Votes aux options",
+            "option": "Candidature",
+            "votes": "Votes",
+            "winner": "Position du gagnant",
+            "publicResultsUrl": "Url des r\u00e9sultats publics",
+            "electionPublic": "Site public des \u00e9lections",
+            "censussend": "Envoi correct du recensement",
+            "preview": "Cabine de vote d\u00e9mo",
+            "actions": {
+                "actionsLabel": "Actions",
+                "changeSocial": "Modifier le social...",
+                "sendAuthCodes": "Envoyer les codes d'authentification...",
+                "archiveElection": "Archive des \u00e9lections...",
+                "unarchiveElection": "Unarchive election...",
+                "tally": "D\u00e9compte du lancement...",
+                "allowTally": "Permet de lancer tally...",
+                "calculateResults": "Calculer les r\u00e9sultats...",
+                "editChildrenParent": "Modifier les \u00e9lections des enfants et des parents...",
+                "startElection": "D\u00e9but de l'\u00e9lection...",
+                "stopElection": "Arr\u00eatez l'\u00e9lection...",
+                "publishResults": "Publier les r\u00e9sultats...",
+                "unpublishResults": "D\u00e9publier les r\u00e9sultats...",
+                "suspendElection": "Suspendre l'\u00e9lection...",
+                "resumeElection": "\u00c9lection du curriculum vitae..",
+                "makeCandidatesPublic": "Rendre les candidats publics...",
+                "makeCandidatesPrivate": "Rendez les candidats priv\u00e9s...",
+                "launchKeyDistributionCeremony": "C\u00e9r\u00e9monie de distribution des cl\u00e9s de lancement",
+                "launchOpeningCeremony": "C\u00e9r\u00e9monie d'ouverture du lancement",
+                "enableOtlPeriod": "Activer la p\u00e9riode Otl...",
+                "disableOtlPeriod": "D\u00e9sactiver la p\u00e9riode Otl..."
+            },
+            "modals": {
+                "createHeader": "Cr\u00e9er une \u00e9lection",
+                "createBody": "Pour cr\u00e9er l'\u00e9lection, sa configuration est envoy\u00e9e aux autorit\u00e9s \u00e9lectorales et celles-ci cr\u00e9ent les cl\u00e9s publiques de cryptage de l'\u00e9lection. Apr\u00e8s cela, l'\u00e9lection n'est plus modifiable. Avant de le faire, veuillez v\u00e9rifier que la configuration est correcte (par exemple en jetant un coup d'\u0153il \u00e0 l'isoloir de d\u00e9monstration). Si vous devez modifier l'\u00e9lection apr\u00e8s cela, vous devrez en cr\u00e9er une nouvelle.",
+                "confirmCreateButton": "Confirmer et CREER l'\u00e9lection",
+                "createRealHeader": "Cr\u00e9er une v\u00e9ritable \u00e9lection",
+                "createRealBody": "Il s'agit d'une \u00e9lection de test. Pour des raisons de s\u00e9curit\u00e9, les \u00e9lections r\u00e9elles ne peuvent \u00eatre cr\u00e9\u00e9es qu'\u00e0 partir d'\u00e9lections de test r\u00e9ussies. Vous devez compl\u00e9ter le processus d'\u00e9lection jusqu'\u00e0 l'\u00e9tape de publication des r\u00e9sultats.",
+                "confirmCreateRealButton": "Confirmer et cr\u00e9er une v\u00e9ritable \u00e9lection",
+                "calculateResultsHeader": "Calculer les r\u00e9sultats",
+                "calculateResultsBody": "L'\u00e9lection a \u00e9t\u00e9 comptabilis\u00e9e et l'\u00e9tape suivante consiste \u00e0 calculer les r\u00e9sultats. Bien que l'\u00e9lection ne puisse \u00eatre comptabilis\u00e9e qu'une seule fois, les r\u00e9sultats de l'\u00e9lection peuvent \u00eatre calcul\u00e9s autant de fois que vous le souhaitez avant de les publier.",
+                "calculateResultsButton": "Confirmez et CALCULEz les r\u00e9sultats",
+                "calculateResultsSuccess": "Calcul des r\u00e9sultats demand\u00e9",
+                "startHeader": "D\u00e9but de l'\u00e9lection",
+                "startBody": "Sachez qu'une fois que vous avez lanc\u00e9 les \u00e9lections, les \u00e9lecteurs pourront voter jusqu'\u00e0 ce que l'\u00e9lection soit arr\u00eat\u00e9e",
+                "confirmStartButton": "Confirmez et d\u00e9marrez l'\u00e9lection",
+                "stopHeader": "Arr\u00eat de l'\u00e9lection",
+                "stopBody": "Une fois que vous aurez arr\u00eat\u00e9 l'\u00e9lection, les gens ne pourront plus voter.  Veuillez en \u00eatre conscient et faire preuve de prudence",
+                "confirmStopButton": "Confirmer et arr\u00eater l'\u00e9lection",
+                "tallyHeader": "Tally election",
+                "tallyIntro": "Le processus de d\u00e9compte est g\u00e9r\u00e9 par les autorit\u00e9s \u00e9lectorales et peut prendre un certain temps, en fonction du nombre de votes. Il implique un processus cryptographique math\u00e9matiquement v\u00e9rifiable qui anonymise et obtient le contenu de chaque vote.",
+                "askFilterBallots": "Avant de lancer le d\u00e9compte, vous devez choisir le jeu de bulletins \u00e0 utiliser pour le d\u00e9compte. Il est tr\u00e8s important que vous <strong>choisissiez soigneusement, car une fois qu'un d\u00e9compte a \u00e9t\u00e9 effectu\u00e9, vous ne pouvez pas lancer un autre d\u00e9compte</strong> avec un deuxi\u00e8me ensemble de bulletins. <br/><br/>Voici les options dont vous disposez :",
+                "censusDumpMode": {
+                    "allHeader": "Compter tous les bulletins de vote",
+                    "allDescription": "M\u00eame si un \u00e9lecteur a \u00e9t\u00e9 retir\u00e9 du recensement ou est marqu\u00e9 comme non actif, si cet \u00e9lecteur a d\u00e9pos\u00e9 un bulletin de vote, il sera compt\u00e9.",
+                    "activeHeader": "Ne comptabilisez que les bulletins de vote actifs dans le recensement actuel",
+                    "activeDescription": "<strong>Ne choisissez cette option que si vous savez ce que vous faites</strong>. Les bulletins correspondant \u00e0 des personnes qui ne sont pas incluses dans le recensement, ou ceux correspondant \u00e0 des personnes inactives dans le recensement <strong>seront \u00e9cart\u00e9s et non compt\u00e9s</strong>.",
+                    "chooseChildrenToTally": "Choisissez les \u00e9lections \u00e0 comptabiliser :"
+                },
+                "confirmTallyButton": "Confirmer et TALLER l'\u00e9lection",
+                "tallyActiveHeader": "Ne comptabiliser que les \u00e9lecteurs actifs",
+                "tallyActiveIntro": "Nous commencerons \u00e0 t\u00e9l\u00e9charger tous les \u00e9lecteurs pour d\u00e9tecter ceux qui sont actifs et ne proc\u00e9derons au d\u00e9compte que si vous confirmez que vous voulez le faire. <strong>Cette d\u00e9cision est d\u00e9finitive</strong>, le logiciel ne permet pas d'annuler un d\u00e9compte ou d'en faire un second avec un ensemble diff\u00e9rent de bulletins. <br/><br/>Pour modifier la liste des utilisateurs actifs, annulez cette modale et modifiez le statut actif dans le menu lat\u00e9ral Donn\u00e9es de recensement. Si vous ne voulez pas faire le d\u00e9compte, fermez simplement cette bo\u00eete de dialogue.",
+                "downloadingCensus": "T\u00e9l\u00e9charg\u00e9 __downloaded__ de __total__ personnes dans le recensement",
+                "confirmTallyActiveButton": "Confirmez et TALLY __totalActive__ sur __total__ \u00e9lecteurs \u00e9ligibles",
+                "launchTallySuccess": "Tally lanc\u00e9 avec succ\u00e8s",
+                "publishResultsHeader": "Publier les r\u00e9sultats des \u00e9lections",
+                "publishResultsBody": "Actuellement, seuls les administrateurs des \u00e9lections ont acc\u00e8s aux r\u00e9sultats calcul\u00e9s des \u00e9lections. Lorsque vous publierez les r\u00e9sultats, ceux-ci seront rendus publics pour que tout le monde puisse les voir.",
+                "confirmPublishResultsButton": "Confirmer et PUBLIER les r\u00e9sultats des \u00e9lections",
+                "launchSelfTestTask": {
+                    "header": "Lancer la t\u00e2che d'auto-test",
+                    "body": "Cette action lancera en arri\u00e8re-plan la t\u00e2che d'auto-test. Cela peut prendre du temps, mais vous pouvez constater les progr\u00e8s.",
+                    "confirmButton": "Lancer la t\u00e2che d'auto-test"
+                },
+                "cancelTask": {
+                    "header": "Annuler la t\u00e2che",
+                    "body": "Cette action annule l'ex\u00e9cution de la t\u00e2che de demande.",
+                    "confirmButton": "ANNULER la t\u00e2che"
+                },
+                "enableOtlPeriod": {
+                    "header": "Activer la p\u00e9riode OTL",
+                    "body": "Cette action permettra aux \u00e9lecteurs d'obtenir leur code d'authentification \u00e0 l'aide du One Time Link (OTL) qu'ils ont re\u00e7u.",
+                    "confirmButton": "ACTIVER la p\u00e9riode OTL",
+                    "success": "La p\u00e9riode OTL a \u00e9t\u00e9 activ\u00e9e avec succ\u00e8s."
+                },
+                "disableOtlPeriod": {
+                    "header": "D\u00e9sactiver la p\u00e9riode OTL",
+                    "body": "Cette action emp\u00eachera les \u00e9lecteurs d'obtenir leur code d'authentification \u00e0 l'aide du One Time Link (OTL) qu'ils ont re\u00e7u, car l'OTL ne leur permettra pas de suivre le processus tant qu'il sera d\u00e9sactiv\u00e9.",
+                    "confirmButton": "DISABLE la p\u00e9riode OTL",
+                    "success": "La p\u00e9riode OTL a \u00e9t\u00e9 d\u00e9sactiv\u00e9e avec succ\u00e8s."
+                },
+                "changeSocial": {
+                    "header": "Modifier les boutons de partage des r\u00e9seaux sociaux",
+                    "confirmButton": "Confirmer et SAUVEGARDER la configuration des r\u00e9seaux sociaux",
+                    "title": "Boutons de r\u00e9seaux sociaux",
+                    "new": "Nouveau bouton",
+                    "socialNetworkLabel": "R\u00e9seau social",
+                    "buttonTextLabel": "Texte du bouton",
+                    "socialMessageLabel": "Texte de partage",
+                    "socialMessagePlaceholder": "Texte \u00e0 partager sur les r\u00e9seaux sociaux (utilisez __URL__ pour l'url d'\u00e9lection par d\u00e9faut)",
+                    "buttonTextPlaceholder": "Texte pour le bouton de partage (il peut \u00eatre vide)",
+                    "nameLabel": "Nom",
+                    "infoHeader": "Configuration sauvegard\u00e9e",
+                    "infoBody": "La configuration des boutons de r\u00e9seaux sociaux a \u00e9t\u00e9 enregistr\u00e9e avec succ\u00e8s.",
+                    "socialUrlLabel": "Lien",
+                    "socialUrlPlaceholder": "Lien de l'\u00e9lection \u00e0 partager sur les r\u00e9seaux sociaux (utilisez __URL__ pour l'url de l'\u00e9lection par d\u00e9faut)"
+                },
+                "editCalculateResultsJsonModal": {
+                    "editJson": "Modifier JSON",
+                    "title": "Modifier le calcul des r\u00e9sultats Json",
+                    "body": "Cette bo\u00eete de dialogue vous permet de modifier le json des r\u00e9sultats de calcul. Ne l'utilisez que si vous savez ce que vous faites.",
+                    "confirmEdit": "Montage final"
+                },
+                "keysCeremonies": {
+                    "keysDistributionIntro": {
+                        "header": "C\u00e9r\u00e9monie de distribution des cl\u00e9s (\u00e9tape 1 de __total__)",
+                        "bodyMessage": "Lors de cette c\u00e9r\u00e9monie, chaque administrateur t\u00e9l\u00e9chargera sa partie des cl\u00e9s priv\u00e9es pour le processus \u00e9lectoral. Chaque fiduciaire suivra les \u00e9tapes suivantes : <ul> <li>Connexion</li> <li>T\u00e9l\u00e9chargement des cl\u00e9s priv\u00e9es</li> <li>V\u00e9rification des cl\u00e9s priv\u00e9es</li> <li>Suppression des cl\u00e9s priv\u00e9es</li></ul>",
+                        "confirmButton": "D\u00e9but"
+                    },
+                    "openingIntro": {
+                        "header": "C\u00e9r\u00e9monie d'ouverture (\u00e9tape 1 de __total__)",
+                        "bodyMessage": "Lors de cette c\u00e9r\u00e9monie, chaque administrateur restaurera sa partie des cl\u00e9s priv\u00e9es pour le processus \u00e9lectoral. Chaque fiduciaire suivra les \u00e9tapes suivantes : <ul> <li>Connexion</li> <li>V\u00e9rifier les cl\u00e9s priv\u00e9es</li> <li>Restaurer les cl\u00e9s priv\u00e9es</li> </ul>",
+                        "confirmButton": "D\u00e9but"
+                    },
+                    "loginTrustee": {
+                        "header": "Connectez-vous au fiduciaire __fiduciaire_id__ (\u00c9tape __\u00e9tape__ de __total__)",
+                        "loginButton": "Connexion",
+                        "bodyMessage": "Afin de poursuivre, vous devez vous connecter avec les informations d'identification de l'administrateur."
+                    },
+                    "downloadShare": {
+                        "header": "T\u00e9l\u00e9charger le partage de cl\u00e9 priv\u00e9e pour le syndic __trustee_id__ (\u00c9tape __\u00e9tape__ de __total__)",
+                        "bodyMessage": "T\u00e9l\u00e9chargez le partage des cl\u00e9s priv\u00e9es pour les \u00e9lections. Veuillez le t\u00e9l\u00e9charger au moins sur deux appareils diff\u00e9rents.",
+                        "downloadButton": "T\u00e9l\u00e9charger la cl\u00e9 priv\u00e9e",
+                        "nextButton": "\u00c9tape suivante",
+                        "operationSuccess": "Les cl\u00e9s priv\u00e9es ont \u00e9t\u00e9 t\u00e9l\u00e9charg\u00e9es avec succ\u00e8s."
+                    },
+                    "secureShare": {
+                        "header": "Partage de cl\u00e9 priv\u00e9e s\u00e9curis\u00e9e pour le fiduciaire __fid\u00e8le_id__ (\u00c9tape __\u00e9tape__ de __total__)",
+                        "bodyMessage": "Pour des raisons de s\u00e9curit\u00e9, veuillez d\u00e9placer la cl\u00e9 priv\u00e9e sur au moins deux pendrives diff\u00e9rents.",
+                        "nextButton": "\u00c9tape suivante",
+                        "backButton": "Retour aux cl\u00e9s de t\u00e9l\u00e9chargement",
+                        "firstCheckbox": "Premi\u00e8re copie s\u00e9curis\u00e9e",
+                        "secondCheckbox": "Deuxi\u00e8me copie s\u00e9curis\u00e9e"
+                    },
+                    "checkShare": {
+                        "bodyMessage": "T\u00e9l\u00e9chargez le fichier avec les cl\u00e9s priv\u00e9es pour v\u00e9rifier son contenu :",
+                        "header": "V\u00e9rifier le partage de cl\u00e9 priv\u00e9e pour le syndic __trustee_id__ (\u00c9tape __\u00e9tape__ de __total__)",
+                        "selectFileButton": "S\u00e9lectionnez le fichier de cl\u00e9s priv\u00e9es",
+                        "orDropFileText": "Ou d\u00e9posez le fichier ici",
+                        "verificationSuccess": "SUCC\u00c8S ! Cl\u00e9s priv\u00e9es v\u00e9rifi\u00e9es.",
+                        "verificationFailure": "\u00c9CHEC ! \u00c9chec de la v\u00e9rification de la cl\u00e9 priv\u00e9e.",
+                        "nextButton": "\u00c9tape suivante",
+                        "keysDistributionBackButton": "Retour aux cl\u00e9s de t\u00e9l\u00e9chargement"
+                    },
+                    "deleteShare": {
+                        "bodyMessage": "Supprimez la part des cl\u00e9s priv\u00e9es pour cette autorit\u00e9.",
+                        "header": "Supprimer le partage de cl\u00e9 priv\u00e9e pour le fiduciaire __fiduciaire_id__ (\u00c9tape __\u00e9tape__ de __total__)",
+                        "deleteShareButton": "Supprimer les cl\u00e9s priv\u00e9es",
+                        "operationSuccess": "Le partage des cl\u00e9s priv\u00e9es a \u00e9t\u00e9 supprim\u00e9 avec succ\u00e8s",
+                        "nextButton": "\u00c9tape suivante",
+                        "finishButton": "Finition"
+                    },
+                    "restoreShare": {
+                        "bodyMessage": "Restaure le partage des cl\u00e9s priv\u00e9es pour cette autorit\u00e9.",
+                        "header": "Restaurer le partage de cl\u00e9 priv\u00e9e pour le syndic __trustee_id__ (\u00c9tape __\u00e9tape__ de __total__)",
+                        "deleteShareButton": "Restaurer les cl\u00e9s priv\u00e9es",
+                        "operationSuccess": "Le partage des cl\u00e9s priv\u00e9es a \u00e9t\u00e9 restaur\u00e9 avec succ\u00e8s",
+                        "nextButton": "\u00c9tape suivante",
+                        "finishButton": "Finition"
+                    },
+                    "finishCeremony": {
+                        "header": "C\u00e9r\u00e9monie achev\u00e9e avec succ\u00e8s (\u00e9tape __total__ de __total__)",
+                        "keysDistributionBodyMessage": "La c\u00e9r\u00e9monie de distribution des cl\u00e9s est termin\u00e9e et toutes les cl\u00e9s priv\u00e9es ont \u00e9t\u00e9 retir\u00e9es des serveurs du syndic.",
+                        "openingBodyMessage": "La c\u00e9r\u00e9monie d'ouverture est termin\u00e9e et toutes les cl\u00e9s priv\u00e9es ont \u00e9t\u00e9 restaur\u00e9es sur les serveurs de la fiduciaire.",
+                        "closeButton": "Fermer"
+                    }
+                },
+                "sendAuthCodes": {
+                    "editMessageStep": {
+                        "header": "Envoyer les codes d'authentification (\u00c9tape __\u00e9tape__ de __total__)",
+                        "helpInfo": "Cette action enverra un message \u00e0 tous les \u00e9lecteurs inscrits dans le recensement. Notez que l'envoi de nombreux messages peut \u00eatre consid\u00e9r\u00e9 comme du SPAM, alors proc\u00e9dez avec prudence. De plus, veuillez revoir le message qui sera envoy\u00e9 avant de proc\u00e9der.",
+                        "sendButton": "R\u00e9viser le message avant d'envoyer les codes d'authentification \u00e0 TOUS les recensements",
+                        "sendSelectedButton": "R\u00e9viser le message avant d'envoyer les codes d'authentification aux utilisateurs S\u00c9LECTIONN\u00c9S",
+                        "filterTitle": "Filtre",
+                        "filterDescription": "Envoyez cet e-mail \u00e0 une partie du recensement, soit ceux qui ont d\u00e9j\u00e0 vot\u00e9, soit ceux qui n'ont pas encore vot\u00e9.",
+                        "forceCreateOtp": "Force \u00e0 cr\u00e9er et \u00e0 envoyer un nouveau One Time Link (OTL) pour chaque r\u00e9cepteur du message, invalidant les OTL pr\u00e9c\u00e9dents.",
+                        "filterOptions": {
+                            "none": "Envoy\u00e9 \u00e0 tout le monde",
+                            "voted": "Envoyer \u00e0 ceux qui ont vot\u00e9",
+                            "not_voted": "Envoyer \u00e0 ceux qui n'ont pas encore vot\u00e9"
+                        }
+                    },
+                    "confirmStep": {
+                        "header": "Envoyer les codes d'authentification (\u00c9tape __\u00e9tape__ de __total__)",
+                        "helpInfo": "Vous enverrez l'authentification aux __votants__ \u00e9lecteurs. Veuillez v\u00e9rifier que tout est correct. En cas de probl\u00e8me, veuillez nous contacter \u00e0 __email__ ou en nous appelant au __tlf__.",
+                        "sendButton": "Confirmez et envoyez les messages",
+                        "invalidMsg": "Oui, je veux envoyer ces messages sans code d'authentification / URL",
+                        "messageHeader": "Pr\u00e9visualisation",
+                        "editMessageAction": "Modifier",
+                        "unknownError": "Les messages n'ont pas \u00e9t\u00e9 envoy\u00e9s ni factur\u00e9s. Une erreur inconnue s'est produite lors de l'envoi des messages. Si ce probl\u00e8me persiste, veuillez nous contacter pour le r\u00e9soudre \u00e0 __email__ ou en nous appelant au __tlf__."
+                    }
+                },
+                "archive": {
+                    "header": "Confirmer l'\u00e9lection de l'archive",
+                    "body": "Cette action archivera l'\u00e9lection. Elle \u00e9chouera si l'\u00e9lection est d\u00e9j\u00e0 archiv\u00e9e. L'archivage d'une \u00e9lection supprime l'\u00e9lection de la liste des \u00e9lections dans l'interface d'administration, mais on peut toujours y acc\u00e9der \u00e0 partir de la liste des \u00e9lections archiv\u00e9es. Elle peut \u00e9galement \u00eatre d\u00e9sarchiv\u00e9e ult\u00e9rieurement.",
+                    "confirmButton": "Archives des \u00e9lections",
+                    "success": "L'\u00e9lection a \u00e9t\u00e9 archiv\u00e9e avec succ\u00e8s"
+                },
+                "unarchive": {
+                    "header": "Confirmer l'\u00e9lection de d\u00e9sarchivage",
+                    "body": "Cette action d\u00e9sarchivera l'\u00e9lection. Elle \u00e9chouera si l'\u00e9lection n'est pas actuellement dans un \u00e9tat archiv\u00e9. Le d\u00e9sarchivage d'une \u00e9lection la fait r\u00e9appara\u00eetre dans la liste des \u00e9lections de l'interface d'administration. Elle peut \u00e9galement \u00eatre r\u00e9-archiv\u00e9e ult\u00e9rieurement.",
+                    "confirmButton": "Unarchive election",
+                    "success": "\u00c9lection d\u00e9sarchiv\u00e9e avec succ\u00e8s"
+                },
+                "makeCandidatesPublic": {
+                    "header": "Confirmer rendre les candidats publics",
+                    "body": "Cette action rendra les options des candidats de l'\u00e9lection publiques pour que tout le monde puisse les voir. Vous pouvez revenir sur cette action plus tard.",
+                    "confirmButton": "Rendre les candidats publics",
+                    "success": "Les candidats aux \u00e9lections rendus publics avec succ\u00e8s"
+                },
+                "makeCandidatesPrivate": {
+                    "header": "Confirmer rendre les candidats priv\u00e9s",
+                    "body": "Cette action rendra les options des candidats de l'\u00e9lection priv\u00e9es, afin que seuls les \u00e9lecteurs authentifi\u00e9s puissent les voir. Vous pouvez revenir sur cette action plus tard.",
+                    "confirmButton": "Rendre les candidats priv\u00e9s",
+                    "success": "Les candidats aux \u00e9lections ont r\u00e9ussi \u00e0 faire du priv\u00e9"
+                },
+                "editChildrenParent": {
+                    "header": "Modifier les informations relatives aux \u00e9lections des enfants et des parents",
+                    "body": "Editez dans le textarea le parent_id et children_election_info en JSON.",
+                    "confirmButton": "Envoyer les donn\u00e9es mises \u00e0 jour",
+                    "success": "Mise \u00e0 jour r\u00e9ussie des informations sur les enfants et les parents"
+                },
+                "unpublishResults": {
+                    "header": "D\u00e9publier les r\u00e9sultats des \u00e9lections",
+                    "body": "Les r\u00e9sultats \u00e9lectoraux n'appara\u00eetront pas sur le site public de cette \u00e9lection.",
+                    "confirmButton": "Confirmer et d\u00e9publier les r\u00e9sultats \u00e9lectoraux",
+                    "success": "Les r\u00e9sultats \u00e9lectoraux ont \u00e9t\u00e9 d\u00e9publi\u00e9s avec succ\u00e8s"
+                },
+                "allowTally": {
+                    "header": "Permettre de faire le d\u00e9compte des \u00e9lections",
+                    "body": "Apr\u00e8s l'ex\u00e9cution de cette action, tout administrateur autoris\u00e9 \u00e0 ex\u00e9cuter un pointage pourra le faire.",
+                    "confirmButton": "Permettre de faire le d\u00e9compte des \u00e9lections",
+                    "success": "Autoris\u00e9 \u00e0 faire le d\u00e9compte des \u00e9lections"
+                },
+                "generatePDFAuthCodes": {
+                    "header": "G\u00e9n\u00e9rer le code d'authentification de l'\u00e9lecteur en PDF",
+                    "body": "G\u00e9n\u00e9rer le code d'authentification PDF pour l'\u00e9lecteur s\u00e9lectionn\u00e9. M\u00eame si l'\u00e9lecteur n'a pas rempli les champs \u00e0 remplir, il pourra voter en utilisant ce code et le lien dans le PDF.",
+                    "confirmButton": "GENERER le code d'authentification de l'\u00e9lecteur en PDF"
+                },
+                "resetVoterToPreRegistration": {
+                    "header": "Remettre l'\u00e9lecteur dans l'\u00e9tat de pr\u00e9-enregistrement",
+                    "body": "R\u00e9initialiser l'\u00e9lecteur \u00e0 l'\u00e9tat de pr\u00e9-enregistrement. Cela signifie que tout champ qui a \u00e9t\u00e9 rempli par l'\u00e9lecteur pendant l'inscription sera r\u00e9initialis\u00e9, mais que les donn\u00e9es qui faisaient partie du recensement pendant la pr\u00e9inscription ne changeront pas. Vous pouvez ajouter ci-dessous un commentaire expliquant pourquoi vous ex\u00e9cutez cette action pour cet \u00e9lecteur :",
+                    "confirmButton": "REMETTRE LE VOTER \u00e0 l'\u00e9tat de pr\u00e9-enregistrement"
+                },
+                "suspend": {
+                    "header": "Suspendre la p\u00e9riode de vote des \u00e9lections",
+                    "body": "La suspension d'une \u00e9lection interrompt temporairement la p\u00e9riode de vote, emp\u00eachant les \u00e9lecteurs de voter. Cependant, vous pouvez ensuite reprendre la p\u00e9riode de vote et cela peut se produire plusieurs fois.",
+                    "confirmButton": "SUSPENDRE la p\u00e9riode de vote des \u00e9lections",
+                    "success": "La p\u00e9riode de vote des \u00e9lections a \u00e9t\u00e9 suspendue avec succ\u00e8s."
+                },
+                "resume": {
+                    "header": "Reprise de la p\u00e9riode de vote des \u00e9lections",
+                    "body": "La reprise de l'\u00e9lection lorsqu'elle a \u00e9t\u00e9 suspendue temporairement permettra aux \u00e9lecteurs de voter \u00e0 nouveau.",
+                    "confirmButton": "REPRENDRE la p\u00e9riode de vote des \u00e9lections",
+                    "success": "La p\u00e9riode de vote a repris avec succ\u00e8s."
+                }
+            }
+        },
+        "basic": {
+            "intro": "La cr\u00e9ation d'une \u00e9lection n\u00e9cessite plusieurs \u00e9tapes, mais ce n'est pas difficile. Cela ne vous prendra que 5 minutes. Veuillez lire le manuel de l'administrateur, dont le lien se trouve dans l'ic\u00f4ne d'aide de la barre de navigation sup\u00e9rieure.",
+            "title": {
+                "label": "Titre",
+                "placeholder": "eg.Nouveau conseil d'administration",
+                "labelH3": "__index__. Titre de l'\u00e9lection : __title__"
+            },
+            "description": {
+                "label": "Description",
+                "placeholder": "La description s'affiche"
+            },
+            "logo_url": {
+                "label": "Logo personnalis\u00e9",
+                "placeholder": "URL pour un logo personnalis\u00e9 pour cette \u00e9lection. La taille maximale recommand\u00e9e est de 150x150 px."
+            },
+            "layout": {
+                "label": "Mise en page",
+                "placeholder": "Sp\u00e9cifie comment l'ensemble de l'\u00e9lection sera affich\u00e9"
+            },
+            "layouts": {
+                "simple": "Simple",
+                "2questions-conditional": "Oui/Non",
+                "pcandidates-election": "Candidats au tableau"
+            },
+            "theme": {
+                "label": "Th\u00e8me",
+                "placeholder": "A quoi ressemblera l'\u00e9lection ?"
+            },
+            "themes": {
+                "default": "Par d\u00e9faut",
+                "podemos": "Violet"
+            },
+            "questionOptionsSummary": "<strong>__num_answers__</strong> candidats. Les votants choisissent entre <strong>__min__</strong> et <strong>__max</strong> options et il y a <strong>__num_winners__</strong> gagnants. La m\u00e9thode de d\u00e9compte est <strong>__tally_method__</strong>. Randomisez les cat\u00e9gories : <strong>shuffle_categories</strong>, randomiser toutes les options : <strong>shuffle_all_options</strong>.",
+            "censusSize": "__nombre__ de personnes",
+            "registerAndCreateElection": "Il faut non seulement enregistrer l'\u00e9lection, mais aussi la cr\u00e9er aupr\u00e8s des autorit\u00e9s \u00e9lectorales. Cela signifie que vous ne pourrez pas modifier l'\u00e9lection.",
+            "num_successful_logins_allowed": {
+                "label": "Nombre de votes par \u00e9lecteur",
+                "placeholder": "Nombre maximum de fois o\u00f9 les \u00e9lecteurs sont autoris\u00e9s \u00e0 voter. Seul leur dernier vote comptera. Si ce nombre est \u00e9gal \u00e0 z\u00e9ro, les \u00e9lecteurs pourront voter autant de fois qu'ils le souhaitent",
+                "minError": "Le nombre de revotes possibles est __num_successful_logins_allowed__ mais il devrait \u00eatre de 0 ou plus",
+                "inputError": "__num_successful_logins_allowed__ n'est pas un nombre"
+            }
+        },
+        "questions": {
+            "new": "Nouvelle question",
+            "winners": {
+                "label": "Nombre de gagnants",
+                "placeholder": "Combien de gagnants doit-il y avoir ? Le minimum est 1 et le maximum est le nombre d'options",
+                "numOptionsError": "Il y a des __gagnants__ gagnants mais seulement des __cands__ candidats",
+                "minError": "Il doit y avoir au moins 1 gagnant"
+            },
+            "min": {
+                "label": "Nombre minimum d'options s\u00e9lectionn\u00e9es",
+                "placeholder": "Combien d'options un \u00e9lecteur doit-il s\u00e9lectionner dans cette question ? Le minimum est z\u00e9ro, ce qui permettrait des votes blancs",
+                "maxError": "Le nombre minimum de candidatures pouvant \u00eatre choisies peut \u00eatre au maximum de __max__",
+                "minError": "Ne peut \u00eatre n\u00e9gatif"
+            },
+            "max": {
+                "label": "Nombre maximum d'options s\u00e9lectionn\u00e9es",
+                "placeholder": "Combien d'options un \u00e9lecteur peut-il s\u00e9lectionner dans cette question ?",
+                "numOptionsError": "Les \u00e9lecteurs peuvent choisir jusqu'\u00e0 __max__ candidatures, mais il n'y a que __cands__ candidatures",
+                "minError": "Doit \u00eatre au moins 1 "
+            },
+            "random": {
+                "label": "Randomiser l'ordre des options",
+                "placeholder": "Lorsque la randomisation de l'ordre des options est active, chaque \u00e9lecteur verra les options de cette question dans un ordre diff\u00e9rent dans l'isoloir"
+            },
+            "candidates": {
+                "label": "Candidats",
+                "placeholder": "Options de candidats pouvant \u00eatre vot\u00e9es pour cette question",
+                "minError": "Il doit y avoir au moins un candidat"
+            },
+            "newopt": "Nouveau nom de l'option",
+            "layout": {
+                "label": "Mise en page",
+                "placeholder": "Indiquez comment la question sera affich\u00e9e",
+                "accordion": "Normal",
+                "circles": "Images avec d\u00e9tails",
+                "conditional-accordion": "Accord\u00e9on conditionnel",
+                "simultaneous-questions": "Questions simultan\u00e9es",
+                "cumulative-tally-help": "La m\u00e9thode de d\u00e9compte cumulatif n'est prise en charge que pour les questions simultan\u00e9es"
+            },
+            "option": {
+                "textFieldLabel": "Texte",
+                "textFieldPlaceholder": "Texte de l'option du candidat",
+                "detailsFieldLabel": "D\u00e9tails",
+                "detailsFieldPlaceholder": "Informations plus d\u00e9taill\u00e9es sur l'option du candidat",
+                "categoryFieldLabel": "Cat\u00e9gorie",
+                "categoryFieldPlaceholder": "Utilis\u00e9 pour regrouper les candidats en \u00e9quipes dans certaines mises en page",
+                "urlFieldLabel": "Url",
+                "urlFieldPlaceholder": "https://example.com",
+                "imageUrlFieldLabel": "Url de l'image",
+                "imageUrlFieldPlaceholder": "https://example.com/path/to/image.jpg"
+            }
+        },
+        "censusConfig": {
+            "intro": "Le recensement pr\u00e9cise qui peut voter et les d\u00e9tails dont nous avons besoin de la part de chaque \u00e9lecteur. Vous pouvez le configurer ici"
+        },
+        "census": {
+            "intro": "Le recensement pr\u00e9cise qui peut voter et les d\u00e9tails dont nous avons besoin de la part de chaque \u00e9lecteur. Vous pouvez le g\u00e9rer ici",
+            "reg": {
+                "label": "Inscription",
+                "placeholder": "Comment le recensement est-il g\u00e9n\u00e9r\u00e9 ?"
+            },
+            "census": {
+                "open": "Inscription ouverte",
+                "openDescription": "Les recensements peuvent non seulement \u00eatre g\u00e9n\u00e9r\u00e9s par les administrateurs \u00e9lectoraux, mais aussi les individus peuvent s'inscrire en suivant le processus d'authentification.",
+                "close": "Enregistrement ferm\u00e9",
+                "closeDescription": "Le recensement est g\u00e9n\u00e9r\u00e9 par les administrateurs. Les tiers ne peuvent pas s'inscrire au recensement."
+            },
+            "modals": {
+                "comment": "Commentaire",
+                "csvLoadingHeader": "Chargement du CSV dans le recensement",
+                "csvLoadingBody": "Veuillez cliquer sur le bouton de d\u00e9marrage du t\u00e9l\u00e9chargement pour ajouter les utilisateurs du CSV au recensement. Veuillez attendre que le processus soit termin\u00e9 et ne fermez pas cette fen\u00eatre.",
+                "csvLoadingStartButton": "Commencez \u00e0 t\u00e9l\u00e9charger MAINTENANT",
+                "addCsvHeader": "Ajouter le CSV au recensement",
+                "addCsvBody": "Ici, vous pouvez ajouter plusieurs personnes \u00e0 la fois. Le format est CSV, une personne par ligne. Utilisez le point-virgule pour s\u00e9parer les champs, dans l'ordre. Notez qu'aucune validation des donn\u00e9es n'est effectu\u00e9e, c'est donc \u00e0 vous d'ins\u00e9rer des donn\u00e9es valides.",
+                "addCsvTextareaPlaceholder": "un \u00e9lecteur par ligne, conservez l'ordre des champs",
+                "confirmAddCsvButton": "Confirmer et ajouter le CSV au recensement",
+                "addPersonHeader": "Ajouter une personne au recensement",
+                "addPersonBody": "Ajoutez manuellement une seule personne au recensement. Notez qu'aucune validation des donn\u00e9es n'est effectu\u00e9e, c'est donc \u00e0 vous d'ins\u00e9rer des donn\u00e9es valides.",
+                "addPersonChildrenElections": "S\u00e9lectionnez les \u00e9lections des enfants dans lesquelles cette personne peut voter :",
+                "confirmAddPersonButton": "Confirmez et ajoutez la personne au recensement",
+                "removePeopleHeader": "Retirer les personnes s\u00e9lectionn\u00e9es du recensement",
+                "removePeopleBody": "Le retrait du recensement des __nombre__ personnes s\u00e9lectionn\u00e9es est irr\u00e9versible. Notez que cela ne supprimera pas leurs votes s'ils ont vot\u00e9.",
+                "confirmRemovePeopleButton": "Confirmer et retirer du recensement les __nombre__ personnes s\u00e9lectionn\u00e9es",
+                "activatePeopleHeader": "Activez les personnes s\u00e9lectionn\u00e9es dans le recensement",
+                "activatePeopleBody": "Activer le __nombre__ de personnes s\u00e9lectionn\u00e9es. Cela permettra \u00e0 ces personnes de voter",
+                "confirmActivatePeopleButton": "Confirmer et activer les __nombre__ de personnes s\u00e9lectionn\u00e9es dans le recensement",
+                "deactivatePeopleHeader": "D\u00e9sactiver les personnes s\u00e9lectionn\u00e9es du recensement",
+                "deactivatePeopleBody": "D\u00e9sactiver le __nombre__ de personnes s\u00e9lectionn\u00e9es. Cela ne permettra PAS \u00e0 ces personnes de voter",
+                "confirmDeactivatePeopleButton": "Confirmer et d\u00e9sactiver les __nombre__ de personnes s\u00e9lectionn\u00e9es dans le recensement",
+                "exportAllCensusHeader": "Exportation de tous les recensements en CSV",
+                "exportAllCensusBody": "Vous pouvez t\u00e9l\u00e9charger ici l'ensemble du recensement au format CSV (Comma Separated Values), afin de pouvoir le traiter ailleurs. Il y a __total__ personnes dans votre recensement. En fonction de la taille du recensement, le processus de t\u00e9l\u00e9chargement de l'ensemble du recensement peut prendre un certain temps. Une fois qu'il est termin\u00e9, vous serez invit\u00e9 \u00e0 t\u00e9l\u00e9charger le recensement. Si vous avez un filtre actif, ce filtre sera \u00e9galement appliqu\u00e9 au fichier CSV t\u00e9l\u00e9charg\u00e9.",
+                "confirmexportAllCensusButton": "Confirmer et t\u00e9l\u00e9charger le recensement, avec __total__ personnes"
+            },
+            "addPersonAction": "Ajouter une personne...",
+            "addCsvAction": "Ajouter le CSV au recensement...",
+            "activateAction": "Activez __num__ personnes s\u00e9lectionn\u00e9es...",
+            "deactivateAction": "D\u00e9sactiver __num__ personnes s\u00e9lectionn\u00e9es...",
+            "filteredEmptyResults": "Aucune personne ne correspond au filtre actuel.",
+            "emptyCensus": "Le recensement est actuellement vide. Vous pouvez ajouter des personnes via le bouton Actions.",
+            "removedCensusSuccessfully": "Suppression r\u00e9ussie de certaines personnes du recensement",
+            "activatedCensusSuccessfully": "Activation r\u00e9ussie des personnes s\u00e9lectionn\u00e9es dans le recensement",
+            "deactivatedCensusSuccessfully": "D\u00e9sactivation r\u00e9ussie des personnes s\u00e9lectionn\u00e9es dans le recensement",
+            "generatePDFAuthCodesSuccess": "G\u00e9n\u00e9r\u00e9 avec succ\u00e8s le code d'authentification PDF pour un \u00e9lecteur.",
+            "resetVoterToPreRegistrationSuccess": "R\u00e9initialisation r\u00e9ussie de l'\u00e9lecteur \u00e0 l'\u00e9tat de pr\u00e9-enregistrement.",
+            "sentCodesSuccessfully": "Envoi des codes d'authentification avec succ\u00e8s",
+            "viewActivityOneAction": "Afficher le journal des activit\u00e9s",
+            "activateOneAction": "Activez",
+            "deactivateOneAction": "D\u00e9sactiver",
+            "removeCensusOneAction": "Retirer",
+            "sendAuthCodesOneAction": "Envoyer les codes d'authentification",
+            "generatePDFAuthCodesAction": "G\u00e9n\u00e9rer le code d'authentification PDF",
+            "resetVoterToPreRegistration": "Remettre l'\u00e9lecteur dans l'\u00e9tat de pr\u00e9-enregistrement",
+            "generatePDFAuthCodes": {
+                "header": "Vos identifiants d'authentification sont :",
+                "username": "Nom d'utilisateur :",
+                "userId": "Id. utilisateur :",
+                "authCode": "Code d'authentification :",
+                "codeCreated": "Temps de cr\u00e9ation du code :",
+                "authLink": "Lien d'authentification :",
+                "qrCode": "Code QR pour le lien d'authentification :"
+            },
+            "voted": "vot\u00e9",
+            "notVoted": "non vot\u00e9",
+            "votedColumnHeader": "Vot\u00e9 ?",
+            "childrenVotedColumnHeader": "Vot\u00e9 en",
+            "activeColumnHeader": "Actif ?",
+            "hasActivityColumnHeader": "Des actions ex\u00e9cut\u00e9es ?",
+            "censusadd": "\u00c9lecteurs ajout\u00e9s au recensement",
+            "actionsDropdown": "Actions",
+            "childrenElections": "\u00c9lections d'enfants autoris\u00e9es",
+            "selectAllShownAction": "S\u00e9lectionnez toutes les personnes affich\u00e9es",
+            "deselectAllShownAction": "D\u00e9s\u00e9lectionner toutes les personnes affich\u00e9es",
+            "exportCensusAction": "Exporter tous les recensements en CSV..",
+            "removeCensusAction": "Supprimer __num__ personnes s\u00e9lectionn\u00e9es..",
+            "sendAuthCodesAction": "Envoyer les codes d'authentification \u00e0 __num__ s\u00e9lectionn\u00e9..",
+            "idColumnHeader": "Id",
+            "creationDateHeader": "Date de cr\u00e9ation",
+            "selectedColumnHeader": "S\u00e9lectionnez",
+            "emailOption": "e-mail",
+            "passwordOption": "mot de passe",
+            "codeOption": "code",
+            "textOption": "texte",
+            "tlfOption": "tel",
+            "dateOption": "date",
+            "intOption": "int",
+            "boolOption": "bool",
+            "captchaOption": "captcha",
+            "textareaOption": "textarea",
+            "dictOption": "Valeur-cl\u00e9",
+            "fieldTypeLabel": "Type",
+            "fieldRegExLabel": "Expression r\u00e9guli\u00e8re",
+            "fieldRegExPlaceholder": "Utilisateurs avanc\u00e9s uniquement - Exemple : ^(1000|1010)$",
+            "fieldMinLabel": "Min",
+            "fieldMaxLabel": "Max",
+            "fieldNameLabel": "Nom du champ",
+            "fieldNamePlaceholder": "Exemple : Nom et pr\u00e9nom",
+            "fieldHelpLabel": "Texte d'aide",
+            "fieldHelpPlaceholder": "Exemple : Ins\u00e9rez votre pr\u00e9nom et votre nom de famille",
+            "fieldRequiredLabel": "Requis",
+            "fieldAutofillLabel": "Remplissage automatique",
+            "fieldUniqueLabel": "Unique",
+            "fieldRequiredAuthLabel": "V\u00e9rifi\u00e9 par rapport au recensement dans l'authentification",
+            "fieldMatchCensusOnRegistrationLabel": "V\u00e9rifi\u00e9 par rapport au recensement lors de l'enregistrement (uniquement pour le pr\u00e9-enregistrement)",
+            "fieldFillIfEmptyOnRegistrationLabel": "Requis \u00e0 l'inscription, mais peut \u00eatre vide \u00e0 la pr\u00e9inscription",
+            "fieldPrivateLabel": "Priv\u00e9 (seuls les administrateurs peuvent voir et utiliser ce champ)",
+            "extraFieldsHeader": "Champs suppl\u00e9mentaires",
+            "extraFieldsInfo": "Ici, vous pouvez d\u00e9finir des champs suppl\u00e9mentaires dans le recensement de mani\u00e8re polyvalente. Cela vous permet de faire toute une s\u00e9rie de choses : ajouter des contr\u00f4les suppl\u00e9mentaires par rapport au recensement dans le cadre d'une inscription ferm\u00e9e, enregistrer de nouveaux champs dans le cadre d'une inscription ouverte, etc.",
+            "fields": {
+                "label": "Champs suppl\u00e9mentaires",
+                "placeholder": "Champs suppl\u00e9mentaires du votant"
+            },
+            "configurationHeader": "Configuration",
+            "manage": "G\u00e9rer le recensement",
+            "name": "Nom",
+            "required": "Requis",
+            "add": "Ajouter un nouveau champ",
+            "nonEditableField": "(Requis par la m\u00e9thode d'authentification)",
+            "manualAdd": "Ajout manuel",
+            "export": "Exportation",
+            "image": "Voir l'image",
+            "imageModalTitle": "Voir l'image",
+            "imageModalClose": "Fermer"
+        },
+        "tasks": {
+            "intro": "Lancez des t\u00e2ches d'arri\u00e8re-plan, par exemple une t\u00e2che d'auto-test de d\u00e9ploiement.",
+            "manage": "G\u00e9rer les t\u00e2ches",
+            "actionsDropdown": "Actions",
+            "table": {
+                "id": "Id",
+                "name": "Nom",
+                "lastUpdate": "Derni\u00e8re mise \u00e0 jour",
+                "status": "Statut",
+                "empty": "Vous n'avez pas encore lanc\u00e9 de t\u00e2che.<br><br>Vous pouvez cliquer dans le menu d\u00e9roulant <strong>'Actions'</strong> pour lancer une <strong>T\u00e2che d'auto-test</strong>."
+            },
+            "commands": {
+                "launchSelfTestTask": {
+                    "actionName": "Lancer la t\u00e2che d'auto-test..",
+                    "successMessage": "La t\u00e2che d'auto-test a \u00e9t\u00e9 lanc\u00e9e avec succ\u00e8s."
+                },
+                "cancelTask": {
+                    "actionName": "Annuler la t\u00e2che..",
+                    "successMessage": "Annulation de t\u00e2che demand\u00e9e."
+                },
+                "viewTaskLogs": {
+                    "actionName": "Afficher les journaux des t\u00e2ches et les m\u00e9tadonn\u00e9es",
+                    "header": "Afficher les journaux des t\u00e2ches et les m\u00e9tadonn\u00e9es",
+                    "metadata": "M\u00e9tadonn\u00e9es",
+                    "console": "Console",
+                    "close": "Fermer",
+                    "emptyLogs": "[Journal de sortie vide]",
+                    "autoscrollLabel": "Autoscroll vers la sortie inf\u00e9rieure de la console",
+                    "errorLogsHeader": "Erreurs :"
+                }
+            }
+        },
+        "auth": {
+            "intro": "L'authentification est le moyen utilis\u00e9 pour s'assurer qu'un \u00e9lecteur est bien celui qu'il pr\u00e9tend \u00eatre. Ici, vous devez trouver un \u00e9quilibre entre s\u00e9curit\u00e9, convivialit\u00e9 et co\u00fbt",
+            "auth": "M\u00e9thode d'authentification",
+            "auths": {
+                "email": "Courriel",
+                "email-otp": "OTP par e-mail",
+                "email-and-password": "Email et mot de passe",
+                "sms": "SMS",
+                "sms-otp": "SMS OTP",
+                "dnie": "iD \u00e9lectronique espagnol (eDNI)",
+                "user-and-password": "Utilisateur et mot de passe",
+                "smart-link": "Lien intelligent"
+            },
+            "sms": "Message SMS",
+            "smstemp": "Mod\u00e8le utilis\u00e9 dans le SMS \u00e0 envoyer \u00e0 l'utilisateur. Utilisez __CODE__ pour ins\u00e9rer le code SMS et __URL__ pour l'url d'authentification, ou __URL2__ pour ins\u00e9rer un lien qui inclut le code",
+            "smsdef": "Voici votre code de vote : __CODE__",
+            "email": "Message e-mail",
+            "emailsub": "Objet du courriel",
+            "emailtemp": "Mod\u00e8le utilis\u00e9 dans le lien Email \u00e0 envoyer \u00e0 l'utilisateur. Utilisez __CODE__ pour ins\u00e9rer le code de connexion et __URL__ pour ins\u00e9rer le lien d'\u00e9lection, ou _URL2__ pour ins\u00e9rer un lien qui inclut le code",
+            "emailsubdef": "Votez maintenant avec __name__",
+            "emaildef": "Votez en __URL__ avec le code __CODE__",
+            "slugKeys": "Utilisez les cl\u00e9s suivantes pour ins\u00e9rer les champs suppl\u00e9mentaires des utilisateurs dans le message : __slug_list__"
+        },
+        "columnFilter": {
+            "sort": "Trier :",
+            "filter": "Filtre :",
+            "minDate": "De :",
+            "maxDate": "\u00c0 :",
+            "noFilter": "-",
+            "noSort": "-",
+            "sortAsc": "Asc",
+            "sortDesc": "Desc",
+            "min": "min",
+            "max": "max"
+        },
+        "create": {
+            "summary": "R\u00e9sum\u00e9 : cr\u00e9ation d'\u00e9lections __num__",
+            "summary__plural": "R\u00e9sum\u00e9 : cr\u00e9ation d'\u00e9lections __num__",
+            "create": "Cr\u00e9er les \u00e9lections",
+            "creating": "Cr\u00e9ation de l'authentification pour l'\u00e9lection __title__",
+            "setChildrenElectionInfo": "D\u00e9finition des informations \u00e9lectorales des enfants pour l'\u00e9lection (id : __id__) __title__",
+            "addBallotBoxes": "Cr\u00e9er des urnes pour les \u00e9lections (id : __id__) __title__",
+            "census": "Ajout du recensement (id : __id__) __title__",
+            "ballot_boxes": "Ajout d'urnes (id : __id__) __title__",
+            "reg": "Enregistrement de l'\u00e9lection (id : __id__) __title__",
+            "creatingEl": "Cr\u00e9ation d'une \u00e9lection (id : __id__) __title__",
+            "logHeader": "Journal de bord",
+            "actions": {
+                "actionsLabel": "Actions",
+                "editJson": "Modifier JSON",
+                "livePreview": "Aper\u00e7u en direct"
+            },
+            "editElectionJsonModal": {
+                "title": "Modifier l'\u00e9lection Json",
+                "body": "Cette bo\u00eete de dialogue vous permet de modifier le json de l'\u00e9lection. Ne l'utilisez que si vous savez ce que vous faites.",
+                "confirmEdit": "Montage final"
+            },
+            "errors": {
+                "lambda-live-preview-parent-children": "IDs d'\u00e9lection manquants pour une \u00e9lection parents-enfants",
+                "election-is-array-questions": "Election '__eltitle__' : la liste des questions n'est pas un tableau",
+                "election-lambda-success-action-url-mode": "Election '__eltitle__' : url d'action de succ\u00e8s invalide",
+                "election-lambda-min-email-msg": "Election '__eltitle__' : la longueur du message \u00e9lectronique est de __len__ caract\u00e8res, mais elle doit \u00eatre d'au moins __min__ caract\u00e8res",
+                "election-lambda-max-email-msg": "Election '__eltitle__' : la longueur du message \u00e9lectronique est de __len__ caract\u00e8res, d\u00e9passant le maximum de __max__",
+                "election-lambda-min-email-title": "Election '__eltitle__' : la longueur du titre de l'e-mail est de __len__ caract\u00e8res, mais elle doit \u00eatre d'au moins __min__ caract\u00e8res",
+                "election-lambda-max-email-title": "Election '__eltitle__' : la longueur du titre de l'e-mail est de __len__ caract\u00e8res, d\u00e9passant le maximum de __max__",
+                "election-lambda-min-sms-msg": "\u00c9lection '__eltitle__' : la longueur du message SMS est de __len__ caract\u00e8res, mais elle doit \u00eatre d'au moins __min__ caract\u00e8res",
+                "election-lambda-max-sms-msg": "Election '__eltitle__' : la longueur du message sms est de __len__ caract\u00e8res, d\u00e9passant le maximum de __max__",
+                "election-lambda-checkable-lists-invalid-layout": "\u00c9lection '__eltitle__' : Il y a une question avec enable_checkable_lists et une mise en page de question invalide",
+                "election-lambda-checkable-lists-categories-mismatch": "\u00c9lection '__eltitle__' : Il y a une question avec enable_checkable_lists mais il n'y a pas de r\u00e9ponse pour chaque cat\u00e9gorie",
+                "election-array-length-min-questions": "\u00c9lection '__eltitle__' : il doit y avoir au moins __min__ questions mais il n'y a que __num__",
+                "election-array-length-max-questions": "\u00c9lection '__eltitle__' : il doit y avoir au maximum __max__ questions mais il y a __num__",
+                "election-array-length-max-description": "Election '__eltitle__' : la longueur de la description est __num__, d\u00e9passant le maximum de __max__",
+                "election-is-string-description": "Election '__eltitle__' : la description n'est pas une cha\u00eene de caract\u00e8res",
+                "election-array-length-max-title": "Election '__eltitle__' : la longueur du titre est __num__, d\u00e9passant le maximum de __max__",
+                "election-is-string-title": "Election '__eltitle__' : le titre n'est pas une cha\u00eene de caract\u00e8res",
+                "election-question-array-length-max-description": "Election '__eltitle__', question '__qtitle__' : la longueur de la description est __num__, d\u00e9passant le maximum de __max__",
+                "election-question-is-string-description": "\u00c9lection '__eltitle__', question '__qtitle__' : la description n'est pas une cha\u00eene de caract\u00e8res",
+                "election-question-array-length-max-title": "Election '__eltitle__', question '__qtitle__' : la longueur du titre est __num__, d\u00e9passant le maximum de __max__",
+                "election-question-is-string-title": "\u00c9lection '__eltitle__', question '__qtitle__' : le titre n'est pas une cha\u00eene de caract\u00e8res",
+                "election-question-lambda-invalid-answer-ids": "Election '__eltitle__', question '__qtitle__' : les identifiants de r\u00e9ponse ne sont pas valides, veuillez v\u00e9rifier qu'ils commencent par 0 et qu'il ne manque aucun chiffre entre les deux",
+                "election-question-answer-array-length-max-text": "\u00c9lection '__eltitle__', question '__qtitle__', r\u00e9ponse '__atext__' : la longueur du texte est __num__, d\u00e9passant le maximum de __max__",
+                "election-question-answer-lambda-text": "\u00c9lection '__eltitle__', question '__qtitle__', r\u00e9ponse '__atext__' et identifiant de r\u00e9ponse '__aid__' : la longueur du texte est vide, mais il ne s'agit pas d'un write in",
+                "election-question-answer-is-string-text": "\u00c9lection '__eltitle__', question '__qtitle__', r\u00e9ponse '__atext__' : le texte n'est pas une cha\u00eene de caract\u00e8res",
+                "election-question-answer-array-length-min-text": "\u00c9lection '__eltitle__', question '__qtitle__', r\u00e9ponse '__atext__' : la longueur du texte est __num__, mais il doit comporter au moins __min__ caract\u00e8res",
+                "election-question-answer-array-length-max-details": "Election '__eltitle__', question '__qtitle__', r\u00e9ponse '__atext__' : la longueur des d\u00e9tails est __num__, d\u00e9passant le maximum de __max__",
+                "election-question-answer-is-string-details": "\u00c9lection '__eltitle__', question '__qtitle__', r\u00e9ponse '__atext__' : les d\u00e9tails ne sont pas une cha\u00eene de caract\u00e8res",
+                "election-question-answer-array-length-max-category": "\u00c9lection '__eltitle__', question '__qtitle__', r\u00e9ponse '__atext__' : la longueur de la cat\u00e9gorie est __num__, d\u00e9passant le maximum de __max__",
+                "election-question-answer-is-string-category": "\u00c9lection '__eltitle__', question '__qtitle__', r\u00e9ponse '__atext__' : la cat\u00e9gorie n'est pas une cha\u00eene de caract\u00e8res",
+                "election-question-is-array-answers": "Election '__eltitle__' : la liste des r\u00e9ponses n'est pas un tableau",
+                "election-question-is-int-min": "\u00c9lection '__eltitle__', question '__qtitle__' : le nombre minimum de candidats qu'un \u00e9lecteur peut choisir n'est pas un nombre entier ou valide",
+                "election-question-lambda-max": "Election '__eltitle__', question '__qtitle__' : le nombre maximum de candidats qu'un \u00e9lecteur peut choisir n'est pas valide",
+                "election-question-is-int-num-winners": "\u00c9lection '__eltitle__', question '__qtitle__' : le nombre de gagnants n'est pas un nombre entier",
+                "election-question-array-length-min-answers": "\u00c9lection '__eltitle__', question '__qtitle__' : il doit y avoir au moins __min__ r\u00e9ponses, mais il n'y a que __num__",
+                "election-question-array-length-max-answers": "\u00c9lection '__eltitle__', question '__qtitle__' : il doit y avoir au maximum __max__ r\u00e9ponses, mais il y en a __num__",
+                "election-question-int-size-min-min": "\u00c9lection '__eltitle__', question '__qtitle__' : le nombre minimum de candidats qu'un \u00e9lecteur peut choisir doit \u00eatre un nombre entier positif, mais c'est __valeur__",
+                "election-question-int-size-max-min": "\u00c9lection '__eltitle__', question '__qtitle__' : le nombre minimum de candidats qu'un \u00e9lecteur peut choisir est __valeur__, mais ne peut \u00eatre sup\u00e9rieur au maximum qui est __max__",
+                "election-question-int-size-min-max": "Election '__eltitle__', question '__qtitle__' : le nombre maximum de candidats qu'un \u00e9lecteur peut choisir est __value__, mais doit \u00eatre sup\u00e9rieur ou \u00e9gal au minimum qui est __min__",
+                "election-question-int-size-max-max": "\u00c9lection '__eltitle__', question '__qtitle__' : le nombre maximum de candidats qu'un \u00e9lecteur peut choisir est __valeur__, mais ne peut \u00eatre sup\u00e9rieur au nombre de candidats qui est __max__",
+                "election-question-int-size-min-num-winners": "\u00c9lection '__eltitle__', question '__qtitle__' : il doit y avoir au moins un gagnant, mais c'est __value__ \u00e0 la place",
+                "election-question-int-size-max-num-winners": "\u00c9lection '__eltitle__', question '__qtitle__' : le nombre de gagnants est __valeur__, mais ne peut \u00eatre sup\u00e9rieur au nombre de r\u00e9ponses qui est __max__",
+                "election-census-createel-unknown": "Election, une erreur inconnue s'est produite lors de l'ajout du recensement apr\u00e8s la cr\u00e9ation de l'\u00e9lection : __message__",
+                "election-census-is-array-admin-fields": "Election '__eltitle__' : admin_fields doit \u00eatre un tableau",
+                "election-census-array-length-max-admin-fields": "Election '__eltitle__' : la longueur du tableau admin_fields est __len__, d\u00e9passant le maximum de __max__",
+                "election-census-lambda-admin-fields-int-type-value": "Election '__eltitle__' : les champs admin suivants sont de type entier mais leurs valeurs ne sont pas des entiers : __admin_names__.",
+                "election-census-lambda-admin-fields-email-type-value": "Election '__eltitle__' : les champs d'administration suivants ont des valeurs d'email invalides : __admin_names__.",
+                "election-census-lambda-admin-fields-int-min-value": "\u00c9lection '__eltitle__' : les champs admin suivants de type entier ont une valeur inf\u00e9rieure \u00e0 leur valeur minimale autoris\u00e9e : __admin_names__.",
+                "election-census-lambda-admin-fields-int-max-value": "Choix '__eltitle__' : il y a au moins un champ dans les champs admin de type int dont la valeur est sup\u00e9rieure \u00e0 la valeur maximale autoris\u00e9e",
+                "election-census-lambda-admin-fields-string-type-value": "Election '__eltitle__' : les champs admin suivants sont de type cha\u00eene mais leurs valeurs ne sont pas des cha\u00eenes : __admin_names__.",
+                "election-census-lambda-admin-fields-required-value": "Election '__eltitle__' : ces champs d'administration sont obligatoires mais ils sont vides : __admin_names__.",
+                "election-census-lambda-admin-fields-string-value-array-length": "Election '__eltitle__' : les champs admin suivants de type cha\u00eene ont une longueur de caract\u00e8res qui a d\u00e9pass\u00e9 le maximum autoris\u00e9 de __max__ caract\u00e8res : __admin_names__.",
+                "election-census-lambda-admin-fields-email-value-array-length": "\u00c9lection '__eltitle__' : les champs admin suivants de type email ont une longueur de cha\u00eene de caract\u00e8res qui a d\u00e9pass\u00e9 le maximum autoris\u00e9 de __max__ caract\u00e8res : __admin_names__.",
+                "election-census-admin-fields-is-string-if-defined-placeholder": "\u00c9lection '__eltitle__' : le champ admin __fname__ doit \u00eatre une cha\u00eene de caract\u00e8res",
+                "election-census-admin-fields-array-length-if-defined-max-placeholder": "Election '__eltitle__' : la longueur de l'espace r\u00e9serv\u00e9 au champ d'administration __fname__ est de __len__ caract\u00e8res, d\u00e9passant le maximum de __max__",
+                "election-census-admin-fields-is-string-label": "\u00c9lection '__eltitle__' : le libell\u00e9 du champ admin __fname__ doit \u00eatre une cha\u00eene de caract\u00e8res",
+                "election-census-admin-fields-array-length-max-label": "Election '__eltitle__' : la longueur de l'\u00e9tiquette du champ d'administration __fname__ est de __len__ caract\u00e8res, d\u00e9passant le maximum de __max__",
+                "election-census-admin-fields-is-string-if-defined-description": "Election '__eltitle__' : le champ d'administration __fname__ la description doit \u00eatre une cha\u00eene de caract\u00e8res",
+                "election-census-admin-fields-array-length-if-defined-max-description": "Election '__eltitle__' : la longueur de la description du champ admin __fname__ est de __len__ caract\u00e8res, d\u00e9passant le maximum de __max__",
+                "election-census-admin-fields-is-string-name": "\u00c9lection '__eltitle__' : le nom du champ admin __fname__ doit \u00eatre une cha\u00eene de caract\u00e8res",
+                "election-census-admin-fields-array-length-max-name": "Election '__eltitle__' : la longueur du nom du champ admin __fname__ est de __len__ caract\u00e8res, d\u00e9passant le maximum de __max__",
+                "election-census-admin-fields-is-string-type": "\u00c9lection '__eltitle__' : le champ d'administration __fname__ doit \u00eatre une cha\u00eene",
+                "election-census-admin-fields-array-length-max-type": "Election '__eltitle__' : la longueur du type du champ d'administration __fname__ est de __len__ caract\u00e8res, d\u00e9passant le maximum de __max__",
+                "election-census-admin-fields-lambda-min-number": "Election '__eltitle__' : le champ admin __fname__ min doit \u00eatre un nombre",
+                "election-census-admin-fields-lambda-max-number": "Election '__eltitle__' : le champ admin __fname__ max doit \u00eatre un nombre",
+                "election-census-admin-fields-lambda-step-number": "Election '__eltitle__' : le champ d'administration __fname__ step doit \u00eatre un nombre",
+                "election-census-admin-fields-lambda-required-boolean": "Election '__eltitle__' : le champ admin __fname__ requis doit \u00eatre un bool\u00e9en",
+                "election-census-admin-fields-lambda-private-boolean": "Election '__eltitle__' : le champ d'administration __fname__ priv\u00e9 doit \u00eatre un bool\u00e9en"
+            }
+        },
+        "successAction": {
+            "modeIntro": "D\u00e8s qu'un utilisateur s'inscrit ou s'authentifie, une action doit \u00eatre ex\u00e9cut\u00e9e. Habituellement, elle est redirig\u00e9e vers l'isoloir de l'\u00e9lection correspondante, mais elle peut aussi \u00eatre configur\u00e9e pour charger une URL externe. Ceci est utile si vous l'utilisez uniquement pour enregistrer le recensement et non pour une \u00e9lection active.",
+            "voteModeTitle": "Chargez l'isoloir de l'\u00e9lection",
+            "voteModeDescription": "Chargez l'isoloir correspondant \u00e0 l'\u00e9lection pour que la personne puisse voter.",
+            "urlModeTitle": "Rediriger vers l'URL",
+            "urlModeDescription": "Charge une URL que vous pouvez sp\u00e9cifier. Seules les urls https sont autoris\u00e9es.",
+            "urlModePlaceholder": "https://example.com/foo/bar",
+            "invalidUrl": "URL invalide. Exemple d'une URL valide : https://example.com/foo/bar"
+        },
+        "childrenElections": {
+            "main": "Principale \u00e9lection"
+        }
+    }
+}
