@@ -471,7 +471,7 @@
                         "confirmButton": "D\u00e9but"
                     },
                     "loginTrustee": {
-                        "header": "Connectez-vous au fiduciaire __fiduciaire_id__ (\u00c9tape __step__ de __total__)",
+                        "header": "Connectez-vous au fiduciaire __trustee_id__ (\u00c9tape __step__ de __total__)",
                         "loginButton": "Connexion",
                         "bodyMessage": "Afin de poursuivre, vous devez vous connecter avec les informations d'identification de l'administrateur."
                     },
@@ -483,7 +483,7 @@
                         "operationSuccess": "Les cl\u00e9s priv\u00e9es ont \u00e9t\u00e9 t\u00e9l\u00e9charg\u00e9es avec succ\u00e8s."
                     },
                     "secureShare": {
-                        "header": "Partage de cl\u00e9 priv\u00e9e s\u00e9curis\u00e9e pour le fiduciaire __fid\u00e8le_id__ (\u00c9tape __step__ de __total__)",
+                        "header": "Partage de cl\u00e9 priv\u00e9e s\u00e9curis\u00e9e pour le fiduciaire __trustee_id__ (\u00c9tape __step__ de __total__)",
                         "bodyMessage": "Pour des raisons de s\u00e9curit\u00e9, veuillez d\u00e9placer la cl\u00e9 priv\u00e9e sur au moins deux pendrives diff\u00e9rents.",
                         "nextButton": "\u00c9tape suivante",
                         "backButton": "Retour aux cl\u00e9s de t\u00e9l\u00e9chargement",
@@ -502,7 +502,7 @@
                     },
                     "deleteShare": {
                         "bodyMessage": "Supprimez la part des cl\u00e9s priv\u00e9es pour cette autorit\u00e9.",
-                        "header": "Supprimer le partage de cl\u00e9 priv\u00e9e pour le fiduciaire __fiduciaire_id__ (\u00c9tape __step__ de __total__)",
+                        "header": "Supprimer le partage de cl\u00e9 priv\u00e9e pour le fiduciaire __trustee_id__ (\u00c9tape __step__ de __total__)",
                         "deleteShareButton": "Supprimer les cl\u00e9s priv\u00e9es",
                         "operationSuccess": "Le partage des cl\u00e9s priv\u00e9es a \u00e9t\u00e9 supprim\u00e9 avec succ\u00e8s",
                         "nextButton": "\u00c9tape suivante",
