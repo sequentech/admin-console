@@ -127,15 +127,31 @@ angular
         return deferred.promise;
       }
 
+      function adminImportFile(fileHandle)
+      {
+        fileHandle
+          .getFile()
+          .then(
+            function (file)
+            {
+              file
+                .text()
+                .then(
+                  function (fileText)
+                  {
+                    ElectionsApi.currentElections = JSON.parse(fileText);
+                    $state.go("admin.create");
+                  }
+                );
+            }
+          );
+      }
 
       function adminImport() 
       {
         if (!$window.showOpenFilePicker) 
         {
-          console.log(
-            "please use a browser that supports window.showOpenFilePicker"
-          );
-          return;
+          document.querySelector("#side-import-file").click();
         }
 
         $window
@@ -144,22 +160,7 @@ angular
             function (data)
             {
               var fileHandle = data[0];
-              fileHandle
-                .getFile()
-                .then(
-                  function (file)
-                  {
-                    file
-                      .text()
-                      .then(
-                        function (fileText)
-                        {
-                          ElectionsApi.currentElections = JSON.parse(fileText);
-                          $state.go("admin.create");
-                        }
-                      );
-                  }
-                );
+              adminImportFile(fileHandle);
             }
           );
 
@@ -352,6 +353,7 @@ angular
       getUpdateDraft();
 
       $scope.adminImport = adminImport;
+      $scope.adminImportFile = adminImportFile;
       $scope.loadDraft = function () {
         // show a warning dialog before loading draft
         $modal

@@ -54,6 +54,7 @@ angular.module('avAdmin')
           scope.uploadFile = function (element) {
             var f = element.files[0];
             console.log(f);
+            scope.adminImportFile(f);
           };
 
           // update perms
