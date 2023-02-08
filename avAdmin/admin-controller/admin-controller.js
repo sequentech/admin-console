@@ -127,22 +127,15 @@ angular
         return deferred.promise;
       }
 
-      function adminImportFile(fileHandle)
+      function adminImportFile(file)
       {
-        fileHandle
-          .getFile()
+        file
+          .text()
           .then(
-            function (file)
+            function (fileText)
             {
-              file
-                .text()
-                .then(
-                  function (fileText)
-                  {
-                    ElectionsApi.currentElections = JSON.parse(fileText);
-                    $state.go("admin.create");
-                  }
-                );
+              ElectionsApi.currentElections = JSON.parse(fileText);
+              $state.go("admin.create");
             }
           );
       }
@@ -160,7 +153,10 @@ angular
             function (data)
             {
               var fileHandle = data[0];
-              adminImportFile(fileHandle);
+
+              fileHandle
+              .getFile()
+              .then(adminImportFile);
             }
           );
 
