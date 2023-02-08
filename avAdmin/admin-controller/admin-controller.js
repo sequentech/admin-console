@@ -127,8 +127,10 @@ angular
         return deferred.promise;
       }
 
-      function adminImportFile(file)
+      function adminImportFile(element)
       {
+        var file = element.files[0];
+
         file
           .text()
           .then(

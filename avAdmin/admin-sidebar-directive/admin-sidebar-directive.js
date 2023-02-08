@@ -47,14 +47,6 @@ angular.module('avAdmin')
           scope.active = attrs.active;
           scope.isEditingDraft = DraftElection.isEditingDraft;
           scope.globalPerms = { val: '' };
-          scope.selectFile = function () {
-            document.querySelector("#side-import-file").click();
-          };
-          scope.uploadFile = function (element) {
-            var f = element.files[0];
-            console.log(f);
-            scope.adminImportFile(f);
-          };
 
           // update perms
           ElectionsApi
