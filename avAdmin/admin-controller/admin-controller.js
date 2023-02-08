@@ -142,24 +142,7 @@ angular
 
       function adminImport() 
       {
-        if (!$window.showOpenFilePicker) 
-        {
-          document.querySelector("#side-import-file").click();
-        }
-
-        $window
-          .showOpenFilePicker()
-          .then(
-            function (data)
-            {
-              var fileHandle = data[0];
-
-              fileHandle
-              .getFile()
-              .then(adminImportFile);
-            }
-          );
-
+        document.querySelector("#side-import-file").click();
 
         var el = ElectionsApi.templateEl();
         $scope.current = el;
