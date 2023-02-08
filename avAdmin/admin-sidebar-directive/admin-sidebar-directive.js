@@ -48,6 +48,13 @@ angular.module('avAdmin')
           scope.showImport = !!$window.showOpenFilePicker;
           scope.isEditingDraft = DraftElection.isEditingDraft;
           scope.globalPerms = { val: '' };
+          scope.selectFile = function () {
+            document.querySelector("#side-import-file").click();
+          };
+          scope.uploadFile = function (element) {
+            var f = element.files[0];
+            console.log(f);
+          };
 
           // update perms
           ElectionsApi
