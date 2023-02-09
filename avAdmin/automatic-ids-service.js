@@ -22,7 +22,7 @@ angular
 .module('avAdmin')
 .factory('AutomaticIds', function(
     $q,
-    Authmethod,
+    Authmethod
 )
 {
    var service = {

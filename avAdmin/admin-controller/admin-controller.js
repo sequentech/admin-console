@@ -138,8 +138,14 @@ angular
             function (fileText)
             {
               var elections = JSON.parse(fileText);
-              ElectionsApi.currentElections = AutomaticIds.fillInElectionIds(elections);
-              $state.go("admin.create");
+              AutomaticIds.fillInElectionIds(elections)
+              .then(
+                function (fixedElections)
+                {
+                  ElectionsApi.currentElections = fixedElections;
+                  $state.go("admin.create");
+                }
+              );
             }
           );
       }
