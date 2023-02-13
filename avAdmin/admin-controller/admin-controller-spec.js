@@ -39,6 +39,7 @@ describe("Admin Controler tests", function () {
         $i18next: undefined,
         $cookies: undefined,
         ConfigService: { helpUrl: 'http://sequentech.io', showSuccessAction: true },
+        AutomaticIds: undefined,
         ElectionsApi: {
           autoreloadStats: function() {},
           getElection: function() {
