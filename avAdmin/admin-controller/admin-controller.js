@@ -32,7 +32,8 @@ angular
       $timeout, 
       $q,
       $window,
-      $modal
+      $modal,
+      AutomaticIds
     ) {
       var id = $stateParams.id;
       $scope.electionId = id;
@@ -136,8 +137,15 @@ angular
           .then(
             function (fileText)
             {
-              ElectionsApi.currentElections = JSON.parse(fileText);
-              $state.go("admin.create");
+              var elections = JSON.parse(fileText);
+              AutomaticIds.fillInElectionIds(elections)
+              .then(
+                function (fixedElections)
+                {
+                  ElectionsApi.currentElections = fixedElections;
+                  $state.go("admin.create");
+                }
+              );
             }
           );
       }
