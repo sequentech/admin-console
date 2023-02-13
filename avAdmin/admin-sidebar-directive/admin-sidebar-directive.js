@@ -45,7 +45,6 @@ angular.module('avAdmin')
           scope.admin = admin;
           scope.isAdmin = $cookies.get("isAdmin" + postfix);
           scope.active = attrs.active;
-          scope.showImport = !!$window.showOpenFilePicker;
           scope.isEditingDraft = DraftElection.isEditingDraft;
           scope.globalPerms = { val: '' };
 

@@ -33,7 +33,13 @@
       <span class="capitalize-draft" ng-i18next="avAdmin.elections.draft">
       </span>
     </a>
-    <a ng-click="adminImport()" ng-if="showImport"> 
+    <input
+      type="file"
+      id="side-import-file"
+      class="hidden"
+      aria-hidden="true"
+      onchange="angular.element(this).scope().adminImportFile(this)"/>
+    <a ng-click="adminImport()">
       <i class="fa-fw fa fa-upload"></i> 
       <span ng-i18next="avAdmin.sidebar.import"></span>
     </a>
