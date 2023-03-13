@@ -111,7 +111,7 @@ angular
                       if (voter && voter.metadata && voter.metadata.children_event_id_list &&
                         voter.metadata.children_event_id_list.length > 0) {
                           voter.metadata.children_event_id_list =
-                            voter.metadata.children_event_id_lists.map(function (event_id) {
+                            voter.metadata.children_event_id_list.map(function (event_id) {
                               return newIdsMap[event_id] || event_id;
                             });
                       }
