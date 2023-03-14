@@ -1,6 +1,6 @@
 /**
  * This file is part of admin-console.
- * Copyright (C) 2022  Sequent Tech Inc <legal@sequentech.io>
+ * Copyright (C) 2022-2023  Sequent Tech Inc <legal@sequentech.io>
 
  * admin-console is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -104,6 +104,21 @@ angular
                        return category;
                      });
                  }
+
+                  // replace census voters for parent-children elections
+                  if (election.census && election.census.voters && election.census.voters.length > 0) {
+                    election.census.voters = election.census.voters.map(function (voter) {
+                      if (voter && voter.metadata && voter.metadata.children_event_id_list &&
+                        voter.metadata.children_event_id_list.length > 0) {
+                          voter.metadata.children_event_id_list =
+                            voter.metadata.children_event_id_list.map(function (event_id) {
+                              return newIdsMap[event_id] || event_id;
+                            });
+                      }
+                      return voter;
+                    });
+                  }
+
                }
                deferred.resolve(elections);
              },
