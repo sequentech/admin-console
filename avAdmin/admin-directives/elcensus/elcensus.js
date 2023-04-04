@@ -1196,6 +1196,8 @@ angular.module('avAdmin')
         scope.election = ElectionsApi.currentElection;
         MustExtraFieldsService(scope.election);
         if (scope.page === 1 && !newElection()) {
+          // assign the election id that somehow is not assigned before
+          scope.election.id = $stateParams.id;
           reloadCensus();
         }
       }
