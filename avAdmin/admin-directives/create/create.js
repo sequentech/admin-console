@@ -149,7 +149,8 @@ angular.module('avAdmin')
                         question && 
                         question.extra_options && 
                         question.extra_options.enable_checkable_lists &&
-                        question.layout !== 'simultaneous-questions'
+                        question.layout !== 'simultaneous-questions' &&
+                        question.layout !== 'simultaneous-questions-v2'
                       ) {
                         return false;
                       } else {
