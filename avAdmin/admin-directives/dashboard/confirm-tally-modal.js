@@ -51,17 +51,17 @@ angular.module('avAdmin')
 
       $scope.census_dump_modes = [
         {
-          name: 'all',
+          name: 'active',
           enabled: true
         },
         {
-          name: 'active',
+          name: 'all',
           enabled: true
-        }
+        },
       ];
 
       $scope.binding = {
-        census_dump_mode: 'all'
+        census_dump_mode: 'active'
       };
 
       $scope.ok = function () {
