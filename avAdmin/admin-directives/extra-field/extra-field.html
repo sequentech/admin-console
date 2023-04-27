@@ -212,7 +212,7 @@
   </div>
 
   <!-- required -->
-  <div class="row"  ng-if="['email', 'text', 'int', 'bool', 'textarea'].indexOf(field.type) !== -1">
+  <div class="row"  ng-if="['email', 'password', 'text', 'int', 'bool', 'captcha', 'textarea', 'dict', 'tlf', 'date'].indexOf(field.type) !== -1">
     <div class="form-group">
       <label
         class="control-label col-sm-4 text-right">
@@ -233,7 +233,7 @@
   </div>
 
   <!-- unique -->
-  <div class="row"  ng-if="['email', 'text', 'int', 'bool', 'textarea'].indexOf(field.type) !== -1">
+  <div class="row"  ng-if="['email', 'password', 'text', 'int', 'bool', 'captcha', 'textarea', 'dict', 'tlf', 'date'].indexOf(field.type) !== -1">
     <div class="form-group">
       <label
         class="control-label col-sm-4 text-right">
@@ -254,7 +254,7 @@
   </div>
 
   <!-- private -->
-  <div class="row"  ng-if="['email', 'text', 'int', 'bool', 'textarea'].indexOf(field.type) !== -1">
+  <div class="row"  ng-if="['email', 'password', 'text', 'int', 'bool', 'textarea', 'dict', 'tlf', 'date'].indexOf(field.type) !== -1">
     <div class="form-group">
       <label
         class="control-label col-sm-4 text-right">
@@ -275,7 +275,7 @@
   </div>
 
   <!-- required on authentication -->
-  <div class="row"  ng-if="['email', 'text', 'int', 'bool', 'textarea', 'captcha'].indexOf(field.type) !== -1">
+  <div class="row"  ng-if="['email', 'password', 'text', 'int', 'bool', 'captcha', 'textarea', 'dict', 'tlf', 'date'].indexOf(field.type) !== -1">
     <div class="form-group">
       <label
         class="control-label col-sm-4 text-right">
@@ -296,7 +296,7 @@
   </div>
 
   <!-- pre-register option: match census on registration -->
-  <div class="row"  ng-if="['email', 'text', 'int', 'bool', 'textarea', 'tel'].indexOf(field.type) !== -1">
+  <div class="row"  ng-if="['email', 'password', 'text', 'int', 'bool', 'captcha', 'textarea', 'dict', 'tlf', 'date'].indexOf(field.type) !== -1">
     <div class="form-group">
       <label
         class="control-label col-sm-4 text-right">
@@ -317,7 +317,7 @@
   </div>
 
   <!-- pre-register option: fill if empty on registration -->
-  <div class="row"  ng-if="['email', 'text', 'int', 'bool', 'textarea', 'tel'].indexOf(field.type) !== -1">
+  <div class="row"  ng-if="['email', 'password', 'text', 'int', 'bool', 'textarea', 'dict', 'tlf', 'date'].indexOf(field.type) !== -1">
     <div class="form-group">
       <label
         class="control-label col-sm-4 text-right">
@@ -338,7 +338,7 @@
   </div>
 
   <!-- autofill -->
-  <div class="row"  ng-if="['email', 'text', 'int', 'bool', 'textarea'].indexOf(field.type) !== -1">
+  <div class="row"  ng-if="['email', 'password', 'text', 'int', 'bool', 'textarea', 'dict', 'tlf', 'date'].indexOf(field.type) !== -1">
     <div class="form-group">
       <label
         class="control-label col-sm-4 text-right">
