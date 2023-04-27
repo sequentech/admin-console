@@ -800,14 +800,18 @@ angular.module('avAdmin')
               scope.intally = true;
               scope.index = scope.getStatusIndex('stopped') + 1;
               scope.nextaction = false;
-
-              if (data.mode === 'all') {
-                ElectionsApi.command(
-                  scope.election,
-                  command.path,
-                  command.method,
-                  command.data
-                ).catch(
+              Authmethod
+                .launchTally(
+                  scope.election.id,
+                  data.tallyElectionIds,
+                  'force-all',
+                  data.mode
+                )
+                .then(
+                  function onSuccess() 
+                  {
+                    scope.msg = "avAdmin.dashboard.modals.launchTallySuccess";
+                  },
                   function(error)
                   {
                     if (scope.launchedTally) {
@@ -817,30 +821,6 @@ angular.module('avAdmin')
                     scope.error = error;
                   }
                 );
-
-              // tally only active users
-              } else {
-                Authmethod
-                  .launchTally(
-                    scope.election.id,
-                    data.tallyElectionIds,
-                    'force-all'
-                  )
-                  .then(
-                    function onSuccess() 
-                    {
-                      scope.msg = "avAdmin.dashboard.modals.launchTallySuccess";
-                    },
-                    function(error)
-                    {
-                      if (scope.launchedTally) {
-                        scope.launchedTally = false;
-                      }
-                      scope.loading = false;
-                      scope.error = error;
-                    }
-                  );
-              }
             },
             enableFunc: function () {
               return (

@@ -13,11 +13,21 @@
     <span ng-i18next>
       [html]avAdmin.dashboard.modals.tallyIntro
     </span>
-
-    <a href="{{helpurl}}" class="learn-more" target="_blank" ng-i18next>
-      avAdmin.learnMore
-    </a>
   </p>
+
+  <div
+    ng-if="children_election_info && children_election_info.presentation && children_election_info.presentation.categories && children_election_info.presentation.categories.length > 0"
+    class="active-mode-settings">
+    <br/>
+    <span class="description" ng-i18next>
+      avAdmin.dashboard.modals.censusDumpMode.chooseChildrenToTally
+    </span>
+    <div
+      av-children-elections
+      mode="checkbox"
+      children-election-info="children_election_info">
+    </div>
+  </div>
 
   <!-- Show forms of census dump -->
   <div class="form-group">
@@ -48,33 +58,7 @@
         class="description"
         ng-i18next="[html]avAdmin.dashboard.modals.censusDumpMode.{{ mode.name }}Description">
       </span>
-
-      <div
-        ng-if="mode.name == 'active' && children_election_info && children_election_info.presentation && children_election_info.presentation.categories && children_election_info.presentation.categories.length > 0"
-        class="active-mode-settings">
-        <br/>
-        <span class="description" ng-i18next>
-          avAdmin.dashboard.modals.censusDumpMode.chooseChildrenToTally
-        </span>
-        <div
-          av-children-elections
-          mode="checkbox"
-          children-election-info="children_election_info">
-        </div>
-      </div>
     </label>
-  </div>
-  <div class="row-fluid">
-    <div class="col-xs-12">
-      <progressbar
-        ng-if="downloading"
-        class="progress-striped active"
-        max="totalCensusCount"
-        value="currentCount"
-        type="success">
-        <strong>{{currentCount}} / {{totalCensusCount}}</strong>
-      </progressbar>
-    </div>
   </div>
 </div>
 <div class="modal-footer">
