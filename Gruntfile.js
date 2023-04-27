@@ -317,6 +317,9 @@ module.exports = function (grunt) {
         options: {
           remove: ['script[data-remove!="false"]','link[data-remove!="false"]'],
           append: [
+            {selector:'head',html:'<link class="favicon" rel="icon" href="/admin/img/cropped-FAV-6-32x32.png" sizes="32x32" />'},
+            {selector:'head',html:'<link class="favicon" rel="icon" href="/admin/img/cropped-FAV-6-192x192.png" sizes="192x192" />'},
+            {selector:'head',html:'<link class="favicon" rel="apple-touch-icon" href="/admin/img/cropped-FAV-6-180x180.png" />'},
             {selector:'body',html:'<%= variables.admin_html_body_include %>'},
             {selector:'body',html:'<!--[if lte IE 8]><script src="/admin/libcompat-v7.3.0.min.js"></script><![endif]--><!--[if gte IE 9]><script src="/admin/libnocompat-v7.3.0.min.js"></script><![endif]--><!--[if !IE]><!--><script src="/admin/libnocompat-v7.3.0.min.js"></script><!--<![endif]-->'},
             {selector:'body',html:'<!--All the source code of this program under copyright. Take a look at the license details at https://github.com/sequent/sequent-core-view/blob/master/README.md -->'},
