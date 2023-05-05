@@ -101,3 +101,49 @@
 .label-danger {
   background-color: #d9534f;
 }
+
+.modal-dialog {
+  .btn-success {
+    border: 0;
+    background-color: @grey-darker;
+  }
+
+  .btn-success:hover {
+    background-color: darken(@grey-darker, 25%);
+  }
+
+  .btn-success-action {
+    border: 0;
+    background-color: #007B67;
+    color: @bg-primary;
+  }
+
+  .btn-success-action:hover {
+    background-color: @av-secondary;
+    color: @bg-primary;
+  }
+
+  .btn-transparent {
+    border-color: @grey-darker !important;
+    color: @grey-darker !important;
+
+    &:hover {
+      color: white !important;
+      background-color: @grey-darker !important;
+      border-color: @grey-darker !important;
+    }
+  }
+
+  .btn[disabled] {
+    background-color: @grey-darker !important;
+    opacity: 1 !important;
+  }
+
+  .btn-cancel {
+    background-color: lighten(@grey-darker, 11%);
+    color: @bg-primary;
+    &:hover {
+        background-color: darken(@grey-darker, 10%) !important;
+    }
+  }
+}
