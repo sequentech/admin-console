@@ -36,7 +36,7 @@
       border-color: @gray-lighter;
 
       .header {
-        color: @av-secondary;
+        color: #444;
       }
     }
 
@@ -92,6 +92,21 @@
 
       [av-extra-field] {
         position: relative;
+
+        .container-fluid.view-field {
+          display: flex;
+          flex-direction: row;
+
+          .row {
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+
+            .form-group {
+              display: flex;
+              flex-direction: row;
+            }
+          }
+        }
       }
 
       .dndPlaceholder {
