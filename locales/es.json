@@ -890,7 +890,7 @@
           "election-census-admin-fields-lambda-required-boolean": "Votación '__eltitle__': el campo admin field __fname__ required ha de ser un booleano",
           "election-census-admin-fields-lambda-private-boolean": "Votación '__eltitle__': el campo admin field __fname__ private ha de ser un booleano",
 
-          "election-question-lambda-writeins-enabled": "Votación '__eltitle__', pregunta '__qtitle__': pregunta tiene writeins pero no han sido habilitados"
+          "election-question-lambda-writeins-enabled": "Votación '__eltitle__', pregunta '__qtitle__': pregunta tiene writeins pero no han sido habilitados con 'allow_writeins'"
         }
     },
 
