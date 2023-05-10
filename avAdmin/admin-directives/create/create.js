@@ -462,6 +462,19 @@ angular.module('avAdmin')
                     check: "lambda",
                     validator: function (question) 
                     {
+                      var hasWriteIns = question.answers.some(function (answer) {
+                        return hasUrl(answer.urls, 'isWriteIn', 'true');
+                      });
+                      var writeInsEnabled = !!question.extra_options && true === question.extra_options.allow_writeins;
+
+                      return !hasWriteIns || writeInsEnabled;
+                    },
+                    postfix: "-writeins-enabled"
+                  },
+                  {
+                    check: "lambda",
+                    validator: function (question) 
+                    {
                       return (
                         Number.isInteger(question.max) &&
                         question.max >= question.min &&
