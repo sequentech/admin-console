@@ -1,11 +1,15 @@
 <div av-admin-head nologin></div>
 
-<div
-  av-login
-  event-id="{{ authId }}"
-  class="admin-unfixed-top"
-  code="{{code}}"
-  email="{{email}}">
+<div class="login-controller">
+  <div class="pad">
+    <div
+      av-login
+      event-id="{{ authId }}"
+      class="admin-unfixed-top"
+      code="{{code}}"
+      email="{{email}}">
+    </div>
+  </div>
 </div>
 
 <div av-foot class="hidden-xs"></div>

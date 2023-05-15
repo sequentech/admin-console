@@ -149,7 +149,8 @@ angular.module('avAdmin')
                         question && 
                         question.extra_options && 
                         question.extra_options.enable_checkable_lists &&
-                        question.layout !== 'simultaneous-questions'
+                        question.layout !== 'simultaneous-questions' &&
+                        question.layout !== 'simultaneous-questions-v2'
                       ) {
                         return false;
                       } else {
@@ -456,6 +457,19 @@ angular.module('avAdmin')
                     min: 0,
                     max: ElectionLimits.maxLongStringLength,
                     postfix: "-title"
+                  },
+                  {
+                    check: "lambda",
+                    validator: function (question) 
+                    {
+                      var hasWriteIns = question.answers.some(function (answer) {
+                        return hasUrl(answer.urls, 'isWriteIn', 'true');
+                      });
+                      var writeInsEnabled = !!question.extra_options && true === question.extra_options.allow_writeins;
+
+                      return !hasWriteIns || writeInsEnabled;
+                    },
+                    postfix: "-writeins-enabled"
                   },
                   {
                     check: "lambda",

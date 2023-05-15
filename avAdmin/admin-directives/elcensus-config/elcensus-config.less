@@ -32,7 +32,7 @@
     cursor: pointer;
 
     &.selected {
-      background-color: lighten(@av-primary-contrast, 30%);
+      background-color: #c1bfbf;
       border-color: @gray-lighter;
 
       .header {
@@ -92,6 +92,32 @@
 
       [av-extra-field] {
         position: relative;
+
+        .container-fluid.view-field {
+          display: flex;
+          flex-direction: row;
+
+          .row {
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+            width: 100%;
+
+            .form-group {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+
+              label {
+                width: 33.33333333%;
+                padding-right: 15px;
+              }
+
+              div {
+                width: 66.66666667%;
+              }
+            }
+          }
+        }
       }
 
       .dndPlaceholder {

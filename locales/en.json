@@ -944,6 +944,7 @@
           "election-question-is-array-answers": "Election '__eltitle__': list of answers is not an array",
           "election-question-is-int-min": "Election '__eltitle__', question '__qtitle__': the minimum number of candidates that a voter can choose is not an integer or valid",
           "election-question-lambda-max": "Election '__eltitle__', question '__qtitle__': the maximum number of candidates that a voter can choose is not valid",
+          "election-question-lambda-writeins-enabled": "Election '__eltitle__', question '__qtitle__': question has writeins but they are not enabled through 'allow_writeins'",
           "election-question-is-int-num-winners": "Election '__eltitle__', question '__qtitle__': the number of winners is not an integer",
           "election-question-array-length-min-answers": "Election '__eltitle__', question '__qtitle__': there must be at least __min__ answers, but there are only __num__",
           "election-question-array-length-max-answers": "Election '__eltitle__', question '__qtitle__': there must be at most __max__ answers, but there are __num__",
