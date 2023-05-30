@@ -90,10 +90,10 @@
           </td>
           <td class="small-col">
             <span
-              am-time-ago="obj.created"
               tooltip="{{obj.created| amDateFormat:'LLLL'}}"
               tooltip-placement="right"
               popover-trigger="mouseenter">
+              {{ obj.created | amDateFormat:'MM.DD.YYYY HH:mm:ss' }}
             </span>
           </td>
           <td colspan="3">
