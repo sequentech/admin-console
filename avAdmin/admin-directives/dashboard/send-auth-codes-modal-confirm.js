@@ -158,6 +158,19 @@ angular.module('avAdmin')
         var url2 = url + "/AABB1234";
         msg = msg.replace("__URL__", url);
         msg = msg.replace("__URL2__", url2);
+        if (election.census.alternative_auth_methods) {
+          _.each(
+            election.census.alternative_auth_methods,
+            function (alt_auth_method) {
+              var key = "__URL_" + alt_auth_method.id.toUpperCase() + "__";
+              var key2 = "__URL2_" + alt_auth_method.id.toUpperCase() + "__";
+              var alt_url = "https://" + $location.host() + "/election/" + election.id + "/public/login-alt/" + alt_auth_method.id;
+              var alt_url2 = "https://" + $location.host() + "/election/" + election.id + "/public/login-alt/?key=value" + alt_auth_method.id;
+              msg = msg.replace(key, alt_url);
+              msg = msg.replace(key2, alt_url2);
+            }
+          );
+        }
         msg = msg.replace("__OTL__", otl_url);
         msg = msg.replace("__CODE__", "AABB1234");
         var keys = {
@@ -173,21 +186,40 @@ angular.module('avAdmin')
       };
 
       /**
-       * Check if message contains both __URL__ and __CODE__ as recommended
+       * Check if message contains both __URL__ and __CODE__ as recommended, or
+       * other valid combinations
        */
       function isMsgComplete()
       {
-        var re_url = /__URL__/;
-        var re_code = /__CODE__/;
-        var re_url2 = /__URL2__/;
-        var re_otl = /__OTL__/;
+        var regexps = [
+          [/__URL__/, /__CODE__/],
+          [/__URL2__/],
+          [/__OTL__/, /__CODE__/],
+        ];
         var msg = $scope.censusConfig.msg;
 
-        return (
-          (msg.match(re_url) && msg.match(re_code)) ||
-          msg.match(re_url2) ||
-          (msg.match(re_url) && msg.match(re_otl))
-        );
+        if (election.census.alternative_auth_methods) {
+          _.each(
+            election.census.alternative_auth_methods,
+            function (alt_auth_method) {
+              var key = "__URL_" + alt_auth_method.id.toUpperCase() + "__";
+              var key2 = "__URL2_" + alt_auth_method.id.toUpperCase() + "__";
+              regexps.push([new RegExp(key), /__CODE__/]);
+              regexps.push([new RegExp(key2)]);
+            }
+          );
+        }
+        for (var i = 0; i < regexps.length; i++) {
+          var match = true;
+          for (var j = 0; j < regexps[i].length; j++) {
+            match = match && msg.match(regexps[i][j]);
+          }
+          if (match) {
+            return true;
+          }
+        }
+
+        return false;
       }
 
       // set the default value of the flag that specifies that the user is sure
