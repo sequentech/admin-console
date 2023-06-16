@@ -212,7 +212,7 @@ angular.module('avAdmin')
         for (var i = 0; i < regexps.length; i++) {
           var match = true;
           for (var j = 0; j < regexps[i].length; j++) {
-            match = match & msg.match(regexps[i][j]);
+            match = match && msg.match(regexps[i][j]);
           }
           if (match) {
             return true;
