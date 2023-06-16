@@ -203,7 +203,7 @@ angular.module('avAdmin')
             election.census.alternative_auth_methods,
             function (alt_auth_method) {
               var key = "__URL_" + alt_auth_method.id.toUpperCase() + "__";
-              var key2 = "__URL_" + alt_auth_method.id.toUpperCase() + "__";
+              var key2 = "__URL2_" + alt_auth_method.id.toUpperCase() + "__";
               regexps.push([new RegExp(key), /__CODE__/]);
               regexps.push([new RegExp(key2)]);
             }
@@ -211,7 +211,7 @@ angular.module('avAdmin')
         }
         for (var i = 0; i < regexps.length; i++) {
           var match = true;
-          for (var j = 0; i < regexps[i].length; j++) {
+          for (var j = 0; j < regexps[i].length; j++) {
             match = match & msg.match(regexps[i][j]);
           }
           if (match) {
