@@ -28,7 +28,7 @@ var SequentConfigData = {
   // 'https://foo/api/v3/' and always ends in '/'.
   base: "",
   theme: "default",
-  baseUrl: "/elections/api/",
+  baseUrl: "/admin-api/elections/api/",
   freeAuthId: 1,
 
   // Webpage title
@@ -38,8 +38,8 @@ var SequentConfigData = {
   showSuccessAction: false,
 
   // AuthApi base url
-  authAPI: "/iam/api/",
-  dnieUrl: "/iam/api/authmethod/dnie/auth/",
+  authAPI: "/admin-api/iam/api/",
+  dnieUrl: "/admin-api/iam/api/authmethod/dnie/auth/",
   // Agora Elections base url
   electionsAPI: "/elections/api/",
 
@@ -139,7 +139,7 @@ var SequentConfigData = {
 
   timeoutSeconds: 3600,
 
-  publicURL: "/elections/public/",
+  publicURL: "/admin-api/elections/public/",
 
   // if we are in debug mode or not
   debug: true,
