@@ -649,7 +649,7 @@ angular.module('avAdmin')
 
       scope.row_commands = [
         {
-	        text: $i18next("avAdmin.census.viewActivityOneAction"),
+	        text: "avAdmin.census.viewActivityOneAction",
           iconClass: 'fa fa-pie-chart',
           actionFunc: function(voter) {
             // go to activity-log for this voter
@@ -669,7 +669,7 @@ angular.module('avAdmin')
           }
         },
         {
-	        text: $i18next("avAdmin.census.activateOneAction"),
+	        text: "avAdmin.census.activateOneAction",
           iconClass: 'fa fa-user',
           actionFunc: function(voter) {
 	          selectVoter(voter);
@@ -697,7 +697,7 @@ angular.module('avAdmin')
           }
         },
         {
-	        text: $i18next("avAdmin.census.deactivateOneAction"),
+	        text: "avAdmin.census.deactivateOneAction",
           iconClass: 'fa fa-user-times',
           actionFunc: function(voter) {
             selectVoter(voter);
@@ -725,7 +725,7 @@ angular.module('avAdmin')
           }
         },
         {
-	        text: $i18next("avAdmin.census.removeCensusOneAction"),
+	        text: "avAdmin.census.removeCensusOneAction",
           iconClass: 'fa fa-trash-o',
           actionFunc: function(voter) {
             selectVoter(voter);
@@ -756,7 +756,7 @@ angular.module('avAdmin')
           }
         },
         {
-	        text: $i18next("avAdmin.census.sendAuthCodesOneAction"),
+	        text: "avAdmin.census.sendAuthCodesOneAction",
           iconClass: 'fa fa-paper-plane-o',
           actionFunc: function(voter) {
             selectVoter(voter);
@@ -770,7 +770,7 @@ angular.module('avAdmin')
           }
         },
         {
-	        text: $i18next("avAdmin.census.generatePDFAuthCodesAction"),
+	        text: "avAdmin.census.generatePDFAuthCodesAction",
           iconClass: 'fa fa-file-pdf-o',
           actionFunc: function(voter) {
             return generatePDFAuthCodes(voter);
@@ -783,7 +783,7 @@ angular.module('avAdmin')
           }
         },
         {
-          text: $i18next("avAdmin.census.resetVoterToPreRegistration"),
+          text: "avAdmin.census.resetVoterToPreRegistration",
           iconClass: 'fa fa-file-pdf-o',
           actionFunc: function(voter) {
             return resetVoterToPreRegistration(voter);
