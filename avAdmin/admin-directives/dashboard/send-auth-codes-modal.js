@@ -36,6 +36,7 @@ angular
       $scope.steps = SendMsg.steps;
       $scope.censusConfig = SendMsg.censusConfig;
       $scope.censusConfig.msg = $filter('customI18n')($scope.censusConfig, 'msg');
+      $scope.censusConfig.html_message = $filter('customI18n')($scope.censusConfig, 'html_message');
       $scope.censusConfig.subject = $filter('customI18n')($scope.censusConfig, 'subject');
       $scope.helpurl = ConfigService.helpUrl;
       $scope.allowHtmlEmails = ConfigService.allowHtmlEmails;
