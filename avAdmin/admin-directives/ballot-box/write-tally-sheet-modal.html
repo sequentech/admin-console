@@ -83,7 +83,7 @@
               ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.electionTitleLabel">
             </label>
             <div class="col-xs-5 value-label">
-              {{tallySheet.title}}
+              {{tallySheet | customI18n : 'title'}}
             </div>
           </div>
         </div>
@@ -92,7 +92,7 @@
       <!-- for each question -->
       <div class="row" ng-repeat="question in tallySheet.questions">
         <p class="question-title">
-          {{$index+1}}: {{question.title}}
+          {{$index+1}}: {{question | customI18n : 'title'}}
         </p>
 
         <!-- enter number of blank votes -->
@@ -141,7 +141,7 @@
             <label
               for="q{{qIndex}}a{$index}}TotalCount"
               class="col-xs-5 control-label">
-              {{answer.text}}:
+              {{answer | customI18n : 'text'}}:
             </label>
             <div class="col-xs-5">
               <input
@@ -263,7 +263,7 @@
               ng-i18next="avAdmin.ballotBox.modals.writeTallySheet.electionTitleLabel">
             </label>
             <div class="col-xs-5 value-label">
-              {{tallySheet.title}}
+              {{tallySheet | customI18n : 'title'}}
             </div>
           </div>
         </div>
@@ -272,7 +272,7 @@
       <!-- for each question -->
       <div class="row" ng-repeat="question in tallySheet.questions">
         <p class="question-title">
-          {{$index+1}}: {{question.title}}
+          {{$index+1}}: {{question | customI18n : 'title'}}
         </p>
 
         <!-- review number of blank votes -->
@@ -306,7 +306,7 @@
           <div class="form-group">
             <label
               class="col-xs-5 control-label">
-              {{answer.text}}:
+              {{answer | customI18n : 'text'}}:
             </label>
             <div class="col-xs-5 value-label">
               {{answer.num_votes}}
