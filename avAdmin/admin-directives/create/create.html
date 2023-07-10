@@ -31,18 +31,18 @@
     </div>
 
     <div ng-repeat="election in elections">
-      <h3 ng-i18next>[i18next]({'title': election.title, 'index': $index+1})avAdmin.basic.title.labelH3</h3>
+      <h3 ng-i18next>[i18next]({'title': (election | customI18n : 'title'), 'index': $index+1})avAdmin.basic.title.labelH3</h3>
       <table class="table table-bordered table-striped">
           <tr>
               <th ng-i18next> avAdmin.basic.description.label </th>
-              <td ng-bind="election.description | htmlToText | truncate:150"></td>
+              <td ng-bind="election | customI18n : 'description' | htmlToText | truncate:150"></td>
           </tr>
           <tr>
               <th ng-i18next> avAdmin.sidebar.questions </th>
               <td>
                   <ol>
                       <li ng-repeat="q in election.questions">
-                          <p>{{q.title|truncate:'50'}}</p>
+                          <p>{{q | customI18n : 'title' |truncate:'50'}}</p>
                           <p ng-i18next>[html:i18next]({'num_answers': q.answers.length, 'min': q.min, 'max': q.max, 'num_winners': q.num_winners, tally_method: q.tally_type, shuffle_all_options: q.extra_options.shuffle_all_options, shuffle_categories: q.extra_options.shuffle_categories})avAdmin.basic.questionOptionsSummary</p>
                       </li>
                   </ol>
