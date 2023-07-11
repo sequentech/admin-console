@@ -132,12 +132,7 @@ angular.module('avAdmin')
         try {
           // this hook can avoid the addCensus call
           if (Plugins.hook('add-to-census-pre', census)) {
-            Authmethod.launchPingDaemon(id)
-              .then(
-                function onSuccess(response) {
-                  return Authmethod.addCensus(id, census, opt);
-                }
-              )
+            Authmethod.addCensus(id, census, opt)
               .then(
                 function onSuccess(response) {
                   Plugins.hook('add-to-census-success', {data: census, response: response.data});
