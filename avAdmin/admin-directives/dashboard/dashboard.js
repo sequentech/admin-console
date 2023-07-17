@@ -1056,6 +1056,16 @@ angular.module('avAdmin')
             }
           },
           {
+            i18nString: 'forceTally',
+            iconClass: 'fa fa-bars',
+            actionFunc: function() { 
+              return Authmethod.forceTally(scope.election.id);  // force-tally
+            },
+            enableFunc: function() {
+              return ConfigService.enableMultipleTallies;
+            }
+          },
+          {
             i18nString: 'tally',
             iconClass: 'fa fa-bars',
             actionFunc: function() { 
