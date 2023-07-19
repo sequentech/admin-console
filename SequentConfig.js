@@ -196,6 +196,9 @@ var SequentConfigData = {
 
   legal_html_include: '',
 
+  // Server timeout (seconds)
+  serverTimeoutSeconds: 200,
+
   // Details pertaining to the organization that runs the software
   organization: {
     // Name of the organization, appears in the logo mouse hover, in the login
