@@ -1095,7 +1095,7 @@ angular.module('avAdmin')
               return scope.forceTally();
             },
             enableFunc: function() {
-              return ConfigService.enableMultipleTallies;
+              return ConfigService.enableMultipleTallies && scope.election.tally_allowed;
             }
           },
           {
