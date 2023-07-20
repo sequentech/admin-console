@@ -594,6 +594,12 @@
             "confirmButton": "Allow to do election tally",
             "success": "Allowed to do election tally"
           },
+          "forceTally": {
+            "header": "Force to do election tally",
+            "body": "After this action is executed, the tally will start, even if the election hasn't finished. You can do multiple tallies.",
+            "confirmButton": "Force to do election tally",
+            "success": "Tally started forcefully"
+          },
           "generatePDFAuthCodes": {
             "header": "Generate PDF voter authentication code",
             "body": "Generate PDF authentication code for the selected voter. Even if the voter has not filled the fill-in fields, he will be able to vote using these code and the link in the PDF.",

@@ -558,6 +558,39 @@ angular.module('avAdmin')
           );
       }
 
+      function forceTally() 
+      {
+        $modal
+          .open({
+            templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
+            controller: "AdminConfirmModal",
+            size: 'lg',
+            resolve: {
+              dialogName: function () { return "forceTally"; },
+              data: function () { return ""; },
+            }
+          })
+          .result
+          .then(
+            function confirmed() 
+            {
+              Authmethod.forceTally(scope.election.id)
+                .then(
+                  function onSuccess() 
+                  {
+                    scope.msg = "avAdmin.dashboard.modals.forceTally.success";
+                    clearTimeout(scope.reloadTimeout);
+                    scope.reloadTimeout = setTimeout(waitElectionChange, 5000);
+                  }, 
+                  function onError(response) { scope.error = response.data; }
+                )
+                .catch(
+                  function onError(error) { scope.error = error; }
+                );
+            }
+          );
+      }
+
       function editChildrenParent(mode) 
       {
         $modal
@@ -1059,7 +1092,7 @@ angular.module('avAdmin')
             i18nString: 'forceTally',
             iconClass: 'fa fa-bars',
             actionFunc: function() { 
-              return Authmethod.forceTally(scope.election.id);  // force-tally
+              return scope.forceTally();
             },
             enableFunc: function() {
               return ConfigService.enableMultipleTallies;
@@ -1343,6 +1376,7 @@ angular.module('avAdmin')
         setOtlPeriod: setOtlPeriod,
         unpublishResults: unpublishResults,
         allowTally: allowTally,
+        forceTally: forceTally,
         editChildrenParent: editChildrenParent,
         showResults: showResults,
         toggleDownloadButton: toggleDownloadButton,
