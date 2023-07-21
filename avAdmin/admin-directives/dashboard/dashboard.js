@@ -650,7 +650,7 @@ angular.module('avAdmin')
           electionId,
           function callback(el)
           {
-            if (scope.resultsElection && scope.resultsElection.id === el.id) 
+            if (scope.resultsElection && String(scope.resultsElection.id) === String(el.id)) 
             {
               // save the previous results, which will be updated later..
               var results = scope.resultsElection.results;
