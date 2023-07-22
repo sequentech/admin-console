@@ -800,7 +800,7 @@ angular.module('avAdmin')
               var command = scope.commands[4];
               scope.launchedTally = true;
               scope.intally = true;
-              if (el.status === 'stopped') {
+              if (scope.election.status === 'stopped') {
                 scope.index = scope.getStatusIndex('stopped') + 1;
               }
               scope.nextaction = false;
