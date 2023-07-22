@@ -106,7 +106,8 @@ angular.module('avAdmin')
 
               if (scope.intally) 
               {
-                scope.index = scope.getStatusIndex('stopped') + 1;
+                scope.index = scope.getStatusIndex(el.status) + 1;
+                //scope.index = scope.getStatusIndex('stopped') + 1;
                 scope.nextaction = false;
                 scope.prevStatus = scope.election.status;
                 scope.waiting = true;
