@@ -106,8 +106,9 @@ angular.module('avAdmin')
 
               if (scope.intally) 
               {
-                scope.index = scope.getStatusIndex(el.status) + 1;
-                //scope.index = scope.getStatusIndex('stopped') + 1;
+                if (el.status === 'stopped') {
+                  scope.index = scope.getStatusIndex('stopped') + 1;
+                }
                 scope.nextaction = false;
                 scope.prevStatus = scope.election.status;
                 scope.waiting = true;
@@ -799,7 +800,9 @@ angular.module('avAdmin')
               var command = scope.commands[4];
               scope.launchedTally = true;
               scope.intally = true;
-              scope.index = scope.getStatusIndex('stopped') + 1;
+              if (el.status === 'stopped') {
+                scope.index = scope.getStatusIndex('stopped') + 1;
+              }
               scope.nextaction = false;
               Authmethod
                 .launchTally(
