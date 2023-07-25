@@ -106,7 +106,9 @@ angular.module('avAdmin')
 
               if (scope.intally) 
               {
-                scope.index = scope.getStatusIndex('stopped') + 1;
+                if (el.status === 'stopped') {
+                  scope.index = scope.getStatusIndex('stopped') + 1;
+                }
                 scope.nextaction = false;
                 scope.prevStatus = scope.election.status;
                 scope.waiting = true;
@@ -617,7 +619,7 @@ angular.module('avAdmin')
           electionId,
           function callback(el)
           {
-            if (scope.resultsElection && scope.resultsElection.id === el.id) 
+            if (scope.resultsElection && String(scope.resultsElection.id) === String(el.id)) 
             {
               // save the previous results, which will be updated later..
               var results = scope.resultsElection.results;
@@ -798,7 +800,9 @@ angular.module('avAdmin')
               var command = scope.commands[4];
               scope.launchedTally = true;
               scope.intally = true;
-              scope.index = scope.getStatusIndex('stopped') + 1;
+              if (scope.election.status === 'stopped') {
+                scope.index = scope.getStatusIndex('stopped') + 1;
+              }
               scope.nextaction = false;
               Authmethod
                 .launchTally(

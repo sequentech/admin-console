@@ -233,7 +233,10 @@ var SequentConfigData = {
   repoVersions: [],
 
   // Number of seconds after which an authentication token expires.
-  authTokenExpirationSeconds: 600
+  authTokenExpirationSeconds: 600,
+
+  // Allow to tally multiple times and when election is open.
+  enableMultipleTallies: false
 };
 
 angular.module('SequentConfig', [])
