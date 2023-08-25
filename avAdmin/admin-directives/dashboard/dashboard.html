@@ -198,6 +198,7 @@
             <div class="well text-right">
                 <a
                   href="election/{{ election.id }}/public/home"
+                  ng-if="!hidePublicHome"
                   target="_blank"
                   ng-i18next>
                   avAdmin.dashboard.electionPublic
