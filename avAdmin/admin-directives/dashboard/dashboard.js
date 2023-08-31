@@ -1282,6 +1282,9 @@ angular.module('avAdmin')
             scope.loading = false;
             scope.election = election;
             scope.resultsElection = election;
+            scope.hidePublicHome = scope.election.presentation &&
+              scope.election.presentation.extra_options &&
+              scope.election.presentation.extra_options.disable__public_home;
 
             // do some initialization
             if (!!election.tallyPipesConfig && election.tallyPipesConfig.length > 0) 
