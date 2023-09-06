@@ -1355,7 +1355,7 @@ angular.module('avAdmin')
 
     return {
       restrict: 'AE',
-      scope: {},
+      scope: true,
       link: link,
       templateUrl: 'avAdmin/admin-directives/dashboard/dashboard.html'
     };
