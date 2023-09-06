@@ -668,6 +668,7 @@ angular.module('avAdmin')
           $state.go("admin.basic");
         }
 
+        /*
         scope.perms = {val: ""};
         ElectionsApi
           .getEditPerm(scope.id)
@@ -676,6 +677,7 @@ angular.module('avAdmin')
               scope.perms.val = perm.split(":")[4].split("|");
             }
           );
+        */
         scope.publicURL = ConfigService.publicURL;
         scope.launchedTally = false;
         

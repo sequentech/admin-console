@@ -38,9 +38,6 @@ angular
       var id = $stateParams.id;
       $scope.electionId = id;
 
-      // get election perms, with a default of no perms
-      $scope.perms = {val: ""};
-
       $scope.state = $state.current.name;
       $scope.current = null;
       $scope.noplugin = true;
@@ -219,15 +216,30 @@ angular
       Plugins.hook('add-dashboard-election-states', plugins_data);
       states = states.concat(plugins_data.states);
 
+
+      // get election perms, with a default of no perms
+      $scope.perms = {val: ""};
+      ElectionsApi
+        .getEditPerm($scope.electionId)
+        .then(
+          function (perm) {
+            $scope.perms.val = perm.split(":")[4].split("|");
+          }
+        );
+
       $scope.globalPerms = {val: ""};
       // update global perms
       ElectionsApi
         .getEditPerm(null)
         .then(
           function (perm) {
-            $scope.globalPerms.val = perm;
+            $scope.globalPerms.val = perm.split(":")[4].split("|");
           }
         );
+
+      angular.extend($scope, {
+        perms: $scope.
+      })
 
       if (states.indexOf($scope.state) >= 0) {
           $scope.sidebarlinks = [];
