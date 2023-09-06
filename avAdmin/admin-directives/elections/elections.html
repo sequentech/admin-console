@@ -82,9 +82,9 @@
             </td>
             <td class="td-7">
               <a ng-click="loadDraft()">
-                <strong>{{ draft.title }}</strong>
+                <strong>{{ draft | customI18n : 'title' }}</strong>
                 <div
-                  ng-bind="draft.description | htmlToText | truncate:150">
+                  ng-bind="draft | customI18n : 'description' | htmlToText | truncate:150">
                 </div>
               </a>
             </td>
@@ -120,9 +120,9 @@
             </td>
             <td class="main td-7">
               <a ui-sref="admin.dashboard({id: election.id})">
-                <strong>{{ election.title }}</strong>
+                <strong>{{ election | customI18n : 'title' }}</strong>
                 <div
-                  ng-bind="election.description | htmlToText | truncate:150">
+                  ng-bind="election | customI18n : 'description' | htmlToText | truncate:150">
                 </div>
               </a>
               <!-- children elections-->
@@ -140,9 +140,9 @@
                     </td>
                     <td class="td-6">
                       <a ui-sref="admin.dashboard({id: childElection.id})">
-                        <strong>{{ childElection.title }}</strong>
+                        <strong>{{ childElection | customI18n : 'title' }}</strong>
                         <div
-                          ng-bind="childElection.description | htmlToText | truncate:150">
+                          ng-bind="childElection | customI18n : 'description' | htmlToText | truncate:150">
                         </div>
                       </a>
                     </td>

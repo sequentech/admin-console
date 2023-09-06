@@ -6,7 +6,7 @@
        <span>
          <h2>
           <span ng-i18next>avAdmin.sidebar.dashboard</span>
-          <span class="text-gray-light" ng-if="election.title">{{election.title | truncate:45}}</span>
+          <span class="text-gray-light" ng-if="election.title || election.title_i18n">{{election | customI18n : 'title' | truncate:45}}</span>
          </h2>
        </span>
     </div>
@@ -337,7 +337,7 @@
     <div class="well question-result" ng-repeat="q in resultsElection.results.questions">
         <div class="row">
             <div class="col-md-7">
-                <h2 class="question-title" ng-bind-html="q.title"></h2>
+                <h2 class="question-title" ng-bind-html="q | customI18n : 'title'"></h2>
             </div>
             <div class="col-md-5">
                 <dl class="dl-horizontal">
@@ -375,7 +375,7 @@
             <tr ng-repeat="an in q.answers|orderBy:'-total_count'">
                 <td>{{ $index + 1 }}</td>
                 <td>
-                  <span  ng-bind-html="an.text"></span>
+                  <span  ng-bind-html="an | customI18n : 'text'"></span>
                   <span 
                     ng-if="isWriteInResult(an)"
                     ng-i18next="avAdmin.dashboard.writeInResults">
