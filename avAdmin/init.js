@@ -17,6 +17,17 @@
 
 angular.module('avAdmin', ['ui.bootstrap','ui.utils','ui.router']);
 
-angular.module('avAdmin').config(function() {
+angular.module('avAdmin').config(function($scope, ElectionsApi) {
     /* Add New States Above */
+    var perms = {val: ""};
+    ElectionsApi
+        .getEditPerm(scope.id)
+        .then(
+        function (perm) {
+            perms.val = perm.split(":")[4].split("|");
+        }
+        );
+    angular.extend($scope, {
+        perms: perms
+    });
 });
