@@ -673,7 +673,7 @@ angular.module('avAdmin')
           .getEditPerm(scope.id)
           .then(
             function (perm) {
-              scope.perms.val = perm;
+              scope.perms.val = perm.split(":")[4].split("|");
             }
           );
         scope.publicURL = ConfigService.publicURL;
