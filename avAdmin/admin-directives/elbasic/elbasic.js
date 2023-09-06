@@ -30,7 +30,10 @@ angular.module('avAdmin')
           scope.layouts = ['simple', /*'2questions-conditional', 'pcandidates-election'*/];
           scope.themes = ['default'/*, 'podemos'*/];
 
-          scope.allow_social_edit = ConfigService.share_social.allow_edit;
+          scope.allow_social_edit = ConfigService.share_social.allow_edit && (
+            scope.perms.val.indexOf("edit") !== -1 ||
+            scope.perms.val.indexOf("update-share") !== -1
+          );
 
           scope.electionEditable = function() {
             return !scope.election.id || scope.election.status === "registered";
@@ -74,8 +77,7 @@ angular.module('avAdmin')
 
       return {
         restrict: 'AE',
-        scope: {
-        },
+        scope: true,
         link: link,
         templateUrl: 'avAdmin/admin-directives/elbasic/elbasic.html'
       };
