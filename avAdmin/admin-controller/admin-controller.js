@@ -237,10 +237,6 @@ angular
           }
         );
 
-      angular.extend($scope, {
-        perms: $scope.
-      })
-
       if (states.indexOf($scope.state) >= 0) {
           $scope.sidebarlinks = [];
           if (!!id)
