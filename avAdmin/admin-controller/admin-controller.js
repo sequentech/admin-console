@@ -266,7 +266,6 @@ angular
 
                         if (
                           perm.indexOf('event-view-activity') !== -1 ||
-                          perm.indexOf('view') !== -1 || 
                           perm.indexOf('edit') !== -1
                         ) {
                           $scope.sidebarlinks = $scope.sidebarlinks.concat([
