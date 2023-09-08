@@ -30,10 +30,7 @@ angular.module('avAdmin')
           scope.layouts = ['simple', /*'2questions-conditional', 'pcandidates-election'*/];
           scope.themes = ['default'/*, 'podemos'*/];
 
-          scope.allow_social_edit = ConfigService.share_social.allow_edit && (
-            scope.perms.val.indexOf("edit") !== -1 ||
-            scope.perms.val.indexOf("update-share") !== -1
-          );
+          scope.allow_social_edit = ConfigService.share_social.allow_edit && scope.hasPerms(["update-share", "edit"]);
 
           scope.electionEditable = function() {
             return !scope.election.id || scope.election.status === "registered";

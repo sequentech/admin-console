@@ -1105,6 +1105,9 @@ angular.module('avAdmin')
         scope.loading = true;
 
         ElectionsApi.waitForCurrent(function () {
+          if (!scope.hasPerms(["view-census", "edit"])) {
+            return;
+          }
           ElectionsApi.getCensus(
               scope.election,
               scope.page,
