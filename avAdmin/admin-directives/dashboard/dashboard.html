@@ -23,7 +23,7 @@
       <ul class="dropdown-menu">
         <li
           ng-repeat="action in permittedActions()"
-          ng-disabled="!commands[$index].enableFunc()">
+          ng-disabled="!action.enableFunc()">
           <a ng-click="action.enableFunc() && action.actionFunc()">
             <i class="{{action.iconClass}}"></i>
             <span ng-i18next>
