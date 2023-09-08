@@ -200,7 +200,6 @@ angular.module('avAdmin')
 
         return {
             restrict: 'AE',
-            scope: true,
             link: link,
             templateUrl: 'avAdmin/admin-directives/elections/elections.html'
         };
