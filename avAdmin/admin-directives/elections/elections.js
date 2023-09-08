@@ -199,9 +199,9 @@ angular.module('avAdmin')
         }
 
         return {
-        restrict: 'AE',
-        link: link,
-        templateUrl: 'avAdmin/admin-directives/elections/elections.html'
+            restrict: 'AE',
+            link: link,
+            templateUrl: 'avAdmin/admin-directives/elections/elections.html'
         };
     }
   );
