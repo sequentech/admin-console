@@ -159,13 +159,14 @@
             <button
               class="btn btn-block btn-lg btn-success-action" 
               ng-if="nextaction" 
-              ng-disabled="!commands[index].enableFunc()"
+              ng-if="commands[index].enableFunc()"
               ng-i18next="{{ nextaction }}"
               ng-click="doActionConfirm(index)">
             </button>
 
             <button
               ng-click="duplicateElection()"
+              ng-if="hasPerms(['create'])"
               class="btn btn-block btn-lg btn-success"
               ng-i18next>
               avAdmin.dashboard.duplicateElection

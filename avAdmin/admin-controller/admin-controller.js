@@ -217,6 +217,12 @@ angular
       states = states.concat(plugins_data.states);
 
 
+      $scope.hasPerms = function (optionList) {
+        return optionList.some(function (option ) {
+          return $scope.perms.val.includes(option);
+        });
+      };
+
       // get election perms, with a default of no perms
       $scope.perms = {val: ""};
       ElectionsApi
