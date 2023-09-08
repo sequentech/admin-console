@@ -275,7 +275,7 @@ angular
           
 
                         // update election perms
-                        $scope.perms.val = perm;
+                        $scope.perms.val = perm.split(":")[4].split("|");
                       }
                     );
                 }

@@ -668,16 +668,6 @@ angular.module('avAdmin')
           $state.go("admin.basic");
         }
 
-        /*
-        scope.perms = {val: ""};
-        ElectionsApi
-          .getEditPerm(scope.id)
-          .then(
-            function (perm) {
-              scope.perms.val = perm.split(":")[4].split("|");
-            }
-          );
-        */
         scope.publicURL = ConfigService.publicURL;
         scope.launchedTally = false;
         

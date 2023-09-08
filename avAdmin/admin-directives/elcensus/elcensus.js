@@ -49,15 +49,6 @@ angular.module('avAdmin')
       scope.nomore = false;
       scope.error = null;
       scope.page = 1;
-
-      scope.perms = {val: ""};
-      ElectionsApi
-        .getEditPerm(scope.election.id)
-        .then(
-          function (perm) {
-            scope.perms.val = perm;
-          }
-        );
         
       scope.msg = null;
       scope.filterStr = "";
@@ -1207,8 +1198,7 @@ angular.module('avAdmin')
 
     return {
       restrict: 'AE',
-      scope: {
-      },
+      scope: true,
       link: link,
       templateUrl: 'avAdmin/admin-directives/elcensus/elcensus.html'
     };
