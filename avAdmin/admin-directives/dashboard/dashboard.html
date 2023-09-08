@@ -23,7 +23,7 @@
       <ul class="dropdown-menu">
         <li
           ng-repeat="action in actions"
-          ng-class="{'disabled': !action.enableFunc()}">
+          ng-if="action.enableFunc()">
           <a ng-click="action.enableFunc() && action.actionFunc()">
             <i class="{{action.iconClass}}"></i>
             <span ng-i18next>
@@ -71,9 +71,8 @@
           </div>
           <button 
             ng-click="doActionConfirm($index)" 
-            class="actionbtn btn btn-success" 
-            ng-disabled="!commands[$index].enableFunc()"
-            ng-if="index == $index && nextaction" 
+            class="actionbtn btn btn-success"
+            ng-if="index == $index && nextaction && commands[$index].enableFunc()" 
             ng-class="['election-status-action-' + index]">
             <div 
               class="small {{ nextaction }}" 
@@ -87,8 +86,7 @@
           <button
             ng-click="doActionConfirm($index)"
             class="actionbtn btn btn-success"
-            ng-disabled="!commands[$index].enableFunc()"
-            ng-if="getStatusIndex('results_ok') === $index && index === 1 + $index"
+            ng-if="getStatusIndex('results_ok') === $index && index === 1 + $index && commands[$index].enableFunc()"
           >
             <div 
               class="small" 
