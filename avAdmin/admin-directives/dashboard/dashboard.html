@@ -10,7 +10,7 @@
          </h2>
        </span>
     </div>
-    <div class="dropdown pull-right actions-div"  ng-if="enabledActions().length > 0">
+    <div class="dropdown pull-right actions-div"  ng-if="permittedActions().length > 0">
       <button
         class="btn btn-success actionbtn ng-scope btn-primary dropdown-toggle"
         type="button"
@@ -22,7 +22,8 @@
       </button>
       <ul class="dropdown-menu">
         <li
-          ng-repeat="action in enabledActions()">
+          ng-repeat="action in permittedActions()"
+          ng-disabled="!commands[$index].enableFunc()">
           <a ng-click="action.enableFunc() && action.actionFunc()">
             <i class="{{action.iconClass}}"></i>
             <span ng-i18next>
@@ -71,7 +72,8 @@
           <button 
             ng-click="doActionConfirm($index)" 
             class="actionbtn btn btn-success"
-            ng-if="index == $index && nextaction && commands[$index].enableFunc()" 
+            ng-disabled="!commands[$index].enableFunc()"
+            ng-if="index == $index && nextaction && commands[$index].permsFunc()" 
             ng-class="['election-status-action-' + index]">
             <div 
               class="small {{ nextaction }}" 
@@ -85,7 +87,8 @@
           <button
             ng-click="doActionConfirm($index)"
             class="actionbtn btn btn-success"
-            ng-if="getStatusIndex('results_ok') === $index && index === 1 + $index && commands[$index].enableFunc()"
+            ng-disabled="!commands[$index].enableFunc()"
+            ng-if="getStatusIndex('results_ok') === $index && index === 1 + $index && commands[$index].permsFunc()"
           >
             <div 
               class="small" 
@@ -120,7 +123,7 @@
                 <strong>{{ election.auth.census|number }}</strong><br/>
                 <button
                   ng-click="sendAuthCodes()"
-                  ng-if="perms.val.indexOf('send-auth-all') !== -1 || perms.val.indexOf('edit') !== -1"
+                  ng-if="scope.hasPerms(['send-auth-all', 'edit'])"
                   class="btn btn-success send-auth pull-left">
                     <i class="fa fa-sw fa-send"></i>
                     <span ng-i18next>
@@ -158,8 +161,8 @@
 
             <button
               class="btn btn-block btn-lg btn-success-action" 
-              ng-if="nextaction" 
-              ng-if="commands[index].enableFunc()"
+              ng-if="nextaction && commands[index].permsFunc()" 
+              ng-disabled="!commands[index].enableFunc()"
               ng-i18next="{{ nextaction }}"
               ng-click="doActionConfirm(index)">
             </button>
