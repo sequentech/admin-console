@@ -735,7 +735,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["register", "edit"])
+              return scope.hasPerms(["register", "edit"]);
             }
           },
           {
@@ -750,7 +750,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["create", "edit"])
+              return scope.hasPerms(["create", "edit"]);
             }
           },
           {
@@ -773,7 +773,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["start", "edit"])
+              return scope.hasPerms(["start", "edit"]);
             }
           },
           {
@@ -788,7 +788,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["stop", "edit"])
+              return scope.hasPerms(["stop", "edit"]);
             }
           },
           {
@@ -847,7 +847,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["tally", "edit"])
+              return scope.hasPerms(["tally", "edit"]);
             }
           },
           {
@@ -898,7 +898,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["calculate-results", "edit"])
+              return scope.hasPerms(["calculate-results", "edit"]);
             }
           },
           {
@@ -940,7 +940,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["publish-results", "edit"])
+              return scope.hasPerms(["publish-results", "edit"]);
             }
           }
         ];
@@ -956,7 +956,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["update-share", "edit"])
+              return scope.hasPerms(["update-share", "edit"]);
             }
           },
           {
@@ -987,7 +987,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["start", "edit"])
+              return scope.hasPerms(["start", "edit"]);
             }
           },
           {
@@ -1009,7 +1009,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["suspend", "edit"])
+              return scope.hasPerms(["suspend", "edit"]);
             }
           },
           {
@@ -1030,7 +1030,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["resume", "edit"])
+              return scope.hasPerms(["resume", "edit"]);
             }
           },
           {
@@ -1057,7 +1057,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["stop", "edit"])
+              return scope.hasPerms(["stop", "edit"]);
             }
           },
           {
@@ -1083,7 +1083,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["allow-tally", "edit"])
+              return scope.hasPerms(["allow-tally", "edit"]);
             }
           },
           {
@@ -1102,7 +1102,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["tally", "edit"])
+              return scope.hasPerms(["tally", "edit"]);
             }
           },
           {
@@ -1126,7 +1126,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["calculate-results", "edit"])
+              return scope.hasPerms(["calculate-results", "edit"]);
             }
           },
           {
@@ -1150,7 +1150,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["publish-results", "edit"])
+              return scope.hasPerms(["publish-results", "edit"]);
             }
           },
           {
@@ -1169,7 +1169,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["publish-results", "edit"])
+              return scope.hasPerms(["publish-results", "edit"]);
             }
           },
           {
@@ -1183,7 +1183,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["send-auth-all", "edit"])
+              return scope.hasPerms(["send-auth-all", "edit"]);
             }
           },
           {
@@ -1197,7 +1197,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["archive", "edit"])
+              return scope.hasPerms(["archive", "edit"]);
             }
           },
           {
@@ -1211,7 +1211,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["unarchive", "edit"])
+              return scope.hasPerms(["unarchive", "edit"]);
             }
           },
           {
@@ -1225,7 +1225,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["set-public-candidates", "edit"])
+              return scope.hasPerms(["set-public-candidates", "edit"]);
             }
           },
           {
@@ -1239,7 +1239,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["set-public-candidates", "edit"])
+              return scope.hasPerms(["set-public-candidates", "edit"]);
             }
           },
           {
@@ -1258,7 +1258,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["set-authenticate-otl-periods", "edit"])
+              return scope.hasPerms(["set-authenticate-otl-periods", "edit"]);
             }
           },
           {
@@ -1277,7 +1277,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["set-authenticate-otl-periods", "edit"])
+              return scope.hasPerms(["set-authenticate-otl-periods", "edit"]);
             }
           },
           {
@@ -1291,7 +1291,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["edit"])
+              return scope.hasPerms(["edit"]);
             }
           },
           {
@@ -1309,7 +1309,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["edit"])
+              return scope.hasPerms(["edit"]);
             }
           },
           {
@@ -1327,7 +1327,7 @@ angular.module('avAdmin')
               );
             },
             permsFunc: function() {
-              return scope.hasPerms(["edit"])
+              return scope.hasPerms(["edit"]);
             }
           },
         ];
