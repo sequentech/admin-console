@@ -292,7 +292,13 @@ angular
               {name: 'questions', icon: 'question-circle'},
               {name: 'auth', icon: 'unlock'},
               {name: 'censusConfig', icon: 'newspaper-o'},
-              {name: 'census', icon: 'users'},
+              {
+                name: 'census',
+                icon: 'users',
+                permsFunc: function() {
+                  return scope.hasPerms(["view-census", "edit"]);
+                }
+              },
               //{name: 'successAction', icon: 'star-o'},
               {name: 'adminFields', icon: 'user'},
               //{name: 'tally', icon: 'pie-chart'},

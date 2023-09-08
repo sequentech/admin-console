@@ -69,8 +69,8 @@
 
     <div 
       class="nav nav-pills nav-stacked" 
-      ng-repeat="l in sidebarlinks" 
-      ng-if="'adminFields' !== l.name || !!hasAdminFields"
+      ng-repeat="l in sidebarlinks"
+      ng-if="('adminFields' !== l.name || !!hasAdminFields) && (!l.permsFunc || l.permsFunc())"
     >
       <li 
         role="presentation" 
