@@ -10,7 +10,7 @@
          </h2>
        </span>
     </div>
-    <div class="dropdown pull-right actions-div">
+    <div class="dropdown pull-right actions-div"  ng-if="enabledActions().length > 0">
       <button
         class="btn btn-success actionbtn ng-scope btn-primary dropdown-toggle"
         type="button"
@@ -22,8 +22,7 @@
       </button>
       <ul class="dropdown-menu">
         <li
-          ng-repeat="action in actions"
-          ng-if="action.enableFunc()">
+          ng-repeat="action in enabledActions()">
           <a ng-click="action.enableFunc() && action.actionFunc()">
             <i class="{{action.iconClass}}"></i>
             <span ng-i18next>
@@ -121,7 +120,7 @@
                 <strong>{{ election.auth.census|number }}</strong><br/>
                 <button
                   ng-click="sendAuthCodes()"
-                  ng-disabled="perms.val.indexOf('send-auth-all') === -1 && perms.val.indexOf('edit') === -1"
+                  ng-if="perms.val.indexOf('send-auth-all') !== -1 || perms.val.indexOf('edit') !== -1"
                   class="btn btn-success send-auth pull-left">
                     <i class="fa fa-sw fa-send"></i>
                     <span ng-i18next>

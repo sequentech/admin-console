@@ -1255,6 +1255,12 @@ angular.module('avAdmin')
           },
         ];
 
+        scope.enabledActions = function () {
+          return scope.actions.filter(function (action) {
+            return action.enableFunc();
+          });
+        };
+
         scope.statuses = scope.statuses;
         scope.election = {};
         scope.index = 0;
