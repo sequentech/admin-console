@@ -296,7 +296,7 @@ angular
                 name: 'census',
                 icon: 'users',
                 permsFunc: function() {
-                  return scope.hasPerms(["view-census", "edit"]);
+                  return $scope.hasPerms(["view-census", "edit"]);
                 }
               },
               //{name: 'successAction', icon: 'star-o'},
