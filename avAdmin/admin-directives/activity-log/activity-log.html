@@ -89,12 +89,7 @@
             {{obj.id}}
           </td>
           <td class="small-col">
-            <span
-              am-time-ago="obj.created"
-              tooltip="{{obj.created| amUtc | amDateFormat:'MM.DD.YYYY HH:mm:ss'}}"
-              tooltip-placement="right"
-              popover-trigger="mouseenter">
-            </span>
+            {{obj.created| amUtc | amDateFormat:'MM.DD.YYYY HH:mm:ss'}}
           </td>
           <td colspan="3">
             <div ng-if="obj.action_name === 'authevent:create'" ng-i18next>
