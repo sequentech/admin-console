@@ -97,7 +97,7 @@
           <td class="small-col">
             {{obj.created| amUtc | amDateFormat:'MM.DD.YYYY HH:mm:ss'}}
           </td>
-          <td colspan="3">
+          <td class="description-col">
             <div ng-if="obj.action_name === 'authevent:create'" ng-i18next>
             [i18next:html](obj)avAdmin.activityLog.action.authevent.create
             </div>
