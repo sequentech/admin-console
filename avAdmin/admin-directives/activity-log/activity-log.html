@@ -95,7 +95,7 @@
             {{obj.receiver_id}}
           </td>
           <td class="small-col">
-            {{obj.created| amUtc | amDateFormat:'MM.DD.YYYY HH:mm:ss'}}
+            {{obj.created| amUtc | amDateFormat:'DD.MM.YYYY HH:mm:ss'}}
           </td>
           <td class="description-col">
             <div ng-if="obj.action_name === 'authevent:create'" ng-i18next>
