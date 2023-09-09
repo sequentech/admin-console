@@ -91,7 +91,7 @@
           <td class="small-col">
             <span
               am-time-ago="obj.created"
-              tooltip="{{obj.created| amDateFormat:'LLLL'}}"
+              tooltip="{{obj.created| amUtc | amDateFormat:'MM.DD.YYYY HH:mm:ss'}}"
               tooltip-placement="right"
               popover-trigger="mouseenter">
             </span>
