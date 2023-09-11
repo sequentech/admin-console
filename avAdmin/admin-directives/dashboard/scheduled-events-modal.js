@@ -41,24 +41,32 @@ angular.module('avAdmin')
           : null
         }
       };
-      $scope.start_voting_enabled = $scope.isEnabled('start_voting');
-      $scope.end_voting_enabled = $scope.isEnabled('end_voting');
+
+      $scope.enabled = {
+        start_voting: $scope.isEnabled('start_voting'),
+        end_voting: $scope.isEnabled('end_voting')
+      };
 
       $scope.ok = function () {
-        $modalInstance.close({
+        var scheduledEvents = {
           start_voting: (
             (
               $scope.start_voting_enabled &&
               !!$scope.scheduled_events.start_voting.event_at
-            ) ? {event_at: $scope.scheduled_events.start_voting.event_at} : null
+            ) ? {
+              event_at: $scope.scheduled_events.start_voting.event_at.toISOString()
+            } : null
           ),
           end_voting: (
             (
               $scope.end_voting_enabled &&
               !!$scope.scheduled_events.end_voting.event_at
-            ) ? {event_at: $scope.scheduled_events.end_voting.event_at} : null
-            )
-        });
+            ) ? {
+              event_at: $scope.scheduled_events.end_voting.event_at.toISOString()
+            } : null
+          )
+        };
+        $modalInstance.close(scheduledEvents);
       };
 
       $scope.cancel = function () {
