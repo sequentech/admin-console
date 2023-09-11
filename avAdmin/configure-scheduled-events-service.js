@@ -34,12 +34,9 @@ angular
       controller: "ScheduledEventsModal",
       size: 'lg',
       resolve: {
-        dialogName: function () { return 'scheduledEventsModal'; },
-        data: function() 
+        election: function() 
         {
-          return {
-            election: service.election
-          };
+          return service.election;
         }
       }
     })
