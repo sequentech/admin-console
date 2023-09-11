@@ -54,7 +54,7 @@
       <label
         for="end-voting-enable"
         class="descriptive-checkbox"
-        ng-class="{'disabled':enabled. !end_voting}"
+        ng-class="{'disabled': !enabled.end_voting}"
       >
         <input
           id="end-voting-enable"
@@ -71,7 +71,7 @@
       <label
         for="end-voting-selector"
         class="descriptive-selector"
-        ng-class="{'disabled':enabled. !end_voting}"
+        ng-class="{'disabled': !enabled.end_voting}"
       >
         <span 
           class="header"
@@ -79,7 +79,7 @@
         ></span>
         <input
           id="end-voting-selector"
-          ng-disabled=enabled."!end_voting"
+          ng-disabled="!enabled.end_voting"
           type="datetime-local"
           name="end-voting-selector"
           ng-model="scheduled_events.end_voting.event_at"
