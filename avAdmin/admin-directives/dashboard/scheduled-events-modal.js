@@ -29,7 +29,7 @@ angular.module('avAdmin')
             election.scheduled_events &&
             election.scheduled_events.start_voting &&
             election.scheduled_events.start_voting.event_at
-          ) ? election.scheduled_events.start_voting.event_at
+          ) ? new Date(election.scheduled_events.start_voting.event_at)
           : null
         },
         end_voting: {
@@ -37,7 +37,7 @@ angular.module('avAdmin')
             election.scheduled_events &&
             election.scheduled_events.end_voting &&
             election.scheduled_events.end_voting.event_at
-          ) ? election.scheduled_events.end_voting.event_at
+          ) ? new Date(election.scheduled_events.end_voting.event_at)
           : null
         }
       };
