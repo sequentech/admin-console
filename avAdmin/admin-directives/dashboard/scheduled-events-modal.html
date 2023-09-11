@@ -15,10 +15,10 @@
       </span>
     </p>
     <form role="form" class="form form-horizontal" name="elbasic_form">
-      <!-- start_voting -->
+      <!-- start_voting checkbox -->
       <label
         for="start-voting-enable"
-        class="descriptive-radio"
+        class="descriptive-checkbox"
       >
         <input
           id="start-voting-enable"
@@ -30,18 +30,56 @@
           class="header"
           ng-i18next="avAdmin.dashboard.modals.configureScheduledEvents.startVotingEnable">
         </span>
-        <span class="description">
-          <span 
-            ng-i18next="avAdmin.dashboard.modals.configureScheduledEvents.startVotingSelector"
-          ></span>
-          <input
-            id="start-voting-selector"
-            ng-disabled="!start_voting_enabled"
-            type="datetime-local"
-            name="start-voting-selector"
-            ng-model="scheduled_events.start_voting.event_at"
-          />
+      </label>
+      <!-- start_voting selector -->
+      <label
+        for="start-voting-selector"
+        class="descriptive-selector"
+      >
+        <input
+          id="start-voting-selector"
+          ng-disabled="!start_voting_enabled"
+          type="datetime-local"
+          name="start-voting-selector"
+          ng-model="scheduled_events.start_voting.event_at"
+        />
+        <span 
+          class="header"
+          ng-i18next="avAdmin.dashboard.modals.configureScheduledEvents.startVotingSelector"
+        ></span>
+      </label>
+      <!-- end_voting checkbox -->
+      <label
+        for="end-voting-enable"
+        class="descriptive-checkbox"
+      >
+        <input
+          id="end-voting-enable"
+          type="checkbox"
+          name="end-voting-enable"
+          ng-model="end_voting_enabled"
+        />
+        <span
+          class="header"
+          ng-i18next="avAdmin.dashboard.modals.configureScheduledEvents.endVotingEnable">
         </span>
+      </label>
+      <!-- end_voting selector -->
+      <label
+        for="end-voting-selector"
+        class="descriptive-selector"
+      >
+        <input
+          id="end-voting-selector"
+          ng-disabled="!end_voting_enabled"
+          type="datetime-local"
+          name="end-voting-selector"
+          ng-model="scheduled_events.end_voting.event_at"
+        />
+        <span 
+          class="header"
+          ng-i18next="avAdmin.dashboard.modals.configureScheduledEvents.endVotingSelector"
+        ></span>
       </label>
     </form>
   </div>
