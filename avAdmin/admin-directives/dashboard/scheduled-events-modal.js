@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin')
-  .controller('ConfirmCreateModal',
+  .controller('ScheduledEventsModal',
     function($scope, $modalInstance, election) {
       if (!angular.isObject(election.scheduled_events)) {
         election.scheduled_events = {

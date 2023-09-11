@@ -393,7 +393,7 @@
           "makeCandidatesPrivate": "Make candidates private...",
           "launchKeyDistributionCeremony": "Launch keys distribution ceremony",
           "launchOpeningCeremony": "Launch opening ceremony",
-          "launchScheduledEvents": "Configure scheduled events",
+          "configureScheduledEvents": "Configure scheduled events",
           "enableOtlPeriod": "Enable Otl period...",
           "disableOtlPeriod": "Disable Otl period..."
         },
