@@ -636,7 +636,7 @@
             "body": "Schedule events related to the election, such as the start or the stop date and time.",
             "startVotingEnable": "Automatically start the election",
             "startVotingSelector": "Select date:",
-            "endVotingEnable": "Automatically start the election",
+            "endVotingEnable": "Automatically stop the election",
             "endVotingSelector": "Select date:",
             "confirm": "Confirm to change scheduled events",
             "success": "Changed the configuration of scheduled events successfully.",

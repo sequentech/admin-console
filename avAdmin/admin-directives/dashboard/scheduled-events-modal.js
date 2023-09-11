@@ -17,22 +17,44 @@
 
 angular.module('avAdmin')
   .controller('ScheduledEventsModal',
-    function($scope, $modalInstance, election) {
-      if (!angular.isObject(election.scheduled_events)) {
-        election.scheduled_events = {
-          start_voting: null,
-          end_voting: null
-        };
-      }
-
+    function($scope, $modalInstance, election)
+    {
       $scope.isEnabled = function (name) {
-        return election.scheduled_events[name] != null;
+        return $scope.scheduled_events[name] != null;
+      };
+
+      $scope.scheduled_events = {
+        start_voting: {
+          event_at: (
+            election.scheduled_events &&
+            election.scheduled_events.start_voting &&
+            election.scheduled_events.start_voting.event_at
+          ) ? election.scheduled_events.start_voting.event_at
+          : null
+        },
+        end_voting: {
+          event_at: (
+            election.scheduled_events &&
+            election.scheduled_events.end_voting &&
+            election.scheduled_events.end_voting.event_at
+          ) ? election.scheduled_events.end_voting.event_at
+          : null
+        }
       };
       $scope.start_voting_enabled = $scope.isEnabled('start_voting');
       $scope.end_voting_enabled = $scope.isEnabled('end_voting');
-      $scope.scheduled_events = election.scheduled_events;
+
       $scope.ok = function () {
-        $modalInstance.close();
+        $modalInstance.close({
+          start_voting: (
+            $scope.start_voting_enabled ?
+              {event_at: $scope.scheduled_events.start_voting.event_at} : null
+          ),
+          end_voting: (
+            $scope.end_voting_enabled ?
+            {event_at: $scope.scheduled_events.end_voting.event_at} : null
+            )
+        });
       };
 
       $scope.cancel = function () {

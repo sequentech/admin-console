@@ -45,7 +45,7 @@ angular
       function updateScheduledEvents(scheduledEvents) 
       {
         Authmethod
-          .scheduledEvents(scheduledEvents)
+          .scheduledEvents(service.election.id, scheduledEvents)
           .then(onSuccess, onError); 
       }
     );
