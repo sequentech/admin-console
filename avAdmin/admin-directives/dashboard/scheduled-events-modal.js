@@ -20,7 +20,7 @@ angular.module('avAdmin')
     function($scope, $modalInstance, election)
     {
       $scope.isEnabled = function (name) {
-        return $scope.scheduled_events[name] != null;
+        return $scope.scheduled_events[name].event_at != null;
       };
 
       $scope.scheduled_events = {
