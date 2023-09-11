@@ -29,7 +29,8 @@ angular.module('avAdmin')
        PercentVotesService,
        ConfigService,
        SendMsg,
-       KeysCeremony)
+       KeysCeremony,
+       ConfigureScheduledEvents)
     {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) 
@@ -609,6 +610,20 @@ angular.module('avAdmin')
 
       function launchOpeningCeremony() {
         KeysCeremony.launchOpeningCeremony(scope.election);
+      }
+
+      function configureScheduledEvents() {
+        ConfigureScheduledEvents.launchModal(
+          scope.election,
+          function onSuccess() 
+          {
+            scope.msg = "avAdmin.dashboard.modals.configureScheduledEvents.success"; 
+          }, 
+          function onError() {
+            scope.msg = "avAdmin.dashboard.modals.configureScheduledEvents.error"; 
+          }
+
+        );
       }
 
       function setAutoreload(electionId)
@@ -1257,6 +1272,17 @@ angular.module('avAdmin')
               );
             }
           },
+          {
+            i18nString: 'configureScheduledEvents',
+            iconClass: 'fa fa-clock',
+            actionFunc: function() { return scope.configureScheduledEvents(); },
+            enableFunc: function() { 
+              return (
+                scope.perms.val.indexOf("schedule-events") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              );
+            }
+          },
         ];
 
         scope.statuses = scope.statuses;
@@ -1340,7 +1366,8 @@ angular.module('avAdmin')
         showResults: showResults,
         toggleDownloadButton: toggleDownloadButton,
         launchKeyDistributionCeremony: launchKeyDistributionCeremony,
-        launchOpeningCeremony: launchOpeningCeremony
+        launchOpeningCeremony: launchOpeningCeremony,
+        configureScheduledEvents: configureScheduledEvents,
       });
 
       // initialize

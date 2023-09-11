@@ -393,6 +393,7 @@
           "makeCandidatesPrivate": "Make candidates private...",
           "launchKeyDistributionCeremony": "Launch keys distribution ceremony",
           "launchOpeningCeremony": "Launch opening ceremony",
+          "launchScheduledEvents": "Configure scheduled events",
           "enableOtlPeriod": "Enable Otl period...",
           "disableOtlPeriod": "Disable Otl period..."
         },
@@ -629,6 +630,17 @@
             "body": "Resuming the election when it has previously been suspend temporarily will allow again voters casting a vote.",
             "confirmButton": "RESUME the election voting period",
             "success": "Election voting period resumed successfully."
+          },
+          "configureScheduledEvents": {
+            "header": "Configure Scheduled Events",
+            "body": "Schedule events related to the election, such as the start or the stop date and time.",
+            "startVotingEnable": "Automatically start the election",
+            "startVotingSelector": "Select date:",
+            "endVotingEnable": "Automatically start the election",
+            "endVotingSelector": "Select date:",
+            "confirm": "Confirm to change scheduled events",
+            "success": "Changed the configuration of scheduled events successfully.",
+            "error": "Error changing the configuration of scheduled events."
           }
         }
     },
