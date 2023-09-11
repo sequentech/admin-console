@@ -152,10 +152,32 @@
                 <dl class="dl-horizontal">
                   <dt ng-i18next>avAdmin.dashboard.status</dt>
                   <dd ng-i18next="{{ election.status }}"></dd>
+
                   <dt ng-i18next>avAdmin.dashboard.authentication</dt>
                   <dd>{{ election.auth.authentication }}</dd>
+
                   <dt ng-i18next>avAdmin.dashboard.electionid</dt>
                   <dd>{{ election.id }}</dd>
+
+                  <dt
+                    ng-if="!!election.auth.scheduled_actions.start_voting.event_at"
+                    ng-i18next="avAdmin.dashboard.scheduledStartDate"
+                  ></dt>
+                  <dd
+                    ng-if="!!election.auth.scheduled_actions.start_voting.event_at"
+                  >
+                    {{ election.auth.scheduled_actions.start_voting.event_at }}
+                  </dd>
+
+                  <dt
+                    ng-if="!!election.auth.scheduled_actions.stop_voting.event_at"
+                    ng-i18next="avAdmin.dashboard.scheduledStopDate"
+                  ></dt>
+                  <dd
+                    ng-if="!!election.auth.scheduled_actions.stop_voting.event_at"
+                  >
+                    {{ election.auth.scheduled_actions.stop_voting.event_at }}
+                  </dd>
                 </dl>
             </div>
 
