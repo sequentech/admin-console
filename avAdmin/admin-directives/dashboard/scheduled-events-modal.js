@@ -47,12 +47,16 @@ angular.module('avAdmin')
       $scope.ok = function () {
         $modalInstance.close({
           start_voting: (
-            $scope.start_voting_enabled ?
-              {event_at: $scope.scheduled_events.start_voting.event_at} : null
+            (
+              $scope.start_voting_enabled &&
+              !!$scope.scheduled_events.start_voting.event_at
+            ) ? {event_at: $scope.scheduled_events.start_voting.event_at} : null
           ),
           end_voting: (
-            $scope.end_voting_enabled ?
-            {event_at: $scope.scheduled_events.end_voting.event_at} : null
+            (
+              $scope.end_voting_enabled &&
+              !!$scope.scheduled_events.end_voting.event_at
+            ) ? {event_at: $scope.scheduled_events.end_voting.event_at} : null
             )
         });
       };
