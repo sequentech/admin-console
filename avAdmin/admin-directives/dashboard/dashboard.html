@@ -160,23 +160,23 @@
                   <dd>{{ election.id }}</dd>
 
                   <dt
-                    ng-if="!!election.auth.scheduled_actions.start_voting.event_at"
+                    ng-if="!!election.auth.scheduled_events.start_voting.event_at"
                     ng-i18next="avAdmin.dashboard.scheduledStartDate"
                   ></dt>
                   <dd
-                    ng-if="!!election.auth.scheduled_actions.start_voting.event_at"
+                    ng-if="!!election.auth.scheduled_events.start_voting.event_at"
                   >
-                    {{ election.auth.scheduled_actions.start_voting.event_at }}
+                    {{ election.auth.scheduled_events.start_voting.event_at }}
                   </dd>
 
                   <dt
-                    ng-if="!!election.auth.scheduled_actions.stop_voting.event_at"
+                    ng-if="!!election.auth.scheduled_events.stop_voting.event_at"
                     ng-i18next="avAdmin.dashboard.scheduledStopDate"
                   ></dt>
                   <dd
-                    ng-if="!!election.auth.scheduled_actions.stop_voting.event_at"
+                    ng-if="!!election.auth.scheduled_events.stop_voting.event_at"
                   >
-                    {{ election.auth.scheduled_actions.stop_voting.event_at }}
+                    {{ election.auth.scheduled_events.stop_voting.event_at }}
                   </dd>
                 </dl>
             </div>
