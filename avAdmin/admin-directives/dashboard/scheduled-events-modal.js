@@ -50,8 +50,8 @@ angular.module('avAdmin')
       function getISOString(date)
       {
         var zdate = date.toISOString();
-        // remove the Z at the end and substitute it with `T00:00`
-        return zdate.substr(0, zdate.length-1)+"T00:00";
+        // remove the Z at the end as timezone and substitute it with `+00:00`
+        return zdate.substr(0, zdate.length-1)+"+00:00";
       }
 
       $scope.ok = function () {
