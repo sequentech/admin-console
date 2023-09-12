@@ -663,6 +663,8 @@ angular.module('avAdmin')
             if (scope.election.id === el.id)
             {
               scope.election = el;
+              scope.index = scope.getStatusIndex(election.status) + 1;
+              scope.nextaction = scope.nextactions[scope.index - 1];
             }
           }
         );
