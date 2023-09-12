@@ -51,7 +51,7 @@ angular.module('avAdmin')
         var scheduledEvents = {
           start_voting: (
             (
-              $scope.start_voting_enabled &&
+              $scope.enabled.start_voting &&
               !!$scope.scheduled_events.start_voting.event_at
             ) ? {
               event_at: $scope.scheduled_events.start_voting.event_at.toISOString()
@@ -59,7 +59,7 @@ angular.module('avAdmin')
           ),
           end_voting: (
             (
-              $scope.end_voting_enabled &&
+              $scope.enabled.end_voting &&
               !!$scope.scheduled_events.end_voting.event_at
             ) ? {
               event_at: $scope.scheduled_events.end_voting.event_at.toISOString()
