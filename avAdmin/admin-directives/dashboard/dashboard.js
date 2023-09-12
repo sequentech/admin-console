@@ -120,7 +120,7 @@ angular.module('avAdmin')
                 scope.nextaction = scope.nextactions[scope.index - 1];
 
                 if (
-                  el.status === 'results_ok' || 
+                  el.status === 'results_ok' ||
                   el.status === 'stopped'
                 ) {
                   ElectionsApi.results(el);
@@ -665,6 +665,13 @@ angular.module('avAdmin')
               scope.election = el;
               scope.index = scope.getStatusIndex(el.status) + 1;
               scope.nextaction = scope.nextactions[scope.index - 1];
+
+              if (
+                el.status === 'results_ok' ||
+                el.status === 'stopped'
+              ) {
+                ElectionsApi.results(el);
+              }
             }
           }
         );
