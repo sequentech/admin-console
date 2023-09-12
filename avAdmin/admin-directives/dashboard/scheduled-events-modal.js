@@ -47,6 +47,13 @@ angular.module('avAdmin')
         end_voting: $scope.isEnabled('end_voting')
       };
 
+      function getISOString(date)
+      {
+        var zdate = date.toISOString();
+        // remove the Z at the end and substitute it with `T00:00`
+        return zdate.substr(0, zdate.length-1)+"T00:00";
+      }
+
       $scope.ok = function () {
         var scheduledEvents = {
           start_voting: (
@@ -54,7 +61,7 @@ angular.module('avAdmin')
               $scope.enabled.start_voting &&
               !!$scope.scheduled_events.start_voting.event_at
             ) ? {
-              event_at: $scope.scheduled_events.start_voting.event_at.toISOString()
+              event_at: getISOString($scope.scheduled_events.start_voting.event_at)
             } : null
           ),
           end_voting: (
@@ -62,7 +69,7 @@ angular.module('avAdmin')
               $scope.enabled.end_voting &&
               !!$scope.scheduled_events.end_voting.event_at
             ) ? {
-              event_at: $scope.scheduled_events.end_voting.event_at.toISOString()
+              event_at: getISOString($scope.scheduled_events.end_voting.event_at)
             } : null
           )
         };
