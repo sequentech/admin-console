@@ -302,6 +302,20 @@ angular.module('avAdmin')
              }
            }
         }
+        if (
+          el.scheduled_events &&
+          el.scheduled_events.start_voting &&
+          el.scheduled_events.start_voting.task_id
+        ) {
+          delete el.scheduled_events.start_voting.task_id;
+        }
+        if (
+          el.scheduled_events &&
+          el.scheduled_events.end_voting &&
+          el.scheduled_events.end_voting.task_id
+        ) {
+          delete el.scheduled_events.end_voting.task_id;
+        }
         el.id = null;
         el.raw = null;
         scope.current = el;
