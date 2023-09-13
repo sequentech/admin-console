@@ -448,6 +448,7 @@ module.exports = function (grunt) {
           "dist/locales/moment/en.js": "node_modules/moment/locale/en-gb.js",
           "dist/locales/moment/es.js": "node_modules/moment/locale/es.js",
           "dist/locales/moment/fr.js": "node_modules/moment/locale/fr.js",
+          "dist/locales/moment/it.js": "node_modules/moment/locale/it.js",
           "dist/locales/moment/gl.js": "node_modules/moment/locale/gl.js",
           "dist/locales/moment/ca.js": "node_modules/moment/locale/ca.js"          
         }
