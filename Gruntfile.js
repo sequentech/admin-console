@@ -403,6 +403,11 @@ module.exports = function (grunt) {
             "plugins/**/locales/fr.json", 
             "node_modules/common-ui/dist/locales/fr.json"
           ],
+          "dist/locales/it.json": [
+            "locales/it.json", 
+            "plugins/**/locales/it.json", 
+            "node_modules/common-ui/dist/locales/it.json"
+          ],
           "dist/locales/gl.json": [
             "locales/gl.json", 
             "plugins/**/locales/gl.json", 

@@ -1,0 +1,1044 @@
+{
+  "app": {
+    "name": "Sequent Tech"
+  },
+  "avAdmin": {
+    "action": {
+      "create": "create",
+      "publish": "publish",
+      "start": "start",
+      "stop": "stop",
+      "tally": "tally"
+    },
+    "activityLog": {
+      "action": {
+        "authevent": {
+          "allow_tally_error": "<i>__executer_username__ (__executer_id__)</i> <strong>tried to allow tally with error</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "allow_tally_success": "<i>__executer_username__ (__executer_id__)</i> <strong>allowed tally</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "archive": "<i>__executer_username__ (__executer_id__)</i> <strong>archived</strong> election __event_id__",
+          "calculate_results_error": "<i>__executer_username__ (__executer_id__)</i> <strong>tried to calculate results with error</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "calculate_results_success": "<i>__executer_username__ (__executer_id__)</i> <strong>calculated results</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "callback": "<i>__executer_username__ (__executer_id__)</i> <strong>received callback</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "create": "<i>__executer_username__ (__executer_id__)</i> <strong>created</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>deleted</strong> election __event_id__",
+          "edit": "<i>__executer_username__ (__executer_id__)</i> <strong>edited</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "endVotingRevoked": "<i>__executer_username__ (__executer_id__)</i> <strong>revoked end voting</strong> period for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> at <strong>__old_event_date__</strong> with task id __old_task_id__ __child_election__",
+          "endVotingScheduled": "<i>__executer_username__ (__executer_id__)</i> <strong>scheduled end voting</strong> period for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> at <strong>__new_event_date__</strong> with task id __new_task_id__ __child_election__",
+          "publish_results_error": "<i>__executer_username__ (__executer_id__)</i> <strong>tried to publish results with error</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "publish_results_success": "<i>__executer_username__ (__executer_id__)</i> <strong>published results</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "resume": "<i>__executer_username__ (__executer_id__)</i> <strong>resumed</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "resumeError": "<i>__executer_username__ (__executer_id__)</i> <strong>error resuming</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "resumeSuccess": "<i>__executer_username__ (__executer_id__)</i> <strong>succeeded resuming</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "set_authenticate_otl_period": "<i>__executer_username__ (__executer_id__)</i>  <strong>set the OTL authentication period</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+          "set_public_candidates_error": "<i>__executer_username__ (__executer_id__)</i> <strong>tried to set public-candidates</strong> to __make_public__ <strong>with error</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "set_public_candidates_success": "<i>__executer_username__ (__executer_id__)</i> <strong>set public-candidates</strong> to __make_public__ for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "start": "<i>__executer_username__ (__executer_id__)</i> <strong>started</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "startError": "<i>__executer_username__ (__executer_id__)</i> <strong>error starting</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "startSuccess": "<i>__executer_username__ (__executer_id__)</i> <strong>succeeded starting</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "startVotingRevoked": "<i>__executer_username__ (__executer_id__)</i> <strong>revoked start voting</strong> period for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> at <strong>__old_event_date__</strong> with task id __old_task_id__ __child_election__",
+          "startVotingScheduled": "<i>__executer_username__ (__executer_id__)</i> <strong>scheduled start voting</strong> period for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> at <strong>__new_event_date__</strong> with task id __new_task_id__ __child_election__",
+          "stop": "<i>__executer_username__ (__executer_id__)</i> <strong>stopped</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "stopError": "<i>__executer_username__ (__executer_id__)</i> <strong>error stopping</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "stopSuccess": "<i>__executer_username__ (__executer_id__)</i> <strong>succeeded stopping</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "suspend": "<i>__executer_username__ (__executer_id__)</i> <strong>suspended</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "suspendError": "<i>__executer_username__ (__executer_id__)</i> <strong>error suspending</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "suspendSuccess": "<i>__executer_username__ (__executer_id__)</i> <strong>succeeded suspending</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "tally": "<i>__executer_username__ (__executer_id__)</i> <strong>requested to tally</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+          "tally_error": "<strong>error when launching tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+          "tally_error_during_tally": "<strong>error during tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "tally_error_no_votes": "<strong>tally not executed because there were no votes</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+          "tally_started": "<strong>started the tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+          "tally_success": "<strong>successful tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "unarchive": "<i>__executer_username__ (__executer_id__)</i> <strong>unarchived</strong> election __event_id__",
+          "unpublish_results_error": "<i>__executer_username__ (__executer_id__)</i> <strong>tried to unpublish results with error</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "unpublish_results_success": "<i>__executer_username__ (__executer_id__)</i> <strong>unpublished results</strong> for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "virtual_tally_error": "<strong>error when launching virtual tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> <i>__metadata__</i>",
+          "virtual_tally_success": "<strong>successful virtual tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>"
+        },
+        "ballotBox": {
+          "create": "<i>__executer_username__ (__executer_id__)</i> <strong>created</strong> ballot box <a href=\"/admin/ballot-box/__event_id__?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>deleted</strong> ballot box <strong>__ballot_box_name__</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>"
+        },
+        "tallySheet": {
+          "create": "<i>__executer_username__ (__executer_id__)</i> <strong>uploaded</strong> a <a href=\"/admin/ballot-box/__event_id__?view_tally_sheet_id=__tally_sheet_id__&ballot_box_id=__ballot_box_id__\">tally sheet</a> for ballot box <a href=\"/admin/ballot-box/__event_id__?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "delete": "<i>__executer_username__ (__executer_id__)</i> <strong>deleted</strong> a <a href=\"/admin/ballot-box/__event_id__?view_tally_sheet_from_action_id=__action_id__&ballot_box_name=__ballot_box_name__&ballot_box_id=__ballot_box_id__\">tally sheet</a> for ballot box <a href=\"/admin/ballot-box/__event_id__?view_ballot_box_name=__ballot_box_name__\">__ballot_box_name__</a> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>"
+        },
+        "user": {
+          "activate": "<i>__executer_username__ (__executer_id__)</i> <strong>activated</strong> user <i>__receiver_username__ (__receiver_id__)</i>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "added-to-census": "<i>__executer_username__ (__executer_id__)</i> <strong>added to census</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> to <i>__receiver_username__(__receiver_id__)</i> __metadata__",
+          "authenticate": "<i>__receiver_username__ (__receiver_id__)</i> <strong>authenticated</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "authenticate-otl": "<i>__executer_username__ (__executer_id__)</i> performed <strong>OTL authentication</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "deactivate": "<i>__executer_username__ (__executer_id__)</i> <strong>deactivated</strong> user <i>__receiver_username__ (__receiver_id__)</i> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "deleted-from-census": "<i>__executer_username__ (__executer_id__)</i> <strong>deleted from census</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> the user __metadata__",
+          "deleted-voted-from-census": "<i>__executer_username__ (__executer_id__)</i> <strong>deleted from census</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> the user __metadata__ (<b>who had voted</b>)",
+          "generate-auth-code": "<i>__executer_username__ (__executer_id__)</i> <strong>generated authentication code</strong> for __receiver_username__ (__receiver_id__)</i> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "register": "<i>__receiver_username__ (__receiver_id__)</i> <strong>registered</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "resend-authcode": "There was a request to <strong>send authentication codes</strong> to <i>__receiver_username__ (__receiver_id__)</i>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "reset-voter": "<i>__executer_username__ (__executer_id__)</i> <strong>reset voter</strong> <i>__receiver_username__ (__receiver_id__)</i> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>. Voter data changed from __before__  to __after__",
+          "send-auth": "<i>__executer_username__ (__executer_id__)</i> <strong>sent authentication codes</strong> to <i>__receiver_username__ (__receiver_id__)</i>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a>",
+          "successful-login": "<i>__executer_username__ (__executer_id__)</i> <strong>voted</strong>  in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__"
+        }
+      },
+      "filter": "Search here..",
+      "filteredEmptyResults": "No results for this filter.",
+      "intro": "List of actions executed in the election.",
+      "manage": "Search and filter the activity log",
+      "tableColumn": {
+        "actionColumnHeader": "Description",
+        "commentColumnHeader": "Comment",
+        "creationDateColumnHeader": "Created at",
+        "executerIdColumnHeader": "Executer Id",
+        "idColumnHeader": "Id",
+        "receiverIdColumnHeader": "Receiver Id"
+      },
+      "title": "Activity Log"
+    },
+    "adminFields": {
+      "emailError": "error on email __value__",
+      "intro": "Admin fields",
+      "maxError": "__value__ is greater than __max__",
+      "minError": "__value__ is lower than __min__",
+      "numberError": "__value__ must be a number",
+      "requiredError": "Missing value on required field",
+      "textError": "error on text __value__",
+      "title": "Admin fields"
+    },
+    "auth": {
+      "auth": "Auth method",
+      "auths": {
+        "dnie": "spanish Electronic ID (eDNI)",
+        "email": "Email",
+        "email-and-password": "Email and password",
+        "email-otp": "Email OTP",
+        "smart-link": "Smart Link",
+        "sms": "SMS",
+        "sms-otp": "SMS OTP",
+        "user-and-password": "User and password"
+      },
+      "email": "Email message",
+      "emaildef": "Vote in __URL__ with code __CODE__",
+      "emailsub": "Email subject",
+      "emailsubdef": "Vote now with __name__",
+      "emailtemp": "Template used in the Email link to send to the user. Use __CODE__ to insert the login code and __URL__ to insert the election link, or _URL2__ to insert a link that includes the code",
+      "htmlemail": "HTML Email message",
+      "htmlemailtemp": "HTML Template used in the Email link to send to the user. Use __CODE__ to insert the login code and __URL__ to insert the election link, or _URL2__ to insert a link that includes the code",
+      "intro": "Authentication is the means used to ensure that an elector is who he sais he is. Here you need to find a balance between security, usability and cost",
+      "slugKeys": "Use the following keys to insert the users' extra fields into the message: __slug_list__",
+      "sms": "SMS message",
+      "smsdef": "This is your vote code: __CODE__",
+      "smstemp": "Template used in the SMS to send to the user. Use __CODE__ to insert the SMS code and __URL__ for the authentication url, or __URL2__ to insert a link that includes the code"
+    },
+    "ballotBox": {
+      "deleteBallotBoxAction": "Delete ballot box..",
+      "deleteTallySheetAction": "Delete tally sheet..",
+      "filter": "Search here..",
+      "intro": "List of ballot boxes and their tally sheets.",
+      "manage": "Search and filter looking for ballot boxes",
+      "modals": {
+        "checkingBallotBox": {
+          "button": "Close",
+          "checkingExisting": "Checking if any ballot box requested already exist..",
+          "creatingBoxes": "Creating the ballot boxes: ",
+          "errorCheckingExisting": "There was an error checking existing ballot boxes:",
+          "errorCreatingBoxes": "Error while creating some ballot boxes: ",
+          "hasExisting": "No ballot box was created, because the following already exist: ",
+          "header": "Creating ballot boxes",
+          "success": "All the ballot boxes were created successfully."
+        },
+        "createBallotBox": {
+          "body": "Add one ballot box name per line. It won't create any if any of them already exist.",
+          "button": "Confirm and CREATE ballot boxes",
+          "header": "Create ballot boxes",
+          "holder": "Ballot box name 1\nBallot box name 2.."
+        },
+        "deleteBallotBox": {
+          "body": "Please to confirm that you want to delete the ballot box __name__ and all the tally sheets related to it, write 'DELETE' below:",
+          "header": "Confirm to DELETE ballot box",
+          "holder": "Write DELETE here to confirm..",
+          "ok": "Confirm and DELETE ballot box"
+        },
+        "deleteTallySheet": {
+          "body": "Please to confirm that you want to delete the tally sheet with id __id__ for ballot box __name__, write 'DELETE' below:",
+          "header": "Confirm to DELETE tally sheet",
+          "holder": "Write DELETE here to confirm..",
+          "ok": "Confirm and DELETE tally sheet"
+        },
+        "viewTallySheet": {
+          "edit": "Edit and change tally sheet",
+          "header": "View tally sheet",
+          "tallySheetIdLabel": "Tally sheet id:"
+        },
+        "writeTallySheet": {
+          "backAndEdit": "Go back and edit",
+          "ballotBoxLabel": "Ballot box name:",
+          "blankVotesLabel": "Blank votes:",
+          "continue": "Continue and review",
+          "electionIdLabel": "Election id:",
+          "electionTitleLabel": "Election title:",
+          "mismatchTotalCount": "The registered number of votes and the entered number of votes differ",
+          "mismatchedNumbersError": "The numbers don't add up or are invalid, plese review them",
+          "nullVotesLabel": "Null votes:",
+          "observationsLabel": "Observaciones:",
+          "okClose": "Close",
+          "registeredVotesLabel": "Number of voters registered:",
+          "reviewStep": "Please review carefully the tally sheet before sending it",
+          "send": "Confirm and send tally sheet",
+          "step0header": "Step 1 of 3: Register tally sheet",
+          "step1header": "Step 2 of 3: Review and send the tally sheet",
+          "step2header": "Step 3 of 3: Successfully added tally sheet",
+          "success": "Congratulations, you successfully added the tally sheet!",
+          "voteCountLabel": "Number of votes:"
+        }
+      },
+      "tableColumn": {
+        "actionsColumnHeader": "Actions",
+        "idColumnHeader": "Id",
+        "lastUpdateColumnHeader": "Last Update",
+        "nameColumnHeader": "Title",
+        "usernameColumnHeader": "Username",
+        "versionColumnHeader": "Number of versions"
+      },
+      "title": "Ballot Boxes",
+      "viewTallySheetAction": "View tally sheet",
+      "writeTallySheetAction": "Write tally sheet.."
+    },
+    "basic": {
+      "censusSize": "__num__ people",
+      "description": {
+        "label": "Description",
+        "placeholder": "Description will be shown"
+      },
+      "intro": "Creating an election requires multiple steps, but it is not difficult. It will only take 5 minutes. Please read the Administrator Manual, linked in the help icon at the top navegation bar.",
+      "layout": {
+        "label": "Layout",
+        "placeholder": "Specifies how the whole election will be displayed"
+      },
+      "layouts": {
+        "2questions-conditional": "Yes/No",
+        "pcandidates-election": "Table Candidates",
+        "simple": "Simple"
+      },
+      "logo_url": {
+        "label": "Custom logo",
+        "placeholder": "URL for a custom logo for this election. Maximum recommended size is 150x150 px."
+      },
+      "num_successful_logins_allowed": {
+        "inputError": "__num_successful_logins_allowed__ is not a number",
+        "label": "Number of votes per voter",
+        "minError": "The number of possible revotes is __num_successful_logins_allowed__ but it should be 0 or higher",
+        "placeholder": "Maximum number of times voters are allowed to cast their vote. Only their last vote will count. If this number is zero, voters will be able to cast their vote as many times as they want"
+      },
+      "questionOptionsSummary": "<strong>__num_answers__</strong> candidates. Voters select between <strong>__min__</strong> and <strong>__max__</strong> options  and there are <strong>__num_winners__</strong> winners. The tally method is <strong>__tally_method__</strong>. Randomize categories: <strong>shuffle_categories</strong>, randomize all options: <strong>shuffle_all_options</strong>.",
+      "registerAndCreateElection": "Not only register the election, but also create it at the election authorities. This means you won't be able to modify the election.",
+      "theme": {
+        "label": "Theme",
+        "placeholder": "How will the election look like?"
+      },
+      "themes": {
+        "default": "Default",
+        "podemos": "Purple"
+      },
+      "title": {
+        "label": "Title",
+        "labelH3": "__index__. Election titled: __title__",
+        "placeholder": "eg.New Board of Directors"
+      }
+    },
+    "census": {
+      "actionsDropdown": "Actions",
+      "activateAction": "Activate __num__ selected people...",
+      "activateOneAction": "Activate",
+      "activatedCensusSuccessfully": "Activated selected people in census successfully",
+      "activeColumnHeader": "Active?",
+      "add": "Add a new field",
+      "addCsvAction": "Add CSV to census...",
+      "addPersonAction": "Add person...",
+      "boolOption": "bool",
+      "captchaOption": "captcha",
+      "census": {
+        "close": "Closed registration",
+        "closeDescription": "The census is generated by administrators. Third parties cannot register into the census.",
+        "open": "Open registration",
+        "openDescription": "Census can not only be generated by election administrators, but also individuals can register following the authentication process."
+      },
+      "censusadd": "Voters added to the census",
+      "childrenElections": "Allowed children elections",
+      "childrenVotedColumnHeader": "Voted in",
+      "codeOption": "code",
+      "configurationHeader": "Configuration",
+      "creationDateHeader": "Created date",
+      "dateOption": "date",
+      "deactivateAction": "Deactivate __num__ selected people...",
+      "deactivateOneAction": "Deactivate",
+      "deactivatedCensusSuccessfully": "Deactivated selected people in census successfully",
+      "deselectAllShownAction": "Deselect all people shown",
+      "dictOption": "Key-value",
+      "emailOption": "email",
+      "emptyCensus": "Census is currently empty. You can add people through the Actions button.",
+      "export": "Export",
+      "exportCensusAction": "Export all census to CSV..",
+      "extraFieldsHeader": "Extra fields",
+      "extraFieldsInfo": "Here you can define extra fields in the census in a versatile way. This allows you to do a range of things: adding extra checks against the census in closed registration, registering new fields in open registration, etc.",
+      "fieldAutofillLabel": "Auto fill",
+      "fieldFillIfEmptyOnRegistrationLabel": "Required on registration, but can be empty on pre-registration",
+      "fieldHelpLabel": "Help text",
+      "fieldHelpPlaceholder": "Example: Insert both your name and surname",
+      "fieldMatchCensusOnRegistrationLabel": "Checked against census in registration (only for pre-registration)",
+      "fieldMaxLabel": "Max",
+      "fieldMinLabel": "Min",
+      "fieldNameLabel": "Field name",
+      "fieldNamePlaceholder": "Example: Name and Surname",
+      "fieldPrivateLabel": "Private (only administrators can see and use this field)",
+      "fieldRegExLabel": "Regular expression",
+      "fieldRegExPlaceholder": "Advanced users only - Example: ^(1000|1010)$",
+      "fieldRequiredAuthLabel": "Checked against census in authentication",
+      "fieldRequiredLabel": "Required",
+      "fieldTypeLabel": "Type",
+      "fieldUniqueLabel": "Unique",
+      "fields": {
+        "label": "Extra fields",
+        "placeholder": "Voter extra fields"
+      },
+      "filteredEmptyResults": "No person matched the current filter.",
+      "generatePDFAuthCodes": {
+        "authCode": "Authentication Code:",
+        "authLink": "Authentication Link:",
+        "codeCreated": "Code creation time:",
+        "header": "Your authentication credentials are:",
+        "qrCode": "QR Code for Authentication Link:",
+        "userId": "User Id:",
+        "username": "Username:"
+      },
+      "generatePDFAuthCodesAction": "Generate PDF authentication code",
+      "generatePDFAuthCodesSuccess": "Generated PDF authentication code for a voter successfully.",
+      "hasActivityColumnHeader": "Executed actions?",
+      "idColumnHeader": "Id",
+      "image": "View image",
+      "imageModalClose": "Close",
+      "imageModalTitle": "View image",
+      "intOption": "int",
+      "intro": "The census specifies who can vote and the details we need from each elector. You can manage it here",
+      "manage": "Manage census",
+      "manualAdd": "Manual add",
+      "modals": {
+        "activatePeopleBody": "Activating the selected __num__ people. This will allow these people to vote",
+        "activatePeopleHeader": "Activate selected people from census",
+        "addCsvBody": "Here you can add many people at once. The format is CSV, one person per line. Use semicolon to split fields, in order. Note that no data validation is done, so it's up to you to insert valid data.",
+        "addCsvHeader": "Add CSV to census",
+        "addCsvTextareaPlaceholder": "one voter per line, keep the field order",
+        "addPersonBody": "Manually add a single person to the census. Note that no data validation is done, so it's up to you to insert valid data.",
+        "addPersonChildrenElections": "Select in which children elections can this person vote:",
+        "addPersonHeader": "Add Person to census",
+        "comment": "Comment",
+        "confirmActivatePeopleButton": "Confirm and activate selected __num__ people in census",
+        "confirmAddCsvButton": "Confirm and ADD CSV to census",
+        "confirmAddPersonButton": "Confirm and ADD person to census",
+        "confirmDeactivatePeopleButton": "Confirm and deactivate selected __num__ people in census",
+        "confirmRemovePeopleButton": "Confirm and REMOVE selected __num__ people from census",
+        "confirmexportAllCensusButton": "Confirm and download the census, with __total__ people",
+        "csvLoadingBody": "Please click on the start upload button to add the users from the CSV to the census. Please wait until the process is finished and don't close this window.",
+        "csvLoadingHeader": "Uploading CSV to census",
+        "csvLoadingStartButton": "Start upload NOW",
+        "deactivatePeopleBody": "Deactivating the selected __num__ people. This will NOT allow these people to vote",
+        "deactivatePeopleHeader": "Deactivate selected people from census",
+        "exportAllCensusBody": "Here you can download the whole census in a CSV (Comma Separated Values) spreadsheet format, so you can process it elsewhere. There are __total__ people in your census. Depending on the size of the census, the process of downloading the whole census may take a while. Once it finishes, you will be prompted to download the census. If you have any filter active, this filter will also be applied to the downloaded CSV file.",
+        "exportAllCensusHeader": "Export all census in CSV",
+        "removePeopleBody": "Removing the selected __num__ people from the census is irreversible. Note that this will not remove their votes if they have voted.",
+        "removePeopleHeader": "Remove selected people from census"
+      },
+      "name": "Name",
+      "nonEditableField": "(Required by auth method)",
+      "notVoted": "not voted",
+      "passwordOption": "password",
+      "reg": {
+        "label": "Registration",
+        "placeholder": "How the census is generated?"
+      },
+      "removeCensusAction": "Remove __num__ selected people..",
+      "removeCensusOneAction": "Remove",
+      "removedCensusSuccessfully": "Removed selected people from census successfully",
+      "required": "Required",
+      "resetVoterToPreRegistration": "Reset voter to pre-registration state",
+      "resetVoterToPreRegistrationSuccess": "Reset voter to pre-registration state succesfully.",
+      "selectAllShownAction": "Select all people shown",
+      "selectedColumnHeader": "Select",
+      "sendAuthCodesAction": "Send auth codes to __num__ selected..",
+      "sendAuthCodesOneAction": "Send auth codes",
+      "sentCodesSuccessfully": "Sent authentication codes successfully",
+      "textOption": "text",
+      "textareaOption": "textarea",
+      "tlfOption": "tel",
+      "viewActivityOneAction": "View activity log",
+      "voted": "voted",
+      "votedColumnHeader": "Voted?"
+    },
+    "censusConfig": {
+      "intro": "The census specifies who can vote and the details we need from each elector. You can configure it here"
+    },
+    "childrenElections": {
+      "main": "Main election"
+    },
+    "columnFilter": {
+      "filter": "Filter:",
+      "max": "max",
+      "maxDate": "To:",
+      "min": "min",
+      "minDate": "From:",
+      "noFilter": "-",
+      "noSort": "-",
+      "sort": "Sort:",
+      "sortAsc": "Asc",
+      "sortDesc": "Desc"
+    },
+    "create": {
+      "actions": {
+        "actionsLabel": "Actions",
+        "editJson": "Edit JSON",
+        "livePreview": "Live Preview"
+      },
+      "addBallotBoxes": "Creating ballot boxes for election (id: __id__) __title__",
+      "ballot_boxes": "Adding ballot boxes (id: __id__) __title__",
+      "census": "Adding the census (id: __id__) __title__",
+      "create": "Create the elections",
+      "creating": "Creating the authentication for election __title__",
+      "creatingEl": "Creating election (id: __id__) __title__",
+      "editElectionJsonModal": {
+        "body": "This dialog allows you to edit the election json. Use this only if you know what you are doing.",
+        "confirmEdit": "Finish edit",
+        "title": "Edit Election Json"
+      },
+      "errors": {
+        "election-array-length-max-description": "Election '__eltitle__': description length is __num__, exceeding the maximum of __max__",
+        "election-array-length-max-questions": "Election '__eltitle__': there must be at most __max__ questions but there are __num__",
+        "election-array-length-max-title": "Election '__eltitle__': title length is __num__, exceeding the maximum of __max__",
+        "election-array-length-min-questions": "Election '__eltitle__': there must be at least __min__ questions but there are only __num__",
+        "election-census-admin-fields-array-length-if-defined-max-description": "Election '__eltitle__': admin field __fname__ description length is __len__ characters, exceeding the maximum of __max__",
+        "election-census-admin-fields-array-length-if-defined-max-placeholder": "Election '__eltitle__': admin field __fname__ placeholder length is __len__ characters, exceeding the maximum of __max__",
+        "election-census-admin-fields-array-length-max-label": "Election '__eltitle__': admin field __fname__ label length is __len__ characters, exceeding the maximum of __max__",
+        "election-census-admin-fields-array-length-max-name": "Election '__eltitle__': admin field __fname__ name length is __len__ characters, exceeding the maximum of __max__",
+        "election-census-admin-fields-array-length-max-type": "Election '__eltitle__': admin field __fname__ type length is __len__ characters, exceeding the maximum of __max__",
+        "election-census-admin-fields-is-string-if-defined-description": "Election '__eltitle__': admin field __fname__ description must be a string",
+        "election-census-admin-fields-is-string-if-defined-placeholder": "Election '__eltitle__': admin field __fname__ placeholder must be a string",
+        "election-census-admin-fields-is-string-label": "Election '__eltitle__': admin field __fname__ label must be a string",
+        "election-census-admin-fields-is-string-name": "Election '__eltitle__': admin field __fname__ name must be a string",
+        "election-census-admin-fields-is-string-type": "Election '__eltitle__': admin field __fname__ type must be a string",
+        "election-census-admin-fields-lambda-max-number": "Election '__eltitle__': admin field __fname__ max must be a number",
+        "election-census-admin-fields-lambda-min-number": "Election '__eltitle__': admin field __fname__ min must be a number",
+        "election-census-admin-fields-lambda-private-boolean": "Election '__eltitle__': admin field __fname__ private must be a boolean",
+        "election-census-admin-fields-lambda-required-boolean": "Election '__eltitle__': admin field __fname__ required must be a boolean",
+        "election-census-admin-fields-lambda-step-number": "Election '__eltitle__': admin field __fname__ step must be a number",
+        "election-census-array-length-max-admin-fields": "Election '__eltitle__': admin_fields array length is __len__, exceeding the maximum of __max__",
+        "election-census-createel-unknown": "Election, an unknown error happened while adding census after creating the election: __message__",
+        "election-census-is-array-admin-fields": "Election '__eltitle__': admin_fields must be an array",
+        "election-census-lambda-admin-fields-email-type-value": "Election '__eltitle__': the following admin fields have invalid email values: __admin_names__.",
+        "election-census-lambda-admin-fields-email-value-array-length": "Election '__eltitle__': the following admin fields of email type have a string character length that has exceeded the allowed maximum of __max__ characters: __admin_names__.",
+        "election-census-lambda-admin-fields-int-max-value": "Election '__eltitle__': there is at least one field in admin fields with int type where the value is more than the maximum allowed value",
+        "election-census-lambda-admin-fields-int-min-value": "Election '__eltitle__': the following admin fields of integer type have a value that is less than their minimum allowed value : __admin_names__.",
+        "election-census-lambda-admin-fields-int-type-value": "Election '__eltitle__': the following admin fields are of integer type but their values are not integers: __admin_names__.",
+        "election-census-lambda-admin-fields-required-value": "Election '__eltitle__': these admin fields are required but they are empty: __admin_names__.",
+        "election-census-lambda-admin-fields-string-type-value": "Election '__eltitle__':  the following admin fields are of string type but their values are not string: __admin_names__.",
+        "election-census-lambda-admin-fields-string-value-array-length": "Election '__eltitle__': the following admin fields of string type have a string character length that has exceeded the allowed maximum of __max__ characters: __admin_names__.",
+        "election-is-array-questions": "Election '__eltitle__': list of questions is not an array",
+        "election-is-string-description": "Election '__eltitle__': description is not a string",
+        "election-is-string-title": "Election '__eltitle__': title is not a string",
+        "election-lambda-checkable-lists-categories-mismatch": "Election '__eltitle__': There's a question with enable_checkable_lists but there's no answer for each category",
+        "election-lambda-checkable-lists-invalid-layout": "Election '__eltitle__': There's a question with enable_checkable_lists and an invalid question layout",
+        "election-lambda-max-email-msg": "Election '__eltitle__': email message length is __len__ characters, exceeding the maximum of __max__",
+        "election-lambda-max-email-title": "Election '__eltitle__': email title length is __len__ characters, exceeding the maximum of __max__",
+        "election-lambda-max-sms-msg": "Election '__eltitle__': sms message length is __len__ characters, exceeding the maximum of __max__",
+        "election-lambda-min-email-msg": "Election '__eltitle__': email message length is __len__ characters, but it has to be at least __min__ characters long",
+        "election-lambda-min-email-title": "Election '__eltitle__': email title length is __len__ characters, but it has to be at least __min__ characters long",
+        "election-lambda-min-sms-msg": "Election '__eltitle__': sms message length is __len__ characters, but it has to be at least __min__ characters long",
+        "election-lambda-success-action-url-mode": "Election '__eltitle__': invalid success action url",
+        "election-question-answer-array-length-max-category": "Election '__eltitle__', question '__qtitle__', answer '__atext__': category length is __num__, exceeding the maximum of __max__",
+        "election-question-answer-array-length-max-details": "Election '__eltitle__', question '__qtitle__', answer '__atext__': details length is __num__, exceeding the maximum of __max__",
+        "election-question-answer-array-length-max-text": "Election '__eltitle__', question '__qtitle__', answer '__atext__': text length is __num__, exceeding the maximum of __max__",
+        "election-question-answer-array-length-min-text": "Election '__eltitle__', question '__qtitle__', answer '__atext__': text length is __num__, but it has to be at least __min__ characters long",
+        "election-question-answer-is-string-category": "Election '__eltitle__', question '__qtitle__', answer '__atext__': category is not a string",
+        "election-question-answer-is-string-details": "Election '__eltitle__', question '__qtitle__', answer '__atext__': details is not a string",
+        "election-question-answer-is-string-text": "Election '__eltitle__', question '__qtitle__', answer '__atext__': text is not a string",
+        "election-question-answer-lambda-text": "Election '__eltitle__', question '__qtitle__', answer '__atext__' and answer id '__aid__': text length is empty, but it is not a write in",
+        "election-question-array-length-max-answers": "Election '__eltitle__', question '__qtitle__': there must be at most __max__ answers, but there are __num__",
+        "election-question-array-length-max-description": "Election '__eltitle__', question '__qtitle__': description length is __num__, exceeding the maximum of __max__",
+        "election-question-array-length-max-title": "Election '__eltitle__', question '__qtitle__': title length is __num__, exceeding the maximum of __max__",
+        "election-question-array-length-min-answers": "Election '__eltitle__', question '__qtitle__': there must be at least __min__ answers, but there are only __num__",
+        "election-question-int-size-max-max": "Election '__eltitle__', question '__qtitle__': the maximum number of candidates that a voter can choose is __value__, but cannot be larger than the number of candidates which is __max__",
+        "election-question-int-size-max-min": "Election '__eltitle__', question '__qtitle__': the minimum number of candidates that a voter can choose is __value__, but cannot be larger than the maximum which is __max__",
+        "election-question-int-size-max-num-winners": "Election '__eltitle__', question '__qtitle__': the number of winners is __value__, but cannot be bigger than the number of answers which is __max__",
+        "election-question-int-size-min-max": "Election '__eltitle__', question '__qtitle__': the maximum number of candidates that a voter can choose is __value__, but must be bigger or equal than the minimum which is __min__",
+        "election-question-int-size-min-min": "Election '__eltitle__', question '__qtitle__': the minimum number of candidates that a voter can choose must be a positive integer, but it's __value__",
+        "election-question-int-size-min-num-winners": "Election '__eltitle__', question '__qtitle__': there must be at least one winner, but it is __value__ instead",
+        "election-question-is-array-answers": "Election '__eltitle__': list of answers is not an array",
+        "election-question-is-int-min": "Election '__eltitle__', question '__qtitle__': the minimum number of candidates that a voter can choose is not an integer or valid",
+        "election-question-is-int-num-winners": "Election '__eltitle__', question '__qtitle__': the number of winners is not an integer",
+        "election-question-is-string-description": "Election '__eltitle__', question '__qtitle__': description is not a string",
+        "election-question-is-string-title": "Election '__eltitle__', question '__qtitle__': title is not a string",
+        "election-question-lambda-invalid-answer-ids": "Election '__eltitle__', question '__qtitle__': answer ids are invalid, please check they start with 0 and there's no missing number in between",
+        "election-question-lambda-max": "Election '__eltitle__', question '__qtitle__': the maximum number of candidates that a voter can choose is not valid",
+        "election-question-lambda-writeins-enabled": "Election '__eltitle__', question '__qtitle__': question has writeins but they are not enabled through 'allow_writeins'",
+        "lambda-live-preview-parent-children": "Missing election IDs for a parent-children election"
+      },
+      "logHeader": "Log",
+      "reg": "Registering the election (id: __id__) __title__",
+      "setChildrenElectionInfo": "Setting the children election info for election (id: __id__) __title__",
+      "summary": "Summary: creating __num__ elections",
+      "summary__plural": "Summary: creating __num__ elections"
+    },
+    "cumulative": {
+      "number_of_checkboxes": {
+        "text": "Number of checkboxes to show for each answer",
+        "title": "Number of checkboxes"
+      }
+    },
+    "dashboard": {
+      "actions": {
+        "actionsLabel": "Actions",
+        "allowTally": "Allow to launch tally...",
+        "archiveElection": "Archive election...",
+        "calculateResults": "Calculate results...",
+        "changeSocial": "Edit social...",
+        "configureScheduledEvents": "Configure scheduled events",
+        "disableOtlPeriod": "Disable Otl period...",
+        "editChildrenParent": "Edit Children and Parent elections...",
+        "enableOtlPeriod": "Enable Otl period...",
+        "launchKeyDistributionCeremony": "Launch keys distribution ceremony",
+        "launchOpeningCeremony": "Launch opening ceremony",
+        "makeCandidatesPrivate": "Make candidates private...",
+        "makeCandidatesPublic": "Make candidates public...",
+        "publishResults": "Publish results...",
+        "resumeElection": "Resume election..",
+        "sendAuthCodes": "Send auth codes...",
+        "startElection": "Start election...",
+        "stopElection": "Stop election...",
+        "suspendElection": "Suspend election...",
+        "tally": "Launch tally...",
+        "unarchiveElection": "Unarchive election...",
+        "unpublishResults": "Unpublish results..."
+      },
+      "answers": "Answers",
+      "authentication": "Authentication",
+      "authorities": "Authorities",
+      "blankvotes": "Blank votes",
+      "calculate": "Calculate results",
+      "calculateAgain": "Calculate results again",
+      "census": "Census",
+      "censussend": "Census send correctly",
+      "chilldrenResultsTitle": "Select the election results to view:",
+      "create": "Create",
+      "createRealElection": "Create REAL election",
+      "doingtally": "Doing the tally",
+      "donow": "click to do now",
+      "duplicateElection": "Duplicate election",
+      "electionPublic": "Election public site",
+      "electionid": "Election Id",
+      "modals": {
+        "allowTally": {
+          "body": "After this action is executed, any administrator allowed to execute a tally will be able to do so.",
+          "confirmButton": "Allow to do election tally",
+          "header": "Allow to do election tally",
+          "success": "Allowed to do election tally"
+        },
+        "archive": {
+          "body": "This action will archive the election. It will fail if the election is already archived. Archiving an election removes the election from the election list in the admin interface but it can still be accessed from the archived elections list. It can also be unarchived later.",
+          "confirmButton": "Archive election",
+          "header": "Confirm archive election",
+          "success": "Election archived successfully"
+        },
+        "askFilterBallots": "Before launching the tally, you need to select what set of ballots to use in the tally. It's very important that you <strong>choose carefully, because once a tally has been done you cannot launch another tally</strong> with a second set of ballots. <br/><br/>These are the options you have:",
+        "calculateResultsBody": "The election has been tallied and the next step is to calculate the results. Although the election can only be tallied once, the election results can be calculated as many times as you need before publishing them.",
+        "calculateResultsButton": "Confirm and CALCULATE results",
+        "calculateResultsHeader": "Calculate results",
+        "calculateResultsSuccess": "Results calculation requested",
+        "cancelTask": {
+          "body": "This action will cancel the execution of the request task.",
+          "confirmButton": "CANCEL task",
+          "header": "Cancel task"
+        },
+        "censusDumpMode": {
+          "activeDescription": "<strong>Only choose this option if you know what you are doing</strong>. The ballots corresponding to people that are not included in the census, or those corresponding to inactive people in the census <strong>will be discarded and not counted</strong>.",
+          "activeHeader": "Tally only cast ballots active in the current census",
+          "allDescription": "Even if a voter has been removed from the census or is marked as not active, if this voter has cast a ballot it will be counted.",
+          "allHeader": "Tally all cast ballots",
+          "chooseChildrenToTally": "Choose what elections to tally:"
+        },
+        "changeSocial": {
+          "buttonTextLabel": "Button text",
+          "buttonTextPlaceholder": "Text for the share button (it can be empty)",
+          "confirmButton": "Confirm and SAVE social networks configuration",
+          "header": "Edit social networks share buttons",
+          "infoBody": "The social networks buttons configuration has been successfully saved.",
+          "infoHeader": "Configuration saved",
+          "nameLabel": "Name",
+          "new": "New button",
+          "socialMessageLabel": "Share text",
+          "socialMessagePlaceholder": "Text to be shared on social networks (use __URL__ for the default election url)",
+          "socialNetworkLabel": "Social Network",
+          "socialUrlLabel": "Link",
+          "socialUrlPlaceholder": "Election link to be shared on social networks (use __URL__ for the default election url)",
+          "title": "Social Network Buttons"
+        },
+        "configureScheduledEvents": {
+          "body": "Schedule events related to the election, such as the start or the stop date and time.",
+          "confirm": "Confirm to change scheduled events",
+          "endVotingEnable": "Automatically stop the election",
+          "endVotingSelector": "Select date:",
+          "error": "Error changing the configuration of scheduled events.",
+          "header": "Configure Scheduled Events",
+          "startVotingEnable": "Automatically start the election",
+          "startVotingSelector": "Select date:",
+          "success": "Changed the configuration of scheduled events successfully."
+        },
+        "confirmCreateButton": "Confirm and CREATE election",
+        "confirmCreateRealButton": "Confirm and CREATE real election",
+        "confirmPublishResultsButton": "Confirm and PUBLISH election results",
+        "confirmStartButton": "Confirm and START the election",
+        "confirmStopButton": "Confirm and STOP the election",
+        "confirmTallyActiveButton": "Confirm and TALLY __totalActive__ out of __total__ elegible voters",
+        "confirmTallyButton": "Confirm and TALLY the election",
+        "createBody": "To create the election, its configuration is sent to the election authorities and they create election encryption public keys. After that, the election is no longer editable. Before doing this, please check that the configuration is correct (for example taking a look at the demo voting booth). If you need to change the election after this, you will have to create a new one.",
+        "createHeader": "Create election",
+        "createRealBody": "This is a test election. For security reasons, real elections can only be created out of successful test elections. You must complete the election process up to the results publish step.",
+        "createRealHeader": "Create real election",
+        "disableOtlPeriod": {
+          "body": "This action will disallow voters to obtain their authentication code using the One Time Link (OTL) they received, because the OTL will not allowing them through the process while the OTL is disabled.",
+          "confirmButton": "DISABLE the OTL period",
+          "header": "Disable OTL period",
+          "success": "OTL period was successfully disabled."
+        },
+        "downloadingCensus": "Downloaded __downloaded__ of __total__ people in census",
+        "editCalculateResultsJsonModal": {
+          "body": "This dialog allows you to edit the calculate results json. Use this only if you know what you are doing.",
+          "confirmEdit": "Finish edit",
+          "editJson": "Edit JSON",
+          "title": "Edit Calculate Results Json"
+        },
+        "editChildrenParent": {
+          "body": "Edit in the textarea the parent_id and children_election_info in JSON.",
+          "confirmButton": "Send updated data",
+          "header": "Edit Children and Parent election info",
+          "success": "Election children and parent info updated successfully"
+        },
+        "enableOtlPeriod": {
+          "body": "This action will allow voters to obtain their authentication code using the One Time Link (OTL) they received.",
+          "confirmButton": "ENABLE the OTL period",
+          "header": "Enable OTL period",
+          "success": "OTL period was successfully enabled."
+        },
+        "generatePDFAuthCodes": {
+          "body": "Generate PDF authentication code for the selected voter. Even if the voter has not filled the fill-in fields, he will be able to vote using these code and the link in the PDF.",
+          "confirmButton": "GENERATE PDF voter authentication code",
+          "header": "Generate PDF voter authentication code"
+        },
+        "keysCeremonies": {
+          "checkShare": {
+            "bodyMessage": "Upload the file with the private keys to check its contents:",
+            "header": "Check private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+            "keysDistributionBackButton": "Back to download keys",
+            "nextButton": "Next step",
+            "orDropFileText": "Or drop file here",
+            "selectFileButton": "Select private keys file",
+            "verificationFailure": "FAILURE! Private key verification failure.",
+            "verificationSuccess": "SUCCESS! Private keys verified."
+          },
+          "deleteShare": {
+            "bodyMessage": "Delete the share of the private keys for this authority.",
+            "deleteShareButton": "Delete private keys",
+            "finishButton": "Finish",
+            "header": "Delete private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+            "nextButton": "Next step",
+            "operationSuccess": "Private keys share successfully deleted"
+          },
+          "downloadShare": {
+            "bodyMessage": "Download the share of the private keys for the elections. Please download it at least into two different devices.",
+            "downloadButton": "Download private key",
+            "header": "Download private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+            "nextButton": "Next step",
+            "operationSuccess": "Private keys successfully downloaded."
+          },
+          "finishCeremony": {
+            "closeButton": "Close",
+            "header": "Ceremony sucessfully completed (Step __total__ of __total__)",
+            "keysDistributionBodyMessage": "The keys distribution ceremony has finished and all private keys have been removed from the trustee servers.",
+            "openingBodyMessage": "The opening ceremony has finished and all private keys have been restored to the trustee servers."
+          },
+          "keysDistributionIntro": {
+            "bodyMessage": "In this ceremony each trustee will download their part of the private keys for the electoral process. Each trustee will follow the following steps: <ul> <li>Login</li> <li>Download private keys</li> <li>Check private keys</li> <li>Delete private keys</li></ul>",
+            "confirmButton": "Start",
+            "header": "Keys Distribution Ceremony (Step 1 of __total__)"
+          },
+          "loginTrustee": {
+            "bodyMessage": "In order to proceed you need to login with the trustee credentials.",
+            "header": "Log into trustee __trustee_id__ (Step __step__ of __total__)",
+            "loginButton": "Login"
+          },
+          "openingIntro": {
+            "bodyMessage": "In this ceremony each trustee will restore their part of the private keys for the electoral process. Each trustee will follow the following steps: <ul> <li>Login</li> <li>Check private keys</li> <li>Restore private keys</li> </ul>",
+            "confirmButton": "Start",
+            "header": "Opening Ceremony (Step 1 of __total__)"
+          },
+          "restoreShare": {
+            "bodyMessage": "Restore the share of the private keys for this authority.",
+            "deleteShareButton": "Restore private keys",
+            "finishButton": "Finish",
+            "header": "Restore private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+            "nextButton": "Next step",
+            "operationSuccess": "Private keys share successfully restored"
+          },
+          "secureShare": {
+            "backButton": "Back to download keys",
+            "bodyMessage": "Please move the private key to at least two different pendrives for security reasons.",
+            "firstCheckbox": "First copy secured",
+            "header": "Secure private key share for trustee __trustee_id__ (Step __step__ of __total__)",
+            "nextButton": "Next step",
+            "secondCheckbox": "Second copy secured"
+          }
+        },
+        "launchSelfTestTask": {
+          "body": "This action will launch in the background the self-test task. This can take time, but you can see the advance.",
+          "confirmButton": "Launch self-test task",
+          "header": "Launch self-test task"
+        },
+        "launchTallySuccess": "Tally launched successfully",
+        "makeCandidatesPrivate": {
+          "body": "This action will make the candidate options of the election private, so that only authenticated voters can see them. You can revert this action later.",
+          "confirmButton": "Make candidates private",
+          "header": "Confirm make candidates private",
+          "success": "Election candidates made private successfully"
+        },
+        "makeCandidatesPublic": {
+          "body": "This action will make the candidate options of the election public for everyone to see. You can revert this action later.",
+          "confirmButton": "Make candidates public",
+          "header": "Confirm make candidates public",
+          "success": "Election candidates made public successfully"
+        },
+        "publishResultsBody": "Currently only the election administrators have access to the calculated election results. When you publish the results, these will be made public for everyone to see.",
+        "publishResultsHeader": "Publish election results",
+        "resetVoterToPreRegistration": {
+          "body": "Reset the voter to pre-registration state. This means that any field that was filled in by the voter during registration will be reset, but the data that was part of the census during pre-registration will not change. You can add below a comment explaining why you are executing this action to this voter:",
+          "confirmButton": "RESET VOTER to pre-registration state",
+          "header": "Reset voter to pre-registration state"
+        },
+        "resume": {
+          "body": "Resuming the election when it has previously been suspend temporarily will allow again voters casting a vote.",
+          "confirmButton": "RESUME the election voting period",
+          "header": "Resume election voting period",
+          "success": "Election voting period resumed successfully."
+        },
+        "sendAuthCodes": {
+          "confirmStep": {
+            "editMessageAction": "Edit",
+            "header": "Send authentication codes (Step __step__ of __total__)",
+            "helpInfo": "You will send the authentication to __voters__ electors. Please, verify that everything is correct. If you have any trouble please contact us at __email__ or calling us at __tlf__.",
+            "invalidMsg": "Yes, I want to send these messages without authentication code / URL",
+            "messageHeader": "Preview",
+            "sendButton": "Confirm and send the messages",
+            "unknownError": "The messages were not sent nor charged. An unknown error occurred when sending the messages. If this problem persists, please contact us to resolve this issue at __email__ or calling us at __tlf__."
+          },
+          "editMessageStep": {
+            "filterDescription": "Send this email to part of the census, either those that have already voted or those that haven't voted yet.",
+            "filterOptions": {
+              "none": "Sent to everyone",
+              "not_voted": "Send to those that haven't voted yet",
+              "voted": "Send to those that have voted"
+            },
+            "filterTitle": "Filter",
+            "forceCreateOtp": "Force to create and send a new One Time Link (OTL) for each receiver of the message, invalidating previous OTLs.",
+            "header": "Send authentication codes (Step __step__ of __total__)",
+            "helpInfo": "This action will send a message to all the registered electors in the census. Note that sending many messages can be considered as SPAM, so proceed with caution. Also, please review the message that will be sent before proceeding.",
+            "sendButton": "Review message before sending authentication codes to ALL census",
+            "sendSelectedButton": "Review message before sending authentication codes to SELECTED users"
+          }
+        },
+        "startBody": "Please be aware that once you start the elections, voters will be able to vote until the election is stopped",
+        "startHeader": "Start election",
+        "stopBody": "Once you stop the election, people will not be able to vote anymore.  Please be aware of this and exercise caution",
+        "stopHeader": "Stop election",
+        "suspend": {
+          "body": "Suspending an election pauses temporarily the voting period, preventing voters from casting a vote. However, after that you can resume the voting period and this can happen multiple times.",
+          "confirmButton": "SUSPEND the election voting period",
+          "header": "Suspend election voting period",
+          "success": "Election voting period suspended successfully."
+        },
+        "tallyActiveHeader": "Tally only active voters",
+        "tallyActiveIntro": "We will start downloading all the voters to detect which are active and only tally those if you confirm you want to do so. <strong>This decision is final</strong>, the software does not allow to undo a tally or to do a second one with a different set of ballots. <br/><br/>To modify the list of active users, cancel this modal and edit the active status in the Census Data lateral menu. If you don't want to do the tally, just close this dialog.",
+        "tallyHeader": "Tally election",
+        "tallyIntro": "The tally process is run by the election authorities and may take a while, depending on the number of votes. It involves a mathematically verifiable cryptographic process that anonymizes and obtains the content of each vote.",
+        "unarchive": {
+          "body": "This action will unarchive the election. It will fail if the election is not currently in an archived state. UnArchiving an election makes it appear again in the election list in the admin interface. It can also be archived again later.",
+          "confirmButton": "Unarchive election",
+          "header": "Confirm unarchive election",
+          "success": "Election unarchived successfully"
+        },
+        "unpublishResults": {
+          "body": "The electoral results will not show in this election public website.",
+          "confirmButton": "Confirm and unpublish electoral results",
+          "header": "Unpublish election results",
+          "success": "Electoral results have been unpublished successfully"
+        }
+      },
+      "nullvotes": "Null votes",
+      "option": "Candidature",
+      "optiosequent": "Votes to options",
+      "preview": "Demo voting booth",
+      "publicResultsUrl": "Public results url",
+      "publish": "Publish results",
+      "questions": "Questions",
+      "results": "Results",
+      "scheduledStartDate": "Scheduled Start",
+      "scheduledStopDate": "Scheduled Stop",
+      "sendAuthCodes": "Send auth codes",
+      "start": "Start voting",
+      "status": "Status",
+      "stop": "Stop voting",
+      "tally": "Tally",
+      "votes": "Votes",
+      "winner": "Winner position",
+      "writeInResults": "(Write-in)"
+    },
+    "elections": {
+      "draft": "draft",
+      "eraseDraftModal": {
+        "body": "This action will erase the election draft with title '__title__'. This action cannot be reverted. Do you wish to proceed?",
+        "title": "Do you want to erase the election draft?"
+      },
+      "filter": "Filter...",
+      "list": {
+        "all": "Active",
+        "archived": "Archived"
+      },
+      "participation": "Participation",
+      "real": "real",
+      "status": "Status",
+      "test": "test",
+      "useDraftModal": {
+        "body": "This action will load the election draft with title '__title__'. This action will load this draft and subsequent modifications of its configuration will rewrite the saved draft. Do you wish to proceed?",
+        "title": "Do you want to load the election draft?"
+      }
+    },
+    "import": {
+      "desc": "Importing an election from csv allows you to manage and automate the creation of elections details from an external source. <a href=\"https://docs.google.com/spreadsheets/d/1WTzswqiuRllZIm90A-SBQ0kbVYDQI1jZvKcvL8ruMIY/edit?usp=sharing\" target=\"_blank\">Read more about the CSV election format here</a>. If you want to create many elections at once, you can use the API or contact us.",
+      "dropFilesHere": "Drop CSV file here",
+      "file": "Select file"
+    },
+    "learnMore": "Learn more..",
+    "onboarding": {
+      "dashboard_tour": {
+        "step0_test_content": "You have created a test election. Test elections have limited census size and a real election can only be created out of a successfully tallied test election.",
+        "step0_test_title": "Test election",
+        "step1_real_content": "Once this election is tallied, you will be able to create a real election clicking here.",
+        "step1_real_title": "Real election",
+        "step2_status_content": "This section shows you the state of the election and a button to move election to the next status.",
+        "step2_status_title": "Election status",
+        "step3_start_content": "Click this button to start the election and send an authentication email to all census.",
+        "step3_start_title": "Start the election"
+      },
+      "hello_tour": {
+        "step0_create_content": "Start creating a test election clicking in the <strong>New Election</strong> button. <br><br>Or watch the intro video:<br><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/eTZ3TQw5G_c?rel=0&amp;showinfo=0\" frameborder=\"0\" allowfullscreen></iframe>",
+        "step0_create_title": "Create an election",
+        "step1_change_content": "Now you can edit all the details of the election, for example you could edit the election's title clicking title here.",
+        "step1_change_title": "Change the title",
+        "step2_sidebar_content": "You can personalize the election clicking through these sections.",
+        "step2_sidebar_title": "Sidebar",
+        "step3_review_content": "Once you are done configuring the election, click the <strong>Create Election</strong> section to review and then create the election.",
+        "step3_review_title": "Review election to create it",
+        "step4_create2_content": "<strong>Click this button</strong> to create the election. <br><br>Note that the election won't be created until you do so, and for security reasons it won't be editable afterwards.",
+        "step4_create2_title": "Create the election"
+      },
+      "help_tour": {
+        "step0_help_content": "If you need any further help, you can click here to get it. You can <strong>launch again the tour</strong> there too!",
+        "step0_help_title": "Help",
+        "step1_chat_content": "If you have any question, we'll be glad to answer you quickly through the chat.",
+        "step1_chat_title": "Chat with us"
+      }
+    },
+    "profile": {
+      "save": "Save changes",
+      "title": "Profile"
+    },
+    "questions": {
+      "candidates": {
+        "label": "Candidates",
+        "minError": "There must be at least one candidate",
+        "placeholder": "Candidate options that can be voted for this question"
+      },
+      "layout": {
+        "accordion": "Normal",
+        "circles": "Images with details",
+        "conditional-accordion": "Conditional accordion",
+        "cumulative-tally-help": "The tally method cummulative is only supported for simultaneous questions",
+        "label": "Layout",
+        "placeholder": "Specify how the question will be shown",
+        "simultaneous-questions": "Simultaneous questions"
+      },
+      "max": {
+        "label": "Maximum number of selected options",
+        "minError": "Must be at least 1 ",
+        "numOptionsError": "Voters can choose up to __max__ candidatures, but there are only __cands__ candidatures",
+        "placeholder": "How many options can a voter select in this question?"
+      },
+      "min": {
+        "label": "Minimum number of selected options",
+        "maxError": "Minimum number of choosable candidatures can be at most __max__",
+        "minError": "Cannot be negative",
+        "placeholder": "How many options should a voter select in this question? Minimum is zero wich would allow blank votes"
+      },
+      "new": "New question",
+      "newopt": "New option name",
+      "option": {
+        "categoryFieldLabel": "Category",
+        "categoryFieldPlaceholder": "Used to group candidates in teams in some layouts",
+        "detailsFieldLabel": "Details",
+        "detailsFieldPlaceholder": "More detailed information about the candidate option",
+        "imageUrlFieldLabel": "Image Url",
+        "imageUrlFieldPlaceholder": "https://example.com/path/to/image.jpg",
+        "textFieldLabel": "Text",
+        "textFieldPlaceholder": "Candidate option text",
+        "urlFieldLabel": "Url",
+        "urlFieldPlaceholder": "https://example.com"
+      },
+      "random": {
+        "label": "Randomize options order",
+        "placeholder": "When randomization of the options order is active, each voter will see the options for this question in a different order in the voting booth"
+      },
+      "winners": {
+        "label": "Number of winners",
+        "minError": "There must be at least 1 winner",
+        "numOptionsError": "There are __winners__ winners but only __cands__ candidates",
+        "placeholder": "How many winners should there be? Minimum is 1 and maximum is the number of options"
+      }
+    },
+    "results": {
+      "downloadBallotsCsv": "Download Ballots Spreadsheet (CSV format)",
+      "downloadBallotsJson": "Download Ballots (JSON format)",
+      "downloadData": "Download data",
+      "downloadResultsCsv": "Download Election Results (CSV format)",
+      "downloadResultsJson": "Download Election Results (JSON format)",
+      "downloadResultsPDF": "Download Election Results (PDF format)",
+      "downloadResultsPretty": "Download Election Results (Text format)"
+    },
+    "setting": {
+      "helpTooltip": "Click to expand/collapse help text about this setting"
+    },
+    "show_points_policy": {
+      "label": "Show points",
+      "text": "Show the points that the ballot is giving to each selected option"
+    },
+    "shuffling_policy": {
+      "categories_label": "Ramdomize categories",
+      "categories_label_text": "Check to randomize",
+      "dont-shuffle": "Don't shuffle the options. All voters will see the options in the same order in the voting booth",
+      "list_label": "List of categories to randomize",
+      "list_muted": "Add here the categories to shuffle their options",
+      "list_placeholder": "Add the name of the categories, separated by comma",
+      "options_label": "Randomize options",
+      "shuffle-all": "Shuffle all options. Each voter will see the options for this question in a different order in the voting booth. If there are different categories, they will also be randomized.",
+      "shuffle-some": "Shuffle the options of a selected list of categories."
+    },
+    "sidebar": {
+      "activityLog": "Activity Log",
+      "adminFields": "Admin fields",
+      "auth": "Authentication",
+      "ballotBox": "Ballot Boxes",
+      "basic": "Basic details",
+      "billhistory": "Billing history",
+      "billinfo": "Billing information",
+      "buy": "Buy credits",
+      "census": "Census Data",
+      "censusConfig": "Census Configuration",
+      "create": "Create Election",
+      "currentel": "Current election",
+      "dashboard": "Dashboard",
+      "elections": "Elections",
+      "import": "Import",
+      "myAccount": "My account",
+      "newel": "New election",
+      "questions": "Questions",
+      "successAction": "Success Action",
+      "tally": "Tally",
+      "tasks": "Tasks"
+    },
+    "successAction": {
+      "invalidUrl": "Invalid URL. Example of a valid URL: https://example.com/foo/bar",
+      "modeIntro": "Once a user registers or authenticates, an action should be executed. Usually, it's redirected to the corresponding election voting booth, but it can also be configured to load an external URL. This is useful if you are using this just to register census and not for any active election.",
+      "urlModeDescription": "Load an URL that you can specify. Only https urls allowed.",
+      "urlModePlaceholder": "https://example.com/foo/bar",
+      "urlModeTitle": "Redirect to URL",
+      "voteModeDescription": "Load the corresponding election voting booth so that the person can vote.",
+      "voteModeTitle": "Load the election's voting booth"
+    },
+    "tasks": {
+      "actionsDropdown": "Actions",
+      "commands": {
+        "cancelTask": {
+          "actionName": "Cancel task..",
+          "successMessage": "Task cancelling requested."
+        },
+        "launchSelfTestTask": {
+          "actionName": "Launch self-test task..",
+          "successMessage": "Self-test task launched successfully."
+        },
+        "viewTaskLogs": {
+          "actionName": "View task logs and metadata",
+          "autoscrollLabel": "Autoscroll to bottom console output",
+          "close": "Close",
+          "console": "Console",
+          "emptyLogs": "[Output log empty]",
+          "errorLogsHeader": "Errors:",
+          "header": "View task logs and metadata",
+          "metadata": "Metadata"
+        }
+      },
+      "intro": "Launch background tasks, for example a deployment self-test task.",
+      "manage": "Manage tasks",
+      "table": {
+        "empty": "You have not launched any task yet.<br><br>You can click in <strong>'Actions'</strong> dropdown menu to launch a <strong>Self-test task</strong>.",
+        "id": "Id",
+        "lastUpdate": "Last update",
+        "name": "Name",
+        "status": "Status"
+      }
+    },
+    "topbar": {
+      "features": "Features",
+      "freesignup": "Free sign up",
+      "help": "Help",
+      "home": "Home",
+      "login": "Enter",
+      "logout": "logout"
+    }
+  },
+  "avCommon": {
+    "cancel": "Cancel",
+    "poweredBy": "Powered by <strong><a href=\"__url__\" target=\"_blank\">__name__</a></strong>",
+    "shareLink": "Tweet this election!",
+    "votingSystem": "Voting System",
+    "votings": {
+      "borda": "Borda Count (traditional)",
+      "borda-nauru": "Nauru's Borda Count or Borda Dowdall (1/n)",
+      "cumulative": "Cumulative voting",
+      "desborda": "DesBorda",
+      "pairwise-beta": "Pairwise (beta-distribution)",
+      "plurality-at-large": "Plurality at large"
+    }
+  },
+  "continue": "Continua",
+  "created": "Creato",
+  "doing_tally": "conteggio in corso",
+  "done": "Fatto",
+  "eg": "es.",
+  "loading": "Caricamento...",
+  "next": "Prossimo",
+  "no": "no",
+  "nomore": "Nessun altro elemento",
+  "ok": "Ok",
+  "registered": "Registrato",
+  "results_ok": "risultati raggiunti",
+  "results_pub": "risultati pubblicati",
+  "resumed": "Ripresa",
+  "started": "Iniziato",
+  "stopped": "fermato",
+  "suspended": "Sospeso",
+  "tally_error": "errore di conteggio",
+  "tally_ok": "conteggio",
+  "yes": "si"
+}
