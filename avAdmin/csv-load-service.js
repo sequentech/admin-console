@@ -167,7 +167,11 @@ angular.module('avAdmin')
             } else {
                batch = csvLoadService.scope.exportList.slice(csvLoadService.scope.exportListIndex, csvLoadService.scope.exportListIndex + csvLoadService.scope.batchSize);
             }
-            censusCall(csvLoadService.scope.election.id, batch, 'disabled')
+            censusCall(
+              csvLoadService.scope.election.id,
+              batch,
+              csvLoadService.scope.verifyCensus ? 'enabled' : 'disabled'
+            )
               .then(function () {
                 ret.exportListIndex = csvLoadService.scope.exportListIndex + batch.length;
                 ret.percent = calcPercent(ret.exportListIndex);

@@ -23,8 +23,12 @@ angular.module('avAdmin')
       $scope.election = election;
       $scope.textarea = "";
       $scope.helpurl = ConfigService.helpUrl;
+      $scope.verify_census = false;
       $scope.ok = function () {
-        $modalInstance.close($("#csv-textarea").val());
+        $modalInstance.close(
+          $("#csv-textarea").val(),
+          $scope.verify_census
+        );
       };
 
       // if there's a parent election, add those fields at the end of the example

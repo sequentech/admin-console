@@ -40,6 +40,23 @@
         ng-model="textarea">
       </textarea>
     </div>
+    <!-- verifier checkbox -->
+    <label
+      for="verify-census-checkbox"
+      class="verify-census-checkbox-label"
+      ng-class="{'checked': verify_census}"
+    >
+      <input
+        id="verify-census-checkbox"
+        type="checkbox"
+        name="verify-census-checkbox"
+        ng-model="verify_census"
+      />
+      <span
+        class="header"
+        ng-i18next="avAdmin.dashboard.modals.addCensus.verifyCensusDataCheckbox">
+      </span>
+    </label>
   </form>
 </div>
 <div class="modal-footer">

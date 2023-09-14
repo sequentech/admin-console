@@ -1003,7 +1003,7 @@ angular.module('avAdmin')
           resolve: {
             election: function () { return scope.election; }
           }
-        }).result.then(function(textarea) {
+        }).result.then(function(textarea, verifyCensus) {
           if (!!scope.election.id) {
             $modal.open({
              templateUrl: "avAdmin/admin-directives/elcensus/csv-loading-modal.html",
@@ -1032,7 +1032,8 @@ angular.module('avAdmin')
           } else {
             var data = {
               election: scope.election,
-              textarea: textarea
+              textarea: textarea,
+              verifyCensus: verifyCensus
             };
             CsvLoad.processCsv(data);
           }
