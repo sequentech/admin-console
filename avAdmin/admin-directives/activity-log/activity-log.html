@@ -106,6 +106,136 @@
             <div ng-if="obj.action_name === 'authevent:edit'" ng-i18next>
             [i18next:html](obj)avAdmin.activityLog.action.authevent.edit
             </div>
+            <div ng-if="obj.action_name === 'authevent:start:error'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                receiver_username: obj.receiver_username,
+                receiver_id: obj.receiver_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.startError
+            </div>
+            <div ng-if="obj.action_name === 'authevent:stop:error'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                receiver_username: obj.receiver_username,
+                receiver_id: obj.receiver_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.stopError
+            </div>
+            <div ng-if="obj.action_name === 'authevent:suspend:error'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                receiver_username: obj.receiver_username,
+                receiver_id: obj.receiver_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.suspendError
+            </div>
+            <div ng-if="obj.action_name === 'authevent:resume:error'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                receiver_username: obj.receiver_username,
+                receiver_id: obj.receiver_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.resumeError
+            </div>
+            
+            <div ng-if="obj.action_name === 'authevent:start:success'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                receiver_username: obj.receiver_username,
+                receiver_id: obj.receiver_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.startSuccess
+            </div>
+            <div ng-if="obj.action_name === 'authevent:stop:success'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                receiver_username: obj.receiver_username,
+                receiver_id: obj.receiver_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.stopSuccess
+            </div>
+            <div ng-if="obj.action_name === 'authevent:suspend:success'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                receiver_username: obj.receiver_username,
+                receiver_id: obj.receiver_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.suspendSuccess
+            </div>
+            <div ng-if="obj.action_name === 'authevent:resume:success'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                receiver_username: obj.receiver_username,
+                receiver_id: obj.receiver_id,
+                event_id: obj.event_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event]
+              })avAdmin.activityLog.action.authevent.resumeSuccess
+            </div>
+
+            <div ng-if="obj.action_name === 'authevent:start_voting:scheduled'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                receiver_username: obj.receiver_username,
+                receiver_id: obj.receiver_id,
+                event_id: obj.event_id,
+                new_event_date: obj.metadata.new_event_date,
+                new_task_id: obj.metadata.new_task_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event],
+              })avAdmin.activityLog.action.authevent.startVotingScheduled
+            </div>
+            <div ng-if="obj.action_name === 'authevent:start_voting:revoked'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                receiver_username: obj.receiver_username,
+                receiver_id: obj.receiver_id,
+                event_id: obj.event_id,
+                old_event_date: obj.metadata.old_event_date,
+                old_task_id: obj.metadata.old_task_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event],
+              })avAdmin.activityLog.action.authevent.startVotingRevoked
+            </div>
+            <div ng-if="obj.action_name === 'authevent:end_voting:scheduled'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                receiver_username: obj.receiver_username,
+                receiver_id: obj.receiver_id,
+                event_id: obj.event_id,
+                new_event_date: obj.metadata.new_event_date,
+                new_task_id: obj.metadata.new_task_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event],
+              })avAdmin.activityLog.action.authevent.endVotingScheduled
+            </div>
+            <div ng-if="obj.action_name === 'authevent:end_voting:revoked'" ng-i18next>
+              [i18next:html]({
+                executer_username: obj.executer_username,
+                executer_id: obj.executer_id,
+                receiver_username: obj.receiver_username,
+                receiver_id: obj.receiver_id,
+                event_id: obj.event_id,
+                old_event_date: obj.metadata.old_event_date,
+                old_task_id: obj.metadata.old_task_id,
+                child_election: election.childrenElectionNames[obj.metadata.auth_event],
+              })avAdmin.activityLog.action.authevent.endVotingRevoked
+            </div>
 
 
             <div ng-if="obj.action_name === 'authevent:start'" ng-i18next>

@@ -186,6 +186,19 @@
           "suspend": "<i>__executer_username__ (__executer_id__)</i> <strong>suspended</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
           "resume": "<i>__executer_username__ (__executer_id__)</i> <strong>resumed</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
           "tally": "<i>__executer_username__ (__executer_id__)</i> <strong>requested to tally</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
+          "startError": "<i>__executer_username__ (__executer_id__)</i> <strong>error starting</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "startSuccess": "<i>__executer_username__ (__executer_id__)</i> <strong>succeeded starting</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "stopError": "<i>__executer_username__ (__executer_id__)</i> <strong>error stopping</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "stopSuccess": "<i>__executer_username__ (__executer_id__)</i> <strong>succeeded stopping</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "suspendError": "<i>__executer_username__ (__executer_id__)</i> <strong>error suspending</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "suspendSuccess": "<i>__executer_username__ (__executer_id__)</i> <strong>succeeded suspending</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "resumeError": "<i>__executer_username__ (__executer_id__)</i> <strong>error resuming</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "resumeSuccess": "<i>__executer_username__ (__executer_id__)</i> <strong>succeeded resuming</strong> election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__",
+          "startVotingScheduled": "<i>__executer_username__ (__executer_id__)</i> <strong>scheduled start voting</strong> period for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> at <strong>__new_event_date__</strong> with task id __new_task_id__ __child_election__",
+          "startVotingRevoked": "<i>__executer_username__ (__executer_id__)</i> <strong>revoked start voting</strong> period for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> at <strong>__old_event_date__</strong> with task id __old_task_id__ __child_election__",
+          "endVotingScheduled": "<i>__executer_username__ (__executer_id__)</i> <strong>scheduled end voting</strong> period for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> at <strong>__new_event_date__</strong> with task id __new_task_id__ __child_election__",
+          "endVotingRevoked": "<i>__executer_username__ (__executer_id__)</i> <strong>revoked end voting</strong> period for election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> at <strong>__old_event_date__</strong> with task id __old_task_id__ __child_election__",
+
           "tally_error": "<strong>error when launching tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
           "virtual_tally_error": "<strong>error when launching virtual tally</strong> of election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> <i>__metadata__</i>",
           "tally_error_no_votes": "<strong>tally not executed because there were no votes</strong> in election <a href=\"/admin/dashboard/__event_id__\">__event_id__</a> __child_election__ <i>__metadata__</i>",
@@ -326,6 +339,8 @@
         "dropFilesHere": "Drop CSV file here"
     },
     "dashboard": {
+        "scheduledStartDate": "Scheduled Start",
+        "scheduledStopDate": "Scheduled Stop",
         "writeInResults": "(Write-in)",
         "chilldrenResultsTitle": "Select the election results to view:",
         "createRealElection": "Create REAL election",
@@ -378,6 +393,7 @@
           "makeCandidatesPrivate": "Make candidates private...",
           "launchKeyDistributionCeremony": "Launch keys distribution ceremony",
           "launchOpeningCeremony": "Launch opening ceremony",
+          "configureScheduledEvents": "Configure scheduled events",
           "enableOtlPeriod": "Enable Otl period...",
           "disableOtlPeriod": "Disable Otl period..."
         },
@@ -614,6 +630,17 @@
             "body": "Resuming the election when it has previously been suspend temporarily will allow again voters casting a vote.",
             "confirmButton": "RESUME the election voting period",
             "success": "Election voting period resumed successfully."
+          },
+          "configureScheduledEvents": {
+            "header": "Configure Scheduled Events",
+            "body": "Schedule events related to the election, such as the start or the stop date and time.",
+            "startVotingEnable": "Automatically start the election",
+            "startVotingSelector": "Select date:",
+            "endVotingEnable": "Automatically stop the election",
+            "endVotingSelector": "Select date:",
+            "confirm": "Confirm to change scheduled events",
+            "success": "Changed the configuration of scheduled events successfully.",
+            "error": "Error changing the configuration of scheduled events."
           }
         }
     },

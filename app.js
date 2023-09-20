@@ -39,7 +39,6 @@ angular.module(
   'angularFileUpload',
   'dndLists',
   'angularLoad',
-  'angular-date-picker-polyfill',
   'ng-autofocus',
   'LocalStorageModule',
   'common-ui'
