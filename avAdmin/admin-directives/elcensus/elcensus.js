@@ -810,20 +810,27 @@ angular.module('avAdmin')
                     scope.loading = false;
                     scope.msg = "avAdmin.census.censusadd";
                     scope.reloadCensus();
-                    Plugins.hook('add-to-census-success', {data: csExport, response: response.data});
+                    Plugins.hook(
+                      'add-to-census-success',
+                      {data: csExport, response: response.data}
+                    );
                   },
                   function onError(response) {
                     scope.loading = false;
-                    if (angular.isString(response.data)) {
-                      if (response.data === "invalid_credentials") {
-                        scope.error = $i18next(
-                          "avAdmin.dashboard.modals.addCensus.errorInvalidCensusData"
-                        );
-                      } else {
-                        scope.error = response.data.error;
-                      }
+                    if (
+                      response.data &&
+                      response.data.error_codename === "invalid_credentials"
+                    ) {
+                      scope.error = $i18next(
+                        "avAdmin.dashboard.modals.addCensus.errorInvalidCensusData"
+                      );
+                    } else {
+                      scope.error = response.data.error_codename;
                     }
-                    Plugins.hook('add-to-census-error', {data: csExport, response: response.data});
+                    Plugins.hook(
+                      'add-to-census-error',
+                      {data: csExport, response: response.data}
+                    );
                     Plugins.hook('census-csv-load-error', response.data);
                   }
                 );
