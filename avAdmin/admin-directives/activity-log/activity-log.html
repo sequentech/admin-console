@@ -89,14 +89,15 @@
             {{obj.id}}
           </td>
           <td class="small-col">
-            <span
-              am-time-ago="obj.created"
-              tooltip="{{obj.created| amDateFormat:'LLLL'}}"
-              tooltip-placement="right"
-              popover-trigger="mouseenter">
-            </span>
+            {{obj.executer_id}}
           </td>
-          <td colspan="3">
+          <td class="small-col">
+            {{obj.receiver_id}}
+          </td>
+          <td class="small-col">
+            {{obj.created| amUtc | amDateFormat:'DD.MM.YYYY HH:mm:ss'}}
+          </td>
+          <td class="description-col">
             <div ng-if="obj.action_name === 'authevent:create'" ng-i18next>
             [i18next:html](obj)avAdmin.activityLog.action.authevent.create
             </div>
