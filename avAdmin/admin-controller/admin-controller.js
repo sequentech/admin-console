@@ -38,9 +38,6 @@ angular
       var id = $stateParams.id;
       $scope.electionId = id;
 
-      // get election perms, with a default of no perms
-      $scope.perms = {val: ""};
-
       $scope.state = $state.current.name;
       $scope.current = null;
       $scope.noplugin = true;
@@ -219,13 +216,30 @@ angular
       Plugins.hook('add-dashboard-election-states', plugins_data);
       states = states.concat(plugins_data.states);
 
+
+      $scope.hasPerms = function (optionList) {
+        return optionList.some(function (option ) {
+          return $scope.perms.val.includes(option);
+        });
+      };
+
+      // get election perms, with a default of no perms
+      $scope.perms = {val: ""};
+      ElectionsApi
+        .getEditPerm($scope.electionId)
+        .then(
+          function (perm) {
+            $scope.perms.val = perm.split(":")[4].split("|");
+          }
+        );
+
       $scope.globalPerms = {val: ""};
       // update global perms
       ElectionsApi
         .getEditPerm(null)
         .then(
           function (perm) {
-            $scope.globalPerms.val = perm;
+            $scope.globalPerms.val = perm.split(":")[4].split("|");
           }
         );
 
@@ -258,7 +272,6 @@ angular
 
                         if (
                           perm.indexOf('event-view-activity') !== -1 ||
-                          perm.indexOf('view') !== -1 || 
                           perm.indexOf('edit') !== -1
                         ) {
                           $scope.sidebarlinks = $scope.sidebarlinks.concat([
@@ -268,7 +281,7 @@ angular
           
 
                         // update election perms
-                        $scope.perms.val = perm;
+                        $scope.perms.val = perm.split(":")[4].split("|");
                       }
                     );
                 }
@@ -279,7 +292,13 @@ angular
               {name: 'questions', icon: 'question-circle'},
               {name: 'auth', icon: 'unlock'},
               {name: 'censusConfig', icon: 'newspaper-o'},
-              {name: 'census', icon: 'users'},
+              {
+                name: 'census',
+                icon: 'users',
+                permsFunc: function() {
+                  return $scope.hasPerms(["view-census", "edit"]);
+                }
+              },
               //{name: 'successAction', icon: 'star-o'},
               {name: 'adminFields', icon: 'user'},
               //{name: 'tally', icon: 'pie-chart'},

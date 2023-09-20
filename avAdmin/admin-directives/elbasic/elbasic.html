@@ -8,7 +8,7 @@
           class="btn btn-success btn-social ng-scope btn-primary"
           type="button"
           ng-i18next="avAdmin.dashboard.actions.changeSocial"
-          ng-disabled="!allow_social_edit"
+          ng-if="allow_social_edit"
           ng-click="openSocialModal()"
         >
         </button>

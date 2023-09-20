@@ -49,15 +49,6 @@ angular.module('avAdmin')
       scope.nomore = false;
       scope.error = null;
       scope.page = 1;
-
-      scope.perms = {val: ""};
-      ElectionsApi
-        .getEditPerm(scope.election.id)
-        .then(
-          function (perm) {
-            scope.perms.val = perm;
-          }
-        );
         
       scope.msg = null;
       scope.filterStr = "";
@@ -453,6 +444,9 @@ angular.module('avAdmin')
               scope.perms.val.indexOf("edit") !== -1 ||
               scope.election.id === undefined
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["census-add", "edit"]);
           }
         },
         {
@@ -465,6 +459,9 @@ angular.module('avAdmin')
               scope.perms.val.indexOf("edit") !== -1 ||
               scope.election.id === undefined
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["census-add", "edit"]);
           }
         },
         {
@@ -481,19 +478,28 @@ angular.module('avAdmin')
                 scope.perms.val.indexOf("edit") !== -1
               )
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["view-census", "edit"]);
           }
         },
         {
           i18nString: 'selectAllShownAction',
           iconClass: 'fa fa-check-square-o',
           actionFunc: function() { return scope.selectQueried(true); },
-          enableFunc: function() { return scope.shown().length > 0; }
+          enableFunc: function() { return scope.shown().length > 0; },
+          permsFunc: function() {
+            return true;
+          }
         },
         {
           i18nString: 'deselectAllShownAction',
           iconClass: 'fa fa-square-o',
           actionFunc: function() { return selectQueried(false); },
-          enableFunc: function() { return scope.numSelected(scope.shown()) > 0; }
+          enableFunc: function() { return scope.numSelected(scope.shown()) > 0; },
+          permsFunc: function() {
+            return true;
+          }
         },
         {
           i18nString: 'activateAction',
@@ -522,6 +528,9 @@ angular.module('avAdmin')
                 scope.perms.val.indexOf("edit") !== -1
               )
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["census-activation", "edit"]);
           }
         },
         {
@@ -551,6 +560,9 @@ angular.module('avAdmin')
                 scope.perms.val.indexOf("edit") !== -1
               )
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["census-activation", "edit"]);
           }
         },
         {
@@ -587,6 +599,9 @@ angular.module('avAdmin')
                 scope.perms.val.indexOf("edit") !== -1
               )
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["census-delete", "census-delete-voted", "edit"]);
           }
         },
         {
@@ -601,6 +616,9 @@ angular.module('avAdmin')
                 scope.perms.val.indexOf("edit") !== -1
               )
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["send-auth", "edit"]);
           }
         }
       ];
@@ -666,6 +684,9 @@ angular.module('avAdmin')
                 scope.perms.val.indexOf("edit") !== -1
               )
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["event-view-activity", "edit"]);
           }
         },
         {
@@ -694,6 +715,9 @@ angular.module('avAdmin')
                 scope.perms.val.indexOf("edit") !== -1
               )
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["census-activation", "edit"]);
           }
         },
         {
@@ -722,6 +746,9 @@ angular.module('avAdmin')
                 scope.perms.val.indexOf("edit") !== -1
               )
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["census-activation", "edit"]);
           }
         },
         {
@@ -753,6 +780,9 @@ angular.module('avAdmin')
               ) ||
               scope.perms.val.indexOf("edit") !== -1
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["census-delete", "edit"]);
           }
         },
         {
@@ -767,6 +797,9 @@ angular.module('avAdmin')
               scope.perms.val.indexOf("send-auth") !== -1 ||
               scope.perms.val.indexOf("edit") !== -1
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["send-auth", "edit"]);
           }
         },
         {
@@ -780,6 +813,9 @@ angular.module('avAdmin')
               scope.perms.val.indexOf("generate-auth-code") !== -1 ||
               scope.perms.val.indexOf("edit") !== -1
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["generate-auth-code", "edit"]);
           }
         },
         {
@@ -796,6 +832,9 @@ angular.module('avAdmin')
               ) &&
               voters[0].voted_children_elections.length === 0
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["reset-voter", "edit"]);
           }
         }
       ];
@@ -1066,6 +1105,9 @@ angular.module('avAdmin')
         scope.loading = true;
 
         ElectionsApi.waitForCurrent(function () {
+          if (!scope.hasPerms(["view-census", "edit"])) {
+            return;
+          }
           ElectionsApi.getCensus(
               scope.election,
               scope.page,
@@ -1207,8 +1249,7 @@ angular.module('avAdmin')
 
     return {
       restrict: 'AE',
-      scope: {
-      },
+      scope: true,
       link: link,
       templateUrl: 'avAdmin/admin-directives/elcensus/elcensus.html'
     };

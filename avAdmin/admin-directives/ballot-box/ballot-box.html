@@ -125,6 +125,7 @@
           <td class="small-col text-right actions">
             <span
                 ng-repeat="command in row_commands"
+                ng-if="command.permsFunc()"
                 ng-class="{'disabled': !command.enableFunc(obj)}">
                 <a ng-click="command.actionFunc(obj)">
                     <i class="{{command.iconClass}}"

@@ -46,16 +46,6 @@ angular.module('avAdmin')
           scope.isAdmin = $cookies.get("isAdmin" + postfix);
           scope.active = attrs.active;
           scope.isEditingDraft = DraftElection.isEditingDraft;
-          scope.globalPerms = { val: '' };
-
-          // update perms
-          ElectionsApi
-            .getEditPerm(null)
-            .then(
-              function (perm) {
-                scope.globalPerms.val = perm;
-              }
-            );
       }
 
       return {

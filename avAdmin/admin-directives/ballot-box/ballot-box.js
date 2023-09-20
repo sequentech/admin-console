@@ -228,6 +228,9 @@ angular.module('avAdmin')
               ballotBox.num_tally_sheets > 0 &&
               ElectionsApi.getCachedEditPerm(scope.electionId).indexOf('list-tally-sheets') !== -1
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["list-tally-sheets", "edit"]);
           }
         },
         {
@@ -313,6 +316,9 @@ angular.module('avAdmin')
                 )
               )
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["override-tally-sheets", "add-tally-sheets"]);
           }
         },
         {
@@ -351,6 +357,9 @@ angular.module('avAdmin')
               ballotBox.num_tally_sheets > 0 &&
               ElectionsApi.getCachedEditPerm(scope.electionId).indexOf('delete-tally-sheets') !== -1
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["delete-tally-sheets"]);
           }
         },
         {
@@ -377,6 +386,9 @@ angular.module('avAdmin')
             return (
               ElectionsApi.getCachedEditPerm(scope.electionId).indexOf('delete-ballot-boxes') !== -1
             );
+          },
+          permsFunc: function() {
+            return scope.hasPerms(["delete-ballot-boxes"]);
           }
         }
       ];
