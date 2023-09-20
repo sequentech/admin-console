@@ -1008,23 +1008,27 @@ angular.module('avAdmin')
           var verifyCensus = result.verifyCensus;
           if (!!scope.election.id) {
             $modal.open({
-             templateUrl: "avAdmin/admin-directives/elcensus/csv-loading-modal.html",
-             controller: "CsvLoadingModal",
-             size: 'lg',
-             resolve: {
-               election: function () { return scope.election; },
-               textarea: function () { return textarea; },
-               verifyCensus: function () { return verifyCensus; },
-               errorFunc: function () {
-                 function errorFunction(data) {
-                   if (angular.isString(data)) {
-                     scope.error = data;
-                   }
-                   return scope.error;
-                 }
-                 return errorFunction;
-               }
-             }
+              templateUrl: "avAdmin/admin-directives/elcensus/csv-loading-modal.html",
+              controller: "CsvLoadingModal",
+              size: 'lg',
+              resolve: {
+                election: function () { return scope.election; },
+                textarea: function () { return textarea; },
+                verifyCensus: function () { return verifyCensus; },
+                errorFunc: function () {
+                  function errorFunction(data) {
+                    if (angular.isString(data)) {
+                      if (data === "invalid_credentials") {
+                        scope.error = $i18next("avAdmin.dashboard.modals.addCensus.errorInvalidCensusData");
+                      } else {
+                        scope.error = data;
+                      }
+                    }
+                    return scope.error;
+                  }
+                  return errorFunction;
+                }
+              }
             })
             .result.then(
               scope.reloadCensus,
