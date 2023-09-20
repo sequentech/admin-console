@@ -45,6 +45,23 @@
       mode="checkbox"
       children-election-info="children_election_info">
     </div>
+    <!-- verifier checkbox -->
+    <label
+      for="verify-census-checkbox"
+      class="verify-census-checkbox-label"
+      ng-class="{'checked': verifyCensus}"
+    >
+      <input
+        id="verify-census-checkbox"
+        type="checkbox"
+        name="verify-census-checkbox"
+        ng-model="verifyCensus"
+      />
+      <span
+        class="header"
+        ng-i18next="avAdmin.dashboard.modals.addCensus.verifyCensusDataCheckbox">
+      </span>
+    </label>
   </form>
 </div>
 <div class="modal-footer">

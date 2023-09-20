@@ -822,7 +822,7 @@ angular.module('avAdmin')
           }
       }
 
-      function addToCensus() {
+      function addToCensus(verifyCensus) {
           var election = scope.election;
           var census = [];
           if (!election.id) {
@@ -864,7 +864,7 @@ angular.module('avAdmin')
               }
             );
             scope.loading = true;
-            censusCall(election.id, csExport, 'disabled');
+            censusCall(election.id, csExport, !!verifyCensus ? 'enabled' : 'disabled');
           }
           scope.newcensus = {};
       }
@@ -1056,8 +1056,8 @@ angular.module('avAdmin')
             election: function () { return scope.election; },
             newcensus: function() { return scope.newcensus; }
           }
-        }).result.then(function() {
-          scope.addToCensus();
+        }).result.then(function(verifyCensus) {
+          scope.addToCensus(verifyCensus);
         });
       }
 

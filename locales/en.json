@@ -616,7 +616,8 @@
             "success": "Election voting period resumed successfully."
           },
           "addCensus": {
-            "verifyCensusDataCheckbox": "Verify census data"
+            "verifyCensusDataCheckbox": "Verify census data",
+            "errorInvalidCensusData": "Error! Census contains some erroneous data, please check."
           }
         }
     },
