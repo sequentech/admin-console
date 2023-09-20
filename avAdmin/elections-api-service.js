@@ -167,6 +167,7 @@ angular.module('avAdmin')
           el.parent_id = electionAuth.parent_id;
           el.hide_default_login_lookup_field = electionAuth.hide_default_login_lookup_field;
           el.allow_public_census_query = electionAuth.allow_public_census_query;
+          el.scheduled_events = electionAuth.scheduled_events;
 
           el.census.extra_fields = electionAuth.extra_fields;
           el.census.admin_fields = electionAuth.admin_fields;
