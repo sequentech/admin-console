@@ -1014,6 +1014,7 @@ angular.module('avAdmin')
              resolve: {
                election: function () { return scope.election; },
                textarea: function () { return textarea; },
+               verifyCensus: function () { return verifyCensus; },
                errorFunc: function () {
                  function errorFunction(data) {
                    if (_.isBoolean(data)) {

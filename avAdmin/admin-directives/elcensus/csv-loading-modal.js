@@ -17,9 +17,19 @@
 
 angular.module('avAdmin')
   .controller('CsvLoadingModal',
-    function($scope, $modalInstance, ConfigService, CsvLoad, election, textarea, errorFunc) {
+    function(
+      $scope,
+      $modalInstance,
+      ConfigService,
+      CsvLoad,
+      election,
+      textarea,
+      verifyCensus,
+      errorFunc
+    ) {
       $scope.election = election;
       $scope.textarea = textarea;
+      $scope.verifyCensus = verifyCensus;
       $scope.helpurl = ConfigService.helpUrl;
       $scope.error = errorFunc;
       $scope.disableOk = false;
