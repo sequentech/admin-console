@@ -63,13 +63,23 @@
       <div class="panel-body" av-scroll-to-bottom ng-bind-html="log"></div>
     </div>
 
-    <div class="form-group create-election" ng-class="{'hidden': creating}">
+    <div class="form-group options create-election" ng-class="{'hidden': creating}">
       <input
         type="checkbox"
         id="createElection"
         ng-model="createElectionBool" />
       <label for="createElection" ng-i18next>
         avAdmin.basic.registerAndCreateElection
+      </label>
+    </div>
+
+    <div class="form-group options verify-census" ng-class="{'hidden': creating}">
+      <input
+        type="checkbox"
+        id="verifyCensus"
+        ng-model="verifyCensusBool" />
+      <label for="verifyCensus" ng-i18next>
+        avAdmin.dashboard.modals.addCensus.verifyCensusDataCheckbox
       </label>
     </div>
 

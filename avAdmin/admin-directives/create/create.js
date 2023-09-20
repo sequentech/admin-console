@@ -62,6 +62,7 @@ angular.module('avAdmin')
         scope.creating = false;
         scope.log = '';
         scope.createElectionBool = true;
+        scope.verifyCensusBool = true;
         scope.allowEditElectionJson = ConfigService.allowEditElectionJson;
 
         scope.actions = [
@@ -1070,9 +1071,13 @@ angular.module('avAdmin')
 
             var data = {
               election: el,
+              verifyCensus: scope.verifyCensusBool,
               error: function (errorMsg) {
+                  var message = (errorMsg === "invalid_credentials") ?
+                    $i18next("avAdmin.dashboard.modals.addCensus.errorInvalidCensusData") :
+                    $sanitize(errorMsg);
                   scope.errors.push({
-                    data: {message: $sanitize($sanitize)(errorMsg)},
+                    data: {message: message},
                     key: "election-census-createel-unknown"
                   });
                 },

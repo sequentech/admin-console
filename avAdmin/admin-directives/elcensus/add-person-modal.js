@@ -19,6 +19,7 @@ angular.module('avAdmin')
   .controller('AddPersonModal',
     function($scope, $modalInstance, election, newcensus, ConfigService) {
       $scope.election = election;
+      $scope.verifyCensus = true;
       $scope.newcensus = newcensus;
       $scope.helpurl = ConfigService.helpUrl;
       $scope.children_election_info = angular.copy($scope.election.children_election_info);
@@ -55,7 +56,7 @@ angular.module('avAdmin')
             }
           );
         }
-        $modalInstance.close();
+        $modalInstance.close($scope.verifyCensus);
       };
 
       $scope.cancel = function () {

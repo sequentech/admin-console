@@ -849,19 +849,34 @@ angular.module('avAdmin')
                     scope.loading = false;
                     scope.msg = "avAdmin.census.censusadd";
                     scope.reloadCensus();
-                    Plugins.hook('add-to-census-success', {data: csExport, response: response.data});
+                    Plugins.hook(
+                      'add-to-census-success',
+                      {data: csExport, response: response.data}
+                    );
                   },
                   function onError(response) {
                     scope.loading = false;
-                    scope.error = response.data.error;
-                    Plugins.hook('add-to-census-error', {data: csExport, response: response.data});
+                    if (
+                      response.data &&
+                      response.data.error_codename === "invalid_credentials"
+                    ) {
+                      scope.error = $i18next(
+                        "avAdmin.dashboard.modals.addCensus.errorInvalidCensusData"
+                      );
+                    } else {
+                      scope.error = response.data.error_codename;
+                    }
+                    Plugins.hook(
+                      'add-to-census-error',
+                      {data: csExport, response: response.data}
+                    );
                     Plugins.hook('census-csv-load-error', response.data);
                   }
                 );
           }
       }
 
-      function addToCensus() {
+      function addToCensus(verifyCensus) {
           var election = scope.election;
           var census = [];
           if (!election.id) {
@@ -903,7 +918,7 @@ angular.module('avAdmin')
               }
             );
             scope.loading = true;
-            censusCall(election.id, csExport, 'disabled');
+            censusCall(election.id, csExport, !!verifyCensus ? 'enabled' : 'disabled');
           }
           scope.newcensus = {};
       }
@@ -1042,25 +1057,32 @@ angular.module('avAdmin')
           resolve: {
             election: function () { return scope.election; }
           }
-        }).result.then(function(textarea) {
+        }).result.then(function(result) {
+          var textarea = result.textarea;
+          var verifyCensus = result.verifyCensus;
           if (!!scope.election.id) {
             $modal.open({
-             templateUrl: "avAdmin/admin-directives/elcensus/csv-loading-modal.html",
-             controller: "CsvLoadingModal",
-             size: 'lg',
-             resolve: {
-               election: function () { return scope.election; },
-               textarea: function () { return textarea; },
-               errorFunc: function () {
-                 function errorFunction(data) {
-                   if (_.isBoolean(data)) {
-                     scope.error = data;
-                   }
-                   return scope.error;
-                 }
-                 return errorFunction;
-               }
-             }
+              templateUrl: "avAdmin/admin-directives/elcensus/csv-loading-modal.html",
+              controller: "CsvLoadingModal",
+              size: 'lg',
+              resolve: {
+                election: function () { return scope.election; },
+                textarea: function () { return textarea; },
+                verifyCensus: function () { return verifyCensus; },
+                errorFunc: function () {
+                  function errorFunction(data) {
+                    if (angular.isString(data)) {
+                      if (data === "invalid_credentials") {
+                        scope.error = $i18next("avAdmin.dashboard.modals.addCensus.errorInvalidCensusData");
+                      } else {
+                        scope.error = data;
+                      }
+                    }
+                    return scope.error;
+                  }
+                  return errorFunction;
+                }
+              }
             })
             .result.then(
               scope.reloadCensus,
@@ -1071,7 +1093,8 @@ angular.module('avAdmin')
           } else {
             var data = {
               election: scope.election,
-              textarea: textarea
+              textarea: textarea,
+              verifyCensus: verifyCensus
             };
             CsvLoad.processCsv(data);
           }
@@ -1087,8 +1110,8 @@ angular.module('avAdmin')
             election: function () { return scope.election; },
             newcensus: function() { return scope.newcensus; }
           }
-        }).result.then(function() {
-          scope.addToCensus();
+        }).result.then(function(verifyCensus) {
+          scope.addToCensus(verifyCensus);
         });
       }
 
