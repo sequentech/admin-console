@@ -20,6 +20,7 @@ angular.module('avAdmin')
     'avAdminDashboard',
     function(
        $q,
+       $i18next,
        $state,
        Authmethod,
        Plugins,
@@ -29,7 +30,8 @@ angular.module('avAdmin')
        PercentVotesService,
        ConfigService,
        SendMsg,
-       KeysCeremony)
+       KeysCeremony,
+       ConfigureScheduledEvents)
     {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) 
@@ -120,7 +122,7 @@ angular.module('avAdmin')
                 scope.nextaction = scope.nextactions[scope.index - 1];
 
                 if (
-                  el.status === 'results_ok' || 
+                  el.status === 'results_ok' ||
                   el.status === 'stopped'
                 ) {
                   ElectionsApi.results(el);
@@ -301,6 +303,20 @@ angular.module('avAdmin')
                delete field['slug'];
              }
            }
+        }
+        if (
+          el.scheduled_events &&
+          el.scheduled_events.start_voting &&
+          el.scheduled_events.start_voting.task_id
+        ) {
+          delete el.scheduled_events.start_voting.task_id;
+        }
+        if (
+          el.scheduled_events &&
+          el.scheduled_events.end_voting &&
+          el.scheduled_events.end_voting.task_id
+        ) {
+          delete el.scheduled_events.end_voting.task_id;
         }
         el.id = null;
         el.raw = null;
@@ -613,6 +629,20 @@ angular.module('avAdmin')
         KeysCeremony.launchOpeningCeremony(scope.election);
       }
 
+      function configureScheduledEvents() {
+        ConfigureScheduledEvents.launchModal(
+          scope.election,
+          function onSuccess() 
+          {
+            scope.msg = "avAdmin.dashboard.modals.configureScheduledEvents.success"; 
+          }, 
+          function onError() {
+            scope.error = $i18next("avAdmin.dashboard.modals.configureScheduledEvents.error"); 
+          }
+
+        );
+      }
+
       function setAutoreload(electionId)
       {
         ElectionsApi.autoreloadStats(
@@ -635,6 +665,15 @@ angular.module('avAdmin')
             if (scope.election.id === el.id)
             {
               scope.election = el;
+              scope.index = scope.getStatusIndex(el.status) + 1;
+              scope.nextaction = scope.nextactions[scope.index - 1];
+
+              if (
+                el.status === 'results_ok' ||
+                el.status === 'stopped'
+              ) {
+                ElectionsApi.results(el);
+              }
             }
           }
         );
@@ -1330,6 +1369,17 @@ angular.module('avAdmin')
               return scope.hasPerms(["edit"]);
             }
           },
+          {
+            i18nString: 'configureScheduledEvents',
+            iconClass: 'fa fa-clock',
+            actionFunc: function() { return scope.configureScheduledEvents(); },
+            enableFunc: function() { 
+              return (
+                scope.perms.val.indexOf("schedule-events") !== -1 ||
+                scope.perms.val.indexOf("edit") !== -1
+              );
+            }
+          },
         ];
 
         scope.permittedActions = function () {
@@ -1419,7 +1469,8 @@ angular.module('avAdmin')
         showResults: showResults,
         toggleDownloadButton: toggleDownloadButton,
         launchKeyDistributionCeremony: launchKeyDistributionCeremony,
-        launchOpeningCeremony: launchOpeningCeremony
+        launchOpeningCeremony: launchOpeningCeremony,
+        configureScheduledEvents: configureScheduledEvents,
       });
 
       // initialize
