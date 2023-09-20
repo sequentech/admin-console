@@ -814,7 +814,15 @@ angular.module('avAdmin')
                   },
                   function onError(response) {
                     scope.loading = false;
-                    scope.error = response.data.error;
+                    if (angular.isString(response.data)) {
+                      if (response.data === "invalid_credentials") {
+                        scope.error = $i18next(
+                          "avAdmin.dashboard.modals.addCensus.errorInvalidCensusData"
+                        );
+                      } else {
+                        scope.error = response.data.error;
+                      }
+                    }
                     Plugins.hook('add-to-census-error', {data: csExport, response: response.data});
                     Plugins.hook('census-csv-load-error', response.data);
                   }
