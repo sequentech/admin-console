@@ -1017,7 +1017,7 @@ angular.module('avAdmin')
                verifyCensus: function () { return verifyCensus; },
                errorFunc: function () {
                  function errorFunction(data) {
-                   if (_.isBoolean(data)) {
+                   if (angular.isString(data)) {
                      scope.error = data;
                    }
                    return scope.error;
