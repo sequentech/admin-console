@@ -62,6 +62,7 @@ angular.module('avAdmin')
         scope.creating = false;
         scope.log = '';
         scope.createElectionBool = true;
+        scope.verifyCensusBool = true;
         scope.allowEditElectionJson = ConfigService.allowEditElectionJson;
 
         scope.actions = [
@@ -1070,6 +1071,7 @@ angular.module('avAdmin')
 
             var data = {
               election: el,
+              verifyCensus: scope.verifyCensusBool,
               error: function (errorMsg) {
                   scope.errors.push({
                     data: {message: $sanitize($sanitize)(errorMsg)},

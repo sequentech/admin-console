@@ -614,6 +614,9 @@
             "body": "Resuming the election when it has previously been suspend temporarily will allow again voters casting a vote.",
             "confirmButton": "RESUME the election voting period",
             "success": "Election voting period resumed successfully."
+          },
+          "addCensus": {
+            "verifyCensusDataCheckbox": "Verify census data"
           }
         }
     },
