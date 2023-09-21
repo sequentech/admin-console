@@ -742,13 +742,13 @@ angular.module('avAdmin')
         ];
 
         scope.getStatusIndex = function(status) {
+          if ('doing_tally' === status) {
+            status = 'stopped';
+          }
           for (var index = 0; index < scope.statuses.length; index++)
           {
             var currentStatus = scope.statuses[index];
             if (_.contains(currentStatus.statusList, status)) {
-              if (index !== scope.index) {
-                console.log("changing index from " + scope.index + " to " + index);
-              }
               return index;
             }
           }
