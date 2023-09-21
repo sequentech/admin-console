@@ -746,6 +746,9 @@ angular.module('avAdmin')
           {
             var currentStatus = scope.statuses[index];
             if (_.contains(currentStatus.statusList, status)) {
+              if (index !== scope.index) {
+                console.log("changing index from " + scope.index + " to " + index);
+              }
               return index;
             }
           }
@@ -1391,7 +1394,6 @@ angular.module('avAdmin')
           });
         };
 
-        scope.statuses = scope.statuses;
         scope.election = {};
         scope.index = 0;
         scope.nextaction = 0;
