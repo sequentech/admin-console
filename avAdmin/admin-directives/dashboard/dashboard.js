@@ -106,10 +106,14 @@ angular.module('avAdmin')
               );
               scope.election = el;
 
+              var prevIndex = scope.index;
               if (scope.intally) 
               {
                 if (el.status === 'stopped') {
                   scope.index = scope.getStatusIndex('stopped') + 1;
+                }
+                if (prevIndex !== scope.index) {
+                  console.log("changing index from " + prevIndex + " to " + scope.index);
                 }
                 scope.nextaction = false;
                 scope.prevStatus = scope.election.status;
@@ -119,6 +123,9 @@ angular.module('avAdmin')
               else 
               {
                 scope.index = scope.getStatusIndex(el.status) + 1;
+                if (prevIndex !== scope.index) {
+                  console.log("changing index from " + prevIndex + " to " + scope.index);
+                }
                 scope.nextaction = scope.nextactions[scope.index - 1];
 
                 if (
@@ -665,7 +672,11 @@ angular.module('avAdmin')
             if (scope.election.id === el.id)
             {
               scope.election = el;
+              var prevIndex = scope.index;
               scope.index = scope.getStatusIndex(el.status) + 1;
+              if (prevIndex !== scope.index) {
+                console.log("changing index from " + prevIndex + " to " + scope.index);
+              }
               scope.nextaction = scope.nextactions[scope.index - 1];
 
               if (
@@ -746,9 +757,6 @@ angular.module('avAdmin')
           {
             var currentStatus = scope.statuses[index];
             if (_.contains(currentStatus.statusList, status)) {
-              if (index !== scope.index) {
-                console.log("changing index from " + scope.index + " to " + index);
-              }
               return index;
             }
           }
@@ -1431,15 +1439,22 @@ angular.module('avAdmin')
             scope.commands[4].payload = angular.copy(scope.election);
 
             updateDoingTallyFlag(election);
+            var prevIndex = scope.index;
             if (scope.intally) 
             {
               scope.index = scope.getStatusIndex('stopped') + 1;
+              if (prevIndex !== scope.index) {
+                console.log("changing index from " + prevIndex + " to " + scope.index);
+              }
               scope.nextaction = false;
               scope.waiting = true;
               waitElectionChange();
             } else 
             {
               scope.index = scope.getStatusIndex(election.status) + 1;
+              if (prevIndex !== scope.index) {
+                console.log("changing index from " + prevIndex + " to " + scope.index);
+              }
               scope.nextaction = scope.nextactions[scope.index - 1];
             }
 
