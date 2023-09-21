@@ -123,7 +123,7 @@
                 <strong>{{ election.auth.census|number }}</strong><br/>
                 <button
                   ng-click="sendAuthCodes()"
-                  ng-if="scope.hasPerms(['send-auth-all', 'edit'])"
+                  ng-if="hasPerms(['send-auth-all', 'edit'])"
                   class="btn btn-success send-auth pull-left">
                     <i class="fa fa-sw fa-send"></i>
                     <span ng-i18next>

@@ -1378,6 +1378,9 @@ angular.module('avAdmin')
                 scope.perms.val.indexOf("schedule-events") !== -1 ||
                 scope.perms.val.indexOf("edit") !== -1
               );
+            },
+            permsFunc: function() {
+              return scope.hasPerms(["schedule-events", "edit"]);
             }
           },
         ];
