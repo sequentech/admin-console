@@ -742,6 +742,9 @@ angular.module('avAdmin')
         ];
 
         scope.getStatusIndex = function(status) {
+          if ('doing_tally' === status) {
+            status = 'stopped';
+          }
           for (var index = 0; index < scope.statuses.length; index++)
           {
             var currentStatus = scope.statuses[index];
@@ -1391,7 +1394,6 @@ angular.module('avAdmin')
           });
         };
 
-        scope.statuses = scope.statuses;
         scope.election = {};
         scope.index = 0;
         scope.nextaction = 0;
