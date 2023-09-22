@@ -73,7 +73,7 @@
             ng-click="doActionConfirm($index)" 
             class="actionbtn btn btn-success"
             ng-disabled="!commands[$index].enableFunc()"
-            ng-if="index == $index && nextaction && commands[$index].permsFunc()" 
+            ng-if="index == $index && nextaction && commands[$index].permsFunc() && !intally" 
             ng-class="['election-status-action-' + index]">
             <div 
               class="small {{ nextaction }}" 
