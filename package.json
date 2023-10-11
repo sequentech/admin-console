@@ -49,12 +49,12 @@
     "load-grunt-tasks": "^3.5.0",
     "moment": "2.29.4",
     "nanoscroller": "^0.8.7",
-    "postcss": "^8.2.4",
+    "postcss": "^8.4.31",
     "yarn": "^1.22.0"
   },
   "dependencies": {
-    "common-ui": "https://github.com/sequentech/common-ui.git#10.0.0",
     "ansi_up": "^5.1.0",
+    "common-ui": "https://github.com/sequentech/common-ui.git#10.0.0",
     "jasmine-spec-reporter": "^7.0.0",
     "pdfmake": "^0.1.65"
   },
