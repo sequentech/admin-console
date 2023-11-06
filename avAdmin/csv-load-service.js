@@ -44,7 +44,13 @@ angular.module('avAdmin')
               var censusElement = {};
               fields.forEach(
                 function(field, index) {
+                  if (splittedLine.length <= index) {
+                    return;
+                  }
                   var value = splittedLine[index].trim();
+                  if (value.length === 0) {
+                    return;
+                  }
                   if (field.type === 'int') {
                     value = parseInt(value, 10);
                   }
@@ -64,7 +70,10 @@ angular.module('avAdmin')
                 censusElement.children_event_id_list = _.filter(
                   csvLoadService.scope.election.children_election_info.natural_order,
                   function (electionId, index) {
-                    return splittedLine[fields.length + index].trim().toLowerCase() === "true";
+                    return (
+                      splittedLine.length >= fields.length + index &&
+                      splittedLine[fields.length + index].trim().toLowerCase() === "true"
+                    );
                   }
                 );
               }
