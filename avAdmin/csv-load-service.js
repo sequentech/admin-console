@@ -44,7 +44,13 @@ angular.module('avAdmin')
               var censusElement = {};
               fields.forEach(
                 function(field, index) {
+                  if (splittedLine.length <= index) {
+                    return;
+                  }
                   var value = splittedLine[index].trim();
+                  if (value.length === 0) {
+                    return;
+                  }
                   if (field.type === 'int') {
                     value = parseInt(value, 10);
                   }
