@@ -29,7 +29,6 @@ angular
       user_ids
     ) {
       $scope.election = election;
-      $scope.auth = ['email', 'sms'];
       $scope.available_sending_methods = SendMsg.getAvailableSendingMethods();
       $scope.selected_auth_method = {
         ref: (

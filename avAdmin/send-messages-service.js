@@ -179,8 +179,6 @@ angular
         return;
       }
 
-      service.selectable_auth_method = service.authMethodIsSelectable();
-      service.selected_auth_method = angular.copy(service.election.census.auth_method);
       // If skip dialog flag is activated, then we jump directly to the
       // confirmation step
       if (service.skipEditDialogFlag)
