@@ -142,7 +142,7 @@ angular
           )
         ) || containsExtraFieldType('tlf')
       ) {
-        sendingMethods.push('email');
+        sendingMethods.push('sms');
       }
       if(
         _.contains(['email', 'email-otp'], service.election.census.auth_method) ||
@@ -161,34 +161,6 @@ angular
         sendingMethods.push('email');
       }
       return sendingMethods;
-    };
-
-    /**
-     * Checks whether the extra_field of an election allows other auth methods.
-     */
-    service.authMethodIsSelectable = function () {
-
-      function getExtraField(name) {
-        for (var i = 0; i < service.election.census.extra_fields.length; i++) {
-           if(service.election.census.extra_fields[i].type === name) {
-            return service.election.census.extra_fields[i];
-           }
-        }
-        return false;
-      }
-
-      if(_.contains(['sms', 'sms-otp'], service.election.census.auth_method)) {
-        var email_field = getExtraField('email');
-        if(email_field && 'email' === email_field.type) {
-          return true;
-        }
-      } else if(_.contains(['email', 'email-otp'], service.election.census.auth_method)) {
-        var tlf_field = getExtraField('tlf');
-        if(tlf_field && 'tlf' === tlf_field.type) {
-          return true;
-        }
-      }
-      return false;
     };
 
     /**

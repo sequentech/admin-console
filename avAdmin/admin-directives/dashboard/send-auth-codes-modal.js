@@ -31,7 +31,13 @@ angular
       $scope.election = election;
       $scope.auth = ['email', 'sms'];
       $scope.available_sending_methods = SendMsg.getAvailableSendingMethods();
-      $scope.selected_auth_method = { ref: SendMsg.selected_auth_method };
+      $scope.selected_auth_method = {
+        ref: (
+          $scope.available_sending_methods.length > 0 ?
+          $scope.available_sending_methods[0] :
+          election.census.auth_method
+        )
+      };
       $scope.user_ids = user_ids;
       $scope.steps = SendMsg.steps;
       $scope.censusConfig = SendMsg.censusConfig;
