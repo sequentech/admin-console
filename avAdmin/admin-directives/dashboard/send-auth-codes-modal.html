@@ -35,7 +35,7 @@
         <div class="col-xs-9">
           <div
             class="radio"
-            ng-repeat="a in auth"
+            ng-repeat="a in available_sending_methods"
           >
             <label>
               <input
@@ -54,7 +54,7 @@
     </div>
     <div class="row">
       <div 
-        ng-if="'sms' === selected_auth_method.ref || 'sms-otp' === selected_auth_method.ref"
+        ng-if="'sms' === selected_auth_method.ref"
       >
           <div class="form-group">
               <label
@@ -75,7 +75,7 @@
           </div>
       </div>
       <!-- Email conf -->
-      <div ng-if="'email' === selected_auth_method.ref || 'email-otp' === selected_auth_method.ref">
+      <div ng-if="'email' === selected_auth_method.ref">
           <div class="form-group">
               <label
                 class="col-xs-3 control-label text-right padding-top-input"

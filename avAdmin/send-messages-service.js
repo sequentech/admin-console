@@ -108,6 +108,61 @@ angular
       service.sendAuthCodesModal();
     };
 
+
+    /**
+     * Returns a list of available methods of sending messages, which depends on
+     * election extra_fields and auth_methods configuration.
+     * 
+     * Example return: ['email', 'sms'] 
+     */
+    service.getAvailableSendingMethods = function ()
+    {
+      var sendingMethods = [];
+
+      function containsExtraFieldType(extraFieldType) {
+        for (var i = 0; i < service.election.census.extra_fields.length; i++) {
+           if(service.election.census.extra_fields[i].type === extraFieldType) {
+            return service.election.census.extra_fields[i];
+           }
+        }
+        return false;
+      }
+
+      if(
+        _.contains(['sms', 'sms-otp'], service.election.census.auth_method) ||
+        (
+          service.election.census.alternative_auth_methods &&
+          _.find(
+            service.election.census.alternative_auth_methods,
+            function (alternative_auth_method) {
+              return _.contains(
+                ['sms', 'sms-otp'], alternative_auth_method.auth_method_name
+              );
+            }
+          )
+        ) || containsExtraFieldType('tlf')
+      ) {
+        sendingMethods.push('email');
+      }
+      if(
+        _.contains(['email', 'email-otp'], service.election.census.auth_method) ||
+        (
+          service.election.census.alternative_auth_methods &&
+          _.find(
+            service.election.census.alternative_auth_methods,
+            function (alternative_auth_method) {
+              return _.contains(
+                ['email', 'email-otp'], alternative_auth_method.auth_method_name
+              );
+            }
+          )
+        ) || containsExtraFieldType('email')
+      ) {
+        sendingMethods.push('email');
+      }
+      return sendingMethods;
+    };
+
     /**
      * Checks whether the extra_field of an election allows other auth methods.
      */
