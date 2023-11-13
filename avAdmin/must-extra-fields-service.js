@@ -101,7 +101,7 @@ angular.module('avAdmin')
         mustFields = [{
           "must": true,
           "name": "sub",
-          "type": "text",
+          "type": "email",
           "required": true,
           "min": 1,
           "max": 255,
@@ -145,8 +145,6 @@ angular.module('avAdmin')
               extra_field.type = 'text';
             } else if ('password' === extra_field.name) {
               extra_field.type = 'password';
-            } else if ('sub' === extra_field.name) {
-              extra_field.type = 'text';
             }
           } else {
             extra_field.must = false;
