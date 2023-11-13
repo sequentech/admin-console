@@ -304,6 +304,10 @@ angular.module('avAdmin')
              }
            }
         }
+        if (el.oidc_providers && el.census) {
+          el.census.oidc_providers = el.oidc_providers;
+          delete el.oidc_providers;
+        }
         if (
           el.scheduled_events &&
           el.scheduled_events.start_voting &&
