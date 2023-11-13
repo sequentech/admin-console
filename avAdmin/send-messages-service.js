@@ -108,32 +108,59 @@ angular
       service.sendAuthCodesModal();
     };
 
-    /**
-     * Checks whether the extra_field of an election allows other auth methods.
-     */
-    service.authMethodIsSelectable = function () {
 
-      function getExtraField(name) {
+    /**
+     * Returns a list of available methods of sending messages, which depends on
+     * election extra_fields and auth_methods configuration.
+     * 
+     * Example return: ['email', 'sms'] 
+     */
+    service.getAvailableSendingMethods = function ()
+    {
+      var sendingMethods = [];
+
+      function containsExtraFieldType(extraFieldType) {
         for (var i = 0; i < service.election.census.extra_fields.length; i++) {
-           if(service.election.census.extra_fields[i].type === name) {
+           if(service.election.census.extra_fields[i].type === extraFieldType) {
             return service.election.census.extra_fields[i];
            }
         }
         return false;
       }
 
-      if(_.contains(['sms', 'sms-otp'], service.election.census.auth_method)) {
-        var email_field = getExtraField('email');
-        if(email_field && 'email' === email_field.type) {
-          return true;
-        }
-      } else if(_.contains(['email', 'email-otp'], service.election.census.auth_method)) {
-        var tlf_field = getExtraField('tlf');
-        if(tlf_field && 'tlf' === tlf_field.type) {
-          return true;
-        }
+      if(
+        _.contains(['sms', 'sms-otp'], service.election.census.auth_method) ||
+        (
+          service.election.census.alternative_auth_methods &&
+          _.find(
+            service.election.census.alternative_auth_methods,
+            function (alternative_auth_method) {
+              return _.contains(
+                ['sms', 'sms-otp'], alternative_auth_method.auth_method_name
+              );
+            }
+          )
+        ) || containsExtraFieldType('tlf')
+      ) {
+        sendingMethods.push('sms');
       }
-      return false;
+      if(
+        _.contains(['email', 'email-otp'], service.election.census.auth_method) ||
+        (
+          service.election.census.alternative_auth_methods &&
+          _.find(
+            service.election.census.alternative_auth_methods,
+            function (alternative_auth_method) {
+              return _.contains(
+                ['email', 'email-otp'], alternative_auth_method.auth_method_name
+              );
+            }
+          )
+        ) || containsExtraFieldType('email')
+      ) {
+        sendingMethods.push('email');
+      }
+      return sendingMethods;
     };
 
     /**
@@ -152,8 +179,6 @@ angular
         return;
       }
 
-      service.selectable_auth_method = service.authMethodIsSelectable();
-      service.selected_auth_method = angular.copy(service.election.census.auth_method);
       // If skip dialog flag is activated, then we jump directly to the
       // confirmation step
       if (service.skipEditDialogFlag)
