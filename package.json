@@ -59,6 +59,7 @@
     "pdfmake": "^0.1.65"
   },
   "resolutions": {
+    "**/crypto-js": "4.2.0",
     "**/semver": "5.7.2",
     "**/tough-cookie": "4.1.3",
     "**/socket.io-parser": "4.2.3",
