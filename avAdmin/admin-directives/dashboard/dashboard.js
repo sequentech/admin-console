@@ -641,7 +641,7 @@ angular.module('avAdmin')
             scope.msg = "avAdmin.dashboard.modals.configureScheduledEvents.success"; 
           }, 
           function onError() {
-            scope.error = $i18next("avAdmin.dashboard.modals.configureScheduledEvents.error"); 
+            scope.error = $i18next.t("avAdmin.dashboard.modals.configureScheduledEvents.error"); 
           }
 
         );

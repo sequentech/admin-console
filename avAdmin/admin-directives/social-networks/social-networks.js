@@ -55,7 +55,7 @@ angular.module('avAdmin')
               social_message: '',
               active: false
             };
-            //ElectionsApi.templateQ($i18next("avAdmin.questions.new") + " " + el.questions.length);
+            //ElectionsApi.templateQ($i18next.t("avAdmin.questions.new") + " " + el.questions.length);
             scope.socialConfig.push(q);
             expandItem(scope.socialConfig.length - 1);
         };

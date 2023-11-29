@@ -224,13 +224,13 @@ angular.module('avAdmin')
               ]
             },
             {
-              text: $i18next('avAdmin.census.generatePDFAuthCodes.header'),
+              text: $i18next.t('avAdmin.census.generatePDFAuthCodes.header'),
               style: 'h3'
             },
             {
               columns: [
                 {
-                  text: $i18next('avAdmin.census.generatePDFAuthCodes.username'),
+                  text: $i18next.t('avAdmin.census.generatePDFAuthCodes.username'),
                   style: 'cell',
                   width: '40%'
                 },
@@ -244,7 +244,7 @@ angular.module('avAdmin')
             {
               columns: [
                 {
-                  text: $i18next('avAdmin.census.generatePDFAuthCodes.userId'),
+                  text: $i18next.t('avAdmin.census.generatePDFAuthCodes.userId'),
                   style: 'cell',
                   width: '40%'
                 },
@@ -258,7 +258,7 @@ angular.module('avAdmin')
             {
               columns: [
                 {
-                  text: $i18next('avAdmin.census.generatePDFAuthCodes.authCode'),
+                  text: $i18next.t('avAdmin.census.generatePDFAuthCodes.authCode'),
                   style: 'cell',
                   width: '40%'
                 },
@@ -272,7 +272,7 @@ angular.module('avAdmin')
             {
               columns: [
                 {
-                  text: $i18next('avAdmin.census.generatePDFAuthCodes.codeCreated'),
+                  text: $i18next.t('avAdmin.census.generatePDFAuthCodes.codeCreated'),
                   style: 'cell',
                   width: '40%'
                 },
@@ -287,7 +287,7 @@ angular.module('avAdmin')
             {
               columns: [
                 {
-                  text: $i18next('avAdmin.census.generatePDFAuthCodes.authLink'),
+                  text: $i18next.t('avAdmin.census.generatePDFAuthCodes.authLink'),
                   width: '40%',
                   style: 'cell'
                 },
@@ -306,7 +306,7 @@ angular.module('avAdmin')
                   width: '*'
                 },
                 {
-                  text: $i18next('avAdmin.census.generatePDFAuthCodes.qrCode'),
+                  text: $i18next.t('avAdmin.census.generatePDFAuthCodes.qrCode'),
                   style: 'p',
                   width: 'auto'
                 },
@@ -860,7 +860,7 @@ angular.module('avAdmin')
                       response.data &&
                       response.data.error_codename === "invalid_credentials"
                     ) {
-                      scope.error = $i18next(
+                      scope.error = $i18next.t(
                         "avAdmin.dashboard.modals.addCensus.errorInvalidCensusData"
                       );
                     } else {
@@ -1073,7 +1073,7 @@ angular.module('avAdmin')
                   function errorFunction(data) {
                     if (angular.isString(data)) {
                       if (data === "invalid_credentials") {
-                        scope.error = $i18next("avAdmin.dashboard.modals.addCensus.errorInvalidCensusData");
+                        scope.error = $i18next.t("avAdmin.dashboard.modals.addCensus.errorInvalidCensusData");
                       } else {
                         scope.error = data;
                       }

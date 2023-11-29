@@ -100,7 +100,7 @@ angular.module('avAdmin')
           email: $scope.contact.email
         };
 
-        return $i18next(
+        return $i18next.t(
           "avAdmin.dashboard.modals.sendAuthCodes.confirmStep.unknownError",
           data);
       };

@@ -45,7 +45,7 @@ angular.module('avAdmin')
                 el.questions = [];
             }
             // New question
-            var q = ElectionsApi.templateQ($i18next("avAdmin.questions.new") + " " + el.questions.length);
+            var q = ElectionsApi.templateQ($i18next.t("avAdmin.questions.new") + " " + el.questions.length);
             el.questions.push(q);
             expandQuestion(el.questions.length - 1);
         }
