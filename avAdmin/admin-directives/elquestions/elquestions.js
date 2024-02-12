@@ -18,7 +18,7 @@
 angular.module('avAdmin')
   .directive(
     'avAdminElquestions',
-    function($i18next, $state, ElectionsApi, ElectionLimits,NextButtonService, ConfigService)
+    function($window, $state, ElectionsApi, ElectionLimits,NextButtonService, ConfigService)
     {
       // we use it as something similar to a controller here
       function link(scope, element, attrs) {
@@ -45,7 +45,7 @@ angular.module('avAdmin')
                 el.questions = [];
             }
             // New question
-            var q = ElectionsApi.templateQ($i18next("avAdmin.questions.new") + " " + el.questions.length);
+            var q = ElectionsApi.templateQ($window.i18next.t("avAdmin.questions.new") + " " + el.questions.length);
             el.questions.push(q);
             expandQuestion(el.questions.length - 1);
         }

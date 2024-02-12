@@ -27,7 +27,7 @@ angular.module('avAdmin')
       $state,
       $stateParams,
       $sanitize,
-      $i18next,
+      $window,
       $filter,
       $modal,
       ConfigService,
@@ -1047,7 +1047,7 @@ angular.module('avAdmin')
             console.log("creating auth event for election " + el.title);
             var deferred = $q.defer();
             // Creating the authentication
-            logInfo($i18next('avAdmin.create.creating', {title: el.title}));
+            logInfo($window.i18next.t('avAdmin.create.creating', {title: el.title}));
 
             var d = ElectionCreation.generateAuthapiRequest(el);
 
@@ -1067,14 +1067,14 @@ angular.module('avAdmin')
             var deferred = $q.defer();
 
             // Adding the census
-            logInfo($i18next('avAdmin.create.census', {title: el.title, id: el.id}));
+            logInfo($window.i18next.t('avAdmin.create.census', {title: el.title, id: el.id}));
 
             var data = {
               election: el,
               verifyCensus: scope.verifyCensusBool,
               error: function (errorMsg) {
                   var message = (errorMsg === "invalid_credentials") ?
-                    $i18next("avAdmin.dashboard.modals.addCensus.errorInvalidCensusData") :
+                    $window.i18next.t("avAdmin.dashboard.modals.addCensus.errorInvalidCensusData") :
                     $sanitize(errorMsg);
                   scope.errors.push({
                     data: {message: message},
@@ -1101,7 +1101,7 @@ angular.module('avAdmin')
           var deferred = $q.defer();
 
           logInfo(
-            $i18next(
+            $window.i18next.t(
               'avAdmin.create.setChildrenElectionInfo',
               {title: el.title, id: el.id}
             )
@@ -1136,7 +1136,7 @@ angular.module('avAdmin')
           console.log("adding ballot boxes for election " + el.title);
 
           logInfo(
-            $i18next(
+            $window.i18next.t(
               'avAdmin.create.addBallotBoxes',
               {title: el.title, id: el.id}
             )
@@ -1174,7 +1174,7 @@ angular.module('avAdmin')
 
             var deferred = $q.defer();
             // Registering the election
-            logInfo($i18next('avAdmin.create.reg', {title: d.title, id: d.id}));
+            logInfo($window.i18next.t('avAdmin.create.reg', {title: d.title, id: d.id}));
             ElectionsApi.command(d, '', 'POST', d)
                 .then(function(data) { deferred.resolve(d); })
                 .catch(deferred.reject);
@@ -1190,7 +1190,7 @@ angular.module('avAdmin')
                 el.extra_data = JSON.stringify(el.extra_data);
               }
               // Creating the election
-              logInfo($i18next('avAdmin.create.creatingEl', {title: el.title, id: el.id}));
+              logInfo($window.i18next.t('avAdmin.create.creatingEl', {title: el.title, id: el.id}));
               ElectionsApi.command(el, 'create', 'POST', {})
                 .then(function(data) { deferred.resolve(el); })
                 .catch(deferred.reject);

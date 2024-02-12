@@ -24,7 +24,6 @@ angular.module('avAdmin')
         Authmethod,
         ConfigService,
         AdminProfile,
-        $i18next,
         $http,
         $cookies,
         localStorageService,

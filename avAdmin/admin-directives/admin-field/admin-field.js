@@ -3,9 +3,7 @@
 angular.module('avAdmin')
   .directive(
     'avAdminField',
-    function(
-      $i18next,
-      ElectionsApi) 
+    function(ElectionsApi) 
   {
     function link(scope, element, attrs) {
       scope.editable = function () {
