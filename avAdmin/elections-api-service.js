@@ -20,6 +20,7 @@ angular.module('avAdmin')
       'ElectionsApi',
       function(
         $q,
+        $window,
         Plugins,
         Authmethod,
         ConfigService,
