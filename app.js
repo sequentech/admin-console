@@ -356,7 +356,7 @@ angular
       $rootScope, 
       ConfigService,
       amMoment,
-      $i18next,
+      $window,
       angularLoad,
       $location
     ) {
@@ -377,7 +377,7 @@ angular
       };
 
       // async load moment i18n
-      var lang = $i18next.options.lng;
+      var lang = $window.i18next.resolvedLanguage;
       angularLoad
         .loadScript(ConfigService.base + '/locales/moment/' + lang + '.js')
         .then(function () {
