@@ -24,7 +24,6 @@ angular.module('avAdmin')
         Authmethod,
         ConfigService,
         ElectionsApi,
-        $i18next,
         $http,
         $timeout,
         $modal,

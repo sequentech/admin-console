@@ -23,7 +23,7 @@ angular.module('avAdmin')
       ConfigService,
       NextButtonService,
       $timeout,
-      $i18next,
+      $window,
       $modal,
       $location,
       ElectionsApi
@@ -184,7 +184,7 @@ angular.module('avAdmin')
       // list of row commands
       scope.row_commands = [
         {
-          text: $i18next("avAdmin.ballotBox.viewTallySheetAction"),
+          text: $window.i18next.t("avAdmin.ballotBox.viewTallySheetAction"),
           iconClass: 'fa fa-file',
           actionFunc: function(ballotBox)
           {
@@ -234,7 +234,7 @@ angular.module('avAdmin')
           }
         },
         {
-          text: $i18next("avAdmin.ballotBox.writeTallySheetAction"),
+          text: $window.i18next.t("avAdmin.ballotBox.writeTallySheetAction"),
           iconClass: 'fa fa-edit',
           actionFunc: function(ballotBox)
           {
@@ -322,7 +322,7 @@ angular.module('avAdmin')
           }
         },
         {
-          text: $i18next("avAdmin.ballotBox.deleteTallySheetAction"),
+          text: $window.i18next.t("avAdmin.ballotBox.deleteTallySheetAction"),
           iconClass: 'fa fa-minus-square',
           actionFunc: function(ballotBox)
           {
@@ -363,7 +363,7 @@ angular.module('avAdmin')
           }
         },
         {
-          text: $i18next("avAdmin.ballotBox.deleteBallotBoxAction"),
+          text: $window.i18next.t("avAdmin.ballotBox.deleteBallotBoxAction"),
           iconClass: 'fa fa-times',
           actionFunc: function(ballotBox)
           {

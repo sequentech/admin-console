@@ -56,19 +56,46 @@ angular
       // supported by the web browser
       $("#no-js").hide();
 
-      $i18nextProvider.options = _.extend(
-        {
-          useCookie: true,
-          useLocalStorage: false,
-          fallbackLng: 'en',
-          cookieName: 'lang',
-          detectLngQS: 'lang',
-          lngWhitelist: ['en', 'es', 'gl', 'ca'],
-          resGetPath: '/admin/locales/__lng__.json',
-          defaultLoadingValue: '' // ng-i18next option, *NOT* directly supported by i18next
-        },
-        ConfigServiceProvider.i18nextInitOptions
-      );
+            // note that we do not send the language: by default, it will try the language
+      // supported by the web browser
+      $("#no-js").hide();
+      window.i18next
+        .use(window.i18nextChainedBackend)
+        .init(_.extend(
+          {
+            debug: true,
+            load: 'languageOnly',
+            useCookie: true,
+            // Preload is needed because the language selector shows an item for
+            // each element in lngWhitelist, and the translation for each language
+            // is contained at each language i18n file, so we either preload it
+            // or it wouldn't work.
+            preload: ConfigServiceProvider.i18nextInitOptions.lngWhitelist || [],
+            useLocalStorage: false,
+            fallbackLng: 'en',
+            cookieName: 'lang',
+            detectLngQS: 'lang',
+            lngWhitelist: ['en', 'es'],
+            interpolation: {
+              prefix: '__',
+              suffix: '__',
+            },
+            // Define the backends to use in the chain
+            backend: {
+              backends: [
+                window.i18nextHttpBackend, // Primary backend
+              ],
+              backendOptions: [
+                // Configuration for http backend
+                {
+                  loadPath: '/admin/locales/__lng__.json',
+                },
+              ]
+            },
+            defaultLoadingValue: '' // ng-i18next option, *NOT* directly supported by i18next
+          },
+          ConfigServiceProvider.i18nextInitOptions
+        ));
 
       // Prevent site translation if configured
       if (ConfigServiceProvider.preventSiteTranslation) {
@@ -329,7 +356,7 @@ angular
       $rootScope, 
       ConfigService,
       amMoment,
-      $i18next,
+      $window,
       angularLoad,
       $location
     ) {
@@ -350,7 +377,7 @@ angular
       };
 
       // async load moment i18n
-      var lang = $i18next.options.lng;
+      var lang = $window.i18next.resolvedLanguage;
       angularLoad
         .loadScript(ConfigService.base + '/locales/moment/' + lang + '.js')
         .then(function () {

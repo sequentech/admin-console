@@ -26,7 +26,7 @@ angular.module('avAdmin')
       $timeout,
       $scope,
       $modalInstance,
-      $i18next,
+      $window,
       SendMsg,
       Plugins,
       election,
@@ -100,7 +100,7 @@ angular.module('avAdmin')
           email: $scope.contact.email
         };
 
-        return $i18next(
+        return $window.i18next.t(
           "avAdmin.dashboard.modals.sendAuthCodes.confirmStep.unknownError",
           data);
       };
