@@ -5,7 +5,6 @@ angular.module('admin-console')
   .directive(
     'avAdminFields',
     function(
-      $i18next,
       NextButtonService,
       ElectionsApi)
     {

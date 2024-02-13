@@ -23,7 +23,6 @@ angular.module('avAdmin')
         Plugins,
         Authmethod,
         ConfigService,
-        $i18next,
         $http,
         $modal,
         $cookies,

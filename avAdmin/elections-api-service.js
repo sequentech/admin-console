@@ -20,11 +20,12 @@ angular.module('avAdmin')
       'ElectionsApi',
       function(
         $q,
+        $window,
+        $i18next,
         Plugins,
         Authmethod,
         ConfigService,
         AdminProfile,
-        $i18next,
         $http,
         $cookies,
         localStorageService,

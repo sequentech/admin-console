@@ -18,7 +18,7 @@
 angular.module('avAdmin')
   .factory(
     'OnboardingTourService',
-    function($i18next, $window)
+    function($window)
     {
         return function (el)
         {
@@ -86,15 +86,15 @@ angular.module('avAdmin')
                 id: "help-hopscotch",
                 steps: [
                     {
-                        title: $i18next("avAdmin.onboarding.help_tour.step0_help_title"),
-                        content: $i18next("avAdmin.onboarding.help_tour.step0_help_content"),
+                        title: $window.i18next.t("avAdmin.onboarding.help_tour.step0_help_title"),
+                        content: $window.i18next.t("avAdmin.onboarding.help_tour.step0_help_content"),
                         target: "#navbar-collapse-1 .help-dropdown a",
                         highlightTarget: "#navbar-collapse-1 .help-dropdown a",
                         placement: "bottom"
                     },
                     {
-                        title: $i18next("avAdmin.onboarding.help_tour.step1_chat_title"),
-                        content: $i18next("avAdmin.onboarding.help_tour.step1_chat_content"),
+                        title: $window.i18next.t("avAdmin.onboarding.help_tour.step1_chat_title"),
+                        content: $window.i18next.t("avAdmin.onboarding.help_tour.step1_chat_content"),
                         target: ".zsiq_cnt",
                         highlightTarget: ".zsiq_cnt",
                         placement: "top",
@@ -112,15 +112,15 @@ angular.module('avAdmin')
                 id: "dashboard-hopscotch",
                 steps: [
                     {
-                        title: $i18next("avAdmin.onboarding.dashboard_tour.step2_status_title"),
-                        content: $i18next("avAdmin.onboarding.dashboard_tour.step2_status_content"),
+                        title: $window.i18next.t("avAdmin.onboarding.dashboard_tour.step2_status_title"),
+                        content: $window.i18next.t("avAdmin.onboarding.dashboard_tour.step2_status_content"),
                         target: ".statusbar.row.text-center",
                         highlightTarget: ".statusbar.row.text-center",
                         placement: "bottom"
                     },
                     {
-                        title: $i18next("avAdmin.onboarding.dashboard_tour.step3_start_title"),
-                        content: $i18next("avAdmin.onboarding.dashboard_tour.step3_start_content"),
+                        title: $window.i18next.t("avAdmin.onboarding.dashboard_tour.step3_start_title"),
+                        content: $window.i18next.t("avAdmin.onboarding.dashboard_tour.step3_start_content"),
                         target: "button.actionbtn.btn.election-status-action-2",
                         highlightTarget: "button.actionbtn.btn.election-status-action-2",
                         placement: "top",
@@ -146,8 +146,8 @@ angular.module('avAdmin')
                 id: "hello-hopscotch",
                 steps: [
                     {
-                        title: $i18next("avAdmin.onboarding.hello_tour.step0_create_title"),
-                        content: $i18next("avAdmin.onboarding.hello_tour.step0_create_content"),
+                        title: $window.i18next.t("avAdmin.onboarding.hello_tour.step0_create_title"),
+                        content: $window.i18next.t("avAdmin.onboarding.hello_tour.step0_create_content"),
                         target: "a[ui-sref='admin.new()']",
                         highlightTarget: "a[ui-sref='admin.new()']",
                         placement: "right",
@@ -156,23 +156,23 @@ angular.module('avAdmin')
                         showNextButton: false
                     },
                     {
-                        title: $i18next("avAdmin.onboarding.hello_tour.step1_change_title"),
-                        content: $i18next("avAdmin.onboarding.hello_tour.step1_change_content"),
+                        title: $window.i18next.t("avAdmin.onboarding.hello_tour.step1_change_title"),
+                        content: $window.i18next.t("avAdmin.onboarding.hello_tour.step1_change_content"),
                         target: "[title='avAdmin.basic.title.label']",
                         highlightTarget: "[title='avAdmin.basic.title.label']",
                         placement: "bottom",
                         delay: 300
                     },
                     {
-                        title: $i18next("avAdmin.onboarding.hello_tour.step2_sidebar_title"),
-                        content: $i18next("avAdmin.onboarding.hello_tour.step2_sidebar_content"),
+                        title: $window.i18next.t("avAdmin.onboarding.hello_tour.step2_sidebar_title"),
+                        content: $window.i18next.t("avAdmin.onboarding.hello_tour.step2_sidebar_content"),
                         target: "ul[ng-if='current']",
                         highlightTarget: "ul[ng-if='current']",
                         placement: "right"
                     },
                     {
-                        title: $i18next("avAdmin.onboarding.hello_tour.step3_review_title"),
-                        content: $i18next("avAdmin.onboarding.hello_tour.step3_review_content"),
+                        title: $window.i18next.t("avAdmin.onboarding.hello_tour.step3_review_title"),
+                        content: $window.i18next.t("avAdmin.onboarding.hello_tour.step3_review_content"),
                         target: "a[href='/admin/create/']",
                         highlightTarget: "a[href='/admin/create/']",
                         placement: "right",
@@ -180,8 +180,8 @@ angular.module('avAdmin')
                         showNextButton: false
                     },
                     {
-                        title: $i18next("avAdmin.onboarding.hello_tour.step4_create2_title"),
-                        content: $i18next("avAdmin.onboarding.hello_tour.step4_create2_content"),
+                        title: $window.i18next.t("avAdmin.onboarding.hello_tour.step4_create2_title"),
+                        content: $window.i18next.t("avAdmin.onboarding.hello_tour.step4_create2_content"),
                         target: "button[ng-click='createElections()']",
                         highlightTarget: "button[ng-click='createElections()']",
                         placement: "top",
