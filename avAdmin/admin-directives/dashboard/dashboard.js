@@ -20,7 +20,7 @@ angular.module('avAdmin')
     'avAdminDashboard',
     function(
        $q,
-       $i18next,
+       $window,
        $state,
        Authmethod,
        Plugins,
@@ -641,7 +641,7 @@ angular.module('avAdmin')
             scope.msg = "avAdmin.dashboard.modals.configureScheduledEvents.success"; 
           }, 
           function onError() {
-            scope.error = $i18next("avAdmin.dashboard.modals.configureScheduledEvents.error"); 
+            scope.error = $window.i18next.t("avAdmin.dashboard.modals.configureScheduledEvents.error"); 
           }
 
         );

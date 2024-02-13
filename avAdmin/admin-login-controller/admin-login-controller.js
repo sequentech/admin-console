@@ -16,7 +16,7 @@
 **/
 
 angular.module('avAdmin').controller('AdminLoginController',
-  function($scope, $stateParams, $filter, ConfigService, $i18next) {
+  function($scope, $stateParams, $filter, ConfigService) {
     $scope.authId = ConfigService.freeAuthId;
     $scope.code = $stateParams.code;
     $scope.email = $stateParams.email;
