@@ -21,6 +21,7 @@ angular.module('avAdmin')
       function(
         $q,
         $window,
+        $i18next,
         Plugins,
         Authmethod,
         ConfigService,
