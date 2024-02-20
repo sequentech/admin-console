@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "ansi_up": "^5.1.0",
-    "common-ui": "https://github.com/sequentech/common-ui.git#10.1.0",
+    "common-ui": "https://github.com/sequentech/common-ui.git#10.1.x",
     "jasmine-spec-reporter": "^7.0.0",
     "pdfmake": "^0.1.65"
   },
