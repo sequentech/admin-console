@@ -923,6 +923,7 @@
         "summary": "Summary: creating __num__ elections",
         "summary__plural": "Summary: creating __num__ elections",
         "create": "Create the elections",
+        "createError": "Error creating the election (id: __id__) __title__",
         "creating": "Creating the authentication for election __title__",
         "setChildrenElectionInfo": "Setting the children election info for election (id: __id__) __title__",
         "addBallotBoxes": "Creating ballot boxes for election (id: __id__) __title__",

@@ -810,6 +810,7 @@
         "summary": "Resumen: creando __num__ votaciones",
         "summary__plural": "Resumen: creando __num__ votaciones",
         "create": "Crear las votaciones",
+        "createError": "Error creando la votación (id: __id__) __title__",
         "create__plural": "Crear las votaciones",
         "creating": "Creando la autenticación de la votación __title__",
         "census": "Añadiendo el censo (id: __id__) __title__",
