@@ -1237,10 +1237,10 @@ angular.module('avAdmin')
             .then(function(election) {
               console.log("waiting for election " + election.title);
               waitForCreated(election.id, function (newEl) {
-                DraftElection.eraseDraft();
-                if ('create_error' === newEl.state) {
+                if ('create_error' === newEl.status) {
                   logError($i18next.t('avAdmin.create.createError', {title: election.title, id: election.id}));
                 } else {
+                  DraftElection.eraseDraft();
                   secondElectionsStage(electionIndex + 1);
                 }
               });
