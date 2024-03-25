@@ -358,6 +358,7 @@
         "start": "Start voting",
         "stop": "Stop voting",
         "tally": "Tally",
+        "tallyError": "Error during tally",
         "calculate": "Calculate results",
         "publish": "Publish results",
         "calculateAgain": "Calculate results again",

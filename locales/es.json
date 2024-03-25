@@ -331,6 +331,7 @@
         "start": "Comenzar votación",
         "stop": "Terminar votación",
         "tally": "Hacer recuento",
+        "tallyError": "Error durante el recuento",
         "calculate": "Calcular resultados",
         "publish": "Publicar resultados",
         "calculateAgain": "Calcular resultados de nuevo",
