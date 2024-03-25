@@ -280,6 +280,7 @@ angular.module('avAdmin')
             var conf = electionsapi.templateEl();
             conf = _.extend(conf, election.configuration);
             conf.status = election.state;
+            conf.tally_state = election.tally_state;
             conf.stats = {};
             conf.results = {};
             conf.tallyAllowed = election.tallyAllowed;

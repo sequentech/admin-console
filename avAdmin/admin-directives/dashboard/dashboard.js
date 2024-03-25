@@ -678,6 +678,9 @@ angular.module('avAdmin')
               ) {
                 ElectionsApi.results(el);
               }
+              if ('tally_error' === el.tally_state && !scope.error) {
+                scope.error = "Error during tally";
+              }
             }
           }
         );
