@@ -27,7 +27,6 @@ angular.module('avAdmin')
        ElectionsApi,
        $stateParams,
        $modal,
-       $i18next,
        PercentVotesService,
        ConfigService,
        SendMsg,
@@ -680,7 +679,7 @@ angular.module('avAdmin')
                 ElectionsApi.results(el);
               }
               if ('tally_error' === el.tally_state && !scope.error) {
-                scope.error = $i18next.t('avAdmin.dashboard.tallyError');
+                scope.error = 'avAdmin.dashboard.tallyError';
               }
             }
           }

@@ -1,7 +1,7 @@
 <div class="alert alert-danger alert-dismissible" role="alert" ng-if="error">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <span ng-if="error.payload">{{ error.payload }}</span>
-  <span ng-if="!error.payload">{{ error }}</span>
+  <span ng-if="!error.payload" ng-i18next="{{ error }}"></span>
 </div>
 
 <div class="alert alert-success alert-dismissible" role="alert" ng-if="msg">
