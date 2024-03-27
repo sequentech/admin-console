@@ -216,8 +216,8 @@
                         <span class="auth-name-container">
                           <span>{{ auth }}</span>
                           <div class="auth-badge" ng-class="{'auth-badge-green': isTrusteeOk(auth)}">
-                            <div class="auth-tooltip" ng-if="scope.trusteesState && scope.trusteesState[auth] && scope.trusteesState[auth].message">
-                              {{ scope.trusteesState[auth].message }}
+                            <div class="auth-tooltip" ng-if="getTrusteeMsg(auth)">
+                              {{ getTrusteeMsg(auth) }}
                             </div>
                           </div>
                         </span>

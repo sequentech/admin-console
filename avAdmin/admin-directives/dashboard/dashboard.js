@@ -94,6 +94,10 @@ angular.module('avAdmin')
         return scope.trusteesState && scope.trusteesState[name] && 'ok' === scope.trusteesState[name].state;
       }
 
+      function getTrusteeMsg(name) {
+        return scope.trusteesState && scope.trusteesState[name] && scope.trusteesState && scope.trusteesState[name].message || '';
+      }
+
       function waitElectionChange() 
       {
         setTrusteesState();
@@ -1496,6 +1500,7 @@ angular.module('avAdmin')
         launchOpeningCeremony: launchOpeningCeremony,
         configureScheduledEvents: configureScheduledEvents,
         isTrusteeOk: isTrusteeOk,
+        getTrusteeMsg: getTrusteeMsg,
       });
 
       // initialize
