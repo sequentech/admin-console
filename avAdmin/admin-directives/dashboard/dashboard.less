@@ -29,24 +29,24 @@
     width: 25px;
     height: 25px;
     border-radius: 25px;
-    background-color: red;
+    background-color: @error-primary-color;
     margin: auto 0 auto 8px;
     position: relative;
 
     &.auth-badge-green {
-      background-color: green;
+      background-color: @action-primary-color;
     }
 
     .auth-tooltip {
       visibility: hidden;
-      width: 120px;
-      background-color: black;
-      color: #fff;
+      width: 240px;
+      background-color: @blue-contrast-color;
       text-align: center;
       padding: 5px 0;
       border-radius: 6px;
       position: absolute;
       z-index: 1;
+      font-size: 0.7rem;
     }
   }
   .auth-badge:hover .auth-tooltip {
