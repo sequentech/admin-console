@@ -88,7 +88,7 @@ angular.module('avAdmin')
           .then(function (trustees) {
             scope.trusteesState = trustees;
 
-            setTimeout(function () { scope.$apply(); }, 0);
+            //setTimeout(function () { scope.$apply(); }, 0);
           });
       }
 
@@ -97,6 +97,9 @@ angular.module('avAdmin')
       }
 
       function getTrusteeMsg(name) {
+        if (scope.trusteesState && scope.trusteesState[name]) {
+          name = '9xx-a1';
+        }
         return scope.trusteesState && scope.trusteesState[name] && scope.trusteesState && scope.trusteesState[name].message || '';
       }
 
