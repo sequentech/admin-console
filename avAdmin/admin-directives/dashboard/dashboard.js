@@ -87,6 +87,8 @@ angular.module('avAdmin')
           .authoritiesStatus()
           .then(function (trustees) {
             scope.trusteesState = trustees;
+
+            setTimeout(function () { scope.$apply(); }, 0);
           });
       }
 
