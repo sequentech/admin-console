@@ -81,6 +81,14 @@ angular.module('avAdmin')
         }
       }
 
+      function setTrusteesState() {
+        ElectionsApi
+          .authoritiesStatus()
+          .then(function (trustees) {
+            scope.trusteesState = trustees;
+          })
+      }
+
       function waitElectionChange() 
       {
         ElectionsApi

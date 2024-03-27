@@ -275,6 +275,26 @@ angular.module('avAdmin')
             return deferred.promise;
         };
 
+        electionsapi.authoritiesStatus = function ()
+        {
+          var deferred = $q.defer();$http
+          .get(
+            backendUrl + 'authorities-state',
+            {headers: {'Authorization': perm}}
+          )
+          .then(
+            function (response) {
+              if (response && response.data && response.data.payload) {
+                deferred.resolve(response.data.payload);
+              } else {
+                deferred.reject(response);
+              }
+            },
+            deferred.reject
+          );
+          return deferred.promise;
+        };
+
         electionsapi.parseElection = function(d) {
             var election = d.payload;
             var conf = electionsapi.templateEl();
