@@ -90,6 +90,10 @@ angular.module('avAdmin')
           });
       }
 
+      function isTrusteeOk(name) {
+        return scope.trusteesState && scope.trusteesState[name] && 'ok' === scope.trusteesState[name].state;
+      }
+
       function waitElectionChange() 
       {
         setTrusteesState();
@@ -1491,6 +1495,7 @@ angular.module('avAdmin')
         launchKeyDistributionCeremony: launchKeyDistributionCeremony,
         launchOpeningCeremony: launchOpeningCeremony,
         configureScheduledEvents: configureScheduledEvents,
+        isTrusteeOk: isTrusteeOk,
       });
 
       // initialize
