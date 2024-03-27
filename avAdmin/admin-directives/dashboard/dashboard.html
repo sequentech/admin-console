@@ -215,7 +215,11 @@
                         <span class="badge" ng-if="auth == election.director"><i class="fa fa-sitemap"></i></span>
                         <span class="auth-name-container">
                           <span>{{ auth }}</span>
-                          <div class="auth-badge" ng-class="{'auth-badge-green': isTrusteeOk(auth)}"></div>
+                          <div class="auth-badge" ng-class="{'auth-badge-green': isTrusteeOk(auth)}">
+                            <div class="auth-tooltip" ng-if="scope.trusteesState && scope.trusteesState[auth] && scope.trusteesState[auth].message">
+                              {{ scope.trusteesState[auth].message }}
+                            </div>
+                          </div>
                         </span>
                     </li>
                 </ul>
