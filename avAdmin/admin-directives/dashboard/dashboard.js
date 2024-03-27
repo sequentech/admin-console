@@ -37,6 +37,7 @@ angular.module('avAdmin')
     function link(scope, element, attrs) 
     {
       scope.reloadTimeout = null;
+      scope.trusteesState = {};
 
       scope.isWriteInResult = function(answer)
       {
@@ -81,8 +82,25 @@ angular.module('avAdmin')
         }
       }
 
+      function setTrusteesState() {
+        ElectionsApi
+          .authoritiesStatus()
+          .then(function (trustees) {
+            scope.trusteesState = trustees;
+          });
+      }
+
+      function isTrusteeOk(name) {
+        return scope.trusteesState && scope.trusteesState[name] && 'ok' === scope.trusteesState[name].state;
+      }
+
+      function getTrusteeMsg(name) {
+        return scope.trusteesState && scope.trusteesState[name] && scope.trusteesState && scope.trusteesState[name].message || '';
+      }
+
       function waitElectionChange() 
       {
+        setTrusteesState();
         ElectionsApi
           .getElection(scope.id, /*ignorecache = */ true)
           .then(function(el) 
@@ -1408,6 +1426,7 @@ angular.module('avAdmin')
         scope.prevStatus = null;
         scope.percentVotes = PercentVotesService;
 
+        setTrusteesState();
         // get the election at the begining
         ElectionsApi
           .getElection(scope.id)
@@ -1480,6 +1499,8 @@ angular.module('avAdmin')
         launchKeyDistributionCeremony: launchKeyDistributionCeremony,
         launchOpeningCeremony: launchOpeningCeremony,
         configureScheduledEvents: configureScheduledEvents,
+        isTrusteeOk: isTrusteeOk,
+        getTrusteeMsg: getTrusteeMsg,
       });
 
       // initialize
