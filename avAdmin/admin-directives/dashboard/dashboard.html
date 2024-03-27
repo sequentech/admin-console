@@ -213,7 +213,10 @@
                 <ul class="list-group">
                     <li class="authority list-group-item" ng-repeat="auth in election.auths">
                         <span class="badge" ng-if="auth == election.director"><i class="fa fa-sitemap"></i></span>
-                        {{ auth }}
+                        <span class="auth-name-container">
+                          <span>{{ auth }}</span>
+                          <div class="auth-badge" ng-class="{'auth-badge-green': trusteesState && trusteesState[auth] && 'ok' === trusteesState[auth].state}"></div>
+                        </span>
                     </li>
                 </ul>
             </div>

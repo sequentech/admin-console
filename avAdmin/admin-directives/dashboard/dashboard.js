@@ -37,6 +37,7 @@ angular.module('avAdmin')
     function link(scope, element, attrs) 
     {
       scope.reloadTimeout = null;
+      scope.trusteesState = {};
 
       scope.isWriteInResult = function(answer)
       {
@@ -91,6 +92,7 @@ angular.module('avAdmin')
 
       function waitElectionChange() 
       {
+        setTrusteesState();
         ElectionsApi
           .getElection(scope.id, /*ignorecache = */ true)
           .then(function(el) 
@@ -1416,6 +1418,7 @@ angular.module('avAdmin')
         scope.prevStatus = null;
         scope.percentVotes = PercentVotesService;
 
+        setTrusteesState();
         // get the election at the begining
         ElectionsApi
           .getElection(scope.id)
