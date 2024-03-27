@@ -279,8 +279,7 @@ angular.module('avAdmin')
         {
           var deferred = $q.defer();$http
           .get(
-            backendUrl + 'authorities-state',
-            {headers: {'Authorization': perm}}
+            backendUrl + 'authorities-state'
           )
           .then(
             function (response) {

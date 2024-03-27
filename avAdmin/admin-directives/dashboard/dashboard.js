@@ -87,7 +87,7 @@ angular.module('avAdmin')
           .authoritiesStatus()
           .then(function (trustees) {
             scope.trusteesState = trustees;
-          })
+          });
       }
 
       function waitElectionChange() 
