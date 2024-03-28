@@ -647,6 +647,13 @@ angular.module('avAdmin')
         );
       }
 
+      function downloadTurnout() {
+        ElectionsApi.downloadTurnout(scope.election.id)
+        .then(function (data){
+          console.log(data);
+        });
+      }
+
       function setAutoreload(electionId)
       {
         ElectionsApi.autoreloadStats(
@@ -1390,6 +1397,17 @@ angular.module('avAdmin')
               return scope.hasPerms(["schedule-events", "edit"]);
             }
           },
+          {
+            i18nString: 'downloadTurnout',
+            iconClass: 'fa fa-clock',
+            actionFunc: function() { return scope.downloadTurnout(); },
+            enableFunc: function() { 
+              return true;
+            },
+            permsFunc: function() {
+              return scope.hasPerms(["view"]);
+            }
+          },
         ];
 
         scope.permittedActions = function () {
@@ -1480,6 +1498,7 @@ angular.module('avAdmin')
         launchKeyDistributionCeremony: launchKeyDistributionCeremony,
         launchOpeningCeremony: launchOpeningCeremony,
         configureScheduledEvents: configureScheduledEvents,
+        downloadTurnout: downloadTurnout
       });
 
       // initialize
