@@ -658,8 +658,8 @@ angular.module('avAdmin')
           turnoutData = response.data;
           var electionIds = Object.keys(response.data);
 
-          return Promise.all(electionIds.map(function (electionId) {
-            ElectionsApi.getElection(electionId)
+          return $q.all(electionIds.map(function (electionId) {
+            return ElectionsApi.getElection(electionId);
           }));
         })
         .then(function (electionsData) {
