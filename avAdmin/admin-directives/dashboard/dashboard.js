@@ -648,7 +648,7 @@ angular.module('avAdmin')
       }
 
       function downloadTurnout() {
-        ElectionsApi.downloadTurnout(scope.election.id)
+        Authmethod.getTurnout(scope.election.id)
         .then(function (data){
           console.log(data);
         });

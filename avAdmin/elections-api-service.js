@@ -465,11 +465,6 @@ angular.module('avAdmin')
             return deferred.promise;
         };
 
-        electionsapi.downloadTurnout = function (election) {
-          return electionsapi.command(election, "turnout", "GET");
-        };
-        
-
         electionsapi.templateEl = function() {
             function getShareTextDefault() {
               var ret = angular.copy(ConfigService.share_social.default);
