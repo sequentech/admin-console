@@ -669,7 +669,7 @@ angular.module('avAdmin')
           csvFile += Object.keys(turnoutData)
             .map(function (electionId) {
 
-              var ballotBoxElection = electionsData.find(function (el) { return el.id === electionId; });
+              var ballotBoxElection = electionsData.find(function (el) { return String(el.id) === String(electionId); });
               return [
                 "" + electionId,
                 ballotBoxElection.title,
