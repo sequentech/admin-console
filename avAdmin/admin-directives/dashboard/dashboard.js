@@ -680,14 +680,8 @@ angular.module('avAdmin')
             })
             .join("\n");
           
-          const link = document.createElement("a");
-          const file = new Blob([content], { type: 'text/csv' });
-          link.href = URL.createObjectURL(file);
-          var fileName = "turnout_" + scope.election.id + ".csv";
-          link.download = fileName;
-          link.click();
-          URL.revokeObjectURL(link.href);
-
+          var blob = new $window.Blob([csvFile], {type: "text/csv"});
+          $window.saveAs(blob, "turnout_" + scope.election.id + ".csv");
         });
       }
 
