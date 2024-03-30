@@ -665,6 +665,29 @@ angular.module('avAdmin')
         .then(function (electionsData) {
           console.log(turnoutData);
           console.log(electionsData);
+          var csvFile = "ID,Name,Participation,Census,Participation quota\n";
+          csvFile += Object.keys(response.data)
+            .map(function (electionId) {
+
+              let ballotBoxElection = electionsData.find(function (el) { return el.id === electionId});
+              return [
+                "" + electionId,
+                ballotBoxElection.title,
+                "" + turnoutData[electionId].total_votes,
+                "" + turnoutData[electionId].users,
+                "" + (turnoutData[electionId].total_votes / Math.max(1, turnoutData[electionId].users))
+              ].join(",");
+            })
+            .join("\n");
+          
+          const link = document.createElement("a");
+          const file = new Blob([content], { type: 'text/csv' });
+          link.href = URL.createObjectURL(file);
+          var fileName = "turnout_" + scope.election.id + ".csv";
+          link.download = fileName;
+          link.click();
+          URL.revokeObjectURL(link.href);
+
         });
       }
 
