@@ -466,7 +466,7 @@ angular.module('avAdmin')
         };
 
         electionsapi.downloadTurnout = function (election) {
-          return electionsapi.command(election, "GET", "turnout");
+          return electionsapi.command(election, "turnout", "GET");
         };
         
 
