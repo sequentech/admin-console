@@ -648,9 +648,23 @@ angular.module('avAdmin')
       }
 
       function downloadTurnout() {
+        var turnoutData;
         Authmethod.getTurnout(scope.election.id)
-        .then(function (data){
-          console.log(data);
+        .then(function (response){
+          if (200 !== response.status) {
+            return; // TODO: handle error
+          }
+
+          turnoutData = response.data;
+          var electionIds = Object.keys(response.data);
+
+          return Promise.all(electionIds.map(function (electionId) {
+            ElectionsApi.getElection(electionId)
+          }));
+        })
+        .then(function (electionsData) {
+          console.log(turnoutData);
+          console.log(electionsData);
         });
       }
 
