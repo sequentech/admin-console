@@ -652,7 +652,10 @@ angular.module('avAdmin')
         Authmethod.getTurnout(scope.election.id)
         .then(function (response){
           if (200 !== response.status) {
-            return; // TODO: handle error
+            console.log("Error fetching turnout: ");
+            console.log(response);
+            scope.error = response.data;
+            return;
           }
 
           turnoutData = response.data;
