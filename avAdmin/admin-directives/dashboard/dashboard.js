@@ -666,10 +666,10 @@ angular.module('avAdmin')
           console.log(turnoutData);
           console.log(electionsData);
           var csvFile = "ID,Name,Participation,Census,Participation quota\n";
-          csvFile += Object.keys(response.data)
+          csvFile += Object.keys(turnoutData)
             .map(function (electionId) {
 
-              let ballotBoxElection = electionsData.find(function (el) { return el.id === electionId});
+              var ballotBoxElection = electionsData.find(function (el) { return el.id === electionId; });
               return [
                 "" + electionId,
                 ballotBoxElection.title,
