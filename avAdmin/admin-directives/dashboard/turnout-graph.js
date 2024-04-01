@@ -28,11 +28,51 @@ angular.module('avAdmin')
       $timeout
     ) {
       function link(scope, element, attrs) {
+        function generateTimeSeries(minDate, maxDate, hours) {
+          let series = [];
+          let current = minDate;
+
+          while (current < maxDate) {
+            series.push(current);
+            current = new Date(current);
+            current.setHours(current.getHours() + hours);
+          }
+
+          return series;
+        }
+
+        function generateLabels(timeSeries) {
+          var shorten = timeSeries.length > 14;
+
+          return timeSeries.map(function (dateValue) {
+            if (shorten && 0 !== dateValue.getHours()) {
+              return '';
+            } else {
+              return dateValue.toLocaleString(
+                undefined,
+                {
+                  year: '2-digit',
+                  month: '2-digit',
+                  day: '2-digit',
+                  hour: '2-digit',
+                  hour12: false,
+                  minute:'2-digit'
+                }
+              );
+            }
+          });
+        }
 
         // update variables used for graph
         // turnoutData has the same format as the response from fetching turnout
         // except that 'hour' is a Date and that the data includes the election title
         function calculateValues(turnoutData, minDate, maxDate) {
+          var series = Object.values(turnoutData).map(function (electionData) {
+            return electionData.title;
+          });
+
+          var timeSeries = generateTimeSeries(minDate, maxDate);
+          var labels = generateLabels(timeSeries);
 
         }
 
