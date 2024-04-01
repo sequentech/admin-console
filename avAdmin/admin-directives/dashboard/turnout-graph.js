@@ -28,11 +28,11 @@ angular.module('avAdmin')
       $timeout
     ) {
       function link(scope, element, attrs) {
-        var updateTurnoutData = function () {
+        function updateTurnoutData() {
           Authmethod.getTurnout(scope.election.id)
           .then(function (response){
           });
-        };
+        }
         var labels = ["January", "February", "March", "April", "May", "June", "July"];
         var series = ['Series A', 'Series B'];
         var data = [
@@ -55,7 +55,7 @@ angular.module('avAdmin')
           series: series,
           data: data,
           onClick: onClick,
-          updateTurnoutData, updateTurnoutData
+          updateTurnoutData: updateTurnoutData
         });
 
         updateTurnoutData();
