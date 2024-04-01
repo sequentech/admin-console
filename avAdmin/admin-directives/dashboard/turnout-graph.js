@@ -88,6 +88,7 @@ angular.module('avAdmin')
           scope.data = data;
           scope.labels = labels;
           scope.series = series;
+          scope.show = true;
 
         }
 
@@ -148,24 +149,17 @@ angular.module('avAdmin')
             });
           });
         }
-        var labels = ["January", "February", "March", "April", "May", "June", "July"];
-        var series = ['Series A', 'Series B'];
+        var labels = ["January", "February"];
+        var series = ['Series A'];
         var data = [
-          [65, 59, 80, 81, 56, 55, 40],
-          [28, 48, 40, 19, 86, 27, 90]
+          [0, 0],
         ];
         var onClick = function (points, evt) {
           console.log(points, evt);
         };
         
-        // Simulate async data update
-        $timeout(function () {
-          scope.data = [
-            [28, 48, 40, 19, 86, 27, 90],
-            [65, 59, 80, 81, 56, 55, 40]
-          ];
-        }, 3000);
         angular.extend(scope, {
+          show: false,
           labels: labels,
           series: series,
           data: data,
