@@ -17,7 +17,15 @@
 
 angular.module('avAdmin')
   .directive('avTurnoutGraph',
-    function($scope) {
+    function(
+      $q,
+      $window,
+      $state,
+      Authmethod,
+      Plugins,
+      ElectionsApi,
+      $stateParams,
+    ) {
       function link(scope, element, attrs) {
         angular.extend(scope, {
         });
