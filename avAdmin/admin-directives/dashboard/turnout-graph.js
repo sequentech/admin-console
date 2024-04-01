@@ -32,7 +32,7 @@ angular.module('avAdmin')
           var series = [];
           var current = minDate;
 
-          while (current < maxDate) {
+          while (current <= maxDate) {
             series.push(current);
             current = new Date(current);
             current.setHours(current.getHours() + hours);
@@ -71,7 +71,7 @@ angular.module('avAdmin')
             return electionData.title;
           });
 
-          var timeSeries = generateTimeSeries(minDate, maxDate);
+          var timeSeries = generateTimeSeries(minDate, maxDate, 1);
           var labels = generateLabels(timeSeries);
 
           var data = Object.values(turnoutData).map(function (electionData) {
