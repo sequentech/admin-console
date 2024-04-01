@@ -29,7 +29,7 @@ angular.module('avAdmin')
     ) {
       function link(scope, element, attrs) {
         function updateTurnoutData() {
-          Authmethod.getTurnout(scope.election.id)
+          Authmethod.getTurnout(scope.id)
           .then(function (response){
           });
         }
