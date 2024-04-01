@@ -41,7 +41,8 @@ angular.module(
   'angularLoad',
   'ng-autofocus',
   'LocalStorageModule',
-  'common-ui'
+  'common-ui',
+  'chart.js'
 ]);
 
 /**
