@@ -24,7 +24,7 @@ angular.module('avAdmin')
       Authmethod,
       Plugins,
       ElectionsApi,
-      $stateParams,
+      $stateParams
     ) {
       function link(scope, element, attrs) {
         angular.extend(scope, {
