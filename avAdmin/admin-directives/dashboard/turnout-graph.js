@@ -83,7 +83,7 @@ angular.module('avAdmin')
             
             return timeSeries.map(function (timeDatum) {
               return dataMap[timeDatum.getTime()] || 0;
-            })
+            });
           });
           scope.data = data;
           scope.labels = labels;
