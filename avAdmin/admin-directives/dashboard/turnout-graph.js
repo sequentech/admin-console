@@ -29,8 +29,8 @@ angular.module('avAdmin')
     ) {
       function link(scope, element, attrs) {
         function generateTimeSeries(minDate, maxDate, hours) {
-          let series = [];
-          let current = minDate;
+          var series = [];
+          var current = minDate;
 
           while (current < maxDate) {
             series.push(current);
@@ -77,7 +77,7 @@ angular.module('avAdmin')
           var data = Object.values(turnoutData).map(function (electionData) {
             var dataMap = {};
             for (var i = 0; i < electionData.votes_per_hour.length; i++) {
-              let votesDatum = electionData.votes_per_hour[i];
+              var votesDatum = electionData.votes_per_hour[i];
               dataMap[votesDatum.hour.getTime()] = votesDatum.votes;
             }
             
