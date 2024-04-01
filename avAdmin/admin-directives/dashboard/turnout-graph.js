@@ -74,6 +74,21 @@ angular.module('avAdmin')
           var timeSeries = generateTimeSeries(minDate, maxDate);
           var labels = generateLabels(timeSeries);
 
+          var data = Object.values(turnoutData).map(function (electionData) {
+            var dataMap = {};
+            for (var i = 0; i < electionData.votes_per_hour.length; i++) {
+              let votesDatum = electionData.votes_per_hour[i];
+              dataMap[votesDatum.hour.getTime()] = votesDatum.votes;
+            }
+            
+            return timeSeries.map(function (timeDatum) {
+              return dataMap[timeDatum.getTime()] || 0;
+            })
+          });
+          scope.data = data;
+          scope.labels = labels;
+          scope.series = series;
+
         }
 
         // download turnout data and calculate values
