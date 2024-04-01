@@ -58,7 +58,7 @@ angular.module('avAdmin')
           updateTurnoutData: updateTurnoutData
         });
 
-        updateTurnoutData();
+        scope.$watch('id', updateTurnoutData);
       }
 
       return {
