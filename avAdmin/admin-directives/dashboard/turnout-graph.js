@@ -17,7 +17,11 @@
 
 angular.module('avAdmin')
   .directive('avTurnoutGraph',
-    function($scope,) {
+    function($scope) {
+      function link(scope, element, attrs) {
+        angular.extend(scope, {
+        });
+      }
 
       return {
         restrict: 'AE',
