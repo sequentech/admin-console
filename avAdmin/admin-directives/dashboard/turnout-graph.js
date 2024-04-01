@@ -28,9 +28,69 @@ angular.module('avAdmin')
       $timeout
     ) {
       function link(scope, element, attrs) {
+
+        // update variables used for graph
+        // turnoutData has the same format as the response from fetching turnout
+        // except that 'hour' is a Date and that the data includes the election title
+        function calculateValues(turnoutData, minDate, maxDate) {
+
+        }
+
+        // download turnout data and calculate values
         function updateTurnoutData() {
+          var turnoutData;
+          // fetch turnout
           Authmethod.getTurnout(scope.id)
           .then(function (response){
+            if (200 !== response.status) {
+              console.log("Error fetching turnout: ");
+              console.log(response);
+              return;
+            }
+
+            turnoutData = response.data;
+            var electionIds = Object.keys(response.data);
+  
+            // fetch iam's election data to gather election title
+            return $q.all(electionIds.map(function (electionId) {
+              return ElectionsApi.getElection(electionId);
+            }));
+          })
+          .then(function (electionsData) {
+            electionsData.map(function (el) {
+              // the election id is a number here but a string key on the turnoutData object
+              if (!turnoutData[String(el.id)]) {
+                return;
+              }
+              // add title
+              turnoutData[String(el.id)].title = el.title;
+
+              // convert string dates to Date objects and find min/max
+              var minDate = new Date();
+              var maxDate = new Date(0);
+              Object.values(turnoutData)
+              .map(function (turnoutElection) {
+                if (!turnoutElection.votes_per_hour) {
+                  turnoutElection.votes_per_hour = [];
+                  return;
+                }
+                turnoutElection.votes_per_hour = turnoutElection.votes_per_hour.map(function (data) {
+                  data.hour = new Date(data.hour);
+                  if (data.hour < minDate) {
+                    minDate = data.hour;
+                  }
+                  if (data.hour > maxDate) {
+                    maxDate = data.hour;
+                  }
+                  return data;
+                });
+              });
+              if (maxDate < minDate) {
+                maxDate = new Date();
+              }
+              calculateValues(turnoutData, minDate, maxDate);
+
+            });
           });
         }
         var labels = ["January", "February", "March", "April", "May", "June", "July"];
