@@ -137,6 +137,8 @@ angular.module('avAdmin')
             }));
           })
           .then(function (electionsData) {
+            var minDate = new Date();
+            var maxDate = new Date(0);
             electionsData.map(function (el) {
               // the election id is a number here but a string key on the turnoutData object
               if (!turnoutData[String(el.id)]) {
@@ -145,32 +147,44 @@ angular.module('avAdmin')
               // add title
               turnoutData[String(el.id)].title = el.title;
 
-              // convert string dates to Date objects and find min/max
-              var minDate = new Date();
-              var maxDate = new Date(0);
-              Object.values(turnoutData)
-              .map(function (turnoutElection) {
-                if (!turnoutElection.votes_per_hour) {
-                  turnoutElection.votes_per_hour = [];
-                  return;
+              // add start/end dates
+              if (el.startDate) {
+                var startDate = new Date(el.startDate+"+00:00"); // expect GMT time
+                if (startDate < minDate) {
+                  minDate = startDate;
                 }
-                turnoutElection.votes_per_hour = turnoutElection.votes_per_hour.map(function (data) {
-                  data.hour = new Date(data.hour);
-                  if (data.hour < minDate) {
-                    minDate = data.hour;
-                  }
-                  if (data.hour > maxDate) {
-                    maxDate = data.hour;
-                  }
-                  return data;
-                });
-              });
-              if (maxDate < minDate) {
-                maxDate = new Date();
               }
-              calculateValues(turnoutData, minDate, maxDate);
-
+              if (el.endDate) {
+                var endDate = new Date(el.endDate+"+00:00"); // expect GMT time
+                if (endDate > maxDate) {
+                  maxDate = endDate;
+                }
+              }
             });
+
+            // convert string dates to Date objects and find min/max
+            Object.values(turnoutData)
+            .map(function (turnoutElection) {
+              if (!turnoutElection.votes_per_hour) {
+                turnoutElection.votes_per_hour = [];
+                return;
+              }
+              turnoutElection.votes_per_hour = turnoutElection.votes_per_hour.map(function (data) {
+                data.hour = new Date(data.hour);
+                if (data.hour < minDate) {
+                  minDate = data.hour;
+                }
+                if (data.hour > maxDate) {
+                  maxDate = data.hour;
+                }
+                return data;
+              });
+            });
+            if (maxDate < minDate) {
+              maxDate = new Date();
+            }
+            calculateValues(turnoutData, minDate, maxDate);
+
           });
         }
         var labels = ["January", "February"];
