@@ -154,6 +154,15 @@ angular.module('avAdmin')
         var data = [
           [0, 0],
         ];
+        var options = {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          }
+      };
         var onClick = function (points, evt) {
           console.log(points, evt);
         };
@@ -163,6 +172,7 @@ angular.module('avAdmin')
           labels: labels,
           series: series,
           data: data,
+          options: options,
           onClick: onClick,
           updateTurnoutData: updateTurnoutData
         });
