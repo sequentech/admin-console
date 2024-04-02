@@ -1,2 +1,15 @@
-<canvas ng-if="show" class="chart chart-bar" chart-data="data" chart-labels="labels" 
-    chart-series="series" chart-click="onClick" chart-options="options"></canvas> 
+<div ng-if="show" class="chart">
+<canvas class="chart chart-bar" chart-data="data" chart-labels="labels" 
+    chart-series="series" chart-click="onClick" chart-options="options"></canvas>
+    <div class="election-checkboxes">
+        <div class="checkbox-container" ng-repeat="title in seriesBase">
+            <input
+            type="checkbox"
+            id="enable-election-graph-{{$index}}"
+            ng-model="selectedSeries[$index]" />
+            <label for="enable-election-graph-{{$index}}">
+                {{labelsBase[$index]}}
+            </label>
+        </div>
+    </div>
+</div>

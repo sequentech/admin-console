@@ -63,6 +63,12 @@ angular.module('avAdmin')
           });
         }
 
+        function generateSelectedSeries(series) {
+          return series.map(function (_seriesElement, index) {
+            return scope.selectedSeries && false === scope.selectedSeries[index] || true;
+          });
+        }
+
         // update variables used for graph
         // turnoutData has the same format as the response from fetching turnout
         // except that 'hour' is a Date and that the data includes the election title
@@ -73,6 +79,7 @@ angular.module('avAdmin')
 
           var timeSeries = generateTimeSeries(minDate, maxDate, 1);
           var labels = generateLabels(timeSeries);
+          var selectedSeries = generateSelectedSeries(series);
 
           var data = Object.values(turnoutData).map(function (electionData) {
             var dataMap = {};
@@ -85,11 +92,27 @@ angular.module('avAdmin')
               return dataMap[timeDatum.getTime()] || 0;
             });
           });
-          scope.data = data;
-          scope.labels = labels;
-          scope.series = series;
+          scope.dataBase = data;
+          scope.labelsBase = labels;
+          scope.seriesBase = series;
           scope.show = true;
+          scope.selectedSeries = selectedSeries;
+          refreshGraph();
+        }
 
+        function refreshGraph() {
+          var series = [];
+          var data = [];
+          for (var i = 0; i < scope.selectedSeries.length; i++) {
+            if (!scope.selectedSeries[i]) {
+              continue;
+            }
+            series.push(scope.seriesBase[i]);
+            data.push(scope.dataBase[i]);
+          }
+          scope.series = series;
+          scope.data = data;
+          scope.labels = scope.labelsBase;
         }
 
         // download turnout data and calculate values
@@ -151,6 +174,7 @@ angular.module('avAdmin')
         }
         var labels = ["January", "February"];
         var series = ['Series A'];
+        var selectedSeries = [true];
         var data = [
           [0, 0],
         ];
@@ -169,6 +193,10 @@ angular.module('avAdmin')
         
         angular.extend(scope, {
           show: false,
+          seriesBase: series,
+          dataBase: data,
+          labelsBase: labels,
+          selectedSeries: selectedSeries,
           labels: labels,
           series: series,
           data: data,
@@ -178,6 +206,7 @@ angular.module('avAdmin')
         });
 
         scope.$watch('id', updateTurnoutData);
+        scope.$watch('selectedSeries', refreshGraph);
       }
 
       return {
