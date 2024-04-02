@@ -69,6 +69,22 @@ angular.module('avAdmin')
           });
         }
 
+
+        function refreshGraph() {
+          var series = [];
+          var data = [];
+          for (var i = 0; i < scope.selectedSeries.length; i++) {
+            if (!scope.selectedSeries[i]) {
+              continue;
+            }
+            series.push(scope.seriesBase[i]);
+            data.push(scope.dataBase[i]);
+          }
+          scope.series = series;
+          scope.data = data;
+          scope.labels = scope.labelsBase;
+        }
+
         // update variables used for graph
         // turnoutData has the same format as the response from fetching turnout
         // except that 'hour' is a Date and that the data includes the election title
@@ -98,21 +114,6 @@ angular.module('avAdmin')
           scope.show = true;
           scope.selectedSeries = selectedSeries;
           refreshGraph();
-        }
-
-        function refreshGraph() {
-          var series = [];
-          var data = [];
-          for (var i = 0; i < scope.selectedSeries.length; i++) {
-            if (!scope.selectedSeries[i]) {
-              continue;
-            }
-            series.push(scope.seriesBase[i]);
-            data.push(scope.dataBase[i]);
-          }
-          scope.series = series;
-          scope.data = data;
-          scope.labels = scope.labelsBase;
         }
 
         // download turnout data and calculate values
