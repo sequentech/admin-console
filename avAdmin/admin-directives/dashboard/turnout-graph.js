@@ -323,13 +323,16 @@ angular.module('avAdmin')
           data: data,
           options: options,
           timeBasis: timeBasis,
+          timeBasisB: {
+            value: timeBasis
+          },
           onClick: onClick,
           updateTurnoutData: updateTurnoutData
         });
 
         scope.$watch('id', updateTurnoutData);
         scope.$watch('selectedSeries', refreshGraph, true);
-        scope.$watch('timeBasis', calculateValues, true);
+        scope.$watch('timeBasisB.value', calculateValues, true);
       }
 
       return {
