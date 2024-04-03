@@ -6,7 +6,8 @@
             <input
             type="checkbox"
             id="enable-election-graph-{{$index}}"
-            ng-model="selectedSeries[{{$index}}]" />
+            ng-click="clickCheckbox($index)"
+            ng-model="selectedSeries[$index]" />
             <label for="enable-election-graph-{{$index}}">
                 {{seriesBase[$index]}}
             </label>

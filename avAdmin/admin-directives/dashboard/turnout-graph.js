@@ -277,6 +277,10 @@ angular.module('avAdmin')
         var onClick = function (points, evt) {
           console.log(points, evt);
         };
+
+        function clickCheckbox(index) {
+          console.log(index);
+        }
         
         angular.extend(scope, {
           show: false,
@@ -289,7 +293,8 @@ angular.module('avAdmin')
           data: data,
           options: options,
           onClick: onClick,
-          updateTurnoutData: updateTurnoutData
+          updateTurnoutData: updateTurnoutData,
+          clickCheckbox: clickCheckbox
         });
 
         scope.$watch('id', updateTurnoutData);
