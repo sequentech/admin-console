@@ -28,20 +28,76 @@ angular.module('avAdmin')
       $timeout
     ) {
       function link(scope, element, attrs) {
-        function generateTimeSeries(minDate, maxDate, hours) {
-          var series = [];
-          var current = minDate;
-
-          while (current <= maxDate) {
-            series.push(current);
-            current = new Date(current);
-            current.setHours(current.getHours() + hours);
+        function truncateDate(date, scale /* hour|day|week|month */) {
+          switch(scale.toLowerCase()) {
+              case 'hour':
+                  date.setMinutes(0);
+                  date.setSeconds(0);
+                  date.setMilliseconds(0);
+                  break;
+              case 'day':
+                  date.setHours(0);
+                  date.setMinutes(0);
+                  date.setSeconds(0);
+                  date.setMilliseconds(0);
+                  break;
+              case 'week':
+                  const dayOfWeek = date.getDay();
+                  const diff = date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
+                  date.setDate(diff);
+                  date.setHours(0);
+                  date.setMinutes(0);
+                  date.setSeconds(0);
+                  date.setMilliseconds(0);
+                  break;
+              case 'month':
+                  date.setDate(1);
+                  date.setHours(0);
+                  date.setMinutes(0);
+                  date.setSeconds(0);
+                  date.setMilliseconds(0);
+                  break;
+              default:
+                  throw new Error('Invalid scale parameter. Use "hour", "day", "week", or "month".');
           }
+          return date;
+      }
+      function advanceDate(date, scale /* hour|day|week|month */) {
+        const newDate = new Date(date.getTime()); // Create a copy of the input date
+        switch(scale.toLowerCase()) {
+            case 'hour':
+                newDate.setHours(date.getHours() + 1);
+                break;
+            case 'day':
+                newDate.setDate(date.getDate() + 1);
+                break;
+            case 'week':
+                newDate.setDate(date.getDate() + 7);
+                break;
+            case 'month':
+                newDate.setMonth(date.getMonth() + 1);
+                break;
+            default:
+                throw new Error('Invalid scale parameter. Use "hour", "day", "week", or "month".');
+        }
+        return newDate;
+      }
 
-          return series;
+      function generateTimeSeries(minDate, maxDate, scale /* hour|day|week|month */) {
+        scale = scale.toLowerCase();
+        minDate = truncateDate(truncateDate, scale);
+        var series = [];
+        var current = minDate;
+
+        while (current <= maxDate) {
+          series.push(current);
+          current = advanceDate(current, scale);
         }
 
-        function generateLabels(timeSeries) {
+        return series;
+      }
+
+      function generateLabels(timeSeries) {
           var shorten = timeSeries.length > 14;
 
           return timeSeries.map(function (dateValue) {
@@ -93,20 +149,40 @@ angular.module('avAdmin')
             return electionData.title;
           });
 
-          var timeSeries = generateTimeSeries(minDate, maxDate, 1);
+          var timeSeries = generateTimeSeries(minDate, maxDate, 'hour');
+          if (timeSeries.length >= 24*30*3) {
+            timeSeries = generateTimeSeries(minDate, maxDate, 'month');
+          } else if (timeSeries.length >= 24*7*3) {
+            timeSeries = generateTimeSeries(minDate, maxDate, 'week');
+          } else if (timeSeries.length >= 24*3) {
+            timeSeries = generateTimeSeries(minDate, maxDate, 'day');
+          }
           var labels = generateLabels(timeSeries);
           var selectedSeries = generateSelectedSeries(series);
 
           var data = Object.values(turnoutData).map(function (electionData) {
-            var dataMap = {};
-            for (var i = 0; i < electionData.votes_per_hour.length; i++) {
-              var votesDatum = electionData.votes_per_hour[i];
-              dataMap[votesDatum.hour.getTime()] = votesDatum.votes;
+            if (timeSeries.length < 2) {
+              return [electionData.votes_per_hour.reduce(
+                function (accumulator, currentValue) {
+                  return accumulator + currentValue.votes;
+                },
+                0
+              )];
             }
-            
-            return timeSeries.map(function (timeDatum) {
-              return dataMap[timeDatum.getTime()] || 0;
-            });
+            var electionDataIndex = 0;
+            var timeSeriesIndex = 1;
+            var dataElection = [];
+            while (timeSeriesIndex <= timeSeries.length) {
+              var acc = 0;
+              while (electionDataIndex < electionData.votes_per_hour.length &&
+                electionData.votes_per_hour[i].hour < timeSeries[timeSeriesIndex]) {
+                  acc += electionData.votes_per_hour[i].votes;
+                  electionDataIndex++;
+              }
+              dataElection.push(acc);
+              timeSeriesIndex++;
+            }
+            return dataElection;
           });
           scope.dataBase = data;
           scope.labelsBase = labels;
