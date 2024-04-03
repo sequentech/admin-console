@@ -301,6 +301,9 @@ angular.module('avAdmin')
           turnoutData: undefined,
           minDate: undefined,
           maxDate: undefined,
+          selectedDates: {
+            minDate: new Date()
+          },
           seriesBase: series,
           dataBase: data,
           labelsBase: labels,

@@ -42,7 +42,8 @@ angular.module(
   'ng-autofocus',
   'LocalStorageModule',
   'common-ui',
-  'chart.js'
+  'chart.js',
+  'moment-picker'
 ]);
 
 /**
