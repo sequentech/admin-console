@@ -98,24 +98,18 @@ angular.module('avAdmin')
       }
 
       function generateLabels(timeSeries) {
-          var shorten = timeSeries.length > 14;
-
           return timeSeries.map(function (dateValue) {
-            if (shorten && 0 !== dateValue.getHours()) {
-              return '';
-            } else {
-              return dateValue.toLocaleString(
-                undefined,
-                {
-                  year: '2-digit',
-                  month: '2-digit',
-                  day: '2-digit',
-                  hour: '2-digit',
-                  hour12: false,
-                  minute:'2-digit'
-                }
-              );
-            }
+            return dateValue.toLocaleString(
+              undefined,
+              {
+                year: '2-digit',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                hour12: false,
+                minute:'2-digit'
+              }
+            );
           });
         }
 
