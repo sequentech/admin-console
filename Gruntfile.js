@@ -269,6 +269,7 @@ module.exports = function (grunt) {
           {src: ['node_modules/common-ui/dist/img/flags.png'], dest: 'dist/img/flags.png'},
           {src: ['node_modules/common-ui/dist/utils.js'], dest: 'dist/utils.js'},
           {src: ['node_modules/common-ui/dist/intlTelInput.css'], dest: 'dist/intlTelInput.css'},
+          {src: ['node_modules/angular-moment-picker/dist/angular-moment-picker.min.css'], dest: 'dist/angular-moment-picker.min.css'},
           {
             expand: true,
             cwd:'node_modules/common-ui/themes',
@@ -335,7 +336,8 @@ module.exports = function (grunt) {
             {selector:'head',html:'<link rel="stylesheet" id="theme" data-base="/admin/" href="/admin/themes/default/app.min.css">'},
             {selector:'head',html:'<link rel="stylesheet" id="plugins" data-base="/admin/" href="/admin/plugins.css">'},
             {selector:'head',html:'<link rel="stylesheet" id="vendor-css" data-base="/admin/" href="/admin/vendor.min.css">'},
-            {selector:'head',html:'<link rel="stylesheet" href="/admin/intlTelInput.css" />'}
+            {selector:'head',html:'<link rel="stylesheet" href="/admin/intlTelInput.css" />'},
+            {selector:'head',html:'<link rel="stylesheet" href="/admin/angular-moment-picker.min.css" />'}
           ]
         },
         src:'index.html',
