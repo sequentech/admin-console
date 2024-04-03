@@ -93,10 +93,8 @@ angular.module('avAdmin')
           series.push(current);
           current = advanceDate(current, scale);
         }
-        if (series.length < 2) {
-          current = advanceDate(current, scale);
-          series.push(current);
-        }
+        current = advanceDate(current, scale);
+        series.push(current);
 
         return series;
       }
