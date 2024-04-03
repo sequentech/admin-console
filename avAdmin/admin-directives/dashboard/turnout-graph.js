@@ -280,6 +280,7 @@ angular.module('avAdmin')
 
         function clickCheckbox(index) {
           console.log(index);
+          console.log(scope.selectedSeries[index]);
         }
         
         angular.extend(scope, {
