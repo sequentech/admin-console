@@ -42,8 +42,8 @@ angular.module('avAdmin')
                   date.setMilliseconds(0);
                   break;
               case 'week':
-                  const dayOfWeek = date.getDay();
-                  const diff = date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
+                  var dayOfWeek = date.getDay();
+                  var diff = date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
                   date.setDate(diff);
                   date.setHours(0);
                   date.setMinutes(0);
@@ -63,7 +63,7 @@ angular.module('avAdmin')
           return date;
       }
       function advanceDate(date, scale /* hour|day|week|month */) {
-        const newDate = new Date(date.getTime()); // Create a copy of the input date
+        var newDate = new Date(date.getTime()); // Create a copy of the input date
         switch(scale.toLowerCase()) {
             case 'hour':
                 newDate.setHours(date.getHours() + 1);
@@ -169,8 +169,8 @@ angular.module('avAdmin')
             while (timeSeriesIndex <= timeSeries.length) {
               var acc = 0;
               while (electionDataIndex < electionData.votes_per_hour.length &&
-                electionData.votes_per_hour[i].hour < timeSeries[timeSeriesIndex]) {
-                  acc += electionData.votes_per_hour[i].votes;
+                electionData.votes_per_hour[electionDataIndex].hour < timeSeries[timeSeriesIndex]) {
+                  acc += electionData.votes_per_hour[electionDataIndex].votes;
                   electionDataIndex++;
               }
               dataElection.push(acc);
