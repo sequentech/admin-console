@@ -161,6 +161,9 @@ angular.module('avAdmin')
           var minDate = scope.minDate;
           var maxDate = scope.maxDate;
           var turnoutData = scope.turnoutData;
+          if (!turnoutData) {
+            return;
+          }
           var series = Object.values(turnoutData).map(function (electionData) {
             return electionData.title;
           });
