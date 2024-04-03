@@ -57,7 +57,8 @@
     "common-ui": "https://github.com/sequentech/common-ui.git#10.2.0",
     "jasmine-spec-reporter": "^7.0.0",
     "pdfmake": "^0.1.65",
-    "angular-chart.js": "1.1.1"
+    "angular-chart.js": "1.1.1",
+    "angular-moment-picker": "0.10.2"
   },
   "resolutions": {
     "**/follow-redirects": "1.15.4",
