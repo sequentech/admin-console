@@ -139,21 +139,8 @@ angular.module('avAdmin')
 
         function calculateTimeseries(minDate, maxDate) {
           var timeSeries;
-          switch (scope.timeBasis) {
-            case 'hour':
-              timeSeries = generateTimeSeries(minDate, maxDate, 'hour');
-              break;
-            case 'day':
-              timeSeries = generateTimeSeries(minDate, maxDate, 'day');
-              break;
-            case 'week':
-              timeSeries = generateTimeSeries(minDate, maxDate, 'week');
-              break;
-            case 'month':
-              timeSeries = generateTimeSeries(minDate, maxDate, 'month');
-              break;
-            case 'auto':
-              timeSeries = generateTimeSeries(minDate, maxDate, 'hour');
+          if ('auto' === scope.timeBasis.value) {
+            timeSeries = generateTimeSeries(minDate, maxDate, 'hour');
               if (timeSeries.length >= 24*30*3) {
                 timeSeries = generateTimeSeries(minDate, maxDate, 'month');
               } else if (timeSeries.length >= 24*7*3) {
@@ -161,9 +148,8 @@ angular.module('avAdmin')
               } else if (timeSeries.length >= 24*3) {
                 timeSeries = generateTimeSeries(minDate, maxDate, 'day');
               }
-              break;
-            default:
-              throw new Error('Invalid scale parameter. Use "auto", "hour", "day", "week", or "month".');
+          } else {
+            timeSeries = generateTimeSeries(minDate, maxDate, scope.timeBasis.value);
           }
           return timeSeries;
         }
@@ -322,8 +308,7 @@ angular.module('avAdmin')
           series: series,
           data: data,
           options: options,
-          timeBasis: timeBasis,
-          timeBasisB: {
+          timeBasis: {
             value: timeBasis
           },
           onClick: onClick,
@@ -332,7 +317,7 @@ angular.module('avAdmin')
 
         scope.$watch('id', updateTurnoutData);
         scope.$watch('selectedSeries', refreshGraph, true);
-        scope.$watch('timeBasisB.value', calculateValues, true);
+        scope.$watch('timeBasis.value', calculateValues, true);
       }
 
       return {
