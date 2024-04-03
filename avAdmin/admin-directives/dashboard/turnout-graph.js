@@ -93,8 +93,10 @@ angular.module('avAdmin')
           series.push(current);
           current = advanceDate(current, scale);
         }
-        current = advanceDate(current, scale);
-        series.push(current);
+        if (series.length < 2) {
+          current = advanceDate(current, scale);
+          series.push(current);
+        }
 
         return series;
       }
@@ -171,7 +173,10 @@ angular.module('avAdmin')
         // update variables used for graph
         // turnoutData has the same format as the response from fetching turnout
         // except that 'hour' is a Date and that the data includes the election title
-        function calculateValues(turnoutData, minDate, maxDate) {
+        function calculateValues() {
+          var minDate = scope.minDate;
+          var maxDate = scope.maxDate;
+          var turnoutData = scope.turnoutData;
           var series = Object.values(turnoutData).map(function (electionData) {
             return electionData.title;
           });
@@ -278,7 +283,10 @@ angular.module('avAdmin')
             if (maxDate < minDate) {
               maxDate = new Date();
             }
-            calculateValues(turnoutData, minDate, maxDate);
+            scope.turnoutData = turnoutData;
+            scope.minDate = minDate;
+            scope.maxDate = maxDate;
+            calculateValues();
 
           });
         }
@@ -305,6 +313,9 @@ angular.module('avAdmin')
         
         angular.extend(scope, {
           show: false,
+          turnoutData: undefined,
+          minDate: undefined,
+          maxDate: undefined,
           seriesBase: series,
           dataBase: data,
           labelsBase: labels,
@@ -320,7 +331,7 @@ angular.module('avAdmin')
 
         scope.$watch('id', updateTurnoutData);
         scope.$watch('selectedSeries', refreshGraph, true);
-        scope.$watch('timeBasis', refreshGraph, true);
+        scope.$watch('timeBasis', calculateValues, true);
       }
 
       return {
