@@ -2,7 +2,7 @@
 <canvas class="chart chart-bar" chart-data="data" chart-labels="labels" 
     chart-series="series" chart-click="onClick" chart-options="options"></canvas>
     <div class="election-checkboxes">
-        <div class="checkbox-container" ng-repeat="title in seriesBase">
+        <div class="checkbox-container" ng-repeat="title in seriesBase track by $index">
             <input
             type="checkbox"
             id="enable-election-graph-{{$index}}"
