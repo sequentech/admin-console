@@ -85,7 +85,7 @@ angular.module('avAdmin')
 
       function generateTimeSeries(minDate, maxDate, scale /* hour|day|week|month */) {
         scale = scale.toLowerCase();
-        minDate = truncateDate(truncateDate, scale);
+        minDate = truncateDate(minDate, scale);
         var series = [];
         var current = minDate;
 
