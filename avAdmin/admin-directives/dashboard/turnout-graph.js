@@ -137,6 +137,37 @@ angular.module('avAdmin')
           scope.labels = scope.labelsBase;
         }
 
+        function calculateTimeseries(minDate, maxDate) {
+          var timeSeries;
+          switch (scope.timeBasis) {
+            case 'hour':
+              timeSeries = generateTimeSeries(minDate, maxDate, 'hour');
+              break;
+            case 'day':
+              timeSeries = generateTimeSeries(minDate, maxDate, 'day');
+              break;
+            case 'week':
+              timeSeries = generateTimeSeries(minDate, maxDate, 'week');
+              break;
+            case 'month':
+              timeSeries = generateTimeSeries(minDate, maxDate, 'month');
+              break;
+            case 'auto':
+              timeSeries = generateTimeSeries(minDate, maxDate, 'hour');
+              if (timeSeries.length >= 24*30*3) {
+                timeSeries = generateTimeSeries(minDate, maxDate, 'month');
+              } else if (timeSeries.length >= 24*7*3) {
+                timeSeries = generateTimeSeries(minDate, maxDate, 'week');
+              } else if (timeSeries.length >= 24*3) {
+                timeSeries = generateTimeSeries(minDate, maxDate, 'day');
+              }
+              break;
+            default:
+              throw new Error('Invalid scale parameter. Use "auto", "hour", "day", "week", or "month".');
+          }
+          return timeSeries;
+        }
+
         // update variables used for graph
         // turnoutData has the same format as the response from fetching turnout
         // except that 'hour' is a Date and that the data includes the election title
@@ -144,15 +175,7 @@ angular.module('avAdmin')
           var series = Object.values(turnoutData).map(function (electionData) {
             return electionData.title;
           });
-
-          var timeSeries = generateTimeSeries(minDate, maxDate, 'hour');
-          if (timeSeries.length >= 24*30*3) {
-            timeSeries = generateTimeSeries(minDate, maxDate, 'month');
-          } else if (timeSeries.length >= 24*7*3) {
-            timeSeries = generateTimeSeries(minDate, maxDate, 'week');
-          } else if (timeSeries.length >= 24*3) {
-            timeSeries = generateTimeSeries(minDate, maxDate, 'day');
-          }
+          var timeSeries = calculateTimeseries(minDate, maxDate);
           var labels = generateLabels(timeSeries);
           var selectedSeries = generateSelectedSeries(series);
 
@@ -277,6 +300,8 @@ angular.module('avAdmin')
         var onClick = function (points, evt) {
           console.log(points, evt);
         };
+
+        var timeBasis = 'auto';
         
         angular.extend(scope, {
           show: false,
@@ -288,12 +313,14 @@ angular.module('avAdmin')
           series: series,
           data: data,
           options: options,
+          timeBasis: timeBasis,
           onClick: onClick,
           updateTurnoutData: updateTurnoutData
         });
 
         scope.$watch('id', updateTurnoutData);
         scope.$watch('selectedSeries', refreshGraph, true);
+        scope.$watch('timeBasis', refreshGraph, true);
       }
 
       return {
