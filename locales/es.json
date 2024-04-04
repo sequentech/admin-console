@@ -809,6 +809,7 @@
     "create": {
         "summary": "Resumen: creando __num__ votaciones",
         "summary__plural": "Resumen: creando __num__ votaciones",
+        "checkingTrustees": "Checking trustees status for election __title__",
         "create": "Crear las votaciones",
         "create__plural": "Crear las votaciones",
         "creating": "Creando la autenticación de la votación __title__",
@@ -822,6 +823,9 @@
           "livePreview": "Previsualización en vivo"
         },
         "errors": {
+          "election-auths-missing": "Election '__eltitle__': Faltan autoridades",
+          "election-auth-not-found": "Election '__eltitle__': Autoridad no encontrada '__auth__'",
+          "election-auth-error": "Election '__eltitle__': Autoridad '__auth__' tiene un estado inválido '__message__'",
           "lambda-live-preview-parent-children": "Faltan ID de la votación para una votación padre-hijos",
           "election-is-array-questions": "Votación '__eltitle__': la lista de pregunta no es un array",
           "election-lambda-success-action-url-mode": "Votación '__eltitle__': url de redirección en 'Acción de éxito' inválida",
