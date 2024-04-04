@@ -1047,7 +1047,7 @@ angular.module('avAdmin')
         function checkTrustees(el) {
           logInfo($i18next.t('avAdmin.create.checkingTrustees', {title: el.title}));
           var deferred = $q.defer();
-          var auths = el.authorities || [];
+          var auths = el.authorities && Array.from(el.authorities) || [];
           if (el.director) {
             auths.push(el.director);
           }
