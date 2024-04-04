@@ -160,6 +160,13 @@ angular.module('avAdmin')
         function calculateValues() {
           var minDate = scope.minDate;
           var maxDate = scope.maxDate;
+          if (!scope.selectedDates.minDate) {
+            scope.selectedDates.minDate = minDate;
+          }
+          if (!scope.selectedDates.maxDate) {
+            scope.selectedDates.maxDate = maxDate;
+          }
+
           var turnoutData = scope.turnoutData;
           if (!turnoutData) {
             return;
