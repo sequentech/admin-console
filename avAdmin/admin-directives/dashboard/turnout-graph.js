@@ -293,6 +293,17 @@ angular.module('avAdmin')
               }]
           }
       };
+
+      function updateDates() {
+        if (scope.selectedDates.minDate instanceof Date) {
+          scope.minDate = scope.selectedDates.minDate;
+        }
+        if (scope.selectedDates.maxDate instanceof Date) {
+          scope.maxDate = scope.selectedDates.maxDate;
+        }
+        calculateValues();
+      }
+
         var onClick = function (points, evt) {
           console.log(points, evt);
         };
@@ -305,7 +316,8 @@ angular.module('avAdmin')
           minDate: undefined,
           maxDate: undefined,
           selectedDates: {
-            minDate: new Date()
+            minDate: undefined,
+            maxDate: undefined
           },
           seriesBase: series,
           dataBase: data,
@@ -325,6 +337,7 @@ angular.module('avAdmin')
         scope.$watch('id', updateTurnoutData);
         scope.$watch('selectedSeries', refreshGraph, true);
         scope.$watch('timeBasis.value', calculateValues, true);
+        scope.$watch('selectedDates', updateDates, true)
       }
 
       return {
