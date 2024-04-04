@@ -720,6 +720,46 @@ angular.module('avAdmin')
           );
       }
 
+      function checkTrustees() {
+        var deferred = $q.defer();
+
+        var errors = [];
+
+        var auths = scope.election.authorities && Array.from(scope.election.authorities) || [];
+        if (scope.election.director) {
+          auths.push(scope.election.director);
+        }
+
+        if (0 === auths.length) {
+          errors.push($i18next.t('avAdmin.create.errors.election-auths-missing', {eltitle: scope.election.title}));
+          deferred.reject(errors.join("\n"));
+        } else {
+          ElectionsApi
+          .authoritiesStatus()
+          .then(function (trustees) {
+            for (var i = 0; i < auths.length; i++) {
+              var auth = auths[i];
+              if (!trustees[auth]) {
+                errors.push($i18next.t('avAdmin.create.errors.election-auth-not-found', {eltitle: scope.election.title, auth: auth}));
+                continue;
+              }
+              if ('ok' !== trustees[auth].state) {
+                errors.push($i18next.t('avAdmin.create.errors.election-auth-error', {eltitle: scope.election.title, auth: auth, message: trustees[auth].message}));
+                continue;
+              }
+            }
+            if (errors) {
+              deferred.reject(errors);
+            } else {
+              deferred.resolve();
+            }
+          })
+          .catch(deferred.reject);
+        }
+
+        return deferred.promise;
+      }
+
       // performs all the initialization
       function init()
       {
@@ -872,13 +912,17 @@ angular.module('avAdmin')
                 scope.index = scope.getStatusIndex('stopped') + 1;
               }
               scope.nextaction = false;
-              Authmethod
-                .launchTally(
-                  scope.election.id,
-                  data.tallyElectionIds,
-                  'force-all',
-                  data.mode
-                )
+
+              checkTrustees()
+                .then(function () {
+                  return Authmethod
+                  .launchTally(
+                    scope.election.id,
+                    data.tallyElectionIds,
+                    'force-all',
+                    data.mode
+                  );
+                })
                 .then(
                   function onSuccess() 
                   {
@@ -892,7 +936,15 @@ angular.module('avAdmin')
                     scope.loading = false;
                     scope.error = error;
                   }
-                );
+                )
+                .catch(function(error)
+                {
+                  if (scope.launchedTally) {
+                    scope.launchedTally = false;
+                  }
+                  scope.loading = false;
+                  scope.error = error;
+                });
             },
             enableFunc: function () {
               return (
