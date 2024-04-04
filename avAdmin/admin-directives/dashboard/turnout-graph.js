@@ -344,7 +344,7 @@ angular.module('avAdmin')
         scope.$watch('id', updateTurnoutData);
         scope.$watch('selectedSeries', refreshGraph, true);
         scope.$watch('timeBasis.value', calculateValues, true);
-        scope.$watch('selectedDates', updateDates, true)
+        scope.$watch('selectedDates', updateDates, true);
       }
 
       return {
