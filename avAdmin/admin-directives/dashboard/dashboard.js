@@ -749,7 +749,7 @@ angular.module('avAdmin')
                 continue;
               }
             }
-            if (errors) {
+            if (errors.length > 0) {
               deferred.reject(errors);
             } else {
               deferred.resolve();
