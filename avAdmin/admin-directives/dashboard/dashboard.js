@@ -22,6 +22,7 @@ angular.module('avAdmin')
        $q,
        $window,
        $state,
+       $i18next,
        Authmethod,
        Plugins,
        ElectionsApi,
