@@ -1076,7 +1076,7 @@ angular.module('avAdmin')
               if (hasError) {
                 deferred.reject();
               } else {
-                deferred.resolve();
+                deferred.resolve(el);
               }
             })
             .catch(deferred.reject);
