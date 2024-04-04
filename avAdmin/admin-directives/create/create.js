@@ -1045,7 +1045,7 @@ angular.module('avAdmin')
         });
 
         function checkTrustees(el) {
-          logInfo($i18next.t('avAdmin.create.checkingTrustees', {title: el.title}));
+          logInfo($i18next.t('avAdmin.create.checkingTrustees', {eltitle: el.title}));
           var deferred = $q.defer();
           var auths = el.authorities || [];
           if (el.director) {
@@ -1053,7 +1053,7 @@ angular.module('avAdmin')
           }
 
           if (0 === auths.length) {
-            logError($i18next.t('avAdmin.create.errors.election-auths-missing', {title: el.title}));
+            logError($i18next.t('avAdmin.create.errors.election-auths-missing', {eltitle: el.title}));
             deferred.reject();
           } else {
             ElectionsApi
@@ -1063,12 +1063,12 @@ angular.module('avAdmin')
               for (var i = 0; i < auths.length; i++) {
                 var auth = auths[i];
                 if (!trustees[auth]) {
-                  logError($i18next.t('avAdmin.create.errors.election-auth-not-found', {title: el.title, auth: auth}));
+                  logError($i18next.t('avAdmin.create.errors.election-auth-not-found', {eltitle: el.title, auth: auth}));
                   hasError = true;
                   continue;
                 }
                 if ('ok' !== trustees[auth].state) {
-                  logError($i18next.t('avAdmin.create.errors.election-auth-error', {title: el.title, auth: auth, message: trustees[auth].message}));
+                  logError($i18next.t('avAdmin.create.errors.election-auth-error', {eltitle: el.title, auth: auth, message: trustees[auth].message}));
                   hasError = true;
                   continue;
                 }
