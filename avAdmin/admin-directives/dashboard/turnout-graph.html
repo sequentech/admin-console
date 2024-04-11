@@ -11,22 +11,26 @@
                 {{seriesBase[$index]}}
             </label>
         </div>
-        <div class="time-selector-container">
-            <label for="time-basis">Choose a time resolution:</label>
-            <select name="time-basis" id="time-basis" ng-model="timeBasis.value">
-              <option value="auto">Auto</option>
-              <option value="hour">Hour</option>
-              <option value="day">Day</option>
-              <option value="week">Week</option>
-              <option value="month">Month</option>
-        </div>
-        <div class="start-date-container">
-            <span>Start date: </span>
-            <div moment-picker="selectedDates.minDate" max-view="hour"> {{ selectedDates.minDate }} </div>
-        </div>
-        <div class="end-date-container">
-            <span>End date: </span>
-            <div moment-picker="selectedDates.maxDate" max-view="hour"> {{ selectedDates.maxDate }} </div>
+        <div class="legend-container">
+            <div class="time-selector-container">
+                <label for="time-basis">Choose a time resolution:</label>
+                <select name="time-basis" id="time-basis" ng-model="timeBasis.value">
+                <option value="auto">Auto</option>
+                <option value="hour">Hour</option>
+                <option value="day">Day</option>
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+            </div>
+            <div class="dates-container">
+                <div class="start-date-container">
+                    <span>Start date: </span>
+                    <div moment-picker="selectedDates.minDate" max-view="hour"> {{ selectedDates.minDate }} </div>
+                </div>
+                <div class="end-date-container">
+                    <span>End date: </span>
+                    <div moment-picker="selectedDates.maxDate" max-view="hour"> {{ selectedDates.maxDate }} </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
