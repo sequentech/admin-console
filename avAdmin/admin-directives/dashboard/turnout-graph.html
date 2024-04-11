@@ -1,7 +1,7 @@
 <div ng-if="show" class="chart">
     <div class="chart-title text-center" ng-i18next>avAdmin.turnoutChart.title</div>
     <canvas class="chart chart-bar" chart-data="data" chart-labels="labels" 
-    chart-series="series" chart-click="onClick" chart-options="options"></canvas>
+    chart-series="series" chart-click="onClick" chart-options="options" chart-colors="colors"></canvas>
     <div class="legend-container">
         <div class="row-container">
             <div class="checkbox-container" ng-repeat="title in seriesBase track by $index">
@@ -9,6 +9,7 @@
                 type="checkbox"
                 id="enable-election-graph-{{$index}}"
                 ng-model="selectedSeries[$index]" />
+                <div class="color" ng-style="{'background-color': colors[$index]}"></div>
                 <label for="enable-election-graph-{{$index}}">
                     {{seriesBase[$index]}}
                 </label>
