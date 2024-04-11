@@ -299,11 +299,11 @@ angular.module('avAdmin')
       };
 
       function updateDates() {
-        if (scope.selectedDates.minDate instanceof Date) {
-          scope.minDate = scope.selectedDates.minDate;
+        if (scope.selectedDates.minDate) {
+          scope.minDate = new Date(scope.selectedDates.minDate);
         }
-        if (scope.selectedDates.maxDate instanceof Date) {
-          scope.maxDate = scope.selectedDates.maxDate;
+        if (scope.selectedDates.maxDate) {
+          scope.maxDate = new Date(scope.selectedDates.maxDate);
         }
         calculateValues();
       }
