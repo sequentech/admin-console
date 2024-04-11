@@ -1,5 +1,5 @@
 <div ng-if="show" class="chart">
-    <div class="chart-title text-left">Votes over time</div>
+    <div class="chart-title text-center" ng-i18next>avAdmin.turnoutChart.title</div>
     <canvas class="chart chart-bar" chart-data="data" chart-labels="labels" 
     chart-series="series" chart-click="onClick" chart-options="options"></canvas>
     <div class="legend-container">
@@ -14,22 +14,23 @@
                 </label>
             </div>
             <div class="time-selector-container">
-                <label for="time-basis">Choose a time resolution:</label>
+                <label for="time-basis" ng-i18next>avAdmin.turnoutChart.timeResolution</label>
                 <select name="time-basis" id="time-basis" ng-model="timeBasis.value">
-                <option value="auto">Auto</option>
-                <option value="hour">Hour</option>
-                <option value="day">Day</option>
-                <option value="week">Week</option>
-                <option value="month">Month</option>
+                    <option value="auto" ng-i18next>avAdmin.turnoutChart.auto</option>
+                    <option value="hour" ng-i18next>avAdmin.turnoutChart.hour</option>
+                    <option value="day" ng-i18next>avAdmin.turnoutChart.day</option>
+                    <option value="week" ng-i18next>avAdmin.turnoutChart.week</option>
+                    <option value="month" ng-i18next>avAdmin.turnoutChart.month</option>
+                </select>
             </div>
         </div>
         <div class="row-container">
             <div class="start-date-container">
-                <span>Start date: </span>
+                <span ng-i18next>avAdmin.turnoutChart.startDate</span>
                 <div moment-picker="selectedDates.minDate" max-view="hour"> {{ selectedDates.minDate }} </div>
             </div>
             <div class="end-date-container">
-                <span>End date: </span>
+                <span ng-i18next>avAdmin.turnoutChart.endDate</span>
                 <div moment-picker="selectedDates.maxDate" max-view="hour"> {{ selectedDates.maxDate }} </div>
             </div>
         </div>

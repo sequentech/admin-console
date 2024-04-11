@@ -241,6 +241,17 @@
       "downloadResultsPretty": "Descargar Resultados del Escrutinio (formato de texto)",
       "downloadResultsPDF": "Descargar Resultados del Escrutinio (formato PDF)"
     },
+    "turnoutChart": {
+      "title": "Historial de Votos",
+      "timeResolution": "Escoge una escala temporal:",
+      "auto": "Auto",
+      "hour": "Hora",
+      "day": "Día",
+      "week": "Semana",
+      "month": "Mes",
+      "startDate": "Fecha inicial:",
+      "endDate": "Fecha final:"
+    },
     "topbar": {
         "home": "Inicio",
         "features": "Funcionalidad",
