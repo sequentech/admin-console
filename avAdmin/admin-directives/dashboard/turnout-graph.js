@@ -28,7 +28,7 @@ angular.module('avAdmin')
       $timeout
     ) {
       function link(scope, element, attrs) {
-        scope.colors = ["#07D514", "#01FE76", "#2A658E", "#AF1CC2", "#F9C867", "#976FF8", "#4EE7BB", "#9A6E2A", "#AC2EDA", "#44FF61", "#E4D7BD", "#01A8DC", "#3162A9", "#FD438E", "#0C9A85", "#65C4F7", "#257704", "#6B6E63", "#DE0A9E", "#4873CF", "#04CF27", "#3ECA12", "#4BEFDA", "#759E11", "#B5DEA0", "#153CF4", "#543E74", "#B4E015", "#31DC2C", "#837599", "#0414DD", "#20EAD4", "#83EE83", "#81523F", "#108AB8", "#B6B538", "#174F79", "#37B247", "#ECD981", "#A31474", "#950F8C", "#F8F885", "#71EC09", "#37CA84", "#C6ABFA", "#E50D2D", "#C211F1", "#C95AB9", "#EEA97C", "#F18F4B"];
+        scope.colors = ["#803690", "#00ADF9", "#DCDCDC", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360", "#9A6E2A", "#AC2EDA", "#44FF61", "#E4D7BD", "#01A8DC", "#3162A9", "#FD438E", "#0C9A85", "#65C4F7", "#257704", "#6B6E63", "#DE0A9E", "#4873CF", "#04CF27", "#3ECA12", "#4BEFDA", "#759E11", "#B5DEA0", "#153CF4", "#543E74", "#B4E015", "#31DC2C", "#837599", "#0414DD", "#20EAD4", "#83EE83", "#81523F", "#108AB8", "#B6B538", "#174F79", "#37B247", "#ECD981", "#A31474", "#950F8C", "#F8F885", "#71EC09", "#37CA84", "#C6ABFA", "#E50D2D", "#C211F1", "#C95AB9", "#EEA97C", "#F18F4B"];
         function truncateDate(date, scale /* hour|day|week|month */) {
           switch(scale.toLowerCase()) {
               case 'hour':
