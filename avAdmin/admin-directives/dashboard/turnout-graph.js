@@ -88,8 +88,6 @@ angular.module('avAdmin')
         minDate = truncateDate(minDate, scale);
         var series = [];
         var current = minDate;
-        current = advanceDate(current, scale);
-        series.push(current);
 
         while (current <= maxDate) {
           series.push(current);
