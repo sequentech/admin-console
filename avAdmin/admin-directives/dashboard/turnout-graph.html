@@ -1,17 +1,17 @@
 <div ng-if="show" class="chart">
 <canvas class="chart chart-bar" chart-data="data" chart-labels="labels" 
     chart-series="series" chart-click="onClick" chart-options="options"></canvas>
-    <div class="election-checkboxes">
-        <div class="checkbox-container" ng-repeat="title in seriesBase track by $index">
-            <input
-            type="checkbox"
-            id="enable-election-graph-{{$index}}"
-            ng-model="selectedSeries[$index]" />
-            <label for="enable-election-graph-{{$index}}">
-                {{seriesBase[$index]}}
-            </label>
-        </div>
-        <div class="legend-container">
+    <div class="legend-container">
+        <div class="row-container">
+            <div class="checkbox-container" ng-repeat="title in seriesBase track by $index">
+                <input
+                type="checkbox"
+                id="enable-election-graph-{{$index}}"
+                ng-model="selectedSeries[$index]" />
+                <label for="enable-election-graph-{{$index}}">
+                    {{seriesBase[$index]}}
+                </label>
+            </div>
             <div class="time-selector-container">
                 <label for="time-basis">Choose a time resolution:</label>
                 <select name="time-basis" id="time-basis" ng-model="timeBasis.value">
@@ -21,15 +21,15 @@
                 <option value="week">Week</option>
                 <option value="month">Month</option>
             </div>
-            <div class="dates-container">
-                <div class="start-date-container">
-                    <span>Start date: </span>
-                    <div moment-picker="selectedDates.minDate" max-view="hour"> {{ selectedDates.minDate }} </div>
-                </div>
-                <div class="end-date-container">
-                    <span>End date: </span>
-                    <div moment-picker="selectedDates.maxDate" max-view="hour"> {{ selectedDates.maxDate }} </div>
-                </div>
+        </div>
+        <div class="row-container">
+            <div class="start-date-container">
+                <span>Start date: </span>
+                <div moment-picker="selectedDates.minDate" max-view="hour"> {{ selectedDates.minDate }} </div>
+            </div>
+            <div class="end-date-container">
+                <span>End date: </span>
+                <div moment-picker="selectedDates.maxDate" max-view="hour"> {{ selectedDates.maxDate }} </div>
             </div>
         </div>
     </div>
