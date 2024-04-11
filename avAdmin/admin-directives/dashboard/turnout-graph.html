@@ -27,11 +27,16 @@
         <div class="row-container">
             <div class="start-date-container">
                 <span ng-i18next>avAdmin.turnoutChart.startDate</span>
-                <div moment-picker="selectedDates.minDate" max-view="hour"> {{ selectedDates.minDate }} </div>
+                <div moment-picker="selectedDates.minDate" max-view="hour" class="date-edit"> 
+                    <span>{{ selectedDates.minDate }}</span>
+                    <i class="fa fa-pencil"></i><br/>
+                </div>
             </div>
             <div class="end-date-container">
                 <span ng-i18next>avAdmin.turnoutChart.endDate</span>
-                <div moment-picker="selectedDates.maxDate" max-view="hour"> {{ selectedDates.maxDate }} </div>
+                <div moment-picker="selectedDates.maxDate" max-view="hour" class="date-edit">
+                    <span>{{ selectedDates.maxDate }}</span>
+                    <i class="fa fa-pencil"></i><br/> </div>
             </div>
         </div>
     </div>
