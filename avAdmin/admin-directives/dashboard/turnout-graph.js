@@ -88,13 +88,13 @@ angular.module('avAdmin')
         minDate = truncateDate(minDate, scale);
         var series = [];
         var current = minDate;
+        current = advanceDate(current, scale);
+        series.push(current);
 
         while (current <= maxDate) {
           series.push(current);
           current = advanceDate(current, scale);
         }
-        current = advanceDate(current, scale);
-        series.push(current);
 
         return series;
       }
@@ -281,7 +281,6 @@ angular.module('avAdmin')
             scope.minDate = minDate;
             scope.maxDate = maxDate;
             calculateValues();
-
           });
         }
         var labels = ["January", "February"];
