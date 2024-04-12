@@ -22,6 +22,7 @@ angular.module('avAdmin')
        $q,
        $window,
        $state,
+       $i18next,
        Authmethod,
        Plugins,
        ElectionsApi,
@@ -37,6 +38,7 @@ angular.module('avAdmin')
     function link(scope, element, attrs) 
     {
       scope.reloadTimeout = null;
+      scope.trusteesState = {};
 
       scope.isWriteInResult = function(answer)
       {
@@ -81,8 +83,25 @@ angular.module('avAdmin')
         }
       }
 
+      function setTrusteesState() {
+        ElectionsApi
+          .authoritiesStatus()
+          .then(function (trustees) {
+            scope.trusteesState = trustees;
+          });
+      }
+
+      function isTrusteeOk(name) {
+        return scope.trusteesState && scope.trusteesState[name] && 'ok' === scope.trusteesState[name].state;
+      }
+
+      function getTrusteeMsg(name) {
+        return scope.trusteesState && scope.trusteesState[name] && scope.trusteesState && scope.trusteesState[name].message || '';
+      }
+
       function waitElectionChange() 
       {
+        setTrusteesState();
         ElectionsApi
           .getElection(scope.id, /*ignorecache = */ true)
           .then(function(el) 
@@ -743,6 +762,46 @@ angular.module('avAdmin')
           );
       }
 
+      function checkTrustees() {
+        var deferred = $q.defer();
+
+        var errors = [];
+
+        var auths = scope.election.authorities && Array.from(scope.election.authorities) || [];
+        if (scope.election.director) {
+          auths.push(scope.election.director);
+        }
+
+        if (0 === auths.length) {
+          errors.push($i18next.t('avAdmin.create.errors.election-auths-missing', {eltitle: scope.election.title}));
+          deferred.reject(errors.join("\n"));
+        } else {
+          ElectionsApi
+          .authoritiesStatus()
+          .then(function (trustees) {
+            for (var i = 0; i < auths.length; i++) {
+              var auth = auths[i];
+              if (!trustees[auth]) {
+                errors.push($i18next.t('avAdmin.create.errors.election-auth-not-found', {eltitle: scope.election.title, auth: auth}));
+                continue;
+              }
+              if ('ok' !== trustees[auth].state) {
+                errors.push($i18next.t('avAdmin.create.errors.election-auth-error', {eltitle: scope.election.title, auth: auth, message: trustees[auth].message}));
+                continue;
+              }
+            }
+            if (errors.length > 0) {
+              deferred.reject(errors);
+            } else {
+              deferred.resolve();
+            }
+          })
+          .catch(deferred.reject);
+        }
+
+        return deferred.promise;
+      }
+
       // performs all the initialization
       function init()
       {
@@ -895,13 +954,17 @@ angular.module('avAdmin')
                 scope.index = scope.getStatusIndex('stopped') + 1;
               }
               scope.nextaction = false;
-              Authmethod
-                .launchTally(
-                  scope.election.id,
-                  data.tallyElectionIds,
-                  'force-all',
-                  data.mode
-                )
+
+              checkTrustees()
+                .then(function () {
+                  return Authmethod
+                  .launchTally(
+                    scope.election.id,
+                    data.tallyElectionIds,
+                    'force-all',
+                    data.mode
+                  );
+                })
                 .then(
                   function onSuccess() 
                   {
@@ -915,7 +978,15 @@ angular.module('avAdmin')
                     scope.loading = false;
                     scope.error = error;
                   }
-                );
+                )
+                .catch(function(error)
+                {
+                  if (scope.launchedTally) {
+                    scope.launchedTally = false;
+                  }
+                  scope.loading = false;
+                  scope.error = error;
+                });
             },
             enableFunc: function () {
               return (
@@ -1460,6 +1531,7 @@ angular.module('avAdmin')
         scope.prevStatus = null;
         scope.percentVotes = PercentVotesService;
 
+        setTrusteesState();
         // get the election at the begining
         ElectionsApi
           .getElection(scope.id)
@@ -1532,6 +1604,8 @@ angular.module('avAdmin')
         launchKeyDistributionCeremony: launchKeyDistributionCeremony,
         launchOpeningCeremony: launchOpeningCeremony,
         configureScheduledEvents: configureScheduledEvents,
+        isTrusteeOk: isTrusteeOk,
+        getTrusteeMsg: getTrusteeMsg,
         downloadTurnout: downloadTurnout
       });
 
