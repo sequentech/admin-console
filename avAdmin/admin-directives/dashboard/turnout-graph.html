@@ -1,0 +1,45 @@
+<div ng-if="show" class="chart">
+    <div class="chart-title text-center" ng-i18next>avAdmin.turnoutChart.title</div>
+    <canvas class="chart chart-bar" chart-data="data" chart-labels="labels" 
+    chart-series="series" chart-click="onClick" chart-options="options" chart-colors="colors"></canvas>
+    <div class="legend-container">
+        <div class="row-container">
+            <div class="checkbox-container" ng-repeat="title in seriesBase track by $index">
+                <input
+                type="checkbox"
+                id="enable-election-graph-{{$index}}"
+                class="checkbox-series"
+                ng-model="selectedSeries[$index]" />
+                <div class="color" ng-style="{'background-color': colors[$index]}"></div>
+                <label for="enable-election-graph-{{$index}}">
+                    {{seriesBase[$index]}}
+                </label>
+            </div>
+            <div class="time-selector-container">
+                <label for="time-basis" ng-i18next>avAdmin.turnoutChart.timeResolution</label>
+                <select name="time-basis" id="time-basis" ng-model="timeBasis.value">
+                    <option value="auto" ng-i18next>avAdmin.turnoutChart.auto</option>
+                    <option value="hour" ng-i18next>avAdmin.turnoutChart.hour</option>
+                    <option value="day" ng-i18next>avAdmin.turnoutChart.day</option>
+                    <option value="week" ng-i18next>avAdmin.turnoutChart.week</option>
+                    <option value="month" ng-i18next>avAdmin.turnoutChart.month</option>
+                </select>
+            </div>
+        </div>
+        <div class="row-container">
+            <div class="start-date-container">
+                <span ng-i18next>avAdmin.turnoutChart.startDate</span>
+                <div moment-picker="selectedDates.minDate" max-view="hour" class="date-edit"> 
+                    <span>{{ selectedDates.minDate }}</span>
+                    <i class="fa fa-pencil"></i><br/>
+                </div>
+            </div>
+            <div class="end-date-container">
+                <span ng-i18next>avAdmin.turnoutChart.endDate</span>
+                <div moment-picker="selectedDates.maxDate" max-view="hour" class="date-edit">
+                    <span>{{ selectedDates.maxDate }}</span>
+                    <i class="fa fa-pencil"></i><br/> </div>
+            </div>
+        </div>
+    </div>
+</div>
