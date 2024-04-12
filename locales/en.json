@@ -264,6 +264,17 @@
       "downloadResultsPretty": "Download Election Results (Text format)",
       "downloadResultsPDF": "Download Election Results (PDF format)"
     },
+    "turnoutChart": {
+      "title": "Votes over time",
+      "timeResolution": "Choose a time scale:",
+      "auto": "Auto",
+      "hour": "Hour",
+      "day": "Day",
+      "week": "Week",
+      "month": "Month",
+      "startDate": "Start date:",
+      "endDate": "End date:"
+    },
     "topbar": {
         "home": "Home",
         "features": "Features",
@@ -395,7 +406,8 @@
           "launchOpeningCeremony": "Launch opening ceremony",
           "configureScheduledEvents": "Configure scheduled events",
           "enableOtlPeriod": "Enable Otl period...",
-          "disableOtlPeriod": "Disable Otl period..."
+          "disableOtlPeriod": "Disable Otl period...",
+          "downloadTurnout": "Download turnout"
         },
         "modals": {
           "createHeader": "Create election",

@@ -666,6 +666,47 @@ angular.module('avAdmin')
         );
       }
 
+      function downloadTurnout() {
+        var turnoutData;
+        Authmethod.getTurnout(scope.election.id)
+        .then(function (response){
+          if (200 !== response.status) {
+            console.log("Error fetching turnout: ");
+            console.log(response);
+            scope.error = response.data;
+            return;
+          }
+
+          turnoutData = response.data;
+          var electionIds = Object.keys(response.data);
+
+          return $q.all(electionIds.map(function (electionId) {
+            return ElectionsApi.getElection(electionId);
+          }));
+        })
+        .then(function (electionsData) {
+          console.log(turnoutData);
+          console.log(electionsData);
+          var csvFile = "ID,Name,Participation,Census,Participation quota\n";
+          csvFile += Object.keys(turnoutData)
+            .map(function (electionId) {
+
+              var ballotBoxElection = electionsData.find(function (el) { return String(el.id) === String(electionId); });
+              return [
+                "" + electionId,
+                ballotBoxElection.title,
+                "" + turnoutData[electionId].total_votes,
+                "" + turnoutData[electionId].users,
+                "" + (turnoutData[electionId].total_votes / Math.max(1, turnoutData[electionId].users))
+              ].join(",");
+            })
+            .join("\n");
+          
+          var blob = new $window.Blob([csvFile], {type: "text/csv"});
+          $window.saveAs(blob, "turnout_" + scope.election.id + ".csv");
+        });
+      }
+
       function setAutoreload(electionId)
       {
         ElectionsApi.autoreloadStats(
@@ -1461,6 +1502,17 @@ angular.module('avAdmin')
               return scope.hasPerms(["schedule-events", "edit"]);
             }
           },
+          {
+            i18nString: 'downloadTurnout',
+            iconClass: 'fa fa-clock',
+            actionFunc: function() { return scope.downloadTurnout(); },
+            enableFunc: function() { 
+              return true;
+            },
+            permsFunc: function() {
+              return scope.hasPerms(["view"]);
+            }
+          },
         ];
 
         scope.permittedActions = function () {
@@ -1554,6 +1606,7 @@ angular.module('avAdmin')
         configureScheduledEvents: configureScheduledEvents,
         isTrusteeOk: isTrusteeOk,
         getTrusteeMsg: getTrusteeMsg,
+        downloadTurnout: downloadTurnout
       });
 
       // initialize
