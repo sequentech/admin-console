@@ -264,6 +264,17 @@
       "downloadResultsPretty": "Download Election Results (Text format)",
       "downloadResultsPDF": "Download Election Results (PDF format)"
     },
+    "turnoutChart": {
+      "title": "Votes over time",
+      "timeResolution": "Choose a time scale:",
+      "auto": "Auto",
+      "hour": "Hour",
+      "day": "Day",
+      "week": "Week",
+      "month": "Month",
+      "startDate": "Start date:",
+      "endDate": "End date:"
+    },
     "topbar": {
         "home": "Home",
         "features": "Features",
@@ -923,6 +934,7 @@
     "create": {
         "summary": "Summary: creating __num__ elections",
         "summary__plural": "Summary: creating __num__ elections",
+        "checkingTrustees": "Checking trustees status for election __title__",
         "create": "Create the elections",
         "creating": "Creating the authentication for election __title__",
         "setChildrenElectionInfo": "Setting the children election info for election (id: __id__) __title__",
@@ -943,6 +955,9 @@
           "confirmEdit": "Finish edit"
         },
         "errors": {
+          "election-auths-missing": "Election '__eltitle__': Missing trustees",
+          "election-auth-not-found": "Election '__eltitle__': Trustee not found '__auth__'",
+          "election-auth-error": "Election '__eltitle__': Trustee '__auth__' has invalid status '__message__'",
           "lambda-live-preview-parent-children": "Missing election IDs for a parent-children election",
           "election-is-array-questions": "Election '__eltitle__': list of questions is not an array",
           "election-lambda-success-action-url-mode": "Election '__eltitle__': invalid success action url",
