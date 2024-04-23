@@ -1044,6 +1044,48 @@ angular.module('avAdmin')
           }
         });
 
+        function checkTrustees(el) {
+          logInfo($i18next.t('avAdmin.create.checkingTrustees', {title: el.title}));
+          var deferred = $q.defer();
+          var auths = el.authorities && Array.from(el.authorities) || [];
+          if (el.director) {
+            auths.push(el.director);
+          }
+
+          if (0 === auths.length) {
+            logError($i18next.t('avAdmin.create.errors.election-auths-missing', {eltitle: el.title}));
+            deferred.reject();
+          } else {
+            ElectionsApi
+            .authoritiesStatus()
+            .then(function (trustees) {
+              var hasError = false;
+              for (var i = 0; i < auths.length; i++) {
+                var auth = auths[i];
+                if (!trustees[auth]) {
+                  logError($i18next.t('avAdmin.create.errors.election-auth-not-found', {eltitle: el.title, auth: auth}));
+                  hasError = true;
+                  continue;
+                }
+                if ('ok' !== trustees[auth].state) {
+                  logError($i18next.t('avAdmin.create.errors.election-auth-error', {eltitle: el.title, auth: auth, message: trustees[auth].message}));
+                  hasError = true;
+                  continue;
+                }
+              }
+              if (hasError) {
+                deferred.reject();
+              } else {
+                deferred.resolve(el);
+              }
+            })
+            .catch(deferred.reject);
+          }
+
+
+          return deferred.promise;
+        }
+
         function createAuthEvent(el) {
             console.log("creating auth event for election " + el.title);
             var deferred = $q.defer();
@@ -1269,6 +1311,7 @@ angular.module('avAdmin')
 
           var promise = deferred.promise;
           promise = promise
+            .then(checkTrustees)
             .then(createAuthEvent)
             .then(registerElection)
             .then(function(election) {

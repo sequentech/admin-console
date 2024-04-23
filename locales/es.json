@@ -241,6 +241,17 @@
       "downloadResultsPretty": "Descargar Resultados del Escrutinio (formato de texto)",
       "downloadResultsPDF": "Descargar Resultados del Escrutinio (formato PDF)"
     },
+    "turnoutChart": {
+      "title": "Historial de Votos",
+      "timeResolution": "Escoge una escala temporal:",
+      "auto": "Auto",
+      "hour": "Hora",
+      "day": "Día",
+      "week": "Semana",
+      "month": "Mes",
+      "startDate": "Fecha inicial:",
+      "endDate": "Fecha final:"
+    },
     "topbar": {
         "home": "Inicio",
         "features": "Funcionalidad",
@@ -364,7 +375,8 @@
           "makeCandidatesPublic": "Hacer los candidatos públicos...",
           "makeCandidatesPrivate": "Hacer los candidatos privados...",
           "launchKeyDistributionCeremony": "Lanzar ceremonia de distribución de claves",
-          "launchOpeningCeremony": "Lanzar ceremonia de apertura"
+          "launchOpeningCeremony": "Lanzar ceremonia de apertura",
+          "downloadTurnout": "Descargar participación"
         },
         "modals": {
           "createHeader": "Crear votación",
@@ -810,6 +822,7 @@
     "create": {
         "summary": "Resumen: creando __num__ votaciones",
         "summary__plural": "Resumen: creando __num__ votaciones",
+        "checkingTrustees": "Checking trustees status for election __title__",
         "create": "Crear las votaciones",
         "createError": "Error creando la votación (id: __id__) __title__",
         "create__plural": "Crear las votaciones",
@@ -824,6 +837,9 @@
           "livePreview": "Previsualización en vivo"
         },
         "errors": {
+          "election-auths-missing": "Election '__eltitle__': Faltan autoridades",
+          "election-auth-not-found": "Election '__eltitle__': Autoridad no encontrada '__auth__'",
+          "election-auth-error": "Election '__eltitle__': Autoridad '__auth__' tiene un estado inválido '__message__'",
           "lambda-live-preview-parent-children": "Faltan ID de la votación para una votación padre-hijos",
           "election-is-array-questions": "Votación '__eltitle__': la lista de pregunta no es un array",
           "election-lambda-success-action-url-mode": "Votación '__eltitle__': url de redirección en 'Acción de éxito' inválida",
