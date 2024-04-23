@@ -1248,10 +1248,11 @@ angular.module('avAdmin')
           ElectionsApi.getElection(id, true)
             .then(function(el) {
                 var deferred = $q.defer();
-                if (scope.createElectionBool && el.status === 'created' ||
-                  !scope.createElectionBool && el.status === 'registered')
+                if ((scope.createElectionBool && el.status === 'created') ||
+                  (!scope.createElectionBool && el.status === 'registered') ||
+                  'create_error' === el.status)
                 {
-                  f();
+                  f(el);
                 } else {
                   setTimeout(function() { waitForCreated(id, f); }, 5000);
                 }
@@ -1277,9 +1278,13 @@ angular.module('avAdmin')
             .then(createElection)
             .then(function(election) {
               console.log("waiting for election " + election.title);
-              waitForCreated(election.id, function () {
-                DraftElection.eraseDraft();
-                secondElectionsStage(electionIndex + 1);
+              waitForCreated(election.id, function (newEl) {
+                if ('create_error' === newEl.status) {
+                  logError($i18next.t('avAdmin.create.createError', {title: election.title, id: election.id}));
+                } else {
+                  DraftElection.eraseDraft();
+                  secondElectionsStage(electionIndex + 1);
+                }
               });
             })
             .catch(function(error) {
