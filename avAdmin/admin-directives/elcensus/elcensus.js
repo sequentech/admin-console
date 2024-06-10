@@ -1133,7 +1133,7 @@ angular.module('avAdmin')
           ElectionsApi.getCensus(
               scope.election,
               scope.page,
-              null,
+              30,
               scope.filterStr,
               scope.filterOptions)
             .then(function(el) {
