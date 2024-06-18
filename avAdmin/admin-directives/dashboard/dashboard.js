@@ -1589,8 +1589,8 @@ angular.module('avAdmin')
         scope.openDownloadButton = !scope.openDownloadButton;
       }
 
-      scope.formatDate = function formatDate() {
-        return moment().format('Do MMMM YYYY, h:mm:ss a');
+      scope.formatDate = function formatDate(date) {
+        return moment(date).format('Do MMMM YYYY, h:mm:ss a');
       };
 
       angular.extend(scope, {
