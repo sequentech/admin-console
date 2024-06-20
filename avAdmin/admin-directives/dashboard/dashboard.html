@@ -166,7 +166,7 @@
                   <dd
                     ng-if="!!election.scheduled_events.start_voting.event_at"
                   >
-                    {{ election.scheduled_events.start_voting.event_at }}
+                    {{ election.scheduled_events.start_voting.event_at| amUtc | amLocal | amDateFormat:'DD.MM.YYYY HH:mm:ss' }}
                   </dd>
 
                   <dt
@@ -176,7 +176,7 @@
                   <dd
                     ng-if="!!election.scheduled_events.end_voting.event_at"
                   >
-                    {{ election.scheduled_events.end_voting.event_at }}
+                    {{ election.scheduled_events.end_voting.event_at| amUtc | amLocal | amDateFormat:'DD.MM.YYYY HH:mm:ss' }}
                   </dd>
                 </dl>
             </div>
