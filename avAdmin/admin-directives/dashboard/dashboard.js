@@ -32,7 +32,8 @@ angular.module('avAdmin')
        ConfigService,
        SendMsg,
        KeysCeremony,
-       ConfigureScheduledEvents)
+       ConfigureScheduledEvents,
+       moment)
     {
     // we use it as something similar to a controller here
     function link(scope, element, attrs) 
@@ -1587,6 +1588,10 @@ angular.module('avAdmin')
       {
         scope.openDownloadButton = !scope.openDownloadButton;
       }
+
+      scope.formatDate = function formatDate(date) {
+        return moment(date).format('Do MMMM YYYY, h:mm:ss a');
+      };
 
       angular.extend(scope, {
         doAction: doAction,
