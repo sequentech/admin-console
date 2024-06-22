@@ -1327,11 +1327,19 @@ angular.module('avAdmin')
 
         scope.openPreview = function()
         {
+          var electionId = 123456789;
+          if (scope.elections.lengh === 1) {
+            electionId = scope.elections[0].id || electionId;
+          } else {
+            var foundElection = scope.elections.find(function (element) { return true === element.virtual; });
+            electionId = foundElection && foundElection.id || electionId;
+          }
+
           Authmethod.createLivePreview(JSON.stringify(scope.elections))
             .then(
               function onSuccess(response) {
-                var electionId = response.data.id;
-                var url = window.location.origin +"/booth/" + electionId + "/uuid-preview-vote";
+                var previewId = response.data.id;
+                var url = window.location.origin +"/booth/" + electionId + "/uuid-preview-vote?uuid="+previewId;
                 window.open(url, '_blank');
               },
               deferred.reject
