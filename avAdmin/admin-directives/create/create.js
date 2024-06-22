@@ -1341,7 +1341,7 @@ angular.module('avAdmin')
                 var previewId = response.data.id;
                 var url = window.location.origin +"/booth/" + electionId + "/uuid-preview-vote?uuid="+previewId;
                 window.open(url, '_blank');
-              },
+              }
             );
           return true;
         };
