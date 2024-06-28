@@ -353,7 +353,7 @@ angular.module('avAdmin')
             var expired = false;
             if (cached) {
               var decodedToken = Authmethod.decodeToken(cached);
-              let halfLife = new Date(1000*(decodedToken.create_timestamp + 0.5 * decodedToken.expiry_secs_diff));
+              var halfLife = new Date(1000*(decodedToken.create_timestamp + 0.5 * decodedToken.expiry_secs_diff));
               expired = halfLife < Date.now();
             }
             if (!cached || expired) {
