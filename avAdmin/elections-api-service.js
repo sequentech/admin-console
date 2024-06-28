@@ -350,7 +350,7 @@ angular.module('avAdmin')
             var deferred = $q.defer();
 
             var cached = electionsapi.permcache[id];
-            var expired = true;
+            var expired = false;
             if (cached) {
               var decodedToken = Authmethod.decodeToken(cached);
               let halfLife = new Date(1000*(decodedToken.create_timestamp + 0.5 * decodedToken.expiry_secs_diff));
