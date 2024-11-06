@@ -44,6 +44,13 @@
                 ui-sref="admin.new()">
                 <i class="fa fa-plus"></i>
               </button>
+              
+              <button
+                class="btn btn-default delete-elections"
+                ng-if="hasPerms(['create'])"
+                ng-click="deleteSelected()">
+                <i class="fa fa-ellipsis-vertical"></i>
+              </button>
 
               <ul class="nav nav-pills">
                 <li 
