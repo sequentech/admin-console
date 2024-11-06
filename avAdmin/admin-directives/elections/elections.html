@@ -49,7 +49,7 @@
                 class="btn btn-default delete-elections"
                 ng-if="hasPerms(['create'])"
                 ng-click="deleteSelected()">
-                <i class="fa fa-ellipsis-vertical"></i>
+                <i class="fa fa-trash"></i>
               </button>
 
               <ul class="nav nav-pills">
@@ -108,6 +108,7 @@
 
           <tr ng-repeat="election in elections | filter:q | orderBy:'-id'">
             <td class="td-1">
+              <input type="checkbox" ng-click="checkElection(election.id)">
               <a
                 ng-if="!election.children_election_info"
                 ui-sref="admin.dashboard({id: election.id})"

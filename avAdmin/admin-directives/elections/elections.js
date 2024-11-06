@@ -27,6 +27,7 @@ angular.module('avAdmin')
             scope.nomore = false;
             scope.list = {type: 'all'};
             scope.elections = [];
+            scope.selectedElections = {};
 
             /**
              * Downloads elections from Elections api, initialize them and
@@ -186,6 +187,10 @@ angular.module('avAdmin')
 
             }
 
+            function selectElection(electionId) {
+                scope.selectedElections[electionId] = !scope.selectedElections[electionId];
+            }
+
             scope.exhtml = [];
             Plugins.hook(
             'admin-elections-list-extra-html',
@@ -199,7 +204,8 @@ angular.module('avAdmin')
               setListType: setListType,
               toggleShowChildren: toggleShowChildren,
               reloadList: reloadList,
-              deleteSelected: deleteSelected
+              deleteSelected: deleteSelected,
+              selectElection: selectElection,
             });
         }
 
