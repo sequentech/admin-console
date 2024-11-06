@@ -182,6 +182,10 @@ angular.module('avAdmin')
                 scope.loadMoreElections(true);
             }
 
+            function deleteSelected() {
+
+            }
+
             scope.exhtml = [];
             Plugins.hook(
             'admin-elections-list-extra-html',
@@ -194,7 +198,8 @@ angular.module('avAdmin')
               loadMoreElections: loadMoreElections,
               setListType: setListType,
               toggleShowChildren: toggleShowChildren,
-              reloadList: reloadList
+              reloadList: reloadList,
+              deleteSelected: deleteSelected
             });
         }
 
