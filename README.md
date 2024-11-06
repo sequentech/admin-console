@@ -5,7 +5,7 @@
 
 Agora-core-view contains the admin interface for sequent v3, and it's developed
 with AngularJS.
-
+ 
 # Installation
 
 You need to install node.js. This project has been tested to work with node.js
