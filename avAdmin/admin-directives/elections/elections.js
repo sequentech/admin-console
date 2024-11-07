@@ -195,6 +195,10 @@ angular.module('avAdmin')
                 })
             }
 
+            function doDeleteElections(electionIds) {
+
+            }
+
             function deleteSelected() {
                 // show the initial edit dialog
                 $modal.open({
@@ -215,10 +219,6 @@ angular.module('avAdmin')
                     var electionIds = getElectionIds();
                     doDeleteElections(electionIds);
                 });
-            }
-
-            function doDeleteElections(electionIds) {
-
             }
 
             function selectElection(electionId) {
