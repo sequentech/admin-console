@@ -338,7 +338,7 @@
         },
         "deleteElections": {
           "title": "Do you want to delete the following elections?",
-          "body": "This action will delete the elections with id '__electionids__'. This action cannot be reverted. Do you wish to proceed?"
+          "body": "This action will delete the elections with ids: __electionids__. This action cannot be reverted. Do you wish to proceed?"
         }
     },
     "action": {
