@@ -192,7 +192,7 @@ angular.module('avAdmin')
                 .map(function (input) {
                     // input = [k, v]
                     return input[0];
-                })
+                });
             }
 
             function doDeleteElections(electionIds) {
