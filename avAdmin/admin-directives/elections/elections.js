@@ -221,7 +221,7 @@ angular.module('avAdmin')
                 });
             }
 
-            function selectElection(electionId) {
+            function toggleSelectedElection(electionId) {
                 scope.selectedElections[electionId] = !scope.selectedElections[electionId];
             }
 
@@ -239,7 +239,7 @@ angular.module('avAdmin')
               toggleShowChildren: toggleShowChildren,
               reloadList: reloadList,
               deleteSelected: deleteSelected,
-              selectElection: selectElection,
+              toggleSelectedElection: toggleSelectedElection,
             });
         }
 

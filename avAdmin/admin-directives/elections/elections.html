@@ -108,7 +108,7 @@
 
           <tr ng-repeat="election in elections | filter:q | orderBy:'-id'">
             <td class="td-1">
-              <input type="checkbox" ng-click="checkElection(election.id)">
+              <input type="checkbox" ng-click="toggleSelectedElection(election.id)">
               <a
                 ng-if="!election.children_election_info"
                 ui-sref="admin.dashboard({id: election.id})"
