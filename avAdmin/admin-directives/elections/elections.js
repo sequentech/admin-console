@@ -183,6 +183,18 @@ angular.module('avAdmin')
                 scope.loadMoreElections(true);
             }
 
+            function getElectionIds() {
+                return Object.entries(scope.selectedElections)
+                .filter(function (input) {
+                    // input = [k, v]
+                    return input[1];
+                })
+                .map(function (input) {
+                    // input = [k, v]
+                    return input[0];
+                })
+            }
+
             function deleteSelected() {
                 // show the initial edit dialog
                 $modal.open({
@@ -191,9 +203,7 @@ angular.module('avAdmin')
                     size: 'lg',
                     resolve: {
                         electionIds: function () {
-                                return Object.entries(scope.selectedElections)
-                                    .filter(([k, v]) => v)
-                                    .map(([k,v]) => k)
+                                return getElectionIds()
                                     .join(", ");
                         }
                     }
@@ -202,9 +212,7 @@ angular.module('avAdmin')
                 // again unless necessary (setting the skip edit dialog to true) and
                 // continue to the confirmation dialog
                 }).result.then(function () {
-                    var electionIds = Object.entries(scope.selectedElections)
-                        .filter(([k, v]) => v)
-                        .map(([k,v]) => k);
+                    var electionIds = getElectionIds();
                     doDeleteElections(electionIds);
                 });
             }
