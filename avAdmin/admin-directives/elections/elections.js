@@ -184,6 +184,32 @@ angular.module('avAdmin')
             }
 
             function deleteSelected() {
+                // show the initial edit dialog
+                $modal.open({
+                    templateUrl: "avAdmin/admin-directives/elections/delete-elections-modal.html",
+                    controller: "DeleteElectionsModal",
+                    size: 'lg',
+                    resolve: {
+                        electionIds: function () {
+                                return Object.entries(scope.selectedElections)
+                                    .filter(([k, v]) => v)
+                                    .map(([k,v]) => k)
+                                    .join(", ");
+                        }
+                    }
+
+                // when the edit dialog has been shown, then we default to not showing it
+                // again unless necessary (setting the skip edit dialog to true) and
+                // continue to the confirmation dialog
+                }).result.then(function () {
+                    var electionIds = Object.entries(scope.selectedElections)
+                        .filter(([k, v]) => v)
+                        .map(([k,v]) => k);
+                    doDeleteElections(electionIds);
+                });
+            }
+
+            function doDeleteElections(electionIds) {
 
             }
 
