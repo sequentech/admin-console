@@ -1,8 +1,8 @@
 angular.module('avAdmin')
   .controller('DeleteElectionsModal',
-    function($scope, $modalInstance, title)
+    function($scope, $modalInstance, electionIds)
     {
-      $scope.title = title;
+      $scope.electionIds = electionIds;
 
       $scope.ok = function () {
         $modalInstance.close('ok');
