@@ -196,7 +196,21 @@ angular.module('avAdmin')
             }
 
             function doDeleteElections(electionIds) {
-
+                // download children and add them after the index in the list
+                Authmethod
+                    .deleteElections(electionIds)
+                    .then(
+                        function(response) 
+                        {
+                            scope.loading = true;
+                            getAllElections(response.data.events);
+                        },
+                        function onError(response) 
+                        {
+                            scope.loading = false;
+                            scope.error = response.data;
+                        }
+                    );
             }
 
             function deleteSelected() {
