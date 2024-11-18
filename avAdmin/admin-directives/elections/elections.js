@@ -202,7 +202,6 @@ angular.module('avAdmin')
                     .then(
                         function(response) 
                         {
-                            scope.loading = true;
                             reloadList();
                         },
                         function onError(response) 
