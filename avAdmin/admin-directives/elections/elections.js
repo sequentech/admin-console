@@ -203,7 +203,7 @@ angular.module('avAdmin')
                         function(response) 
                         {
                             scope.loading = true;
-                            getAllElections(response.data.events);
+                            reloadList();
                         },
                         function onError(response) 
                         {
