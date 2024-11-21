@@ -27,6 +27,7 @@ angular.module('avAdmin')
             scope.nomore = false;
             scope.list = {type: 'all'};
             scope.elections = [];
+            scope.selectedElections = {};
 
             /**
              * Downloads elections from Elections api, initialize them and
@@ -182,6 +183,61 @@ angular.module('avAdmin')
                 scope.loadMoreElections(true);
             }
 
+            function getElectionIds() {
+                return Object.entries(scope.selectedElections)
+                .filter(function (input) {
+                    // input = [k, v]
+                    return input[1];
+                })
+                .map(function (input) {
+                    // input = [k, v]
+                    return input[0];
+                });
+            }
+
+            function doDeleteElections(electionIds) {
+                // download children and add them after the index in the list
+                Authmethod
+                    .deleteElections(electionIds)
+                    .then(
+                        function(response) 
+                        {
+                            reloadList();
+                        },
+                        function onError(response) 
+                        {
+                            scope.loading = false;
+                            scope.error = response.data;
+                        }
+                    );
+            }
+
+            function deleteSelected() {
+                // show the initial edit dialog
+                $modal.open({
+                    templateUrl: "avAdmin/admin-directives/elections/delete-elections-modal.html",
+                    controller: "DeleteElectionsModal",
+                    size: 'lg',
+                    resolve: {
+                        electionIds: function () {
+                                return getElectionIds()
+                                    .join(", ");
+                        }
+                    }
+
+                // when the edit dialog has been shown, then we default to not showing it
+                // again unless necessary (setting the skip edit dialog to true) and
+                // continue to the confirmation dialog
+                }).result.then(function () {
+                    var electionIds = getElectionIds();
+                    doDeleteElections(electionIds);
+                });
+            }
+
+            function toggleSelectedElection(electionId) {
+                scope.selectedElections[electionId] = !scope.selectedElections[electionId];
+            }
+
             scope.exhtml = [];
             Plugins.hook(
             'admin-elections-list-extra-html',
@@ -194,7 +250,9 @@ angular.module('avAdmin')
               loadMoreElections: loadMoreElections,
               setListType: setListType,
               toggleShowChildren: toggleShowChildren,
-              reloadList: reloadList
+              reloadList: reloadList,
+              deleteSelected: deleteSelected,
+              toggleSelectedElection: toggleSelectedElection,
             });
         }
 

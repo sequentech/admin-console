@@ -44,6 +44,13 @@
                 ui-sref="admin.new()">
                 <i class="fa fa-plus"></i>
               </button>
+              
+              <button
+                class="btn btn-default delete-elections"
+                ng-if="hasPerms(['create'])"
+                ng-click="deleteSelected()">
+                <i class="fa fa-trash"></i>
+              </button>
 
               <ul class="nav nav-pills">
                 <li 
@@ -101,23 +108,26 @@
 
           <tr ng-repeat="election in elections | filter:q | orderBy:'-id'">
             <td class="td-1">
-              <a
-                ng-if="!election.children_election_info"
-                ui-sref="admin.dashboard({id: election.id})"
-                class="padded">
-                {{ election.id }}
-              </a>
-              <a
-                ng-if="!!election.children_election_info"
-                ng-click="toggleShowChildren(election)"
-                class="padded child-dropdown">
-                <span 
-                  ng-class="{'glyphicon-menu-right': !election.showingChildren, 'glyphicon-menu-down': !!election.showingChildren}"
-                  class="glyphicon"
-                  aria-hidden="true">
-                </span>
-                {{ election.id }}
-              </a>
+              <div class="election-td-init">
+                <input type="checkbox" ng-click="toggleSelectedElection(election.id)">
+                <a
+                  ng-if="!election.children_election_info"
+                  ui-sref="admin.dashboard({id: election.id})"
+                  class="padded">
+                  {{ election.id }}
+                </a>
+                <a
+                  ng-if="!!election.children_election_info"
+                  ng-click="toggleShowChildren(election)"
+                  class="padded child-dropdown">
+                  <span 
+                    ng-class="{'glyphicon-menu-right': !election.showingChildren, 'glyphicon-menu-down': !!election.showingChildren}"
+                    class="glyphicon"
+                    aria-hidden="true">
+                  </span>
+                  {{ election.id }}
+                </a>
+              </div>
             </td>
             <td class="main td-7">
               <a ui-sref="admin.dashboard({id: election.id})">
