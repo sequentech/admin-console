@@ -20,17 +20,21 @@ angular.module('avAdmin')
     function($scope, $modalInstance, ConfigService, dialogName, data) {
       $scope.helpurl = ConfigService.helpUrl;
       $scope.dialogName = dialogName;
-      $scope.scheduledDate = new Date();
+      $scope.scheduledDate = null;
 
       $scope.textarea = {
         data: data
       };
 
       $scope.ok = function () {
-        $modalInstance.close($scope.textarea.data);
+        $modalInstance.close($scope.scheduledDate);
       };
 
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
+      };
+
+      $scope.clearScheduledDate = function() {
+        $scope.scheduledDate = null;
       };
     });
