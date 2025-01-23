@@ -20,7 +20,9 @@ angular.module('avAdmin')
     function($scope, $modalInstance, ConfigService, dialogName, data) {
       $scope.helpurl = ConfigService.helpUrl;
       $scope.dialogName = dialogName;
-      $scope.scheduledDate = null;
+      $scope.scheduledDate = {
+        date: null
+      };
 
       $scope.textarea = {
         data: data
@@ -35,6 +37,6 @@ angular.module('avAdmin')
       };
 
       $scope.clearScheduledDate = function() {
-        $scope.scheduledDate = null;
+        $scope.scheduledDate.date = null;
       };
     });

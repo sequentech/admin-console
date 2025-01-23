@@ -21,11 +21,11 @@
 
       <div class="start-date-container">
         <span ng-i18next>avAdmin.turnoutChart.startDate</span>
-        <div moment-picker="scheduledDate" max-view="minute" class="date-edit"> 
-            <span>{{ scheduledDate }}</span>
+        <div moment-picker="scheduledDate.date" max-view="minute" class="date-edit"> 
+            <span>{{ scheduledDate.date }}</span>
             <i class="fa fa-pencil"></i><br/>
+            <i class="fa fa-times" ng-if="scheduledDate.date" ng-click="clearScheduledDate()"></i><br/>
         </div>
-        <i class="fa fa-times" ng-if="scheduledDate" ng-click="clearScheduledDate()"></i><br/>
       </div>
     </p>
   </div>
