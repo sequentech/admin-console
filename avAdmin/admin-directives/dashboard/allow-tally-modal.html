@@ -18,7 +18,14 @@
         ng-model="textarea.data" 
         style="width: 100%; min-height: 300px">
       </textarea>
-      <div moment-picker="scheduledDate" max-view="hour" class="date-edit"></div>
+
+      <div class="start-date-container">
+        <span ng-i18next>avAdmin.turnoutChart.startDate</span>
+        <div moment-picker="scheduledDate" max-view="minute" class="date-edit"> 
+            <span>{{ scheduledDate }}</span>
+            <i class="fa fa-pencil"></i><br/>
+        </div>
+      </div>
     </p>
   </div>
   <div class="modal-footer">
