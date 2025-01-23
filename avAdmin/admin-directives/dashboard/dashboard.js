@@ -581,21 +581,31 @@ angular.module('avAdmin')
           })
           .result
           .then(
-            function confirmed() 
+            function confirmed(date) 
             {
-              Authmethod.allowTally(scope.election.id)
-                .then(
-                  function onSuccess() 
+              if (date) {
+                Authmethod.scheduledEvent(
+                  scope.election.id,
                   {
-                    scope.msg = "avAdmin.dashboard.modals.allowTally.success";
-                    clearTimeout(scope.reloadTimeout);
-                    scope.reloadTimeout = setTimeout(waitElectionChange, 5000);
-                  }, 
-                  function onError(response) { scope.error = response.data; }
+                    "eventName": "allow-tally",
+                    "scheduledDate": date.toISOString()
+                  }
                 )
-                .catch(
-                  function onError(error) { scope.error = error; }
-                );
+              } else {
+                Authmethod.allowTally(scope.election.id)
+                  .then(
+                    function onSuccess() 
+                    {
+                      scope.msg = "avAdmin.dashboard.modals.allowTally.success";
+                      clearTimeout(scope.reloadTimeout);
+                      scope.reloadTimeout = setTimeout(waitElectionChange, 5000);
+                    }, 
+                    function onError(response) { scope.error = response.data; }
+                  )
+                  .catch(
+                    function onError(error) { scope.error = error; }
+                  );
+              }
             }
           );
       }

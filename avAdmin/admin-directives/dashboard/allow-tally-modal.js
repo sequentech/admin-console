@@ -29,7 +29,7 @@ angular.module('avAdmin')
       };
 
       $scope.ok = function () {
-        $modalInstance.close($scope.scheduledDate);
+        $modalInstance.close($scope.scheduledDate.date);
       };
 
       $scope.cancel = function () {
