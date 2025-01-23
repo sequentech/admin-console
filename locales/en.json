@@ -661,8 +661,8 @@
             "endVotingSelector": "Select date:",
             "allowTallyEnable": "Automatically allow tally",
             "allowTallySelector": "Select date:",
-            "tallyEnable": "Automatically tally",
-            "tallySelector": "Select date:",
+            "startTallyEnable": "Automatically tally",
+            "startTallySelector": "Select date:",
             "confirm": "Confirm to change scheduled events",
             "success": "Changed the configuration of scheduled events successfully.",
             "error": "Error changing the configuration of scheduled events."
