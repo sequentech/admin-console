@@ -47,13 +47,22 @@ angular.module('avAdmin')
             election.scheduled_events.allow_tally.event_at
           ) ? new Date(election.scheduled_events.allow_tally.event_at)
           : null
+        },
+        tally: {
+          event_at: (
+            election.scheduled_events &&
+            election.scheduled_events.tally &&
+            election.scheduled_events.tally.event_at
+          ) ? new Date(election.scheduled_events.tally.event_at)
+          : null
         }
       };
 
       $scope.enabled = {
         start_voting: $scope.isEnabled('start_voting'),
         end_voting: $scope.isEnabled('end_voting'),
-        allow_tally: $scope.isEnabled('allow_tally')
+        allow_tally: $scope.isEnabled('allow_tally'),
+        tally: $scope.isEnabled('tally')
       };
 
       function getISOString(date)
@@ -87,6 +96,14 @@ angular.module('avAdmin')
               !!$scope.scheduled_events.allow_tally.event_at
             ) ? {
               event_at: getISOString($scope.scheduled_events.allow_tally.event_at)
+            } : null
+          ),
+          tally: (
+            (
+              $scope.enabled.tally &&
+              !!$scope.scheduled_events.tally.event_at
+            ) ? {
+              event_at: getISOString($scope.scheduled_events.tally.event_at)
             } : null
           )
         };

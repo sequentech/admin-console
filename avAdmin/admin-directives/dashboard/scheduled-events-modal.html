@@ -120,6 +120,41 @@
           ng-model="scheduled_events.allow_tally.event_at"
         />
       </label>
+      <!-- tally checkbox -->
+      <label
+        for="tally-enable"
+        class="descriptive-checkbox"
+        ng-class="{'disabled': !enabled.tally}"
+      >
+        <input
+          id="tally-enable"
+          type="checkbox"
+          name="tally-enable"
+          ng-model="enabled.tally"
+        />
+        <span
+          class="header"
+          ng-i18next="avAdmin.dashboard.modals.configureScheduledEvents.tallyEnable">
+        </span>
+      </label>
+      <!-- tally selector -->
+      <label
+        for="tally-selector"
+        class="descriptive-selector"
+        ng-class="{'disabled': !enabled.tally}"
+      >
+        <span 
+          class="header"
+          ng-i18next="avAdmin.dashboard.modals.configureScheduledEvents.tallySelector"
+        ></span>
+        <input
+          id="tally-selector"
+          ng-disabled="!enabled.tally"
+          type="datetime-local"
+          name="tally-selector"
+          ng-model="scheduled_events.tally.event_at"
+        />
+      </label>
     </form>
   </div>
   <div class="modal-footer">
