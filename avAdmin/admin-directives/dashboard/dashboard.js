@@ -588,9 +588,9 @@ angular.module('avAdmin')
                   scope.election.id,
                   {
                     "eventName": "allow-tally",
-                    "scheduledDate": date.toISOString()
+                    "scheduledDate": new Date(date).toISOString()
                   }
-                )
+                );
               } else {
                 Authmethod.allowTally(scope.election.id)
                   .then(
