@@ -571,8 +571,8 @@ angular.module('avAdmin')
       {
         $modal
           .open({
-            templateUrl: "avAdmin/admin-directives/dashboard/admin-confirm-modal.html",
-            controller: "AdminConfirmModal",
+            templateUrl: "avAdmin/admin-directives/dashboard/allow-tally-modal.html",
+            controller: "AllowTallyModal",
             size: 'lg',
             resolve: {
               dialogName: function () { return "allowTally"; },
