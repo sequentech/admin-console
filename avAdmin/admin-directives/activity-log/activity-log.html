@@ -214,7 +214,7 @@
               })avAdmin.activityLog.action.authevent.startTallyRevoked
             </div>
 
-            <div ng-if="obj.action_name === 'authevent:allow-tally:scheduled'" ng-i18next>
+            <div ng-if="obj.action_name === 'authevent:allow_tally:scheduled'" ng-i18next>
               [i18next:html]({
                 executer_username: obj.executer_username,
                 executer_id: obj.executer_id,
@@ -226,7 +226,7 @@
                 child_election: election.childrenElectionNames[obj.metadata.auth_event],
               })avAdmin.activityLog.action.authevent.allowTallyScheduled
             </div>
-            <div ng-if="obj.action_name === 'authevent:allow-tally:revoked'" ng-i18next>
+            <div ng-if="obj.action_name === 'authevent:allow_tally:revoked'" ng-i18next>
               [i18next:html]({
                 executer_username: obj.executer_username,
                 executer_id: obj.executer_id,
