@@ -85,6 +85,76 @@
           ng-model="scheduled_events.end_voting.event_at"
         />
       </label>
+      <!-- allow_tally checkbox -->
+      <label
+        for="allow-tally-enable"
+        class="descriptive-checkbox"
+        ng-class="{'disabled': !enabled.allow_tally}"
+      >
+        <input
+          id="allow-tally-enable"
+          type="checkbox"
+          name="allow-tally-enable"
+          ng-model="enabled.allow_tally"
+        />
+        <span
+          class="header"
+          ng-i18next="avAdmin.dashboard.modals.configureScheduledEvents.allowTallyEnable">
+        </span>
+      </label>
+      <!-- allow_tally selector -->
+      <label
+        for="allow-tally-selector"
+        class="descriptive-selector"
+        ng-class="{'disabled': !enabled.allow_tally}"
+      >
+        <span 
+          class="header"
+          ng-i18next="avAdmin.dashboard.modals.configureScheduledEvents.allowTallySelector"
+        ></span>
+        <input
+          id="allow-tally-selector"
+          ng-disabled="!enabled.allow_tally"
+          type="datetime-local"
+          name="allow-tally-selector"
+          ng-model="scheduled_events.allow_tally.event_at"
+        />
+      </label>
+      <!-- start tally checkbox -->
+      <label
+        for="start-tally-enable"
+        class="descriptive-checkbox"
+        ng-class="{'disabled': !enabled.start_tally}"
+      >
+        <input
+          id="start-tally-enable"
+          type="checkbox"
+          name="start-tally-enable"
+          ng-model="enabled.start_tally"
+        />
+        <span
+          class="header"
+          ng-i18next="avAdmin.dashboard.modals.configureScheduledEvents.startTallyEnable">
+        </span>
+      </label>
+      <!-- start tally selector -->
+      <label
+        for="start-tally-selector"
+        class="descriptive-selector"
+        ng-class="{'disabled': !enabled.start_tally}"
+      >
+        <span 
+          class="header"
+          ng-i18next="avAdmin.dashboard.modals.configureScheduledEvents.startTallySelector"
+        ></span>
+        <input
+          id="start-tally-selector"
+          ng-disabled="!enabled.start_tally"
+          type="datetime-local"
+          name="start-tally-selector"
+          ng-model="scheduled_events.start_tally.event_at"
+        />
+      </label>
     </form>
   </div>
   <div class="modal-footer">
